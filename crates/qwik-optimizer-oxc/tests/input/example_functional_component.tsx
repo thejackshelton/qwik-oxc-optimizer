@@ -1,9 +1,7 @@
-import { $, component$, useStore } from '@qwik.dev/core';
+import { $, component$, useStore } from "@qwik.dev/core";
 const Header = component$(() => {
-	const thing = useStore();
-	const {foo, bar} = foo();
+  const thing = useStore();
+  const { foo, bar } = foo();
 
-	return (
-		<div>{thing}</div>
-	);
+  return <div>{thing}</div>;
 });

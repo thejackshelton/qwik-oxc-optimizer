@@ -1,7 +1,16 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { inlinedQrl } from "@qwik.dev/core";
+
+const foo = inlinedQrl(null, "some_hash");
+
 === test.js ===
 import { inlinedQrl } from "@qwik.dev/core";
-const foo = inlinedQrl(null, "some_hash");
+inlinedQrl(null, "some_hash");
+
+=== DIAGNOSTICS ===
+
+[]

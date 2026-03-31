@@ -13,7 +13,7 @@ export const Image = component$((props) => {
 export const ModelImg = component$<ModelProps>((props) => {
   const imgLoc = useResource$(async ({ track }) => {
     track(() => props.store.model);
-    return await serverImg('some.png');
+    return await serverImg("some.png");
   });
   return (
     <>

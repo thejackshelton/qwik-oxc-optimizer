@@ -1,89 +1,74 @@
 ---
-source: packages/qwik/src/optimizer/core/src/test.rs
-assertion_line: 112
+source: src/test.rs
 expression: output
-snapshot_kind: text
 ---
-==INPUT==
-
-
-import { $, component$ } from '@qwik.dev/core';
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
 export const Header = component$(() => {
-	console.log("mount");
-	return (
-		<div onClick={$((ctx) => console.log(ctx))}/>
-	);
+  console.log("mount");
+  return <div onClick={$((ctx) => console.log(ctx))} />;
 });
 
-============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
-
+=== test.tsx ===
+import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_i7ekvWH3674 = ()=>import("./test.tsx_Header_component_div_onClick_i7ekvWH3674");
-export const Header_component_J4uyIhaBNR4 = ()=>{
-    console.log("mount");
-    return <div onClick={/*#__PURE__*/ qrl(i_i7ekvWH3674, "Header_component_div_onClick_i7ekvWH3674")}/>;
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_XXXXXXXXXXXX");
+export const Header = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_XXXXXXXXXXXX"),
+);
+
+=== test.tsx_Header_component_XXXXXXXXXXXX.tsx === (ENTRY)
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_div_onClick_XXXXXXXXXXXX");
+export const Header_component_XXXXXXXXXXXX = () => {
+  console.log("mount");
+  return (
+    <div
+      onClick={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_div_onClick_XXXXXXXXXXXX")}
+    />
+  );
 };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;4CAEiC;IAChC,QAAQ,GAAG,CAAC;IACZ,QACE,IAAI;AAEP\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Header_component_J4uyIhaBNR4",
+  "name": "Header_component_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_Header_component",
-  "hash": "J4uyIhaBNR4",
-  "canonicalFilename": "test.tsx_Header_component_J4uyIhaBNR4",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_XXXXXXXXXXXX",
   "path": "",
   "extension": "tsx",
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": false,
-  "loc": [
-    83,
-    177
-  ]
+  "captures": false
 }
 */
-============================= test.tsx ==
 
-import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-const i_J4uyIhaBNR4 = ()=>import("./test.tsx_Header_component_J4uyIhaBNR4");
-export const Header = /*#__PURE__*/ componentQrl(/*#__PURE__*/ qrl(i_J4uyIhaBNR4, "Header_component_J4uyIhaBNR4"));
+=== test.tsx_Header_component_div_onClick_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Header_component_div_onClick_XXXXXXXXXXXX = (ctx) => console.log(ctx);
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;AAEA,OAAO,MAAM,uBAAS,+EAKnB\"}")
-============================= test.tsx_Header_component_div_onClick_i7ekvWH3674.tsx (ENTRY POINT)==
-
-export const Header_component_div_onClick_i7ekvWH3674 = (ctx)=>console.log(ctx);
-
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\"wDAKkB,CAAC,MAAQ,QAAQ,GAAG,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Header_component_div_onClick_i7ekvWH3674",
+  "name": "Header_component_div_onClick_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_Header_component_div_onClick",
-  "hash": "i7ekvWH3674",
-  "canonicalFilename": "test.tsx_Header_component_div_onClick_i7ekvWH3674",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_div_onClick_XXXXXXXXXXXX",
   "path": "",
   "extension": "tsx",
-  "parent": "Header_component_J4uyIhaBNR4",
+  "parent": "Header_component_XXXXXXXXXXXX",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
-  "loc": [
-    142,
-    167
-  ],
   "paramNames": [
     "ctx"
   ]
 }
 */
-== DIAGNOSTICS ==
+
+=== DIAGNOSTICS ===
 
 []

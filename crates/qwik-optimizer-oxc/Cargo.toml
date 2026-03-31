@@ -16,15 +16,15 @@ parallel = ["dep:rayon"]
 source-maps = []
 
 [dependencies]
-# OXC umbrella crate -- provides parser, AST, traverse, codegen, semantic analysis.
-# NOTE: The "transformer" feature is intentionally excluded. It pulls in babel-compat
-# layers we don't need. Import management is implemented directly in import_rewrite.rs
-# and the exit_program hook.
+# OXC umbrella crate -- provides parser, AST, traverse, codegen, semantic analysis, transformer.
+# The "transformer" feature enables oxc_transformer for TypeScript type stripping (BUG-01).
+# Import management is implemented directly in import_rewrite.rs and the exit_program hook.
 oxc = { version = "0.113", features = [
     "codegen",      # oxc_codegen for AST -> JavaScript output
     "semantic",     # oxc_semantic for SemanticBuilder (scope/symbol analysis)
     "serialize",    # ESTree JSON serialization (for debugging/testing)
     "ast_visit",    # VisitMut trait for const_replace pre-pass
+    "transformer",  # oxc_transformer for TypeScript type stripping before Qwik transform
 ] }
 # NOTE: oxc always includes oxc_parser and oxc_traverse (no feature flags needed).
 
@@ -56,3 +56,6 @@ path-slash = "0.2"
 [dev-dependencies]
 # Snapshot testing for comparing output against 162 spec files.
 insta = { version = "1", features = ["json"] }
+
+# Lightweight regex for hash replacement in snapshots (no proc-macro overhead).
+regex-lite = "0.1"

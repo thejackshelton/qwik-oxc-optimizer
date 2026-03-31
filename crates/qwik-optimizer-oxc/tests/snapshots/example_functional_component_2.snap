@@ -1,57 +1,183 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component$, useStore } from "@qwik.dev/core";
+export const useCounter = () => {
+  return useStore({ count: 0 });
+};
+
+export const STEP = 1;
+
+export const App = component$((props) => {
+  const state = useCounter();
+  const thing = useStore({ thing: 0 });
+  const STEP_2 = 2;
+
+  const count2 = state.count * 2;
+  return (
+    <div onClick$={() => (state.count += count2)}>
+      <span>{state.count}</span>
+      {buttons.map((btn) => (
+        <button onClick$={() => (state.count += btn.offset + thing + STEP + STEP_2 + props.step)}>
+          {btn.name}
+        </button>
+      ))}
+    </div>
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-const i_vbEaih0SxYg = () => import("./test.tsx_App_component_button_q_e_click_vbEaih0SxYg");
-const i_wANYt0I0EHI = () => import("./test.tsx_App_component_div_q_e_click_wANYt0I0EHI");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
 import { useStore } from "@qwik.dev/core";
 export const useCounter = () => {
-	return useStore({ count: 0 });
+  return useStore({
+    count: 0,
+  });
 };
 export const STEP = 1;
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.js === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_vbEaih0SxYg = () => import("./test.tsx_App_component_button_q_e_click_vbEaih0SxYg");
-const i_wANYt0I0EHI = () => import("./test.tsx_App_component_div_q_e_click_wANYt0I0EHI");
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-import { useStore } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { useCounter } from "./test";
-import { STEP } from "./test";
-export const App_component_XumqEURaLxI = (props) => {
-	const state = useCounter();
-	const thing = useStore({ thing: 0 });
-	const STEP_2 = 2;
-	const count2 = state.count * 2;
-	return /* @__PURE__ */ _jsxSorted("div", null, { "q-e:click": /* @__PURE__ */ qrl(i_wANYt0I0EHI, "App_component_div_q_e_click_wANYt0I0EHI", [state, count2]) }, [/* @__PURE__ */ _jsxSorted("span", null, null, state.count, 3, "u6_1"), buttons.map((btn) => /* @__PURE__ */ _jsxSorted("button", null, { "q-e:click": /* @__PURE__ */ qrl(i_vbEaih0SxYg, "App_component_button_q_e_click_vbEaih0SxYg", [
-		state,
-		thing,
-		STEP_2,
-		props
-	]) }, btn.name, 3, "u6_0"))], 1, "u6_2");
+import { useStore } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  const state = useCounter();
+  const thing = useStore({
+    thing: 0,
+  });
+  const count2 = state.count * 2;
+  const App_component_div_button_q_e_click_XXXXXXXXXXXX = /* @__PURE__ */ qrl(
+    i_XXXXXXXXXXXX,
+    "App_component_div_button_q_e_click_XXXXXXXXXXXX",
+    [props, state, thing],
+  );
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    {
+      "q-e:click": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_div_q_e_click_XXXXXXXXXXXX", [
+        count2,
+        state,
+      ]),
+    },
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted("span", null, null, _wrapProp(state, "count"), 3, null),
+      buttons.map((btn) =>
+        /* @__PURE__ */ _jsxSorted(
+          "button",
+          {
+            "q-e:click": App_component_div_button_q_e_click_XXXXXXXXXXXX,
+            "q:p": btn,
+          },
+          null,
+          _wrapProp(btn, "name"),
+          0,
+          "u6_0",
+        ),
+      ),
+    ],
+    0,
+    "u6_1",
+  );
 };
 
-=== test.tsx_App_component_button_q_e_click_vbEaih0SxYg.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+=== test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-import { STEP } from "./test";
-export const App_component_button_q_e_click_vbEaih0SxYg = () => {
-	const state = _captures[0];
-	const thing = _captures[1];
-	const STEP_2 = _captures[2];
-	const props = _captures[3];
-	return state.count += btn.offset + thing + STEP + STEP_2 + props.step;
+export const App_component_div_q_e_click_XXXXXXXXXXXX = () => {
+  const count2 = _captures[0],
+    state = _captures[1];
+  return (state.count += count2);
 };
 
-=== test.tsx_App_component_div_q_e_click_wANYt0I0EHI.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_div_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "count2",
+    "state"
+  ]
+}
+*/
+
+=== test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-export const App_component_div_q_e_click_wANYt0I0EHI = () => {
-	const state = _captures[0];
-	const count2 = _captures[1];
-	return state.count += count2;
+import { STEP } from "./test";
+export const App_component_div_button_q_e_click_XXXXXXXXXXXX = (_, _1, btn) => {
+  const props = _captures[0],
+    state = _captures[1],
+    thing = _captures[2];
+  return (state.count += btn.offset + thing + STEP + 2 + props.step);
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_div_button_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_div_button_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "paramNames": [
+    "_",
+    "_",
+    "btn"
+  ],
+  "captureNames": [
+    "props",
+    "state",
+    "thing"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

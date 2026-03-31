@@ -1,19 +1,52 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+
+export const App = component$(() => {
+  console.log(function* (lo: any, t: any) {
+    console.log(yield (yield lo)(t.href).then((r) => r.json()));
+  });
+
+  return <p>Hello Qwik</p>;
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.js === (ENTRY)
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-export const App_component_XumqEURaLxI = () => {
-	console.log(function* (lo: any, t: any) {
-		console.log(yield (yield lo)(t.href).then((r) => r.json()));
-	});
-	return /* @__PURE__ */ _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
+export const App_component_XXXXXXXXXXXX = () => {
+  console.log(function* (lo, t) {
+    console.log(yield (yield lo)(t.href).then((r) => r.json()));
+  });
+  return /* @__PURE__ */ _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
+
+=== DIAGNOSTICS ===
+
+[]

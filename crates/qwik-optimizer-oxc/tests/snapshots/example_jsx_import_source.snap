@@ -1,17 +1,51 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== test.js ===
-import { qwikifyQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-import { jsx as _jsx } from "react/jsx-runtime";
-const i_4Tc4MzcFY0U = () => import("./test.tsx_App2_qwikify_4Tc4MzcFY0U.js");
+=== INPUT ===
 /* @jsxImportSource react */
-import { qwikify$ } from "./qwikfy";
-export const App = () => /* @__PURE__ */ _jsx("div", { "onClick$": () => console.log("App") });
-export const App2 = qwikifyQrl(/* @__PURE__ */ qrl(i_4Tc4MzcFY0U, "App2_qwikify_4Tc4MzcFY0U"));
 
-=== test.tsx_App2_qwikify_4Tc4MzcFY0U.js === (ENTRY)
+import { qwikify$ } from "./qwikfy";
+
+export const App = () => <div onClick$={() => console.log("App")}></div>;
+
+export const App2 = qwikify$(() => <div onClick$={() => console.log("App2")}></div>);
+
+=== test.js ===
+/* @jsxImportSource react */ import { qwikifyQrl } from "./qwikfy";
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App2_qwikify_XXXXXXXXXXXX.js");
 import { jsx as _jsx } from "react/jsx-runtime";
-export const App2_qwikify_4Tc4MzcFY0U = () => /* @__PURE__ */ _jsx("div", { "onClick$": () => console.log("App2") });
+export const App = () =>
+  /* @__PURE__ */ _jsx("div", {
+    onClick$: () => console.log("App"),
+  });
+export const App2 = qwikifyQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App2_qwikify_XXXXXXXXXXXX"));
+
+=== test.tsx_App2_qwikify_XXXXXXXXXXXX.js === (ENTRY)
+import { jsx as _jsx } from "react/jsx-runtime";
+export const App2_qwikify_XXXXXXXXXXXX = () =>
+  /* @__PURE__ */ _jsx("div", {
+    onClick$: () => console.log("App2"),
+  });
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App2_qwikify_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App2_qwikify",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App2_qwikify_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "qwikify$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

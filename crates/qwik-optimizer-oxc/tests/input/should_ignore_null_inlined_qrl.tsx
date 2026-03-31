@@ -1,3 +1,3 @@
-import { inlinedQrl } from '@qwik.dev/core';
+import { inlinedQrl } from "@qwik.dev/core";
 
-		const foo = inlinedQrl(null, 'some_hash');
+const foo = inlinedQrl(null, "some_hash");

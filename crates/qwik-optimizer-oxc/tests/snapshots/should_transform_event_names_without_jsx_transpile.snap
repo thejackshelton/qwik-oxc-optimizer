@@ -1,39 +1,144 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, $ } from "@qwik.dev/core";
+import mongo from "mongodb";
+
+export const Greeter = component$(() => {
+  // Double count watch
+  useTask$(async () => {
+    await mongo.users();
+  });
+  return (
+    <div>
+      <div onClick$={() => {}} />
+      <div onClick$={() => {}} />
+      <div onClick$={() => {}} />
+    </div>
+  );
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_l5Al0251s9w = () => import("./test.tsx_Greeter_component_l5Al0251s9w");
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-import mongo from "mongodb";
-export const Greeter = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_l5Al0251s9w, "Greeter_component_l5Al0251s9w"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Greeter_component_XXXXXXXXXXXX");
+export const Greeter = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Greeter_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_Greeter_component_l5Al0251s9w.tsx === (ENTRY)
+=== test.tsx_Greeter_component_XXXXXXXXXXXX.tsx === (ENTRY)
+import mongo from "mongodb";
 import { qrl } from "@qwik.dev/core";
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-const i_Rxdt6XL5GRU = () => import("./test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU");
-import mongo from "mongodb";
-export const Greeter_component_l5Al0251s9w = () => {
-	useTask$(async () => {
-		await mongo.users();
-	});
-	return <div>
-			<div onClick$={/* @__PURE__ */ qrl(i_Rxdt6XL5GRU, "Greeter_component_div_q_e_click_Rxdt6XL5GRU")} />
-			<div onClick$={/* @__PURE__ */ qrl(i_Rxdt6XL5GRU, "Greeter_component_div_q_e_click_Rxdt6XL5GRU")} />
-			<div onClick$={/* @__PURE__ */ qrl(i_Rxdt6XL5GRU, "Greeter_component_div_q_e_click_Rxdt6XL5GRU")} />
-		</div>;
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Greeter_component_div_div_q_e_click_XXXXXXXXXXXX");
+export const Greeter_component_XXXXXXXXXXXX = () => {
+  // Double count watch
+  useTask$(async () => {
+    await mongo.users();
+  });
+  return (
+    <div>
+      <div
+        q-e:click={
+          /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Greeter_component_div_div_q_e_click_XXXXXXXXXXXX")
+        }
+      />
+      <div
+        q-e:click={
+          /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX")
+        }
+      />
+      <div
+        q-e:click={
+          /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX")
+        }
+      />
+    </div>
+  );
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Greeter_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
 
-=== test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU.tsx === (ENTRY)
-export const Greeter_component_div_q_e_click_Rxdt6XL5GRU = () => {};
+=== test.tsx_Greeter_component_div_div_q_e_click_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Greeter_component_div_div_q_e_click_XXXXXXXXXXXX = () => {};
 
-=== test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU.tsx === (ENTRY)
-export const Greeter_component_div_q_e_click_Rxdt6XL5GRU = () => {};
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_div_div_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component_div_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Greeter_component_div_div_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Greeter_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Greeter_component_div_q_e_click_Rxdt6XL5GRU.tsx === (ENTRY)
-export const Greeter_component_div_q_e_click_Rxdt6XL5GRU = () => {};
+=== test.tsx_Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX = () => {};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component_div_div_q_e_click_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Greeter_component_div_div_q_e_click_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Greeter_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX = () => {};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component_div_div_q_e_click_2",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Greeter_component_div_div_q_e_click_2_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Greeter_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

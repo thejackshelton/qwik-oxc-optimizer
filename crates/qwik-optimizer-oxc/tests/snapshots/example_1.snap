@@ -1,29 +1,102 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component, onRender } from "@qwik.dev/core";
+
+export const renderHeader = $(() => {
+  return <div onClick={$((ctx) => console.log(ctx))} />;
+});
+const renderHeader = component(
+  $(() => {
+    console.log("mount");
+    return render;
+  }),
+);
+
 === test.tsx ===
 import { qrl } from "@qwik.dev/core";
-const i_AcV95hWr76k = () => import("./test.tsx_renderHeader_AcV95hWr76k");
-const i_cwR88TdIVK4 = () => import("./test.tsx_renderHeader_div_q_e_click_cwR88TdIVK4");
-const i_dZG2Ib1X4QU = () => import("./test.tsx_renderHeader_component_dZG2Ib1X4QU");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_renderHeader_component_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_renderHeader_XXXXXXXXXXXX");
 import { component } from "@qwik.dev/core";
-import { onRender } from "@qwik.dev/core";
-export const renderHeader = /* @__PURE__ */ qrl(i_AcV95hWr76k, "renderHeader_AcV95hWr76k");
-const renderHeader = component(/* @__PURE__ */ qrl(i_dZG2Ib1X4QU, "renderHeader_component_dZG2Ib1X4QU"));
+export const renderHeader = /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "renderHeader_XXXXXXXXXXXX");
+const renderHeader = component(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "renderHeader_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_renderHeader_AcV95hWr76k.tsx === (ENTRY)
+=== test.tsx_renderHeader_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_cwR88TdIVK4 = () => import("./test.tsx_renderHeader_div_q_e_click_cwR88TdIVK4");
-export const renderHeader_AcV95hWr76k = () => {
-	return <div onClick={/* @__PURE__ */ qrl(i_cwR88TdIVK4, "renderHeader_div_q_e_click_cwR88TdIVK4")} />;
-}
-
-=== test.tsx_renderHeader_div_q_e_click_cwR88TdIVK4.tsx === (ENTRY)
-export const renderHeader_div_q_e_click_cwR88TdIVK4 = (ctx) => console.log(ctx);
-
-=== test.tsx_renderHeader_component_dZG2Ib1X4QU.tsx === (ENTRY)
-export const renderHeader_component_dZG2Ib1X4QU = () => {
-	console.log("mount");
-	return render;
+const i_XXXXXXXXXXXX = () => import("./test.tsx_renderHeader_div_onClick_XXXXXXXXXXXX");
+export const renderHeader_XXXXXXXXXXXX = () => {
+  return (
+    <div onClick={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "renderHeader_div_onClick_XXXXXXXXXXXX")} />
+  );
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_renderHeader",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_renderHeader_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
+
+=== test.tsx_renderHeader_div_onClick_XXXXXXXXXXXX.tsx === (ENTRY)
+export const renderHeader_div_onClick_XXXXXXXXXXXX = (ctx) => console.log(ctx);
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader_div_onClick_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_renderHeader_div_onClick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_renderHeader_div_onClick_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "renderHeader_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+=== test.tsx_renderHeader_component_XXXXXXXXXXXX.tsx === (ENTRY)
+export const renderHeader_component_XXXXXXXXXXXX = () => {
+  console.log("mount");
+  return render;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_renderHeader_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_renderHeader_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

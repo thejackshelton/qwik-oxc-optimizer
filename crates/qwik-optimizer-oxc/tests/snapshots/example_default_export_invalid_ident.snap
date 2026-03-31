@@ -1,21 +1,70 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+
+export default component$(() => {
+  return <div onClick$={() => console.log(mongodb)}></div>;
+});
+
 === src/components/mongo/404.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_PS0fTRVnPOE = () => import("./src/components/mongo/404.tsx_default_component_PS0fTRVnPOE");
-const i_41GceC3v3n8 = () => import("./src/components/mongo/404.tsx_default_component_div_q_e_click_41GceC3v3n8");
-export default /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_PS0fTRVnPOE, "default_component_PS0fTRVnPOE"));
+const i_XXXXXXXXXXXX = () => import("./404.tsx__404_component_XXXXXXXXXXXX");
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "_404_component_XXXXXXXXXXXX"),
+);
 
-=== src/components/mongo/404.tsx_default_component_PS0fTRVnPOE.tsx === (ENTRY)
+=== src/components/mongo/404.tsx__404_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_41GceC3v3n8 = () => import("./src/components/mongo/404.tsx_default_component_div_q_e_click_41GceC3v3n8");
-export const default_component_PS0fTRVnPOE = () => {
-	return <div onClick$={/* @__PURE__ */ qrl(i_41GceC3v3n8, "default_component_div_q_e_click_41GceC3v3n8")}>
-		</div>;
-}
+const i_XXXXXXXXXXXX = () => import("./404.tsx__404_component_div_q_e_click_XXXXXXXXXXXX");
+export const _404_component_XXXXXXXXXXXX = () => {
+  return (
+    <div
+      q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "_404_component_div_q_e_click_XXXXXXXXXXXX")}
+    ></div>
+  );
+};
 
-=== src/components/mongo/404.tsx_default_component_div_q_e_click_41GceC3v3n8.tsx === (ENTRY)
-export const default_component_div_q_e_click_41GceC3v3n8 = () => console.log(mongodb);
+/*
+{
+  "origin": "src/components/mongo/404.tsx",
+  "name": "_404_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "404.tsx__404_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "404.tsx__404_component_XXXXXXXXXXXX",
+  "path": "src/components/mongo",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== src/components/mongo/404.tsx__404_component_div_q_e_click_XXXXXXXXXXXX.tsx === (ENTRY)
+export const _404_component_div_q_e_click_XXXXXXXXXXXX = () => console.log(mongodb);
+
+/*
+{
+  "origin": "src/components/mongo/404.tsx",
+  "name": "_404_component_div_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "404.tsx__404_component_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "404.tsx__404_component_div_q_e_click_XXXXXXXXXXXX",
+  "path": "src/components/mongo",
+  "extension": "tsx",
+  "parent": "_404_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

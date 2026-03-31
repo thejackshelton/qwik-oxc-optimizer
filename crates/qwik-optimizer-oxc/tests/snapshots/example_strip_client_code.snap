@@ -1,36 +1,106 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== components/component.js ===
-import { componentQrl } from "@qwik.dev/core";
-import { useClientMountQrl } from "@qwik.dev/core";
-import { useTaskQrl } from "@qwik.dev/core";
-import { inlinedQrl } from "@qwik.dev/core";
-import { _captures } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-import { useStore } from "@qwik.dev/core";
+=== INPUT ===
+import { component$, useClientMount$, useStore, useTask$ } from "@qwik.dev/core";
 import mongo from "mongodb";
 import redis from "redis";
 import threejs from "threejs";
 import { a } from "./keep";
 import { b } from "../keep2";
 import { c } from "../../remove";
-export const Parent = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl(() => {
-	const state = useStore({ text: "" });
-	// Double count watch
-	useClientMountQrl(/* @__PURE__ */ inlinedQrl(async () => {
-		state.text = await mongo.users();
-		redis.set(state.text, a, b, c);
-	}, "useClientMount_HL0udnF1YjQ", [state]));
-	useTaskQrl(/* @__PURE__ */ inlinedQrl(() => {
-		// Code
-	}, "useTask_Vmh2TI9KAKU"));
-	return /* @__PURE__ */ _jsxSorted("div", null, {
-		"shouldRemove$": () => state.text,
-		"q-e:click": () => console.log("parent", state, threejs)
-	}, [/* @__PURE__ */ _jsxSorted(Div, null, {
-		"q-e:click": () => console.log("keep"),
-		"render$": () => state.text
-	}, null, 3, "u6_0"), state.text], 1, "u6_1");
-}, "Parent_component_Pr9NkHIe6q8"));
+
+export const Parent = component$(() => {
+  const state = useStore({
+    text: "",
+  });
+
+  // Double count watch
+  useClientMount$(async () => {
+    state.text = await mongo.users();
+    redis.set(state.text, a, b, c);
+  });
+
+  useTask$(() => {
+    // Code
+  });
+
+  return (
+    <div shouldRemove$={() => state.text} onClick$={() => console.log("parent", state, threejs)}>
+      <Div onClick$={() => console.log("keep")} render$={() => state.text} />
+      {state.text}
+    </div>
+  );
+});
+
+=== components/component.js ===
+import "./keep";
+import "../keep2";
+import { componentQrl } from "@qwik.dev/core";
+import { useClientMountQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
+import { useTaskQrl } from "@qwik.dev/core";
+import { inlinedQrl } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
+import { _captures } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { useStore } from "@qwik.dev/core";
+export const Parent = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(() => {
+    const state = useStore({
+      text: "",
+    });
+    // Double count watch
+    useClientMountQrl(
+      /* @__PURE__ */ _noopQrl("Parent_component_useClientMount_Yn2kIDABoYw", [state]),
+    );
+    useTaskQrl(
+      /* @__PURE__ */ inlinedQrl(() => {
+        // Code
+      }, "Parent_component_useTask_ngmvcygWux8"),
+    );
+    return /* @__PURE__ */ _jsxSorted(
+      "div",
+      null,
+      {
+        shouldRemove$: /* @__PURE__ */ _noopQrl("Parent_component_div_shouldRemove_EBj69wTX1do", [
+          state,
+        ]),
+        "q-e:click": /* @__PURE__ */ _noopQrl("Parent_component_div_q_e_click_oqNnfO6ubjU", [
+          state,
+        ]),
+      },
+      [
+        /* @__PURE__ */ _jsxSorted(
+          Div,
+          null,
+          {
+            onClick$: /* @__PURE__ */ inlinedQrl(
+              () => console.log("keep"),
+              "Parent_component_div_Div_onClick_kgowuto5dR0",
+            ),
+            render$: /* @__PURE__ */ inlinedQrl(
+              () => {
+                const state = _captures[0];
+                return state.text;
+              },
+              "Parent_component_div_Div_render_CkMybN6xzQk",
+              [state],
+            ),
+          },
+          null,
+          3,
+          "7R_0",
+        ),
+        _wrapProp(state, "text"),
+      ],
+      1,
+      "7R_1",
+    );
+  }, "Parent_component_t6Wy3C0Q0XM"),
+);
+
+=== DIAGNOSTICS ===
+
+[]

@@ -1,102 +1,293 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore, $ } from "@qwik.dev/core";
+import importedValue from "v";
+import styles from "./styles.module.css";
+
+export const App = component$((props) => {
+  const { Model } = props;
+  const state = useStore({ count: 0 });
+  const remove = $((id: number) => {
+    const d = state.data;
+    d.splice(
+      d.findIndex((d) => d.id === id),
+      1,
+    );
+  });
+  return (
+    <>
+      <p class="stuff" onClick$={props.onClick$}>
+        Hello Qwik
+      </p>
+      <Div
+        class={styles.foo}
+        document={window.document}
+        onClick$={props.onClick$}
+        onEvent$={() => console.log("stuff")}
+        transparent$={() => {
+          console.log("stuff");
+        }}
+        immutable1="stuff"
+        immutable2={{
+          foo: "bar",
+          baz: importedValue ? true : false,
+        }}
+        immutable3={2}
+        immutable4$={(ev) => console.log(state.count)}
+        immutable5={[1, 2, importedValue, null, {}]}
+      >
+        <p>Hello Qwik</p>
+      </Div>
+      {[].map(() => (
+        <Model
+          class={state}
+          remove$={remove}
+          mutable1={{
+            foo: "bar",
+            baz: state.count ? true : false,
+          }}
+          mutable2={(() => console.log(state.count))()}
+          mutable3={[1, 2, state, null, {}]}
+        />
+      ))}
+    </>
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-const i_qkje5irpghU = () => import("./test.tsx_remove_qkje5irpghU");
-const i_j3XFTutAFbA = () => import("./test.tsx_App_component___q_e_event_j3XFTutAFbA");
-const i_R37Ah6P7YK8 = () => import("./test.tsx_App_component___transparent_R37Ah6P7YK8");
-const i_fo6pletGN1s = () => import("./test.tsx_App_component___immutable4_fo6pletGN1s");
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
-import { useStore } from "@qwik.dev/core";
-import importedValue from "v";
-import styles from "./styles.module.css";
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.js === (ENTRY)
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import importedValue from "v";
 import { qrl } from "@qwik.dev/core";
-const i_qkje5irpghU = () => import("./test.tsx_remove_qkje5irpghU");
-const i_j3XFTutAFbA = () => import("./test.tsx_App_component___q_e_event_j3XFTutAFbA");
-const i_R37Ah6P7YK8 = () => import("./test.tsx_App_component___transparent_R37Ah6P7YK8");
-const i_fo6pletGN1s = () => import("./test.tsx_App_component___immutable4_fo6pletGN1s");
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
-import { useStore } from "@qwik.dev/core";
 import styles from "./styles.module.css";
-import importedValue from "v";
-export const App_component_XumqEURaLxI = (props) => {
-	const { Model } = props;
-	const state = useStore({ count: 0 });
-	const remove = /* @__PURE__ */ qrl(i_qkje5irpghU, "remove_qkje5irpghU", [state]);
-	return /* @__PURE__ */ _jsxSorted(_Fragment, null, null, [
-		/* @__PURE__ */ _jsxSorted("p", null, {
-			class: "stuff",
-			"q-e:click": props.onClick$
-		}, "Hello Qwik", 3, "u6_1"),
-		/* @__PURE__ */ _jsxSorted(Div, {
-			class: styles.foo,
-			document: window.document,
-			immutable2: {
-				foo: "bar",
-				baz: importedValue ? true : false
-			},
-			immutable5: [
-				1,
-				2,
-				importedValue,
-				null,
-				{}
-			]
-		}, {
-			"q-e:click": props.onClick$,
-			"q-e:event": /* @__PURE__ */ qrl(i_j3XFTutAFbA, "App_component___q_e_event_j3XFTutAFbA"),
-			"transparent$": /* @__PURE__ */ qrl(i_R37Ah6P7YK8, "App_component___transparent_R37Ah6P7YK8"),
-			immutable1: "stuff",
-			immutable3: 2,
-			"immutable4$": /* @__PURE__ */ qrl(i_fo6pletGN1s, "App_component___immutable4_fo6pletGN1s", [state])
-		}, /* @__PURE__ */ _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_2"), 3, "u6_3"),
-		[].map(() => /* @__PURE__ */ _jsxSorted(Model, {
-			class: state,
-			mutable1: {
-				foo: "bar",
-				baz: state.count ? true : false
-			},
-			mutable2: (() => console.log(state.count))(),
-			mutable3: [
-				1,
-				2,
-				state,
-				null,
-				{}
-			]
-		}, { "remove$": remove }, null, 3, "u6_0"))
-	], 1, "u6_4");
+import { useStore } from "@qwik.dev/core";
+const _hf0 = (p0) => ({
+  foo: "bar",
+  baz: p0.count ? true : false,
+});
+const _hf0_str = '{foo:"bar",baz:p0.count?true:false}';
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_App_component_Fragment_Div_immutable4_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_App_component_Fragment_Div_transparent_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_remove_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_Fragment_Div_onEvent_XXXXXXXXXXXX");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  const state = useStore({
+    count: 0,
+  });
+  const remove = /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_remove_XXXXXXXXXXXX", [state]);
+  return /* @__PURE__ */ _jsxSorted(
+    _Fragment,
+    null,
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted(
+        "p",
+        {
+          "q-e:click": props.onClick$,
+        },
+        {
+          class: "stuff",
+        },
+        "Hello Qwik",
+        2,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted(
+        Div,
+        {
+          document: window.document,
+          onClick$: props.onClick$,
+        },
+        {
+          class: styles.foo,
+          onEvent$: /* @__PURE__ */ qrl(
+            i_XXXXXXXXXXXX,
+            "App_component_Fragment_Div_onEvent_XXXXXXXXXXXX",
+          ),
+          transparent$: /* @__PURE__ */ qrl(
+            i_XXXXXXXXXXXX,
+            "App_component_Fragment_Div_transparent_XXXXXXXXXXXX",
+          ),
+          immutable1: "stuff",
+          immutable2: {
+            foo: "bar",
+            baz: importedValue ? true : false,
+          },
+          immutable3: 2,
+          immutable4$: /* @__PURE__ */ qrl(
+            i_XXXXXXXXXXXX,
+            "App_component_Fragment_Div_immutable4_XXXXXXXXXXXX",
+            [state],
+          ),
+          immutable5: [1, 2, importedValue, null, {}],
+        },
+        /* @__PURE__ */ _jsxSorted("p", null, null, "Hello Qwik", 3, null),
+        2,
+        "u6_0",
+      ),
+      [].map(() =>
+        /* @__PURE__ */ _jsxSorted(
+          props.Model,
+          {
+            mutable2: (() => console.log(state.count))(),
+          },
+          {
+            class: state,
+            remove$: remove,
+            mutable1: _fnSignal(_hf0, [state], _hf0_str),
+            mutable3: [1, 2, state, null, {}],
+          },
+          null,
+          3,
+          "u6_1",
+        ),
+      ),
+    ],
+    1,
+    "u6_2",
+  );
 };
 
-=== test.tsx_remove_qkje5irpghU.js === (ENTRY)
-import { _captures } from "@qwik.dev/core";
-export const remove_qkje5irpghU = (id: number) => {
-const state = _captures[0];
-
-	const d = state.data;
-	d.splice(d.findIndex((d) => d.id === id), 1);
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
 }
+*/
 
-=== test.tsx_App_component___q_e_event_j3XFTutAFbA.js === (ENTRY)
-export const App_component___q_e_event_j3XFTutAFbA = () => console.log("stuff");
-
-=== test.tsx_App_component___transparent_R37Ah6P7YK8.js === (ENTRY)
-export const App_component___transparent_R37Ah6P7YK8 = () => {
-	console.log("stuff");
-};
-
-=== test.tsx_App_component___immutable4_fo6pletGN1s.js === (ENTRY)
+=== test.tsx_App_component_remove_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-export const App_component___immutable4_fo6pletGN1s = (ev) => {
-	const state = _captures[0];
-	return console.log(state.count);
+export const App_component_remove_XXXXXXXXXXXX = (id) => {
+  const state = _captures[0];
+  const d = state.data;
+  d.splice(
+    d.findIndex((d) => d.id === id),
+    1,
+  );
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_remove_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_remove",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_remove_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "paramNames": [
+    "id"
+  ],
+  "captureNames": [
+    "state"
+  ]
+}
+*/
+
+=== test.tsx_App_component_Fragment_Div_onEvent_XXXXXXXXXXXX.js === (ENTRY)
+export const App_component_Fragment_Div_onEvent_XXXXXXXXXXXX = () => console.log("stuff");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Fragment_Div_onEvent_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Fragment_Div_onEvent",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_Fragment_Div_onEvent_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "jSXProp",
+  "ctxName": "onEvent$",
+  "captures": false
+}
+*/
+
+=== test.tsx_App_component_Fragment_Div_transparent_XXXXXXXXXXXX.js === (ENTRY)
+export const App_component_Fragment_Div_transparent_XXXXXXXXXXXX = () => {
+  console.log("stuff");
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Fragment_Div_transparent_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Fragment_Div_transparent",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_Fragment_Div_transparent_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "jSXProp",
+  "ctxName": "transparent$",
+  "captures": false
+}
+*/
+
+=== test.tsx_App_component_Fragment_Div_immutable4_XXXXXXXXXXXX.js === (ENTRY)
+import { _captures } from "@qwik.dev/core";
+export const App_component_Fragment_Div_immutable4_XXXXXXXXXXXX = (ev) => {
+  const state = _captures[0];
+  return console.log(state.count);
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Fragment_Div_immutable4_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Fragment_Div_immutable4",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_Fragment_Div_immutable4_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "jSXProp",
+  "ctxName": "immutable4$",
+  "captures": true,
+  "paramNames": [
+    "ev"
+  ],
+  "captureNames": [
+    "state"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

@@ -1,29 +1,104 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
+
+export const Header = component$(() => {
+  console.log("mount");
+  return <div onClick={$((ctx) => console.log(ctx))} />;
+});
+
+const App = component$(() => {
+  return <Header />;
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_Qw9nV3mG0KQ = () => import("./test.tsx_Header_component_Qw9nV3mG0KQ");
-const i_F0ShKNzNoIM = () => import("./test.tsx_Header_component_div_q_e_click_F0ShKNzNoIM");
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-export const Header = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_Qw9nV3mG0KQ, "Header_component_Qw9nV3mG0KQ"));
-const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+export const Header = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_XXXXXXXXXXXX"),
+);
+/* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"));
 
-=== test.tsx_Header_component_Qw9nV3mG0KQ.tsx === (ENTRY)
+=== test.tsx_Header_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_F0ShKNzNoIM = () => import("./test.tsx_Header_component_div_q_e_click_F0ShKNzNoIM");
-export const Header_component_Qw9nV3mG0KQ = () => {
-	console.log("mount");
-	return <div onClick={/* @__PURE__ */ qrl(i_F0ShKNzNoIM, "Header_component_div_q_e_click_F0ShKNzNoIM")} />;
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_div_onClick_XXXXXXXXXXXX");
+export const Header_component_XXXXXXXXXXXX = () => {
+  console.log("mount");
+  return (
+    <div
+      onClick={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_div_onClick_XXXXXXXXXXXX")}
+    />
+  );
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Header_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
 
-=== test.tsx_Header_component_div_q_e_click_F0ShKNzNoIM.tsx === (ENTRY)
-export const Header_component_div_q_e_click_F0ShKNzNoIM = (ctx) => console.log(ctx);
+=== test.tsx_Header_component_div_onClick_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Header_component_div_onClick_XXXXXXXXXXXX = (ctx) => console.log(ctx);
 
-=== test.tsx_App_component_XumqEURaLxI.tsx === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_div_onClick_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Header_component_div_onClick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_div_onClick_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Header_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+=== test.tsx_App_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { Header } from "./test";
-export const App_component_XumqEURaLxI = () => {
-	return <Header />;
+export const App_component_XXXXXXXXXXXX = () => {
+  return <Header />;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
+
+=== DIAGNOSTICS ===
+
+[]

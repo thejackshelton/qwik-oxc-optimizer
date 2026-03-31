@@ -4,6 +4,11 @@
 //! with boolean literals based on build configuration, then eliminate dead branches.
 //! This runs as a pre-pass before the main traverse so that segment body serialization
 //! sees the replaced values.
+//!
+//! The `VisitMut` walker recursively visits all AST nodes, including arrow function
+//! bodies inside `inlinedQrl(...)` callback arguments. This means dead branch
+//! elimination reaches Inline strategy entry code where `if (isBrowser)` / `if (isServer)`
+//! guards appear inside component bodies that stay in the entry module.
 
 use std::collections::HashMap;
 

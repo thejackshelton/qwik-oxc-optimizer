@@ -1,146 +1,120 @@
 ---
-source: packages/qwik/src/optimizer/core/src/test.rs
-assertion_line: 1458
+source: src/test.rs
 expression: output
 ---
-==INPUT==
-
-
-import { component$ } from '@qwik.dev/core';
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
 
 export const Foo = component$(() => {
-	return (
-		<div>
-			<div onClick$={() => console.log('first')}/>
-			<div onClick$={() => console.log('second')}/>
-			<div onClick$={() => console.log('third')}/>
-		</div>
-	);
+  return (
+    <div>
+      <div onClick$={() => console.log("first")} />
+      <div onClick$={() => console.log("second")} />
+      <div onClick$={() => console.log("third")} />
+    </div>
+  );
 });
 
-============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
-
+=== test.tsx ===
+import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_VSoqbTjzr4w = ()=>import("./test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w");
-const i_n19LdlqL6To = ()=>import("./test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To");
-const i_vKrX4PmH2aM = ()=>import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM");
-export const s_HTDRsvUbLiE = ()=>{
-    return <div>
-			<div q-e:click={/*#__PURE__*/ qrl(i_vKrX4PmH2aM, "s_vKrX4PmH2aM")}/>
-			<div q-e:click={/*#__PURE__*/ qrl(i_VSoqbTjzr4w, "s_VSoqbTjzr4w")}/>
-			<div q-e:click={/*#__PURE__*/ qrl(i_n19LdlqL6To, "s_n19LdlqL6To")}/>
-		</div>;
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_XXXXXXXXXXXX");
+export const Foo = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX"),
+);
+
+=== test.tsx_Foo_component_XXXXXXXXXXXX.tsx === (ENTRY)
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX");
+export const s_XXXXXXXXXXXX = () => {
+  return (
+    <div>
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+    </div>
+  );
 };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;;6BAG8B;IAC7B,QACE,IAAI;GACJ,CAAC,IAAI,+DAAuC;GAC5C,CAAC,IAAI,+DAAwC;GAC7C,CAAC,IAAI,+DAAuC;EAC7C,EAAE;AAEJ\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "s_HTDRsvUbLiE",
+  "name": "s_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_Foo_component",
-  "hash": "HTDRsvUbLiE",
-  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_XXXXXXXXXXXX",
   "path": "",
   "extension": "tsx",
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": false,
-  "loc": [
-    78,
-    263
-  ]
+  "captures": false
 }
 */
-============================= test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To.tsx (ENTRY POINT)==
 
-export const s_n19LdlqL6To = ()=>console.log('third');
+=== test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("first");
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\"6BAQkB,IAAM,QAAQ,GAAG,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "s_n19LdlqL6To",
-  "entry": null,
-  "displayName": "test.tsx_Foo_component_div_div_q_e_click_2",
-  "hash": "n19LdlqL6To",
-  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To",
-  "path": "",
-  "extension": "tsx",
-  "parent": "s_HTDRsvUbLiE",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": false,
-  "loc": [
-    219,
-    245
-  ]
-}
-*/
-============================= test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w.tsx (ENTRY POINT)==
-
-export const s_VSoqbTjzr4w = ()=>console.log('second');
-
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\"6BAOkB,IAAM,QAAQ,GAAG,CAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "s_VSoqbTjzr4w",
-  "entry": null,
-  "displayName": "test.tsx_Foo_component_div_div_q_e_click_1",
-  "hash": "VSoqbTjzr4w",
-  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w",
-  "path": "",
-  "extension": "tsx",
-  "parent": "s_HTDRsvUbLiE",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": false,
-  "loc": [
-    170,
-    197
-  ]
-}
-*/
-============================= test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM.tsx (ENTRY POINT)==
-
-export const s_vKrX4PmH2aM = ()=>console.log('first');
-
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\"6BAMkB,IAAM,QAAQ,GAAG,CAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "s_vKrX4PmH2aM",
+  "name": "s_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_Foo_component_div_div_q_e_click",
-  "hash": "vKrX4PmH2aM",
-  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX",
   "path": "",
   "extension": "tsx",
-  "parent": "s_HTDRsvUbLiE",
+  "parent": "s_XXXXXXXXXXXX",
   "ctxKind": "eventHandler",
   "ctxName": "onClick$",
-  "captures": false,
-  "loc": [
-    122,
-    148
-  ]
+  "captures": false
 }
 */
-============================= test.tsx ==
 
-import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-const i_HTDRsvUbLiE = ()=>import("./test.tsx_Foo_component_HTDRsvUbLiE");
-export const Foo = /*#__PURE__*/ componentQrl(/*#__PURE__*/ qrl(i_HTDRsvUbLiE, "s_HTDRsvUbLiE"));
+=== test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("second");
 
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_div_q_e_click_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
 
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;AAGA,OAAO,MAAM,oBAAM,gEAQhB\"}")
-== DIAGNOSTICS ==
+=== test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("third");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_div_q_e_click_2",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
 
 []

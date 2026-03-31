@@ -1,95 +1,385 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
+
+export const Foo = component$(
+  () => {
+    return $(() => {
+      const handler = $(() => console.log("reused"));
+      return (
+        <div
+          onClick$={() => console.log("onClick$")}
+          onDocumentScroll$={() => console.log("onDocumentScroll")}
+          onDocumentScroll$={() => console.log("onWindowScroll")}
+          on-cLick$={() => console.log("on-cLick$")}
+          onDocument-sCroll$={() => console.log("onDocument-sCroll")}
+          onDocument-scroLL$={() => console.log("onDocument-scroLL")}
+          host:onClick$={() => console.log("host:onClick$")}
+          host:onDocumentScroll$={() => console.log("host:onDocument:scroll")}
+          host:onDocumentScroll$={() => console.log("host:onWindow:scroll")}
+          onKeyup$={handler}
+          onDocument:keyup$={handler}
+          onWindow:keyup$={handler}
+          custom$={() => console.log("custom")}
+        />
+      );
+    });
+  },
+  {
+    tagName: "my-foo",
+  },
+);
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_gZqPatVoDqw = () => import("./test.tsx_Foo_component_gZqPatVoDqw");
-const i_T0dY5k6mBgU = () => import("./test.tsx_Foo_T0dY5k6mBgU");
-const i_u4Tb48t5JC8 = () => import("./test.tsx_handler_u4Tb48t5JC8");
-const i_KKzu5KN5Myk = () => import("./test.tsx_Foo_div_q_e_click_KKzu5KN5Myk");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_7EsQAjtgDrQ = () => import("./test.tsx_Foo_div_q_e_-click_7EsQAjtgDrQ");
-const i_SgoZQWmAm94 = () => import("./test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94");
-const i_SgoZQWmAm94 = () => import("./test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94");
-const i_KKzu5KN5Myk = () => import("./test.tsx_Foo_div_q_e_click_KKzu5KN5Myk");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_Co0pSPo5J9E = () => import("./test.tsx_Foo_div_custom_Co0pSPo5J9E");
-export const Foo = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_gZqPatVoDqw, "Foo_component_gZqPatVoDqw"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_XXXXXXXXXXXX");
+export const Foo = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_XXXXXXXXXXXX"),
+  {
+    tagName: "my-foo",
+  },
+);
 
-=== test.tsx_Foo_component_gZqPatVoDqw.js === (ENTRY)
+=== test.tsx_Foo_component_XXXXXXXXXXXX.js === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_T0dY5k6mBgU = () => import("./test.tsx_Foo_T0dY5k6mBgU");
-export const Foo_component_gZqPatVoDqw = () => {
-	return /* @__PURE__ */ qrl(i_T0dY5k6mBgU, "Foo_T0dY5k6mBgU");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_1_XXXXXXXXXXXX");
+export const Foo_component_XXXXXXXXXXXX = () => {
+  return /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_1_XXXXXXXXXXXX");
 };
 
-=== test.tsx_Foo_T0dY5k6mBgU.js === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_u4Tb48t5JC8 = () => import("./test.tsx_handler_u4Tb48t5JC8");
-const i_KKzu5KN5Myk = () => import("./test.tsx_Foo_div_q_e_click_KKzu5KN5Myk");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_7EsQAjtgDrQ = () => import("./test.tsx_Foo_div_q_e_-click_7EsQAjtgDrQ");
-const i_SgoZQWmAm94 = () => import("./test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94");
-const i_SgoZQWmAm94 = () => import("./test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94");
-const i_KKzu5KN5Myk = () => import("./test.tsx_Foo_div_q_e_click_KKzu5KN5Myk");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_o1AVWCNjT0c = () => import("./test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c");
-const i_Co0pSPo5J9E = () => import("./test.tsx_Foo_div_custom_Co0pSPo5J9E");
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_1_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-export const Foo_T0dY5k6mBgU = () => {
-	const handler = /* @__PURE__ */ qrl(i_u4Tb48t5JC8, "handler_u4Tb48t5JC8");
-	return /* @__PURE__ */ _jsxSorted("div", null, {
-		"q-e:click": /* @__PURE__ */ qrl(i_KKzu5KN5Myk, "Foo_div_q_e_click_KKzu5KN5Myk"),
-		"q-e:documentscroll": /* @__PURE__ */ qrl(i_o1AVWCNjT0c, "Foo_div_q_e_documentscroll_o1AVWCNjT0c"),
-		"q-e:documentscroll": /* @__PURE__ */ qrl(i_o1AVWCNjT0c, "Foo_div_q_e_documentscroll_o1AVWCNjT0c"),
-		"q-e:-click": /* @__PURE__ */ qrl(i_7EsQAjtgDrQ, "Foo_div_q_e_-click_7EsQAjtgDrQ"),
-		"q-e:document-scroll": /* @__PURE__ */ qrl(i_SgoZQWmAm94, "Foo_div_q_e_document-scroll_SgoZQWmAm94"),
-		"q-e:document-scroll": /* @__PURE__ */ qrl(i_SgoZQWmAm94, "Foo_div_q_e_document-scroll_SgoZQWmAm94"),
-		"host:onClick$": /* @__PURE__ */ qrl(i_KKzu5KN5Myk, "Foo_div_q_e_click_KKzu5KN5Myk"),
-		"host:onDocumentScroll$": /* @__PURE__ */ qrl(i_o1AVWCNjT0c, "Foo_div_q_e_documentscroll_o1AVWCNjT0c"),
-		"host:onDocumentScroll$": /* @__PURE__ */ qrl(i_o1AVWCNjT0c, "Foo_div_q_e_documentscroll_o1AVWCNjT0c"),
-		"q-e:keyup": handler,
-		"q-e:document:keyup": handler,
-		"q-e:window:keyup": handler,
-		"custom$": /* @__PURE__ */ qrl(i_Co0pSPo5J9E, "Foo_div_custom_Co0pSPo5J9E")
-	}, null, 3, "u6_0");
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_handler_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_q_e_click_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_host_onClick_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_q_e_c_lick_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_custom_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX");
+export const Foo_component_1_XXXXXXXXXXXX = () => {
+  const handler = /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_handler_XXXXXXXXXXXX");
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    null,
+    {
+      "q-e:click": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_div_q_e_click_XXXXXXXXXXXX"),
+      "q-e:documentscroll": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX",
+      ),
+      "q-e:documentscroll": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX",
+      ),
+      "q-e:c-lick": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_q_e_c_lick_XXXXXXXXXXXX",
+      ),
+      "q-e:document--scroll": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX",
+      ),
+      "q-e:document--scroll": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX",
+      ),
+      "host:onClick$": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_host_onClick_XXXXXXXXXXXX",
+      ),
+      "host:onDocumentScroll$": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX",
+      ),
+      "host:onDocumentScroll$": /* @__PURE__ */ qrl(
+        i_XXXXXXXXXXXX,
+        "Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX",
+      ),
+      "q-e:keyup": handler,
+      "q-e:document:keyup": handler,
+      "q-e:window:keyup": handler,
+      custom$: /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_div_custom_XXXXXXXXXXXX"),
+    },
+    null,
+    3,
+    "u6_0",
+  );
 };
 
-=== test.tsx_handler_u4Tb48t5JC8.js === (ENTRY)
-export const handler_u4Tb48t5JC8 = () => console.log("reused");
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_div_q_e_click_KKzu5KN5Myk.js === (ENTRY)
-export const Foo_div_q_e_click_KKzu5KN5Myk = () => console.log("onClick$");
+=== test.tsx_Foo_component_handler_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_handler_XXXXXXXXXXXX = () => console.log("reused");
 
-=== test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c.js === (ENTRY)
-export const Foo_div_q_e_documentscroll_o1AVWCNjT0c = () => console.log("onDocumentScroll");
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_handler_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_handler",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_handler_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c.js === (ENTRY)
-export const Foo_div_q_e_documentscroll_o1AVWCNjT0c = () => console.log("onWindowScroll");
+=== test.tsx_Foo_component_div_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_click_XXXXXXXXXXXX = () => console.log("onClick$");
 
-=== test.tsx_Foo_div_q_e_-click_7EsQAjtgDrQ.js === (ENTRY)
-export const Foo_div_q_e_-click_7EsQAjtgDrQ = () => console.log("on-cLick$")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94.js === (ENTRY)
-export const Foo_div_q_e_document-scroll_SgoZQWmAm94 = () => console.log("onDocument-sCroll")
+=== test.tsx_Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX = () =>
+  console.log("onDocumentScroll");
 
-=== test.tsx_Foo_div_q_e_document-scroll_SgoZQWmAm94.js === (ENTRY)
-export const Foo_div_q_e_document-scroll_SgoZQWmAm94 = () => console.log("onDocument-scroLL")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_documentscroll",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_documentscroll_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocumentScroll$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_div_q_e_click_KKzu5KN5Myk.js === (ENTRY)
-export const Foo_div_q_e_click_KKzu5KN5Myk = () => console.log("host:onClick$");
+=== test.tsx_Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX = () =>
+  console.log("onWindowScroll");
 
-=== test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c.js === (ENTRY)
-export const Foo_div_q_e_documentscroll_o1AVWCNjT0c = () => console.log("host:onDocument:scroll");
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_documentscroll_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_documentscroll_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocumentScroll$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_div_q_e_documentscroll_o1AVWCNjT0c.js === (ENTRY)
-export const Foo_div_q_e_documentscroll_o1AVWCNjT0c = () => console.log("host:onWindow:scroll");
+=== test.tsx_Foo_component_div_q_e_c_lick_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_c_lick_XXXXXXXXXXXX = () => console.log("on-cLick$");
 
-=== test.tsx_Foo_div_custom_Co0pSPo5J9E.js === (ENTRY)
-export const Foo_div_custom_Co0pSPo5J9E = () => console.log("custom");
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_c_lick_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_c_lick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_c_lick_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "on-cLick$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX = () =>
+  console.log("onDocument-sCroll");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_document_scroll",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_document_scroll_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocument-sCroll$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX = () =>
+  console.log("onDocument-scroLL");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_q_e_document_scroll_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_q_e_document_scroll_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocument-scroLL$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_host_onClick_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_host_onClick_XXXXXXXXXXXX = () => console.log("host:onClick$");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_host_onClick_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_host_onClick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_host_onClick_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "host:onClick$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX = () =>
+  console.log("host:onDocument:scroll");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_host_onDocumentScroll",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_host_onDocumentScroll_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "host:onDocumentScroll$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX = () =>
+  console.log("host:onWindow:scroll");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_host_onDocumentScroll_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_host_onDocumentScroll_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "host:onDocumentScroll$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_custom_XXXXXXXXXXXX.js === (ENTRY)
+export const Foo_component_div_custom_XXXXXXXXXXXX = () => console.log("custom");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_custom_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_custom",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_custom_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_1_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "custom$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

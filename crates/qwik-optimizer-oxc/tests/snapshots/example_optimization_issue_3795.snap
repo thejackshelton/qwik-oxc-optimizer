@@ -1,15 +1,45 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+
+export const Issue3795 = component$(() => {
+  let base = "foo";
+  const firstAssignment = base;
+  base += "bar";
+  const secondAssignment = base;
+  return (
+    <div id="issue-3795-result">
+      {firstAssignment} {secondAssignment}
+    </div>
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
-import { inlinedQrl } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-export const Issue3795 = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl(() => {
-	let base = "foo";
-	const firstAssignment = base;
-	base += "bar";
-	const secondAssignment = base;
-	return /* @__PURE__ */ _jsxSorted("div", null, { id: "issue-3795-result" }, [firstAssignment, secondAssignment], 1, "u6_0");
-}, "Issue3795_component_tnEyhvrQNks"));
+import { inlinedQrl } from "@qwik.dev/core";
+export const Issue3795 = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(() => {
+    let base = "foo";
+    const firstAssignment = base;
+    base += "bar";
+    const secondAssignment = base;
+    return /* @__PURE__ */ _jsxSorted(
+      "div",
+      null,
+      {
+        id: "issue-3795-result",
+      },
+      [firstAssignment, " ", secondAssignment],
+      1,
+      "u6_0",
+    );
+  }, "Issue3795_component_wsE8beycatI"),
+);
+
+=== DIAGNOSTICS ===
+
+[]

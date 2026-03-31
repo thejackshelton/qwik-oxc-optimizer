@@ -42,7 +42,6 @@ oxc = { version = "0.113", features = [
 
 | Feature | Why Skip |
 |---------|----------|
-| `transformer` | OXC's built-in transformer handles ES downleveling and TypeScript stripping. The Qwik optimizer does NOT do general transpilation -- it does Qwik-specific transformations (`$()` extraction, QRL wrapping, JSX transformation). We write custom traversal logic, not use OXC's babel-like transformer. |
 | `minifier` | The optimizer does not minify. Minification is handled by the downstream bundler (Vite/Rollup). |
 | `mangler` | Same as minifier -- not the optimizer's responsibility. |
 | `full` | Pulls in transformer, minifier, mangler, isolated_declarations. All unnecessary, adds compile time. |

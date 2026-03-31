@@ -11,15 +11,126 @@ use oxc::ast::ast::*;
 use oxc::span::SPAN;
 use oxc_traverse::TraverseCtx;
 
+/// Dev mode metadata for QRL calls.
+/// When present, the QRL function name gets a DEV suffix and an extra
+/// metadata object argument is added: `{ file, lo, hi, displayName }`.
+pub(crate) struct QrlDevMetadata {
+    /// Absolute file path (e.g., "/user/qwik/src/test.tsx")
+    pub file: String,
+    /// Byte offset of the $()-call body start
+    pub lo: u32,
+    /// Byte offset of the $()-call body end
+    pub hi: u32,
+    /// Display name (e.g., "test.tsx_App_component")
+    pub display_name: String,
+}
+
+/// Build a dev metadata object expression: `{ file: "...", lo: N, hi: N, displayName: "..." }`
+fn build_dev_metadata_object<'a>(
+    meta: &QrlDevMetadata,
+    ctx: &mut TraverseCtx<'a, ()>,
+) -> Expression<'a> {
+    let mut props = ctx.ast.vec_with_capacity(4);
+
+    // file
+    let file_atom = ctx.ast.atom(&meta.file);
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("file")),
+        ctx.ast.expression_string_literal(SPAN, file_atom, None),
+        false, false, false,
+    ));
+
+    // lo
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("lo")),
+        ctx.ast.expression_numeric_literal(SPAN, meta.lo as f64, None, oxc::syntax::number::NumberBase::Decimal),
+        false, false, false,
+    ));
+
+    // hi
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("hi")),
+        ctx.ast.expression_numeric_literal(SPAN, meta.hi as f64, None, oxc::syntax::number::NumberBase::Decimal),
+        false, false, false,
+    ));
+
+    // displayName
+    let dn_atom = ctx.ast.atom(&meta.display_name);
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("displayName")),
+        ctx.ast.expression_string_literal(SPAN, dn_atom, None),
+        false, false, false,
+    ));
+
+    ctx.ast.expression_object(SPAN, props)
+}
+
+/// Dev mode location metadata for JSX elements.
+/// Added as an extra argument to `_jsxSorted` calls: `{ fileName, lineNumber, columnNumber }`.
+pub(crate) struct JsxDevLocation {
+    /// File name (relative path, e.g., "test.tsx" or "project/index.tsx")
+    pub file_name: String,
+    /// 1-based line number
+    pub line_number: u32,
+    /// 1-based column number
+    pub column_number: u32,
+}
+
+/// Build a JSX dev location object: `{ fileName: "...", lineNumber: N, columnNumber: N }`
+pub(crate) fn build_jsx_dev_location<'a>(
+    loc: &JsxDevLocation,
+    ctx: &mut TraverseCtx<'a, ()>,
+) -> Expression<'a> {
+    let mut props = ctx.ast.vec_with_capacity(3);
+
+    let fn_atom = ctx.ast.atom(&loc.file_name);
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("fileName")),
+        ctx.ast.expression_string_literal(SPAN, fn_atom, None),
+        false, false, false,
+    ));
+
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("lineNumber")),
+        ctx.ast.expression_numeric_literal(SPAN, loc.line_number as f64, None, oxc::syntax::number::NumberBase::Decimal),
+        false, false, false,
+    ));
+
+    props.push(ctx.ast.object_property_kind_object_property(
+        SPAN,
+        PropertyKind::Init,
+        ctx.ast.property_key_static_identifier(SPAN, ctx.ast.atom("columnNumber")),
+        ctx.ast.expression_numeric_literal(SPAN, loc.column_number as f64, None, oxc::syntax::number::NumberBase::Decimal),
+        false, false, false,
+    ));
+
+    ctx.ast.expression_object(SPAN, props)
+}
+
 /// Build a segment-strategy QRL call expression:
 ///   `qrl(i_hashValue, "SegmentName_hash")`                        -- no captures
 ///   `qrl(i_hashValue, "SegmentName_hash", [captured_vars])`       -- with captures
+///   `qrlDEV(i_hashValue, "SegmentName_hash", {dev_meta})`         -- dev mode, no captures
+///   `qrlDEV(i_hashValue, "SegmentName_hash", {dev_meta}, [caps])` -- dev mode, with captures
 ///
 /// The string parameters are allocated into the arena via `ctx.ast.atom()`.
 pub(crate) fn build_qrl_call<'a>(
     import_ident_name: &str,
     segment_export_name: &str,
     captures: &[String],
+    dev_meta: Option<&QrlDevMetadata>,
     ctx: &mut TraverseCtx<'a, ()>,
 ) -> Expression<'a> {
     let import_atom = ctx.ast.atom(import_ident_name);
@@ -29,10 +140,15 @@ pub(crate) fn build_qrl_call<'a>(
 
     let name_literal = ctx.ast.expression_string_literal(SPAN, name_atom, None);
 
-    let capacity = if captures.is_empty() { 2 } else { 3 };
+    let capacity = 2 + dev_meta.is_some() as usize + (!captures.is_empty()) as usize;
     let mut arguments = ctx.ast.vec_with_capacity(capacity);
     arguments.push(Argument::from(import_ref));
     arguments.push(Argument::from(name_literal));
+
+    // In dev mode, insert metadata object before captures
+    if let Some(meta) = dev_meta {
+        arguments.push(Argument::from(build_dev_metadata_object(meta, ctx)));
+    }
 
     if !captures.is_empty() {
         let mut elements = ctx.ast.vec_with_capacity(captures.len());
@@ -45,7 +161,8 @@ pub(crate) fn build_qrl_call<'a>(
         arguments.push(Argument::from(ctx.ast.expression_array(SPAN, elements)));
     }
 
-    let callee = ctx.ast.expression_identifier(SPAN, "qrl");
+    let callee_name = if dev_meta.is_some() { "qrlDEV" } else { "qrl" };
+    let callee = ctx.ast.expression_identifier(SPAN, callee_name);
 
     ctx.ast.expression_call_with_pure(
         SPAN,
@@ -58,17 +175,20 @@ pub(crate) fn build_qrl_call<'a>(
 }
 
 /// Build an inline-strategy QRL call expression:
-///   `inlinedQrl(() => { body }, "Name_hash")`                    -- no captures
-///   `inlinedQrl(() => { body }, "Name_hash", [captured_vars])`   -- with captures
+///   `inlinedQrl(() => { body }, "Name_hash")`                           -- no captures
+///   `inlinedQrl(() => { body }, "Name_hash", [captured_vars])`          -- with captures
+///   `inlinedQrlDEV(() => { body }, "Name_hash", {dev_meta})`            -- dev mode
+///   `inlinedQrlDEV(() => { body }, "Name_hash", {dev_meta}, [caps])`    -- dev mode + captures
 pub(crate) fn build_inlined_qrl_call<'a>(
     body_expr: Expression<'a>,
     segment_name: &str,
     captures: &[String],
+    dev_meta: Option<&QrlDevMetadata>,
     ctx: &mut TraverseCtx<'a, ()>,
 ) -> Expression<'a> {
     let name_atom = ctx.ast.atom(segment_name);
 
-    let capacity = if captures.is_empty() { 2 } else { 3 };
+    let capacity = 2 + dev_meta.is_some() as usize + (!captures.is_empty()) as usize;
     let mut arguments = ctx.ast.vec_with_capacity(capacity);
 
     arguments.push(Argument::from(body_expr));
@@ -76,6 +196,11 @@ pub(crate) fn build_inlined_qrl_call<'a>(
     arguments.push(Argument::from(
         ctx.ast.expression_string_literal(SPAN, name_atom, None),
     ));
+
+    // In dev mode, insert metadata object before captures
+    if let Some(meta) = dev_meta {
+        arguments.push(Argument::from(build_dev_metadata_object(meta, ctx)));
+    }
 
     if !captures.is_empty() {
         let mut elements = ctx.ast.vec_with_capacity(captures.len());
@@ -88,7 +213,8 @@ pub(crate) fn build_inlined_qrl_call<'a>(
         arguments.push(Argument::from(ctx.ast.expression_array(SPAN, elements)));
     }
 
-    let callee = ctx.ast.expression_identifier(SPAN, "inlinedQrl");
+    let callee_name = if dev_meta.is_some() { "inlinedQrlDEV" } else { "inlinedQrl" };
+    let callee = ctx.ast.expression_identifier(SPAN, callee_name);
 
     ctx.ast.expression_call_with_pure(
         SPAN,
@@ -166,6 +292,47 @@ pub(crate) fn build_aliased_import<'a>(
 
     let source_lit = ctx.ast.string_literal(SPAN, source_atom, None);
 
+    let import_decl = ctx.ast.module_declaration_import_declaration(
+        SPAN,
+        Some(specifiers),
+        source_lit,
+        None,
+        None::<oxc::allocator::Box<'a, WithClause<'a>>>,
+        ImportOrExportKind::Value,
+    );
+
+    Statement::from(import_decl)
+}
+
+/// Build a multi-specifier import declaration:
+///   `import { spec1, spec2, imported3 as local3 } from "source"`
+///
+/// Each specifier is a `(imported_name, local_name)` pair. When imported == local,
+/// it's a simple specifier; otherwise an aliased specifier.
+pub(crate) fn build_multi_specifier_import<'a>(
+    specifier_pairs: &[(String, String)],
+    source: &str,
+    ctx: &mut TraverseCtx<'a, ()>,
+) -> Statement<'a> {
+    let source_atom = ctx.ast.atom(source);
+    let mut specifiers = ctx.ast.vec_with_capacity(specifier_pairs.len());
+
+    for (imported_name, local_name) in specifier_pairs {
+        let imported_atom = ctx.ast.atom(imported_name.as_str());
+        let local_atom = ctx.ast.atom(local_name.as_str());
+        let local = ctx.ast.binding_identifier(SPAN, local_atom);
+        let imported = ctx
+            .ast
+            .module_export_name_identifier_name(SPAN, imported_atom);
+        let specifier = ctx
+            .ast
+            .import_specifier(SPAN, imported, local, ImportOrExportKind::Value);
+        specifiers.push(ImportDeclarationSpecifier::ImportSpecifier(
+            ctx.ast.alloc(specifier),
+        ));
+    }
+
+    let source_lit = ctx.ast.string_literal(SPAN, source_atom, None);
     let import_decl = ctx.ast.module_declaration_import_declaration(
         SPAN,
         Some(specifiers),
@@ -287,19 +454,27 @@ pub(crate) fn build_wrap_prop_call_named<'a>(
 }
 
 /// Build a _noopQrl call expression for stripped segments:
-///   `/*#__PURE__*/ _noopQrl("s_HASH")`                     -- no captures
-///   `/*#__PURE__*/ _noopQrl("s_HASH", [captured_vars])`    -- with captures
+///   `/*#__PURE__*/ _noopQrl("s_HASH")`                               -- no captures
+///   `/*#__PURE__*/ _noopQrl("s_HASH", [captured_vars])`              -- with captures
+///   `/*#__PURE__*/ _noopQrlDEV("s_HASH", {dev_meta})`                -- dev mode
+///   `/*#__PURE__*/ _noopQrlDEV("s_HASH", {dev_meta}, [caps])`        -- dev mode + captures
 pub(crate) fn build_noop_qrl_call<'a>(
     segment_name: &str,
     captures: &[String],
+    dev_meta: Option<&QrlDevMetadata>,
     ctx: &mut TraverseCtx<'a, ()>,
 ) -> Expression<'a> {
     let name_atom = ctx.ast.atom(segment_name);
     let name_literal = ctx.ast.expression_string_literal(SPAN, name_atom, None);
 
-    let capacity = if captures.is_empty() { 1 } else { 2 };
+    let capacity = 1 + dev_meta.is_some() as usize + (!captures.is_empty()) as usize;
     let mut arguments = ctx.ast.vec_with_capacity(capacity);
     arguments.push(Argument::from(name_literal));
+
+    // In dev mode, insert metadata object before captures
+    if let Some(meta) = dev_meta {
+        arguments.push(Argument::from(build_dev_metadata_object(meta, ctx)));
+    }
 
     if !captures.is_empty() {
         let mut elements = ctx.ast.vec_with_capacity(captures.len());
@@ -312,7 +487,8 @@ pub(crate) fn build_noop_qrl_call<'a>(
         arguments.push(Argument::from(captures_array));
     }
 
-    let noop_atom = ctx.ast.atom("_noopQrl");
+    let callee_name = if dev_meta.is_some() { "_noopQrlDEV" } else { "_noopQrl" };
+    let noop_atom = ctx.ast.atom(callee_name);
     let noop_callee = ctx.ast.expression_identifier(SPAN, noop_atom);
     ctx.ast.expression_call_with_pure(
         SPAN,

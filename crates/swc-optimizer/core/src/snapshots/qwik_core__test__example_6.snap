@@ -1,52 +1,39 @@
 ---
-source: packages/qwik/src/optimizer/core/src/test.rs
-assertion_line: 188
+source: src/test.rs
 expression: output
-snapshot_kind: text
 ---
-==INPUT==
-
-
-import { $, component$ } from '@qwik.dev/core';
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
 export const sym1 = $((ctx) => console.log("1"));
 
-============================= test.tsx_sym1_aXUrPXX5Lak.tsx (ENTRY POINT)==
+=== test.tsx ===
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_sym1_XXXXXXXXXXXX");
+export const sym1 = /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "sym1_XXXXXXXXXXXX");
 
-export const sym1_aXUrPXX5Lak = (ctx)=>console.log("1");
+=== test.tsx_sym1_XXXXXXXXXXXX.tsx === (ENTRY)
+export const sym1_XXXXXXXXXXXX = (ctx) => console.log("1");
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\"gCAEsB,CAAC,MAAQ,QAAQ,GAAG,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "sym1_aXUrPXX5Lak",
+  "name": "sym1_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_sym1",
-  "hash": "aXUrPXX5Lak",
-  "canonicalFilename": "test.tsx_sym1_aXUrPXX5Lak",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_sym1_XXXXXXXXXXXX",
   "path": "",
   "extension": "tsx",
   "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
-  "loc": [
-    72,
-    97
-  ],
   "paramNames": [
     "ctx"
   ]
 }
 */
-============================= test.tsx ==
 
-import { qrl } from "@qwik.dev/core";
-const i_aXUrPXX5Lak = ()=>import("./test.tsx_sym1_aXUrPXX5Lak");
-export const sym1 = /*#__PURE__*/ qrl(i_aXUrPXX5Lak, "sym1_aXUrPXX5Lak");
-
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;AAEA,OAAO,MAAM,4DAAoC\"}")
-== DIAGNOSTICS ==
+=== DIAGNOSTICS ===
 
 []

@@ -1,144 +1,170 @@
 ---
-source: packages/qwik/src/optimizer/core/src/test.rs
-assertion_line: 349
+source: src/test.rs
 expression: output
 ---
-==INPUT==
-
-
-import { $, component$, useStore } from '@qwik.dev/core';
+=== INPUT ===
+import { $, component$, useStore } from "@qwik.dev/core";
 export const useCounter = () => {
-	return useStore({count: 0});
-}
+  return useStore({ count: 0 });
+};
 
 export const STEP = 1;
 
 export const App = component$((props) => {
-	const state = useCounter();
-	const thing = useStore({thing: 0});
-	const STEP_2 = 2;
+  const state = useCounter();
+  const thing = useStore({ thing: 0 });
+  const STEP_2 = 2;
 
-	const count2 = state.count * 2;
-	return (
-		<div onClick$={() => state.count+=count2 }>
-			<span>{state.count}</span>
-			{buttons.map(btn => (
-				<button
-					onClick$={() => state.count += btn.offset + thing + STEP + STEP_2 + props.step}
-				>
-					{btn.name}
-				</button>
-			))}
+  const count2 = state.count * 2;
+  return (
+    <div onClick$={() => (state.count += count2)}>
+      <span>{state.count}</span>
+      {buttons.map((btn) => (
+        <button onClick$={() => (state.count += btn.offset + thing + STEP + STEP_2 + props.step)}>
+          {btn.name}
+        </button>
+      ))}
+    </div>
+  );
+});
 
-		</div>
-
-	);
-})
-
-============================= test.js ==
-
+=== test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_ckEPmXZlub0 = ()=>import("./test.tsx_App_component_ckEPmXZlub0");
-import { useStore } from '@qwik.dev/core';
-export const useCounter = ()=>{
-    return useStore({
-        count: 0
-    });
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+import { useStore } from "@qwik.dev/core";
+export const useCounter = () => {
+  return useStore({
+    count: 0,
+  });
 };
 export const STEP = 1;
-export const App = /*#__PURE__*/ componentQrl(/*#__PURE__*/ qrl(i_ckEPmXZlub0, "App_component_ckEPmXZlub0"));
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;AACA,SAAwB,QAAQ,QAAQ,iBAAiB;AACzD,OAAO,MAAM,aAAa;IACzB,OAAO,SAAS;QAAC,OAAO;IAAC;AAC1B,EAAC;AAED,OAAO,MAAM,OAAO,EAAE;AAEtB,OAAO,MAAM,oBAAM,4EAoBjB\"}")
-============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
-
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
 import { _wrapProp } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 import { useCounter } from "./test";
 import { useStore } from "@qwik.dev/core";
-const i_UB6Fs5a3bd8 = ()=>import("./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8");
-const i_mi4E1piTWe8 = ()=>import("./test.tsx_App_component_div_q_e_click_mi4E1piTWe8");
-export const App_component_ckEPmXZlub0 = (props)=>{
-    const state = useCounter();
-    const thing = useStore({
-        thing: 0
-    });
-    const count2 = state.count * 2;
-    const App_component_div_button_q_e_click_UB6Fs5a3bd8 = /*#__PURE__*/ qrl(i_UB6Fs5a3bd8, "App_component_div_button_q_e_click_UB6Fs5a3bd8", [
-        props,
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  const state = useCounter();
+  const thing = useStore({
+    thing: 0,
+  });
+  const count2 = state.count * 2;
+  const App_component_div_button_q_e_click_XXXXXXXXXXXX = /* @__PURE__ */ qrl(
+    i_XXXXXXXXXXXX,
+    "App_component_div_button_q_e_click_XXXXXXXXXXXX",
+    [props, state, thing],
+  );
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    {
+      "q-e:click": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_div_q_e_click_XXXXXXXXXXXX", [
+        count2,
         state,
-        thing
-    ]);
-    return /*#__PURE__*/ _jsxSorted("div", {
-        "q-e:click": /*#__PURE__*/ qrl(i_mi4E1piTWe8, "App_component_div_q_e_click_mi4E1piTWe8", [
-            count2,
-            state
-        ])
-    }, null, [
-        /*#__PURE__*/ _jsxSorted("span", null, null, _wrapProp(state, "count"), 3, null),
-        buttons.map((btn)=>/*#__PURE__*/ _jsxSorted("button", {
-                "q-e:click": App_component_div_button_q_e_click_UB6Fs5a3bd8,
-                "q:p": btn
-            }, null, _wrapProp(btn, "name"), 0, "u6_0"))
-    ], 0, "u6_1");
+      ]),
+    },
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted("span", null, null, _wrapProp(state, "count"), 3, null),
+      buttons.map((btn) =>
+        /* @__PURE__ */ _jsxSorted(
+          "button",
+          {
+            "q-e:click": App_component_div_button_q_e_click_XXXXXXXXXXXX,
+            "q:p": btn,
+          },
+          null,
+          _wrapProp(btn, "name"),
+          0,
+          "u6_0",
+        ),
+      ),
+    ],
+    0,
+    "u6_1",
+  );
 };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;;;;;yCAQ8B,CAAC;IAC9B,MAAM,QAAQ;IACd,MAAM,QAAQ,SAAS;QAAC,OAAO;IAAC;IAGhC,MAAM,SAAS,MAAM,KAAK,GAAG;;;;;;IAC7B,qBACC,WAAC;QAAI,WAAQ;;;;;sBACZ,WAAC,8BAAM;QACN,QAAQ,GAAG,CAAC,CAAA,oBACZ,WAAC;gBACA,WAAQ;uBAFG;+BAIV;;AAON\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "App_component_ckEPmXZlub0",
+  "name": "App_component_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_App_component",
-  "hash": "ckEPmXZlub0",
-  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
   "path": "",
   "extension": "js",
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
-  "loc": [
-    181,
-    580
-  ],
   "paramNames": [
     "props"
   ]
 }
 */
-============================= test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8.js (ENTRY POINT)==
 
+=== test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-import { STEP } from "./test";
-export const App_component_div_button_q_e_click_UB6Fs5a3bd8 = (_, _1, btn)=>{
-    const props = _captures[0], state = _captures[1], thing = _captures[2];
-    return state.count += btn.offset + thing + STEP + 2 + props.step;
+export const App_component_div_q_e_click_XXXXXXXXXXXX = () => {
+  const count2 = _captures[0],
+    state = _captures[1];
+  return (state.count += count2);
 };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;8DAmBe,QAFC;;WAEK,MAAM,KAAK,IAAI,IAAI,MAAM,GAAG,QAAQ,OARzC,IAQyD,MAAM,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "App_component_div_button_q_e_click_UB6Fs5a3bd8",
+  "name": "App_component_div_q_e_click_XXXXXXXXXXXX",
   "entry": null,
-  "displayName": "test.tsx_App_component_div_button_q_e_click",
-  "hash": "UB6Fs5a3bd8",
-  "canonicalFilename": "test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8",
+  "displayName": "test.tsx_App_component_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_div_q_e_click_XXXXXXXXXXXX",
   "path": "",
   "extension": "js",
-  "parent": "App_component_ckEPmXZlub0",
+  "parent": "App_component_XXXXXXXXXXXX",
   "ctxKind": "eventHandler",
   "ctxName": "onClick$",
   "captures": true,
-  "loc": [
-    451,
-    519
-  ],
+  "captureNames": [
+    "count2",
+    "state"
+  ]
+}
+*/
+
+=== test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
+import { _captures } from "@qwik.dev/core";
+import { STEP } from "./test";
+export const App_component_div_button_q_e_click_XXXXXXXXXXXX = (_, _1, btn) => {
+  const props = _captures[0],
+    state = _captures[1],
+    thing = _captures[2];
+  return (state.count += btn.offset + thing + STEP + 2 + props.step);
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_div_button_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_div_button_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_div_button_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
   "paramNames": [
     "_",
     "_",
@@ -151,40 +177,7 @@ Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"ma
   ]
 }
 */
-============================= test.tsx_App_component_div_q_e_click_mi4E1piTWe8.js (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
-export const App_component_div_q_e_click_mi4E1piTWe8 = ()=>{
-    const count2 = _captures[0], state = _captures[1];
-    return state.count += count2;
-};
-
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";uDAeiB;;WAAM,MAAM,KAAK,IAAE\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "App_component_div_q_e_click_mi4E1piTWe8",
-  "entry": null,
-  "displayName": "test.tsx_App_component_div_q_e_click",
-  "hash": "mi4E1piTWe8",
-  "canonicalFilename": "test.tsx_App_component_div_q_e_click_mi4E1piTWe8",
-  "path": "",
-  "extension": "js",
-  "parent": "App_component_ckEPmXZlub0",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "loc": [
-    340,
-    365
-  ],
-  "captureNames": [
-    "count2",
-    "state"
-  ]
-}
-*/
-== DIAGNOSTICS ==
+=== DIAGNOSTICS ===
 
 []

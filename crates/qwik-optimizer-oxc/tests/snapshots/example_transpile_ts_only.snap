@@ -1,13 +1,43 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore } from "@qwik.dev/core";
+
+export const App = component$((props: Stuff) => {
+  return (
+    <Cmp>
+      <p class="stuff" onClick$={() => console.log("warn")}>
+        Hello Qwik
+      </p>
+    </Cmp>
+  );
+});
+
 === test.jsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { inlinedQrl } from "@qwik.dev/core";
-import { useStore } from "@qwik.dev/core";
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	return <Cmp>
-			<p class="stuff" onClick$={/* @__PURE__ */ inlinedQrl(() => console.log("warn"), "App_component_p_q_e_click_0VoFXPYUR5E")}>Hello Qwik</p>
-		</Cmp>;
-}, "App_component_XumqEURaLxI"));
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl((props) => {
+    return (
+      <Cmp>
+        <p
+          class="stuff"
+          q-e:click={
+            /* @__PURE__ */ inlinedQrl(
+              () => console.log("warn"),
+              "App_component_Cmp_p_q_e_click_Yl4ybrJWrt4",
+            )
+          }
+        >
+          Hello Qwik
+        </p>
+      </Cmp>
+    );
+  }, "App_component_ckEPmXZlub0"),
+);
+
+=== DIAGNOSTICS ===
+
+[]

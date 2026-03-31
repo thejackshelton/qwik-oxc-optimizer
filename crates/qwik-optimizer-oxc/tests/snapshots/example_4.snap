@@ -1,24 +1,80 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
+export function App() {
+  const Header = component$(() => {
+    console.log("mount");
+    return <div onClick={$((ctx) => console.log(ctx))} />;
+  });
+  return Header;
+}
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_qy3PjUYD8N4 = () => import("./test.tsx_App_Header_component_qy3PjUYD8N4");
-const i_DjnCNf0Grco = () => import("./test.tsx_App_Header_component_div_q_e_click_DjnCNf0Grco");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_Header_component_XXXXXXXXXXXX");
 export function App() {
-	const Header = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_qy3PjUYD8N4, "App_Header_component_qy3PjUYD8N4"));
-	return Header;
+  const Header = /* @__PURE__ */ componentQrl(
+    /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_Header_component_XXXXXXXXXXXX"),
+  );
+  return Header;
 }
 
-=== test.tsx_App_Header_component_qy3PjUYD8N4.tsx === (ENTRY)
+=== test.tsx_App_Header_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_DjnCNf0Grco = () => import("./test.tsx_App_Header_component_div_q_e_click_DjnCNf0Grco");
-export const App_Header_component_qy3PjUYD8N4 = () => {
-	console.log("mount");
-	return <div onClick={/* @__PURE__ */ qrl(i_DjnCNf0Grco, "App_Header_component_div_q_e_click_DjnCNf0Grco")} />;
-}
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_Header_component_div_onClick_XXXXXXXXXXXX");
+export const App_Header_component_XXXXXXXXXXXX = () => {
+  console.log("mount");
+  return (
+    <div
+      onClick={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_Header_component_div_onClick_XXXXXXXXXXXX")}
+    />
+  );
+};
 
-=== test.tsx_App_Header_component_div_q_e_click_DjnCNf0Grco.tsx === (ENTRY)
-export const App_Header_component_div_q_e_click_DjnCNf0Grco = (ctx) => console.log(ctx);
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Header_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_Header_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_Header_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_App_Header_component_div_onClick_XXXXXXXXXXXX.tsx === (ENTRY)
+export const App_Header_component_div_onClick_XXXXXXXXXXXX = (ctx) => console.log(ctx);
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Header_component_div_onClick_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_Header_component_div_onClick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_Header_component_div_onClick_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "App_Header_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

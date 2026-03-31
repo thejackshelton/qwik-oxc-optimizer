@@ -1,7 +1,5 @@
-use std::collections::hash_map::DefaultHasher;
 use std::collections::HashMap;
 use std::ffi::OsStr;
-use std::hash::Hasher;
 use std::path::{Component, Path, PathBuf};
 use std::str;
 
@@ -452,7 +450,7 @@ pub fn transform_code(config: TransformCodeOptions) -> Result<TransformOutput, a
 								map,
 								is_entry,
 								path: segment_path,
-								order: h.hash,
+								order: h.span.lo.0 as u64,
 								segment: Some(SegmentAnalysis {
 									origin: h.data.origin,
 									name: h.name,
@@ -502,15 +500,12 @@ pub fn transform_code(config: TransformCodeOptions) -> Result<TransformOutput, a
 					};
 					let path = path_data.rel_dir.join(a).to_slash_lossy().to_string();
 
-					let mut hasher = DefaultHasher::new();
-					hasher.write(path.as_bytes());
-
 					modules.push(TransformModule {
 						is_entry: false,
 						path,
 						code,
 						map,
-						order: hasher.finish(),
+						order: 0,
 						segment: None,
 					});
 

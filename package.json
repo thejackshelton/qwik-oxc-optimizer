@@ -1,0 +1,12 @@
+{
+  "name": "qwik-oxc-optimizer-tools",
+  "private": true,
+  "devDependencies": {
+    "oxfmt": "0.32.0"
+  },
+  "scripts": {
+    "fmt:snapshot-blocks": "node scripts/format-snapshot-code-blocks.mjs",
+    "fmt:snapshot-blocks:check": "node scripts/format-snapshot-code-blocks.mjs --check",
+    "oxfmt:version": "oxfmt --version"
+  }
+}

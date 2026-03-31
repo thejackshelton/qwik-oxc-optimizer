@@ -1,66 +1,307 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore, Slot, Fragment } from "@qwik.dev/core";
+import Image from "./image.jpg?jsx";
+
+export function Fn1(props: Stuff) {
+  return (
+    <>
+      <div>{prop < 2 ? <p>1</p> : <Stuff>2</Stuff>}</div>
+    </>
+  );
+}
+
+export function Fn2(props: Stuff) {
+  return (
+    <div>
+      {prop.value && <Stuff></Stuff>}
+      <div></div>
+    </div>
+  );
+}
+
+export function Fn3(props: Stuff) {
+  if (prop.value) {
+    return <Stuff></Stuff>;
+  }
+  return <div></div>;
+}
+
+export function Fn4(props: Stuff) {
+  if (prop.value) {
+    return <div></div>;
+  }
+  return <Stuff></Stuff>;
+}
+
+export const Arrow = (props: Stuff) => <div>{prop < 2 ? <p>1</p> : <Stuff>2</Stuff>}</div>;
+
+export const AppDynamic1 = component$((props: Stuff) => {
+  return (
+    <>
+      <div>{prop < 2 ? <p>1</p> : <Stuff>2</Stuff>}</div>
+    </>
+  );
+});
+export const AppDynamic2 = component$((props: Stuff) => {
+  return (
+    <div>
+      {prop.value && <Stuff></Stuff>}
+      <div></div>
+    </div>
+  );
+});
+
+export const AppDynamic3 = component$((props: Stuff) => {
+  if (prop.value) {
+    return <Stuff></Stuff>;
+  }
+  return <div></div>;
+});
+
+export const AppDynamic4 = component$((props: Stuff) => {
+  if (prop.value) {
+    return <div></div>;
+  }
+  return <Stuff></Stuff>;
+});
+
+export const AppStatic = component$((props: Stuff) => {
+  return (
+    <>
+      <div>Static {f ? 1 : 3}</div>
+      <div>{prop < 2 ? <p>1</p> : <p>2</p>}</div>
+
+      <div>{prop.value && <div></div>}</div>
+      <div>
+        {prop.value && (
+          <Fragment>
+            <Slot></Slot>
+          </Fragment>
+        )}
+      </div>
+      <div>
+        {prop.value && (
+          <>
+            <div></div>
+          </>
+        )}
+      </div>
+      <div>{prop.value && <Image />}</div>
+      <div>Static {f ? 1 : 3}</div>
+      <div>Static</div>
+      <div>Static {props.value}</div>
+      <div>Static {stuff()}</div>
+      <div>Static {stuff()}</div>
+    </>
+  );
+});
+
 === test.js ===
+import { _jsxSorted } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { inlinedQrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
 import { _wrapProp } from "@qwik.dev/core";
 import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
-import { useStore } from "@qwik.dev/core";
-import { Slot } from "@qwik.dev/core";
-import { Fragment } from "@qwik.dev/core";
+import { Slot, Fragment } from "@qwik.dev/core";
 import Image from "./image.jpg?jsx";
-export function Fn1(props: Stuff) {
-	return /* @__PURE__ */ _jsxSorted(_Fragment, null, null, /* @__PURE__ */ _jsxSorted("div", null, null, prop < 2 ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_0") : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_1"), 3, "u6_2"), 3, "u6_3");
+export function Fn1(props) {
+  return /* @__PURE__ */ _jsxSorted(
+    _Fragment,
+    null,
+    null,
+    /* @__PURE__ */ _jsxSorted(
+      "div",
+      null,
+      null,
+      prop < 2
+        ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_0")
+        : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_1"),
+      1,
+      null,
+    ),
+    1,
+    "u6_2",
+  );
 }
-export function Fn2(props: Stuff) {
-	return /* @__PURE__ */ _jsxSorted("div", null, null, [prop.value && /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null), /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null)], 1, "u6_4");
+export function Fn2(props) {
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    null,
+    null,
+    [
+      prop.value && /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_3"),
+      /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null),
+    ],
+    1,
+    "u6_4",
+  );
 }
-export function Fn3(props: Stuff) {
-	if (prop.value) {
-		return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null);
-	}
-	return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null);
+export function Fn3(props) {
+  if (prop.value) return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_5");
+  return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "u6_6");
 }
-export function Fn4(props: Stuff) {
-	if (prop.value) {
-		return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null);
-	}
-	return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null);
+export function Fn4(props) {
+  if (prop.value) return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "u6_7");
+  return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_8");
 }
-export const Arrow = (props: Stuff) => /* @__PURE__ */ _jsxSorted("div", null, null, prop < 2 ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_5") : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_6"), 3, "u6_7");
-export const AppDynamic1 = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	return /* @__PURE__ */ _jsxSorted(_Fragment, null, null, /* @__PURE__ */ _jsxSorted("div", null, null, prop < 2 ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_8") : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_9"), 3, "u6_10"), 3, "u6_11");
-}, "AppDynamic1_component_I5e2e0ta73k"));
-export const AppDynamic2 = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	return /* @__PURE__ */ _jsxSorted("div", null, null, [prop.value && /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null), /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null)], 1, "u6_12");
-}, "AppDynamic2_component_X09iYdJZSKQ"));
-export const AppDynamic3 = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	if (prop.value) {
-		return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null);
-	}
-	return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null);
-}, "AppDynamic3_component_kWUfyeXIwW0"));
-export const AppDynamic4 = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	if (prop.value) {
-		return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null);
-	}
-	return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, null);
-}, "AppDynamic4_component_Jxd0KswLE0A"));
-export const AppStatic = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl((props: Stuff) => {
-	return /* @__PURE__ */ _jsxSorted(_Fragment, null, null, [
-		/* @__PURE__ */ _jsxSorted("div", null, null, ["Static", f ? 1 : 3], 1, "u6_17"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, prop < 2 ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_13") : /* @__PURE__ */ _jsxSorted("p", null, null, "2", 3, "u6_14"), 3, "u6_18"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, prop.value && /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null), 3, "u6_19"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, prop.value && /* @__PURE__ */ _jsxSorted(Fragment, null, null, /* @__PURE__ */ _jsxSorted(Slot, null, null, null, 3, null), 3, "u6_15"), 3, "u6_20"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, prop.value && /* @__PURE__ */ _jsxSorted(_Fragment, null, null, /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null), 3, "u6_16"), 3, "u6_21"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, prop.value && /* @__PURE__ */ _jsxSorted(Image, null, null, null, 3, null), 3, "u6_22"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, ["Static", f ? 1 : 3], 1, "u6_23"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, "Static", 3, "u6_24"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, ["Static", _wrapProp(props)], 1, "u6_25"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, ["Static", stuff()], 1, "u6_26"),
-		/* @__PURE__ */ _jsxSorted("div", null, null, ["Static", stuff()], 1, "u6_27")
-	], 1, "u6_28");
-}, "AppStatic_component_b9UsPZEUhQ4"));
+export const Arrow = (props) =>
+  /* @__PURE__ */ _jsxSorted(
+    "div",
+    null,
+    null,
+    prop < 2
+      ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_9")
+      : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_10"),
+    1,
+    "u6_11",
+  );
+const AppDynamic1_component_R00UJ05gbes = (props) => {
+  return /* @__PURE__ */ _jsxSorted(
+    _Fragment,
+    null,
+    null,
+    /* @__PURE__ */ _jsxSorted(
+      "div",
+      null,
+      null,
+      prop < 2
+        ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_12")
+        : /* @__PURE__ */ _jsxSorted(Stuff, null, null, "2", 3, "u6_13"),
+      1,
+      null,
+    ),
+    1,
+    "u6_14",
+  );
+};
+export const AppDynamic1 = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(
+    AppDynamic1_component_R00UJ05gbes,
+    "AppDynamic1_component_R00UJ05gbes",
+  ),
+);
+const AppDynamic2_component_3EY2zm0v00A = (props) => {
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    null,
+    null,
+    [
+      prop.value && /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_15"),
+      /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null),
+    ],
+    1,
+    "u6_16",
+  );
+};
+export const AppDynamic2 = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(
+    AppDynamic2_component_3EY2zm0v00A,
+    "AppDynamic2_component_3EY2zm0v00A",
+  ),
+);
+const AppDynamic3_component_FVq83NlbTDQ = (props) => {
+  if (prop.value) return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_17");
+  return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "u6_18");
+};
+export const AppDynamic3 = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(
+    AppDynamic3_component_FVq83NlbTDQ,
+    "AppDynamic3_component_FVq83NlbTDQ",
+  ),
+);
+const AppDynamic4_component_IO0yr8UvWEI = (props) => {
+  if (prop.value) return /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "u6_19");
+  return /* @__PURE__ */ _jsxSorted(Stuff, null, null, null, 3, "u6_20");
+};
+export const AppDynamic4 = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(
+    AppDynamic4_component_IO0yr8UvWEI,
+    "AppDynamic4_component_IO0yr8UvWEI",
+  ),
+);
+const AppStatic_component_gYRXqF3G5nE = (props) => {
+  return /* @__PURE__ */ _jsxSorted(
+    _Fragment,
+    null,
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted("div", null, null, ["Static ", f ? 1 : 3], 1, null),
+      /* @__PURE__ */ _jsxSorted(
+        "div",
+        null,
+        null,
+        prop < 2
+          ? /* @__PURE__ */ _jsxSorted("p", null, null, "1", 3, "u6_21")
+          : /* @__PURE__ */ _jsxSorted("p", null, null, "2", 3, "u6_22"),
+        1,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted(
+        "div",
+        null,
+        null,
+        prop.value && /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "u6_23"),
+        1,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted(
+        "div",
+        null,
+        null,
+        prop.value &&
+          /* @__PURE__ */ _jsxSorted(
+            Fragment,
+            null,
+            null,
+            /* @__PURE__ */ _jsxSorted(Slot, null, null, null, 3, "u6_24"),
+            1,
+            "u6_25",
+          ),
+        1,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted(
+        "div",
+        null,
+        null,
+        prop.value &&
+          /* @__PURE__ */ _jsxSorted(
+            _Fragment,
+            null,
+            null,
+            /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null),
+            3,
+            "u6_26",
+          ),
+        1,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted(
+        "div",
+        null,
+        null,
+        prop.value && /* @__PURE__ */ _jsxSorted(Image, null, null, null, 3, "u6_27"),
+        1,
+        null,
+      ),
+      /* @__PURE__ */ _jsxSorted("div", null, null, ["Static ", f ? 1 : 3], 1, null),
+      /* @__PURE__ */ _jsxSorted("div", null, null, "Static", 3, null),
+      /* @__PURE__ */ _jsxSorted("div", null, null, ["Static ", _wrapProp(props)], 1, null),
+      /* @__PURE__ */ _jsxSorted("div", null, null, ["Static ", stuff()], 1, null),
+      /* @__PURE__ */ _jsxSorted("div", null, null, ["Static ", stuff()], 1, null),
+    ],
+    1,
+    "u6_28",
+  );
+};
+export const AppStatic = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ inlinedQrl(AppStatic_component_gYRXqF3G5nE, "AppStatic_component_gYRXqF3G5nE"),
+);
+
+=== DIAGNOSTICS ===
+
+[]

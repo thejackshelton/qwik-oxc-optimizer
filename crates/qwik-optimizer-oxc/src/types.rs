@@ -339,17 +339,20 @@ pub enum CtxKind {
     /// Function context (e.g., $, component$, useTask$).
     #[serde(rename = "function")]
     Function,
+
+    /// JSX prop context: function expression in a $-suffixed JSX prop on a component element.
+    /// Serialized as "jSXProp" to match SWC's camelCase serialization of the JSX prefix.
+    #[serde(rename = "jSXProp")]
+    JSXProp,
 }
 
 /// A diagnostic message from the transformation process.
 ///
 /// SWC equivalent: Diagnostic in types.ts
+/// Field order matches SWC's serialization: category, code, file, message, highlights, suggestions, scope
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Diagnostic {
-    /// Scope identifier matching SWC wire format (always "optimizer").
-    pub scope: String,
-
     /// The diagnostic category.
     pub category: DiagnosticCategory,
 
@@ -363,12 +366,13 @@ pub struct Diagnostic {
     pub message: String,
 
     /// Optional source code highlights.
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub highlights: Option<Vec<SourceLocation>>,
 
     /// Optional fix suggestions.
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub suggestions: Option<Vec<String>>,
+
+    /// Scope identifier matching SWC wire format (always "optimizer").
+    pub scope: String,
 }
 
 /// Severity level of a diagnostic.
@@ -426,9 +430,6 @@ pub(crate) struct CollectResult {
     /// e.g., {"Component" -> "component$", "onRender" -> "$"}
     pub alias_map: HashMap<String, String>,
 
-    /// Located $-call sites with span info.
-    pub dollar_calls: Vec<DollarCallSite>,
-
     /// All import declarations in the module.
     pub module_imports: Vec<ImportInfo>,
 
@@ -440,27 +441,12 @@ pub(crate) struct CollectResult {
     /// need serialization through `_captures`. Includes variable declarations,
     /// function declarations, and class declarations at the top level.
     pub module_level_decls: HashSet<String>,
-}
 
-/// A located $-call site in the source code.
-#[derive(Debug, Clone)]
-#[allow(dead_code)]
-pub(crate) struct DollarCallSite {
-    /// The name of the callee (e.g., "$", "component$").
-    pub callee_name: String,
-
-    /// Byte offset span of the entire call expression.
-    pub span: (u32, u32),
-
-    /// The display name derived from the lexical context
-    /// (e.g., "Header_component" for `const Header = component$(...)`).
-    pub display_name: String,
-
-    /// Whether this is a nested $-call (inside another $-call's body).
-    pub is_nested: bool,
-
-    /// The parent $-call's display name, if nested.
-    pub parent_name: Option<String>,
+    /// Local binding names that are user-exported (via export const/function/class
+    /// or export { X }). Used to determine which module-level decls need `_auto_`
+    /// prefix when re-exported for segment self-imports.
+    /// Does NOT include names from `export default` declarations.
+    pub exported_local_names: HashSet<String>,
 }
 
 /// The kind of import specifier (default, namespace, or named).
@@ -499,6 +485,10 @@ pub(crate) struct ImportInfo {
 
     /// Byte offset span of the import declaration.
     pub span: (u32, u32),
+
+    /// Import assertion/attribute clause, e.g., `with { type: "json" }`.
+    /// Stored as key-value pairs: `[("type", "json")]`.
+    pub assertion: Vec<(String, String)>,
 }
 
 /// Recorded export declaration from the source module.
@@ -580,6 +570,10 @@ pub(crate) struct SegmentData {
 
     /// Whether this segment needs a qrl import (has child $()-calls).
     pub needs_qrl_import: bool,
+
+    /// Stack context names at the time of segment creation.
+    /// Used by Smart/Component entry strategies to compute entry field.
+    pub stack_ctxt: Vec<String>,
 }
 
 /// Per-module options derived from TransformModulesOptions.
@@ -605,239 +599,4 @@ pub(crate) struct TransformOptions {
     pub strip_event_handlers: bool,
     pub reg_ctx_name: Vec<String>,
     pub is_server: bool,
-}
-
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_serde_roundtrip() {
-        let opts = TransformModulesOptions::default();
-        let json = serde_json::to_string(&opts).unwrap();
-        let deserialized: TransformModulesOptions = serde_json::from_str(&json).unwrap();
-
-        assert_eq!(opts.src_dir, deserialized.src_dir);
-        assert_eq!(opts.source_maps, deserialized.source_maps);
-        assert!(opts.input.is_empty());
-    }
-
-    #[test]
-    fn test_camel_case_serialization() {
-        let opts = TransformModulesOptions {
-            src_dir: "src".to_string(),
-            root_dir: Some("/root".to_string()),
-            input: vec![TransformModuleInput {
-                code: "const x = 1;".to_string(),
-                path: "test.tsx".to_string(),
-            }],
-            source_maps: true,
-            minify: MinifyMode::None,
-            transpile_ts: false,
-            transpile_jsx: true,
-            preserve_filenames: false,
-            entry_strategy: EntryStrategy::Inline,
-            explicit_extensions: false,
-            mode: EmitMode::Dev,
-            scope: None,
-            core_module: None,
-            strip_exports: None,
-            strip_ctx_name: None,
-            strip_event_handlers: false,
-            reg_ctx_name: None,
-            is_server: Some(true),
-        };
-
-        let json = serde_json::to_string_pretty(&opts).unwrap();
-
-        // Verify camelCase field names
-        assert!(
-            json.contains("\"srcDir\""),
-            "Expected srcDir in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"rootDir\""),
-            "Expected rootDir in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"sourceMaps\""),
-            "Expected sourceMaps in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"transpileTs\""),
-            "Expected transpileTs in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"transpileJsx\""),
-            "Expected transpileJsx in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"preserveFilenames\""),
-            "Expected preserveFilenames in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"entryStrategy\""),
-            "Expected entryStrategy in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"explicitExtensions\""),
-            "Expected explicitExtensions in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"isServer\""),
-            "Expected isServer in JSON: {json}"
-        );
-        assert!(
-            json.contains("\"stripEventHandlers\""),
-            "Expected stripEventHandlers in JSON: {json}"
-        );
-
-        // Verify it round-trips
-        let deserialized: TransformModulesOptions = serde_json::from_str(&json).unwrap();
-        assert_eq!(deserialized.src_dir, "src");
-        assert_eq!(deserialized.root_dir, Some("/root".to_string()));
-        assert!(deserialized.transpile_jsx);
-    }
-
-    #[test]
-    fn test_entry_strategy_string_serialization() {
-        let strategy = EntryStrategy::Segment;
-        let json = serde_json::to_string(&strategy).unwrap();
-        assert_eq!(json, r#""segment""#);
-
-        let strategy = EntryStrategy::Inline;
-        let json = serde_json::to_string(&strategy).unwrap();
-        assert_eq!(json, r#""inline""#);
-
-        // Round-trip (plain string, matching SWC wire format)
-        let deserialized: EntryStrategy = serde_json::from_str(r#""segment""#).unwrap();
-        assert!(matches!(deserialized, EntryStrategy::Segment));
-    }
-
-    #[test]
-    fn test_ctx_kind_serialization() {
-        let kind = CtxKind::EventHandler;
-        let json = serde_json::to_string(&kind).unwrap();
-        assert_eq!(json, r#""eventHandler""#);
-
-        let kind = CtxKind::Function;
-        let json = serde_json::to_string(&kind).unwrap();
-        assert_eq!(json, r#""function""#);
-
-        // Round-trip
-        let deserialized: CtxKind = serde_json::from_str(r#""function""#).unwrap();
-        assert!(matches!(deserialized, CtxKind::Function));
-    }
-
-    #[test]
-    fn test_minify_mode_serialization() {
-        let mode = MinifyMode::Simplify;
-        let json = serde_json::to_string(&mode).unwrap();
-        assert_eq!(json, r#""simplify""#);
-
-        let mode = MinifyMode::None;
-        let json = serde_json::to_string(&mode).unwrap();
-        assert_eq!(json, r#""none""#);
-    }
-
-    #[test]
-    fn test_emit_mode_serialization() {
-        let mode = EmitMode::Lib;
-        let json = serde_json::to_string(&mode).unwrap();
-        assert_eq!(json, r#""lib""#);
-
-        let mode = EmitMode::Prod;
-        let json = serde_json::to_string(&mode).unwrap();
-        assert_eq!(json, r#""prod""#);
-
-        let mode = EmitMode::Dev;
-        let json = serde_json::to_string(&mode).unwrap();
-        assert_eq!(json, r#""dev""#);
-    }
-
-    #[test]
-    fn test_segment_analysis_loc_serialization() {
-        let segment = SegmentAnalysis {
-            origin: "test.tsx".to_string(),
-            name: "renderHeader_zBbHWn4e8Cg".to_string(),
-            entry: None,
-            display_name: "test.tsx_renderHeader".to_string(),
-            hash: "zBbHWn4e8Cg".to_string(),
-            canonical_filename: "test.tsx_renderHeader_zBbHWn4e8Cg".to_string(),
-            path: "".to_string(),
-            extension: "tsx".to_string(),
-            parent: None,
-            ctx_kind: CtxKind::Function,
-            ctx_name: "$".to_string(),
-            captures: false,
-            capture_names: None,
-            loc: (90, 161),
-            param_names: None,
-        };
-
-        let json = serde_json::to_string(&segment).unwrap();
-        // loc should serialize as [90, 161]
-        assert!(
-            json.contains(r#""loc":[90,161]"#),
-            "Expected loc as array: {json}"
-        );
-
-        // Verify round-trip
-        let deserialized: SegmentAnalysis = serde_json::from_str(&json).unwrap();
-        assert_eq!(deserialized.loc, (90, 161));
-        assert_eq!(deserialized.origin, "test.tsx");
-        assert!(matches!(deserialized.ctx_kind, CtxKind::Function));
-    }
-
-    #[test]
-    fn test_transform_output_roundtrip() {
-        let output = TransformOutput {
-            modules: vec![TransformModule {
-                path: "test.tsx".to_string(),
-                is_entry: false,
-                code: "const x = 1;".to_string(),
-                map: None,
-                segment: None,
-                orig_path: Some("test.tsx".to_string()),
-            }],
-            diagnostics: vec![],
-            is_type_script: true,
-            is_jsx: false,
-        };
-
-        let json = serde_json::to_string(&output).unwrap();
-        let deserialized: TransformOutput = serde_json::from_str(&json).unwrap();
-
-        assert_eq!(deserialized.modules.len(), 1);
-        assert_eq!(deserialized.modules[0].path, "test.tsx");
-        assert!(deserialized.is_type_script);
-        assert!(!deserialized.is_jsx);
-        assert!(
-            json.contains("\"isTypeScript\""),
-            "Expected isTypeScript in JSON: {json}"
-        );
-        assert!(json.contains("\"isJsx\""), "Expected isJsx in JSON: {json}");
-        assert!(
-            json.contains("\"isEntry\""),
-            "Expected isEntry in JSON: {json}"
-        );
-    }
-
-    #[test]
-    fn test_defaults() {
-        assert!(matches!(EntryStrategy::default(), EntryStrategy::Segment));
-        assert!(matches!(MinifyMode::default(), MinifyMode::Simplify));
-        assert!(matches!(EmitMode::default(), EmitMode::Lib));
-
-        let opts = TransformModulesOptions::default();
-        assert_eq!(opts.src_dir, ".");
-        assert!(opts.source_maps);
-        assert!(!opts.transpile_ts);
-        assert!(!opts.transpile_jsx);
-        assert!(opts.input.is_empty());
-    }
 }

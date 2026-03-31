@@ -5,18 +5,44 @@
 //! extracted segment. Each segment becomes its own module file containing
 //! the extracted function body as an exported const, with any needed imports.
 
+use std::collections::HashSet;
+
+use crate::emit::swc_codegen_options;
 use crate::types::{ImportKind, SegmentData, TransformOptions};
+
+/// A single import to emit in a segment module, sortable by local name.
+///
+/// Used to collect all segment imports (framework + user-code) into a single
+/// list that can be sorted alphabetically by `local_name`, matching SWC's
+/// `local_idents.sort()` behavior.
+struct SegmentImportEntry {
+    /// The local binding name (e.g., "_jsxSorted", "useStore", "dep3").
+    local_name: String,
+    /// The import source module (e.g., "@qwik.dev/core", "dep3/something").
+    source: String,
+    /// The kind of import (default, namespace, or named).
+    kind: ImportKind,
+    /// For aliased imports, the original imported name (e.g., "Fragment" for "_Fragment").
+    imported_name: Option<String>,
+    /// Import assertion/attribute clause, e.g., `with { type: "json" }`.
+    /// Stored as key-value pairs: `[("type", "json")]`.
+    assertion: Vec<(String, String)>,
+}
 
 /// Build a segment's JavaScript source code with optional hoisted function declarations.
 ///
 /// Takes the serialized body code and segment metadata, constructs a
 /// complete JavaScript module string with:
-/// 1. Framework imports (`import { _captures } from "@qwik.dev/core"`)
-/// 2. QRL import for nested $-calls (`import { qrl } from "@qwik.dev/core"`)
+/// 1. `_captures` import first (if needed, matches SWC's special-case emission)
+/// 2. Remaining imports sorted alphabetically by local binding name (framework + user-code)
 /// 3. Lazy import declarations (`const i_hash = () => import(...)`)
 /// 4. Hoisted function declarations for _fnSignal (`const _hfN = ...`)
 /// 5. Capture restoration statements (`const varName = _captures[N]`)
 /// 6. Export declaration (`export const name = body`)
+///
+/// Import ordering matches SWC's segment module emission: `_captures` is emitted
+/// first (special case in SWC's code_move.rs), then remaining imports follow
+/// `local_idents.sort()` order (alphabetical by local binding name).
 ///
 /// Returns the complete JavaScript module source code.
 pub(crate) fn build_segment_code_with_hoisted(
@@ -25,23 +51,297 @@ pub(crate) fn build_segment_code_with_hoisted(
     options: &TransformOptions,
     hoisted_stmts: &[(String, String)],
     custom_jsx_source: Option<&str>,
+    auto_exports: &HashSet<String>,
 ) -> String {
+    let core = &options.core_module;
+    let jsx_runtime = format!("{}/jsx-runtime", core);
+    let has_captures = segment.captures && !segment.capture_names.is_empty();
+
+    // --- Phase 1: Collect all needed imports into a sortable list ---
+    // Note: _captures is emitted separately (first), matching SWC's special-case behavior.
+
+    let mut imports: Vec<SegmentImportEntry> = Vec::new();
+
+    // qrl/qrlDEV import (needed when segment has child $()-calls)
+    if segment.needs_qrl_import {
+        // Detect DEV variant: if body contains "qrlDEV" use that, else "qrl"
+        let qrl_name = if body_code.contains("qrlDEV") {
+            "qrlDEV"
+        } else {
+            "qrl"
+        };
+        imports.push(SegmentImportEntry {
+            local_name: qrl_name.to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+
+    // Qrl-suffixed imports needed by this segment (from nested $-calls)
+    for qrl_name in &segment.segment_qrl_names {
+        imports.push(SegmentImportEntry {
+            local_name: qrl_name.clone(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+
+    // Framework imports detected by body_code.contains()
+    // Custom JSX source check: when set, emit _jsx from custom source instead of _jsxSorted from core
+    if let Some(jsx_source) = custom_jsx_source {
+        if body_code.contains("_jsx") {
+            imports.push(SegmentImportEntry {
+                local_name: "_jsx".to_string(),
+                source: format!("{}/jsx-runtime", jsx_source),
+                kind: ImportKind::Named,
+                imported_name: Some("jsx".to_string()),
+                assertion: Vec::new(),
+            });
+        }
+    } else if body_code.contains("_jsxSorted") {
+        imports.push(SegmentImportEntry {
+            local_name: "_jsxSorted".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_jsxSplit") {
+        imports.push(SegmentImportEntry {
+            local_name: "_jsxSplit".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_fnSignal") {
+        imports.push(SegmentImportEntry {
+            local_name: "_fnSignal".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_wrapProp") {
+        imports.push(SegmentImportEntry {
+            local_name: "_wrapProp".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_Fragment") {
+        imports.push(SegmentImportEntry {
+            local_name: "_Fragment".to_string(),
+            source: jsx_runtime.clone(),
+            kind: ImportKind::Named,
+            imported_name: Some("Fragment".to_string()),
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("inlinedQrlDEV") {
+        imports.push(SegmentImportEntry {
+            local_name: "inlinedQrlDEV".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    } else if body_code.contains("inlinedQrl") {
+        imports.push(SegmentImportEntry {
+            local_name: "inlinedQrl".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_noopQrlDEV") {
+        imports.push(SegmentImportEntry {
+            local_name: "_noopQrlDEV".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    } else if body_code.contains("_noopQrl") {
+        imports.push(SegmentImportEntry {
+            local_name: "_noopQrl".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_qrlSync") {
+        imports.push(SegmentImportEntry {
+            local_name: "_qrlSync".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_getVarProps") {
+        imports.push(SegmentImportEntry {
+            local_name: "_getVarProps".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_getConstProps") {
+        imports.push(SegmentImportEntry {
+            local_name: "_getConstProps".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_createElement") {
+        imports.push(SegmentImportEntry {
+            local_name: "_createElement".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: Some("createElement".to_string()),
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_restProps") {
+        imports.push(SegmentImportEntry {
+            local_name: "_restProps".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_chk") {
+        imports.push(SegmentImportEntry {
+            local_name: "_chk".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+    if body_code.contains("_val") {
+        imports.push(SegmentImportEntry {
+            local_name: "_val".to_string(),
+            source: core.clone(),
+            kind: ImportKind::Named,
+            imported_name: None,
+            assertion: Vec::new(),
+        });
+    }
+
+    // User-code imports needed by this segment body.
+    // These are imports from the original module that the segment references
+    // (e.g., `import dep3 from "dep3/something"`, `import { bar as bbar } from "../state"`).
+    // For self-imports that need _auto_ prefix (non-user-exported module-level decls),
+    // use `import { _auto_X as X }` syntax instead of `import { X }`.
+    for import_info in &segment.needed_imports {
+        for (idx, spec_name) in import_info.specifiers.iter().enumerate() {
+            let kind = import_info
+                .specifier_kinds
+                .get(idx)
+                .unwrap_or(&ImportKind::Named);
+            // _auto_ alias takes priority over regular alias for self-imports
+            // (non-framework imports that match auto_exports).
+            let imported_name = if auto_exports.contains(spec_name.as_str()) && !import_info.is_qwik_core {
+                Some(format!("_auto_{}", spec_name))
+            } else if matches!(kind, ImportKind::Named) {
+                import_info.specifier_aliases.get(spec_name).cloned()
+            } else {
+                None
+            };
+            imports.push(SegmentImportEntry {
+                local_name: spec_name.clone(),
+                source: import_info.source.clone(),
+                kind: kind.clone(),
+                imported_name,
+                assertion: import_info.assertion.clone(),
+            });
+        }
+    }
+
+    // --- Phase 2: Sort all imports alphabetically by local name ---
+    // Matches SWC's `local_idents.sort()` behavior.
+    imports.sort_by(|a, b| a.local_name.cmp(&b.local_name));
+
+    // --- Phase 3: Emit imports ---
+    // _captures is emitted first (SWC emits it before the sorted local_idents loop).
     let mut parts: Vec<String> = Vec::new();
 
-    if segment.captures && !segment.capture_names.is_empty() {
-        parts.push(format!(
-            "import {{ _captures }} from \"{}\";",
-            options.core_module
-        ));
+    if has_captures {
+        parts.push(format!("import {{ _captures }} from \"{}\";", core));
     }
 
-    if segment.needs_qrl_import {
-        parts.push(format!(
-            "import {{ qrl }} from \"{}\";",
-            options.core_module
-        ));
+    // Emit remaining sorted imports (one per identifier, no merging -- matches SWC).
+    for entry in &imports {
+        let with_clause = format_with_clause(&entry.assertion);
+        match entry.kind {
+            ImportKind::Default => {
+                parts.push(format!(
+                    "import {} from \"{}\"{};",
+                    entry.local_name, entry.source, with_clause
+                ));
+            }
+            ImportKind::Namespace => {
+                parts.push(format!(
+                    "import * as {} from \"{}\"{};",
+                    entry.local_name, entry.source, with_clause
+                ));
+            }
+            ImportKind::Named => {
+                if let Some(ref imported) = entry.imported_name {
+                    parts.push(format!(
+                        "import {{ {} as {} }} from \"{}\"{};",
+                        imported, entry.local_name, entry.source, with_clause
+                    ));
+                } else {
+                    parts.push(format!(
+                        "import {{ {} }} from \"{}\"{};",
+                        entry.local_name, entry.source, with_clause
+                    ));
+                }
+            }
+        }
     }
 
+    // --- Phase 4: Hoisted function declarations (filtered per-segment) ---
+    // Only inject _hf* declarations that this segment's body actually references.
+    // SWC injects ALL extra_top_items then relies on DCE to remove unused ones.
+    // We filter upfront since OXC has no DCE.
+    // NOTE: SWC puts hoisted stmts BEFORE lazy imports in entry segments.
+    for (fn_code, str_code) in hoisted_stmts {
+        // Extract variable name from "const _hfN = ..." pattern
+        if let Some(var_name) = fn_code
+            .strip_prefix("const ")
+            .and_then(|s| s.split(|c: char| c == ' ' || c == '=').next())
+        {
+            if body_code.contains(var_name) {
+                parts.push(fn_code.clone());
+                parts.push(str_code.clone());
+            }
+        } else {
+            // Fallback: include if we can't parse the variable name
+            parts.push(fn_code.clone());
+            parts.push(str_code.clone());
+        }
+    }
+
+    // --- Phase 5: Lazy import declarations (const, not import statements) ---
     for (hash, import_path) in &segment.child_lazy_imports {
         parts.push(format!(
             "const i_{} = () => import(\"{}\");",
@@ -49,151 +349,36 @@ pub(crate) fn build_segment_code_with_hoisted(
         ));
     }
 
-    // Emit Qrl-suffixed imports needed by this segment (from nested $-calls)
-    for qrl_name in &segment.segment_qrl_names {
-        parts.push(format!(
-            "import {{ {} }} from \"{}\";",
-            qrl_name, options.core_module
-        ));
-    }
-
-    // When custom JSX source is set and body contains _jsx, emit from custom source.
-    // Otherwise fall through to _jsxSorted from core module.
-    if let Some(jsx_source) = custom_jsx_source {
-        if body_code.contains("_jsx") {
-            parts.push(format!(
-                "import {{ jsx as _jsx }} from \"{}/jsx-runtime\";",
-                jsx_source
-            ));
-        }
-    } else if body_code.contains("_jsxSorted") {
-        parts.push(format!(
-            "import {{ _jsxSorted }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_jsxSplit") {
-        parts.push(format!(
-            "import {{ _jsxSplit }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_fnSignal") || !hoisted_stmts.is_empty() {
-        parts.push(format!(
-            "import {{ _fnSignal }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_wrapProp") {
-        parts.push(format!(
-            "import {{ _wrapProp }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_Fragment") {
-        parts.push(format!(
-            "import {{ Fragment as _Fragment }} from \"{}/jsx-runtime\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("inlinedQrl") {
-        parts.push(format!(
-            "import {{ inlinedQrl }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_noopQrl") {
-        parts.push(format!(
-            "import {{ _noopQrl }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_qrlSync") {
-        parts.push(format!(
-            "import {{ _qrlSync }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_getVarProps") {
-        parts.push(format!(
-            "import {{ _getVarProps }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_getConstProps") {
-        parts.push(format!(
-            "import {{ _getConstProps }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_restProps") {
-        parts.push(format!(
-            "import {{ _restProps }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_chk") {
-        parts.push(format!(
-            "import {{ _chk }} from \"{}\";",
-            options.core_module
-        ));
-    }
-    if body_code.contains("_val") {
-        parts.push(format!(
-            "import {{ _val }} from \"{}\";",
-            options.core_module
-        ));
-    }
-
-    // Emit user-code imports needed by this segment body.
-    // These are imports from the original module that the segment references
-    // (e.g., `import dep3 from "dep3/something"`, `import { bar as bbar } from "../state"`).
-    for import_info in &segment.needed_imports {
-        for (idx, spec_name) in import_info.specifiers.iter().enumerate() {
-            let kind = import_info
-                .specifier_kinds
-                .get(idx)
-                .unwrap_or(&ImportKind::Named);
-            match kind {
-                ImportKind::Default => {
-                    parts.push(format!("import {} from \"{}\";", spec_name, import_info.source));
-                }
-                ImportKind::Namespace => {
-                    parts.push(format!(
-                        "import * as {} from \"{}\";",
-                        spec_name, import_info.source
-                    ));
-                }
-                ImportKind::Named => {
-                    if let Some(imported_name) = import_info.specifier_aliases.get(spec_name) {
-                        parts.push(format!(
-                            "import {{ {} as {} }} from \"{}\";",
-                            imported_name, spec_name, import_info.source
-                        ));
-                    } else {
-                        parts.push(format!(
-                            "import {{ {} }} from \"{}\";",
-                            spec_name, import_info.source
-                        ));
-                    }
-                }
-            }
-        }
-    }
-
-    for (fn_code, str_code) in hoisted_stmts {
-        parts.push(fn_code.clone());
-        parts.push(str_code.clone());
-    }
-
+    // --- Phase 6: Capture restoration + export ---
     let segment_name = &segment.name;
-    if segment.captures && !segment.capture_names.is_empty() {
-        let capture_stmts: Vec<String> = segment
+
+    // Step 1: Inject iteration variable params into function signature.
+    // When param_names has 3+ entries, positions 2+ are iteration variables that
+    // must appear as function params (not captures). The serialized body code
+    // from raw source only has the original params (typically "()" for event handlers).
+    // SWC preserves params via `..arrow` spread; we inject them here.
+    // De-duplicate placeholder names: SWC uses private_ident!("_") for both event
+    // and element placeholders, and codegen de-duplicates to "_", "_1".
+    let body_code_owned = if segment.param_names.len() > 2 {
+        inject_iteration_params(body_code, &segment.param_names)
+    } else {
+        body_code.to_string()
+    };
+    let body_code = &body_code_owned;
+
+    // Step 2: Inject captures + emit export
+    if has_captures {
+        // SWC emits captures as a single chained const declaration:
+        //   const a = _captures[0], b = _captures[1];
+        // This matches SWC's emit_program_body which builds a single
+        // VariableDeclaration with multiple declarators.
+        let capture_decls: Vec<String> = segment
             .capture_names
             .iter()
             .enumerate()
-            .map(|(i, name)| format!("const {} = _captures[{}]", name, i))
+            .map(|(i, name)| format!("{} = _captures[{}]", name, i))
             .collect();
+        let capture_stmts = vec![format!("const {}", capture_decls.join(", "))];
 
         let modified_body = inject_captures_into_body(body_code, &capture_stmts);
         parts.push(format!("export const {} = {}", segment_name, modified_body));
@@ -239,6 +424,56 @@ fn inject_captures_into_body(body_code: &str, capture_stmts: &[String]) -> Strin
         return format!("{} {{\n{}return {};\n}}", prefix, capture_code, expr_body);
     }
 
+    body_code.to_string()
+}
+
+/// Inject iteration variable parameters into an arrow function's parameter list.
+///
+/// For a body like `() => { ... }`, replaces the params to get `(_, _1, row) => { ... }`.
+/// Uses param_names which has format `[event_placeholder, element_placeholder, iter_var1, ...]`.
+///
+/// SWC uses `private_ident!("_")` for both placeholder params (positions 0 and 1),
+/// and codegen auto-de-duplicates to `_` and `_1`. We replicate this behavior for
+/// plain string param names.
+fn inject_iteration_params(body_code: &str, param_names: &[String]) -> String {
+    if let Some(arrow_pos) = find_arrow_position(body_code) {
+        let before_arrow = &body_code[..arrow_pos];
+        let after_arrow = &body_code[arrow_pos..]; // includes "=> ..."
+
+        if let Some(open_paren) = before_arrow.find('(') {
+            if let Some(close_paren_pos) = before_arrow.rfind(')') {
+                // De-duplicate placeholder names to match SWC codegen behavior.
+                // SWC uses private_ident!("_") for both positions 0 and 1, and codegen
+                // de-duplicates to "_", "_1". We do the same for plain strings.
+                let mut seen: std::collections::HashSet<String> = std::collections::HashSet::new();
+                let deduped_params: Vec<String> = param_names
+                    .iter()
+                    .map(|name| {
+                        if seen.contains(name) {
+                            // Find a unique suffix: try _1, _2, etc.
+                            let mut suffix = 1;
+                            loop {
+                                let candidate = format!("{}{}",name, suffix);
+                                if !seen.contains(&candidate) {
+                                    seen.insert(candidate.clone());
+                                    return candidate;
+                                }
+                                suffix += 1;
+                            }
+                        } else {
+                            seen.insert(name.clone());
+                            name.clone()
+                        }
+                    })
+                    .collect();
+
+                let param_str = deduped_params.join(", ");
+                let prefix = &body_code[..open_paren + 1]; // up to and including "("
+                let between = &before_arrow[close_paren_pos + 1..];
+                return format!("{}{}){}{}", prefix, param_str, between, after_arrow);
+            }
+        }
+    }
     body_code.to_string()
 }
 
@@ -304,236 +539,37 @@ pub(crate) fn emit_segment_with_map(
 ) -> (String, Option<String>) {
     let allocator = oxc::allocator::Allocator::default();
     let source_in_arena = allocator.alloc_str(raw_code);
-    let source_type = oxc::span::SourceType::mjs();
+    let source_type = oxc::span::SourceType::jsx();
     let ret = oxc::parser::Parser::new(&allocator, source_in_arena, source_type).parse();
     if ret.panicked || !ret.errors.is_empty() {
         return (raw_code.to_string(), None);
     }
 
-    if source_maps {
+    let sm_path = if source_maps {
         use std::path::PathBuf;
-        let codegen_options = oxc::codegen::CodegenOptions {
-            source_map_path: Some(PathBuf::from(segment_filename)),
-            ..Default::default()
-        };
-        let codegen_result = oxc::codegen::Codegen::new()
-            .with_options(codegen_options)
-            .with_source_text(source_in_arena)
-            .build(&ret.program);
-
-        let map = codegen_result.map.map(|sm| sm.to_json_string());
-        (codegen_result.code, map)
+        Some(PathBuf::from(segment_filename))
     } else {
-        let codegen_result = oxc::codegen::Codegen::new()
-            .with_source_text(source_in_arena)
-            .build(&ret.program);
-        (codegen_result.code, None)
-    }
+        None
+    };
+    let codegen_result = oxc::codegen::Codegen::new()
+        .with_options(swc_codegen_options(sm_path))
+        .with_source_text(source_in_arena)
+        .build(&ret.program);
+
+    let map = codegen_result.map.map(|sm| sm.to_json_string());
+    let code = crate::emit::expand_single_prop_objects(&codegen_result.code);
+    (code, map)
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::types::CtxKind;
-
-    fn make_test_options() -> TransformOptions {
-        TransformOptions {
-            src_dir: ".".to_string(),
-            root_dir: None,
-            source_maps: false,
-            minify: crate::types::MinifyMode::None,
-            transpile_ts: false,
-            transpile_jsx: false,
-            preserve_filenames: false,
-            entry_strategy: crate::types::EntryStrategy::Segment,
-            explicit_extensions: false,
-            mode: crate::types::EmitMode::Lib,
-            scope: None,
-            core_module: "@qwik.dev/core".to_string(),
-            strip_exports: vec![],
-            strip_ctx_name: vec![],
-            strip_event_handlers: false,
-            reg_ctx_name: vec![],
-            is_server: false,
-        }
+/// Format an import assertion/attribute clause for emission.
+/// Returns ` with { type: "json" }` for non-empty assertions, or empty string.
+fn format_with_clause(assertion: &[(String, String)]) -> String {
+    if assertion.is_empty() {
+        return String::new();
     }
-
-    fn make_segment(name: &str) -> SegmentData {
-        SegmentData {
-            display_name: format!("test.tsx_{}", name),
-            hash: "abc123".to_string(),
-            name: format!("{}_{}", name, "abc123"),
-            ctx_name: "$".to_string(),
-            ctx_kind: CtxKind::Function,
-            origin: "test.tsx".to_string(),
-            extension: "tsx".to_string(),
-            span: (0, 100),
-            parent: None,
-            captures: false,
-            capture_names: vec![],
-            needed_imports: vec![],
-            segment_qrl_names: vec![],
-            body_span: (10, 90),
-            param_names: vec![],
-            body_code: String::new(),
-            child_lazy_imports: vec![],
-            needs_qrl_import: false,
-        }
-    }
-
-    #[test]
-    fn test_simple_segment_no_deps() {
-        let options = make_test_options();
-        let segment = make_segment("handler");
-        let body_code = "() => console.log(\"hello\")";
-
-        let result = build_segment_code_with_hoisted(body_code, &segment, &options, &[], None);
-
-        assert!(
-            result.contains("export const handler_abc123 = () => console.log(\"hello\")"),
-            "Expected export declaration: {}",
-            result
-        );
-        assert!(
-            !result.contains("import"),
-            "Should not have imports: {}",
-            result
-        );
-    }
-
-    #[test]
-    fn test_segment_with_captures() {
-        let options = make_test_options();
-        let mut segment = make_segment("handler");
-        segment.captures = true;
-        segment.capture_names = vec!["state".to_string(), "count".to_string()];
-
-        let body_code = "() => state.count";
-
-        let result = build_segment_code_with_hoisted(body_code, &segment, &options, &[], None);
-
-        assert!(
-            result.contains("import { _captures } from \"@qwik.dev/core\""),
-            "Expected _captures import: {}",
-            result
-        );
-        assert!(
-            result.contains("const state = _captures[0]"),
-            "Expected state restoration: {}",
-            result
-        );
-        assert!(
-            result.contains("const count = _captures[1]"),
-            "Expected count restoration: {}",
-            result
-        );
-        assert!(
-            result.contains("export const handler_abc123"),
-            "Expected export: {}",
-            result
-        );
-    }
-
-    #[test]
-    fn test_segment_with_captures_block_body() {
-        let options = make_test_options();
-        let mut segment = make_segment("handler");
-        segment.captures = true;
-        segment.capture_names = vec!["state".to_string()];
-
-        let body_code = "() => {\n  return state.count;\n}";
-
-        let result = build_segment_code_with_hoisted(body_code, &segment, &options, &[], None);
-
-        assert!(
-            result.contains("const state = _captures[0]"),
-            "Expected capture restoration: {}",
-            result
-        );
-        assert!(
-            result.contains("return state.count"),
-            "Expected original body preserved: {}",
-            result
-        );
-    }
-
-    #[test]
-    fn test_segment_with_child_lazy_imports() {
-        let options = make_test_options();
-        let mut segment = make_segment("App_component");
-        segment.needs_qrl_import = true;
-        segment.child_lazy_imports = vec![(
-            "xyz789".to_string(),
-            "./test.tsx_App_component_1_xyz789".to_string(),
-        )];
-
-        let body_code = "() => {\n  return qrl(i_xyz789, \"App_component_1_xyz789\");\n}";
-
-        let result = build_segment_code_with_hoisted(body_code, &segment, &options, &[], None);
-
-        assert!(
-            result.contains("import { qrl } from \"@qwik.dev/core\""),
-            "Expected qrl import: {}",
-            result
-        );
-        assert!(
-            result.contains("const i_xyz789 = () => import(\"./test.tsx_App_component_1_xyz789\")"),
-            "Expected lazy import: {}",
-            result
-        );
-        assert!(
-            result.contains("export const App_component_abc123"),
-            "Expected export: {}",
-            result
-        );
-    }
-
-    #[test]
-    fn test_find_arrow_position() {
-        assert_eq!(find_arrow_position("() => 1"), Some(3));
-        assert_eq!(find_arrow_position("(a, b) => a + b"), Some(7));
-        assert_eq!(find_arrow_position("x => x"), Some(2));
-        assert_eq!(find_arrow_position("(a = '=> ') => a"), Some(12));
-        assert_eq!(find_arrow_position("const x = 1"), None);
-    }
-
-    #[test]
-    fn test_inject_captures_expression_body() {
-        let body = "() => state.count";
-        let captures = vec!["const state = _captures[0]".to_string()];
-        let result = inject_captures_into_body(body, &captures);
-
-        assert!(
-            result.contains("const state = _captures[0]"),
-            "Expected capture stmt: {}",
-            result
-        );
-        assert!(
-            result.contains("return state.count"),
-            "Expected return: {}",
-            result
-        );
-    }
-
-    #[test]
-    fn test_inject_captures_block_body() {
-        let body = "() => {\n  return x;\n}";
-        let captures = vec!["const x = _captures[0]".to_string()];
-        let result = inject_captures_into_body(body, &captures);
-
-        assert!(
-            result.contains("const x = _captures[0]"),
-            "Expected capture stmt: {}",
-            result
-        );
-        assert!(
-            result.contains("return x;"),
-            "Expected original body: {}",
-            result
-        );
-    }
+    let entries: Vec<String> = assertion
+        .iter()
+        .map(|(key, value)| format!("{}: \"{}\"", key, value))
+        .collect();
+    format!(" with {{ {} }}", entries.join(", "))
 }

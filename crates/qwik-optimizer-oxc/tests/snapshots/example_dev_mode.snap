@@ -1,26 +1,114 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore } from "@qwik.dev/core";
+
+export const App = component$(() => {
+  return (
+    <Cmp>
+      <p class="stuff" onClick$={() => console.log("warn")}>
+        Hello Qwik
+      </p>
+    </Cmp>
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-const i_0VoFXPYUR5E = () => import("./test.tsx_App_component_p_q_e_click_0VoFXPYUR5E");
-import { useStore } from "@qwik.dev/core";
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+import { qrlDEV } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrlDEV(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX", {
+    file: "/user/qwik/src/test.tsx",
+    lo: 87,
+    hi: 224,
+    displayName: "test.tsx_App_component",
+  }),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.js === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_0VoFXPYUR5E = () => import("./test.tsx_App_component_p_q_e_click_0VoFXPYUR5E");
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-export const App_component_XumqEURaLxI = () => {
-	return /* @__PURE__ */ _jsxSorted(Cmp, null, null, /* @__PURE__ */ _jsxSorted("p", null, {
-		class: "stuff",
-		"q-e:click": /* @__PURE__ */ qrl(i_0VoFXPYUR5E, "App_component_p_q_e_click_0VoFXPYUR5E")
-	}, "Hello Qwik", 3, "u6_0"), 3, "u6_1");
+import { qrlDEV } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX");
+export const App_component_XXXXXXXXXXXX = () => {
+  return /* @__PURE__ */ _jsxSorted(
+    Cmp,
+    null,
+    null,
+    /* @__PURE__ */ _jsxSorted(
+      "p",
+      null,
+      {
+        class: "stuff",
+        "q-e:click": /* @__PURE__ */ qrlDEV(
+          i_XXXXXXXXXXXX,
+          "App_component_Cmp_p_q_e_click_XXXXXXXXXXXX",
+          {
+            file: "/user/qwik/src/test.tsx",
+            lo: 149,
+            hi: 174,
+            displayName: "test.tsx_App_component_Cmp_p_q_e_click",
+          },
+        ),
+      },
+      "Hello Qwik",
+      3,
+      null,
+      {
+        fileName: "test.tsx",
+        lineNumber: 6,
+        columnNumber: 7,
+      },
+    ),
+    3,
+    "u6_0",
+    {
+      fileName: "test.tsx",
+      lineNumber: 5,
+      columnNumber: 5,
+    },
+  );
 };
 
-=== test.tsx_App_component_p_q_e_click_0VoFXPYUR5E.js === (ENTRY)
-export const App_component_p_q_e_click_0VoFXPYUR5E = () => console.log("warn");
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
+export const App_component_Cmp_p_q_e_click_XXXXXXXXXXXX = () => console.log("warn");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Cmp_p_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Cmp_p_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

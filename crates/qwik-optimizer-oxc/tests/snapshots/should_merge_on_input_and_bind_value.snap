@@ -1,35 +1,95 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useSignal } from "@qwik.dev/core";
+
+export const FieldInput = component$(() => {
+  const localValue = useSignal("");
+
+  return (
+    <input
+      bind:value={localValue}
+      onInput$={() => {
+        console.log("test");
+      }}
+    />
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { inlinedQrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_FieldInput_component_XXXXXXXXXXXX");
+export const FieldInput = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "FieldInput_component_XXXXXXXXXXXX"),
+);
+
+=== test.tsx_FieldInput_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
 import { _val } from "@qwik.dev/core";
-const i_O84bGdeej0g = () => import("./test.tsx_FieldInput_component_O84bGdeej0g");
-const i_0pI6Lozv5Ow = () => import("./test.tsx_FieldInput_component_input_q_e_input_0pI6Lozv5Ow");
-import { useSignal } from "@qwik.dev/core";
-export const FieldInput = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_O84bGdeej0g, "FieldInput_component_O84bGdeej0g"));
-
-=== test.tsx_FieldInput_component_O84bGdeej0g.js === (ENTRY)
+import { inlinedQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_0pI6Lozv5Ow = () => import("./test.tsx_FieldInput_component_input_q_e_input_0pI6Lozv5Ow");
-import { _jsxSorted } from "@qwik.dev/core";
-import { inlinedQrl } from "@qwik.dev/core";
-import { _val } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
-export const FieldInput_component_O84bGdeej0g = () => {
-	const localValue = useSignal("");
-	return /* @__PURE__ */ _jsxSorted("input", null, {
-		value: localValue,
-		"q-e:input": inlinedQrl(_val, "_val", [localValue]),
-		"q-e:input": /* @__PURE__ */ qrl(i_0pI6Lozv5Ow, "FieldInput_component_input_q_e_input_0pI6Lozv5Ow")
-	}, null, 3, "u6_0");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_FieldInput_component_input_q_e_input_XXXXXXXXXXXX");
+export const FieldInput_component_XXXXXXXXXXXX = () => {
+  const localValue = useSignal("");
+  return /* @__PURE__ */ _jsxSorted(
+    "input",
+    null,
+    {
+      value: localValue,
+      "q-e:input": [
+        inlinedQrl(_val, "_val", [localValue]),
+        /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "FieldInput_component_input_q_e_input_XXXXXXXXXXXX"),
+      ],
+    },
+    null,
+    3,
+    "u6_0",
+  );
 };
 
-=== test.tsx_FieldInput_component_input_q_e_input_0pI6Lozv5Ow.js === (ENTRY)
-export const FieldInput_component_input_q_e_input_0pI6Lozv5Ow = () => {
-	console.log("test");
+/*
+{
+  "origin": "test.tsx",
+  "name": "FieldInput_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_FieldInput_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_FieldInput_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_FieldInput_component_input_q_e_input_XXXXXXXXXXXX.js === (ENTRY)
+export const FieldInput_component_input_q_e_input_XXXXXXXXXXXX = () => {
+  console.log("test");
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "FieldInput_component_input_q_e_input_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_FieldInput_component_input_q_e_input",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_FieldInput_component_input_q_e_input_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "FieldInput_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onInput$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

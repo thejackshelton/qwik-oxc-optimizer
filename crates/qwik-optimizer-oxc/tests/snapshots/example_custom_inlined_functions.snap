@@ -1,56 +1,159 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, $, useStore, wrap, useEffect } from "@qwik.dev/core";
+
+export const useMemoQrl = (qrt) => {
+  useEffect(qrt);
+};
+
+export const useMemo$ = wrap(useMemoQrl);
+
+export const App = component$((props) => {
+  const state = useStore({ count: 0 });
+  useMemo$(() => {
+    console.log(state.count);
+  });
+  return $(() => <div>{state.count}</div>);
+});
+
+export const Lightweight = (props) => {
+  useMemo$(() => {
+    console.log(state.count);
+  });
+};
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
-import { useMemoQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI");
-const i_920F189NvqI = () => import("./test.tsx_useMemo_920F189NvqI");
-const i_Ma8uJBKLX2o = () => import("./test.tsx_s__Ma8uJBKLX2o");
-const i_cCpbVobVcXY = () => import("./test.tsx_Lightweight_useMemo_cCpbVobVcXY");
-import { useStore } from "@qwik.dev/core";
-import { wrap } from "@qwik.dev/core";
-import { useEffect } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Lightweight_useMemo_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+import { wrap, useEffect } from "@qwik.dev/core";
 export const useMemoQrl = (qrt) => {
-	useEffect(qrt);
+  useEffect(qrt);
 };
 export const useMemo$ = wrap(useMemoQrl);
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 export const Lightweight = (props) => {
-	useMemoQrl(/* @__PURE__ */ qrl(i_cCpbVobVcXY, "Lightweight_useMemo_cCpbVobVcXY"));
+  useMemoQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Lightweight_useMemo_XXXXXXXXXXXX"));
 };
 
-=== test.tsx_App_component_XumqEURaLxI.js === (ENTRY)
+=== test.tsx_App_component_XXXXXXXXXXXX.js === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_920F189NvqI = () => import("./test.tsx_useMemo_920F189NvqI");
-const i_Ma8uJBKLX2o = () => import("./test.tsx_s__Ma8uJBKLX2o");
-import { useMemoQrl } from "@qwik.dev/core";
+import { useMemoQrl } from "./test";
 import { useStore } from "@qwik.dev/core";
-export const App_component_XumqEURaLxI = (props) => {
-	const state = useStore({ count: 0 });
-	useMemoQrl(/* @__PURE__ */ qrl(i_920F189NvqI, "useMemo_920F189NvqI", [state]));
-	return /* @__PURE__ */ qrl(i_Ma8uJBKLX2o, "s__Ma8uJBKLX2o", [state]);
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_useMemo_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_1_XXXXXXXXXXXX");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  const state = useStore({
+    count: 0,
+  });
+  useMemoQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_useMemo_XXXXXXXXXXXX", [state]));
+  return /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_1_XXXXXXXXXXXX", [state]);
 };
 
-=== test.tsx_useMemo_920F189NvqI.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+=== test.tsx_App_component_useMemo_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-export const useMemo_920F189NvqI = () => {
-	const state = _captures[0];
-	console.log(state.count);
+export const App_component_useMemo_XXXXXXXXXXXX = () => {
+  const state = _captures[0];
+  console.log(state.count);
 };
 
-=== test.tsx_s__Ma8uJBKLX2o.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_useMemo_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_useMemo",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_useMemo_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "useMemo$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ]
+}
+*/
+
+=== test.tsx_App_component_1_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-export const s__Ma8uJBKLX2o = () => {
-	const state = _captures[0];
-	return /* @__PURE__ */ _jsxSorted("div", null, null, state.count, 3, "u6_0");
+import { _wrapProp } from "@qwik.dev/core";
+export const App_component_1_XXXXXXXXXXXX = () => {
+  const state = _captures[0];
+  return /* @__PURE__ */ _jsxSorted("div", null, null, _wrapProp(state, "count"), 3, "u6_0");
 };
 
-=== test.tsx_Lightweight_useMemo_cCpbVobVcXY.js === (ENTRY)
-export const Lightweight_useMemo_cCpbVobVcXY = () => {
-	console.log(state.count);
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ]
+}
+*/
+
+=== test.tsx_Lightweight_useMemo_XXXXXXXXXXXX.js === (ENTRY)
+export const Lightweight_useMemo_XXXXXXXXXXXX = () => {
+  console.log(state.count);
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Lightweight_useMemo_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Lightweight_useMemo",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Lightweight_useMemo_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "useMemo$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

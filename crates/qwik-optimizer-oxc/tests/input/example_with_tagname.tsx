@@ -1,12 +1,12 @@
-import { $, component$ } from '@qwik.dev/core';
+import { $, component$ } from "@qwik.dev/core";
 
-export const Foo = component$(() => {
-	return $(() => {
-		return (
-			<div>
-			</div>
-		)
-	});
-}, {
-	tagName: "my-foo",
-});
+export const Foo = component$(
+  () => {
+    return $(() => {
+      return <div></div>;
+    });
+  },
+  {
+    tagName: "my-foo",
+  },
+);

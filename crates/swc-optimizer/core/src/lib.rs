@@ -115,7 +115,7 @@ pub fn transform_modules(config: TransformModulesOptions) -> Result<TransformOut
 		iterator.fold(Ok(TransformOutput::new()), |x, y| Ok(x?.append(&mut y?)));
 
 	let mut final_output = final_output?;
-	final_output.modules.sort_unstable_by_key(|key| key.order);
+	final_output.modules.sort_by_key(|key| key.order);
 
 	Ok(final_output)
 }

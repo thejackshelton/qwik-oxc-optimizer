@@ -204,9 +204,3 @@ export function parseSnapFile(filePath: string): ParsedSnapshot {
   return { fixtureName, input, sections, diagnostics };
 }
 
-// Allow direct invocation for quick smoke-test: npx tsx src/parser.ts
-if (process.argv[1] && process.argv[1].endsWith("parser.ts")) {
-  const snapDir = new URL("../swc-snapshots/example_1.snap", import.meta.url).pathname;
-  const result = parseSnapFile(snapDir);
-  console.log(result.fixtureName, result.sections.length, result.diagnostics.length);
-}

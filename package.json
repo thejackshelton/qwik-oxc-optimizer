@@ -1,6 +1,7 @@
 {
   "name": "qwik-oxc-optimizer-tools",
   "private": true,
+  "type": "module",
   "devDependencies": {
     "oxfmt": "0.32.0",
     "tsx": "^4.21.0"

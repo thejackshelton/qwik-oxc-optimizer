@@ -1528,6 +1528,107 @@ export const Cmp = component$(() => {});"#;
         assert!(c05.is_none(), "C05 must NOT fire for imported $-functions, got: {:?}", result.diagnostics);
     }
 
+    /// C02: function reference used as a native JSX prop value emits C02 diagnostic with no span.
+    ///
+    /// `create_synthetic_qqsegment` is invoked for non-const native element prop values.
+    /// When the expression references a module-level function declaration (IdentType::Fn),
+    /// the function cannot be lifted into a QRL segment and C02 is emitted.
+    #[test]
+    fn diagnostic_c02_fn_reference_captured_by_qrl_scope_emits_error_with_no_span() {
+        // style={myFn}: native element, non-const non-event prop, references a function decl.
+        // create_synthetic_qqsegment fires → finds myFn in invalid_decl → emits C02.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+function myFn() { return 42; }
+export const Cmp = component$(() => {
+    return <div style={myFn} />;
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c02 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C02"));
+        assert!(
+            c02.is_some(),
+            "Expected C02 diagnostic for fn reference used as native JSX prop, got: {:?}",
+            result.diagnostics
+        );
+        let diag = c02.unwrap();
+        assert!(
+            diag.message.contains("myFn"),
+            "C02 message should reference the captured identifier name, got: {}",
+            diag.message
+        );
+        assert!(
+            diag.highlights.is_none(),
+            "C02 must have highlights: None (no span) per SPEC, got: {:?}",
+            diag.highlights
+        );
+    }
+
+    /// C02: class reference used as a native JSX prop value also emits C02 with no span.
+    #[test]
+    fn diagnostic_c02_class_reference_captured_by_qrl_scope_emits_error_with_no_span() {
+        // className={MyService}: references a class declaration (IdentType::Class) → C02.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+class MyService {}
+export const Cmp = component$(() => {
+    return <div class={MyService} />;
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c02 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C02"));
+        assert!(
+            c02.is_some(),
+            "Expected C02 diagnostic for class reference used as native JSX prop, got: {:?}",
+            result.diagnostics
+        );
+        let diag = c02.unwrap();
+        assert!(
+            diag.highlights.is_none(),
+            "C02 must have highlights: None (no span) per SPEC, got: {:?}",
+            diag.highlights
+        );
+    }
+
+    /// C02: diagnostic must NOT fire in Lib mode.
+    #[test]
+    fn diagnostic_c02_not_fired_in_lib_mode() {
+        // In Lib mode the optimizer skips C02 emission per SPEC.
+        // Same JSX fixture as the positive test but with EmitMode::Lib.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+function myFn() { return 42; }
+export const Cmp = component$(() => {
+    return <div style={myFn} />;
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Lib,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c02 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C02"));
+        assert!(
+            c02.is_none(),
+            "C02 must NOT fire in Lib mode, got: {:?}",
+            result.diagnostics
+        );
+    }
+
     /// A const used by two segments must stay in the root module.
     #[test]
     fn integration_variable_migration_shared_var_stays() {

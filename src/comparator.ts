@@ -5,7 +5,7 @@
  * a list of typed FailureItem values for a single fixture.
  *
  * Design constraints:
- * - COMP-01: If segment counts differ, push SEGMENT_COUNT_MISMATCH and return immediately.
+ * - COMP-01: If segment counts differ, push typed MISSING_SEGMENT/EXTRA_SEGMENT with identity context (ctxName + loc) and return immediately.
  * - COMP-02: All 14 metadata fields (excluding `name`) are checked independently — no early return.
  * - COMP-03: Code blocks are normalized via normalizeCode before comparison.
  * - COMP-07: loc is always checked as WRONG_LOC, never suppressed.
@@ -116,13 +116,33 @@ export function compareFixture(
   const swcSegs = swcSnapshot.sections.filter((s) => s.metadata !== null);
   const oxcSegs = oxcSnapshot.sections.filter((s) => s.metadata !== null);
 
-  // COMP-01: Segment count check — short-circuit only for count mismatch
+  // COMP-01: Segment count check — structural mismatch reporting (REPT-01, SEG-02)
   if (swcSegs.length !== oxcSegs.length) {
-    failures.push({
-      category: FailureCategory.SEGMENT_COUNT_MISMATCH,
-      expected: swcSegs.length,
-      actual: oxcSegs.length,
-    });
+    // Use matchSegments to identify which specific segments are missing/extra
+    const countMatchResult = matchSegments(swcSnapshot.sections, oxcSnapshot.sections);
+
+    // MISSING_SEGMENT: segments in SWC that have no OXC counterpart
+    for (const seg of countMatchResult.unmatched_swc) {
+      const meta = seg.metadata!;
+      failures.push({
+        category: FailureCategory.MISSING_SEGMENT,
+        field: "segment",
+        expected: { ctxName: meta.ctxName, loc: meta.loc },
+        actual: undefined,
+      });
+    }
+
+    // EXTRA_SEGMENT: segments in OXC that have no SWC counterpart
+    for (const seg of countMatchResult.unmatched_oxc) {
+      const meta = seg.metadata!;
+      failures.push({
+        category: FailureCategory.EXTRA_SEGMENT,
+        field: "segment",
+        expected: undefined,
+        actual: { ctxName: meta.ctxName, loc: meta.loc },
+      });
+    }
+
     return failures; // Do NOT proceed to per-segment comparison
   }
 

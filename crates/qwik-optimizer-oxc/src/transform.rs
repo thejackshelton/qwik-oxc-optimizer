@@ -456,6 +456,19 @@ pub(crate) struct QwikTransform {
     /// The pointer is valid for the duration of the traversal: `GlobalCollect` is
     /// owned by `transform_code` and outlives the `QwikTransform` instance.
     global_collect: *const GlobalCollect,
+
+    // ---- Phase 13: Level 2 loop-context .w() hoisting ----------------------
+
+    /// Stack of hoisting scopes — one Vec per function/arrow scope.
+    /// Each entry: `(const_name, rhs_code)` where rhs_code is serialized `q_name.w([caps])`.
+    pub(crate) hoisted_qrls: Vec<Vec<(String, String)>>,
+
+    /// Stack of loop iteration variable names — non-empty means "inside a loop".
+    pub(crate) iteration_var_stack: Vec<Vec<String>>,
+
+    /// Stack of decl_stack depths at component$ boundaries.
+    /// Used by `compute_hoist_target_depth` to find the component top scope.
+    pub(crate) component_depths: Vec<usize>,
 }
 
 // ---------------------------------------------------------------------------
@@ -555,6 +568,10 @@ impl QwikTransform {
             explicit_extensions: options.explicit_extensions,
             is_server: options.is_server,
             global_collect: options.global_collect as *const GlobalCollect,
+            // Phase 13: Level 2 hoisting fields
+            hoisted_qrls: Vec::new(),
+            iteration_var_stack: Vec::new(),
+            component_depths: Vec::new(),
         }
     }
 
@@ -1217,6 +1234,183 @@ impl QwikTransform {
             }
         }
     }
+
+    // -----------------------------------------------------------------------
+    // compute_hoist_target_depth — Level 2 hoisting (Plan 13-02)
+    // -----------------------------------------------------------------------
+
+    /// Determine the hoisting target depth for Level 2 hoisting.
+    ///
+    /// Returns an index into `hoisted_qrls` where the `.w()` call should be placed.
+    ///
+    /// `decl_stack` has one extra root frame (index 0) that has no corresponding
+    /// `hoisted_qrls` entry. So: `hoisted_qrls[j]` corresponds to `decl_stack[j+1]`.
+    ///
+    /// - If `scoped_idents` is empty: hoist to the component top frame.
+    ///   `component_depths.last()` is the `decl_stack` depth before the component$
+    ///   arrow was pushed, so the component$ body frame is at `decl_stack[component_top]`
+    ///   = `hoisted_qrls[component_top - 1]`.
+    /// - If non-empty: find the shallowest `decl_stack` frame containing ANY captured
+    ///   ident, clamp to at least the component top, then convert to `hoisted_qrls` index.
+    fn compute_hoist_target_depth(&self, scoped_idents: &[String]) -> usize {
+        // `component_depths.last()` = decl_stack.len() BEFORE component$ arrow was entered.
+        // After the arrow entered, decl_stack has one more frame at that index.
+        // hoisted_qrls[0] = first function scope (component$ body) = decl_stack[1].
+        // Formula: hoisted_qrls_idx = decl_scope_idx - 1 (skip root frame at index 0).
+        let component_decl_depth = self.component_depths.last().copied().unwrap_or(1);
+        // The component$ body is at decl_stack index `component_decl_depth`,
+        // which maps to hoisted_qrls index `component_decl_depth - 1` (clamped to 0).
+        let component_hoist_idx = component_decl_depth.saturating_sub(1);
+
+        let max_valid = self.hoisted_qrls.len().saturating_sub(1);
+
+        if scoped_idents.is_empty() {
+            return component_hoist_idx.min(max_valid);
+        }
+
+        // Find the shallowest decl_stack frame that declares ANY captured ident.
+        let mut min_decl_scope: usize = self.decl_stack.len().saturating_sub(1);
+        for (frame_idx, frame) in self.decl_stack.iter().enumerate() {
+            if frame_idx == 0 {
+                continue; // Skip root frame — no hoisted_qrls entry for it.
+            }
+            let frame_has_capture = scoped_idents.iter().any(|cap| {
+                frame.iter().any(|(name, _)| name == cap)
+            });
+            if frame_has_capture {
+                min_decl_scope = frame_idx;
+                break;
+            }
+        }
+
+        // Convert to hoisted_qrls index (subtract 1 for root frame).
+        let min_hoist_idx = min_decl_scope.saturating_sub(1);
+
+        // Target = max(min_hoist_idx, component_hoist_idx), clamped to valid range.
+        let target = min_hoist_idx.max(component_hoist_idx);
+        target.min(max_valid)
+    }
+
+    // -----------------------------------------------------------------------
+    // hoist_qrl_if_needed — Level 2 loop-context .w() hoisting (Plan 13-02)
+    // -----------------------------------------------------------------------
+
+    /// Optionally hoist a `.w(captures)` call out of a loop body.
+    ///
+    /// Conditions for hoisting (ALL must be true):
+    /// 1. `iteration_var_stack` is non-empty (inside a loop)
+    /// 2. `hoisted_qrls` is non-empty (at least one active function/arrow scope)
+    ///
+    /// If conditions are met:
+    /// - Compute target depth via `compute_hoist_target_depth`.
+    /// - Serialize `w_call_expr` and push `(const_name, rhs_code)` into `hoisted_qrls[target]`.
+    /// - Return an `IdentifierReference` to the hoisted const name.
+    ///
+    /// Otherwise returns `w_call_expr` unchanged.
+    fn hoist_qrl_if_needed<'a>(
+        &mut self,
+        w_call_expr: Expression<'a>,
+        scoped_idents: &[String],
+        const_name: &str,
+        allocator: &'a Allocator,
+    ) -> Expression<'a> {
+        // Condition 1: inside a loop.
+        if self.iteration_var_stack.is_empty() {
+            return w_call_expr;
+        }
+        // Condition 2: active hoisting scope exists.
+        if self.hoisted_qrls.is_empty() {
+            return w_call_expr;
+        }
+
+        let target_depth = self.compute_hoist_target_depth(scoped_idents);
+        let rhs_code = Self::serialize_expression(&w_call_expr, allocator);
+
+        if let Some(frame) = self.hoisted_qrls.get_mut(target_depth) {
+            frame.push((const_name.to_string(), rhs_code));
+        }
+
+        let ast = AstBuilder::new(allocator);
+        ast.expression_identifier(SPAN, ast.atom(const_name))
+    }
+
+    // -----------------------------------------------------------------------
+    // maybe_level2_hoist — apply Level 2 loop hoisting if conditions are met
+    // -----------------------------------------------------------------------
+
+    /// Apply Level 2 loop hoisting to `expr` if all conditions are met.
+    ///
+    /// Conditions:
+    /// 1. `expr` is a `q_name.w([caps])` call (StaticMemberExpression with property "w").
+    /// 2. `iteration_var_stack` is non-empty (inside a loop).
+    /// 3. `hoisted_qrls` is non-empty (inside a function scope).
+    /// 4. `ctx_name` does NOT start with "component" (component$ roots excluded).
+    ///
+    /// If all conditions are met, calls `hoist_qrl_if_needed` to hoist and returns
+    /// the replacement identifier. Otherwise returns `expr` unchanged.
+    fn maybe_level2_hoist<'a>(
+        &mut self,
+        expr: Expression<'a>,
+        scoped_idents: &[String],
+        symbol_name: &str,
+        ctx_name: &str,
+        allocator: &'a Allocator,
+    ) -> Expression<'a> {
+        // Condition 4: not component$ root.
+        if ctx_name.starts_with("component") {
+            return expr;
+        }
+        // Condition 1: must be a .w() call.
+        let is_w_call = match &expr {
+            Expression::CallExpression(call) => {
+                match &call.callee {
+                    Expression::StaticMemberExpression(me) => {
+                        me.property.name.as_str() == "w"
+                    }
+                    _ => false,
+                }
+            }
+            _ => false,
+        };
+        if !is_w_call {
+            return expr;
+        }
+        // Conditions 2 and 3 are checked inside hoist_qrl_if_needed.
+        self.hoist_qrl_if_needed(expr, scoped_idents, symbol_name, allocator)
+    }
+
+    // -----------------------------------------------------------------------
+    // inject_hoisted_qrls_into_block — Level 2 hoisting (Plan 13-02)
+    // -----------------------------------------------------------------------
+
+    /// Drain `entries` and prepend `const <name> = <rhs_code>;` declarations to
+    /// the function body block.
+    ///
+    /// Entries are prepended in order (first entry → first const in output).
+    fn inject_hoisted_qrls_into_block<'a>(
+        body: &mut FunctionBody<'a>,
+        entries: Vec<(String, String)>,
+        allocator: &'a Allocator,
+    ) {
+        if entries.is_empty() {
+            return;
+        }
+
+        let old_stmts = std::mem::replace(&mut body.statements, ArenaVec::new_in(allocator));
+        let mut new_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+
+        for (name, rhs_code) in entries {
+            let src = format!("const {name} = {rhs_code};");
+            if let Some(stmt) = parse_single_statement(&src, allocator) {
+                new_stmts.push(stmt);
+            }
+        }
+        for stmt in old_stmts {
+            new_stmts.push(stmt);
+        }
+
+        body.statements = new_stmts;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -1315,6 +1509,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // Collect descendent_idents from the first arg BEFORE children are visited.
             let descendent_idents = collect_arg0_idents(&call.arguments);
             let ctx_kind = words::classify_ctx_kind(&specifier);
+            // Phase 13: track component$ depth for Level 2 hoisting.
+            if specifier.starts_with("component") {
+                self.component_depths.push(self.decl_stack.len());
+            }
             self.segment_stack.push(specifier.clone());
             self.pending_qsegments.push(PendingQSegment {
                 ctx_name: specifier,
@@ -1444,7 +1642,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
             // --- Output routing: should_emit check applies in ALL modes ---
             // Priority 0: strip_ctx_name / strip_event_handlers → _noopQrl (any mode).
-            if !should_emit {
+            let hoisted_l1: Expression<'a> = if !should_emit {
                 let qrl_expr = self.create_noop_qrl(
                     &names.symbol_name,
                     &scoped_idents,
@@ -1453,13 +1651,12 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     allocator,
                 );
                 // Hoist _noopQrl to module scope (Lib guard inside handles Lib mode).
-                let hoisted = self.hoist_qrl_to_module_scope(
+                self.hoist_qrl_to_module_scope(
                     qrl_expr,
                     &scoped_idents,
                     &names.symbol_name,
                     allocator,
-                );
-                call.arguments[0] = expr_to_argument(hoisted);
+                )
             } else if self.mode == EmitMode::Lib {
                 // Lib mode: 10-step path → inlinedQrl, never push to segments.
 
@@ -1477,13 +1674,12 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     allocator,
                 );
                 // Lib guard inside hoist_qrl_to_module_scope returns unchanged (LIB-03).
-                let hoisted = self.hoist_qrl_to_module_scope(
+                self.hoist_qrl_to_module_scope(
                     qrl_expr,
                     &scoped_idents,
                     &names.symbol_name,
                     allocator,
-                );
-                call.arguments[0] = expr_to_argument(hoisted);
+                )
             } else if self.is_inline_strategy {
                 // Non-Lib inline strategy → inlinedQrl (no segment module).
                 let qrl_expr = self.create_inline_qrl(
@@ -1494,13 +1690,12 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     &names.display_name,
                     allocator,
                 );
-                let hoisted = self.hoist_qrl_to_module_scope(
+                self.hoist_qrl_to_module_scope(
                     qrl_expr,
                     &scoped_idents,
                     &names.symbol_name,
                     allocator,
-                );
-                call.arguments[0] = expr_to_argument(hoisted);
+                )
             } else {
                 // Non-Lib, non-inline → create_segment (qrl() call + SegmentRecord).
                 let local_idents = self.get_local_idents(&first_arg_mut);
@@ -1514,13 +1709,29 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     span,
                     allocator,
                 );
-                let hoisted = self.hoist_qrl_to_module_scope(
+                self.hoist_qrl_to_module_scope(
                     qrl_expr,
                     &scoped_idents,
                     &names.symbol_name,
                     allocator,
-                );
-                call.arguments[0] = expr_to_argument(hoisted);
+                )
+            };
+
+            // --- Level 2: loop-context .w() hoisting (Phase 13-02) ---
+            // If inside a loop and the Level 1 result is a q_name.w([caps]) call,
+            // hoist it to the outermost valid function scope.
+            let final_expr = self.maybe_level2_hoist(
+                hoisted_l1,
+                &scoped_idents,
+                &names.symbol_name,
+                ctx_name,
+                allocator,
+            );
+            call.arguments[0] = expr_to_argument(final_expr);
+
+            // Phase 13: pop component_depths if this was a component$ exit.
+            if ctx_name.starts_with("component") {
+                self.component_depths.pop();
             }
         }
 
@@ -1639,6 +1850,9 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // Push new child scope frame.
         self.decl_stack.push(vec![]);
 
+        // Phase 13: push a new hoisted_qrls frame for this function scope.
+        self.hoisted_qrls.push(Vec::new());
+
         // Add params as Var(false) entries in the child frame.
         for param in &func.params.items {
             collect_binding_names(&param.pattern, &mut |name| {
@@ -1649,7 +1863,16 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         }
     }
 
-    fn exit_function(&mut self, _func: &mut Function<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+    fn exit_function(&mut self, func: &mut Function<'a>, ctx: &mut TraverseCtx<'a, ()>) {
+        // Phase 13: drain hoisted_qrls frame into function body before popping.
+        if let Some(entries) = self.hoisted_qrls.pop() {
+            if !entries.is_empty() {
+                let allocator: &'a Allocator = ctx.ast.allocator;
+                if let Some(body) = func.body.as_mut() {
+                    Self::inject_hoisted_qrls_into_block(body, entries, allocator);
+                }
+            }
+        }
         self.decl_stack.pop();
         if let Some(pushed) = self.fn_ctxt_push_stack.pop() {
             if pushed {
@@ -1665,6 +1888,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         _ctx: &mut TraverseCtx<'a, ()>,
     ) {
         self.decl_stack.push(vec![]);
+        // Phase 13: push a new hoisted_qrls frame for this arrow scope.
+        self.hoisted_qrls.push(Vec::new());
         // Add params as Var(false) entries.
         for param in &arrow.params.items {
             collect_binding_names(&param.pattern, &mut |name| {
@@ -1677,10 +1902,97 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
     fn exit_arrow_function_expression(
         &mut self,
-        _arrow: &mut ArrowFunctionExpression<'a>,
+        arrow: &mut ArrowFunctionExpression<'a>,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        // Phase 13: drain hoisted_qrls frame into function body before popping.
+        if let Some(entries) = self.hoisted_qrls.pop() {
+            if !entries.is_empty() {
+                let allocator: &'a Allocator = ctx.ast.allocator;
+                Self::inject_hoisted_qrls_into_block(&mut arrow.body, entries, allocator);
+            }
+        }
+        self.decl_stack.pop();
+    }
+
+    // -----------------------------------------------------------------------
+    // Loop enter/exit hooks (Phase 13 Level 2)
+    // -----------------------------------------------------------------------
+
+    fn enter_for_statement(
+        &mut self,
+        _stmt: &mut ForStatement<'a>,
         _ctx: &mut TraverseCtx<'a, ()>,
     ) {
-        self.decl_stack.pop();
+        self.iteration_var_stack.push(Vec::new());
+    }
+
+    fn exit_for_statement(
+        &mut self,
+        _stmt: &mut ForStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        self.iteration_var_stack.pop();
+    }
+
+    fn enter_for_in_statement(
+        &mut self,
+        stmt: &mut ForInStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        let mut vars: Vec<String> = Vec::new();
+        if let ForStatementLeft::VariableDeclaration(decl) = &stmt.left {
+            for d in &decl.declarations {
+                collect_binding_names(&d.id, &mut |name| vars.push(name.to_string()));
+            }
+        }
+        self.iteration_var_stack.push(vars);
+    }
+
+    fn exit_for_in_statement(
+        &mut self,
+        _stmt: &mut ForInStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        self.iteration_var_stack.pop();
+    }
+
+    fn enter_for_of_statement(
+        &mut self,
+        stmt: &mut ForOfStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        let mut vars: Vec<String> = Vec::new();
+        if let ForStatementLeft::VariableDeclaration(decl) = &stmt.left {
+            for d in &decl.declarations {
+                collect_binding_names(&d.id, &mut |name| vars.push(name.to_string()));
+            }
+        }
+        self.iteration_var_stack.push(vars);
+    }
+
+    fn exit_for_of_statement(
+        &mut self,
+        _stmt: &mut ForOfStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        self.iteration_var_stack.pop();
+    }
+
+    fn enter_while_statement(
+        &mut self,
+        _stmt: &mut WhileStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        self.iteration_var_stack.push(Vec::new());
+    }
+
+    fn exit_while_statement(
+        &mut self,
+        _stmt: &mut WhileStatement<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        self.iteration_var_stack.pop();
     }
 
     // -----------------------------------------------------------------------
@@ -3288,6 +3600,191 @@ const t = useTask$(() => { console.log(count); });"#;
             code.contains(".w([count])") || code.contains(".w(["),
             "Captured variable should produce q_name.w([count]) at call site, got: {code}"
         );
+    }
+
+    // -----------------------------------------------------------------------
+    // Level 2 hoisting tests (Phase 13-02)
+    // -----------------------------------------------------------------------
+
+    /// Build a minimal QwikTransform in Segment/Prod mode for unit testing.
+    fn make_transform_prod_segment() -> QwikTransform {
+        make_transform_with_mode(EmitMode::Prod)
+    }
+
+    // Test: hoist_qrl_if_needed returns unchanged when not inside a loop.
+    #[test]
+    fn hoist_qrl_if_needed_no_loop() {
+        let allocator = Allocator::default();
+        let mut xfrm = make_transform_prod_segment();
+        // iteration_var_stack is empty → no hoisting
+        assert!(xfrm.iteration_var_stack.is_empty());
+
+        // Build a q_name.w([cap]) expression to attempt hoisting.
+        let w_expr = QwikTransform::build_w_call("q_sym", &["cap".to_string()], &allocator);
+        let w_code_before = emit_expr(&allocator, w_expr.clone_in(&allocator));
+
+        // Add a hoisted_qrls frame so condition 3 would pass.
+        xfrm.hoisted_qrls.push(Vec::new());
+
+        let result = xfrm.hoist_qrl_if_needed(w_expr, &["cap".to_string()], "w_sym", &allocator);
+        let result_code = emit_expr(&allocator, result);
+
+        // Should be unchanged (still the .w() call).
+        assert_eq!(
+            result_code, w_code_before,
+            "No hoisting when not in a loop: result should be unchanged, got: {result_code}"
+        );
+        // No entries should be added to hoisted_qrls.
+        assert!(
+            xfrm.hoisted_qrls[0].is_empty(),
+            "hoisted_qrls should be empty when not in a loop"
+        );
+    }
+
+    // Test: compute_hoist_target_depth returns component top depth when no captures.
+    #[test]
+    fn compute_hoist_target_depth_empty_captures() {
+        let mut xfrm = make_transform_prod_segment();
+        // Simulate: root frame + component$ body frame in decl_stack.
+        // decl_stack[0] = root, decl_stack[1] = component$ body.
+        xfrm.decl_stack.push(vec![]); // frame 1 = component$ body
+        // component_depths: pushed before component$ arrow entered (decl_stack.len() was 1).
+        xfrm.component_depths.push(1);
+        // hoisted_qrls: one frame for component$ body.
+        xfrm.hoisted_qrls.push(Vec::new());
+
+        let depth = xfrm.compute_hoist_target_depth(&[]);
+        // component_decl_depth = 1, hoisted_qrls index = 1 - 1 = 0.
+        assert_eq!(
+            depth, 0,
+            "Empty captures should hoist to component top (index 0), got {depth}"
+        );
+    }
+
+    // Test: compute_hoist_target_depth returns shallowest scope covering all captures.
+    #[test]
+    fn compute_hoist_target_depth_with_captures() {
+        let mut xfrm = make_transform_prod_segment();
+        // decl_stack: root (0), component$ body (1), inner_fn body (2)
+        xfrm.decl_stack.push(vec![
+            ("cart".to_string(), IdentType::Var(false)),
+        ]); // frame 1 = component$ body, has 'cart'
+        xfrm.decl_stack.push(vec![]); // frame 2 = inner function
+        // component_depths[0] = 1 (pushed before component$ arrow entered).
+        xfrm.component_depths.push(1);
+        // hoisted_qrls: two frames.
+        xfrm.hoisted_qrls.push(Vec::new()); // index 0 = component$ frame
+        xfrm.hoisted_qrls.push(Vec::new()); // index 1 = inner fn frame
+
+        // 'cart' is in decl_stack[1] → min_decl_scope = 1 → hoisted_qrls index = 0.
+        let depth = xfrm.compute_hoist_target_depth(&["cart".to_string()]);
+        assert_eq!(
+            depth, 0,
+            "cart is in component$ body (decl_stack[1]) → hoisted_qrls index 0, got {depth}"
+        );
+    }
+
+    // Test: inject_hoisted_qrls_into_block prepends const declarations at top.
+    #[test]
+    fn inject_hoisted_qrls_into_block_prepends() {
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+
+        // Build a function body with one statement: `let x = 1;`
+        let let_stmt = {
+            let binding = ast.binding_pattern_binding_identifier(SPAN, ast.atom("x"));
+            let mut declarators: ArenaVec<VariableDeclarator<'_>> = ArenaVec::new_in(&allocator);
+            declarators.push(ast.variable_declarator(
+                SPAN,
+                VariableDeclarationKind::Let,
+                binding,
+                None::<TSTypeAnnotation<'_>>,
+                Some(ast.expression_numeric_literal(SPAN, 1.0, None, NumberBase::Decimal)),
+                false,
+            ));
+            Statement::VariableDeclaration(ast.alloc_variable_declaration(
+                SPAN,
+                VariableDeclarationKind::Let,
+                declarators,
+                false,
+            ))
+        };
+
+        let mut stmts: ArenaVec<Statement<'_>> = ArenaVec::new_in(&allocator);
+        stmts.push(let_stmt);
+        let directives: ArenaVec<Directive<'_>> = ArenaVec::new_in(&allocator);
+        let mut body = ast.function_body(SPAN, directives, stmts);
+
+        // Inject: `const q_w_sym = q_sym.w([cap]);`
+        let entries = vec![
+            ("q_w_sym".to_string(), "q_sym.w([cap])".to_string()),
+        ];
+        QwikTransform::inject_hoisted_qrls_into_block(&mut body, entries, &allocator);
+
+        // Verify: first statement is `const q_w_sym = q_sym.w([cap]);`
+        assert_eq!(
+            body.statements.len(),
+            2,
+            "Should have 2 statements after injection"
+        );
+        // First stmt should be a const decl.
+        match &body.statements[0] {
+            Statement::VariableDeclaration(decl) => {
+                assert_eq!(
+                    decl.kind,
+                    VariableDeclarationKind::Const,
+                    "First injected statement should be a const declaration"
+                );
+                let name = decl.declarations.first().and_then(|d| {
+                    if let BindingPattern::BindingIdentifier(id) = &d.id {
+                        Some(id.name.as_str().to_string())
+                    } else {
+                        None
+                    }
+                });
+                assert_eq!(
+                    name.as_deref(),
+                    Some("q_w_sym"),
+                    "Injected const should be named q_w_sym, got: {:?}",
+                    name
+                );
+            }
+            other => panic!("Expected VariableDeclaration, got {:?}", std::mem::discriminant(other)),
+        }
+        // Second stmt should be the original `let x = 1;`
+        match &body.statements[1] {
+            Statement::VariableDeclaration(decl) => {
+                assert_eq!(decl.kind, VariableDeclarationKind::Let);
+            }
+            other => panic!("Expected VariableDeclaration (let), got {:?}", std::mem::discriminant(other)),
+        }
+    }
+
+    // Test: Level 2 hoisting via end-to-end traversal in a loop context.
+    #[test]
+    fn level2_hoist_in_loop_context() {
+        // A component with an onClick$ inside a .map() loop that captures a variable.
+        let src = r#"import { component$, useStore } from "@qwik.dev/core";
+export const App = component$(() => {
+  const cart = useStore([]);
+  const items = ["a", "b"];
+  return items.map((item) => {
+    return onClick$(cart);
+  });
+});"#;
+        let (code, xfrm) = run_transform_mode_segment(src, EmitMode::Prod);
+        // After traversal, hoisted_qrls should be empty (all drained).
+        assert!(
+            xfrm.hoisted_qrls.is_empty(),
+            "hoisted_qrls should be empty after traversal (all frames drained)"
+        );
+        // iteration_var_stack should also be empty.
+        assert!(
+            xfrm.iteration_var_stack.is_empty(),
+            "iteration_var_stack should be empty after traversal"
+        );
+        // The output should not be empty.
+        assert!(!code.is_empty(), "output should be non-empty");
     }
 
     // Test: exit_program drain order — top items prepended, bottom appended.

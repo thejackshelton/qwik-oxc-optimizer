@@ -192,6 +192,23 @@ fn transform_code(
         }
     };
 
+    // Compute raw (pre-escape) file stem for entry key construction.
+    // For "[[...slug]].tsx" this is "[[...slug]]", while effective_file_stem is "slug".
+    // For index.tsx with parent dir "mongo", this is "mongo" (unescaped parent dir name).
+    let raw_file_stem: String = {
+        let raw_stem = &path_data.file_stem;
+        if raw_stem == "index" {
+            // For index files, entry context uses the parent dir name (unescaped)
+            path_data.rel_dir
+                .file_name()
+                .and_then(|n| n.to_str())
+                .map(|s| s.to_string())
+                .unwrap_or_else(|| raw_stem.clone())
+        } else {
+            raw_stem.clone()
+        }
+    };
+
     // Stage 11 (pre-pass): mark pre-transform call/new expression spans for
     // Treeshaker DCE.  Must run BEFORE QwikTransform so only user-written spans
     // are recorded.
@@ -222,7 +239,7 @@ fn transform_code(
         rel_path: &rel_path,
         file_name: &path_data.file_name,
         file_stem: &effective_file_stem,
-        raw_file_stem: &path_data.file_stem,
+        raw_file_stem: &raw_file_stem,
         entry_strategy: &config.entry_strategy,
         extension: &file_extension,
         explicit_extensions: config.explicit_extensions,

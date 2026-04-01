@@ -69,11 +69,11 @@ function makeSnapshot(
 }
 
 // ---------------------------------------------------------------------------
-// COMP-01: Segment count mismatch
+// COMP-01: Structural segment mismatch reporting (REPT-01, SEG-02)
 // ---------------------------------------------------------------------------
 
-describe("compareFixture — COMP-01: segment count mismatch", () => {
-  it("returns segment_count_mismatch when SWC has 2 segments and OXC has 1", () => {
+describe("compareFixture — COMP-01: structural segment mismatch reporting", () => {
+  it("returns MISSING_SEGMENT with identity when SWC has 2 segments and OXC has 1", () => {
     const swcSections = [
       makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
       makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
@@ -87,19 +87,21 @@ describe("compareFixture — COMP-01: segment count mismatch", () => {
 
     const failures = compareFixture(swcSnap, oxcSnap);
 
+    // No SEGMENT_COUNT_MISMATCH — only typed structural failures
+    expect(failures.some((f) => f.category === FailureCategory.SEGMENT_COUNT_MISMATCH)).toBe(false);
     expect(failures).toHaveLength(1);
-    expect(failures[0].category).toBe(FailureCategory.SEGMENT_COUNT_MISMATCH);
-    expect(failures[0].expected).toBe(2);
-    expect(failures[0].actual).toBe(1);
+    expect(failures[0].category).toBe(FailureCategory.MISSING_SEGMENT);
+    expect(failures[0].expected).toEqual({ ctxName: "useTask$", loc: [101, 200] });
+    expect(failures[0].actual).toBeUndefined();
   });
 
-  it("does NOT return per-segment failures when segment count differs", () => {
+  it("does NOT return per-segment metadata failures when segment count differs", () => {
     const swcSections = [
       makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
       makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
     ];
     const oxcSections = [
-      // OXC has metadata mismatch too, but should not be reported
+      // OXC has metadata mismatch too, but should not be reported — only structural failures
       makeSyntheticSection({ ctxName: "differentCtx$", hash: "different1234", loc: [999, 9999] }),
     ];
 
@@ -108,12 +110,28 @@ describe("compareFixture — COMP-01: segment count mismatch", () => {
 
     const failures = compareFixture(swcSnap, oxcSnap);
 
-    // Only one failure: SEGMENT_COUNT_MISMATCH — no per-segment failures
-    expect(failures).toHaveLength(1);
-    expect(failures[0].category).toBe(FailureCategory.SEGMENT_COUNT_MISMATCH);
+    // Only structural failures — no metadata failures (hash_mismatch, display_name_mismatch, etc.)
+    const metadataCategories = new Set([
+      FailureCategory.HASH_MISMATCH,
+      FailureCategory.DISPLAY_NAME_MISMATCH,
+      FailureCategory.CANONICAL_FILENAME_MISMATCH,
+      FailureCategory.WRONG_CAPTURES,
+      FailureCategory.WRONG_CAPTURE_NAMES,
+      FailureCategory.WRONG_CTX_KIND,
+      FailureCategory.WRONG_CTX_NAME,
+      FailureCategory.WRONG_PARENT,
+      FailureCategory.WRONG_ENTRY,
+      FailureCategory.WRONG_LOC,
+      FailureCategory.WRONG_PARAM_NAMES,
+      FailureCategory.WRONG_EXTENSION,
+      FailureCategory.WRONG_ORIGIN,
+      FailureCategory.WRONG_PATH,
+    ]);
+    const metadataFailures = failures.filter((f) => metadataCategories.has(f.category));
+    expect(metadataFailures).toHaveLength(0);
   });
 
-  it("returns segment_count_mismatch when OXC has more segments than SWC", () => {
+  it("returns EXTRA_SEGMENT with identity when OXC has more segments than SWC", () => {
     const swcSections = [
       makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
     ];
@@ -128,9 +146,94 @@ describe("compareFixture — COMP-01: segment count mismatch", () => {
     const failures = compareFixture(swcSnap, oxcSnap);
 
     expect(failures).toHaveLength(1);
-    expect(failures[0].category).toBe(FailureCategory.SEGMENT_COUNT_MISMATCH);
-    expect(failures[0].expected).toBe(1);
-    expect(failures[0].actual).toBe(2);
+    expect(failures[0].category).toBe(FailureCategory.EXTRA_SEGMENT);
+    expect(failures[0].expected).toBeUndefined();
+    expect(failures[0].actual).toEqual({ ctxName: "useTask$", loc: [101, 200] });
+  });
+
+  it("returns multiple MISSING_SEGMENT failures when OXC has 0 segments and SWC has 3", () => {
+    const swcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
+      makeSyntheticSection({ ctxName: "useVisibleTask$", loc: [201, 300] }),
+    ];
+
+    const swcSnap = makeSnapshot(swcSections);
+    const oxcSnap = makeSnapshot([]);
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const missingFailures = failures.filter((f) => f.category === FailureCategory.MISSING_SEGMENT);
+    expect(missingFailures).toHaveLength(3);
+    expect(missingFailures[0].expected).toEqual({ ctxName: "component$", loc: [0, 100] });
+    expect(missingFailures[1].expected).toEqual({ ctxName: "useTask$", loc: [101, 200] });
+    expect(missingFailures[2].expected).toEqual({ ctxName: "useVisibleTask$", loc: [201, 300] });
+    for (const f of missingFailures) {
+      expect(f.actual).toBeUndefined();
+    }
+  });
+
+  it("MISSING_SEGMENT failure carries field='segment'", () => {
+    const swcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
+    ];
+    const oxcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+    ];
+
+    const failures = compareFixture(makeSnapshot(swcSections), makeSnapshot(oxcSections));
+
+    const missingFailures = failures.filter((f) => f.category === FailureCategory.MISSING_SEGMENT);
+    for (const f of missingFailures) {
+      expect(f.field).toBe("segment");
+    }
+  });
+
+  it("EXTRA_SEGMENT failure carries field='segment'", () => {
+    const swcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+    ];
+    const oxcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
+    ];
+
+    const failures = compareFixture(makeSnapshot(swcSections), makeSnapshot(oxcSections));
+
+    const extraFailures = failures.filter((f) => f.category === FailureCategory.EXTRA_SEGMENT);
+    for (const f of extraFailures) {
+      expect(f.field).toBe("segment");
+    }
+  });
+
+  it("no SEGMENT_COUNT_MISMATCH failure is ever emitted (all mismatch scenarios)", () => {
+    // Scenario A: SWC > OXC
+    const scenarioA = compareFixture(
+      makeSnapshot([
+        makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+        makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
+      ]),
+      makeSnapshot([makeSyntheticSection({ ctxName: "component$", loc: [0, 100] })])
+    );
+    expect(scenarioA.some((f) => f.category === FailureCategory.SEGMENT_COUNT_MISMATCH)).toBe(false);
+
+    // Scenario B: OXC > SWC
+    const scenarioB = compareFixture(
+      makeSnapshot([makeSyntheticSection({ ctxName: "component$", loc: [0, 100] })]),
+      makeSnapshot([
+        makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+        makeSyntheticSection({ ctxName: "useTask$", loc: [101, 200] }),
+      ])
+    );
+    expect(scenarioB.some((f) => f.category === FailureCategory.SEGMENT_COUNT_MISMATCH)).toBe(false);
+
+    // Scenario C: OXC has 0 segments
+    const scenarioC = compareFixture(
+      makeSnapshot([makeSyntheticSection({ ctxName: "component$", loc: [0, 100] })]),
+      makeSnapshot([])
+    );
+    expect(scenarioC.some((f) => f.category === FailureCategory.SEGMENT_COUNT_MISMATCH)).toBe(false);
   });
 });
 
@@ -365,13 +468,14 @@ describe("compareFixture — COMP-06: all failures carry typed FailureCategory v
     }
   });
 
-  it("segment_count_mismatch failure has typed category", () => {
+  it("structural mismatch failures (MISSING_SEGMENT/EXTRA_SEGMENT) carry typed categories", () => {
     const swcSnap = makeSnapshot([makeSyntheticSection(), makeSyntheticSection()]);
     const oxcSnap = makeSnapshot([makeSyntheticSection()]);
     const validCategories = new Set(Object.values(FailureCategory));
 
     const failures = compareFixture(swcSnap, oxcSnap);
 
+    expect(failures.length).toBeGreaterThan(0);
     for (const failure of failures) {
       expect(validCategories.has(failure.category)).toBe(true);
     }

@@ -404,7 +404,7 @@ it("corpus-wide: all SWC identity fields validate", async () => {
   // Baseline: 32 skipped (known edge cases). Allow small margin for future
   // fixtures but fail loudly if recomputeHash regresses and starts skipping
   // segments that previously validated.
-  const MAX_EXPECTED_SKIPS = 32;
+  const MAX_EXPECTED_SKIPS = 31;
   if (skippedSegments > MAX_EXPECTED_SKIPS) {
     throw new Error(
       `Skip count regression: ${skippedSegments} segments skipped (max expected: ${MAX_EXPECTED_SKIPS}). ` +

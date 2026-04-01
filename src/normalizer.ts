@@ -34,6 +34,9 @@ export function assertOxfmtVersion(): void {
   if (res.error) {
     throw new Error(`oxfmt binary not found or could not be executed: ${res.error.message}`);
   }
+  if (res.status !== 0) {
+    throw new Error(`oxfmt --version exited with status ${res.status}: ${(res.stderr || "").trim()}`);
+  }
   const output = (res.stdout + res.stderr).trim();
   const match = output.match(/(\d+\.\d+\.\d+)/);
   if (!match) {

@@ -7,6 +7,7 @@
 pub mod hash;
 
 mod collector;
+mod const_replace;
 mod errors;
 pub(crate) mod emit;
 mod filter_exports;
@@ -79,7 +80,7 @@ fn transform_code(
     let allocator = oxc::allocator::Allocator::default();
     let source_in_arena: &str = allocator.alloc_str(input_code);
 
-    let (is_type_script, is_jsx, program, diagnostics) =
+    let (is_type_script, is_jsx, mut program, diagnostics) =
         match parse::parse_module(&allocator, source_in_arena, input_path) {
             Ok((parse_result, diags)) => {
                 let is_ts = parse_result.source_type.is_typescript();
@@ -97,10 +98,29 @@ fn transform_code(
             }
         };
 
-    // Stages 2–13: No-op for Phase 8.
+    // Stage 2: Strip exports (conditional).
+    if !config.strip_exports.is_empty() {
+        filter_exports::filter_exports(&mut program, &config.strip_exports, &allocator);
+    }
+
+    // Stage 5: Import rename (always).
+    rename_imports::rename_imports(&mut program, &allocator);
+
+    // Stage 7: Global collect (always).
+    let collect = collector::global_collect(&program);
+
+    // Stage 8: Props destructuring — Phase 10, no-op.
+
+    // Stage 9: Const replacement (denylist: skip Lib and Test modes).
+    const_replace::replace_build_constants(&mut program, config, &collect, &allocator);
+
+    // Stages 10–13: No-op until future phases.
+
+    // did_transform remains false: Stages 3/4 (TS strip, JSX transpile) are still no-ops.
+    // When those stages are active, this flag will be set true and preserve_filenames logic applies.
     let did_transform = false;
 
-    // Emit: codegen the (unmodified) AST back to JavaScript.
+    // Emit: codegen the transformed AST back to JavaScript.
     let emit_result = emit::emit_module(
         &program,
         source_in_arena,
@@ -386,5 +406,69 @@ mod tests {
         // Should not error
         let result = transform_modules(opts);
         assert!(result.is_ok(), "transform_modules should accept is_server=None");
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 2 (strip_exports) via transform_modules
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn integration_strip_exports_produces_throw() {
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input("export const onGet = () => 42;", "route.ts")],
+            strip_exports: Some(vec!["onGet".to_string()]),
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("throw"),
+            "Stripped export should contain throw stub, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 5 (import rename) via transform_modules
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn integration_import_rename_rewrites_builder_io() {
+        let src = r#"import { component$ } from "@builder.io/qwik";"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "comp.ts")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("@qwik.dev/core"),
+            "Import source should be rewritten to @qwik.dev/core, got: {code}"
+        );
+        assert!(
+            !code.contains("@builder.io/qwik"),
+            "Old import source should be gone, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 9 (const replace) via transform_modules
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn integration_const_replace_is_server_in_output() {
+        let src = r#"import { isServer } from "@qwik.dev/core/build"; export const s = isServer;"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "check.ts")],
+            is_server: Some(true),
+            mode: EmitMode::Prod,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("= true"),
+            "isServer should be replaced with true in output, got: {code}"
+        );
     }
 }

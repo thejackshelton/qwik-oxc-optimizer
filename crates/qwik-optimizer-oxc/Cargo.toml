@@ -60,6 +60,10 @@ path-slash = "0.2"
 # Only included when "parallel" feature is active.
 rayon = { version = "1", optional = true }
 
+[[bin]]
+name = "snap-gen"
+path = "src/bin/snap_gen.rs"
+
 [dev-dependencies]
 # Snapshot testing for comparing output against golden spec files.
 insta = { version = "1", features = ["json"] }

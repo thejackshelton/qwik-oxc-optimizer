@@ -41,6 +41,8 @@ pub use types::{
 
 use std::path::Path;
 
+use oxc::semantic::SemanticBuilder;
+use oxc_traverse::traverse_mut;
 use path_slash::PathBufExt as _;
 
 use emit::EmitOptions;
@@ -119,7 +121,29 @@ fn transform_code(
     // Stage 9: Const replacement (denylist: skip Lib and Test modes).
     const_replace::replace_build_constants(&mut program, config, &collect, &allocator);
 
-    // Stages 10–13: No-op until future phases.
+    // Stage 10: QwikTransform — marker detection, decl_stack, convert_qrl_word.
+    // Re-run semantic analysis on the mutated program (post Stages 2/5/8/9).
+    let semantic_ret = SemanticBuilder::new().build(&program);
+    let scoping = semantic_ret.semantic.into_scoping();
+
+    let rel_path: String = if path_data.rel_dir == std::path::PathBuf::new() {
+        path_data.file_name.clone()
+    } else {
+        format!("{}/{}", path_data.rel_dir.to_slash_lossy(), path_data.file_name)
+    };
+
+    let mut xfrm = transform::QwikTransform::new(transform::QwikTransformOptions {
+        global_collect: &collect,
+        core_module: &config.core_module,
+        strip_ctx_name: &config.strip_ctx_name,
+        strip_event_handlers: config.strip_event_handlers,
+        mode: &config.mode,
+        scope: config.scope.as_deref(),
+        rel_path: &rel_path,
+        file_name: &path_data.file_name,
+    });
+    let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+    // Stages 11–13: No-op until future phases.
 
     // did_transform remains false: Stages 3/4 (TS strip, JSX transpile) are still no-ops.
     // When those stages are active, this flag will be set true and preserve_filenames logic applies.
@@ -501,6 +525,75 @@ mod tests {
         assert!(
             code.contains("_rawProps"),
             "Lib mode should still run props destructuring, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 10 (QwikTransform / convert_qrl_word) via transform_modules
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn integration_convert_qrl_word_component() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const Cmp = component$(() => {
+    return "hello";
+});"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("componentQrl"),
+            "component$ should be rewritten to componentQrl, got: {code}"
+        );
+        assert!(
+            !code.contains("component$("),
+            "component$ call should no longer appear in output, got: {code}"
+        );
+    }
+
+    #[test]
+    fn integration_convert_qrl_word_use_task() {
+        let src = r#"import { useTask$ } from "@qwik.dev/core";
+useTask$(() => {
+    console.log("task");
+});"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("useTaskQrl"),
+            "useTask$ should be rewritten to useTaskQrl, got: {code}"
+        );
+    }
+
+    #[test]
+    fn integration_non_marker_call_unchanged() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const result = regularFunction(42);"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("regularFunction"),
+            "Non-marker calls should be unchanged, got: {code}"
+        );
+    }
+
+    #[test]
+    fn integration_import_rename_then_qrl_rewrite() {
+        // Verify Stage 5 (import rename) + Stage 10 (QwikTransform) compose correctly
+        let src = r#"import { component$ } from "@builder.io/qwik";
+const Cmp = component$(() => {});"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("@qwik.dev/core"),
+            "Import should be renamed, got: {code}"
+        );
+        assert!(
+            code.contains("componentQrl"),
+            "component$ should be rewritten after import rename, got: {code}"
         );
     }
 

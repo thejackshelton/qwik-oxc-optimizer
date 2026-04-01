@@ -599,6 +599,7 @@ mod tests {
             migrated_root_vars: Vec::new(),
             parent: None,
             param_names: None,
+            pending_parent_span: None,
         }
     }
 

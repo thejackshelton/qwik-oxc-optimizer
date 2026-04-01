@@ -108,8 +108,14 @@ describe("matchSegments", () => {
     const result = matchSegments(swc, oxc);
 
     expect(result.matches).toHaveLength(2);
-    expect(result.matches[0].confidence).toBe("low");
-    expect(result.matches[1].confidence).toBe("high");
+    // Identity-based matching pairs useTask$ (exact match) first as high,
+    // then the remaining component$ pair (loc mismatch) as low via order fallback
+    const highMatches = result.matches.filter((m) => m.confidence === "high");
+    const lowMatches = result.matches.filter((m) => m.confidence === "low");
+    expect(highMatches).toHaveLength(1);
+    expect(highMatches[0].swcSection.metadata!.ctxName).toBe("useTask$");
+    expect(lowMatches).toHaveLength(1);
+    expect(lowMatches[0].swcSection.metadata!.ctxName).toBe("component$");
     expect(result.ambiguous).toBe(true);
   });
 

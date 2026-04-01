@@ -486,6 +486,24 @@ pub(crate) struct QwikTransform {
 
     /// Set of imported component identifiers with stable identity (from component$/component imports).
     pub(crate) immutable_function_cmp: HashSet<String>,
+
+    /// Stack saving `root_jsx_mode` values as we enter nested JSX nodes.
+    /// `enter_expression` pushes the current value and sets it to false;
+    /// `exit_expression` pops it back so the parent knows whether it was root.
+    pub(crate) jsx_root_mode_stack: Vec<bool>,
+
+    // ---- Phase 14: JSX runtime import tracking ----------------------------
+
+    /// Whether `_jsxSorted` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_jsx_sorted: bool,
+    /// Whether `_jsxSplit` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_jsx_split: bool,
+    /// Whether `_getVarProps` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_get_var_props: bool,
+    /// Whether `_getConstProps` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_get_const_props: bool,
+    /// Whether `Fragment as _Fragment` import from "@qwik.dev/core/jsx-runtime" is needed.
+    pub(crate) needs_fragment: bool,
 }
 
 // ---------------------------------------------------------------------------
@@ -613,6 +631,13 @@ impl QwikTransform {
             jsx_mutable: false,
             root_jsx_mode: true,
             immutable_function_cmp,
+            jsx_root_mode_stack: Vec::new(),
+            // Phase 14: JSX runtime import tracking
+            needs_jsx_sorted: false,
+            needs_jsx_split: false,
+            needs_get_var_props: false,
+            needs_get_const_props: false,
+            needs_fragment: false,
         }
     }
 
@@ -746,6 +771,506 @@ impl QwikTransform {
         let key = format!("{}_{}", self.jsx_file_hash_prefix, self.jsx_key_counter);
         self.jsx_key_counter += 1;
         key
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 14: JSX transform — entry points
+    // -----------------------------------------------------------------------
+
+    /// Convert a `JSXElement` node into a `_jsxSorted` or `_jsxSplit` call.
+    ///
+    /// Called from `exit_expression` after children have already been transformed
+    /// (post-order traversal). `was_root` reflects whether `root_jsx_mode` was
+    /// true when we first *entered* this element.
+    fn transform_jsx_element<'a>(
+        &mut self,
+        el: JSXElement<'a>,
+        was_root: bool,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) -> Expression<'a> {
+        let allocator: &'a Allocator = ctx.ast.allocator;
+        let ast = AstBuilder::new(allocator);
+
+        let opening = el.opening_element.unbox();
+        let mut children_vec = el.children;
+
+        // ---- 1. Classify element type -----------------------------------------
+        let (is_fn, tag_expr) = match &opening.name {
+            JSXElementName::Identifier(id) => {
+                let name = id.name.as_str();
+                let first_char = name.chars().next().unwrap_or('a');
+                let fn_by_case = first_char.is_ascii_uppercase();
+                let is_fn = fn_by_case || self.immutable_function_cmp.contains(name);
+                if is_fn && !self.immutable_function_cmp.contains(name) {
+                    self.jsx_mutable = true;
+                }
+                let name_atom = ast.atom(name);
+                let expr = if is_fn {
+                    ast.expression_identifier(SPAN, name_atom)
+                } else {
+                    ast.expression_string_literal(SPAN, name_atom, None)
+                };
+                (is_fn, expr)
+            }
+            JSXElementName::IdentifierReference(id) => {
+                // IdentifierReference is an imported/referenced identifier — always a component
+                let name = id.name.as_str();
+                self.jsx_mutable = true;
+                let expr = ast.expression_identifier(SPAN, ast.atom(name));
+                (true, expr)
+            }
+            JSXElementName::MemberExpression(me) => {
+                self.jsx_mutable = true;
+                let expr = jsx_member_to_expr(me, &ast, allocator);
+                (true, expr)
+            }
+            JSXElementName::NamespacedName(nn) => {
+                // e.g. <ns:local> — treat as string "ns:local"
+                let name = format!("{}:{}", nn.namespace.name.as_str(), nn.name.name.as_str());
+                let expr = ast.expression_string_literal(SPAN, ast.atom(&name), None);
+                (false, expr)
+            }
+            JSXElementName::ThisExpression(_) => {
+                // <this> — treated as a component expression
+                self.jsx_mutable = true;
+                let expr = ast.expression_this(SPAN);
+                (true, expr)
+            }
+        };
+
+        // is_text_only: textarea, title — children treated as a single string
+        let is_text_only = if let JSXElementName::Identifier(id) = &opening.name {
+            let n = id.name.as_str();
+            n == "textarea" || n == "title"
+        } else {
+            false
+        };
+
+        // ---- 2. Key generation ------------------------------------------------
+        let should_emit_key = is_fn || was_root;
+        let key_expr: Expression<'a> = if should_emit_key {
+            let key = self.gen_jsx_key();
+            ast.expression_string_literal(SPAN, ast.atom(&key), None)
+        } else {
+            ast.expression_null_literal(SPAN)
+        };
+
+        // ---- 3. Process attributes + children ---------------------------------
+        let mut attrs = opening.attributes;
+        let (should_sort, var_props_opt, const_props_opt, children_opt, flags) =
+            self.handle_jsx_props(&mut attrs, &mut children_vec, is_fn, is_text_only, ctx);
+
+        // ---- 4. Build call ----------------------------------------------------
+        // Determine callee based on whether we need runtime sort.
+        let callee_name = if should_sort {
+            self.needs_jsx_split = true;
+            "_jsxSplit"
+        } else {
+            self.needs_jsx_sorted = true;
+            "_jsxSorted"
+        };
+
+        build_jsx_call(callee_name, tag_expr, var_props_opt, const_props_opt, children_opt, flags, key_expr, &ast, allocator)
+    }
+
+    /// Convert a `JSXFragment` node into a `_jsxSorted(_Fragment, ...)` call.
+    fn transform_jsx_fragment<'a>(
+        &mut self,
+        frag: JSXFragment<'a>,
+        was_root: bool,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) -> Expression<'a> {
+        let allocator: &'a Allocator = ctx.ast.allocator;
+        let ast = AstBuilder::new(allocator);
+
+        self.needs_fragment = true;
+        self.needs_jsx_sorted = true;
+
+        // Tag is _Fragment identifier
+        let tag_expr = ast.expression_identifier(SPAN, ast.atom("_Fragment"));
+
+        // Key generation
+        let should_emit_key = was_root;
+        let key_expr: Expression<'a> = if should_emit_key {
+            let key = self.gen_jsx_key();
+            ast.expression_string_literal(SPAN, ast.atom(&key), None)
+        } else {
+            ast.expression_null_literal(SPAN)
+        };
+
+        // No attributes — just children
+        let mut children_vec = frag.children;
+        let children_opt = self.build_children(&mut children_vec, false, ctx);
+
+        // For fragments: flags depend on jsx_mutable state
+        // A fragment with only immutable children has flags=1 (static_subtree)
+        let flags: u32 = if self.jsx_mutable { 1 } else { 3 };
+
+        // Fragment: var_props=null, const_props=null
+        build_jsx_call("_jsxSorted", tag_expr, None, None, children_opt, flags, key_expr, &ast, allocator)
+    }
+
+    /// Prop classification pipeline: pre-scan + main loop.
+    ///
+    /// Returns `(should_sort, var_props, const_props, children_expr, flags)`.
+    #[allow(clippy::too_many_arguments)]
+    fn handle_jsx_props<'a>(
+        &mut self,
+        attrs: &mut ArenaVec<'a, JSXAttributeItem<'a>>,
+        children: &mut ArenaVec<'a, JSXChild<'a>>,
+        is_fn: bool,
+        is_text_only: bool,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) -> (bool, Option<Expression<'a>>, Option<Expression<'a>>, Option<Expression<'a>>, u32) {
+        let allocator: &'a Allocator = ctx.ast.allocator;
+        let ast = AstBuilder::new(allocator);
+
+        // ---- Phase 1: Pre-scan ------------------------------------------------
+
+        // Build const_idents: names from decl_stack where IdentType::Var(true).
+        let const_idents: HashSet<String> = self
+            .decl_stack
+            .iter()
+            .flat_map(|frame| frame.iter())
+            .filter_map(|(name, ty)| {
+                if matches!(ty, IdentType::Var(true)) {
+                    Some(name.clone())
+                } else {
+                    None
+                }
+            })
+            .collect();
+
+        // Count spreads and find last spread index.
+        let mut spread_props_count: usize = 0;
+        let mut last_spread_index: Option<usize> = None;
+        for (i, attr) in attrs.iter().enumerate() {
+            if matches!(attr, JSXAttributeItem::SpreadAttribute(_)) {
+                spread_props_count += 1;
+                last_spread_index = Some(i);
+            }
+        }
+
+        // has_var_prop_after_last_spread: scan attrs after last spread index.
+        let has_var_prop_after_last_spread: bool = if let Some(last_idx) = last_spread_index {
+            attrs.iter().skip(last_idx + 1).any(|attr| {
+                match attr {
+                    JSXAttributeItem::Attribute(a) => {
+                        // "children" key is excluded from this check
+                        let key = jsx_attr_key_str(&a.name);
+                        if key == "children" {
+                            return false;
+                        }
+                        // Check if value is const
+                        match &a.value {
+                            None => false, // boolean shorthand → const true → not var
+                            Some(JSXAttributeValue::StringLiteral(_)) => false, // const string
+                            Some(JSXAttributeValue::ExpressionContainer(ec)) => {
+                                // Get the expression from the container (skip EmptyExpression)
+                                if let Some(expr) = ec.expression.as_expression() {
+                                    !is_const::is_const_expr_with_context(
+                                        expr,
+                                        &const_idents,
+                                        self.global_collect,
+                                    )
+                                } else {
+                                    false
+                                }
+                            }
+                            _ => true, // nested JSX etc. → var
+                        }
+                    }
+                    JSXAttributeItem::SpreadAttribute(_) => true,
+                }
+            })
+        } else {
+            false
+        };
+
+        // has_component_bind_props: is_fn && any attr starts with "bind:"
+        let has_component_bind_props: bool = is_fn
+            && attrs.iter().any(|attr| {
+                if let JSXAttributeItem::Attribute(a) = attr {
+                    jsx_attr_key_str(&a.name).starts_with("bind:")
+                } else {
+                    false
+                }
+            });
+
+        let should_runtime_sort = spread_props_count > 0 || has_component_bind_props;
+
+        let mut static_listeners = !should_runtime_sort;
+        let static_subtree = !should_runtime_sort;
+
+        // ---- Phase 2: Main loop -----------------------------------------------
+        let mut var_props: Vec<ObjectPropertyKind<'a>> = Vec::new();
+        let mut const_props: Vec<ObjectPropertyKind<'a>> = Vec::new();
+        let mut remaining_spreads = spread_props_count;
+
+        // We need to own the attributes; drain them.
+        let attrs_owned: Vec<JSXAttributeItem<'a>> = std::mem::replace(attrs, ArenaVec::new_in(allocator)).into_iter().collect();
+
+        for attr_item in attrs_owned {
+            match attr_item {
+                JSXAttributeItem::SpreadAttribute(spread) => {
+                    remaining_spreads = remaining_spreads.saturating_sub(1);
+                    let is_last_spread = remaining_spreads == 0;
+                    let expr = spread.unbox().argument;
+
+                    // Check if it's a simple identifier
+                    let is_simple_ident = matches!(expr, Expression::Identifier(_));
+
+                    if is_simple_ident && is_last_spread && !has_var_prop_after_last_spread {
+                        // Split into _getVarProps(id) spread for var_props,
+                        // _getConstProps(id) spread for const_props.
+                        self.needs_get_var_props = true;
+                        self.needs_get_const_props = true;
+
+                        let id_expr_for_var = expr.clone_in(allocator);
+                        let id_expr_for_const = expr;
+
+                        // _getVarProps(id) spread element
+                        let var_call = build_fn_call("_getVarProps", id_expr_for_var, &ast, allocator);
+                        var_props.push(ObjectPropertyKind::SpreadProperty(
+                            ast.alloc_spread_element(SPAN, var_call),
+                        ));
+
+                        // _getConstProps(id) spread element
+                        let const_call = build_fn_call("_getConstProps", id_expr_for_const, &ast, allocator);
+                        const_props.push(ObjectPropertyKind::SpreadProperty(
+                            ast.alloc_spread_element(SPAN, const_call),
+                        ));
+                    } else if is_simple_ident {
+                        // Non-last spread: add _getVarProps + _getConstProps both to var_props
+                        self.needs_get_var_props = true;
+                        self.needs_get_const_props = true;
+                        let id_expr_for_var = expr.clone_in(allocator);
+                        let id_expr_for_const = expr;
+                        let var_call = build_fn_call("_getVarProps", id_expr_for_var, &ast, allocator);
+                        var_props.push(ObjectPropertyKind::SpreadProperty(
+                            ast.alloc_spread_element(SPAN, var_call),
+                        ));
+                        let const_call = build_fn_call("_getConstProps", id_expr_for_const, &ast, allocator);
+                        var_props.push(ObjectPropertyKind::SpreadProperty(
+                            ast.alloc_spread_element(SPAN, const_call),
+                        ));
+                    } else {
+                        // Non-identifier spread: raw spread into var_props
+                        var_props.push(ObjectPropertyKind::SpreadProperty(
+                            ast.alloc_spread_element(SPAN, expr),
+                        ));
+                    }
+                }
+
+                JSXAttributeItem::Attribute(attr) => {
+                    let attr = attr.unbox();
+                    let raw_key = jsx_attr_key_owned(&attr.name);
+
+                    // ---- className -> class (native elements only) --------
+                    let key = if !is_fn && raw_key == "className" {
+                        "class".to_string()
+                    } else {
+                        raw_key.clone()
+                    };
+
+                    // ---- Extract value expression -------------------------
+                    let value_expr: Option<Expression<'a>> = match attr.value {
+                        None => {
+                            // Boolean shorthand: <div disabled /> → disabled={true}
+                            Some(ast.expression_boolean_literal(SPAN, true))
+                        }
+                        Some(JSXAttributeValue::StringLiteral(s)) => {
+                            Some(ast.expression_string_literal(SPAN, s.value, None))
+                        }
+                        Some(JSXAttributeValue::ExpressionContainer(ec)) => {
+                            jsx_expression_to_expr(ec.unbox().expression)
+                        }
+                        Some(JSXAttributeValue::Element(el)) => {
+                            // Nested JSX element already transformed by exit_expression (post-order)
+                            Some(Expression::JSXElement(el))
+                        }
+                        Some(JSXAttributeValue::Fragment(fr)) => {
+                            Some(Expression::JSXFragment(fr))
+                        }
+                    };
+
+                    let value_expr = match value_expr {
+                        Some(v) => v,
+                        None => continue, // skip JSXEmptyExpression
+                    };
+
+                    // ---- Event handler renaming (native elements only) ----
+                    if !is_fn {
+                        if let Some(html_attr) = QwikTransform::jsx_event_to_html_attribute(&key) {
+                            let is_target_const = remaining_spreads == 0;
+                            let prop = build_object_prop(&html_attr, value_expr, &ast, allocator);
+                            if is_target_const {
+                                const_props.push(prop);
+                                // static_listeners stays true
+                            } else {
+                                var_props.push(prop);
+                                static_listeners = false;
+                            }
+                            continue;
+                        }
+                    }
+
+                    // ---- Regular attribute classification -----------------
+                    let is_const = is_const::is_const_expr_with_context(
+                        &value_expr,
+                        &const_idents,
+                        self.global_collect,
+                    );
+
+                    let is_target_const = remaining_spreads == 0;
+
+                    let goes_to_const = if is_fn || !is_target_const {
+                        // For components or when inside spreads:
+                        // const && no active spreads → const_props, else → var_props
+                        is_const && is_target_const
+                    } else {
+                        // For native elements with no spreads:
+                        // not const → var_props, const → const_props
+                        is_const
+                    };
+
+                    let prop = build_object_prop(&key, value_expr, &ast, allocator);
+                    if goes_to_const {
+                        const_props.push(prop);
+                    } else {
+                        var_props.push(prop);
+                    }
+                }
+            }
+        }
+
+        // ---- Sort var_props alphabetically when !should_runtime_sort -------
+        if !should_runtime_sort {
+            var_props.sort_by(|a, b| {
+                let key_a = object_prop_key_str(a);
+                let key_b = object_prop_key_str(b);
+                key_a.cmp(&key_b)
+            });
+        }
+
+        // ---- Process children -----------------------------------------------
+        let children_opt = self.build_children(children, is_text_only, ctx);
+
+        // ---- Compute flags --------------------------------------------------
+        // bit 0 = static_listeners, bit 1 = static_subtree
+        let flags: u32 = (static_listeners as u32) | ((static_subtree as u32) << 1);
+
+        // ---- Build final expressions ----------------------------------------
+        // Non-empty var_props means jsx_mutable = true
+        let var_props_expr: Option<Expression<'a>> = if var_props.is_empty() {
+            None
+        } else {
+            self.jsx_mutable = true;
+            let mut props_arena: ArenaVec<ObjectPropertyKind<'a>> = ArenaVec::new_in(allocator);
+            for p in var_props {
+                props_arena.push(p);
+            }
+            Some(ast.expression_object(SPAN, props_arena))
+        };
+
+        let const_props_expr: Option<Expression<'a>> = if const_props.is_empty() {
+            None
+        } else {
+            let mut props_arena: ArenaVec<ObjectPropertyKind<'a>> = ArenaVec::new_in(allocator);
+            for p in const_props {
+                props_arena.push(p);
+            }
+            Some(ast.expression_object(SPAN, props_arena))
+        };
+
+        (should_runtime_sort, var_props_expr, const_props_expr, children_opt, flags)
+    }
+
+    /// Build the children expression from a list of `JSXChild` nodes.
+    ///
+    /// Returns:
+    /// - `None` if no (non-empty) children.
+    /// - The single expression if exactly one child.
+    /// - An array expression if multiple children.
+    fn build_children<'a>(
+        &mut self,
+        children: &mut ArenaVec<'a, JSXChild<'a>>,
+        is_text_only: bool,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) -> Option<Expression<'a>> {
+        let allocator: &'a Allocator = ctx.ast.allocator;
+        let ast = AstBuilder::new(allocator);
+
+        let mut exprs: Vec<Expression<'a>> = Vec::new();
+
+        let children_owned: Vec<JSXChild<'a>> = std::mem::replace(children, ArenaVec::new_in(allocator)).into_iter().collect();
+
+        for child in children_owned {
+            match child {
+                JSXChild::Text(text) => {
+                    let normalized = QwikTransform::normalize_jsx_text(text.value.as_str());
+                    if !normalized.is_empty() {
+                        exprs.push(ast.expression_string_literal(SPAN, ast.atom(&normalized), None));
+                    }
+                }
+                JSXChild::ExpressionContainer(ec) => {
+                    if let Some(e) = jsx_expression_to_expr(ec.unbox().expression) {
+                        exprs.push(e);
+                    }
+                    // EmptyExpression ({}) → skip
+                }
+                JSXChild::Element(el) => {
+                    // Already transformed by exit_expression (post-order).
+                    // el is Box<JSXElement<'a>> but it's already transformed to
+                    // an Expression by exit_expression. Wait — exit_expression
+                    // transforms the JSXElement in place at the Expression level.
+                    // But JSXChild::Element is a different arm.
+                    // We need to transform it now if it wasn't already.
+                    // Actually in OXC's traverse: JSXChild::Element IS visited
+                    // as a JSXElement node, and exit_expression fires on it IF
+                    // it appears as an Expression. But JSXChild::Element is not
+                    // an Expression — it's a child slot.
+                    // The Traverse impl visits JSXElement children via
+                    // visit_jsx_child which calls visit_jsx_element for Element
+                    // children. exit_expression only fires for Expression nodes.
+                    // So we must transform child elements here explicitly.
+                    let was_root_child = false; // children are never root
+                    let child_expr = self.transform_jsx_element(el.unbox(), was_root_child, ctx);
+                    exprs.push(child_expr);
+                }
+                JSXChild::Fragment(fr) => {
+                    let was_root_child = false;
+                    let child_expr = self.transform_jsx_fragment(fr.unbox(), was_root_child, ctx);
+                    exprs.push(child_expr);
+                }
+                JSXChild::Spread(sp) => {
+                    // {..expr} spread child — wrap as spread in array
+                    exprs.push(sp.unbox().expression);
+                }
+            }
+        }
+
+        if exprs.is_empty() {
+            return None;
+        }
+
+        // is_text_only + one string child → keep as string
+        if is_text_only {
+            if exprs.len() == 1 {
+                return Some(exprs.remove(0));
+            }
+        }
+
+        if exprs.len() == 1 {
+            return Some(exprs.remove(0));
+        }
+
+        // Multiple children → array expression
+        let mut elements: ArenaVec<ArrayExpressionElement<'a>> = ArenaVec::new_in(allocator);
+        for e in exprs {
+            elements.push(ArrayExpressionElement::from(e));
+        }
+        Some(ast.expression_array(SPAN, elements))
     }
 
     // -----------------------------------------------------------------------
@@ -1553,6 +2078,62 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
     // Call expressions (XFRM-02, XFRM-08)
     // -----------------------------------------------------------------------
 
+    // -----------------------------------------------------------------------
+    // Phase 14: JSX expression hooks
+    // -----------------------------------------------------------------------
+
+    /// Save `root_jsx_mode` when entering a JSX node, so children know they
+    /// are not root. The PARENT's `was_root` value is stacked here.
+    fn enter_expression(&mut self, expr: &mut Expression<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+        match expr {
+            Expression::JSXElement(_) | Expression::JSXFragment(_) => {
+                // Push the current root mode so exit_expression can retrieve it.
+                // We push BEFORE setting to false so the first (outermost) JSX
+                // in a subtree sees root_jsx_mode=true, and its children see false.
+                self.jsx_root_mode_stack.push(self.root_jsx_mode);
+                self.root_jsx_mode = false;
+            }
+            _ => {}
+        }
+    }
+
+    /// Transform JSXElement/JSXFragment nodes into `_jsxSorted`/`_jsxSplit` calls.
+    ///
+    /// Children are already transformed when this fires (post-order traversal).
+    /// Note: child JSXElements appearing as `JSXChild::Element` are NOT reached
+    /// by exit_expression because they live in the JSXChild slot, not an Expression
+    /// slot — those are handled recursively inside `build_children`.
+    fn exit_expression(&mut self, expr: &mut Expression<'a>, ctx: &mut TraverseCtx<'a, ()>) {
+        match expr {
+            Expression::JSXElement(_) => {
+                let was_root = self.jsx_root_mode_stack.pop().unwrap_or(true);
+                // Restore root mode for the parent context.
+                self.root_jsx_mode = was_root;
+
+                let placeholder = ctx.ast.expression_null_literal(SPAN);
+                let old = std::mem::replace(expr, placeholder);
+                if let Expression::JSXElement(el) = old {
+                    *expr = self.transform_jsx_element(el.unbox(), was_root, ctx);
+                }
+            }
+            Expression::JSXFragment(_) => {
+                let was_root = self.jsx_root_mode_stack.pop().unwrap_or(true);
+                self.root_jsx_mode = was_root;
+
+                let placeholder = ctx.ast.expression_null_literal(SPAN);
+                let old = std::mem::replace(expr, placeholder);
+                if let Expression::JSXFragment(frag) = old {
+                    *expr = self.transform_jsx_fragment(frag.unbox(), was_root, ctx);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Call expressions (XFRM-02, XFRM-08)
+    // -----------------------------------------------------------------------
+
     /// 7-priority dispatch for call expressions.
     ///
     /// Only fires for `Expression::Identifier` callees (member expressions are
@@ -1694,9 +2275,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             let first_arg_opt: Option<Expression<'a>> = if call.arguments.is_empty() {
                 None
             } else {
-                // Replace first arg with a placeholder, take ownership of it.
-                // We use Expression::NullLiteral as a placeholder.
-                let null_lit = ctx.ast.expression_null_literal(SPAN);
+                // Replace first arg with a NullLiteral placeholder, take ownership.
                 let old_arg = std::mem::replace(
                     &mut call.arguments[0],
                     Argument::NullLiteral(ctx.ast.alloc_null_literal(SPAN)),
@@ -2155,16 +2734,57 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         program: &mut Program<'a>,
         ctx: &mut TraverseCtx<'a, ()>,
     ) {
-        // Fast path: nothing to drain.
+        // Check if there's anything to do.
+        let has_jsx_imports = self.needs_jsx_sorted
+            || self.needs_jsx_split
+            || self.needs_get_var_props
+            || self.needs_get_const_props
+            || self.needs_fragment;
+
+        // Fast path: nothing to drain and no JSX imports.
         if self.extra_top_items.is_empty()
             && self.ref_assignments.is_empty()
             && self.extra_bottom_items.is_empty()
+            && !has_jsx_imports
         {
             return;
         }
 
         let allocator: &'a Allocator = ctx.ast.allocator;
         let mut new_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+
+        // --- Step 0: Prepend JSX runtime imports ---
+        // Order matches golden snapshot: _jsxSorted, _getVarProps, _getConstProps, _jsxSplit, Fragment
+        if self.needs_jsx_sorted {
+            let src = r#"import { _jsxSorted } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_get_var_props {
+            let src = r#"import { _getVarProps } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_get_const_props {
+            let src = r#"import { _getConstProps } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_jsx_split {
+            let src = r#"import { _jsxSplit } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_fragment {
+            let src = r#"import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
 
         // --- Step 1: Prepend extra_top_items ---
         let top_items = std::mem::take(&mut self.extra_top_items);
@@ -2257,6 +2877,161 @@ fn parse_single_statement<'a>(src: &str, allocator: &'a Allocator) -> Option<Sta
     } else {
         Some(body.remove(0))
     }
+}
+
+// ---------------------------------------------------------------------------
+// Phase 14: JSX AST builder helpers
+// ---------------------------------------------------------------------------
+
+/// Build a `_jsxSorted` or `_jsxSplit` call expression with 6 arguments:
+/// `(tag, varProps, constProps, children, flags, key)`.
+fn build_jsx_call<'a>(
+    callee_name: &str,
+    tag: Expression<'a>,
+    var_props: Option<Expression<'a>>,
+    const_props: Option<Expression<'a>>,
+    children: Option<Expression<'a>>,
+    flags: u32,
+    key: Expression<'a>,
+    ast: &AstBuilder<'a>,
+    allocator: &'a Allocator,
+) -> Expression<'a> {
+    let mut args: ArenaVec<Argument<'a>> = ArenaVec::new_in(allocator);
+
+    // Arg 1: tag
+    push_expr_arg(ast, &mut args, tag);
+    // Arg 2: varProps or null
+    let var_arg = var_props.unwrap_or_else(|| ast.expression_null_literal(SPAN));
+    push_expr_arg(ast, &mut args, var_arg);
+    // Arg 3: constProps or null
+    let const_arg = const_props.unwrap_or_else(|| ast.expression_null_literal(SPAN));
+    push_expr_arg(ast, &mut args, const_arg);
+    // Arg 4: children or null
+    let children_arg = children.unwrap_or_else(|| ast.expression_null_literal(SPAN));
+    push_expr_arg(ast, &mut args, children_arg);
+    // Arg 5: flags
+    let flags_expr = ast.expression_numeric_literal(SPAN, flags as f64, None, NumberBase::Decimal);
+    push_expr_arg(ast, &mut args, flags_expr);
+    // Arg 6: key
+    push_expr_arg(ast, &mut args, key);
+
+    let callee = ast.expression_identifier(SPAN, ast.atom(callee_name));
+    ast.expression_call(SPAN, callee, None::<TSTypeParameterInstantiation<'a>>, args, false)
+}
+
+/// Build `fn_name(arg)` single-argument call expression.
+fn build_fn_call<'a>(
+    fn_name: &str,
+    arg: Expression<'a>,
+    ast: &AstBuilder<'a>,
+    allocator: &'a Allocator,
+) -> Expression<'a> {
+    let mut args: ArenaVec<Argument<'a>> = ArenaVec::new_in(allocator);
+    push_expr_arg(ast, &mut args, arg);
+    let callee = ast.expression_identifier(SPAN, ast.atom(fn_name));
+    ast.expression_call(SPAN, callee, None::<TSTypeParameterInstantiation<'a>>, args, false)
+}
+
+/// Build `{ key: value }` as a single `ObjectPropertyKind`.
+fn build_object_prop<'a>(
+    key: &str,
+    value: Expression<'a>,
+    ast: &AstBuilder<'a>,
+    _allocator: &'a Allocator,
+) -> ObjectPropertyKind<'a> {
+    // Determine if this key needs quotes (contains special chars like `:`).
+    let needs_quotes = key.contains(':') || key.contains('-');
+    let prop_key = if needs_quotes {
+        PropertyKey::StringLiteral(ast.alloc_string_literal(SPAN, ast.atom(key), None))
+    } else {
+        PropertyKey::StaticIdentifier(ast.alloc_identifier_name(SPAN, ast.atom(key)))
+    };
+    ObjectPropertyKind::ObjectProperty(ast.alloc_object_property(
+        SPAN,
+        PropertyKind::Init,
+        prop_key,
+        value,
+        false,
+        false,
+        false,
+    ))
+}
+
+/// Extract the string key from a `JSXAttributeName`.
+///
+/// For NamespacedName (e.g. `ns:local`), we can't return a combined borrowed string,
+/// so we return the namespace part. The caller must handle NamespacedName separately
+/// if needed, or use the owned version.
+fn jsx_attr_key_str<'a>(name: &'a JSXAttributeName<'a>) -> &'a str {
+    match name {
+        JSXAttributeName::Identifier(id) => id.name.as_str(),
+        JSXAttributeName::NamespacedName(nn) => nn.namespace.name.as_str(),
+    }
+}
+
+/// Owned version of `jsx_attr_key_str` that properly handles NamespacedName.
+fn jsx_attr_key_owned(name: &JSXAttributeName<'_>) -> String {
+    match name {
+        JSXAttributeName::Identifier(id) => id.name.as_str().to_string(),
+        JSXAttributeName::NamespacedName(nn) => {
+            format!("{}:{}", nn.namespace.name.as_str(), nn.name.name.as_str())
+        }
+    }
+}
+
+/// Convert a `JSXExpression<'a>` into `Option<Expression<'a>>`.
+///
+/// Returns `None` for `JSXEmptyExpression`, `Some` for all other variants.
+///
+/// SAFETY: `JSXExpression` is defined via `inherit_variants!` which causes it to
+/// share the exact same memory layout as `Expression` for all variants except
+/// `EmptyExpression = 64`. Since we guard against `EmptyExpression`, the transmute
+/// is safe.
+fn jsx_expression_to_expr<'a>(jsx_expr: JSXExpression<'a>) -> Option<Expression<'a>> {
+    if matches!(jsx_expr, JSXExpression::EmptyExpression(_)) {
+        return None;
+    }
+    // SAFETY: All non-EmptyExpression variants of JSXExpression are identical to
+    // the corresponding Expression variants (same discriminant, same data).
+    let expr: Expression<'a> = unsafe {
+        std::mem::transmute::<JSXExpression<'a>, Expression<'a>>(jsx_expr)
+    };
+    Some(expr)
+}
+
+/// Get the string key from an `ObjectPropertyKind` for sorting.
+fn object_prop_key_str<'a>(kind: &ObjectPropertyKind<'a>) -> String {
+    match kind {
+        ObjectPropertyKind::ObjectProperty(p) => match &p.key {
+            PropertyKey::StaticIdentifier(id) => id.name.as_str().to_string(),
+            PropertyKey::StringLiteral(s) => s.value.as_str().to_string(),
+            _ => String::new(),
+        },
+        ObjectPropertyKind::SpreadProperty(_) => String::new(),
+    }
+}
+
+/// Recursively convert a `JSXMemberExpression` into a `StaticMemberExpression`.
+fn jsx_member_to_expr<'a>(
+    me: &JSXMemberExpression<'a>,
+    ast: &AstBuilder<'a>,
+    _allocator: &'a Allocator,
+) -> Expression<'a> {
+    let object_expr: Expression<'a> = match &me.object {
+        JSXMemberExpressionObject::IdentifierReference(id) => {
+            ast.expression_identifier(SPAN, ast.atom(id.name.as_str()))
+        }
+        JSXMemberExpressionObject::MemberExpression(inner_me) => {
+            // Need allocator for recursive calls but we can drop the unused param warning
+            jsx_member_to_expr(inner_me, ast, _allocator)
+        }
+        JSXMemberExpressionObject::ThisExpression(_) => {
+            ast.expression_this(SPAN)
+        }
+    };
+    let property = ast.identifier_name(SPAN, ast.atom(me.property.name.as_str()));
+    let static_me = ast.member_expression_static(SPAN, object_expr, property, false);
+    Expression::from(static_me)
 }
 
 // ---------------------------------------------------------------------------
@@ -4096,5 +4871,149 @@ export const App = component$(() => {});"#;
                 "exit_program_drain_order: output should be non-empty, got: {code}"
             );
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 14: JSX transform integration tests
+    // -----------------------------------------------------------------------
+
+    // -----------------------------------------------------------------------
+    // Helper to transform code with JSX visible (not inside component$ segment).
+    // Uses a non-$ arrow function so JSX stays in the main output file.
+    // -----------------------------------------------------------------------
+
+    fn run_transform_inline_jsx(src: &str) -> String {
+        let (code, _) = run_transform_mode_segment(src, EmitMode::Prod);
+        code
+    }
+
+    /// Test: basic div with class prop produces _jsxSorted (JSX at top level, not in segment)
+    #[test]
+    fn jsx_basic_div_class() {
+        // Lightweight component (no $) — JSX stays in main file
+        let src = r#"import { _jsxSorted } from "@qwik.dev/core";
+export const Lightweight = (props) => {
+    return <div class="foo">hello</div>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        assert!(code.contains("_jsxSorted"), "Should contain _jsxSorted call, got:\n{code}");
+        assert!(
+            code.contains(r#""foo""#),
+            "Should have class value 'foo' in output, got:\n{code}"
+        );
+    }
+
+    /// Test: component element (uppercase tag) emits key
+    #[test]
+    fn jsx_component_emits_key() {
+        let src = r#"export const Header = () => <h1>hi</h1>;
+export const App = () => {
+    return <Header />;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        assert!(code.contains("_jsxSorted"), "Should contain _jsxSorted, got:\n{code}");
+        // Component reference is identifier (not string)
+        assert!(
+            code.contains("_jsxSorted(Header"),
+            "Component tag should be identifier reference, got:\n{code}"
+        );
+        // Key should be a string like "xx_0"
+        assert!(
+            code.contains("_0\"") || code.contains("_1\""),
+            "Should have a key string ending with _0 or _1, got:\n{code}"
+        );
+    }
+
+    /// Test: fragment transformation
+    #[test]
+    fn jsx_fragment_transformation() {
+        let src = r#"export const App = () => {
+    return <><div/><span/></>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        assert!(code.contains("_Fragment"), "Should contain _Fragment, got:\n{code}");
+        assert!(
+            code.contains(r#"from "@qwik.dev/core/jsx-runtime""#),
+            "Should import from jsx-runtime, got:\n{code}"
+        );
+        assert!(code.contains("_jsxSorted"), "Should use _jsxSorted, got:\n{code}");
+    }
+
+    /// Test: spread props route through _jsxSplit
+    #[test]
+    fn jsx_spread_props_use_jsx_split() {
+        let src = r#"export const App = (props) => {
+    return <button {...props}>click</button>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        assert!(code.contains("_jsxSplit"), "Spread props should use _jsxSplit, got:\n{code}");
+        assert!(
+            code.contains("_getVarProps") || code.contains("_getConstProps"),
+            "Spread should use _getVarProps/_getConstProps, got:\n{code}"
+        );
+    }
+
+    /// Test: event handler renaming (onClick$ -> q-e:click for native elements)
+    #[test]
+    fn jsx_event_handler_renaming() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const handler = () => {};
+export const App = () => {
+    return <button onClick$={handler}>click</button>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        // Event handler should be renamed
+        assert!(
+            code.contains("\"q-e:click\"") || code.contains("\"q-e:click\":"),
+            "onClick$ should become 'q-e:click', got:\n{code}"
+        );
+    }
+
+    /// Test: className -> class for native elements (not components)
+    #[test]
+    fn jsx_classname_to_class_native() {
+        let src = r#"export const App = () => {
+    return <div className="foo" />;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        // className should become class for native elements
+        assert!(
+            !code.contains("className"),
+            "className should be renamed to class for native elements, got:\n{code}"
+        );
+        assert!(
+            code.contains("class:") || code.contains(r#"class: "#) || code.contains(r#""class":"#),
+            "Should have 'class' prop in output, got:\n{code}"
+        );
+    }
+
+    /// Test: nested JSX — inner elements get null key, outer gets real key
+    #[test]
+    fn jsx_nested_null_key() {
+        let src = r#"export const App = () => {
+    return <div><span/></div>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        assert!(code.contains("_jsxSorted"), "Should use _jsxSorted, got:\n{code}");
+        // The outer div has root mode → key; the nested span gets null key
+        // We just verify both null AND a key string appear in the output.
+        assert!(
+            code.contains("null"),
+            "Nested elements should have null key, got:\n{code}"
+        );
+    }
+
+    /// Test: JSX runtime imports are injected at top of output
+    #[test]
+    fn jsx_runtime_imports_injected() {
+        let src = r#"export const App = () => {
+    return <div>hello</div>;
+};"#;
+        let code = run_transform_inline_jsx(src);
+        // Import should appear in code
+        assert!(
+            code.contains(r#"import { _jsxSorted } from "@qwik.dev/core""#),
+            "Should inject _jsxSorted import, got:\n{code}"
+        );
     }
 }

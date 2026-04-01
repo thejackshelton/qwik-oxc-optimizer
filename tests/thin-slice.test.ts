@@ -1,10 +1,11 @@
 /**
- * Thin-slice integration test: 7 representative fixtures through parse -> normalize pipeline.
+ * Pipeline smoke tests: 7 representative fixtures through parse -> normalize pipeline.
  *
- * Phase gate: validates end-to-end pipeline works before Phase 4 builds full comparison matrix.
- * Uses stub comparison (all pass: true, zero failures) — real comparison comes in Phase 4.
+ * Validates the v1.0 harness pipeline components (parser, normalizer) work correctly.
+ * NOT parity assertions — these tests do not compare OXC output against SWC goldens.
+ * For real OXC-vs-SWC parity tests, see parity.test.ts.
  *
- * Requirement: THIN-01
+ * Requirement: THIN-01 (v1.0 pipeline requirement, not a parity requirement)
  */
 
 import { describe, test, expect } from "bun:test";
@@ -51,7 +52,7 @@ function buildEmptyByCategory(): Record<FailureCategoryValue, number> {
   return result;
 }
 
-describe("thin-slice integration", () => {
+describe("pipeline smoke tests (parser + normalizer)", () => {
   test("oxfmt version check passes", () => {
     expect(() => assertOxfmtVersion()).not.toThrow();
   });
@@ -91,6 +92,7 @@ describe("thin-slice integration", () => {
         normalizeCode(section.code, stdinFilepath);
       }
 
+      // SMOKE TEST ONLY: stub output — not a parity assertion
       fixtureResults.push({
         name: parsed.fixtureName,
         pass: true,

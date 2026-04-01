@@ -19,23 +19,23 @@ expression: output
 		};
 		
 
-============================= test.tsx_q_e_click_bakT2ymzGgg.js (ENTRY POINT)==
+============================= test.tsx_div_q_e_click_belH9LIyH4c.js (ENTRY POINT)==
 
-export const q_e_click_bakT2ymzGgg = () => {
+export const div_q_e_click_belH9LIyH4c = () => {
 	data.selectedOutputDetail = "options";
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_q_e_click_bakT2ymzGgg\"],\"sourcesContent\":[\"export const q_e_click_bakT2ymzGgg = () => {\n\tdata.selectedOutputDetail = \\"options\\";\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B;AAC1C,MAAK,uBAAuB;;AAC3B\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_div_q_e_click_belH9LIyH4c\"],\"sourcesContent\":[\"export const div_q_e_click_belH9LIyH4c = () => {\n\tdata.selectedOutputDetail = \\"options\\";\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,MAAK,uBAAuB;;AAC3B\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "q_e_click_bakT2ymzGgg",
+  "name": "div_q_e_click_belH9LIyH4c",
   "entry": null,
-  "displayName": "test.tsx_q_e_click",
-  "hash": "bakT2ymzGgg",
-  "canonicalFilename": "test.tsx_q_e_click_bakT2ymzGgg",
+  "displayName": "test.tsx_div_q_e_click",
+  "hash": "belH9LIyH4c",
+  "canonicalFilename": "test.tsx_div_q_e_click_belH9LIyH4c",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -52,16 +52,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_q_e_click_bakT2ymzGgg\
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_q_e_click_bakT2ymzGgg = qrl(() => import("./test.tsx_q_e_click_bakT2ymzGgg"), "q_e_click_bakT2ymzGgg");
+const q_div_q_e_click_belH9LIyH4c = qrl(() => import("./test.tsx_div_q_e_click_belH9LIyH4c"), "div_q_e_click_belH9LIyH4c");
 export default (props: {
 	data: any;
 }) => {
 	const { data } = props;
-	return _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": q_q_e_click_bakT2ymzGgg }, null, 3, "u6_0");
+	return _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": q_div_q_e_click_belH9LIyH4c }, null, 3, "u6_0");
 };
 
 
-Some("{\"version\":3,\"names\":[\" default (\",\"ort default (props: { d\",\": a\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OACtC,qCACS,wBAEZ;AAJE,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB\"}")
+Some("{\"version\":3,\"names\":[\" default (\",\"ort default (props: { data:\",\"y }\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OAAO,yCAEN,4BACW;AAJV,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB\"}")
 == DIAGNOSTICS ==
 
 []

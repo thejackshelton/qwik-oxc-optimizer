@@ -1035,9 +1035,30 @@ impl QwikTransform {
         };
 
         // ---- 3. Process attributes + children ---------------------------------
+        // Re-push the tag name to stack_ctxt so that event-handler segment
+        // extraction inside handle_jsx_props can include the element name in
+        // display_name (matching SWC naming: "..._div_q_e_click" etc.).
+        // exit_jsx_element already popped it; we re-push here temporarily.
+        let tag_name_for_ctxt: Option<String> = match &opening.name {
+            JSXElementName::Identifier(id) => {
+                let n = id.name.as_str().to_string();
+                if n.is_empty() { None } else { Some(n) }
+            }
+            JSXElementName::IdentifierReference(id) => {
+                let n = id.name.as_str().to_string();
+                if n.is_empty() { None } else { Some(n) }
+            }
+            _ => None,
+        };
+        if let Some(ref tag) = tag_name_for_ctxt {
+            self.stack_ctxt.push(tag.clone());
+        }
         let mut attrs = opening.attributes;
         let (should_sort, var_props_opt, const_props_opt, children_opt, flags) =
             self.handle_jsx_props(&mut attrs, &mut children_vec, is_fn, is_text_only, ctx);
+        if tag_name_for_ctxt.is_some() {
+            self.stack_ctxt.pop();
+        }
 
         // ---- 4. Build call ----------------------------------------------------
         // Determine callee based on whether we need runtime sort.

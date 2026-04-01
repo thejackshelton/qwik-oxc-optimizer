@@ -17,21 +17,21 @@ export default component$(() => {
 
 
 
-============================= src/components/mongo/index.tsx_component_q_e_click_c070IRxOJo0.tsx ==
+============================= src/components/mongo/index.tsx_component_div_q_e_click_bw5g2mqFO0A.tsx ==
 
-export const component_q_e_click_c070IRxOJo0 = () => console.log(mongodb);
+export const component_div_q_e_click_bw5g2mqFO0A = () => console.log(mongodb);
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_component_q_e_click_c070IRxOJo0\"],\"sourcesContent\":[\"export const component_q_e_click_c070IRxOJo0 = () => console.log(mongodb);;\"],\"mappings\":\"AAAA,OAAO,MAAM,wCAAwC,QAAQ,IAAI,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_component_div_q_e_click_bw5g2mqFO0A\"],\"sourcesContent\":[\"export const component_div_q_e_click_bw5g2mqFO0A = () => console.log(mongodb);;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C,QAAQ,IAAI,QAAQ;AAAC\"}")
 /*
 {
   "origin": "src/components/mongo/index.tsx",
-  "name": "component_q_e_click_c070IRxOJo0",
+  "name": "component_div_q_e_click_bw5g2mqFO0A",
   "entry": "entry_segments",
-  "displayName": "index.tsx_component_q_e_click",
-  "hash": "c070IRxOJo0",
-  "canonicalFilename": "index.tsx_component_q_e_click_c070IRxOJo0",
+  "displayName": "index.tsx_component_div_q_e_click",
+  "hash": "bw5g2mqFO0A",
+  "canonicalFilename": "index.tsx_component_div_q_e_click_bw5g2mqFO0A",
   "path": "src/components/mongo",
   "extension": "tsx",
   "parent": "component_rKJvPlyphow",
@@ -48,13 +48,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_component_q_e_click_c
 ============================= src/components/mongo/index.tsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_q_e_click_c070IRxOJo0 = qrl(() => import("./index.tsx_component_q_e_click_c070IRxOJo0"), "component_q_e_click_c070IRxOJo0");
+const q_component_div_q_e_click_bw5g2mqFO0A = qrl(() => import("./index.tsx_component_div_q_e_click_bw5g2mqFO0A"), "component_div_q_e_click_bw5g2mqFO0A");
 const q_component_rKJvPlyphow = _noopQrl("component_rKJvPlyphow");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_rKJvPlyphow);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.dev/\",\"e';\",\"t { component$ } from '\",\"ik.dev/c\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,oCAAoCC,UAEpC,OAAO,gDAEI,kCACZ;AANJ,MACKC,0BAA0BC,SAAS,wBAEtB;AAFlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.dev/core\",\"\nex\",\"t { component$ } from '\",\"ik.dev/c\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,wCACLC,UACS,OAAO,oDAEQ,sCAGrB;AARH,MACKC,0BAA0BC,SAAS,wBAEtB;AAFlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
 == DIAGNOSTICS ==
 
 []

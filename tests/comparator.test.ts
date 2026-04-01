@@ -1,16 +1,20 @@
 /**
  * Unit tests for src/comparator.ts
  *
- * Covers: COMP-01, COMP-02, COMP-03, COMP-06, COMP-07
+ * Covers: COMP-01, COMP-02, COMP-03, COMP-04, COMP-05, COMP-06, COMP-07
  *
  * COMP-01: Segment count mismatch detected; per-segment work skipped
  * COMP-02: All 14 metadata fields checked independently (no short-circuit)
  * COMP-03: Normalized code comparison; code_diff reported when different
+ * COMP-04: Parent module code compared after normalization
+ * COMP-05: Diagnostics comparison is structural (all fields, sorted)
  * COMP-06: Every failure has a typed FailureCategory value
  * COMP-07: loc mismatch reported as WRONG_LOC; never suppressed
  */
 
 import { describe, it, expect } from "bun:test";
+import * as path from "node:path";
+import { parseSnapFile } from "../src/parser.ts";
 import { compareFixture, type FailureItem } from "../src/comparator.ts";
 import { FailureCategory } from "../src/contract.ts";
 import type { ParsedSection, ParsedSnapshot, SegmentMetadata } from "../src/types.ts";
@@ -453,4 +457,211 @@ describe("compareFixture — self-comparison returns zero failures", () => {
 
     expect(failures).toHaveLength(0);
   });
+});
+
+// ---------------------------------------------------------------------------
+// COMP-04: Parent module comparison
+// ---------------------------------------------------------------------------
+
+function makeParentSection(code: string): ParsedSection {
+  return {
+    headerName: "test.tsx",
+    isEntryPoint: false,
+    code,
+    sourceMap: null,
+    metadata: null, // null = parent section
+  };
+}
+
+describe("compareFixture — COMP-04: parent module comparison", () => {
+  it("returns code_diff with field=parentModule when parent code differs", () => {
+    const swcParent = makeParentSection("const x = 1;");
+    const oxcParent = makeParentSection("const y = 1;");
+
+    const swcSnap = makeSnapshot([swcParent]);
+    const oxcSnap = makeSnapshot([oxcParent]);
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const parentFailures = failures.filter(
+      (f) => f.category === FailureCategory.CODE_DIFF && f.field === "parentModule"
+    );
+    expect(parentFailures).toHaveLength(1);
+  });
+
+  it("returns no parent failure when both parent modules are identical", () => {
+    const code = "const x = 1;";
+    const swcParent = makeParentSection(code);
+    const oxcParent = makeParentSection(code);
+
+    const swcSnap = makeSnapshot([swcParent]);
+    const oxcSnap = makeSnapshot([oxcParent]);
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const parentFailures = failures.filter(
+      (f) => f.category === FailureCategory.CODE_DIFF && f.field === "parentModule"
+    );
+    expect(parentFailures).toHaveLength(0);
+  });
+
+  it("returns code_diff with field=parentModule when SWC has parent section but OXC does not", () => {
+    const swcParent = makeParentSection("const x = 1;");
+
+    const swcSnap = makeSnapshot([swcParent]);
+    const oxcSnap = makeSnapshot([]); // no sections at all
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const parentFailures = failures.filter(
+      (f) => f.category === FailureCategory.CODE_DIFF && f.field === "parentModule"
+    );
+    expect(parentFailures).toHaveLength(1);
+  });
+
+  it("returns code_diff with field=parentModule when OXC has parent section but SWC does not", () => {
+    const oxcParent = makeParentSection("const x = 1;");
+
+    const swcSnap = makeSnapshot([]); // no sections at all
+    const oxcSnap = makeSnapshot([oxcParent]);
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const parentFailures = failures.filter(
+      (f) => f.category === FailureCategory.CODE_DIFF && f.field === "parentModule"
+    );
+    expect(parentFailures).toHaveLength(1);
+  });
+
+  it("returns no parent failure when neither side has a parent section", () => {
+    const swcSnap = makeSnapshot([]);
+    const oxcSnap = makeSnapshot([]);
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const parentFailures = failures.filter(
+      (f) => f.category === FailureCategory.CODE_DIFF && f.field === "parentModule"
+    );
+    expect(parentFailures).toHaveLength(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// COMP-05: Diagnostics comparison — structural, sorted
+// ---------------------------------------------------------------------------
+
+describe("compareFixture — COMP-05: diagnostics comparison", () => {
+  it("returns diagnostics_mismatch when message differs", () => {
+    const swcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [{ category: "Error", message: "foo" }],
+    };
+    const oxcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [{ category: "Error", message: "bar" }],
+    };
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const diagFailures = failures.filter(
+      (f) => f.category === FailureCategory.DIAGNOSTICS_MISMATCH
+    );
+    expect(diagFailures).toHaveLength(1);
+  });
+
+  it("returns diagnostics_mismatch when counts differ (SWC=2, OXC=1)", () => {
+    const swcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [
+        { category: "Error", message: "foo" },
+        { category: "Error", message: "bar" },
+      ],
+    };
+    const oxcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [{ category: "Error", message: "foo" }],
+    };
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const diagFailures = failures.filter(
+      (f) => f.category === FailureCategory.DIAGNOSTICS_MISMATCH
+    );
+    expect(diagFailures).toHaveLength(1);
+  });
+
+  it("returns no diagnostics_mismatch when diagnostics are identical", () => {
+    const diag = [{ category: "Error", message: "foo", file: "test.tsx", loc: [10, 5] }];
+    const swcSnap: ParsedSnapshot = { ...makeSnapshot([]), diagnostics: diag };
+    const oxcSnap: ParsedSnapshot = { ...makeSnapshot([]), diagnostics: diag };
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const diagFailures = failures.filter(
+      (f) => f.category === FailureCategory.DIAGNOSTICS_MISMATCH
+    );
+    expect(diagFailures).toHaveLength(0);
+  });
+
+  it("sorts diagnostics by DIAGNOSTICS_SORT_KEY before comparing (order-independent)", () => {
+    // Two diagnostics in different order — should still match
+    const diag1 = { category: "Error", message: "first", file: "a.tsx", loc: [1, 0] };
+    const diag2 = { category: "Error", message: "second", file: "b.tsx", loc: [2, 0] };
+
+    const swcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [diag1, diag2],
+    };
+    const oxcSnap: ParsedSnapshot = {
+      ...makeSnapshot([]),
+      diagnostics: [diag2, diag1], // reversed order
+    };
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const diagFailures = failures.filter(
+      (f) => f.category === FailureCategory.DIAGNOSTICS_MISMATCH
+    );
+    expect(diagFailures).toHaveLength(0);
+  });
+
+  it("returns no diagnostics_mismatch when both diagnostic arrays are empty", () => {
+    const swcSnap: ParsedSnapshot = { ...makeSnapshot([]), diagnostics: [] };
+    const oxcSnap: ParsedSnapshot = { ...makeSnapshot([]), diagnostics: [] };
+
+    const failures = compareFixture(swcSnap, oxcSnap);
+
+    const diagFailures = failures.filter(
+      (f) => f.category === FailureCategory.DIAGNOSTICS_MISMATCH
+    );
+    expect(diagFailures).toHaveLength(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Self-comparison smoke test: real SWC snap files produce zero failures
+// ---------------------------------------------------------------------------
+
+const SWC_SNAPSHOTS_DIR = path.resolve(
+  new URL("..", import.meta.url).pathname,
+  "swc-snapshots"
+);
+
+describe("compareFixture — real SWC snapshot self-comparison (smoke test)", () => {
+  const REPRESENTATIVE_FIXTURES = [
+    "example_1",
+    "component_level_self_referential_qrl",
+    "destructure_args_colon_props",
+  ];
+
+  for (const fixtureName of REPRESENTATIVE_FIXTURES) {
+    it(`returns zero failures when comparing ${fixtureName} against itself`, () => {
+      const snapPath = path.join(SWC_SNAPSHOTS_DIR, `${fixtureName}.snap`);
+      const parsed = parseSnapFile(snapPath);
+
+      const failures = compareFixture(parsed, parsed);
+
+      expect(failures).toHaveLength(0);
+    });
+  }
 });

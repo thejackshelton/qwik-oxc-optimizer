@@ -174,6 +174,24 @@ fn transform_code(
         .unwrap_or("js")
         .to_string();
 
+    // Compute effective file stem for export-default context naming.
+    // When file stem is "index", use the immediate parent directory name instead.
+    // This matches SWC behavior: src/components/mongo/index.tsx → "mongo".
+    let effective_file_stem: String = {
+        let raw_stem = &path_data.file_stem;
+        if raw_stem == "index" {
+            // Use the last component of rel_dir as the effective stem
+            path_data.rel_dir
+                .file_name()
+                .and_then(|n| n.to_str())
+                .map(|s| hash::escape_sym(s))
+                .filter(|s| !s.is_empty())
+                .unwrap_or_else(|| hash::escape_sym(raw_stem))
+        } else {
+            hash::escape_sym(raw_stem)
+        }
+    };
+
     // Stage 11 (pre-pass): mark pre-transform call/new expression spans for
     // Treeshaker DCE.  Must run BEFORE QwikTransform so only user-written spans
     // are recorded.
@@ -203,6 +221,7 @@ fn transform_code(
         scope: config.scope.as_deref(),
         rel_path: &rel_path,
         file_name: &path_data.file_name,
+        file_stem: &effective_file_stem,
         entry_strategy: &config.entry_strategy,
         extension: &file_extension,
         explicit_extensions: config.explicit_extensions,

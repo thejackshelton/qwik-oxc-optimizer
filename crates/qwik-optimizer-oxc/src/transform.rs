@@ -365,6 +365,10 @@ pub(crate) struct QwikTransformOptions<'b> {
     pub rel_path: &'b str,
     /// File name of the source file (for display_name prefix).
     pub file_name: &'b str,
+    /// Effective file stem for export-default context naming.
+    /// For `index.tsx`, this should be the parent directory name (pre-computed by caller).
+    /// Already escaped via escape_sym by the caller (lib.rs).
+    pub file_stem: &'b str,
     /// Entry strategy for determining output chunk grouping.
     pub entry_strategy: &'b EntryStrategy,
     /// Source file extension (e.g. "tsx", "js").
@@ -434,9 +438,14 @@ pub(crate) struct QwikTransform {
     /// Used by `enter_variable_declarator` to know if the binding is `const`.
     current_var_kind: Option<VariableDeclarationKind>,
 
-    /// Whether a variable name was pushed to `stack_ctxt` in `enter_variable_declarator`.
-    /// Popped in `exit_variable_declarator`.
-    var_decl_ctxt_pushed: bool,
+    /// Stack tracking whether each variable declarator (LIFO with nesting) pushed
+    /// a name to `stack_ctxt`. `true` = pushed, `false` = no push.
+    /// Replaces the previous single boolean `var_decl_ctxt_pushed` which failed for
+    /// nested var declarators inside init expressions.
+    var_decl_ctxt_push_stack: Vec<bool>,
+
+    /// Whether `enter_export_default_declaration` pushed the file stem to `stack_ctxt`.
+    default_export_ctxt_pushed: bool,
 
     /// Stack tracking whether each function frame (LIFO with `decl_stack`) also
     /// pushed a name to `stack_ctxt`. `true` = pushed, `false` = no push.
@@ -492,6 +501,10 @@ pub(crate) struct QwikTransform {
 
     /// File name (used as display_name prefix).
     pub(crate) file_name: String,
+
+    /// Effective file stem for export-default context naming.
+    /// Pre-computed by caller: "index.tsx" → parent dir name, escaped via escape_sym.
+    pub(crate) file_stem: String,
 
     /// Source file extension (e.g. "tsx").
     pub(crate) extension: String,
@@ -702,7 +715,8 @@ impl QwikTransform {
             strip_ctx_name: options.strip_ctx_name.to_vec(),
             strip_event_handlers: options.strip_event_handlers,
             current_var_kind: None,
-            var_decl_ctxt_pushed: false,
+            var_decl_ctxt_push_stack: Vec::new(),
+            default_export_ctxt_pushed: false,
             fn_ctxt_push_stack: Vec::new(),
             // Phase 12 fields
             segments: Vec::new(),
@@ -719,6 +733,7 @@ impl QwikTransform {
             scope: options.scope.map(|s| s.to_string()),
             rel_path: options.rel_path.to_string(),
             file_name: options.file_name.to_string(),
+            file_stem: options.file_stem.to_string(),
             extension: options.extension.to_string(),
             explicit_extensions: options.explicit_extensions,
             is_server: options.is_server,
@@ -3514,6 +3529,42 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
     }
 
     // -----------------------------------------------------------------------
+    // Export default declarations (META-01)
+    // -----------------------------------------------------------------------
+
+    /// Push the escaped file stem to `stack_ctxt` when entering an export default.
+    ///
+    /// This ensures `export default component$(...)` in `test.tsx` produces
+    /// `test_component` as `display_name_core`, matching SWC behavior.
+    ///
+    /// The `file_stem` is pre-computed by the caller (lib.rs):
+    /// - For `index.tsx`: use the immediate parent directory name (e.g. "mongo").
+    /// - For other files: use escape_sym(file_stem) (e.g. "test").
+    fn enter_export_default_declaration(
+        &mut self,
+        _node: &mut oxc::ast::ast::ExportDefaultDeclaration<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        // Push escaped file stem so `export default component$(...)` produces
+        // e.g. "test_component" not just "component".
+        if !self.file_stem.is_empty() {
+            self.stack_ctxt.push(self.file_stem.clone());
+            self.default_export_ctxt_pushed = true;
+        }
+    }
+
+    fn exit_export_default_declaration(
+        &mut self,
+        _node: &mut oxc::ast::ast::ExportDefaultDeclaration<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        if self.default_export_ctxt_pushed {
+            self.stack_ctxt.pop();
+            self.default_export_ctxt_pushed = false;
+        }
+    }
+
+    // -----------------------------------------------------------------------
     // Variable declarations (XFRM-06)
     // -----------------------------------------------------------------------
 
@@ -3545,7 +3596,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         let name = match &decl.id {
             BindingPattern::BindingIdentifier(id) => id.name.as_str().to_string(),
             _ => {
-                self.var_decl_ctxt_pushed = false;
+                // Non-BindingIdentifier: push false so exit_variable_declarator has a matching pop.
+                self.var_decl_ctxt_push_stack.push(false);
                 return;
             }
         };
@@ -3562,7 +3614,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
         // Push to context stack so the initializer expression has this name in scope.
         self.stack_ctxt.push(name);
-        self.var_decl_ctxt_pushed = true;
+        self.var_decl_ctxt_push_stack.push(true);
     }
 
     fn exit_variable_declarator(
@@ -3570,9 +3622,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         _decl: &mut VariableDeclarator<'a>,
         _ctx: &mut TraverseCtx<'a, ()>,
     ) {
-        if self.var_decl_ctxt_pushed {
-            self.stack_ctxt.pop();
-            self.var_decl_ctxt_pushed = false;
+        if let Some(pushed) = self.var_decl_ctxt_push_stack.pop() {
+            if pushed {
+                self.stack_ctxt.pop();
+            }
         }
     }
 
@@ -4477,6 +4530,7 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -4506,6 +4560,7 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -4887,6 +4942,7 @@ mod tests {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5130,6 +5186,7 @@ mod tests {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: true,
@@ -5279,6 +5336,7 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5326,6 +5384,7 @@ mod tests {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5361,6 +5420,7 @@ mod tests {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5414,6 +5474,7 @@ const Cmp = component$(() => {});"#;
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5442,6 +5503,7 @@ const Cmp = component$(() => {});"#;
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5575,6 +5637,7 @@ const Cmp = component$(() => {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5658,6 +5721,7 @@ const Cmp = component$(() => {});"#;
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5988,6 +6052,7 @@ export const A = component$(() => {});"#;
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6025,6 +6090,7 @@ export const A = component$(() => {});"#;
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6233,6 +6299,7 @@ export const App = () => {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6336,6 +6403,7 @@ export const App = () => {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6385,6 +6453,7 @@ export const App = () => {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6427,6 +6496,7 @@ export const App = () => {
             scope: None,
             rel_path: "test.tsx",
             file_name: "test.tsx",
+            file_stem: "test",
             entry_strategy: &strategy,
             extension: "tsx",
             explicit_extensions: false,
@@ -6488,6 +6558,130 @@ const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
         assert!(
             code.contains("inlinedQrl") || code.contains("q_"),
             "Inline strategy should produce inlinedQrl or q_ hoisted const, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Task 1 TDD tests: var_decl_ctxt_push_stack and export_default file_stem
+    // -----------------------------------------------------------------------
+
+    /// Helper: run transform with custom file_stem and rel_path, returns (code, xfrm).
+    fn run_transform_with_stem(src: &str, file_name: &str, file_stem: &str, rel_path: &str) -> (String, QwikTransform) {
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Dev,
+            scope: None,
+            rel_path,
+            file_name,
+            file_stem,
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+            source_text: "",
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let semantic = SemanticBuilder::new().build(&program);
+        let scoping = semantic.semantic.into_scoping();
+        let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+        let code = Codegen::new().build(&program).code;
+        (code, xfrm)
+    }
+
+    /// Test A: nested var decl no-leak — inner exit_variable_declarator must NOT
+    /// corrupt the outer var_decl_ctxt state.
+    ///
+    /// Given: `const sig = useAsync$(async () => { const timer = foo(); })`
+    /// followed by `const other = useAsync$(...)`
+    ///
+    /// The second segment's display_name_core should contain "other_useAsync",
+    /// NOT "sig_other_useAsync" (which is the bug with a single flag).
+    #[test]
+    fn var_decl_ctxt_nested_no_leak() {
+        let src = r#"import { useAsync$ } from "@qwik.dev/core";
+const sig = useAsync$(async () => { const timer = foo(); });
+const other = useAsync$(() => {});"#;
+        let (_code, xfrm) = run_transform_with_stem(src, "test.tsx", "test", "src/test.tsx");
+        // After traversal, stack_ctxt should be empty (no leaked pushes).
+        assert!(
+            xfrm.stack_ctxt.is_empty(),
+            "stack_ctxt should be empty after traversal (no leaked pushes), got: {:?}",
+            xfrm.stack_ctxt
+        );
+        // Second segment should be named "other_useAsync", not "sig_other_useAsync".
+        assert_eq!(xfrm.segments.len(), 2, "expected 2 segments");
+        let second = &xfrm.segments[1];
+        assert!(
+            second.display_name.contains("other_useAsync"),
+            "second segment display_name should contain 'other_useAsync', got: {}",
+            second.display_name
+        );
+        assert!(
+            !second.display_name.contains("sig_other"),
+            "second segment should NOT contain 'sig_other' (leaked name), got: {}",
+            second.display_name
+        );
+    }
+
+    /// Test B: file_stem field stored correctly in QwikTransform.
+    #[test]
+    fn file_stem_stored_in_transform() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const Foo = component$(() => {});"#;
+        let (_code, xfrm) = run_transform_with_stem(src, "myfile.tsx", "myfile", "src/myfile.tsx");
+        assert_eq!(
+            xfrm.file_stem.as_str(),
+            "myfile",
+            "file_stem should be stored from options, got: {}",
+            xfrm.file_stem
+        );
+    }
+
+    /// Test C: export default component$(...) in non-index file — display_name_core
+    /// should be escape_sym(file_stem) + "_component".
+    /// e.g., file_stem "test" → "test_component"
+    #[test]
+    fn export_default_component_non_index_file() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(() => {});"#;
+        let (_code, xfrm) = run_transform_with_stem(src, "test.tsx", "test", "src/test.tsx");
+        assert_eq!(xfrm.segments.len(), 1, "expected 1 segment");
+        let seg = &xfrm.segments[0];
+        assert!(
+            seg.display_name.contains("test_component"),
+            "export default component$ in test.tsx should produce display_name containing 'test_component', got: {}",
+            seg.display_name
+        );
+    }
+
+    /// Test D: export default component$(...) in index.tsx — file_stem "index"
+    /// should use parent directory name instead.
+    /// e.g., rel_path "src/components/mongo/index.tsx", parent "mongo" → "mongo_component"
+    #[test]
+    fn export_default_component_index_file_uses_parent_dir() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(() => {});"#;
+        // When file_stem is "index", lib.rs pre-computes effective_file_stem = "mongo"
+        // (escaped parent directory name). We pass "mongo" directly here.
+        let (_code, xfrm) = run_transform_with_stem(src, "index.tsx", "mongo", "src/components/mongo/index.tsx");
+        assert_eq!(xfrm.segments.len(), 1, "expected 1 segment");
+        let seg = &xfrm.segments[0];
+        assert!(
+            seg.display_name.contains("mongo_component"),
+            "export default component$ in mongo/index.tsx should produce 'mongo_component', got: {}",
+            seg.display_name
         );
     }
 }

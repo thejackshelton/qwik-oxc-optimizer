@@ -23,6 +23,7 @@ use oxc_traverse::{Traverse, TraverseCtx};
 use crate::collector::GlobalCollect;
 use crate::entry_strategy::{self, EntryPolicy};
 use crate::hash;
+use crate::inlined_fn;
 use crate::is_const;
 use crate::types::{CtxKind, Diagnostic, DiagnosticCategory, EmitMode, EntryStrategy};
 use crate::words;
@@ -504,6 +505,26 @@ pub(crate) struct QwikTransform {
     pub(crate) needs_get_const_props: bool,
     /// Whether `Fragment as _Fragment` import from "@qwik.dev/core/jsx-runtime" is needed.
     pub(crate) needs_fragment: bool,
+
+    // ---- Phase 15: Signal wrapping state ------------------------------------
+
+    /// Dedup map for hoist_fn_signal_call: fn_body_str -> (const_name, counter_value).
+    pub(crate) hoisted_fn_signals: HashMap<String, (String, u32)>,
+
+    /// Monotonic counter for `_hf<N>` const names.
+    pub(crate) hoisted_fn_counter: u32,
+
+    /// Whether `_wrapProp` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_wrap_prop: bool,
+
+    /// Whether `_fnSignal` import from "@qwik.dev/core" is needed.
+    pub(crate) needs_fn_signal: bool,
+
+    /// Whether `_val` import from "@qwik.dev/core" is needed (bind:value).
+    pub(crate) needs_val: bool,
+
+    /// Whether `_chk` import from "@qwik.dev/core" is needed (bind:checked).
+    pub(crate) needs_chk: bool,
 }
 
 // ---------------------------------------------------------------------------
@@ -638,6 +659,13 @@ impl QwikTransform {
             needs_get_var_props: false,
             needs_get_const_props: false,
             needs_fragment: false,
+            // Phase 15: Signal wrapping state
+            hoisted_fn_signals: HashMap::new(),
+            hoisted_fn_counter: 0,
+            needs_wrap_prop: false,
+            needs_fn_signal: false,
+            needs_val: false,
+            needs_chk: false,
         }
     }
 
@@ -1765,6 +1793,194 @@ impl QwikTransform {
     }
 
     // -----------------------------------------------------------------------
+    // create_synthetic_qqsegment — Phase 15 signal wrapping decision tree
+    // -----------------------------------------------------------------------
+
+    /// Decide whether `expr` is eligible for signal wrapping.
+    ///
+    /// Implements the 8-step decision tree from SPEC §create_synthetic_qqsegment.
+    /// Returns `(Some(code_string), is_const)` if the expression should be wrapped,
+    /// or `(None, is_const)` if it should be used as-is.
+    ///
+    /// The returned code string is the serialized `_wrapProp(...)` or `_fnSignal(...)`
+    /// call. The caller is responsible for parsing it back into an `Expression`.
+    pub(crate) fn create_synthetic_qqsegment<'a>(
+        &mut self,
+        expr: &Expression<'a>,
+        allocator: &'a Allocator,
+    ) -> (Option<String>, bool) {
+        // Step 1: Collect all identifiers referenced in `expr`.
+        let descendent_idents = IdentCollector::collect(expr);
+
+        // Step 2: Partition decl_stack into Var-only (decl_collect) and others (invalid_decl).
+        let all_decl: Vec<IdPlusType> = self
+            .decl_stack
+            .iter()
+            .flat_map(|frame| frame.iter().cloned())
+            .collect();
+        let mut decl_collect: Vec<IdPlusType> = Vec::new();
+        let mut invalid_decl_names: HashSet<String> = HashSet::new();
+        for (name, id_type) in &all_decl {
+            match id_type {
+                IdentType::Var(_) => {
+                    decl_collect.push((name.clone(), id_type.clone()));
+                }
+                IdentType::Fn | IdentType::Class => {
+                    invalid_decl_names.insert(name.clone());
+                }
+            }
+        }
+
+        // Step 3: If any descendent_ident is in invalid_decl → return (None, false).
+        for ident in &descendent_idents {
+            if invalid_decl_names.contains(ident) {
+                return (None, false);
+            }
+        }
+
+        // Step 4: For each ident NOT in decl_collect: check via global_collect → side effects.
+        let decl_collect_names: HashSet<String> =
+            decl_collect.iter().map(|(n, _)| n.clone()).collect();
+        let collect = unsafe { &*self.global_collect };
+        let mut contains_side_effect = false;
+        for ident in &descendent_idents {
+            if !decl_collect_names.contains(ident) && collect.is_global(ident) {
+                contains_side_effect = true;
+            }
+        }
+
+        // Step 5: compute_scoped_idents → (scoped_idents, is_const).
+        let (scoped_names, is_const) = compute_scoped_idents(&descendent_idents, &decl_collect);
+
+        // Step 6: contains_side_effect → return (None, scoped_idents.is_empty()).
+        if contains_side_effect {
+            return (None, scoped_names.is_empty());
+        }
+
+        // Step 7: Plain Identifier → return (None, is_const).
+        if matches!(expr, Expression::Identifier(_)) {
+            return (None, is_const);
+        }
+
+        // Step 8: !is_const && (Call | Template) → return (None, false).
+        if !is_const
+            && matches!(
+                expr,
+                Expression::CallExpression(_) | Expression::TemplateLiteral(_)
+            )
+        {
+            return (None, false);
+        }
+
+        // --- _wrapProp fast path ---
+        // Unwrap TSAsExpression if present.
+        let inner_expr: &Expression<'a> = match expr {
+            Expression::TSAsExpression(ts_as) => &ts_as.expression,
+            Expression::TSTypeAssertion(ts_assert) => &ts_assert.expression,
+            Expression::ParenthesizedExpression(paren) => &paren.expression,
+            other => other,
+        };
+
+        if let Expression::StaticMemberExpression(member) = inner_expr {
+            if let Expression::Identifier(obj_id) = &member.object {
+                let obj_name = obj_id.name.as_str().to_string();
+                let prop_name = member.property.name.as_str();
+                self.needs_wrap_prop = true;
+                if prop_name == "value" {
+                    // 1-arg form for .value (per golden fixtures)
+                    return (Some(format!("_wrapProp({obj_name})")), false);
+                } else {
+                    // 2-arg form for other properties
+                    return (Some(format!("_wrapProp({obj_name}, \"{prop_name}\")")), false);
+                }
+            }
+        }
+
+        // --- Fallthrough to convert_inlined_fn ---
+        // Build scoped_idents as (name, is_const) pairs for convert_inlined_fn.
+        let scoped_with_const: Vec<(String, bool)> = scoped_names
+            .iter()
+            .map(|name| {
+                // Find if this name is const in decl_collect.
+                let ic = decl_collect
+                    .iter()
+                    .find(|(n, _)| n == name)
+                    .map(|(_, ty)| matches!(ty, IdentType::Var(true)))
+                    .unwrap_or(false);
+                (name.clone(), ic)
+            })
+            .collect();
+
+        let (fn_signal_opt, arrow_code, new_is_const) =
+            inlined_fn::convert_inlined_fn(expr, &scoped_with_const, is_const, self.is_server, allocator);
+
+        if let Some(fn_signal_code) = fn_signal_opt {
+            self.needs_fn_signal = true;
+            let hoisted = self.hoist_fn_signal_call(fn_signal_code, arrow_code);
+            (Some(hoisted), new_is_const)
+        } else {
+            (None, new_is_const)
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // hoist_fn_signal_call — deduplicate identical _fnSignal arrows to _hf<N>
+    // -----------------------------------------------------------------------
+
+    /// Deduplicate identical `_fnSignal` arrow functions by hoisting them to
+    /// module scope as `const _hf<N> = (p0, ...) => <body>;`.
+    ///
+    /// Takes the full `_fnSignal(arrow, [caps])` code string and the `arrow_code`
+    /// string (used as the dedup key). Returns the modified call string with the
+    /// arrow argument replaced by `_hf<N>`.
+    ///
+    /// Per SPEC §hoist_fn_signal_call (lines 2554–2594).
+    pub(crate) fn hoist_fn_signal_call(
+        &mut self,
+        fn_signal_code: String,
+        arrow_code: String,
+    ) -> String {
+        // Look up arrow_code in the dedup map.
+        if let Some((existing_name, _counter)) = self.hoisted_fn_signals.get(&arrow_code).cloned() {
+            // Already hoisted — replace the arrow in the call string with _hf<N> ident.
+            let result = replace_fn_signal_arrow(&fn_signal_code, &arrow_code, &existing_name);
+            return result;
+        }
+
+        // New arrow — allocate a name.
+        let n = self.hoisted_fn_counter;
+        self.hoisted_fn_counter += 1;
+        let hf_name = format!("_hf{n}");
+
+        // Push the const to extra_top_items.
+        self.extra_top_items.push(HoistedConst {
+            name: hf_name.clone(),
+            symbol_name: hf_name.clone(),
+            rhs_code: arrow_code.clone(),
+        });
+
+        // If server mode and there is a third arg (string literal), hoist the string too.
+        if self.is_server {
+            // The third arg of _fnSignal is the server-mode source string.
+            // Extract it from fn_signal_code: it's the last argument (after the captures array).
+            if let Some(server_str) = extract_fn_signal_third_arg(&fn_signal_code) {
+                let str_name = format!("{hf_name}_str");
+                self.extra_top_items.push(HoistedConst {
+                    name: str_name.clone(),
+                    symbol_name: str_name.clone(),
+                    rhs_code: server_str,
+                });
+            }
+        }
+
+        // Register in dedup map.
+        self.hoisted_fn_signals.insert(arrow_code.clone(), (hf_name.clone(), n));
+
+        // Replace the arrow in the call with the new _hf<N> ident.
+        replace_fn_signal_arrow(&fn_signal_code, &arrow_code, &hf_name)
+    }
+
+    // -----------------------------------------------------------------------
     // hoist_qrl_to_module_scope — Level 1 QRL hoisting (Plan 13-01)
     // -----------------------------------------------------------------------
 
@@ -2753,12 +2969,15 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             || self.needs_get_var_props
             || self.needs_get_const_props
             || self.needs_fragment;
+        let has_signal_imports =
+            self.needs_wrap_prop || self.needs_fn_signal || self.needs_val || self.needs_chk;
 
-        // Fast path: nothing to drain and no JSX imports.
+        // Fast path: nothing to drain and no imports.
         if self.extra_top_items.is_empty()
             && self.ref_assignments.is_empty()
             && self.extra_bottom_items.is_empty()
             && !has_jsx_imports
+            && !has_signal_imports
         {
             return;
         }
@@ -2766,7 +2985,34 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         let allocator: &'a Allocator = ctx.ast.allocator;
         let mut new_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
 
-        // --- Step 0: Prepend JSX runtime imports ---
+        // --- Step 0a: Prepend signal wrapping imports ---
+        // Order: _wrapProp, _fnSignal, _val, _chk (before JSX imports)
+        if self.needs_wrap_prop {
+            let src = r#"import { _wrapProp } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_fn_signal {
+            let src = r#"import { _fnSignal } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_val {
+            let src = r#"import { _val } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+        if self.needs_chk {
+            let src = r#"import { _chk } from "@qwik.dev/core";"#;
+            if let Some(stmt) = parse_single_statement(src, allocator) {
+                new_body.push(stmt);
+            }
+        }
+
+        // --- Step 0b: Prepend JSX runtime imports ---
         // Order matches golden snapshot: _jsxSorted, _getVarProps, _getConstProps, _jsxSplit, Fragment
         if self.needs_jsx_sorted {
             let src = r#"import { _jsxSorted } from "@qwik.dev/core";"#;
@@ -2855,6 +3101,49 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         }
 
         program.body = new_body;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Phase 15 helpers — _fnSignal call string manipulation
+// ---------------------------------------------------------------------------
+
+/// Replace the arrow function argument in a `_fnSignal(arrow, [caps])` call string
+/// with the given `_hf<N>` identifier name.
+///
+/// The `arrow_code` is the exact string that appears as the first argument.
+/// We find the first occurrence of `arrow_code` and replace it.
+fn replace_fn_signal_arrow(fn_signal_code: &str, arrow_code: &str, hf_name: &str) -> String {
+    // Find the exact arrow_code substring and replace its first occurrence.
+    if let Some(pos) = fn_signal_code.find(arrow_code) {
+        format!(
+            "{}{}{}",
+            &fn_signal_code[..pos],
+            hf_name,
+            &fn_signal_code[pos + arrow_code.len()..]
+        )
+    } else {
+        // Fallback: couldn't find arrow — return as-is.
+        fn_signal_code.to_string()
+    }
+}
+
+/// Extract the third argument string from a `_fnSignal(arrow, [caps], "src")` call string.
+///
+/// Returns the third argument including quotes, e.g. `"\"(p0) => p0.value\""`.
+/// Returns `None` if the third argument cannot be found (client-mode call).
+fn extract_fn_signal_third_arg(fn_signal_code: &str) -> Option<String> {
+    // The third arg follows the captures array closing `]`.
+    // Find the last `, "..."`  or `, '...'` pattern.
+    // Strategy: find the closing `)` then work backwards to find `, "`.
+    let trimmed = fn_signal_code.trim_end_matches(')');
+    // Find last `, "` or `, '`
+    if let Some(pos) = trimmed.rfind(", \"") {
+        Some(trimmed[pos + 2..].to_string() + "\"")
+    } else if let Some(pos) = trimmed.rfind(", '") {
+        Some(trimmed[pos + 2..].to_string() + "'")
+    } else {
+        None
     }
 }
 
@@ -5028,5 +5317,198 @@ export const App = () => {
             code.contains(r#"import { _jsxSorted } from "@qwik.dev/core""#),
             "Should inject _jsxSorted import, got:\n{code}"
         );
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 15 unit tests: create_synthetic_qqsegment, _wrapProp, hoist_fn_signal
+    // -----------------------------------------------------------------------
+
+    /// Helper: build a minimal QwikTransform with one Var entry in decl_stack.
+    fn make_transform_with_decl_var(name: &str, is_const: bool) -> QwikTransform {
+        let src = "const x = 1;";
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        // Push the variable into decl_stack root frame.
+        if let Some(frame) = xfrm.decl_stack.last_mut() {
+            frame.push((name.to_string(), IdentType::Var(is_const)));
+        }
+        xfrm
+    }
+
+    /// Helper: parse a single expression using a fresh Allocator (static lifetime workaround).
+    fn parse_expr_for_test(src: &str) -> (Allocator, String) {
+        // Return the source for the caller to keep the allocator alive.
+        (Allocator::default(), src.to_string())
+    }
+
+    #[test]
+    fn test_create_synthetic_qqsegment_plain_ident() {
+        // Plain identifier should return (None, is_const) — step 7.
+        let src = "signal";
+        let alloc = Allocator::default();
+        let src_arena: &str = alloc.alloc_str(src);
+        let expr = Parser::new(&alloc, src_arena, SourceType::tsx())
+            .parse_expression()
+            .unwrap();
+        // SAFETY: transmute for test lifetime.
+        let expr: Expression<'static> =
+            unsafe { std::mem::transmute::<Expression<'_>, Expression<'static>>(expr) };
+        let alloc2 = Allocator::default();
+        let mut xfrm = make_transform_with_decl_var("signal", false);
+        let (result, _is_const) = xfrm.create_synthetic_qqsegment(&expr, &alloc2);
+        assert!(result.is_none(), "Plain ident should return None (step 7)");
+    }
+
+    #[test]
+    fn test_wrap_prop_value_1_arg() {
+        // `signal.value` → `_wrapProp(signal)` (1 arg for .value)
+        let src = "signal.value";
+        let alloc = Allocator::default();
+        let src_arena: &str = alloc.alloc_str(src);
+        let expr = Parser::new(&alloc, src_arena, SourceType::tsx())
+            .parse_expression()
+            .unwrap();
+        let expr: Expression<'static> =
+            unsafe { std::mem::transmute::<Expression<'_>, Expression<'static>>(expr) };
+        let alloc2 = Allocator::default();
+        let mut xfrm = make_transform_with_decl_var("signal", false);
+        let (result, _is_const) = xfrm.create_synthetic_qqsegment(&expr, &alloc2);
+        assert!(result.is_some(), "signal.value should produce _wrapProp");
+        let code = result.unwrap();
+        assert_eq!(code, "_wrapProp(signal)", "1-arg form for .value, got: {code}");
+        assert!(xfrm.needs_wrap_prop, "needs_wrap_prop should be set");
+    }
+
+    #[test]
+    fn test_wrap_prop_named_2_args() {
+        // `signal.count` → `_wrapProp(signal, "count")` (2 args for non-.value)
+        let src = "signal.count";
+        let alloc = Allocator::default();
+        let src_arena: &str = alloc.alloc_str(src);
+        let expr = Parser::new(&alloc, src_arena, SourceType::tsx())
+            .parse_expression()
+            .unwrap();
+        let expr: Expression<'static> =
+            unsafe { std::mem::transmute::<Expression<'_>, Expression<'static>>(expr) };
+        let alloc2 = Allocator::default();
+        let mut xfrm = make_transform_with_decl_var("signal", false);
+        let (result, _is_const) = xfrm.create_synthetic_qqsegment(&expr, &alloc2);
+        assert!(result.is_some(), "signal.count should produce _wrapProp");
+        let code = result.unwrap();
+        assert_eq!(
+            code,
+            r#"_wrapProp(signal, "count")"#,
+            "2-arg form for non-.value, got: {code}"
+        );
+    }
+
+    #[test]
+    fn test_hoist_fn_signal_dedup() {
+        // Two identical arrows should produce the same _hf<N> reference.
+        let src = "const x = 1;";
+        let alloc = Allocator::default();
+        let src_arena: &str = alloc.alloc_str(src);
+        let ret = Parser::new(&alloc, src_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let arrow = "p0 => p0.color";
+        let call1 = format!("_fnSignal({arrow}, [theme])");
+        let call2 = format!("_fnSignal({arrow}, [theme])");
+
+        let result1 = xfrm.hoist_fn_signal_call(call1, arrow.to_string());
+        let result2 = xfrm.hoist_fn_signal_call(call2, arrow.to_string());
+
+        // Both should reference _hf0
+        assert!(result1.contains("_hf0"), "First call should use _hf0, got: {result1}");
+        assert!(result2.contains("_hf0"), "Second call should also use _hf0 (dedup), got: {result2}");
+        // Only one HoistedConst should have been pushed
+        assert_eq!(
+            xfrm.extra_top_items.len(),
+            1,
+            "Dedup: only one HoistedConst should be pushed, got {}",
+            xfrm.extra_top_items.len()
+        );
+        assert_eq!(xfrm.hoisted_fn_counter, 1, "Counter should be 1 after one unique arrow");
+    }
+
+    #[test]
+    fn test_fn_signal_server_mode() {
+        // Server mode: hoist_fn_signal_call should push two HoistedConsts (_hf0 and _hf0_str).
+        let src = "const x = 1;";
+        let alloc = Allocator::default();
+        let src_arena: &str = alloc.alloc_str(src);
+        let ret = Parser::new(&alloc, src_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: true,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let arrow = "p0 => p0.color";
+        let server_str = "\"p0 => p0.color\"";
+        let call = format!("_fnSignal({arrow}, [theme], {server_str})");
+
+        let result = xfrm.hoist_fn_signal_call(call, arrow.to_string());
+
+        assert!(result.contains("_hf0"), "Should reference _hf0, got: {result}");
+        assert_eq!(xfrm.extra_top_items.len(), 2, "Server mode: _hf0 + _hf0_str, got {}", xfrm.extra_top_items.len());
+        assert_eq!(xfrm.extra_top_items[0].name, "_hf0");
+        assert_eq!(xfrm.extra_top_items[1].name, "_hf0_str");
     }
 }

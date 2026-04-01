@@ -172,56 +172,57 @@ export function compareFixture(
   }
 
   // COMP-04: Parent module comparison
-  // Extract parent sections (metadata === null) from both snapshots
+  // Compare ALL parent sections (metadata === null) by order, not just when exactly 1
   const swcParents = swcSnapshot.sections.filter((s) => s.metadata === null);
   const oxcParents = oxcSnapshot.sections.filter((s) => s.metadata === null);
 
-  const swcParent = swcParents.length === 1 ? swcParents[0] : null;
-  const oxcParent = oxcParents.length === 1 ? oxcParents[0] : null;
+  const parentCount = Math.max(swcParents.length, oxcParents.length);
+  for (let i = 0; i < parentCount; i++) {
+    const swcParent = i < swcParents.length ? swcParents[i] : null;
+    const oxcParent = i < oxcParents.length ? oxcParents[i] : null;
 
-  if (swcParent !== null && oxcParent !== null) {
-    // Both have a parent section — compare normalized code
-    const swcFilepath = getStdinFilepath(swcParent.headerName);
-    const oxcFilepath = getStdinFilepath(oxcParent.headerName);
-    const swcNorm = tryNormalizeCode(swcParent.code, swcFilepath);
-    const oxcNorm = tryNormalizeCode(oxcParent.code, oxcFilepath);
-    if (swcNorm !== oxcNorm) {
+    if (swcParent !== null && oxcParent !== null) {
+      const swcFilepath = getStdinFilepath(swcParent.headerName);
+      const oxcFilepath = getStdinFilepath(oxcParent.headerName);
+      const swcNorm = tryNormalizeCode(swcParent.code, swcFilepath);
+      const oxcNorm = tryNormalizeCode(oxcParent.code, oxcFilepath);
+      if (swcNorm !== oxcNorm) {
+        failures.push({
+          category: FailureCategory.CODE_DIFF,
+          field: "parentModule",
+          expected: swcNorm,
+          actual: oxcNorm,
+        });
+      }
+    } else if (swcParent !== null) {
       failures.push({
         category: FailureCategory.CODE_DIFF,
         field: "parentModule",
-        expected: swcNorm,
-        actual: oxcNorm,
+        expected: swcParent.code,
+        actual: undefined,
+      });
+    } else if (oxcParent !== null) {
+      failures.push({
+        category: FailureCategory.CODE_DIFF,
+        field: "parentModule",
+        expected: undefined,
+        actual: oxcParent.code,
       });
     }
-  } else if (swcParent !== null && oxcParent === null) {
-    // SWC has parent section but OXC does not
-    failures.push({
-      category: FailureCategory.CODE_DIFF,
-      field: "parentModule",
-      expected: swcParent.code,
-      actual: undefined,
-    });
-  } else if (swcParent === null && oxcParent !== null) {
-    // OXC has parent section but SWC does not
-    failures.push({
-      category: FailureCategory.CODE_DIFF,
-      field: "parentModule",
-      expected: undefined,
-      actual: oxcParent.code,
-    });
   }
-  // If neither has a parent section: no failure (intended)
 
   // COMP-05: Structural diagnostics comparison (all fields, sorted)
   const swcDiag = swcSnapshot.diagnostics as Array<{ file?: string; loc?: [number, number] }>;
   const oxcDiag = oxcSnapshot.diagnostics as Array<{ file?: string; loc?: [number, number] }>;
 
-  const swcSorted = [...swcDiag].sort((a, b) =>
-    DIAGNOSTICS_SORT_KEY(a).localeCompare(DIAGNOSTICS_SORT_KEY(b))
-  );
-  const oxcSorted = [...oxcDiag].sort((a, b) =>
-    DIAGNOSTICS_SORT_KEY(a).localeCompare(DIAGNOSTICS_SORT_KEY(b))
-  );
+  // Sort with JSON tiebreaker for diagnostics sharing the same file/loc
+  const stableSort = (arr: typeof swcDiag) =>
+    [...arr].sort((a, b) => {
+      const cmp = DIAGNOSTICS_SORT_KEY(a).localeCompare(DIAGNOSTICS_SORT_KEY(b));
+      return cmp !== 0 ? cmp : JSON.stringify(a).localeCompare(JSON.stringify(b));
+    });
+  const swcSorted = stableSort(swcDiag);
+  const oxcSorted = stableSort(oxcDiag);
 
   if (JSON.stringify(swcSorted) !== JSON.stringify(oxcSorted)) {
     failures.push({

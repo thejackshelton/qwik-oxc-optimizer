@@ -162,6 +162,15 @@ async function main() {
     }
   }
 
+  // Apply --category filter: keep only failures matching the specified category
+  if (args.category !== null) {
+    const categoryFilter = args.category as FailureCategoryValue;
+    for (const fixture of fixtures) {
+      fixture.failures = fixture.failures.filter((f) => f.category === categoryFilter);
+      fixture.pass = fixture.failures.length === 0;
+    }
+  }
+
   // Build HarnessOutput
   const byCategory = buildEmptyByCategory();
 
@@ -215,7 +224,13 @@ async function main() {
 
         const config = fixtureConfigs[fixture.name];
         const scope = config?.scope ?? null;
-        const firstInput = config?.inputs?.[0]?.path?.replace(/\\/g, "/");
+        // Build origin→inputPath lookup for per-segment relPath resolution
+        const inputByOrigin = new Map<string, string>();
+        if (config?.inputs) {
+          for (const input of config.inputs) {
+            inputByOrigin.set(input.path.replace(/\\/g, "/"), input.path);
+          }
+        }
 
         const entries: StepTraceEntry["failures"] = [];
         for (const failure of fixture.failures) {
@@ -231,12 +246,16 @@ async function main() {
             return false;
           });
 
+          // Use the segment's own origin for relPath (not the first input)
+          const segOrigin = matchedPair?.swcSection.metadata?.origin;
+          const relPath = segOrigin ? (inputByOrigin.get(segOrigin) ?? segOrigin) : undefined;
+
           entries.push({
             failure,
             swcMeta: matchedPair?.swcSection.metadata ?? null,
             oxcMeta: matchedPair?.oxcSection.metadata ?? null,
             scope,
-            relPath: firstInput,
+            relPath,
           });
         }
 

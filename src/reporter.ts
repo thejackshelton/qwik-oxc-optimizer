@@ -124,9 +124,19 @@ export function formatTerminalReport(
  */
 export function formatStableJson(output: HarnessOutput): string {
   // Clone and sort fixtures by name
+  // Enforce canonical byCategory key order (FailureCategory enum order)
+  const canonicalByCategory: Record<string, number> = {};
+  for (const cat of Object.values(FailureCategory) as FailureCategoryValue[]) {
+    canonicalByCategory[cat] = output.summary.byCategory[cat] ?? 0;
+  }
+
   const sortedOutput: HarnessOutput = {
     ...output,
     fixtures: [...output.fixtures].sort((a, b) => a.name.localeCompare(b.name)),
+    summary: {
+      ...output.summary,
+      byCategory: canonicalByCategory,
+    },
   };
 
   return JSON.stringify(sortedOutput, null, 2);

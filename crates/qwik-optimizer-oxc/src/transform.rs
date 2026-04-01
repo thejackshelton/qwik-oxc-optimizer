@@ -469,6 +469,23 @@ pub(crate) struct QwikTransform {
     /// Stack of decl_stack depths at component$ boundaries.
     /// Used by `compute_hoist_target_depth` to find the component top scope.
     pub(crate) component_depths: Vec<usize>,
+
+    // ---- Phase 14: JSX transform state -------------------------------------
+
+    /// Monotonic counter for unique JSX key generation.
+    pub(crate) jsx_key_counter: u32,
+
+    /// First two characters of the file's base64url hash for JSX key prefix.
+    pub(crate) jsx_file_hash_prefix: String,
+
+    /// Whether any non-immutable component is present (set per element).
+    pub(crate) jsx_mutable: bool,
+
+    /// True when processing the outermost JSX node of a subtree.
+    pub(crate) root_jsx_mode: bool,
+
+    /// Set of imported component identifiers with stable identity (from component$/component imports).
+    pub(crate) immutable_function_cmp: HashSet<String>,
 }
 
 // ---------------------------------------------------------------------------
@@ -533,6 +550,24 @@ impl QwikTransform {
         let is_inline_strategy = entry_strategy::is_inline(options.entry_strategy);
         let entry_policy = entry_strategy::parse_entry_strategy(options.entry_strategy);
 
+        // --- JSX file hash prefix (first 2 chars of file hash) ---
+        let jsx_file_hash_prefix = {
+            let h = hash::compute_segment_hash(options.scope, options.rel_path, "");
+            if h.len() >= 2 {
+                h[..2].to_string()
+            } else {
+                h
+            }
+        };
+
+        // --- Immutable component identifiers from imports ---
+        let mut immutable_function_cmp: HashSet<String> = HashSet::new();
+        for (local, import) in &collect.imports {
+            if import.specifier == "component$" || import.specifier == "component" {
+                immutable_function_cmp.insert(local.clone());
+            }
+        }
+
         Self {
             marker_functions,
             qsegment_fn,
@@ -572,6 +607,12 @@ impl QwikTransform {
             hoisted_qrls: Vec::new(),
             iteration_var_stack: Vec::new(),
             component_depths: Vec::new(),
+            // Phase 14: JSX transform state
+            jsx_key_counter: 0,
+            jsx_file_hash_prefix,
+            jsx_mutable: false,
+            root_jsx_mode: true,
+            immutable_function_cmp,
         }
     }
 
@@ -615,6 +656,96 @@ impl QwikTransform {
             .collect();
         result.sort();
         result
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 14: JSX utility methods
+    // -----------------------------------------------------------------------
+
+    /// Convert a camelCase string to kebab-case.
+    ///
+    /// Each ASCII uppercase character becomes `-` + its lowercase version,
+    /// EXCEPT for the very first character (no leading dash).
+    /// No special-casing for acronyms: `DOM` -> `d-o-m`.
+    pub(crate) fn camel_to_kebab(s: &str) -> String {
+        let mut result = String::with_capacity(s.len() + 4);
+        for (i, c) in s.chars().enumerate() {
+            if c.is_ascii_uppercase() {
+                if i != 0 {
+                    result.push('-');
+                }
+                result.push(c.to_ascii_lowercase());
+            } else {
+                result.push(c);
+            }
+        }
+        result
+    }
+
+    /// Translate a JSX event prop name to its HTML attribute equivalent.
+    ///
+    /// Handles three scopes in order:
+    /// - `window:on<Event>$` → `q-w:<event>`
+    /// - `document:on<Event>$` → `q-d:<event>`
+    /// - `on<Event>$` → `q-e:<event>`
+    ///
+    /// The event name (after stripping prefix and trailing `$`) is converted to
+    /// kebab-case via [`camel_to_kebab`], UNLESS it starts with `-` in which case
+    /// the case is preserved (the leading `-` is removed).
+    ///
+    /// Returns `None` if the prop name doesn't match any event pattern.
+    pub(crate) fn jsx_event_to_html_attribute(prop_name: &str) -> Option<String> {
+        let (prefix, event_body) = if let Some(rest) = prop_name.strip_prefix("window:on") {
+            ("q-w:", rest)
+        } else if let Some(rest) = prop_name.strip_prefix("document:on") {
+            ("q-d:", rest)
+        } else if let Some(rest) = prop_name.strip_prefix("on") {
+            ("q-e:", rest)
+        } else {
+            return None;
+        };
+
+        // Must end with `$`
+        let event_name = event_body.strip_suffix('$')?;
+
+        // Case-sensitive events start with `-` — remove the `-` and preserve case
+        let converted = if let Some(case_sensitive) = event_name.strip_prefix('-') {
+            case_sensitive.to_string()
+        } else {
+            Self::camel_to_kebab(event_name)
+        };
+
+        Some(format!("{prefix}{converted}"))
+    }
+
+    /// Normalize JSX text content, collapsing whitespace across newlines.
+    ///
+    /// Algorithm:
+    /// 1. Split by `\n`
+    /// 2. Trim each line (both ends)
+    /// 3. Filter out empty lines
+    /// 4. Join with a single space
+    ///
+    /// This matches SWC's JSX text normalization behavior.
+    pub(crate) fn normalize_jsx_text(raw: &str) -> String {
+        if raw.is_empty() {
+            return String::new();
+        }
+        raw.split('\n')
+            .map(|line| line.trim())
+            .filter(|line| !line.is_empty())
+            .collect::<Vec<_>>()
+            .join(" ")
+    }
+
+    /// Generate a unique JSX key for the current element.
+    ///
+    /// Format: `<2-char-file-hash-prefix>_<monotonic-counter>`.
+    /// Increments `jsx_key_counter` after each call.
+    pub(crate) fn gen_jsx_key(&mut self) -> String {
+        let key = format!("{}_{}", self.jsx_file_hash_prefix, self.jsx_key_counter);
+        self.jsx_key_counter += 1;
+        key
     }
 
     // -----------------------------------------------------------------------
@@ -3785,6 +3916,160 @@ export const App = component$(() => {
         );
         // The output should not be empty.
         assert!(!code.is_empty(), "output should be non-empty");
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 14-01: JSX utility methods tests
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn test_camel_to_kebab_basic() {
+        assert_eq!(QwikTransform::camel_to_kebab("onClick"), "on-click");
+    }
+
+    #[test]
+    fn test_camel_to_kebab_key_down() {
+        assert_eq!(QwikTransform::camel_to_kebab("keyDown"), "key-down");
+    }
+
+    #[test]
+    fn test_camel_to_kebab_no_uppercase() {
+        assert_eq!(QwikTransform::camel_to_kebab("click"), "click");
+    }
+
+    #[test]
+    fn test_camel_to_kebab_consecutive_uppercase() {
+        // DOM -> d-o-m  (no special-casing for acronyms per SPEC, no leading dash)
+        assert_eq!(QwikTransform::camel_to_kebab("DOM"), "d-o-m");
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_basic() {
+        assert_eq!(
+            QwikTransform::jsx_event_to_html_attribute("onClick$"),
+            Some("q-e:click".to_string())
+        );
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_key_down() {
+        assert_eq!(
+            QwikTransform::jsx_event_to_html_attribute("onKeyDown$"),
+            Some("q-e:key-down".to_string())
+        );
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_window() {
+        assert_eq!(
+            QwikTransform::jsx_event_to_html_attribute("window:onScroll$"),
+            Some("q-w:scroll".to_string())
+        );
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_document() {
+        assert_eq!(
+            QwikTransform::jsx_event_to_html_attribute("document:onLoad$"),
+            Some("q-d:load".to_string())
+        );
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_case_sensitive() {
+        // on-customEvent$ -> q-e:customEvent (starts with -, preserve case)
+        assert_eq!(
+            QwikTransform::jsx_event_to_html_attribute("on-customEvent$"),
+            Some("q-e:customEvent".to_string())
+        );
+    }
+
+    #[test]
+    fn test_jsx_event_to_html_attribute_not_event() {
+        assert_eq!(QwikTransform::jsx_event_to_html_attribute("notAnEvent"), None);
+    }
+
+    #[test]
+    fn test_normalize_jsx_text_basic() {
+        assert_eq!(QwikTransform::normalize_jsx_text("  hello\n  world  "), "hello world");
+    }
+
+    #[test]
+    fn test_normalize_jsx_text_trim_newlines() {
+        assert_eq!(QwikTransform::normalize_jsx_text("\n  text\n"), "text");
+    }
+
+    #[test]
+    fn test_normalize_jsx_text_empty() {
+        assert_eq!(QwikTransform::normalize_jsx_text(""), "");
+    }
+
+    #[test]
+    fn test_gen_jsx_key_format() {
+        let allocator = Allocator::default();
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const A = component$(() => {});"#;
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(ret.program)
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let k0 = xfrm.gen_jsx_key();
+        let k1 = xfrm.gen_jsx_key();
+        // Format: <2-char-prefix>_<counter>
+        assert!(k0.contains('_'), "key should contain underscore: {k0}");
+        let parts0: Vec<&str> = k0.splitn(2, '_').collect();
+        assert_eq!(parts0[0].len(), 2, "prefix should be 2 chars: {k0}");
+        assert_eq!(parts0[1], "0", "first key counter should be 0: {k0}");
+        let parts1: Vec<&str> = k1.splitn(2, '_').collect();
+        assert_eq!(parts1[1], "1", "second key counter should be 1: {k1}");
+    }
+
+    #[test]
+    fn test_jsx_fields_initialized() {
+        let allocator = Allocator::default();
+        let src = r#"import { component$ } from "@qwik.dev/core";"#;
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(ret.program)
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let xfrm = QwikTransform::new(opts);
+        assert_eq!(xfrm.jsx_key_counter, 0, "jsx_key_counter should start at 0");
+        assert_eq!(xfrm.jsx_file_hash_prefix.len(), 2, "jsx_file_hash_prefix should be 2 chars");
+        assert!(!xfrm.jsx_mutable, "jsx_mutable should start false");
+        assert!(xfrm.root_jsx_mode, "root_jsx_mode should start true");
     }
 
     // Test: exit_program drain order — top items prepended, bottom appended.

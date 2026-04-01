@@ -47,6 +47,9 @@ base64 = "0.22"
 # std::collections::hash_map::DefaultHasher uses a randomized seed since Rust 1.36.
 siphasher = "1"
 
+# Ordered maps with stable insertion order (used by GlobalCollect).
+indexmap = "2"
+
 # Relative path computation for import paths between segments.
 pathdiff = "0.2"
 

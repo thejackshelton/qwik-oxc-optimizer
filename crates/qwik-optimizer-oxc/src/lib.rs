@@ -6,6 +6,7 @@
 
 pub mod hash;
 
+mod collector;
 mod errors;
 pub(crate) mod emit;
 mod filter_exports;

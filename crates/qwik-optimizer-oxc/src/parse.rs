@@ -154,8 +154,23 @@ pub(crate) fn output_extension(
             }
         }
         "js" => "js",
-        "mjs" => "js", // SWC normalizes .mjs to "js"
-        "cjs" => "js", // SWC normalizes .cjs to "js"
+        "mjs" => {
+            // SWC normalizes .mjs to "js" only when transpiling (ts or jsx).
+            // Without transpilation, preserve "mjs" (e.g. no-op passthrough of .mjs libs).
+            if transpile_ts || transpile_jsx {
+                "js"
+            } else {
+                "mjs"
+            }
+        }
+        "cjs" => {
+            // SWC normalizes .cjs to "js" only when transpiling.
+            if transpile_ts || transpile_jsx {
+                "js"
+            } else {
+                "cjs"
+            }
+        }
         _ => "js", // unknown: default to js
     }
 }
@@ -434,16 +449,30 @@ const x = $(() => {
     }
 
     #[test]
-    fn test_output_extension_mjs_normalizes_to_js() {
-        // SWC normalizes .mjs output extension to "js" — OXC must match
+    fn test_output_extension_mjs_transpile_normalizes_to_js() {
+        // SWC normalizes .mjs to "js" when transpiling (ts or jsx active)
         assert_eq!(output_extension("lib.mjs", true, true), "js");
-        assert_eq!(output_extension("lib.mjs", false, false), "js");
+        assert_eq!(output_extension("lib.mjs", true, false), "js");
+        assert_eq!(output_extension("lib.mjs", false, true), "js");
     }
 
     #[test]
-    fn test_output_extension_cjs_normalizes_to_js() {
-        // SWC normalizes .cjs output extension to "js" — OXC must match
+    fn test_output_extension_mjs_no_transpile_preserves() {
+        // Without transpilation, .mjs stays "mjs" (e.g. passthrough of .mjs libs in no-transpile mode)
+        assert_eq!(output_extension("lib.mjs", false, false), "mjs");
+    }
+
+    #[test]
+    fn test_output_extension_cjs_transpile_normalizes_to_js() {
+        // SWC normalizes .cjs to "js" when transpiling
         assert_eq!(output_extension("lib.cjs", true, true), "js");
-        assert_eq!(output_extension("lib.cjs", false, false), "js");
+        assert_eq!(output_extension("lib.cjs", true, false), "js");
+        assert_eq!(output_extension("lib.cjs", false, true), "js");
+    }
+
+    #[test]
+    fn test_output_extension_cjs_no_transpile_preserves() {
+        // Without transpilation, .cjs stays "cjs"
+        assert_eq!(output_extension("lib.cjs", false, false), "cjs");
     }
 }

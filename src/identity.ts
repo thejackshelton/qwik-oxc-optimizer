@@ -209,34 +209,62 @@ export function recomputeCanonicalFilename(
 // ---------------------------------------------------------------------------
 
 /**
- * Validate that a segment's stored name (symbol name) follows one of two
- * spec conventions:
- *   1. Development: name = "{prePrefix}_{hash}"
- *   2. Production/mangled: name = "s_{hash}"
+ * Validate that a segment's stored name (symbol name) follows the correct
+ * convention for its emit mode:
+ *   - "Prod" mode: name = "s_{hash}" (mangled)
+ *   - Other modes (Test/Dev/Lib): name = "{prePrefix}_{hash}" (development)
+ *
+ * When mode is not provided, accepts either format.
  *
  * Returns null on success, or a descriptive error string on failure.
  */
 export function validateName(
   metadata: SegmentMetadata,
-  origin: string
+  origin: string,
+  mode?: string | null
 ): string | null {
-  // Production/mangled names use "s_{hash}" format
   const mangledName = `s_${metadata.hash}`;
-  if (metadata.name === mangledName) {
+  const decomposed = decomposeDisplayName(metadata.displayName, origin);
+  const devName = decomposed
+    ? `${decomposed.prePrefix}_${metadata.hash}`
+    : null;
+
+  if (mode === "Prod") {
+    // Prod mode: must use mangled format
+    if (metadata.name !== mangledName) {
+      return (
+        `name mismatch (Prod mode): stored "${metadata.name}" vs expected ` +
+        `"${mangledName}" (hash: "${metadata.hash}")`
+      );
+    }
     return null;
   }
 
-  // Development names use "{prePrefix}_{hash}" format
-  const decomposed = decomposeDisplayName(metadata.displayName, origin);
+  if (mode && mode !== "Prod") {
+    // Non-prod mode: must use dev format
+    if (decomposed === null) {
+      return `cannot validate name: displayName decomposition failed for "${metadata.displayName}"`;
+    }
+    if (metadata.name !== devName) {
+      return (
+        `name mismatch (${mode} mode): stored "${metadata.name}" vs expected ` +
+        `"${devName}" (prePrefix: "${decomposed.prePrefix}", hash: "${metadata.hash}")`
+      );
+    }
+    return null;
+  }
+
+  // No mode provided: accept either format
+  if (metadata.name === mangledName) {
+    return null;
+  }
   if (decomposed === null) {
     return `cannot validate name: displayName decomposition failed for "${metadata.displayName}"`;
   }
-
-  const expectedName = `${decomposed.prePrefix}_${metadata.hash}`;
-  if (metadata.name !== expectedName) {
+  if (metadata.name !== devName) {
     return (
       `name mismatch: stored "${metadata.name}" vs expected ` +
-      `"${expectedName}" or "${mangledName}" ` +
+      `"${devName}" or "${mangledName}" ` +
       `(prePrefix: "${decomposed.prePrefix}", hash: "${metadata.hash}")`
     );
   }

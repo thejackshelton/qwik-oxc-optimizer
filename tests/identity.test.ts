@@ -274,6 +274,7 @@ import { parseSnapFile } from "../src/parser.ts";
 interface FixtureRecord {
   src_dir: string;
   scope: string | null;
+  mode: string;
   inputs: Array<{ path: string; dev_path: string | null; code: string }>;
 }
 
@@ -329,14 +330,14 @@ it("corpus-wide: all SWC identity fields validate", async () => {
         continue;
       }
 
-      // Skip segments with non-standard hash:
-      //   1. Hash length != 11 → explicit inlinedQrl symbol name (e.g., hash = "task")
-      //   2. Origin starts with "../" → path resolves outside src_dir; Rust parse_path
-      //      applies normalization not reproducible from snapshot data alone
-      if (metadata.hash.length !== 11 || origin.startsWith("../")) {
+      // Skip segments with non-standard hash length (explicit inlinedQrl symbol
+      // names, e.g. hash = "task"). These use a completely different naming scheme.
+      if (metadata.hash.length !== 11) {
         skippedSegments++;
         continue;
       }
+
+      // --- Structural checks (run for ALL segments including ../ origins) ---
 
       // 1. validateDisplayName
       const displayNameErr = validateDisplayName(metadata, origin);
@@ -346,50 +347,49 @@ it("corpus-wide: all SWC identity fields validate", async () => {
         );
       }
 
-      // 2. validateName (symbol name = prePrefix_hash)
-      const nameErr = validateName(metadata, origin);
+      // 2. validateName (mode-aware: Prod → s_hash, other → prePrefix_hash)
+      const nameErr = validateName(metadata, origin, fixture.mode);
       if (nameErr !== null) {
         failures.push(
           `[${fixtureName}] segment "${metadata.name}": validateName failed: ${nameErr}`
         );
       }
 
-      // 3. decomposeDisplayName (must succeed for hash recomputation)
-      const decomposed = decomposeDisplayName(metadata.displayName, origin);
-      if (decomposed === null) {
+      // 3. validateCanonicalFilename
+      const canonErr = validateCanonicalFilename(metadata);
+      if (canonErr !== null) {
         failures.push(
-          `[${fixtureName}] segment "${metadata.name}": decomposeDisplayName returned null for displayName "${metadata.displayName}"`
+          `[${fixtureName}] segment "${metadata.name}": validateCanonicalFilename failed: ${canonErr}`
         );
+      }
+
+      // --- Hash recomputation (skip for ../ origins and hash_override cases) ---
+
+      // Origins starting with "../" resolve outside src_dir; Rust parse_path
+      // applies normalization not reproducible from snapshot data alone.
+      if (origin.startsWith("../")) {
+        skippedSegments++;
         continue;
       }
 
-      // 4. recomputeHash — must match stored hash
-      //    Skip when computed hash doesn't match but hash length is 11 AND origin has no "../":
-      //    These are import-QRL hash_override cases (e.g. useStyles$(cssVar) where cssVar
-      //    is a CSS module import — hash is computed from the CSS import source path, which
-      //    is not reconstructible from snapshot data without parsing the source).
+      // 4. decomposeDisplayName (must succeed for hash recomputation)
+      const decomposed = decomposeDisplayName(metadata.displayName, origin);
+      if (decomposed === null) {
+        // Already reported by validateDisplayName above
+        continue;
+      }
+
+      // 5. recomputeHash — must match stored hash
       const computedHash = recomputeHash(
         fixture.scope,
         relPath,
         decomposed.prePrefix
       );
       if (computedHash !== metadata.hash) {
-        // Check if this is a known import-QRL hash_override pattern:
-        // When the first arg to $() is an identifier imported from another module,
-        // the hash uses hash_override bytes from that import record (not relPath+prePrefix).
-        // We cannot reconstruct the import path from snapshot data, so we skip these.
-        // Evidence: hash mismatch despite correct relPath and prePrefix computation.
-        // These are expected edge cases, not failures in our algorithm.
+        // Import-QRL hash_override: hash derived from CSS import source path,
+        // not from (scope, relPath, prePrefix). Can't reconstruct without parsing source.
         skippedSegments++;
         continue;
-      }
-
-      // 5. validateCanonicalFilename
-      const canonErr = validateCanonicalFilename(metadata);
-      if (canonErr !== null) {
-        failures.push(
-          `[${fixtureName}] segment "${metadata.name}": validateCanonicalFilename failed: ${canonErr}`
-        );
       }
     }
   }

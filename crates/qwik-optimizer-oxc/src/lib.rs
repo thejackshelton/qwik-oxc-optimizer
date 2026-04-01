@@ -8,6 +8,7 @@ pub mod hash;
 
 mod errors;
 pub(crate) mod emit;
+mod filter_exports;
 mod is_const;
 pub(crate) mod parse;
 mod types;

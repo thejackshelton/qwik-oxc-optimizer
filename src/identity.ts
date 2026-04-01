@@ -67,7 +67,8 @@ export function decomposeDisplayName(
   displayName: string,
   origin: string
 ): { fileNamePrefix: string; prePrefix: string } | null {
-  const fileNamePrefix = path.basename(origin); // raw basename with extension
+  // Normalize backslashes so POSIX path.basename handles Windows-style paths
+  const fileNamePrefix = path.basename(origin.replace(/\\/g, "/")); // raw basename with extension
   const expectedStart = fileNamePrefix + "_";
   if (!displayName.startsWith(expectedStart)) {
     return null;
@@ -164,7 +165,7 @@ export function validateDisplayName(
 ): string | null {
   const decomposed = decomposeDisplayName(metadata.displayName, origin);
   if (decomposed === null) {
-    const expectedPrefix = path.basename(origin) + "_";
+    const expectedPrefix = path.basename(origin.replace(/\\/g, "/")) + "_";
     return (
       `displayName "${metadata.displayName}" does not start with expected ` +
       `file prefix "${expectedPrefix}" (origin: "${origin}")`

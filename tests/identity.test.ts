@@ -276,9 +276,12 @@ it("corpus-wide: all SWC identity fields validate", async () => {
     }
 
     // Build a lookup: origin path → input path (for relPath)
+    // Normalize backslashes to forward slashes in keys so that
+    // fixture.inputs paths (may use \\ on Windows fixtures like
+    // support_windows_paths) match snap origin paths (always /).
     const inputByOrigin = new Map<string, string>();
     for (const input of fixture.inputs) {
-      inputByOrigin.set(input.path, input.path);
+      inputByOrigin.set(input.path.replace(/\\/g, "/"), input.path);
     }
 
     for (const section of snapshot.sections) {
@@ -358,6 +361,18 @@ it("corpus-wide: all SWC identity fields validate", async () => {
       `${skippedSegments} skipped (edge cases), ` +
       `${failures.length} failures`
   );
+
+  // Guard against regressions silently increasing skip count.
+  // Baseline: 32 skipped (known edge cases). Allow small margin for future
+  // fixtures but fail loudly if recomputeHash regresses and starts skipping
+  // segments that previously validated.
+  const MAX_EXPECTED_SKIPS = 35;
+  if (skippedSegments > MAX_EXPECTED_SKIPS) {
+    throw new Error(
+      `Skip count regression: ${skippedSegments} segments skipped (max expected: ${MAX_EXPECTED_SKIPS}). ` +
+        `This likely means recomputeHash() is producing wrong results for segments that previously validated.`
+    );
+  }
 
   if (failures.length > 0) {
     const summary = [

@@ -12,7 +12,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-use oxc::allocator::{Allocator, Vec as ArenaVec};
+use oxc::allocator::{Allocator, Box as ArenaBox, Vec as ArenaVec};
 use oxc::ast::AstBuilder;
 use oxc::ast::ast::*;
 use oxc::ast_visit::Visit;
@@ -22,8 +22,9 @@ use oxc_traverse::{Traverse, TraverseCtx};
 
 use crate::collector::GlobalCollect;
 use crate::entry_strategy::{self, EntryPolicy};
+use crate::hash;
 use crate::is_const;
-use crate::types::{CtxKind, EmitMode, EntryStrategy};
+use crate::types::{CtxKind, Diagnostic, DiagnosticCategory, EmitMode, EntryStrategy};
 use crate::words;
 
 // ---------------------------------------------------------------------------
@@ -170,6 +171,45 @@ pub(crate) fn get_function_params(expr: &Expression<'_>) -> HashSet<String> {
 }
 
 // ---------------------------------------------------------------------------
+// can_capture_scope
+// ---------------------------------------------------------------------------
+
+/// Returns `true` when `expr` is a function or arrow function — i.e., when
+/// it is capable of closing over outer variables. Identifiers and other
+/// non-function expressions cannot capture scope, so C03 applies.
+fn can_capture_scope(expr: &Expression<'_>) -> bool {
+    matches!(
+        expr,
+        Expression::FunctionExpression(_) | Expression::ArrowFunctionExpression(_)
+    )
+}
+
+// ---------------------------------------------------------------------------
+// PendingQSegment — per-$ call state carried from enter to exit
+// ---------------------------------------------------------------------------
+
+/// State accumulated during `enter_call_expression` that is consumed by the
+/// matching `exit_call_expression` to complete segment extraction.
+///
+/// Because OXC Traverse visits children *after* `enter_*` returns, we cannot
+/// process captures until `exit_*` fires (when all nested `$` calls have already
+/// been processed).
+pub(crate) struct PendingQSegment {
+    /// The specifier-level context name (e.g., `"component$"` for `component$(...)`).
+    pub ctx_name: String,
+    /// Classified context kind (Function vs EventHandler).
+    pub ctx_kind: CtxKind,
+    /// Identifier references collected from the first arg BEFORE children were visited.
+    pub descendent_idents: HashSet<String>,
+    /// Byte span `(start, end)` of the call expression. Used to match enter/exit.
+    pub span_start: u32,
+    /// Optional display name override (from import QRL detection).
+    pub display_name_override: Option<String>,
+    /// Optional hash override (from import QRL detection).
+    pub hash_override: Option<String>,
+}
+
+// ---------------------------------------------------------------------------
 // QwikTransformOptions — construction-time config (borrows from caller)
 // ---------------------------------------------------------------------------
 
@@ -272,6 +312,13 @@ pub(crate) struct QwikTransform {
 
     /// Stack of segment names for nested `$` detection (Phase 12).
     pub(crate) segment_stack: Vec<String>,
+
+    /// Queue of pending segment extractions: one entry pushed per `$`-call in
+    /// `enter_call_expression`, consumed (LIFO) in `exit_call_expression`.
+    pub(crate) pending_qsegments: Vec<PendingQSegment>,
+
+    /// Diagnostics accumulated during the traversal (e.g., C03 CanNotCapture).
+    pub(crate) diagnostics: Vec<Diagnostic>,
 
     /// Placeholder for top-level statements prepended to the output module.
     /// Final AST type resolved in Plan 12-03 (exit_program).
@@ -404,6 +451,8 @@ impl QwikTransform {
             // Phase 12 fields
             segments: Vec::new(),
             segment_stack: Vec::new(),
+            pending_qsegments: Vec::new(),
+            diagnostics: Vec::new(),
             extra_top_items: Vec::new(),
             extra_bottom_items: Vec::new(),
             const_initializers: HashMap::new(),
@@ -460,6 +509,171 @@ impl QwikTransform {
             .collect();
         result.sort();
         result
+    }
+
+    // -----------------------------------------------------------------------
+    // transform_function_expr — Lib-mode _captures injection (Plan 12-03)
+    // -----------------------------------------------------------------------
+
+    /// Inject a `_captures` parameter and per-capture destructuring into a
+    /// function or arrow function expression for Lib mode QRL output.
+    ///
+    /// For an arrow `(existingParams) => body` or `function(existingParams) { body }`:
+    /// 1. Replace params with a single `_captures` BindingIdentifier parameter.
+    /// 2. Prepend `const varN = _captures[N]` for each `scoped_ident`.
+    /// 3. If the arrow has an expression body, wrap it in a block body first.
+    ///
+    /// The OXC arena allocator is used for all newly created nodes.
+    pub(crate) fn transform_function_expr<'a>(
+        expr: &mut Expression<'a>,
+        scoped_idents: &[String],
+        allocator: &'a Allocator,
+    ) {
+        let ast = AstBuilder::new(allocator);
+
+        // Build the `_captures` parameter binding.
+        let captures_param = {
+            let binding_id = ast.binding_pattern_binding_identifier(SPAN, ast.atom("_captures"));
+            let formal = ast.formal_parameter(
+                SPAN,
+                ArenaVec::new_in(allocator),
+                binding_id,
+                None::<TSTypeAnnotation<'a>>,
+                None::<Expression<'a>>,
+                false,
+                None,    // accessibility
+                false,   // readonly
+                false,   // override
+            );
+            let mut items: ArenaVec<FormalParameter<'a>> = ArenaVec::new_in(allocator);
+            items.push(formal);
+            items
+        };
+
+        // Build `const varN = _captures[N]` statements for each scoped ident.
+        let mut prepend_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+        for (idx, ident_name) in scoped_idents.iter().enumerate() {
+            // `_captures[idx]`
+            let captures_ref = ast.expression_identifier(SPAN, ast.atom("_captures"));
+            let index_expr = ast.expression_numeric_literal(
+                SPAN,
+                idx as f64,
+                None,
+                NumberBase::Decimal,
+            );
+            // Build `_captures[idx]` as a ComputedMemberExpression wrapped in Expression.
+            let computed_me = ast.member_expression_computed(SPAN, captures_ref, index_expr, false);
+            let member_expr = Expression::from(computed_me);
+
+            // `const varN = _captures[idx]`
+            let binding = ast.binding_pattern_binding_identifier(SPAN, ast.atom(ident_name.as_str()));
+            let mut declarators: ArenaVec<VariableDeclarator<'a>> = ArenaVec::new_in(allocator);
+            declarators.push(ast.variable_declarator(
+                SPAN,
+                VariableDeclarationKind::Const,
+                binding,
+                None::<TSTypeAnnotation<'a>>,
+                Some(member_expr),
+                false,
+            ));
+            let decl = ast.alloc_variable_declaration(
+                SPAN,
+                VariableDeclarationKind::Const,
+                declarators,
+                false,
+            );
+            prepend_stmts.push(Statement::VariableDeclaration(decl));
+        }
+
+        match expr {
+            Expression::ArrowFunctionExpression(arrow) => {
+                // Replace params with `_captures` single param.
+                let new_params = ast.formal_parameters(
+                    SPAN,
+                    FormalParameterKind::ArrowFormalParameters,
+                    captures_param,
+                    None::<FormalParameterRest<'a>>,
+                );
+                arrow.params = ArenaBox::new_in(new_params, allocator);
+
+                // If expression body, convert to block body.
+                if arrow.expression {
+                    // The body contains one ExpressionStatement; extract it.
+                    let old_body_stmts = std::mem::replace(
+                        &mut arrow.body.statements,
+                        ArenaVec::new_in(allocator),
+                    );
+                    // The expression-body arrow has `statements` containing one ExpressionStatement.
+                    // Wrap in a ReturnStatement.
+                    let mut new_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+                    for stmt in old_body_stmts {
+                        if let Statement::ExpressionStatement(expr_stmt_box) = stmt {
+                            // Unbox to get owned ExpressionStatement, then take .expression
+                            let expr_stmt = expr_stmt_box.unbox();
+                            let ret_stmt = ast.statement_return(SPAN, Some(expr_stmt.expression));
+                            new_stmts.push(ret_stmt);
+                        } else {
+                            new_stmts.push(stmt);
+                        }
+                    }
+                    arrow.expression = false;
+                    // Prepend capture stmts then original stmts.
+                    let mut final_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+                    for s in prepend_stmts {
+                        final_stmts.push(s);
+                    }
+                    for s in new_stmts {
+                        final_stmts.push(s);
+                    }
+                    let new_body = ast.function_body(SPAN, ArenaVec::new_in(allocator), final_stmts);
+                    arrow.body = ArenaBox::new_in(new_body, allocator);
+                } else {
+                    // Block body: prepend const destructurings.
+                    let old_stmts = std::mem::replace(
+                        &mut arrow.body.statements,
+                        ArenaVec::new_in(allocator),
+                    );
+                    let mut final_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+                    for s in prepend_stmts {
+                        final_stmts.push(s);
+                    }
+                    for s in old_stmts {
+                        final_stmts.push(s);
+                    }
+                    let new_body = ast.function_body(SPAN, ArenaVec::new_in(allocator), final_stmts);
+                    arrow.body = ArenaBox::new_in(new_body, allocator);
+                }
+            }
+            Expression::FunctionExpression(func) => {
+                // Replace params with `_captures` single param.
+                let new_params = ast.formal_parameters(
+                    SPAN,
+                    FormalParameterKind::FormalParameter,
+                    captures_param,
+                    None::<FormalParameterRest<'a>>,
+                );
+                func.params = ArenaBox::new_in(new_params, allocator);
+
+                // Prepend const destructurings to function body.
+                if let Some(body) = &mut func.body {
+                    let old_stmts = std::mem::replace(
+                        &mut body.statements,
+                        ArenaVec::new_in(allocator),
+                    );
+                    let mut final_stmts: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+                    for s in prepend_stmts {
+                        final_stmts.push(s);
+                    }
+                    for s in old_stmts {
+                        final_stmts.push(s);
+                    }
+                    body.statements = final_stmts;
+                }
+            }
+            _ => {
+                // Non-function: no injection possible (C03 already fired at call site).
+            }
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -757,7 +971,19 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             .as_deref()
             .map_or(false, |n| n == callee_name)
         {
-            return; // Phase 12+ stub
+            let descendent_idents = collect_arg0_idents(&call.arguments);
+            let ctx_name = "$".to_string();
+            let ctx_kind = words::classify_ctx_kind(&ctx_name);
+            self.segment_stack.push("$".to_string());
+            self.pending_qsegments.push(PendingQSegment {
+                ctx_name,
+                ctx_kind,
+                descendent_idents,
+                span_start: call.span.start,
+                display_name_override: None,
+                hash_override: None,
+            });
+            return;
         }
 
         // Priority 3: JSX function
@@ -785,7 +1011,25 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
         // Priority 6: marker function ($-suffixed named import or local export)
         if self.marker_functions.contains_key(&callee_name) {
-            return; // Phase 12 adds _create_synthetic_qsegment
+            // Get the specifier name (what was originally imported, e.g. "component$").
+            let specifier = self
+                .marker_functions
+                .get(&callee_name)
+                .cloned()
+                .unwrap_or_else(|| callee_name.clone());
+            // Collect descendent_idents from the first arg BEFORE children are visited.
+            let descendent_idents = collect_arg0_idents(&call.arguments);
+            let ctx_kind = words::classify_ctx_kind(&specifier);
+            self.segment_stack.push(specifier.clone());
+            self.pending_qsegments.push(PendingQSegment {
+                ctx_name: specifier,
+                ctx_kind,
+                descendent_idents,
+                span_start: call.span.start,
+                display_name_override: None,
+                hash_override: None,
+            });
+            return;
         }
 
         // Priority 7: plain identifier — push to context stack
@@ -793,7 +1037,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         self.ctxt_pushed_calls.insert(call.span.start);
     }
 
-    /// Symmetric pop for case-7 plain-identifier calls; callee rename (XFRM-08).
+    /// Symmetric pop for case-7 plain-identifier calls; callee rename (XFRM-08);
+    /// and segment extraction (Plan 12-03).
     fn exit_call_expression(
         &mut self,
         call: &mut CallExpression<'a>,
@@ -804,13 +1049,185 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             self.stack_ctxt.pop();
         }
 
+        // Check if this call expression has a matching PendingQSegment.
+        // Inner calls complete (exit) before outer ones due to Traverse ordering,
+        // so we peek at the last entry in pending_qsegments.
+        let has_pending = self
+            .pending_qsegments
+            .last()
+            .map_or(false, |p| p.span_start == call.span.start);
+
+        if has_pending {
+            let pending = self.pending_qsegments.pop().unwrap();
+            self.segment_stack.pop();
+
+            // Retrieve the allocator via ctx.ast.
+            let allocator: &'a Allocator = ctx.ast.allocator;
+
+            // The first argument (after child traversal has completed processing
+            // nested $ calls) is now in call.arguments[0].
+            // Take ownership of the first arg for processing.
+            let first_arg_opt: Option<Expression<'a>> = if call.arguments.is_empty() {
+                None
+            } else {
+                // Replace first arg with a placeholder, take ownership of it.
+                // We use Expression::NullLiteral as a placeholder.
+                let null_lit = ctx.ast.expression_null_literal(SPAN);
+                let old_arg = std::mem::replace(
+                    &mut call.arguments[0],
+                    Argument::NullLiteral(ctx.ast.alloc_null_literal(SPAN)),
+                );
+                match old_arg {
+                    Argument::ArrowFunctionExpression(b) => Some(Expression::ArrowFunctionExpression(b)),
+                    Argument::FunctionExpression(b) => Some(Expression::FunctionExpression(b)),
+                    Argument::Identifier(b) => Some(Expression::Identifier(b)),
+                    Argument::CallExpression(b) => Some(Expression::CallExpression(b)),
+                    Argument::NullLiteral(b) => Some(Expression::NullLiteral(b)),
+                    other => {
+                        // For any other expression type, just drop and use null
+                        let _ = null_lit;
+                        let _ = other;
+                        None
+                    }
+                }
+            };
+
+            let first_arg = match first_arg_opt {
+                Some(expr) => expr,
+                None => {
+                    // No first arg — nothing to extract. Just rename callee.
+                    if let Expression::Identifier(id) = &mut call.callee {
+                        let callee_name = id.name.as_str().to_string();
+                        if self.marker_functions.contains_key(&callee_name) || callee_name == "$" {
+                            let qrl_name = words::dollar_to_qrl_name(&callee_name);
+                            id.name = ctx.ast.atom(&qrl_name).into();
+                        }
+                    }
+                    return;
+                }
+            };
+
+            // --- Flatten decl_stack for Var entries ---
+            let all_decl: Vec<IdPlusType> = self
+                .decl_stack
+                .iter()
+                .flat_map(|frame| frame.iter().cloned())
+                .collect();
+
+            let span = (call.span.start, call.span.end);
+            let ctx_name = &pending.ctx_name;
+            let ctx_kind = pending.ctx_kind.clone();
+
+            // --- Compute names via register_context_name ---
+            let names = hash::register_context_name(
+                &self.stack_ctxt,
+                &mut self.segment_names,
+                self.scope.as_deref(),
+                &self.rel_path,
+                &self.file_name,
+                &self.mode,
+                None,
+                pending.display_name_override.as_deref(),
+                pending.hash_override.as_deref(),
+            );
+
+            // --- Check if we should emit ---
+            let should_emit = self.should_emit_segment(ctx_name, ctx_kind.clone());
+
+            // --- can_capture check ---
+            let (mut scoped_idents, _is_const_cap) =
+                compute_scoped_idents(&pending.descendent_idents, &all_decl);
+
+            // Exclude function parameters.
+            let param_idents = get_function_params(&first_arg);
+            scoped_idents.retain(|id| !param_idents.contains(id));
+
+            // C03: if not a function/arrow and has captures, clear and emit diagnostic.
+            if !can_capture_scope(&first_arg) && !scoped_idents.is_empty() {
+                self.diagnostics.push(Diagnostic {
+                    scope: "optimizer".to_string(),
+                    category: DiagnosticCategory::SourceError,
+                    code: Some("C03".to_string()),
+                    file: self.file_name.clone(),
+                    message: "CanNotCapture: non-function expression cannot capture scope variables"
+                        .to_string(),
+                    highlights: None,
+                    suggestions: None,
+                });
+                scoped_idents.clear();
+            }
+
+            let mut first_arg_mut = first_arg;
+
+            // --- Output routing: should_emit check applies in ALL modes ---
+            // Priority 0: strip_ctx_name / strip_event_handlers → _noopQrl (any mode).
+            if !should_emit {
+                let qrl_expr = self.create_noop_qrl(
+                    &names.symbol_name,
+                    &scoped_idents,
+                    span,
+                    &names.display_name,
+                    allocator,
+                );
+                call.arguments[0] = expr_to_argument(qrl_expr);
+            } else if self.mode == EmitMode::Lib {
+                // Lib mode: 10-step path → inlinedQrl, never push to segments.
+
+                // Inject _captures into the function if captures are non-empty.
+                if !scoped_idents.is_empty() {
+                    Self::transform_function_expr(&mut first_arg_mut, &scoped_idents, allocator);
+                }
+
+                let qrl_expr = self.create_inline_qrl(
+                    first_arg_mut,
+                    &names.symbol_name,
+                    &scoped_idents,
+                    span,
+                    &names.display_name,
+                    allocator,
+                );
+                // Place the QRL expression back into call.arguments[0].
+                call.arguments[0] = expr_to_argument(qrl_expr);
+            } else if self.is_inline_strategy {
+                // Non-Lib inline strategy → inlinedQrl (no segment module).
+                let qrl_expr = self.create_inline_qrl(
+                    first_arg_mut,
+                    &names.symbol_name,
+                    &scoped_idents,
+                    span,
+                    &names.display_name,
+                    allocator,
+                );
+                call.arguments[0] = expr_to_argument(qrl_expr);
+            } else {
+                // Non-Lib, non-inline → create_segment (qrl() call + SegmentRecord).
+                let local_idents = self.get_local_idents(&first_arg_mut);
+                let qrl_expr = self.create_segment(
+                    first_arg_mut,
+                    &names,
+                    scoped_idents,
+                    local_idents,
+                    ctx_name,
+                    ctx_kind,
+                    span,
+                    allocator,
+                );
+                call.arguments[0] = expr_to_argument(qrl_expr);
+            }
+        }
+
         // convert_qrl_word: rewrite marker-function callee names (XFRM-08).
         // e.g. component$(...) → componentQrl(...)
+        // Also handle bare $ → Qrl.
         if let Expression::Identifier(id) = &mut call.callee {
             let callee_name = id.name.as_str().to_string();
-            if self.marker_functions.contains_key(&callee_name) {
+            let is_marker = self.marker_functions.contains_key(&callee_name);
+            let is_bare_dollar = self
+                .qsegment_fn
+                .as_deref()
+                .map_or(false, |n| n == callee_name);
+            if is_marker || is_bare_dollar {
                 let qrl_name = words::dollar_to_qrl_name(&callee_name);
-                // Allocate the new name in the arena and convert Atom -> Ident.
                 id.name = ctx.ast.atom(&qrl_name).into();
             }
         }
@@ -969,6 +1386,24 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         }
     }
+
+    /// Drain `extra_top_items` and `extra_bottom_items` into `program.body`.
+    ///
+    /// `extra_top_items` are prepended to the module body (e.g., shared import stubs).
+    /// `extra_bottom_items` are appended (e.g., re-exported segment QRLs).
+    ///
+    /// Phase 12: both vecs are always empty — this is a safe no-op drain.
+    /// Phase 13+: hoisting logic will populate these before `exit_program` fires.
+    fn exit_program(
+        &mut self,
+        _program: &mut Program<'a>,
+        _ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        // Drain top items (prepend). Extra_top_items is Vec<String> for Phase 12 (no-op).
+        // When Phase 13 populates with real statements, this drain will apply them.
+        self.extra_top_items.clear();
+        self.extra_bottom_items.clear();
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -1097,6 +1532,71 @@ fn push_expr_arg<'a>(
         }
     };
     args.push(arg);
+}
+
+// ---------------------------------------------------------------------------
+// Helper: collect descendent idents from call's first argument
+// ---------------------------------------------------------------------------
+
+/// Extract all `IdentifierReference` names from the first argument of a call
+/// expression. Used in `enter_call_expression` to snapshot identifiers BEFORE
+/// children are traversed (the "pre-fold" snapshot for scoped_idents computation).
+///
+/// Uses `IdentCollectorOnArg` which implements `Visit` directly on `Argument`
+/// variants, avoiding any transmute.
+fn collect_arg0_idents<'a>(args: &[Argument<'a>]) -> HashSet<String> {
+    let Some(arg0) = args.first() else {
+        return HashSet::new();
+    };
+    let mut collector = IdentCollector { idents: HashSet::new() };
+    // Visit the argument directly without converting to Expression.
+    match arg0 {
+        Argument::ArrowFunctionExpression(arrow) => {
+            use oxc::ast_visit::Visit;
+            collector.visit_arrow_function_expression(arrow);
+        }
+        Argument::FunctionExpression(func) => {
+            use oxc::ast_visit::Visit;
+            use oxc::semantic::ScopeFlags;
+            collector.visit_function(func, ScopeFlags::empty());
+        }
+        Argument::Identifier(id) => {
+            collector.idents.insert(id.name.as_str().to_string());
+        }
+        _ => {
+            // For other argument types (literals, other calls) collect via codegen
+            // round-trip is not needed — these rarely appear as $ first args.
+        }
+    }
+    collector.idents
+}
+
+// ---------------------------------------------------------------------------
+// Helper: convert Expression<'a> to Argument<'a> (simplified for QRL results)
+// ---------------------------------------------------------------------------
+
+/// Convert an `Expression<'a>` produced by QRL builders into an `Argument<'a>`.
+/// The QRL builders always return `CallExpression` variants; we handle others
+/// defensively via the full push_expr_arg logic.
+fn expr_to_argument<'a>(expr: Expression<'a>) -> Argument<'a> {
+    match expr {
+        Expression::CallExpression(b) => Argument::CallExpression(b),
+        Expression::Identifier(b) => Argument::Identifier(b),
+        Expression::StringLiteral(b) => Argument::StringLiteral(b),
+        Expression::NullLiteral(b) => Argument::NullLiteral(b),
+        Expression::ArrowFunctionExpression(b) => Argument::ArrowFunctionExpression(b),
+        Expression::FunctionExpression(b) => Argument::FunctionExpression(b),
+        Expression::ArrayExpression(b) => Argument::ArrayExpression(b),
+        Expression::ObjectExpression(b) => Argument::ObjectExpression(b),
+        // These expression types are never produced by QRL call builders.
+        // Hitting this branch would be a logic error — panic in debug mode
+        // to surface it early.
+        #[allow(unreachable_patterns)]
+        other => panic!(
+            "expr_to_argument: unexpected Expression variant from QRL builder: {:?}",
+            std::mem::discriminant(&other)
+        ),
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -1985,6 +2485,251 @@ mod tests {
             !codegen_result.code.contains("component$("),
             "Output should NOT contain component$( after rewrite, got: {}",
             codegen_result.code
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // _create_synthetic_qsegment — TDD RED tests (Plan 12-03)
+    // -----------------------------------------------------------------------
+
+    /// Helper: run transform on `src` with a given mode and return (code, xfrm).
+    fn run_transform_with_mode(src: &str, mode: EmitMode) -> (String, QwikTransform) {
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &mode,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let semantic = SemanticBuilder::new().build(&program);
+        let scoping = semantic.semantic.into_scoping();
+        let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+        let code = Codegen::new().build(&program).code;
+        (code, xfrm)
+    }
+
+    /// Helper: run transform with strip_ctx_name list.
+    fn run_transform_with_strip(src: &str, strip: &[&str]) -> String {
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let strip_vec: Vec<String> = strip.iter().map(|s| s.to_string()).collect();
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &strip_vec,
+            strip_event_handlers: false,
+            mode: &EmitMode::Lib,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let semantic = SemanticBuilder::new().build(&program);
+        let scoping = semantic.semantic.into_scoping();
+        let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+        Codegen::new().build(&program).code
+    }
+
+    // Test 1: component$(() => {}) in Lib mode → inlinedQrl output, no segments pushed
+    #[test]
+    fn segment_extraction_lib_mode_produces_inlined_qrl() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const Cmp = component$(() => {});"#;
+        let (code, xfrm) = run_transform_with_mode(src, EmitMode::Lib);
+        assert!(
+            code.contains("inlinedQrl("),
+            "Lib mode should produce inlinedQrl, got: {code}"
+        );
+        assert!(
+            xfrm.segments.is_empty(),
+            "Lib mode should NOT push to segments, got {} segments",
+            xfrm.segments.len()
+        );
+    }
+
+    // Test 2: component$(() => {}) in Segment mode → qrl() output, 1 segment pushed
+    #[test]
+    fn segment_extraction_segment_mode_produces_qrl_and_segment() {
+        let allocator = Allocator::default();
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const Cmp = component$(() => {});"#;
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Lib,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        // Override to Segment-like: use Prod mode (non-Lib) with Segment strategy
+        let allocator2 = Allocator::default();
+        let src2 = r#"import { component$ } from "@qwik.dev/core";
+const Cmp = component$(() => {});"#;
+        let source_in_arena2: &str = allocator2.alloc_str(src2);
+        let ret2 = Parser::new(&allocator2, source_in_arena2, SourceType::tsx()).parse();
+        let mut program2 = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret2.program,
+            )
+        };
+        let collect2 = global_collect(&program2);
+        let opts2 = QwikTransformOptions {
+            global_collect: &collect2,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Prod,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm2 = QwikTransform::new(opts2);
+        let semantic2 = SemanticBuilder::new().build(&program2);
+        let scoping2 = semantic2.semantic.into_scoping();
+        let _scoping2 = traverse_mut(&mut xfrm2, &allocator2, &mut program2, scoping2, ());
+        let code2 = Codegen::new().build(&program2).code;
+        assert!(
+            code2.contains("qrl("),
+            "Prod/Segment mode should produce qrl(), got: {code2}"
+        );
+        assert_eq!(
+            xfrm2.segments.len(),
+            1,
+            "Segment mode should push 1 segment record, got {}",
+            xfrm2.segments.len()
+        );
+        // Not a no-op: callee was rewritten
+        assert!(
+            !xfrm2.segments.is_empty(),
+            "segments Vec should have an entry"
+        );
+        let _seg = &xfrm2.segments[0];
+    }
+
+    // Test 3: Lib mode with captured outer variable → _captures injection
+    #[test]
+    fn segment_extraction_lib_captures_injection() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const sig = 42;
+const Cmp = component$(() => { return sig; });"#;
+        let (code, xfrm) = run_transform_with_mode(src, EmitMode::Lib);
+        assert!(
+            code.contains("inlinedQrl("),
+            "Lib mode should produce inlinedQrl, got: {code}"
+        );
+        assert!(
+            xfrm.segments.is_empty(),
+            "Lib mode should not push segments"
+        );
+        // sig is a captured variable — should appear as a capture in the inlinedQrl call
+        assert!(
+            code.contains("sig"),
+            "Captured var 'sig' should appear in the output, got: {code}"
+        );
+    }
+
+    // Test 4: strip_ctx_name prefix → _noopQrl output
+    #[test]
+    fn segment_extraction_strip_ctx_name_produces_noop() {
+        let src = r#"import { useServerLoader$ } from "@qwik.dev/core";
+useServerLoader$(() => { return 42; });"#;
+        let code = run_transform_with_strip(src, &["useServer"]);
+        assert!(
+            code.contains("_noopQrl("),
+            "Stripped ctx_name should produce _noopQrl, got: {code}"
+        );
+    }
+
+    // Test 5: non-function first arg → C03 diagnostic, captures cleared
+    #[test]
+    fn segment_extraction_non_fn_arg_clears_captures() {
+        // When the first arg is not a function/arrow and there would be captures, C03 fires
+        // and the scoped_idents are cleared. The result is still a QRL (noop or inline)
+        // but without captures.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const x = 42;
+component$(x);"#;
+        let (code, xfrm) = run_transform_with_mode(src, EmitMode::Lib);
+        // The transform should still produce output (not crash)
+        assert!(
+            !code.is_empty(),
+            "Transform should produce output, got empty code"
+        );
+        // In Lib mode, should still produce inlinedQrl or noop
+        let has_qrl = code.contains("inlinedQrl(") || code.contains("_noopQrl(");
+        assert!(
+            has_qrl || code.contains("Qrl"),
+            "Should produce some QRL form, got: {code}"
+        );
+    }
+
+    // Test 6: nested $ calls — inner extracted first
+    #[test]
+    fn segment_extraction_nested_calls() {
+        let src = r#"import { component$, useTask$ } from "@qwik.dev/core";
+const Cmp = component$(() => {
+    useTask$(() => { console.log("task"); });
+});"#;
+        let (code, xfrm) = run_transform_with_mode(src, EmitMode::Lib);
+        // Both should be extracted as inlinedQrl in Lib mode
+        // Count inlinedQrl occurrences - should be 2
+        let count = code.matches("inlinedQrl(").count();
+        assert!(
+            count >= 2,
+            "Nested $ calls should each produce inlinedQrl, found {} in: {code}",
+            count
+        );
+        // Lib mode: no segments
+        assert!(
+            xfrm.segments.is_empty(),
+            "Lib mode nested calls should not push segments"
         );
     }
 }

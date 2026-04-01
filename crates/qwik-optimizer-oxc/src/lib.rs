@@ -156,9 +156,11 @@ fn transform_code(
     let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
     // Stages 11–13: No-op until future phases.
 
-    // did_transform remains false: Stages 3/4 (TS strip, JSX transpile) are still no-ops.
-    // When those stages are active, this flag will be set true and preserve_filenames logic applies.
-    let did_transform = false;
+    // did_transform: true when segment extraction produced segments (Phase 12+).
+    // Stages 3/4 (TS strip, JSX transpile) are still no-ops so this only tracks
+    // segment extraction. When those stages are active, this flag will also be set
+    // true and preserve_filenames logic applies.
+    let did_transform = !xfrm.segments.is_empty();
 
     // Emit: codegen the transformed AST back to JavaScript.
     let emit_result = emit::emit_module(

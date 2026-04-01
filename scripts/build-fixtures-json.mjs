@@ -6,7 +6,11 @@
  * Extracts per-fixture TransformModulesOptions from SWC test.rs and produces
  * fixtures.json — the canonical manifest of all 201 fixtures.
  *
- * Usage: node scripts/build-fixtures-json.mjs
+ * Usage: node scripts/build-fixtures-json.mjs [--qwik-dir <path>]
+ *
+ * Options:
+ *   --qwik-dir <path>   Path to the root of the upstream qwik repository.
+ *                       Falls back to QWIK_DIR env var, then ../qwik sibling directory.
  */
 
 import fs from "node:fs";
@@ -16,8 +20,48 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 
-const SWC_TEST_RS =
-  "/Users/jackshelton/dev/open-source/qwik/packages/optimizer/core/src/test.rs";
+// ---------------------------------------------------------------------------
+// Resolve the upstream qwik repository root directory
+// ---------------------------------------------------------------------------
+
+function resolveQwikDir() {
+  // 1. --qwik-dir <path> CLI flag
+  const argIdx = process.argv.indexOf("--qwik-dir");
+  if (argIdx !== -1 && process.argv[argIdx + 1]) {
+    return path.resolve(process.argv[argIdx + 1]);
+  }
+
+  // 2. QWIK_DIR environment variable
+  if (process.env.QWIK_DIR) {
+    return path.resolve(process.env.QWIK_DIR);
+  }
+
+  // 3. Fallback: ../qwik sibling directory
+  return path.resolve(PROJECT_ROOT, "../qwik");
+}
+
+const QWIK_DIR = resolveQwikDir();
+const SWC_TEST_RS = path.join(
+  QWIK_DIR,
+  "packages/optimizer/core/src/test.rs"
+);
+
+if (!fs.existsSync(SWC_TEST_RS)) {
+  console.error(
+    `[ERROR] Could not find test.rs at: ${SWC_TEST_RS}`
+  );
+  console.error(
+    `  Resolved qwik-dir: ${QWIK_DIR}`
+  );
+  console.error(
+    `  Pass the correct path with: --qwik-dir /path/to/qwik`
+  );
+  console.error(
+    `  Or set the QWIK_DIR environment variable.`
+  );
+  process.exit(2);
+}
+
 const INPUTS_DIR = path.join(PROJECT_ROOT, "inputs");
 const OUTPUT_FILE = path.join(PROJECT_ROOT, "fixtures.json");
 

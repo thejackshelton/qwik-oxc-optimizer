@@ -12,8 +12,12 @@
 
 use std::collections::{HashMap, HashSet};
 
+use oxc::allocator::{Allocator, Vec as ArenaVec};
+use oxc::ast::AstBuilder;
 use oxc::ast::ast::*;
 use oxc::ast_visit::Visit;
+use oxc::codegen::Codegen;
+use oxc::span::{SourceType, SPAN};
 use oxc_traverse::{Traverse, TraverseCtx};
 
 use crate::collector::GlobalCollect;
@@ -457,6 +461,253 @@ impl QwikTransform {
         result.sort();
         result
     }
+
+    // -----------------------------------------------------------------------
+    // QRL call form builders (Plan 12-02)
+    // -----------------------------------------------------------------------
+
+    /// Build `_noopQrl("symbol_name")` or `_noopQrlDEV("symbol_name", [...], {meta})`.
+    ///
+    /// - Prod/Test/Lib mode: `_noopQrl("symbol_name")` — no captures appended if empty,
+    ///   capture array appended when non-empty.
+    /// - Dev/Hmr mode: `_noopQrlDEV("symbol_name", [...], { file, lo, hi, displayName })`.
+    ///   An empty capture array `[]` is always emitted as second arg in Dev mode so the
+    ///   metadata 3rd arg has a fixed position.
+    pub(crate) fn create_noop_qrl<'a>(
+        &self,
+        symbol_name: &str,
+        scoped_idents: &[String],
+        span: (u32, u32),
+        display_name: &str,
+        allocator: &'a Allocator,
+    ) -> Expression<'a> {
+        let ast = AstBuilder::new(allocator);
+        let is_dev = matches!(self.mode, EmitMode::Dev | EmitMode::Hmr);
+        let callee_name = if is_dev { "_noopQrlDEV" } else { "_noopQrl" };
+
+        let callee = ast.expression_identifier(SPAN, ast.atom(callee_name));
+        let mut args: ArenaVec<Argument<'_>> = ArenaVec::new_in(allocator);
+
+        // Arg 1: symbol name string literal
+        args.push(Argument::StringLiteral(
+            ast.alloc_string_literal(SPAN, ast.atom(symbol_name), None),
+        ));
+
+        if is_dev {
+            // Dev: always emit capture array as second arg (empty or populated)
+            let captures_expr = build_capture_array(scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+            // Arg 3: dev metadata object
+            let meta = build_dev_metadata(&self.file_name, span.0, span.1, display_name, &ast, allocator);
+            push_expr_arg(&ast, &mut args, meta);
+        } else if !scoped_idents.is_empty() {
+            // Non-dev: only emit capture array if non-empty
+            let captures_expr = build_capture_array(scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+        }
+
+        ast.expression_call(SPAN, callee, None::<TSTypeParameterInstantiation<'a>>, args, false)
+    }
+
+    /// Build `inlinedQrl(fn, "symbol_name")` or `inlinedQrlDEV(fn, "symbol_name", [...], {meta})`.
+    ///
+    /// - Prod/Test/Lib mode: `inlinedQrl(folded_expr, "symbol_name"[, captures])`.
+    /// - Dev/Hmr mode: `inlinedQrlDEV(folded_expr, "symbol_name", [...], { file, lo, hi, displayName })`.
+    pub(crate) fn create_inline_qrl<'a>(
+        &mut self,
+        folded_expr: Expression<'a>,
+        symbol_name: &str,
+        scoped_idents: &[String],
+        span: (u32, u32),
+        display_name: &str,
+        allocator: &'a Allocator,
+    ) -> Expression<'a> {
+        let ast = AstBuilder::new(allocator);
+        let is_dev = matches!(self.mode, EmitMode::Dev | EmitMode::Hmr);
+        let callee_name = if is_dev { "inlinedQrlDEV" } else { "inlinedQrl" };
+
+        let callee = ast.expression_identifier(SPAN, ast.atom(callee_name));
+        let mut args: ArenaVec<Argument<'_>> = ArenaVec::new_in(allocator);
+
+        // Arg 1: the folded function expression
+        push_expr_arg(&ast, &mut args, folded_expr);
+
+        // Arg 2: symbol name string literal
+        args.push(Argument::StringLiteral(
+            ast.alloc_string_literal(SPAN, ast.atom(symbol_name), None),
+        ));
+
+        if is_dev {
+            // Dev: always emit capture array as third arg, metadata as fourth
+            let captures_expr = build_capture_array(scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+            let meta = build_dev_metadata(&self.file_name, span.0, span.1, display_name, &ast, allocator);
+            push_expr_arg(&ast, &mut args, meta);
+        } else if !scoped_idents.is_empty() {
+            // Non-dev: only emit capture array if non-empty
+            let captures_expr = build_capture_array(scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+        }
+
+        ast.expression_call(SPAN, callee, None::<TSTypeParameterInstantiation<'a>>, args, false)
+    }
+
+    /// Build `qrl(() => import('./canonical'), "symbol_name"[, captures][, meta])` and push a
+    /// [`SegmentRecord`] to `self.segments`.
+    ///
+    /// - Prod/Test/Lib mode: `qrl(arrow, "symbol_name"[, captures])`.
+    /// - Dev/Hmr mode: `qrlDEV(arrow, "symbol_name", [...], { file, lo, hi, displayName })`.
+    ///
+    /// The `folded_expr` is serialized via OXC Codegen and stored in the `expr` field of the
+    /// pushed `SegmentRecord`.
+    #[allow(clippy::too_many_arguments)]
+    pub(crate) fn create_segment<'a>(
+        &mut self,
+        folded_expr: Expression<'a>,
+        names: &crate::hash::ContextNameResult,
+        scoped_idents: Vec<String>,
+        local_idents: Vec<String>,
+        ctx_name: &str,
+        ctx_kind: crate::types::CtxKind,
+        span: (u32, u32),
+        allocator: &'a Allocator,
+    ) -> Expression<'a> {
+        let ast = AstBuilder::new(allocator);
+        let is_dev = matches!(self.mode, EmitMode::Dev | EmitMode::Hmr);
+
+        // Serialize `folded_expr` for the SegmentRecord.expr field.
+        // folded_expr is the extracted closure body; the QRL call itself uses a fresh
+        // `() => import('./canonical')` arrow, so we consume folded_expr here for codegen.
+        let expr_code = {
+            let binding2 = ast.binding_pattern_binding_identifier(SPAN, ast.atom("_x"));
+            let mut decls: ArenaVec<VariableDeclarator<'_>> = ArenaVec::new_in(allocator);
+            decls.push(ast.variable_declarator(
+                SPAN,
+                VariableDeclarationKind::Const,
+                binding2,
+                None::<TSTypeAnnotation<'_>>,
+                Some(folded_expr),
+                false,
+            ));
+            let var_decl = ast.alloc_variable_declaration(
+                SPAN, VariableDeclarationKind::Const, decls, false,
+            );
+            let mut body: ArenaVec<Statement<'_>> = ArenaVec::new_in(allocator);
+            body.push(Statement::VariableDeclaration(var_decl));
+            let directives: ArenaVec<Directive<'_>> = ArenaVec::new_in(allocator);
+            let comments: ArenaVec<Comment> = ArenaVec::new_in(allocator);
+            let prog = ast.program(SPAN, SourceType::tsx(), "", comments, None, directives, body);
+            let raw = Codegen::new().build(&prog).code;
+            raw.trim_start_matches("const _x = ")
+                .trim_end_matches(';')
+                .trim()
+                .to_string()
+        };
+
+        // Build the import path: `./canonical_filename` or `./canonical_filename.ext`
+        let import_path = if self.explicit_extensions {
+            format!("./{}.{}", names.canonical_filename, self.extension)
+        } else {
+            format!("./{}", names.canonical_filename)
+        };
+
+        // Build `() => import('./canonical_filename')` arrow expression.
+        let import_expr = ast.expression_import(
+            SPAN,
+            ast.expression_string_literal(SPAN, ast.atom(import_path.as_str()), None),
+            None,
+            None,
+        );
+        let arrow_params = ast.formal_parameters(
+            SPAN,
+            FormalParameterKind::ArrowFormalParameters,
+            ArenaVec::new_in(allocator),
+            None::<FormalParameterRest<'a>>,
+        );
+        // Build an expression-body arrow: `() => import('...')`
+        // expression=true means the body is an expression, not a block.
+        let import_stmt = ast.statement_expression(SPAN, import_expr);
+        let arrow_body = ast.function_body(SPAN, ArenaVec::new_in(allocator), ast.vec1(import_stmt));
+        let arrow = ast.expression_arrow_function(
+            SPAN,
+            true, // expression body
+            false, // not async
+            None::<TSTypeParameterDeclaration<'a>>,
+            arrow_params,
+            None::<TSTypeAnnotation<'a>>,
+            arrow_body,
+        );
+
+        // Determine callee name
+        let callee_name = if is_dev { "qrlDEV" } else { "qrl" };
+        let callee = ast.expression_identifier(SPAN, ast.atom(callee_name));
+        let mut args: ArenaVec<Argument<'_>> = ArenaVec::new_in(allocator);
+
+        // Arg 1: the arrow function importing the segment module
+        push_expr_arg(&ast, &mut args, arrow);
+
+        // Arg 2: symbol name string literal
+        args.push(Argument::StringLiteral(
+            ast.alloc_string_literal(SPAN, ast.atom(names.symbol_name.as_str()), None),
+        ));
+
+        if is_dev {
+            // Dev: always emit capture array + metadata
+            let captures_expr = build_capture_array(&scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+            let meta = build_dev_metadata(
+                &self.file_name, span.0, span.1, &names.display_name, &ast, allocator,
+            );
+            push_expr_arg(&ast, &mut args, meta);
+        } else if !scoped_idents.is_empty() {
+            let captures_expr = build_capture_array(&scoped_idents, &ast, allocator);
+            push_expr_arg(&ast, &mut args, captures_expr);
+        }
+
+        let qrl_call = ast.expression_call(SPAN, callee, None::<TSTypeParameterInstantiation<'a>>, args, false);
+
+        // Determine entry key via policy
+        let segment_data = crate::types::SegmentData {
+            display_name: names.display_name.clone(),
+            hash: names.hash.clone(),
+            name: names.symbol_name.clone(),
+            ctx_name: ctx_name.to_string(),
+            ctx_kind: ctx_kind.clone(),
+            origin: self.rel_path.clone(),
+            extension: self.extension.clone(),
+            span,
+            parent: self.segment_stack.last().cloned(),
+            scoped_idents: scoped_idents.clone(),
+            captures: !scoped_idents.is_empty(),
+            capture_names: scoped_idents.clone(),
+            needed_imports: vec![],
+            segment_qrl_names: vec![],
+            body_span: span,
+            param_names: vec![],
+            body_code: expr_code.clone(),
+            child_lazy_imports: vec![],
+            needs_qrl_import: false,
+        };
+        let entry = self.entry_policy.get_entry_for_sym(&self.stack_ctxt, &segment_data);
+
+        self.segments.push(SegmentRecord {
+            name: names.symbol_name.clone(),
+            display_name: names.display_name.clone(),
+            canonical_filename: names.canonical_filename.clone(),
+            entry,
+            expr: Some(expr_code),
+            scoped_idents: scoped_idents.clone(),
+            local_idents,
+            ctx_name: ctx_name.to_string(),
+            ctx_kind,
+            origin: self.rel_path.clone(),
+            span,
+            hash: names.hash.clone(),
+            is_inline: false,
+        });
+
+        qrl_call
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -718,6 +969,134 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// QRL AST builder helpers (Plan 12-02)
+// ---------------------------------------------------------------------------
+
+/// Build `[cap1, cap2, ...]` as an `Expression::ArrayExpression`.
+///
+/// When `captures` is empty, returns an empty array expression `[]`.
+fn build_capture_array<'a>(
+    captures: &[String],
+    ast: &AstBuilder<'a>,
+    allocator: &'a Allocator,
+) -> Expression<'a> {
+    let mut elements: ArenaVec<ArrayExpressionElement<'a>> = ArenaVec::new_in(allocator);
+    for name in captures {
+        elements.push(ArrayExpressionElement::Identifier(
+            ast.alloc_identifier_reference(SPAN, ast.atom(name.as_str())),
+        ));
+    }
+    ast.expression_array(SPAN, elements)
+}
+
+/// Build `{ file: "test.tsx", lo: 100, hi: 200, displayName: "..." }` as an ObjectExpression.
+fn build_dev_metadata<'a>(
+    file_name: &str,
+    span_lo: u32,
+    span_hi: u32,
+    display_name: &str,
+    ast: &AstBuilder<'a>,
+    allocator: &'a Allocator,
+) -> Expression<'a> {
+    let mut props: ArenaVec<ObjectPropertyKind<'a>> = ArenaVec::new_in(allocator);
+
+    // file: "test.tsx"
+    let file_key = ast.property_key_static_identifier(SPAN, ast.atom("file"));
+    let file_val = ast.expression_string_literal(SPAN, ast.atom(file_name), None);
+    props.push(ObjectPropertyKind::ObjectProperty(ast.alloc_object_property(
+        SPAN, PropertyKind::Init, file_key, file_val, false, false, false,
+    )));
+
+    // lo: <number>
+    let lo_key = ast.property_key_static_identifier(SPAN, ast.atom("lo"));
+    let lo_val = ast.expression_numeric_literal(
+        SPAN, span_lo as f64, None, NumberBase::Decimal,
+    );
+    props.push(ObjectPropertyKind::ObjectProperty(ast.alloc_object_property(
+        SPAN, PropertyKind::Init, lo_key, lo_val, false, false, false,
+    )));
+
+    // hi: <number>
+    let hi_key = ast.property_key_static_identifier(SPAN, ast.atom("hi"));
+    let hi_val = ast.expression_numeric_literal(
+        SPAN, span_hi as f64, None, NumberBase::Decimal,
+    );
+    props.push(ObjectPropertyKind::ObjectProperty(ast.alloc_object_property(
+        SPAN, PropertyKind::Init, hi_key, hi_val, false, false, false,
+    )));
+
+    // displayName: "..."
+    let dn_key = ast.property_key_static_identifier(SPAN, ast.atom("displayName"));
+    let dn_val = ast.expression_string_literal(SPAN, ast.atom(display_name), None);
+    props.push(ObjectPropertyKind::ObjectProperty(ast.alloc_object_property(
+        SPAN, PropertyKind::Init, dn_key, dn_val, false, false, false,
+    )));
+
+    ast.expression_object(SPAN, props)
+}
+
+/// Convert an `Expression<'a>` to an `Argument<'a>` and push it onto `args`.
+///
+/// This helper handles the `Argument` enum which "inherits" Expression variants
+/// via an OXC macro — each Expression variant has a matching Argument variant.
+fn push_expr_arg<'a>(
+    _ast: &AstBuilder<'a>,
+    args: &mut ArenaVec<'a, Argument<'a>>,
+    expr: Expression<'a>,
+) {
+    // Argument inherits Expression variants via #[inherit_variants!] macro.
+    // Each Expression::X maps to Argument::X with the same inner data.
+    let arg: Argument<'a> = match expr {
+        Expression::StringLiteral(b) => Argument::StringLiteral(b),
+        Expression::NumericLiteral(b) => Argument::NumericLiteral(b),
+        Expression::BooleanLiteral(b) => Argument::BooleanLiteral(b),
+        Expression::NullLiteral(b) => Argument::NullLiteral(b),
+        Expression::Identifier(b) => Argument::Identifier(b),
+        Expression::ArrayExpression(b) => Argument::ArrayExpression(b),
+        Expression::ObjectExpression(b) => Argument::ObjectExpression(b),
+        Expression::ArrowFunctionExpression(b) => Argument::ArrowFunctionExpression(b),
+        Expression::FunctionExpression(b) => Argument::FunctionExpression(b),
+        Expression::CallExpression(b) => Argument::CallExpression(b),
+        Expression::ImportExpression(b) => Argument::ImportExpression(b),
+        Expression::TemplateLiteral(b) => Argument::TemplateLiteral(b),
+        Expression::TaggedTemplateExpression(b) => Argument::TaggedTemplateExpression(b),
+        Expression::AssignmentExpression(b) => Argument::AssignmentExpression(b),
+        Expression::LogicalExpression(b) => Argument::LogicalExpression(b),
+        Expression::BinaryExpression(b) => Argument::BinaryExpression(b),
+        Expression::UnaryExpression(b) => Argument::UnaryExpression(b),
+        Expression::ConditionalExpression(b) => Argument::ConditionalExpression(b),
+        Expression::SequenceExpression(b) => Argument::SequenceExpression(b),
+        Expression::NewExpression(b) => Argument::NewExpression(b),
+        Expression::AwaitExpression(b) => Argument::AwaitExpression(b),
+        Expression::YieldExpression(b) => Argument::YieldExpression(b),
+        Expression::UpdateExpression(b) => Argument::UpdateExpression(b),
+        Expression::ChainExpression(b) => Argument::ChainExpression(b),
+        Expression::ParenthesizedExpression(b) => Argument::ParenthesizedExpression(b),
+        Expression::TSAsExpression(b) => Argument::TSAsExpression(b),
+        Expression::TSSatisfiesExpression(b) => Argument::TSSatisfiesExpression(b),
+        Expression::TSNonNullExpression(b) => Argument::TSNonNullExpression(b),
+        Expression::TSTypeAssertion(b) => Argument::TSTypeAssertion(b),
+        Expression::TSInstantiationExpression(b) => Argument::TSInstantiationExpression(b),
+        Expression::Super(b) => Argument::Super(b),
+        Expression::ThisExpression(b) => Argument::ThisExpression(b),
+        Expression::ClassExpression(b) => Argument::ClassExpression(b),
+        Expression::MetaProperty(b) => Argument::MetaProperty(b),
+        Expression::RegExpLiteral(b) => Argument::RegExpLiteral(b),
+        Expression::StaticMemberExpression(b) => Argument::StaticMemberExpression(b),
+        Expression::ComputedMemberExpression(b) => Argument::ComputedMemberExpression(b),
+        Expression::PrivateFieldExpression(b) => Argument::PrivateFieldExpression(b),
+        Expression::JSXElement(b) => Argument::JSXElement(b),
+        Expression::JSXFragment(b) => Argument::JSXFragment(b),
+        Expression::BigIntLiteral(b) => Argument::BigIntLiteral(b),
+        // These variants do not appear in QRL arguments; unreachable in practice.
+        Expression::PrivateInExpression(_) | Expression::V8IntrinsicExpression(_) => {
+            unreachable!("PrivateInExpression/V8IntrinsicExpression cannot be QRL arguments")
+        }
+    };
+    args.push(arg);
 }
 
 // ---------------------------------------------------------------------------
@@ -1166,6 +1545,403 @@ mod tests {
         let params = get_function_params(expr);
         assert!(params.contains("x"), "destructured x should be included");
         assert!(params.contains("y"), "destructured y should be included");
+    }
+
+    // -----------------------------------------------------------------------
+    // QRL call form builders — TDD RED tests
+    // -----------------------------------------------------------------------
+
+    use oxc::allocator::Vec as ArenaVec;
+    use oxc::ast::AstBuilder;
+    use oxc::ast::ast::Argument;
+
+    /// Build a QwikTransform with a specific mode for builder testing.
+    fn make_transform_with_mode(mode: EmitMode) -> QwikTransform {
+        let allocator = Allocator::default();
+        let src = "";
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &mode,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        QwikTransform::new(opts)
+    }
+
+    /// Emit an Expression to a string via OXC Codegen.
+    fn emit_expr(allocator: &Allocator, expr: Expression<'_>) -> String {
+        // Wrap in a const to emit via codegen
+        let ast = AstBuilder::new(allocator);
+        use oxc::span::SPAN;
+        use oxc::ast::ast::*;
+        let binding = ast.binding_pattern_binding_identifier(SPAN, ast.atom("_x"));
+        let mut declarators: ArenaVec<VariableDeclarator<'_>> = ArenaVec::new_in(allocator);
+        declarators.push(ast.variable_declarator(
+            SPAN,
+            VariableDeclarationKind::Const,
+            binding,
+            None::<TSTypeAnnotation<'_>>,
+            Some(expr),
+            false,
+        ));
+        let decl = ast.alloc_variable_declaration(SPAN, VariableDeclarationKind::Const, declarators, false);
+        let mut body: ArenaVec<Statement<'_>> = ArenaVec::new_in(allocator);
+        body.push(Statement::VariableDeclaration(decl));
+        let directives: ArenaVec<Directive<'_>> = ArenaVec::new_in(allocator);
+        let comments: ArenaVec<Comment> = ArenaVec::new_in(allocator);
+        let program = ast.program(SPAN, oxc::span::SourceType::tsx(), "", comments, None, directives, body);
+        let result = Codegen::new().build(&program);
+        // Extract the RHS from "const _x = <expr>;"
+        let code = result.code;
+        // Return just the expression part
+        code.trim_start_matches("const _x = ")
+            .trim_end_matches(';')
+            .trim()
+            .to_string()
+    }
+
+    #[test]
+    fn create_noop_qrl_prod_no_captures() {
+        let allocator = Allocator::default();
+        let xfrm = make_transform_with_mode(EmitMode::Lib);
+        let expr = xfrm.create_noop_qrl("sym_HASH", &[], (0, 0), "display_name", &allocator);
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("_noopQrl("),
+            "Prod/Lib mode should use _noopQrl, got: {code}"
+        );
+        assert!(
+            code.contains(r#""sym_HASH""#),
+            "Should contain symbol name, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_noop_qrl_prod_with_captures() {
+        let allocator = Allocator::default();
+        let xfrm = make_transform_with_mode(EmitMode::Lib);
+        let expr = xfrm.create_noop_qrl("sym_HASH", &["a".to_string(), "b".to_string()], (0, 0), "display_name", &allocator);
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("_noopQrl("),
+            "Lib mode should use _noopQrl, got: {code}"
+        );
+        assert!(
+            code.contains("[a, b]") || (code.contains("a") && code.contains("b")),
+            "Should contain capture array, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_noop_qrl_dev_mode() {
+        let allocator = Allocator::default();
+        let xfrm = make_transform_with_mode(EmitMode::Dev);
+        let expr = xfrm.create_noop_qrl("sym_HASH", &[], (10, 20), "my_display_name", &allocator);
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("_noopQrlDEV("),
+            "Dev mode should use _noopQrlDEV, got: {code}"
+        );
+        assert!(
+            code.contains("my_display_name"),
+            "Dev mode should include displayName, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_inline_qrl_lib_no_captures() {
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        // folded_expr = () => 42
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(
+                SPAN,
+                ArenaVec::new_in(&allocator),
+                ast.vec1(ast.statement_expression(SPAN, ast.expression_numeric_literal(SPAN, 42.0, None, oxc::ast::ast::NumberBase::Decimal)))
+            );
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        let mut xfrm = make_transform_with_mode(EmitMode::Lib);
+        let expr = xfrm.create_inline_qrl(folded_fn, "sym_HASH", &[], (0, 0), "display_name", &allocator);
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("inlinedQrl("),
+            "Lib mode should use inlinedQrl, got: {code}"
+        );
+        assert!(
+            code.contains(r#""sym_HASH""#),
+            "Should contain symbol name, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_inline_qrl_dev_mode_with_captures() {
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(SPAN, ArenaVec::new_in(&allocator), ArenaVec::new_in(&allocator));
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        let mut xfrm = make_transform_with_mode(EmitMode::Dev);
+        let expr = xfrm.create_inline_qrl(folded_fn, "sym_HASH", &["cap1".to_string()], (5, 15), "disp", &allocator);
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("inlinedQrlDEV("),
+            "Dev mode should use inlinedQrlDEV, got: {code}"
+        );
+        assert!(
+            code.contains("cap1"),
+            "Should contain capture, got: {code}"
+        );
+        assert!(
+            code.contains("disp"),
+            "Should contain displayName in metadata, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_segment_prod_no_captures() {
+        use crate::hash::register_context_name;
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(SPAN, ArenaVec::new_in(&allocator), ArenaVec::new_in(&allocator));
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        let mut xfrm = make_transform_with_mode(EmitMode::Lib);
+        let mut names_map = std::collections::HashMap::new();
+        let names = register_context_name(
+            &["test".to_string(), "component".to_string()],
+            &mut names_map,
+            None,
+            "test.tsx",
+            "test.tsx",
+            &EmitMode::Lib,
+            None, None, None,
+        );
+        let expr = xfrm.create_segment(
+            folded_fn,
+            &names,
+            vec![],
+            vec![],
+            "component$",
+            crate::types::CtxKind::Function,
+            (0, 50),
+            &allocator,
+        );
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("qrl("),
+            "Lib mode should use qrl, got: {code}"
+        );
+        // Import path should contain the canonical filename
+        assert!(
+            code.contains("./"),
+            "Should contain relative import path, got: {code}"
+        );
+        // Should have pushed a segment record
+        assert_eq!(xfrm.segments.len(), 1, "Should have pushed one segment record");
+        let seg = &xfrm.segments[0];
+        assert!(seg.expr.is_some(), "Segment record expr field should be populated");
+    }
+
+    #[test]
+    fn create_segment_explicit_extensions() {
+        use crate::hash::register_context_name;
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(SPAN, ArenaVec::new_in(&allocator), ArenaVec::new_in(&allocator));
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        // Build a transform with explicit_extensions=true
+        let alloc2 = Allocator::default();
+        let src = "";
+        let source_in_arena2: &str = alloc2.alloc_str(src);
+        let ret = Parser::new(&alloc2, source_in_arena2, SourceType::tsx()).parse();
+        let program2 = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect2 = global_collect(&program2);
+        let opts2 = QwikTransformOptions {
+            global_collect: &collect2,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Lib,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: true,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts2);
+        let mut names_map = std::collections::HashMap::new();
+        let names = register_context_name(
+            &["test".to_string(), "component".to_string()],
+            &mut names_map,
+            None,
+            "test.tsx",
+            "test.tsx",
+            &EmitMode::Lib,
+            None, None, None,
+        );
+        let expr = xfrm.create_segment(
+            folded_fn,
+            &names,
+            vec![],
+            vec![],
+            "component$",
+            crate::types::CtxKind::Function,
+            (0, 50),
+            &allocator,
+        );
+        let code = emit_expr(&allocator, expr);
+        // With explicit_extensions=true, path should end with ".tsx"
+        assert!(
+            code.contains(".tsx"),
+            "With explicit_extensions=true, import path should include .tsx extension, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_segment_dev_mode() {
+        use crate::hash::register_context_name;
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(SPAN, ArenaVec::new_in(&allocator), ArenaVec::new_in(&allocator));
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        let mut xfrm = make_transform_with_mode(EmitMode::Dev);
+        let mut names_map = std::collections::HashMap::new();
+        let names = register_context_name(
+            &["test".to_string(), "component".to_string()],
+            &mut names_map,
+            None,
+            "test.tsx",
+            "test.tsx",
+            &EmitMode::Dev,
+            None, None, None,
+        );
+        let expr = xfrm.create_segment(
+            folded_fn,
+            &names,
+            vec![],
+            vec![],
+            "component$",
+            crate::types::CtxKind::Function,
+            (0, 50),
+            &allocator,
+        );
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("qrlDEV("),
+            "Dev mode should use qrlDEV, got: {code}"
+        );
+    }
+
+    #[test]
+    fn create_segment_with_captures() {
+        use crate::hash::register_context_name;
+        let allocator = Allocator::default();
+        let ast = AstBuilder::new(&allocator);
+        use oxc::span::SPAN;
+        let folded_fn = {
+            let params = ast.formal_parameters(
+                SPAN,
+                oxc::ast::ast::FormalParameterKind::ArrowFormalParameters,
+                ArenaVec::new_in(&allocator),
+                None::<oxc::ast::ast::FormalParameterRest<'_>>,
+            );
+            let body = ast.function_body(SPAN, ArenaVec::new_in(&allocator), ArenaVec::new_in(&allocator));
+            ast.expression_arrow_function(SPAN, false, false, None::<oxc::ast::ast::TSTypeParameterDeclaration<'_>>, params, None::<oxc::ast::ast::TSTypeAnnotation<'_>>, body)
+        };
+        let mut xfrm = make_transform_with_mode(EmitMode::Lib);
+        let mut names_map = std::collections::HashMap::new();
+        let names = register_context_name(
+            &["test".to_string(), "component".to_string()],
+            &mut names_map,
+            None,
+            "test.tsx",
+            "test.tsx",
+            &EmitMode::Lib,
+            None, None, None,
+        );
+        let expr = xfrm.create_segment(
+            folded_fn,
+            &names,
+            vec!["store".to_string()],
+            vec![],
+            "component$",
+            crate::types::CtxKind::Function,
+            (0, 50),
+            &allocator,
+        );
+        let code = emit_expr(&allocator, expr);
+        assert!(
+            code.contains("store"),
+            "Should contain capture in array, got: {code}"
+        );
+        assert!(
+            code.contains("qrl("),
+            "Should use qrl for Lib mode, got: {code}"
+        );
     }
 
     #[test]

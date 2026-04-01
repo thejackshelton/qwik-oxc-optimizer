@@ -203,18 +203,122 @@ fn transform_code(
         }
     };
 
-    let module = TransformModule {
+    // Root module order: DefaultHasher of the output path bytes (OUT-02).
+    let root_order = {
+        use std::hash::{Hash, Hasher};
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
+        output_path.hash(&mut hasher);
+        hasher.finish()
+    };
+
+    let root_module = TransformModule {
         path: output_path,
         is_entry: false,
         code: emit_result.code,
         map: emit_result.map,
         segment: None,
         orig_path: Some(input_path.to_string()),
-        order: 0,
+        order: root_order,
     };
 
+    // --- Segment module generation (Phase 16) ---
+    let mut segment_modules: Vec<TransformModule> = Vec::new();
+    let record_extension = parse::output_extension(input_path, config.transpile_ts, config.transpile_jsx);
+
+    for record in &xfrm.segments {
+        // Skip inline segments (they live in the parent module)
+        if record.is_inline {
+            continue;
+        }
+        // Skip noop segments (no expression to emit)
+        let expr_code = match &record.expr {
+            Some(e) => e.as_str(),
+            None => continue,
+        };
+
+        // Build segment module code via new_module
+        let module_code = code_move::new_module(code_move::NewModuleCtx {
+            expr: expr_code,
+            name: &record.name,
+            file_stem: &path_data.file_stem,
+            local_idents: &record.local_idents,
+            scoped_idents: &record.scoped_idents,
+            global: &collect,
+            core_module: &config.core_module,
+            explicit_extensions: config.explicit_extensions,
+            extra_top_items: &xfrm.extra_top_items,
+        });
+
+        // Parse + codegen for normalization (double-quote, whitespace)
+        let (final_code, map) = code_move::emit_segment(
+            &module_code,
+            &record.canonical_filename,
+            config.source_maps,
+        );
+
+        // Build segment path: {rel_dir}/{canonical_filename}.{ext}
+        let segment_path = if path_data.rel_dir == std::path::PathBuf::new() {
+            format!("{}.{}", record.canonical_filename, record_extension)
+        } else {
+            format!(
+                "{}/{}.{}",
+                path_data.rel_dir.to_slash_lossy(),
+                record.canonical_filename,
+                record_extension
+            )
+        };
+
+        // SPEC Pitfall 1: is_entry = entry.is_none() (inverted semantics)
+        let is_entry = record.entry.is_none();
+
+        // Segment order: parse first 8 chars of hash as base36
+        let order = u64::from_str_radix(
+            &record.hash[..std::cmp::min(8, record.hash.len())],
+            36,
+        ).unwrap_or(0);
+
+        // Build the relative directory path string for SegmentAnalysis.path
+        let seg_path = path_data.rel_dir.to_slash_lossy().to_string();
+
+        // Build SegmentAnalysis
+        let segment_analysis = SegmentAnalysis {
+            origin: record.origin.clone(),
+            name: record.name.clone(),
+            entry: record.entry.clone(),
+            display_name: record.display_name.clone(),
+            hash: record.hash.clone(),
+            canonical_filename: record.canonical_filename.clone(),
+            path: seg_path,
+            extension: record_extension.to_string(),
+            parent: None, // Phase 18 will wire segment_stack parent tracking
+            ctx_kind: record.ctx_kind.clone(),
+            ctx_name: record.ctx_name.clone(),
+            captures: !record.scoped_idents.is_empty(),
+            loc: record.span,
+            param_names: None, // Phase 18 populates
+            capture_names: if record.scoped_idents.is_empty() {
+                None
+            } else {
+                Some(record.scoped_idents.clone())
+            },
+        };
+
+        segment_modules.push(TransformModule {
+            path: segment_path,
+            is_entry,
+            code: final_code,
+            map,
+            segment: Some(segment_analysis),
+            orig_path: None,
+            order,
+        });
+    }
+
+    let mut all_modules = vec![root_module];
+    all_modules.append(&mut segment_modules);
+
     Ok(TransformOutput {
-        modules: vec![module],
+        modules: all_modules,
         diagnostics,
         is_type_script,
         is_jsx,
@@ -365,7 +469,8 @@ mod tests {
         let module = &result.modules[0];
         assert!(!module.is_entry, "Root modules have is_entry=false");
         assert!(module.segment.is_none(), "Root modules have segment=None");
-        assert_eq!(module.order, 0, "Root modules have order=0");
+        // Root module order uses DefaultHasher of path — non-zero for non-empty paths
+        assert_ne!(module.order, 0, "Root modules have non-zero order (DefaultHasher of path)");
     }
 
     #[test]

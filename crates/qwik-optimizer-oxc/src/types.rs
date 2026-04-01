@@ -597,6 +597,10 @@ pub(crate) struct SegmentData {
     /// Parent segment name, if nested.
     pub parent: Option<String>,
 
+    /// Variables from the enclosing scope that are referenced inside this segment.
+    /// Used by `SmartStrategy` to decide whether the segment is "pure" (no captures).
+    pub scoped_idents: Vec<String>,
+
     /// Whether the segment body captures outer scope variables.
     pub captures: bool,
 

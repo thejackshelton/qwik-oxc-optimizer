@@ -11,8 +11,7 @@ mod is_const;
 mod types;
 mod words;
 
-// TODO: Phase 7 Plan 03 -- entry_strategy module (EntryPolicy trait + implementations)
-// mod entry_strategy;
+pub(crate) mod entry_strategy;
 
 // Re-export all public types
 pub use types::{

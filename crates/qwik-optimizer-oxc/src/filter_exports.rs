@@ -60,7 +60,23 @@ pub(crate) fn filter_exports<'a>(
                         if let Some(ref id) = func_decl.id {
                             let name = id.name.as_str();
                             if strip_exports.iter().any(|s| s == name) {
-                                replace_function_body(&mut func_decl.body, &ast);
+                                // Replace: `export function name(...) {...}` →
+                                //          `export const name = () => { throw ... };`
+                                let name_atom = ast.atom(name);
+                                let binding = ast.binding_pattern_binding_identifier(SPAN, name_atom);
+                                let stub = build_arrow_throw_stub(&ast);
+                                let mut declarators = ast.vec();
+                                declarators.push(ast.variable_declarator(
+                                    SPAN,
+                                    VariableDeclarationKind::Const,
+                                    binding,
+                                    Option::<TSTypeAnnotation<'a>>::None,
+                                    Some(stub),
+                                    false,
+                                ));
+                                *decl = Declaration::VariableDeclaration(
+                                    ast.alloc_variable_declaration(SPAN, VariableDeclarationKind::Const, declarators, false)
+                                );
                             }
                         }
                     }
@@ -104,15 +120,6 @@ fn build_arrow_throw_stub<'a>(ast: &AstBuilder<'a>) -> Expression<'a> {
         Option::<TSTypeAnnotation<'a>>::None,
         throw_body,
     )
-}
-
-/// Replace a function declaration's body with the throw stub.
-fn replace_function_body<'a>(
-    body: &mut Option<oxc::allocator::Box<'a, FunctionBody<'a>>>,
-    ast: &AstBuilder<'a>,
-) {
-    let throw_body = build_throw_body(ast);
-    *body = Some(ast.alloc(throw_body));
 }
 
 /// Build a `FunctionBody` containing a single: `throw "Symbol removed ..."`.
@@ -188,6 +195,33 @@ mod tests {
         assert!(
             !out.contains("return 42"),
             "Original body should be gone, got: {out}"
+        );
+        // Must be converted to const arrow stub (not preserve function declaration).
+        assert!(
+            out.contains("export const onGet"),
+            "Should be const arrow stub, got: {out}"
+        );
+        assert!(
+            !out.contains("function onGet"),
+            "Should not preserve function declaration, got: {out}"
+        );
+    }
+
+    #[test]
+    fn strips_async_function_synchronously() {
+        let src = "export async function onGet(req) { return await fetch(req); }";
+        let out = transform(src, &["onGet"]);
+        assert!(
+            out.contains("export const onGet"),
+            "Async function should become const arrow, got: {out}"
+        );
+        assert!(
+            !out.contains("async"),
+            "Should not preserve async, got: {out}"
+        );
+        assert!(
+            out.contains("throw"),
+            "Expected throw in output, got: {out}"
         );
     }
 

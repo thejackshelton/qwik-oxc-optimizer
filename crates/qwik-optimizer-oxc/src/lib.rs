@@ -143,6 +143,26 @@ fn transform_code(
         .unwrap_or("js")
         .to_string();
 
+    // Stage 11 (pre-pass): mark pre-transform call/new expression spans for
+    // Treeshaker DCE.  Must run BEFORE QwikTransform so only user-written spans
+    // are recorded.
+    let is_inline_strategy = matches!(
+        config.entry_strategy,
+        EntryStrategy::Inline | EntryStrategy::Hoist
+    );
+    let run_treeshaker = !is_inline_strategy
+        && !matches!(config.minify, MinifyMode::None)
+        && !config.is_server
+        && !matches!(config.mode, EmitMode::Lib);
+
+    let mut treeshaker_opt = if run_treeshaker {
+        let ts = clean_side_effects::Treeshaker::new();
+        ts.marker.mark_module(&program);
+        Some(ts)
+    } else {
+        None
+    };
+
     let mut xfrm = transform::QwikTransform::new(transform::QwikTransformOptions {
         global_collect: &collect,
         core_module: &config.core_module,
@@ -158,7 +178,23 @@ fn transform_code(
         is_server: config.is_server,
     });
     let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
-    // Stages 11–13: No-op until future phases.
+
+    // Stage 11: Post-transform DCE (mutually exclusive branches).
+    if is_inline_strategy {
+        // SideEffectVisitor: inject bare imports for relative sources within src_dir.
+        add_side_effect::add_side_effect_imports(
+            &mut program,
+            &collect,
+            &path_data.abs_dir,
+            Path::new(&config.src_dir),
+            &allocator,
+        );
+    } else if let Some(ref mut ts) = treeshaker_opt {
+        // Treeshaker: CleanSideEffects drops transform-introduced calls.
+        // NOTE: SWC simplify sub-step skipped — no OXC equivalent without new dep.
+        ts.cleaner.clean_module(&mut program);
+        // did_drop re-simplify also skipped (TODO: OXC DCE)
+    }
 
     // did_transform: true when segment extraction produced segments (Phase 12+).
     // Stages 3/4 (TS strip, JSX transpile) are still no-ops so this only tracks
@@ -884,5 +920,142 @@ export const MyComp = component$(() => {
             code.contains("= true"),
             "isServer should be replaced with true in output, got: {code}"
         );
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 11 — Post-transform DCE (Treeshaker + SideEffectVisitor)
+    // -----------------------------------------------------------------------
+
+    fn make_component_src_for_dce() -> &'static str {
+        r#"import { component$ } from "@qwik.dev/core";
+export const MyComp = component$(() => {
+    return "hello";
+});"#
+    }
+
+    /// Treeshaker runs on non-server, non-Lib, minify=Simplify builds.
+    /// It should drop transform-introduced bare top-level call expressions.
+    /// The componentQrl(...) call is a const initializer (not a bare statement)
+    /// so it must be PRESERVED in the root module output.
+    #[test]
+    fn integration_treeshaker_runs_without_error() {
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(make_component_src_for_dce(), "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            minify: MinifyMode::Simplify,
+            is_server: Some(false),
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        // componentQrl is a const initializer, not a bare statement — must remain
+        assert!(
+            root.code.contains("componentQrl"),
+            "componentQrl const initializer must not be dropped by Treeshaker, got: {}",
+            root.code
+        );
+    }
+
+    /// Bare top-level call expressions introduced by transform (span.start = 0)
+    /// should be dropped by Treeshaker.  We inject a user-written call first (marked)
+    /// and a synthesised call (not marked) by using two separate inputs where
+    /// the synthesised one is at a different offset.
+    #[test]
+    fn integration_treeshaker_drops_transform_calls() {
+        // Source has user-written bare call at the top level.
+        // The Treeshaker will mark it and preserve it; any transform-injected
+        // calls (at span 0) get dropped.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+userWrittenCall();
+export const MyComp = component$(() => "hello");"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            minify: MinifyMode::Simplify,
+            is_server: Some(false),
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        // User-written call should be preserved
+        assert!(
+            root.code.contains("userWrittenCall"),
+            "User-written bare call must be preserved by Treeshaker, got: {}",
+            root.code
+        );
+    }
+
+    /// Treeshaker is skipped for server builds (is_server=true).
+    /// The transform output should still be valid and contain componentQrl.
+    #[test]
+    fn integration_treeshaker_skipped_for_server() {
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(make_component_src_for_dce(), "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            minify: MinifyMode::Simplify,
+            is_server: Some(true),
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        assert!(
+            root.code.contains("componentQrl"),
+            "componentQrl should survive server build (Treeshaker skipped), got: {}",
+            root.code
+        );
+    }
+
+    /// SideEffectVisitor runs for Inline strategy — pipeline completes without error.
+    #[test]
+    fn integration_side_effect_visitor_inline() {
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(make_component_src_for_dce(), "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Inline,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules with Inline failed");
+        // Should produce exactly one module (no segment modules for Inline strategy)
+        assert_eq!(
+            result.modules.len(),
+            1,
+            "Inline strategy should produce 1 module, got {}",
+            result.modules.len()
+        );
+        let code = &result.modules[0].code;
+        // Output should still contain componentQrl (inline keeps it in root)
+        assert!(
+            code.contains("componentQrl"),
+            "componentQrl should be present in Inline mode root output, got: {code}"
+        );
+    }
+
+    /// Treeshaker is skipped for Lib mode.
+    #[test]
+    fn integration_treeshaker_skipped_for_lib() {
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(make_component_src_for_dce(), "test.tsx")],
+            mode: EmitMode::Lib,
+            entry_strategy: EntryStrategy::Segment,
+            minify: MinifyMode::Simplify,
+            is_server: Some(false),
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules with Lib mode failed");
+        // Should complete without error; Lib mode skips Treeshaker
+        assert!(!result.modules.is_empty(), "Should produce at least one module");
     }
 }

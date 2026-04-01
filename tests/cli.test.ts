@@ -95,7 +95,7 @@ describe("CLI-03: --json output schema", () => {
     const json = JSON.parse(stdout);
     const keys = Object.keys(json.summary.byCategory);
     expect(keys.length).toBe(19);
-    for (const [key, value] of Object.entries(json.summary.byCategory)) {
+    for (const [, value] of Object.entries(json.summary.byCategory)) {
       expect(value).toBe(0);
     }
   });

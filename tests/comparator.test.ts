@@ -15,7 +15,7 @@
 import { describe, it, expect } from "bun:test";
 import * as path from "node:path";
 import { parseSnapFile } from "../src/parser.ts";
-import { compareFixture, type FailureItem } from "../src/comparator.ts";
+import { compareFixture } from "../src/comparator.ts";
 import { FailureCategory } from "../src/contract.ts";
 import type { ParsedSection, ParsedSnapshot, SegmentMetadata } from "../src/types.ts";
 

@@ -22,8 +22,8 @@ import {
   validateDisplayName,
   recomputeCanonicalFilename,
   validateCanonicalFilename,
-} from "../src/identity.js";
-import type { SegmentMetadata } from "../src/types.js";
+} from "../src/identity.ts";
+import type { SegmentMetadata } from "../src/types.ts";
 
 // ---------------------------------------------------------------------------
 // escapeSymbol
@@ -239,7 +239,7 @@ describe("validateCanonicalFilename", () => {
 // ---------------------------------------------------------------------------
 
 import * as path from "node:path";
-import { parseSnapFile } from "../src/parser.js";
+import { parseSnapFile } from "../src/parser.ts";
 
 interface FixtureRecord {
   src_dir: string;

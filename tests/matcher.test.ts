@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
-import { matchSegments } from "../src/matcher";
-import type { ParsedSection, SegmentMetadata } from "../src/types";
+import { matchSegments } from "../src/matcher.ts";
+import type { ParsedSection, SegmentMetadata } from "../src/types.ts";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -69,7 +69,7 @@ describe("matchSegments", () => {
     const result = matchSegments(swc, oxc);
 
     expect(result.matches).toHaveLength(3);
-    expect(result.matches.every((m) => m.confidence === "high")).toBe(true);
+    expect(result.matches.every((m: { confidence: string }) => m.confidence === "high")).toBe(true);
     expect(result.unmatched_swc).toHaveLength(0);
     expect(result.unmatched_oxc).toHaveLength(0);
     expect(result.ambiguous).toBe(false);

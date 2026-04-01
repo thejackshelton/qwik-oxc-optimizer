@@ -94,7 +94,7 @@ describe("PARSE-02: Metadata field completeness", () => {
       "ctxKind", "ctxName", "captures", "loc",
     ];
     for (const field of alwaysPresentFields) {
-      expect((meta as Record<string, unknown>)[field]).not.toBe(undefined);
+      expect((meta as unknown as Record<string, unknown>)[field]).not.toBe(undefined);
     }
   });
 

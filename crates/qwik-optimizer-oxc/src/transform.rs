@@ -451,12 +451,13 @@ pub(crate) struct QwikTransform {
     /// Whether running in a server context (for Dev mode metadata).
     pub(crate) is_server: bool,
 
-    /// Raw pointer to the `GlobalCollect` for `get_local_idents`.
+    /// Raw pointer to the `GlobalCollect` for `get_local_idents` and `ensure_export`.
     ///
     /// # Safety
     /// The pointer is valid for the duration of the traversal: `GlobalCollect` is
     /// owned by `transform_code` and outlives the `QwikTransform` instance.
-    global_collect: *const GlobalCollect,
+    /// Mutable access is only used in `ensure_export` which inserts into `exports`.
+    global_collect: *mut GlobalCollect,
 
     // ---- Phase 13: Level 2 loop-context .w() hoisting ----------------------
 
@@ -641,7 +642,7 @@ impl QwikTransform {
             extension: options.extension.to_string(),
             explicit_extensions: options.explicit_extensions,
             is_server: options.is_server,
-            global_collect: options.global_collect as *const GlobalCollect,
+            global_collect: options.global_collect as *const GlobalCollect as *mut GlobalCollect,
             // Phase 13: Level 2 hoisting fields
             hoisted_qrls: Vec::new(),
             iteration_var_stack: Vec::new(),
@@ -709,6 +710,37 @@ impl QwikTransform {
             .collect();
         result.sort();
         result
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 16: ensure_export — auto-export injection (SEG-08)
+    // -----------------------------------------------------------------------
+
+    /// Ensure that `sym` is exported from the parent module.
+    ///
+    /// If `sym` is a root-level declaration not already exported, adds
+    /// `export { sym as _auto_sym };` to `extra_bottom_items`.
+    ///
+    /// Called during segment creation for local_idents that reference
+    /// root-level symbols — the segment module will import them back via
+    /// `import { _auto_sym as sym } from "./parent"`.
+    ///
+    /// SEG-08: ensure_export / auto-export injection.
+    pub(crate) fn ensure_export(&mut self, sym: &str) {
+        let global = unsafe { &mut *self.global_collect };
+        // Only for root-level symbols
+        if !global.root.contains_key(sym) {
+            return;
+        }
+        // Skip if already exported (by original name or auto name)
+        let auto_name = format!("_auto_{}", sym);
+        if global.exports.contains_key(&auto_name) || global.exports.contains_key(sym) {
+            return;
+        }
+        // Record in exports map so duplicate calls are idempotent
+        global.exports.insert(auto_name.clone(), crate::collector::ExportInfo::default());
+        // Push export statement to extra_bottom_items (drained by exit_program Step 3)
+        self.extra_bottom_items.push(format!("export {{ {} as {} }};", sym, auto_name));
     }
 
     // -----------------------------------------------------------------------
@@ -1880,6 +1912,12 @@ impl QwikTransform {
             needs_qrl_import: false,
         };
         let entry = self.entry_policy.get_entry_for_sym(&self.stack_ctxt, &segment_data);
+
+        // SEG-08: ensure root-level local_idents are exported so the segment
+        // module can import them back via `_auto_sym` named export.
+        for ident in &local_idents {
+            self.ensure_export(ident);
+        }
 
         self.segments.push(SegmentRecord {
             name: names.symbol_name.clone(),

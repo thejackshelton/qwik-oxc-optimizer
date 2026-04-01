@@ -111,6 +111,52 @@ describe("CLI-03: --json output schema", () => {
   });
 });
 
+// --- CLI-05: REPT-03 — JSON stability and schema conformance ---
+describe("CLI-05: --json stability and HarnessOutput schema (REPT-03)", () => {
+  test("--json output is byte-identical across two runs (machine stability)", () => {
+    const { stdout: run1 } = runCLI([...SWC_FLAG, "--json"]);
+    const { stdout: run2 } = runCLI([...SWC_FLAG, "--json"]);
+    expect(run1).toBe(run2);
+  });
+
+  test("--json output parses as valid JSON with all HarnessOutput schema fields", () => {
+    const { stdout } = runCLI([...SWC_FLAG, "--json"]);
+    const json = JSON.parse(stdout) as Record<string, unknown>;
+
+    // fixtures array present
+    expect(Array.isArray(json["fixtures"])).toBe(true);
+    const fixtures = json["fixtures"] as Array<Record<string, unknown>>;
+
+    // each fixture has name (string), pass (boolean), failures (array)
+    for (const fixture of fixtures) {
+      expect(typeof fixture["name"]).toBe("string");
+      expect(typeof fixture["pass"]).toBe("boolean");
+      expect(Array.isArray(fixture["failures"])).toBe(true);
+    }
+
+    // summary has total, passed, failed (numbers), byCategory (object)
+    expect(typeof json["summary"]).toBe("object");
+    const summary = json["summary"] as Record<string, unknown>;
+    expect(typeof summary["total"]).toBe("number");
+    expect(typeof summary["passed"]).toBe("number");
+    expect(typeof summary["failed"]).toBe("number");
+    expect(typeof summary["byCategory"]).toBe("object");
+    expect(summary["byCategory"]).not.toBeNull();
+
+    // byCategory has exactly 19 keys
+    const byCategory = summary["byCategory"] as Record<string, unknown>;
+    expect(Object.keys(byCategory).length).toBe(19);
+  });
+
+  test("--json fixtures are sorted by name ascending (REPT-03 deterministic order)", () => {
+    const { stdout } = runCLI([...SWC_FLAG, "--json"]);
+    const json = JSON.parse(stdout) as { fixtures: Array<{ name: string }> };
+    const names = json.fixtures.map((f) => f.name);
+    const sorted = [...names].sort((a, b) => a.localeCompare(b));
+    expect(names).toEqual(sorted);
+  });
+});
+
 // --- CLI-04: exit codes ---
 describe("CLI-04: exit codes", () => {
   test("normal run exits 0", () => {

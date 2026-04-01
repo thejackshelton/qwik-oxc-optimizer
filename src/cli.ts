@@ -24,6 +24,7 @@ import {
   type FailureCategoryValue,
   type HarnessOutput,
 } from "./contract.js";
+import { formatTerminalReport, formatStableJson } from "./reporter.js";
 
 /**
  * Parse CLI arguments into a typed options object.
@@ -189,23 +190,11 @@ async function main() {
 
   // Render output
   if (args.json) {
-    console.log(JSON.stringify(output, null, 2));
+    console.log(formatStableJson(output));
   } else {
-    const failureLabel = failed === 1 ? "failure" : "failures";
-    console.log(`Parsed ${fixtures.length} fixtures. ${failed} ${failureLabel}.`);
-    for (const fixture of fixtures) {
-      const status = fixture.pass ? "PASS" : "FAIL";
-      const failCount = fixture.failures.length > 0 ? ` (${fixture.failures.length} failures)` : "";
-      console.log(`  [${status}] ${fixture.name}${failCount}`);
-    }
-    if (failed > 0) {
-      console.log("\nFailures by category:");
-      for (const [cat, count] of Object.entries(byCategory)) {
-        if (count > 0) {
-          console.log(`  ${cat}: ${count}`);
-        }
-      }
-    }
+    // Build annotations array for step-trace (REPT-05) — in-memory only, NOT serialized
+    // Step-trace is only available when OXC snapshots are provided (metadata required)
+    console.log(formatTerminalReport(output));
   }
 
   process.exit(exitCode);

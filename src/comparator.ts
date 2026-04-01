@@ -215,16 +215,27 @@ export function compareFixture(
   const swcDiag = swcSnapshot.diagnostics as Array<{ file?: string; loc?: [number, number] }>;
   const oxcDiag = oxcSnapshot.diagnostics as Array<{ file?: string; loc?: [number, number] }>;
 
-  // Sort with JSON tiebreaker for diagnostics sharing the same file/loc
+  // Canonicalize: sort object keys for order-independent comparison
+  const canonicalize = (obj: unknown): unknown => {
+    if (obj === null || typeof obj !== "object") return obj;
+    if (Array.isArray(obj)) return obj.map(canonicalize);
+    const sorted: Record<string, unknown> = {};
+    for (const key of Object.keys(obj).sort()) {
+      sorted[key] = canonicalize((obj as Record<string, unknown>)[key]);
+    }
+    return sorted;
+  };
+
+  // Sort with canonical JSON tiebreaker for diagnostics sharing the same file/loc
   const stableSort = (arr: typeof swcDiag) =>
     [...arr].sort((a, b) => {
       const cmp = DIAGNOSTICS_SORT_KEY(a).localeCompare(DIAGNOSTICS_SORT_KEY(b));
-      return cmp !== 0 ? cmp : JSON.stringify(a).localeCompare(JSON.stringify(b));
+      return cmp !== 0 ? cmp : JSON.stringify(canonicalize(a)).localeCompare(JSON.stringify(canonicalize(b)));
     });
   const swcSorted = stableSort(swcDiag);
   const oxcSorted = stableSort(oxcDiag);
 
-  if (JSON.stringify(swcSorted) !== JSON.stringify(oxcSorted)) {
+  if (JSON.stringify(swcSorted.map(canonicalize)) !== JSON.stringify(oxcSorted.map(canonicalize))) {
     failures.push({
       category: FailureCategory.DIAGNOSTICS_MISMATCH,
       field: "diagnostics",

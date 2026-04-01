@@ -86,11 +86,14 @@ async function main() {
   const OXC_DIR = args.oxcSnapshots ? path.resolve(args.oxcSnapshots) : null;
 
   // Fail fast if oxfmt version doesn't match frozen contract
-  try {
-    assertOxfmtVersion();
-  } catch (err) {
-    console.error(`Harness error: ${(err as Error).message}`);
-    process.exit(2);
+  // Only needed when OXC snapshots are provided (comparison normalizes code)
+  if (OXC_DIR !== null) {
+    try {
+      assertOxfmtVersion();
+    } catch (err) {
+      console.error(`Harness error: ${(err as Error).message}`);
+      process.exit(2);
+    }
   }
 
   // Validate --category if provided

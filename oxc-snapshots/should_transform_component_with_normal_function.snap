@@ -78,7 +78,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_co
   "canonicalFilename": "test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA",
   "path": "",
   "extension": "js",
-  "parent": "Foo_component_Inner_wyVIXUKBdfk",
+  "parent": "Foo_component_HTDRsvUbLiE",
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -95,12 +95,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_co
 }
 */
 
-============================= test.tsx_Foo_component_Inner_wyVIXUKBdfk.js (ENTRY POINT)==
+============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
 import { Signal } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 const q_Foo_component_Inner_component_AuJ9mTBx5YA = qrl(() => import("./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA"), "Foo_component_Inner_component_AuJ9mTBx5YA", [data]);
-export const Foo_component_Inner_wyVIXUKBdfk = function() {
+export const Foo_component_HTDRsvUbLiE = function() {
 	const data = useSignal < Signal < any > [] > [];
 	const Inner = componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));
 	return _jsxSorted(Inner, { data }, null, null, 3, "u6_1");
@@ -108,15 +108,15 @@ export const Foo_component_Inner_wyVIXUKBdfk = function() {
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_wyVIXUKBdfk\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_Inner_component_AuJ9mTBx5YA = qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\\"), \\"Foo_component_Inner_component_AuJ9mTBx5YA\\", [data]);\nexport const Foo_component_Inner_wyVIXUKBdfk = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst Inner = componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));\n\treturn _jsxSorted(Inner, { data }, null, null, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,8CAA8C,UAAU,OAAO,yDAAyD,6CAA6C,CAAC,KAAK,CAAC;AAClL,OAAO,MAAM,kCAAkC,WAAW;CACzD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;CACxC,MAAM,QAAQ,aAAa,4CAA4C,EAAE,CAAC,KAAK,CAAC,CAAC;AACjF,QAAO,WAAW,OAAO,EAAE,MAAM,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_Inner_component_AuJ9mTBx5YA = qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\\"), \\"Foo_component_Inner_component_AuJ9mTBx5YA\\", [data]);\nexport const Foo_component_HTDRsvUbLiE = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst Inner = componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));\n\treturn _jsxSorted(Inner, { data }, null, null, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,8CAA8C,UAAU,OAAO,yDAAyD,6CAA6C,CAAC,KAAK,CAAC;AAClL,OAAO,MAAM,4BAA4B,WAAW;CACnD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;CACxC,MAAM,QAAQ,aAAa,4CAA4C,EAAE,CAAC,KAAK,CAAC,CAAC;AACjF,QAAO,WAAW,OAAO,EAAE,MAAM,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxD\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Foo_component_Inner_wyVIXUKBdfk",
+  "name": "Foo_component_HTDRsvUbLiE",
   "entry": null,
-  "displayName": "test.tsx_Foo_component_Inner",
-  "hash": "wyVIXUKBdfk",
-  "canonicalFilename": "test.tsx_Foo_component_Inner_wyVIXUKBdfk",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -134,12 +134,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_wy
 
 import { _fnSignal } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-const q_Foo_component_Inner_wyVIXUKBdfk = qrl(() => import("./test.tsx_Foo_component_Inner_wyVIXUKBdfk"), "Foo_component_Inner_wyVIXUKBdfk");
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 import { $, component$, useSignal, Signal } from "@qwik.dev/core";
-const Foo = componentQrl(q_Foo_component_Inner_wyVIXUKBdfk);
+const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal, Sig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(function() {\n  const data = useSignal<Signal<any>[]>([]);\n  const Inner = component$(function(props) {\n    const data = props.data\n    return <div>{data.value.map(item => <p onClick$={() => console.log(item.value.id)}>{item.value.id}</p>)}</div>\n  })\n  return <Inner data={data} />\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,8CAA8C,OAAO,+CAExD,kCAAkC;AAFpC,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,MAAM,MAAMC,+CAOV\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSigna\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(function() {\n  const data = useSignal<Signal<any>[]>([]);\n  const Inner = component$(function(props) {\n    const data = props.data\n    return <div>{data.value.map(item => <p onClick$={() => console.log(item.value.id)}>{item.value.id}</p>)}</div>\n  })\n  return <Inner data={data} />\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAC1B,4BACR;AAFlB,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,MAAM,MAAMC,yCAOV\"}")
 == DIAGNOSTICS ==
 
 []

@@ -101,23 +101,23 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 }
 */
 
-============================= test.tsx_App_Lightweight_useMemo_KF0arENeVdg.js (ENTRY POINT)==
+============================= test.tsx_Lightweight_useMemo_UIcxVTQF1a8.js (ENTRY POINT)==
 
-export const App_Lightweight_useMemo_KF0arENeVdg = () => {
+export const Lightweight_useMemo_UIcxVTQF1a8 = () => {
 	console.log(state.count);
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Lightweight_useMemo_KF0arENeVdg\"],\"sourcesContent\":[\"export const App_Lightweight_useMemo_KF0arENeVdg = () => {\n\tconsole.log(state.count);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,SAAQ,IAAI,MAAM,MAAM;;AACvB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Lightweight_useMemo_UIcxVTQF1a8\"],\"sourcesContent\":[\"export const Lightweight_useMemo_UIcxVTQF1a8 = () => {\n\tconsole.log(state.count);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,wCAAwC;AACpD,SAAQ,IAAI,MAAM,MAAM;;AACvB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "App_Lightweight_useMemo_KF0arENeVdg",
+  "name": "Lightweight_useMemo_UIcxVTQF1a8",
   "entry": null,
-  "displayName": "test.tsx_App_Lightweight_useMemo",
-  "hash": "KF0arENeVdg",
-  "canonicalFilename": "test.tsx_App_Lightweight_useMemo_KF0arENeVdg",
+  "displayName": "test.tsx_Lightweight_useMemo",
+  "hash": "UIcxVTQF1a8",
+  "canonicalFilename": "test.tsx_Lightweight_useMemo_UIcxVTQF1a8",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -180,7 +180,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 import { _wrapProp } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU", [useMemo$]);
-const q_App_Lightweight_useMemo_KF0arENeVdg = qrl(() => import("./test.tsx_App_Lightweight_useMemo_KF0arENeVdg"), "App_Lightweight_useMemo_KF0arENeVdg");
+const q_Lightweight_useMemo_UIcxVTQF1a8 = qrl(() => import("./test.tsx_Lightweight_useMemo_UIcxVTQF1a8"), "Lightweight_useMemo_UIcxVTQF1a8");
 import { component$, $, useStore, wrap, useEffect } from "@qwik.dev/core";
 export const useMemoQrl = (qrt) => {
 	useEffect(qrt);
@@ -188,11 +188,11 @@ export const useMemoQrl = (qrt) => {
 export const useMemo$ = wrap(useMemoQrl);
 export const App = componentQrl(q_App_component_1_w0t0o3QMovU.w([useMemo$]));
 export const Lightweight = (props) => {
-	useMemoQrl(q_App_Lightweight_useMemo_KF0arENeVdg);
+	useMemoQrl(q_Lightweight_useMemo_UIcxVTQF1a8);
 };
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $, useStore, \",\"t { component$, $, useStore, wrap, us\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $, useStore, wrap, useEffect } from '@qwik.dev/core';\n\nexport const useMemoQrl = (qrt) => {\n\tuseEffect(qrt);\n};\n\nexport const useMemo$ = wrap(useMemoQrl);\n\nexport const App = component$((props) => {\n\tconst state = useStore({count: 0});\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n\treturn $(() => (\n\t\t<div>{state.count}</div>\n\t));\n});\n\nexport const Lightweight = (props) => {\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n};\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,2CAEjC,+BACN,UAGX,CAAC;AAPL,MACKC,kDAAkD,OAAO,mDAG9D,sCAGiB;AANjB,SAAS,YAAY,GAAG,UAAU,MAAM,iBAAiB;AAEzD,OAAO,MAAM,cAAc,QAAQ;AAClC,WAAU,IAAI;;AAGf,OAAO,MAAM,WAAW,KAAK,WAAW;AAExC,OAAO,MAAM,MAAMC,yDAQjB;AAEF,OAAO,MAAM,eAAe,UAAU;AACrC,kDAEE\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $, useStore, \",\"t { component$, $, useStore, wrap\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $, useStore, wrap, useEffect } from '@qwik.dev/core';\n\nexport const useMemoQrl = (qrt) => {\n\tuseEffect(qrt);\n};\n\nexport const useMemo$ = wrap(useMemoQrl);\n\nexport const App = component$((props) => {\n\tconst state = useStore({count: 0});\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n\treturn $(() => (\n\t\t<div>{state.count}</div>\n\t));\n});\n\nexport const Lightweight = (props) => {\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n};\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,2CAEjC,+BACN,UAGX,CAAC;AAPL,MACKC,8CAA8C,OAAO,+CAE7B,kCAIxB;AANL,SAAS,YAAY,GAAG,UAAU,MAAM,iBAAiB;AAEzD,OAAO,MAAM,cAAc,QAAQ;AAClC,WAAU,IAAI;;AAGf,OAAO,MAAM,WAAW,KAAK,WAAW;AAExC,OAAO,MAAM,MAAMC,yDAQjB;AAEF,OAAO,MAAM,eAAe,UAAU;AACrC,8CAEE\"}")
 == DIAGNOSTICS ==
 
 []

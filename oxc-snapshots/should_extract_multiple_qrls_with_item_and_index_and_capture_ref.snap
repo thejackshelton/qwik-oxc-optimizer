@@ -23,47 +23,10 @@ export default component$(() => {
 
 
 
-============================= test.tsx_component_div_div_q_e_click_bdp4U0ib8mU.js (ENTRY POINT)==
+============================= test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
-export const component_div_div_q_e_click_bdp4U0ib8mU = () => {
-	const foo = _captures[0];
-	const item = _captures[1];
-	return console.log(item, foo.value);
-	;
-};
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_click_bdp4U0ib8mU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_q_e_click_bdp4U0ib8mU = () => {\nconst foo = _captures[0];\nconst item = _captures[1];\nreturn console.log(item, foo.value);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAC7D,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,MAAM,IAAI,MAAM;AAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_div_div_q_e_click_bdp4U0ib8mU",
-  "entry": null,
-  "displayName": "test.tsx_component_div_div_q_e_click",
-  "hash": "bdp4U0ib8mU",
-  "canonicalFilename": "test.tsx_component_div_div_q_e_click_bdp4U0ib8mU",
-  "path": "",
-  "extension": "js",
-  "parent": "component_ZUK1E201Ins",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "foo",
-    "item"
-  ],
-  "loc": [
-    283,
-    317
-  ]
-}
-*/
-
-============================= test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y.js (ENTRY POINT)==
-
-import { _captures } from "@qwik.dev/core";
-export const component_div_div_q_e_hover_hH7Jf8PMH0Y = () => {
+export const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {
 	const bar = _captures[0];
 	const index = _captures[1];
 	return console.log(bar.value, index);
@@ -71,18 +34,18 @@ export const component_div_div_q_e_hover_hH7Jf8PMH0Y = () => {
 };
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_q_e_hover_hH7Jf8PMH0Y = () => {\nconst bar = _captures[0];\nconst index = _captures[1];\nreturn console.log(bar.value, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAC7D,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,IAAI,OAAO,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {\nconst bar = _captures[0];\nconst index = _captures[1];\nreturn console.log(bar.value, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,IAAI,OAAO,MAAM;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_div_div_q_e_hover_hH7Jf8PMH0Y",
+  "name": "test_component_div_div_q_e_hover_2iHUE4xtgo8",
   "entry": null,
-  "displayName": "test.tsx_component_div_div_q_e_hover",
-  "hash": "hH7Jf8PMH0Y",
-  "canonicalFilename": "test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y",
+  "displayName": "test.tsx_test_component_div_div_q_e_hover",
+  "hash": "2iHUE4xtgo8",
+  "canonicalFilename": "test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8",
   "path": "",
   "extension": "js",
-  "parent": "component_ZUK1E201Ins",
+  "parent": "test_component_LUXeXe0DQrg",
   "ctxKind": "eventHandler",
   "ctxName": "onHover$",
   "captures": true,
@@ -97,12 +60,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_
 }
 */
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_component_div_div_q_e_click_bdp4U0ib8mU = qrl(() => import("./test.tsx_component_div_div_q_e_click_bdp4U0ib8mU"), "component_div_div_q_e_click_bdp4U0ib8mU", [foo, item]);
-const q_component_div_div_q_e_hover_hH7Jf8PMH0Y = qrl(() => import("./test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y"), "component_div_div_q_e_hover_hH7Jf8PMH0Y", [bar, index]);
-export const component_ZUK1E201Ins = () => {
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [foo, item]);
+const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [bar, index]);
+export const test_component_LUXeXe0DQrg = () => {
 	const foo = useSignal("hi");
 	const bar = useSignal("ho");
 	const loop: string[] = ["abcd", "xyz"];
@@ -113,8 +76,8 @@ export const component_ZUK1E201Ins = () => {
 			index,
 			item
 		] }, {
-			"q-e:click": q_component_div_div_q_e_click_bdp4U0ib8mU.w([foo, item]),
-			"q-e:hover": q_component_div_div_q_e_hover_hH7Jf8PMH0Y.w([bar, index])
+			"q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([foo, item]),
+			"q-e:hover": q_test_component_div_div_q_e_hover_2iHUE4xtgo8.w([bar, index])
 		}, item, 7, null);
 	}), 3, "u6_0");
 };;
@@ -122,11 +85,11 @@ export const component_ZUK1E201Ins = () => {
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -140,15 +103,52 @@ export const component_ZUK1E201Ins = () => {
 }
 */
 
+============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
+	const foo = _captures[0];
+	const item = _captures[1];
+	return console.log(item, foo.value);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst foo = _captures[0];\nconst item = _captures[1];\nreturn console.log(item, foo.value);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,MAAM,IAAI,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_div_div_q_e_click_Mc600uqO6ps",
+  "entry": null,
+  "displayName": "test.tsx_test_component_div_div_q_e_click",
+  "hash": "Mc600uqO6ps",
+  "canonicalFilename": "test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_LUXeXe0DQrg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "foo",
+    "item"
+  ],
+  "loc": [
+    283,
+    317
+  ]
+}
+*/
+
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSign\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const foo = useSignal('hi');\n  const bar = useSignal('ho');\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item, foo.value)} onHover$={() => console.log(bar.value, index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCAWb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const foo = useSignal('hi');\n  const bar = useSignal('ho');\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item, foo.value)} onHover$={() => console.log(bar.value, index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BACF;AAJF,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
 == DIAGNOSTICS ==
 
 []

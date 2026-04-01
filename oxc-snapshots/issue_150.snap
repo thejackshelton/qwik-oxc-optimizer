@@ -99,21 +99,21 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7Hu
 }
 */
 
-============================= test.tsx_Greeter_d_QSWg23VDMkU.js (ENTRY POINT)==
+============================= test.tsx_d_wKNFJEIQVUA.js (ENTRY POINT)==
 
-export const Greeter_d_QSWg23VDMkU = () => console.log("thing");
+export const d_wKNFJEIQVUA = () => console.log("thing");
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_d_QSWg23VDMkU\"],\"sourcesContent\":[\"export const Greeter_d_QSWg23VDMkU = () => console.log(\\"thing\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B,QAAQ,IAAI,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_d_wKNFJEIQVUA\"],\"sourcesContent\":[\"export const d_wKNFJEIQVUA = () => console.log(\\"thing\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,QAAQ,IAAI,QAAQ;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Greeter_d_QSWg23VDMkU",
+  "name": "d_wKNFJEIQVUA",
   "entry": null,
-  "displayName": "test.tsx_Greeter_d",
-  "hash": "QSWg23VDMkU",
-  "canonicalFilename": "test.tsx_Greeter_d_QSWg23VDMkU",
+  "displayName": "test.tsx_d",
+  "hash": "wKNFJEIQVUA",
+  "canonicalFilename": "test.tsx_d_wKNFJEIQVUA",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -131,14 +131,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_d_QSWg23VDMkU\
 
 import { _jsxSorted } from "@qwik.dev/core";
 const q_Greeter_component_1_krCndSwhX4U = qrl(() => import("./test.tsx_Greeter_component_1_krCndSwhX4U"), "Greeter_component_1_krCndSwhX4U");
-const q_Greeter_d_QSWg23VDMkU = qrl(() => import("./test.tsx_Greeter_d_QSWg23VDMkU"), "Greeter_d_QSWg23VDMkU");
+const q_d_wKNFJEIQVUA = qrl(() => import("./test.tsx_d_wKNFJEIQVUA"), "d_wKNFJEIQVUA");
 import { component$, $ } from "@qwik.dev/core";
 import { hola } from "sdfds";
 export const Greeter = componentQrl(q_Greeter_component_1_krCndSwhX4U);
-const d = Qrl(q_Greeter_d_QSWg23VDMkU);
+const d = Qrl(q_d_wKNFJEIQVUA);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$, $ } fro\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,8CACF,OAAO,+CAEgB,kCACR;AALlB,MACKC,oCAAoC,OACzC,qCAEM,wBAAwB;AAH9B,SAAS,YAAY,SAAS;AAC9B,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,4BAA2B\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$,\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,8CACF,OAAO,+CAEgB,kCACR;AALlB,MACKC,4BAA4B,OAAO,6BACnB,gBAEf;AAHN,SAAS,YAAY,SAAS;AAC9B,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,oBAA2B\"}")
 == DIAGNOSTICS ==
 
 []

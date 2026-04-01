@@ -40,6 +40,44 @@ export const Cmp = component$((props) => {
 });
 
 
+============================= test.tsx_Cmp_component_4ryKJTOKjWE.js (ENTRY POINT)==
+
+const _hf0 = (p0) => p0.nested.count;
+export const Cmp_component_4ryKJTOKjWE = (props) => {
+	return _jsxSorted(_Fragment, null, null, [_jsxSorted("p", null, { "data-value": _wrapProp(props, "count") }, _fnSignal(_hf0, [props], "p0 => p0.nested.count;"), 3, null), _jsxSorted("p", null, null, [
+		"Value",
+		_wrapProp(props, "count"),
+		_jsxSorted("span", null, null, null, 3, null)
+	], 3, null)], 1, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"const _hf0 = (p0) => p0.nested.count;\nexport const Cmp_component_4ryKJTOKjWE = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"p\\", null, { \\"data-value\\": _wrapProp(props, \\"count\\") }, _fnSignal(_hf0, [props], \\"p0 => p0.nested.count;\\"), 3, null), _jsxSorted(\\"p\\", null, null, [\n\t\t\\"Value\\",\n\t\t_wrapProp(props, \\"count\\"),\n\t\t_jsxSorted(\\"span\\", null, null, null, 3, null)\n\t], 3, null)], 1, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,MAAM,QAAQ,OAAO,GAAG,OAAO;AAC/B,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,EAAE,cAAc,UAAU,OAAO,QAAQ,EAAE,EAAE,UAAU,MAAM,CAAC,MAAM,EAAE,yBAAyB,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM;EACtM;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK;EAC7C,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACvB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Cmp_component_4ryKJTOKjWE",
+  "entry": null,
+  "displayName": "test.tsx_Cmp_component",
+  "hash": "4ryKJTOKjWE",
+  "canonicalFilename": "test.tsx_Cmp_component_4ryKJTOKjWE",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    458,
+    596
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 import { Cmp } from "./test";
@@ -84,44 +122,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 }
 */
 
-============================= test.tsx_App_Cmp_component_PetHcOP03HU.js (ENTRY POINT)==
-
-const _hf0 = (p0) => p0.nested.count;
-export const App_Cmp_component_PetHcOP03HU = (props) => {
-	return _jsxSorted(_Fragment, null, null, [_jsxSorted("p", null, { "data-value": _wrapProp(props, "count") }, _fnSignal(_hf0, [props], "p0 => p0.nested.count;"), 3, null), _jsxSorted("p", null, null, [
-		"Value",
-		_wrapProp(props, "count"),
-		_jsxSorted("span", null, null, null, 3, null)
-	], 3, null)], 1, "u6_1");
-};
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Cmp_component_PetHcOP03HU\"],\"sourcesContent\":[\"const _hf0 = (p0) => p0.nested.count;\nexport const App_Cmp_component_PetHcOP03HU = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"p\\", null, { \\"data-value\\": _wrapProp(props, \\"count\\") }, _fnSignal(_hf0, [props], \\"p0 => p0.nested.count;\\"), 3, null), _jsxSorted(\\"p\\", null, null, [\n\t\t\\"Value\\",\n\t\t_wrapProp(props, \\"count\\"),\n\t\t_jsxSorted(\\"span\\", null, null, null, 3, null)\n\t], 3, null)], 1, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,MAAM,QAAQ,OAAO,GAAG,OAAO;AAC/B,OAAO,MAAM,iCAAiC,UAAU;AACvD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,EAAE,cAAc,UAAU,OAAO,QAAQ,EAAE,EAAE,UAAU,MAAM,CAAC,MAAM,EAAE,yBAAyB,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM;EACtM;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK;EAC7C,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACvB\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "App_Cmp_component_PetHcOP03HU",
-  "entry": null,
-  "displayName": "test.tsx_App_Cmp_component",
-  "hash": "PetHcOP03HU",
-  "canonicalFilename": "test.tsx_App_Cmp_component_PetHcOP03HU",
-  "path": "",
-  "extension": "js",
-  "parent": null,
-  "ctxKind": "function",
-  "ctxName": "component$",
-  "captures": false,
-  "loc": [
-    458,
-    596
-  ],
-  "paramNames": [
-    "props"
-  ]
-}
-*/
-
 ============================= test.js ==
 
 import { _wrapProp } from "@qwik.dev/core";
@@ -129,13 +129,13 @@ import { _fnSignal } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
 import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-const q_App_Cmp_component_PetHcOP03HU = qrl(() => import("./test.tsx_App_Cmp_component_PetHcOP03HU"), "App_Cmp_component_PetHcOP03HU");
+const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 import { component$, useStore } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
-export const Cmp = componentQrl(q_App_Cmp_component_PetHcOP03HU);
+export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
 
-Some("{\"version\":3,\"names\":[\" useStore\",\"t { component$, useStore } \",\"t { component$, useStore } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: {\n\t\t\tcount: 0\n\t\t}\n\t});\n\tconst signal = useSignal(0);\n\treturn (\n\t\t<Cmp\n\t\t\tprop={'true' + 1 ? 'true' : ''}\n\t\t\tcount={store.count}\n\t\t\tnested={store.nested.count}\n\t\t\tsignal={signal}\n\t\t\tstore={store.stuff + 12}\n\t\t\tvalue={signal.formData?.get('username')}\n\t\t>\n\t\t</Cmp>\n\t);\n});\n\nexport const Cmp = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<p data-value={props.count}>{props.nested.count}</p>\n\t\t\t<p>Value {props.count}<span></span></p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,wCAAwC,OAAO,yCAEf,4BAEpC;AALD,MACKC,4CAA4C,OAEjD,6CACO,gCAEN;AALD,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAoBjB;AAEF,OAAO,MAAM,MAAMA,6CAOjB\"}")
+Some("{\"version\":3,\"names\":[\" useStore\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: {\n\t\t\tcount: 0\n\t\t}\n\t});\n\tconst signal = useSignal(0);\n\treturn (\n\t\t<Cmp\n\t\t\tprop={'true' + 1 ? 'true' : ''}\n\t\t\tcount={store.count}\n\t\t\tnested={store.nested.count}\n\t\t\tsignal={signal}\n\t\t\tstore={store.stuff + 12}\n\t\t\tvalue={signal.formData?.get('username')}\n\t\t>\n\t\t</Cmp>\n\t);\n});\n\nexport const Cmp = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<p data-value={props.count}>{props.nested.count}</p>\n\t\t\t<p>Value {props.count}<span></span></p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,wCAAwC,OAAO,yCAEf,4BAEpC;AALD,MACKA,wCAAwC,OAAO,yCAEf,4BAEpC;AAJD,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAoBjB;AAEF,OAAO,MAAM,MAAMA,yCAOjB\"}")
 == DIAGNOSTICS ==
 
 []

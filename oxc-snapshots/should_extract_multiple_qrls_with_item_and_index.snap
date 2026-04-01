@@ -20,63 +20,28 @@ export default component$(() => {
 });
 
 
-============================= test.tsx_component_div_div_q_e_click_bdp4U0ib8mU.js (ENTRY POINT)==
+============================= test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
-export const component_div_div_q_e_click_bdp4U0ib8mU = () => {
-	const item = _captures[0];
-	return console.log(item);
-	;
-};
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_click_bdp4U0ib8mU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_q_e_click_bdp4U0ib8mU = () => {\nconst item = _captures[0];\nreturn console.log(item);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAC7D,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,KAAK;AAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_div_div_q_e_click_bdp4U0ib8mU",
-  "entry": null,
-  "displayName": "test.tsx_component_div_div_q_e_click",
-  "hash": "bdp4U0ib8mU",
-  "canonicalFilename": "test.tsx_component_div_div_q_e_click_bdp4U0ib8mU",
-  "path": "",
-  "extension": "js",
-  "parent": "component_ZUK1E201Ins",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "item"
-  ],
-  "loc": [
-    210,
-    233
-  ]
-}
-*/
-
-============================= test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y.js (ENTRY POINT)==
-
-import { _captures } from "@qwik.dev/core";
-export const component_div_div_q_e_hover_hH7Jf8PMH0Y = () => {
+export const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {
 	const index = _captures[0];
 	return console.log(index);
 	;
 };
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_q_e_hover_hH7Jf8PMH0Y = () => {\nconst index = _captures[0];\nreturn console.log(index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAC7D,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {\nconst index = _captures[0];\nreturn console.log(index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_div_div_q_e_hover_hH7Jf8PMH0Y",
+  "name": "test_component_div_div_q_e_hover_2iHUE4xtgo8",
   "entry": null,
-  "displayName": "test.tsx_component_div_div_q_e_hover",
-  "hash": "hH7Jf8PMH0Y",
-  "canonicalFilename": "test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y",
+  "displayName": "test.tsx_test_component_div_div_q_e_hover",
+  "hash": "2iHUE4xtgo8",
+  "canonicalFilename": "test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8",
   "path": "",
   "extension": "js",
-  "parent": "component_ZUK1E201Ins",
+  "parent": "test_component_LUXeXe0DQrg",
   "ctxKind": "eventHandler",
   "ctxName": "onHover$",
   "captures": true,
@@ -90,16 +55,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_
 }
 */
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-const q_component_div_div_q_e_click_bdp4U0ib8mU = qrl(() => import("./test.tsx_component_div_div_q_e_click_bdp4U0ib8mU"), "component_div_div_q_e_click_bdp4U0ib8mU", [item]);
-const q_component_div_div_q_e_hover_hH7Jf8PMH0Y = qrl(() => import("./test.tsx_component_div_div_q_e_hover_hH7Jf8PMH0Y"), "component_div_div_q_e_hover_hH7Jf8PMH0Y", [index]);
-export const component_ZUK1E201Ins = () => {
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [item]);
+const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
+export const test_component_LUXeXe0DQrg = () => {
 	const loop: string[] = ["abcd", "xyz"];
 	return _jsxSorted("div", null, null, loop.map((item, index) => {
 		return _jsxSorted("div", { "q:ps": [index, item] }, {
-			"q-e:click": q_component_div_div_q_e_click_bdp4U0ib8mU.w([item]),
-			"q-e:hover": q_component_div_div_q_e_hover_hH7Jf8PMH0Y.w([index])
+			"q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([item]),
+			"q-e:hover": q_test_component_div_div_q_e_hover_2iHUE4xtgo8.w([index])
 		}, item, 7, null);
 	}), 3, "u6_0");
 };;
@@ -107,11 +72,11 @@ export const component_ZUK1E201Ins = () => {
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -125,15 +90,50 @@ export const component_ZUK1E201Ins = () => {
 }
 */
 
+============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
+	const item = _captures[0];
+	return console.log(item);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst item = _captures[0];\nreturn console.log(item);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,KAAK;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_div_div_q_e_click_Mc600uqO6ps",
+  "entry": null,
+  "displayName": "test.tsx_test_component_div_div_q_e_click",
+  "hash": "Mc600uqO6ps",
+  "canonicalFilename": "test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_LUXeXe0DQrg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "item"
+  ],
+  "loc": [
+    210,
+    233
+  ]
+}
+*/
+
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAEvC,qCACG,wBAAwB;AAH7B,SAAS,kBAAkB;AAE3B,eAAeC,qCASb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAEL,OAAO,0CACQ,6BACb;AAJF,SAAS,kBAAkB;AAE3B,eAAeC,0CASb\"}")
 == DIAGNOSTICS ==
 
 []

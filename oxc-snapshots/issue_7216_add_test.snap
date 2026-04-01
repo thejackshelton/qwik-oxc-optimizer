@@ -20,24 +20,24 @@ export default component$((props) => {
 });
 
 
-============================= test.tsx_component_p_q_e_const_Nsj9Eticm1o.js (ENTRY POINT)==
+============================= test.tsx_test_component_p_q_e_const_e6TYnIxnPLY.js (ENTRY POINT)==
 
-export const component_p_q_e_const_Nsj9Eticm1o = () => "const";
+export const test_component_p_q_e_const_e6TYnIxnPLY = () => "const";
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_p_q_e_const_Nsj9Eticm1o\"],\"sourcesContent\":[\"export const component_p_q_e_const_Nsj9Eticm1o = () => \\"const\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,0CAA0C;AAAQ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_const_e6TYnIxnPLY\"],\"sourcesContent\":[\"export const test_component_p_q_e_const_e6TYnIxnPLY = () => \\"const\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,+CAA+C;AAAQ\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_p_q_e_const_Nsj9Eticm1o",
+  "name": "test_component_p_q_e_const_e6TYnIxnPLY",
   "entry": null,
-  "displayName": "test.tsx_component_p_q_e_const",
-  "hash": "Nsj9Eticm1o",
-  "canonicalFilename": "test.tsx_component_p_q_e_const_Nsj9Eticm1o",
+  "displayName": "test.tsx_test_component_p_q_e_const",
+  "hash": "e6TYnIxnPLY",
+  "canonicalFilename": "test.tsx_test_component_p_q_e_const_e6TYnIxnPLY",
   "path": "",
   "extension": "js",
-  "parent": "component_ZUK1E201Ins",
+  "parent": "test_component_LUXeXe0DQrg",
   "ctxKind": "eventHandler",
   "ctxName": "onConst$",
   "captures": false,
@@ -48,62 +48,34 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_p_q_e_const_
 }
 */
 
-============================= test.tsx_component_p_q_e_hi_QEvZnCxC0zg.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-export const component_p_q_e_hi_QEvZnCxC0zg = () => "hi";
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_p_q_e_hi_QEvZnCxC0zg\"],\"sourcesContent\":[\"export const component_p_q_e_hi_QEvZnCxC0zg = () => \\"hi\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AAAK\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_p_q_e_hi_QEvZnCxC0zg",
-  "entry": null,
-  "displayName": "test.tsx_component_p_q_e_hi",
-  "hash": "QEvZnCxC0zg",
-  "canonicalFilename": "test.tsx_component_p_q_e_hi_QEvZnCxC0zg",
-  "path": "",
-  "extension": "js",
-  "parent": "component_ZUK1E201Ins",
-  "ctxKind": "eventHandler",
-  "ctxName": "onHi$",
-  "captures": false,
-  "loc": [
-    111,
-    121
-  ]
-}
-*/
-
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
-
-const q_component_p_q_e_const_Nsj9Eticm1o = qrl(() => import("./test.tsx_component_p_q_e_const_Nsj9Eticm1o"), "component_p_q_e_const_Nsj9Eticm1o");
-const q_component_p_q_e_hi_QEvZnCxC0zg = qrl(() => import("./test.tsx_component_p_q_e_hi_QEvZnCxC0zg"), "component_p_q_e_hi_QEvZnCxC0zg");
-export const component_ZUK1E201Ins = (props) => {
+const q_test_component_p_q_e_const_e6TYnIxnPLY = qrl(() => import("./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY"), "test_component_p_q_e_const_e6TYnIxnPLY");
+const q_test_component_p_q_e_hi_ttOKZbY46GA = qrl(() => import("./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA"), "test_component_p_q_e_hi_ttOKZbY46GA");
+export const test_component_LUXeXe0DQrg = (props) => {
 	return _jsxSplit("p", {
-		"q-e:hi": q_component_p_q_e_hi_QEvZnCxC0zg,
+		"q-e:hi": q_test_component_p_q_e_hi_ttOKZbY46GA,
 		...props.foo,
 		"q-e:hello": props.helloHandler$,
 		...props.rest
 	}, {
 		"q-e:var": props.onVarHandler$,
-		"q-e:const": q_component_p_q_e_const_Nsj9Eticm1o,
+		"q-e:const": q_test_component_p_q_e_const_e6TYnIxnPLY,
 		asd: "1"
 	}, null, 0, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"const q_component_p_q_e_const_Nsj9Eticm1o = qrl(() => import(\\"./test.tsx_component_p_q_e_const_Nsj9Eticm1o\\"), \\"component_p_q_e_const_Nsj9Eticm1o\\");\nconst q_component_p_q_e_hi_QEvZnCxC0zg = qrl(() => import(\\"./test.tsx_component_p_q_e_hi_QEvZnCxC0zg\\"), \\"component_p_q_e_hi_QEvZnCxC0zg\\");\nexport const component_ZUK1E201Ins = (props) => {\n\treturn _jsxSplit(\\"p\\", {\n\t\t\\"q-e:hi\\": q_component_p_q_e_hi_QEvZnCxC0zg,\n\t\t...props.foo,\n\t\t\\"q-e:hello\\": props.helloHandler$,\n\t\t...props.rest\n\t}, {\n\t\t\\"q-e:var\\": props.onVarHandler$,\n\t\t\\"q-e:const\\": q_component_p_q_e_const_Nsj9Eticm1o,\n\t\tasd: \\"1\\"\n\t}, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,oCAAoC;AAClJ,MAAM,mCAAmC,UAAU,OAAO,8CAA8C,iCAAiC;AACzI,OAAO,MAAM,yBAAyB,UAAU;AAC/C,QAAO,UAAU,KAAK;EACrB,UAAU;EACV,GAAG,MAAM;EACT,aAAa,MAAM;EACnB,GAAG,MAAM;EACT,EAAE;EACF,WAAW,MAAM;EACjB,aAAa;EACb,KAAK;EACL,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"const q_test_component_p_q_e_const_e6TYnIxnPLY = qrl(() => import(\\"./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY\\"), \\"test_component_p_q_e_const_e6TYnIxnPLY\\");\nconst q_test_component_p_q_e_hi_ttOKZbY46GA = qrl(() => import(\\"./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA\\"), \\"test_component_p_q_e_hi_ttOKZbY46GA\\");\nexport const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSplit(\\"p\\", {\n\t\t\\"q-e:hi\\": q_test_component_p_q_e_hi_ttOKZbY46GA,\n\t\t...props.foo,\n\t\t\\"q-e:hello\\": props.helloHandler$,\n\t\t...props.rest\n\t}, {\n\t\t\\"q-e:var\\": props.onVarHandler$,\n\t\t\\"q-e:const\\": q_test_component_p_q_e_const_e6TYnIxnPLY,\n\t\tasd: \\"1\\"\n\t}, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,2CAA2C,UAAU,OAAO,sDAAsD,yCAAyC;AACjK,MAAM,wCAAwC,UAAU,OAAO,mDAAmD,sCAAsC;AACxJ,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,UAAU,KAAK;EACrB,UAAU;EACV,GAAG,MAAM;EACT,aAAa,MAAM;EACnB,GAAG,MAAM;EACT,EAAE;EACF,WAAW,MAAM;EACjB,aAAa;EACb,KAAK;EACL,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -120,15 +92,43 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 }
 */
 
+============================= test.tsx_test_component_p_q_e_hi_ttOKZbY46GA.js (ENTRY POINT)==
+
+export const test_component_p_q_e_hi_ttOKZbY46GA = () => "hi";
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_hi_ttOKZbY46GA\"],\"sourcesContent\":[\"export const test_component_p_q_e_hi_ttOKZbY46GA = () => \\"hi\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AAAK\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_p_q_e_hi_ttOKZbY46GA",
+  "entry": null,
+  "displayName": "test.tsx_test_component_p_q_e_hi",
+  "hash": "ttOKZbY46GA",
+  "canonicalFilename": "test.tsx_test_component_p_q_e_hi_ttOKZbY46GA",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_LUXeXe0DQrg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onHi$",
+  "captures": false,
+  "loc": [
+    111,
+    121
+  ]
+}
+*/
+
 ============================= test.js ==
 
 import { _jsxSplit } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,oCAAoC,OACxC,qCAAqC,wBAE7B;AAHT,SAAS,kBAAkB;AAC3B,eAAeC,qCAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@buil\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,yCAAyC,OACxC,0CACG,6BAEP;AAJF,SAAS,kBAAkB;AAC3B,eAAeC,0CAUb\"}")
 == DIAGNOSTICS ==
 
 []

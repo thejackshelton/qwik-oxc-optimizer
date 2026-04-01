@@ -18,24 +18,24 @@ export default component$(() => {
 
 
 
-============================= src/routes/_repl/[id]/[[...slug]].tsx_component_6n0k9fnD07Y.js ==
+============================= src/routes/_repl/[id]/[[...slug]].tsx_slug_component_0AM8HPnkNs4.js ==
 
-const q_component_div_q_e_click_P7qCHvSpPGg = qrl(() => import("./[[...slug]].tsx_component_div_q_e_click_P7qCHvSpPGg.tsx"), "component_div_q_e_click_P7qCHvSpPGg");
-export const component_6n0k9fnD07Y = () => {
-	return _jsxSorted("div", null, { "q-e:click": q_component_div_q_e_click_P7qCHvSpPGg }, null, 3, "W4_0");
+const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import("./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx"), "slug_component_div_q_e_click_bCwVPYSTQ0w");
+export const slug_component_0AM8HPnkNs4 = () => {
+	return _jsxSorted("div", null, { "q-e:click": q_slug_component_div_q_e_click_bCwVPYSTQ0w }, null, 3, "W4_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_6n0k9fnD07Y\"],\"sourcesContent\":[\"const q_component_div_q_e_click_P7qCHvSpPGg = qrl(() => import(\\"./[[...slug]].tsx_component_div_q_e_click_P7qCHvSpPGg.tsx\\"), \\"component_div_q_e_click_P7qCHvSpPGg\\");\nexport const component_6n0k9fnD07Y = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_component_div_q_e_click_P7qCHvSpPGg }, null, 3, \\"W4_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,wCAAwC,UAAU,OAAO,8DAA8D,sCAAsC;AACnK,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,uCAAuC,EAAE,MAAM,GAAG,OAAO;;AACtG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_0AM8HPnkNs4\"],\"sourcesContent\":[\"const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import(\\"./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx\\"), \\"slug_component_div_q_e_click_bCwVPYSTQ0w\\");\nexport const slug_component_0AM8HPnkNs4 = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_slug_component_div_q_e_click_bCwVPYSTQ0w }, null, 3, \\"W4_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,mEAAmE,2CAA2C;AAClL,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,4CAA4C,EAAE,MAAM,GAAG,OAAO;;AAC3G\"}")
 /*
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
-  "name": "component_6n0k9fnD07Y",
-  "entry": "src/routes/_repl/[id]/[[...slug]].tsx_entry_component",
-  "displayName": "[[...slug]].tsx_component",
-  "hash": "6n0k9fnD07Y",
-  "canonicalFilename": "[[...slug]].tsx_component_6n0k9fnD07Y",
+  "name": "slug_component_0AM8HPnkNs4",
+  "entry": "src/routes/_repl/[id]/[[...slug]].tsx_entry_slug",
+  "displayName": "[[...slug]].tsx_slug_component",
+  "hash": "0AM8HPnkNs4",
+  "canonicalFilename": "[[...slug]].tsx_slug_component_0AM8HPnkNs4",
   "path": "src/routes/_repl/[id]",
   "extension": "js",
   "parent": null,
@@ -49,25 +49,25 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_6n0k9
 }
 */
 
-============================= src/routes/_repl/[id]/[[...slug]].tsx_component_div_q_e_click_P7qCHvSpPGg.js (ENTRY POINT)==
+============================= src/routes/_repl/[id]/[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.js (ENTRY POINT)==
 
 import { sibling } from "./sibling";
-export const component_div_q_e_click_P7qCHvSpPGg = () => console.log(mongodb, sibling);
+export const slug_component_div_q_e_click_bCwVPYSTQ0w = () => console.log(mongodb, sibling);
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_div_q_e_click_P7qCHvSpPGg\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const component_div_q_e_click_P7qCHvSpPGg = () => console.log(mongodb, sibling);;\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,4CAA4C,QAAQ,IAAI,SAAS,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const slug_component_div_q_e_click_bCwVPYSTQ0w = () => console.log(mongodb, sibling);;\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,iDAAiD,QAAQ,IAAI,SAAS,QAAQ;AAAC\"}")
 /*
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
-  "name": "component_div_q_e_click_P7qCHvSpPGg",
+  "name": "slug_component_div_q_e_click_bCwVPYSTQ0w",
   "entry": null,
-  "displayName": "[[...slug]].tsx_component_div_q_e_click",
-  "hash": "P7qCHvSpPGg",
-  "canonicalFilename": "[[...slug]].tsx_component_div_q_e_click_P7qCHvSpPGg",
+  "displayName": "[[...slug]].tsx_slug_component_div_q_e_click",
+  "hash": "bCwVPYSTQ0w",
+  "canonicalFilename": "[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w",
   "path": "src/routes/_repl/[id]",
   "extension": "js",
-  "parent": "component_6n0k9fnD07Y",
+  "parent": "slug_component_0AM8HPnkNs4",
   "ctxKind": "eventHandler",
   "ctxName": "onClick$",
   "captures": false,
@@ -81,13 +81,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_div_q
 ============================= src/routes/_repl/[id]/[[...slug]].js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_6n0k9fnD07Y = qrl(() => import("./[[...slug]].tsx_component_6n0k9fnD07Y.tsx"), "component_6n0k9fnD07Y");
+const q_slug_component_0AM8HPnkNs4 = qrl(() => import("./[[...slug]].tsx_slug_component_0AM8HPnkNs4.tsx"), "slug_component_0AM8HPnkNs4");
 import { component$ } from "@qwik.dev/core";
 import { sibling } from "./sibling";
-export default componentQrl(q_component_6n0k9fnD07Y);
+export default componentQrl(q_slug_component_0AM8HPnkNs4);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OACtC,gDAEU,wBACV;AAJH,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,qCAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCACJ,OAAO,qDAEe,6BAEf;AALR,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

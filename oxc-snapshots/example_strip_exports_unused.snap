@@ -23,23 +23,23 @@ export default component$(()=> {
 });
 
 
-============================= test.tsx_component_ZUK1E201Ins.tsx (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.tsx (ENTRY POINT)==
 
-export const component_ZUK1E201Ins = () => {
+export const test_component_LUXeXe0DQrg = () => {
 	return _jsxSorted("div", null, null, "cmp", 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "tsx",
   "parent": null,
@@ -56,16 +56,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 ============================= test.tsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 import mongodb from "mongodb";
 export const onGet = () => {
 	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
 };
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OACtC,qCAEK,wBACL;AAJH,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,qCAEb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCACJ,OAAO,0CAEU,6BACA;AAJlB,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAEb\"}")
 == DIAGNOSTICS ==
 
 []

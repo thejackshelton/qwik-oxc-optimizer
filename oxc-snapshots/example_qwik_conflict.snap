@@ -39,55 +39,27 @@ export const Root = component$(() => {
 });
 
 
-============================= test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM.js (ENTRY POINT)==
-
-export const Foo_Root_component_useStyles_4xwGedOJBWM = "thing";
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM\"],\"sourcesContent\":[\"export const Foo_Root_component_useStyles_4xwGedOJBWM = \\"thing\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C;AAAQ\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "Foo_Root_component_useStyles_4xwGedOJBWM",
-  "entry": null,
-  "displayName": "test.tsx_Foo_Root_component_useStyles",
-  "hash": "4xwGedOJBWM",
-  "canonicalFilename": "test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM",
-  "path": "",
-  "extension": "js",
-  "parent": "Foo_Root_component_1_aRO0NNwMS6Y",
-  "ctxKind": "function",
-  "ctxName": "$",
-  "captures": false,
-  "loc": [
-    501,
-    508
-  ]
-}
-*/
-
-============================= test.tsx_Foo_Root_component_1_aRO0NNwMS6Y.js (ENTRY POINT)==
+============================= test.tsx_Root_component_1_cBpQNYDUHI4.js (ENTRY POINT)==
 
 import { useStyles } from "@qwik.dev/core";
-const q_Foo_Root_component_axal36VvL64 = qrl(() => import("./test.tsx_Foo_Root_component_axal36VvL64"), "Foo_Root_component_axal36VvL64");
-const q_Foo_Root_component_useStyles_4xwGedOJBWM = qrl(() => import("./test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM"), "Foo_Root_component_useStyles_4xwGedOJBWM");
-export const Foo_Root_component_1_aRO0NNwMS6Y = () => {
-	useStyles(Qrl(q_Foo_Root_component_useStyles_4xwGedOJBWM));
-	return Qrl(q_Foo_Root_component_axal36VvL64);
+const q_Root_component_royhjYaCbYE = qrl(() => import("./test.tsx_Root_component_royhjYaCbYE"), "Root_component_royhjYaCbYE");
+const q_Root_component_useStyles_u5DkUxGrGnU = qrl(() => import("./test.tsx_Root_component_useStyles_u5DkUxGrGnU"), "Root_component_useStyles_u5DkUxGrGnU");
+export const Root_component_1_cBpQNYDUHI4 = () => {
+	useStyles(Qrl(q_Root_component_useStyles_u5DkUxGrGnU));
+	return Qrl(q_Root_component_royhjYaCbYE);
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_1_aRO0NNwMS6Y\"],\"sourcesContent\":[\"import { useStyles } from \\"@qwik.dev/core\\";\nconst q_Foo_Root_component_axal36VvL64 = qrl(() => import(\\"./test.tsx_Foo_Root_component_axal36VvL64\\"), \\"Foo_Root_component_axal36VvL64\\");\nconst q_Foo_Root_component_useStyles_4xwGedOJBWM = qrl(() => import(\\"./test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM\\"), \\"Foo_Root_component_useStyles_4xwGedOJBWM\\");\nexport const Foo_Root_component_1_aRO0NNwMS6Y = () => {\n\tuseStyles(Qrl(q_Foo_Root_component_useStyles_4xwGedOJBWM));\n\treturn Qrl(q_Foo_Root_component_axal36VvL64);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,mCAAmC,UAAU,OAAO,8CAA8C,iCAAiC;AACzI,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,2CAA2C;AACvK,OAAO,MAAM,yCAAyC;AACrD,WAAU,IAAI,2CAA2C,CAAC;AAC1D,QAAO,IAAI,iCAAiC;;AAC3C\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_1_cBpQNYDUHI4\"],\"sourcesContent\":[\"import { useStyles } from \\"@qwik.dev/core\\";\nconst q_Root_component_royhjYaCbYE = qrl(() => import(\\"./test.tsx_Root_component_royhjYaCbYE\\"), \\"Root_component_royhjYaCbYE\\");\nconst q_Root_component_useStyles_u5DkUxGrGnU = qrl(() => import(\\"./test.tsx_Root_component_useStyles_u5DkUxGrGnU\\"), \\"Root_component_useStyles_u5DkUxGrGnU\\");\nexport const Root_component_1_cBpQNYDUHI4 = () => {\n\tuseStyles(Qrl(q_Root_component_useStyles_u5DkUxGrGnU));\n\treturn Qrl(q_Root_component_royhjYaCbYE);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,+BAA+B,UAAU,OAAO,0CAA0C,6BAA6B;AAC7H,MAAM,yCAAyC,UAAU,OAAO,oDAAoD,uCAAuC;AAC3J,OAAO,MAAM,qCAAqC;AACjD,WAAU,IAAI,uCAAuC,CAAC;AACtD,QAAO,IAAI,6BAA6B;;AACvC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Foo_Root_component_1_aRO0NNwMS6Y",
+  "name": "Root_component_1_cBpQNYDUHI4",
   "entry": null,
-  "displayName": "test.tsx_Foo_Root_component_1",
-  "hash": "aRO0NNwMS6Y",
-  "canonicalFilename": "test.tsx_Foo_Root_component_1_aRO0NNwMS6Y",
+  "displayName": "test.tsx_Root_component_1",
+  "hash": "cBpQNYDUHI4",
+  "canonicalFilename": "test.tsx_Root_component_1_cBpQNYDUHI4",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -97,36 +69,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_1_a
   "loc": [
     480,
     561
-  ]
-}
-*/
-
-============================= test.tsx_Foo_Root_component_axal36VvL64.js (ENTRY POINT)==
-
-export const Foo_Root_component_axal36VvL64 = () => {
-	return _jsxSorted("div", null, null, null, 3, "u6_1");
-};
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_axal36VvL64\"],\"sourcesContent\":[\"export const Foo_Root_component_axal36VvL64 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AACnD,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "Foo_Root_component_axal36VvL64",
-  "entry": null,
-  "displayName": "test.tsx_Foo_Root_component",
-  "hash": "axal36VvL64",
-  "canonicalFilename": "test.tsx_Foo_Root_component_axal36VvL64",
-  "path": "",
-  "extension": "js",
-  "parent": "Foo_Root_component_1_aRO0NNwMS6Y",
-  "ctxKind": "function",
-  "ctxName": "$",
-  "captures": false,
-  "loc": [
-    522,
-    557
   ]
 }
 */
@@ -176,6 +118,64 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 }
 */
 
+============================= test.tsx_Root_component_royhjYaCbYE.js (ENTRY POINT)==
+
+export const Root_component_royhjYaCbYE = () => {
+	return _jsxSorted("div", null, null, null, 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_royhjYaCbYE\"],\"sourcesContent\":[\"export const Root_component_royhjYaCbYE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Root_component_royhjYaCbYE",
+  "entry": null,
+  "displayName": "test.tsx_Root_component",
+  "hash": "royhjYaCbYE",
+  "canonicalFilename": "test.tsx_Root_component_royhjYaCbYE",
+  "path": "",
+  "extension": "js",
+  "parent": "Root_component_1_cBpQNYDUHI4",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    522,
+    557
+  ]
+}
+*/
+
+============================= test.tsx_Root_component_useStyles_u5DkUxGrGnU.js (ENTRY POINT)==
+
+export const Root_component_useStyles_u5DkUxGrGnU = "thing";
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_useStyles_u5DkUxGrGnU\"],\"sourcesContent\":[\"export const Root_component_useStyles_u5DkUxGrGnU = \\"thing\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AAAQ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Root_component_useStyles_u5DkUxGrGnU",
+  "entry": null,
+  "displayName": "test.tsx_Root_component_useStyles",
+  "hash": "u5DkUxGrGnU",
+  "canonicalFilename": "test.tsx_Root_component_useStyles_u5DkUxGrGnU",
+  "path": "",
+  "extension": "js",
+  "parent": "Root_component_1_cBpQNYDUHI4",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    501,
+    508
+  ]
+}
+*/
+
 ============================= test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
@@ -216,7 +216,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
 
 import { _jsxSorted } from "@qwik.dev/core";
 const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE", [hW, handleWatch]);
-const q_Foo_Root_component_1_aRO0NNwMS6Y = qrl(() => import("./test.tsx_Foo_Root_component_1_aRO0NNwMS6Y"), "Foo_Root_component_1_aRO0NNwMS6Y");
+const q_Root_component_1_cBpQNYDUHI4 = qrl(() => import("./test.tsx_Root_component_1_cBpQNYDUHI4"), "Root_component_1_cBpQNYDUHI4");
 import { $, component$, useStyles } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core/what";
 export const hW = 12;
@@ -224,10 +224,10 @@ export const handleWatch = 42;
 const componentQrl = () => console.log("not this", qrl());
 componentQrl();
 export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE.w([hW, handleWatch]), { tagName: "my-foo" });
-export const Root = componentQrl(q_Foo_Root_component_1_aRO0NNwMS6Y, { tagName: "my-foo" });
+export const Root = componentQrl(q_Root_component_1_cBpQNYDUHI4, { tagName: "my-foo" });
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStyle\",\"t { $, component$, useStyles } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles } from '@qwik.dev/core';\nimport { qrl } from '@qwik.dev/core/what';\n\nexport const hW = 12;\nexport const handleWatch = 42;\n\nconst componentQrl = () => console.log('not this', qrl());\n\ncomponentQrl();\nexport const Foo = component$(() => {\n\tuseStyles$('thing');\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn (\n\t\t<div onClick$={()=> console.log(qrl)}/>\n\t)\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport const Root = component$(() => {\n\tuseStyles($('thing'));\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAClB,6BAEf,iBACL,CAAC;AALf,MACKC,+CAA+C,OACpD,gDAEI,mCACa;AAJjB,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,WAAW;AAEpB,OAAO,MAAM,KAAK;AAClB,OAAO,MAAM,cAAc;AAE3B,MAAM,qBAAqB,QAAQ,IAAI,YAAY,KAAK,CAAC;AAEzD,cAAc;AACd,OAAO,MAAM,MAAMC,+DAQhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,MAAM,OAAOA,iDAOjB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStyle\",\"t { $, component$, useStyles }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles } from '@qwik.dev/core';\nimport { qrl } from '@qwik.dev/core/what';\n\nexport const hW = 12;\nexport const handleWatch = 42;\n\nconst componentQrl = () => console.log('not this', qrl());\n\ncomponentQrl();\nexport const Foo = component$(() => {\n\tuseStyles$('thing');\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn (\n\t\t<div onClick$={()=> console.log(qrl)}/>\n\t)\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport const Root = component$(() => {\n\tuseStyles($('thing'));\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAClB,6BAEf,iBACL,CAAC;AALf,MACKC,2CAA2C,OAAO,4CACf,+BAGnC;AAJL,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,WAAW;AAEpB,OAAO,MAAM,KAAK;AAClB,OAAO,MAAM,cAAc;AAE3B,MAAM,qBAAqB,QAAQ,IAAI,YAAY,KAAK,CAAC;AAEzD,cAAc;AACd,OAAO,MAAM,MAAMC,+DAQhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,MAAM,OAAOA,6CAOjB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

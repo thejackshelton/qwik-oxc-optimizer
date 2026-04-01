@@ -16,10 +16,10 @@ expression: output
 		});
 		
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { Foo } from "./foo";
-export const component_ZUK1E201Ins = (props) => {
+export const test_component_LUXeXe0DQrg = (props) => {
 	return _jsxSplit(Foo, {
 		s: Math.random(),
 		..._getVarProps(props),
@@ -31,15 +31,15 @@ export const component_ZUK1E201Ins = (props) => {
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { Foo } from \\"./foo\\";\nexport const component_ZUK1E201Ins = (props) => {\n\treturn _jsxSplit(Foo, {\n\t\ts: Math.random(),\n\t\t..._getVarProps(props),\n\t\t..._getConstProps(props),\n\t\thello: true,\n\t\t...globalThis.nothing\n\t}, null, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,OAAO,MAAM,yBAAyB,UAAU;AAC/C,QAAO,UAAU,KAAK;EACrB,GAAG,KAAK,QAAQ;EAChB,GAAG,aAAa,MAAM;EACtB,GAAG,eAAe,MAAM;EACxB,OAAO;EACP,GAAG,WAAW;EACd,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Foo } from \\"./foo\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSplit(Foo, {\n\t\ts: Math.random(),\n\t\t..._getVarProps(props),\n\t\t..._getConstProps(props),\n\t\thello: true,\n\t\t...globalThis.nothing\n\t}, null, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,UAAU,KAAK;EACrB,GAAG,KAAK,QAAQ;EAChB,GAAG,aAAa,MAAM;EACtB,GAAG,eAAe,MAAM;EACxB,OAAO;EACP,GAAG,WAAW;EACd,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -61,13 +61,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 import { Foo } from "./foo";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OACxC,qCAEK,wBAAwB;AAH5B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AAEpB,eAAeC,qCAIb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,yCAAyC,OACxC,0CAEU,6BACZ;AAJF,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AAEpB,eAAeC,0CAIb\"}")
 == DIAGNOSTICS ==
 
 []

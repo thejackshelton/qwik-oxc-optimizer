@@ -15,9 +15,9 @@ expression: output
 		});
 		
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-export const component_ZUK1E201Ins = (props) => {
+export const test_component_LUXeXe0DQrg = (props) => {
 	return _jsxSplit("div", {
 		test: "test",
 		..._getVarProps(props)
@@ -26,15 +26,15 @@ export const component_ZUK1E201Ins = (props) => {
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = (props) => {\n\treturn _jsxSplit(\\"div\\", {\n\t\ttest: \\"test\\",\n\t\t..._getVarProps(props)\n\t}, { ..._getConstProps(props) }, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yBAAyB,UAAU;AAC/C,QAAO,UAAU,OAAO;EACvB,MAAM;EACN,GAAG,aAAa,MAAM;EACtB,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO;;AAChD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSplit(\\"div\\", {\n\t\ttest: \\"test\\",\n\t\t..._getVarProps(props)\n\t}, { ..._getConstProps(props) }, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,UAAU,OAAO;EACvB,MAAM;EACN,GAAG,aAAa,MAAM;EACtB,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO;;AAChD\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -56,12 +56,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<div test=\\"test\\" {...props}></div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OAEzC,qCAAqC,wBAE7B;AAJN,SAAS,kBAAkB;AAE3B,eAAeC,qCAIb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<div test=\\"test\\" {...props}></div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,yCAAyC,OAEzC,0CACC,6BACiB;AAJrB,SAAS,kBAAkB;AAE3B,eAAeC,0CAIb\"}")
 == DIAGNOSTICS ==
 
 []

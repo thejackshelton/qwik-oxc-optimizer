@@ -21,10 +21,58 @@ export default component$(() => {
 });
 
 
-============================= test.tsx_component_div_div_q_e_click_bdp4U0ib8mU.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
+
+import { useSignal } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [
+	i,
+	index,
+	val
+]);
+export const test_component_LUXeXe0DQrg = () => {
+	const arr = useSignal(["a", "b"]);
+	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
+		const index = i + 1;
+		return _jsxSorted("div", { "q:ps": [
+			i,
+			index,
+			val
+		] }, { "q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([
+			i,
+			index,
+			val
+		]) }, val, 7, null);
+	}), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import(\\"./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\\"), \\"test_component_div_div_q_e_click_Mc600uqO6ps\\", [\n\ti,\n\tindex,\n\tval\n]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [\n\t\t\ti,\n\t\t\tindex,\n\t\t\tval\n\t\t] }, { \\"q-e:click\\": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([\n\t\t\ti,\n\t\t\tindex,\n\t\t\tval\n\t\t]) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,iDAAiD,UAAU,OAAO,4DAA4D,gDAAgD;CACnL;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;AAClB,SAAO,WAAW,OAAO,EAAE,QAAQ;GAClC;GACA;GACA;GACA,EAAE,EAAE,EAAE,aAAa,+CAA+C,EAAE;GACpE;GACA;GACA;GACA,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK;GAClB,EAAE,GAAG,OAAO;;AACb\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_LUXeXe0DQrg",
+  "entry": null,
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    85,
+    315
+  ]
+}
+*/
+
+============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
-export const component_div_div_q_e_click_bdp4U0ib8mU = () => {
+export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
 	const i = _captures[0];
 	const index = _captures[1];
 	const val = _captures[2];
@@ -33,18 +81,18 @@ export const component_div_div_q_e_click_bdp4U0ib8mU = () => {
 };
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_click_bdp4U0ib8mU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_q_e_click_bdp4U0ib8mU = () => {\nconst i = _captures[0];\nconst index = _captures[1];\nconst val = _captures[2];\nreturn console.log(val, i, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAC7D,MAAM,IAAI,UAAU;CACpB,MAAM,QAAQ,UAAU;CACxB,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,KAAK,GAAG,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst i = _captures[0];\nconst index = _captures[1];\nconst val = _captures[2];\nreturn console.log(val, i, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,IAAI,UAAU;CACpB,MAAM,QAAQ,UAAU;CACxB,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,KAAK,GAAG,MAAM;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_div_div_q_e_click_bdp4U0ib8mU",
+  "name": "test_component_div_div_q_e_click_Mc600uqO6ps",
   "entry": null,
-  "displayName": "test.tsx_component_div_div_q_e_click",
-  "hash": "bdp4U0ib8mU",
-  "canonicalFilename": "test.tsx_component_div_div_q_e_click_bdp4U0ib8mU",
+  "displayName": "test.tsx_test_component_div_div_q_e_click",
+  "hash": "Mc600uqO6ps",
+  "canonicalFilename": "test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps",
   "path": "",
   "extension": "js",
-  "parent": "component_ZUK1E201Ins",
+  "parent": "test_component_LUXeXe0DQrg",
   "ctxKind": "eventHandler",
   "ctxName": "onClick$",
   "captures": true,
@@ -60,63 +108,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_q_e_
 }
 */
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
-
-import { useSignal } from "@qwik.dev/core";
-const q_component_div_div_q_e_click_bdp4U0ib8mU = qrl(() => import("./test.tsx_component_div_div_q_e_click_bdp4U0ib8mU"), "component_div_div_q_e_click_bdp4U0ib8mU", [
-	i,
-	index,
-	val
-]);
-export const component_ZUK1E201Ins = () => {
-	const arr = useSignal(["a", "b"]);
-	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
-		const index = i + 1;
-		return _jsxSorted("div", { "q:ps": [
-			i,
-			index,
-			val
-		] }, { "q-e:click": q_component_div_div_q_e_click_bdp4U0ib8mU.w([
-			i,
-			index,
-			val
-		]) }, val, 7, null);
-	}), 3, "u6_0");
-};
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_div_q_e_click_bdp4U0ib8mU = qrl(() => import(\\"./test.tsx_component_div_div_q_e_click_bdp4U0ib8mU\\"), \\"component_div_div_q_e_click_bdp4U0ib8mU\\", [\n\ti,\n\tindex,\n\tval\n]);\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [\n\t\t\ti,\n\t\t\tindex,\n\t\t\tval\n\t\t] }, { \\"q-e:click\\": q_component_div_div_q_e_click_bdp4U0ib8mU.w([\n\t\t\ti,\n\t\t\tindex,\n\t\t\tval\n\t\t]) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,2CAA2C;CACpK;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;AAClB,SAAO,WAAW,OAAO,EAAE,QAAQ;GAClC;GACA;GACA;GACA,EAAE,EAAE,EAAE,aAAa,0CAA0C,EAAE;GAC/D;GACA;GACA;GACA,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK;GAClB,EAAE,GAAG,OAAO;;AACb\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
-  "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
-  "path": "",
-  "extension": "js",
-  "parent": null,
-  "ctxKind": "function",
-  "ctxName": "component$",
-  "captures": false,
-  "loc": [
-    85,
-    315
-  ]
-}
-*/
-
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSign\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n        return <div onClick$={() => console.log(val, i, index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n        return <div onClick$={() => console.log(val, i, index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAUb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -21,14 +21,14 @@ expression: output
 
 ============================= test.tsx ==
 
-const q_component_useComputed_97haPIkKcj4 = _noopQrl("component_useComputed_97haPIkKcj4");
-const q_component_useTask_q0Wg23FFwVQ = _noopQrl("component_useTask_q0Wg23FFwVQ");
-const q_component_ZUK1E201Ins = _noopQrl("component_ZUK1E201Ins");
+const q_test_component_useComputed_PYU291PvidQ = _noopQrl("test_component_useComputed_PYU291PvidQ");
+const q_test_component_useTask_jewzFYh3XmQ = _noopQrl("test_component_useTask_jewzFYh3XmQ");
+const q_test_component_LUXeXe0DQrg = _noopQrl("test_component_LUXeXe0DQrg");
 import { component$, useComputed$, useTask$ } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, use\",\"ort { component$, useComputed$,\",\"ort { component$, useCo\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,+CAA+C,oCAEnC;AAHjB,MACKC,2CAA2C,gCAEvC;AAHT,MACKC,mCAAmC,wBAAwB;AAA9D,SAAS,YAAY,cAAc,gBAAgB;AAEnD,eAAeC,qCAQb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, useTask$\",\"ort { component$, useComputed$, useT\",\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,oDAAoD,yCAE9B;AAH3B,MACKC,gDAAgD,qCAElC;AAHnB,MACKC,wCAAwC,6BAE1C;AAFD,SAAS,YAAY,cAAc,gBAAgB;AAEnD,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

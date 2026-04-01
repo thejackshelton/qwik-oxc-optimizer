@@ -20,65 +20,30 @@ export default component$(() => {
 });
 
 
-============================= test.tsx_component_div_q_e_click_DTN0Rqz5HdM.js (ENTRY POINT)==
-
-import { _captures } from "@qwik.dev/core";
-export const component_div_q_e_click_DTN0Rqz5HdM = () => {
-	const val = _captures[0];
-	return console.log(val);
-	;
-};
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_q_e_click_DTN0Rqz5HdM\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_q_e_click_DTN0Rqz5HdM = () => {\nconst val = _captures[0];\nreturn console.log(val);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4CAA4C;CACzD,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,IAAI;AAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_div_q_e_click_DTN0Rqz5HdM",
-  "entry": null,
-  "displayName": "test.tsx_component_div_q_e_click",
-  "hash": "DTN0Rqz5HdM",
-  "canonicalFilename": "test.tsx_component_div_q_e_click_DTN0Rqz5HdM",
-  "path": "",
-  "extension": "js",
-  "parent": "component_ZUK1E201Ins",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "val"
-  ],
-  "loc": [
-    220,
-    242
-  ]
-}
-*/
-
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_component_div_q_e_click_DTN0Rqz5HdM = qrl(() => import("./test.tsx_component_div_q_e_click_DTN0Rqz5HdM"), "component_div_q_e_click_DTN0Rqz5HdM", [val]);
-export const component_ZUK1E201Ins = () => {
+const q_test_component_div_q_e_click_omwK2O280Tk = qrl(() => import("./test.tsx_test_component_div_q_e_click_omwK2O280Tk"), "test_component_div_q_e_click_omwK2O280Tk", [val]);
+export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
 	const items = [];
 	for (const val of arr.value) {
-		items.push(_jsxSorted("div", { "q:p": val }, { "q-e:click": q_component_div_q_e_click_DTN0Rqz5HdM.w([val]) }, val, 7, "u6_0"));
+		items.push(_jsxSorted("div", { "q:p": val }, { "q-e:click": q_test_component_div_q_e_click_omwK2O280Tk.w([val]) }, val, 7, "u6_0"));
 	}
 	return _jsxSorted("div", null, null, items, 3, "u6_1");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_q_e_click_DTN0Rqz5HdM = qrl(() => import(\\"./test.tsx_component_div_q_e_click_DTN0Rqz5HdM\\"), \\"component_div_q_e_click_DTN0Rqz5HdM\\", [val]);\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\tconst items = [];\n\tfor (const val of arr.value) {\n\t\titems.push(_jsxSorted(\\"div\\", { \\"q:p\\": val }, { \\"q-e:click\\": q_component_div_q_e_click_DTN0Rqz5HdM.w([val]) }, val, 7, \\"u6_0\\"));\n\t}\n\treturn _jsxSorted(\\"div\\", null, null, items, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,wCAAwC,UAAU,OAAO,mDAAmD,uCAAuC,CAAC,IAAI,CAAC;AAC/J,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;CACjC,MAAM,QAAQ,EAAE;AAChB,MAAK,MAAM,OAAO,IAAI,OAAO;AAC5B,QAAM,KAAK,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,sCAAsC,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,KAAK,GAAG,OAAO,CAAC;;AAE/H,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_q_e_click_omwK2O280Tk = qrl(() => import(\\"./test.tsx_test_component_div_q_e_click_omwK2O280Tk\\"), \\"test_component_div_q_e_click_omwK2O280Tk\\", [val]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\tconst items = [];\n\tfor (const val of arr.value) {\n\t\titems.push(_jsxSorted(\\"div\\", { \\"q:p\\": val }, { \\"q-e:click\\": q_test_component_div_q_e_click_omwK2O280Tk.w([val]) }, val, 7, \\"u6_0\\"));\n\t}\n\treturn _jsxSorted(\\"div\\", null, null, items, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,4CAA4C,CAAC,IAAI,CAAC;AAC9K,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;CACjC,MAAM,QAAQ,EAAE;AAChB,MAAK,MAAM,OAAO,IAAI,OAAO;AAC5B,QAAM,KAAK,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,2CAA2C,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,KAAK,GAAG,OAAO,CAAC;;AAEpI,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
+  "name": "test_component_LUXeXe0DQrg",
   "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "displayName": "test.tsx_test_component",
+  "hash": "LUXeXe0DQrg",
+  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -92,15 +57,50 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 }
 */
 
+============================= test.tsx_test_component_div_q_e_click_omwK2O280Tk.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const test_component_div_q_e_click_omwK2O280Tk = () => {
+	const val = _captures[0];
+	return console.log(val);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_q_e_click_omwK2O280Tk\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_q_e_click_omwK2O280Tk = () => {\nconst val = _captures[0];\nreturn console.log(val);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,iDAAiD;CAC9D,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,IAAI;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_div_q_e_click_omwK2O280Tk",
+  "entry": null,
+  "displayName": "test.tsx_test_component_div_q_e_click",
+  "hash": "omwK2O280Tk",
+  "canonicalFilename": "test.tsx_test_component_div_q_e_click_omwK2O280Tk",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_LUXeXe0DQrg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "val"
+  ],
+  "loc": [
+    220,
+    242
+  ]
+}
+*/
+
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_component_ZUK1E201Ins);
+export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSign\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b']);\n  const items = [];\n  for (const val of arr.value) {\n    items.push(\n      <div onClick$={() => console.log(val)}>{val}</div>\n    );\n  }\n  return <div>{items}</div>;\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCASb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b']);\n  const items = [];\n  for (const val of arr.value) {\n    items.push(\n      <div onClick$={() => console.log(val)}>{val}</div>\n    );\n  }\n  return <div>{items}</div>;\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CASb\"}")
 == DIAGNOSTICS ==
 
 []

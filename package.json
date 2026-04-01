@@ -4,14 +4,13 @@
   "type": "module",
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "oxfmt": "0.32.0",
-    "tsx": "^4.21.0"
+    "oxfmt": "0.32.0"
   },
   "scripts": {
-    "test": "node --import tsx/esm src/cli.ts --swc-snapshots swc-snapshots/",
-    "harness": "node --import tsx/esm src/cli.ts --swc-snapshots swc-snapshots/",
-    "fmt:snapshot-blocks": "node scripts/format-snapshot-code-blocks.mjs",
-    "fmt:snapshot-blocks:check": "node scripts/format-snapshot-code-blocks.mjs --check",
+    "test": "bun test",
+    "harness": "bun src/cli.ts --swc-snapshots swc-snapshots/",
+    "fmt:snapshot-blocks": "bun scripts/format-snapshot-code-blocks.mjs",
+    "fmt:snapshot-blocks:check": "bun scripts/format-snapshot-code-blocks.mjs --check",
     "oxfmt:version": "oxfmt --version"
   }
 }

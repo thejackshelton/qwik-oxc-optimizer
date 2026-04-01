@@ -222,6 +222,7 @@ fn transform_code(
         rel_path: &rel_path,
         file_name: &path_data.file_name,
         file_stem: &effective_file_stem,
+        raw_file_stem: &path_data.file_stem,
         entry_strategy: &config.entry_strategy,
         extension: &file_extension,
         explicit_extensions: config.explicit_extensions,

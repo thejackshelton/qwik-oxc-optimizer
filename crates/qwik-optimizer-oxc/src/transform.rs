@@ -369,6 +369,10 @@ pub(crate) struct QwikTransformOptions<'b> {
     /// For `index.tsx`, this should be the parent directory name (pre-computed by caller).
     /// Already escaped via escape_sym by the caller (lib.rs).
     pub file_stem: &'b str,
+    /// Raw (pre-escape) file stem for entry key construction.
+    /// For "[[...slug]].tsx" this is "[[...slug]]", while `file_stem` is "slug".
+    /// For normal files (no special chars), this equals `file_stem`.
+    pub raw_file_stem: &'b str,
     /// Entry strategy for determining output chunk grouping.
     pub entry_strategy: &'b EntryStrategy,
     /// Source file extension (e.g. "tsx", "js").
@@ -506,6 +510,15 @@ pub(crate) struct QwikTransform {
     /// Effective file stem for export-default context naming.
     /// Pre-computed by caller: "index.tsx" → parent dir name, escaped via escape_sym.
     pub(crate) file_stem: String,
+
+    /// Raw (pre-escape) file stem for entry key construction.
+    /// For "[[...slug]].tsx" this is "[[...slug]]", while `file_stem` is "slug".
+    pub(crate) raw_file_stem: String,
+
+    /// Parallel to `stack_ctxt` but uses the raw (pre-escape) file stem for export-default.
+    /// All other pushes are identical to `stack_ctxt`.
+    /// Used by `get_entry_for_sym` so entry keys contain the raw stem.
+    pub(crate) raw_stack_ctxt: Vec<String>,
 
     /// Source file extension (e.g. "tsx").
     pub(crate) extension: String,
@@ -735,6 +748,8 @@ impl QwikTransform {
             rel_path: options.rel_path.to_string(),
             file_name: options.file_name.to_string(),
             file_stem: options.file_stem.to_string(),
+            raw_file_stem: options.raw_file_stem.to_string(),
+            raw_stack_ctxt: Vec::new(),
             extension: options.extension.to_string(),
             explicit_extensions: options.explicit_extensions,
             is_server: options.is_server,
@@ -1068,12 +1083,14 @@ impl QwikTransform {
         };
         if let Some(ref tag) = tag_name_for_ctxt {
             self.stack_ctxt.push(tag.clone());
+            self.raw_stack_ctxt.push(tag.clone());
         }
         let mut attrs = opening.attributes;
         let (should_sort, var_props_opt, const_props_opt, children_opt, flags) =
             self.handle_jsx_props(&mut attrs, &mut children_vec, is_fn, is_text_only, ctx);
         if tag_name_for_ctxt.is_some() {
             self.stack_ctxt.pop();
+            self.raw_stack_ctxt.pop();
         }
 
         // ---- 4. Build call ----------------------------------------------------
@@ -1494,6 +1511,7 @@ impl QwikTransform {
                                 // correct display_name / hash (matching SWC behaviour where the
                                 // attr name is still on the context stack during processing).
                                 self.stack_ctxt.push(html_attr.clone());
+                                self.raw_stack_ctxt.push(html_attr.clone());
                                 let names = hash::register_context_name(
                                     &self.stack_ctxt,
                                     &mut self.segment_names,
@@ -1506,6 +1524,7 @@ impl QwikTransform {
                                     None,
                                 );
                                 self.stack_ctxt.pop();
+                                self.raw_stack_ctxt.pop();
                                 let sym_for_hoist = names.symbol_name.clone();
                                 // Store span → symbol for deferred parent resolution
                                 let fn_span = value_expr.span();
@@ -2137,7 +2156,7 @@ impl QwikTransform {
             child_lazy_imports: vec![],
             needs_qrl_import: false,
         };
-        let entry = self.entry_policy.get_entry_for_sym(&self.stack_ctxt, &segment_data);
+        let entry = self.entry_policy.get_entry_for_sym(&self.raw_stack_ctxt, &segment_data);
 
         // SEG-08: ensure root-level local_idents are exported so the segment
         // module can import them back via `_auto_sym` named export.
@@ -2948,7 +2967,35 @@ impl QwikTransform {
                 hash: extracted_hash,
                 canonical_filename,
             };
-            let ctx_name = "inlinedQrl";
+            // Derive ctx_name from symbol_name_raw (not hardcoded "inlinedQrl").
+            // Strip hash suffix (11 alphanumeric chars), then classify the marker component.
+            let ctx_name_derived: String = {
+                let meaningful = if let Some(idx) = symbol_name_raw.rfind('_') {
+                    let h = &symbol_name_raw[idx + 1..];
+                    if h.len() == 11 && h.chars().all(|c| c.is_ascii_alphanumeric()) {
+                        &symbol_name_raw[..idx]
+                    } else {
+                        &symbol_name_raw[..]
+                    }
+                } else {
+                    &symbol_name_raw[..]
+                };
+                let last = meaningful.rsplit('_').next().unwrap_or(meaningful);
+                if last.chars().next().map(|c| c.is_ascii_lowercase()).unwrap_or(false) {
+                    if meaningful.contains('_') { format!("{last}$") } else { last.to_string() }
+                } else if last.chars().next().map(|c| c.is_ascii_uppercase()).unwrap_or(false) {
+                    let prev = meaningful.rsplitn(2, '_').nth(1).and_then(|p| p.rsplit('_').next());
+                    match prev {
+                        Some(s) if s.chars().next().map(|c| c.is_ascii_lowercase()).unwrap_or(false) => {
+                            format!("{s}$")
+                        }
+                        _ => "$".to_string(),
+                    }
+                } else {
+                    "$".to_string()
+                }
+            };
+            let ctx_name = ctx_name_derived.as_str();
             let ctx_kind = crate::types::CtxKind::Function;
             let qrl_expr = self.create_segment(
                 first_arg,
@@ -3067,13 +3114,15 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         if tag_name.is_empty() {
             return;
         }
-        self.stack_ctxt.push(tag_name);
+        self.stack_ctxt.push(tag_name.clone());
+        self.raw_stack_ctxt.push(tag_name);
         self.jsx_element_pushed_spans.insert(node.span.start);
     }
 
     fn exit_jsx_element(&mut self, node: &mut oxc::ast::ast::JSXElement<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
         if self.jsx_element_pushed_spans.remove(&node.span.start) {
             self.stack_ctxt.pop();
+            self.raw_stack_ctxt.pop();
         }
     }
 
@@ -3095,13 +3144,15 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         if attr_name.is_empty() {
             return;
         }
-        self.stack_ctxt.push(attr_name);
+        self.stack_ctxt.push(attr_name.clone());
+        self.raw_stack_ctxt.push(attr_name);
         self.jsx_attr_pushed_spans.insert(node.span.start);
     }
 
     fn exit_jsx_attribute(&mut self, node: &mut oxc::ast::ast::JSXAttribute<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
         if self.jsx_attr_pushed_spans.remove(&node.span.start) {
             self.stack_ctxt.pop();
+            self.raw_stack_ctxt.pop();
         }
     }
 
@@ -3205,7 +3256,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // E.g. for component$, push "component"; for useTask$, push "useTask".
             let ctx_name_no_dollar = specifier.trim_end_matches('$').to_string();
             if !ctx_name_no_dollar.is_empty() {
-                self.stack_ctxt.push(ctx_name_no_dollar);
+                self.stack_ctxt.push(ctx_name_no_dollar.clone());
+                self.raw_stack_ctxt.push(ctx_name_no_dollar);
                 self.marker_ctxt_pushed_spans.insert(call.span.start);
             }
             self.segment_stack.push(specifier.clone());
@@ -3222,7 +3274,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         }
 
         // Priority 7: plain identifier — push to context stack
-        self.stack_ctxt.push(callee_name);
+        self.stack_ctxt.push(callee_name.clone());
+        self.raw_stack_ctxt.push(callee_name);
         self.ctxt_pushed_calls.insert(call.span.start);
     }
 
@@ -3236,6 +3289,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // Symmetric pop for plain-identifier pushes.
         if self.ctxt_pushed_calls.remove(&call.span.start) {
             self.stack_ctxt.pop();
+            self.raw_stack_ctxt.pop();
         }
 
         // Priority 4: inlinedQrl — detect and handle here (not via pending_qsegments).
@@ -3479,6 +3533,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // Phase 18: pop marker ctx_name from stack_ctxt if we pushed it.
             if self.marker_ctxt_pushed_spans.remove(&call.span.start) {
                 self.stack_ctxt.pop();
+                self.raw_stack_ctxt.pop();
             }
         }
 
@@ -3548,8 +3603,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
     ) {
         // Push escaped file stem so `export default component$(...)` produces
         // e.g. "test_component" not just "component".
+        // Also push raw file stem to raw_stack_ctxt for correct entry key construction.
         if !self.file_stem.is_empty() {
             self.stack_ctxt.push(self.file_stem.clone());
+            self.raw_stack_ctxt.push(self.raw_file_stem.clone());
             self.default_export_ctxt_pushed = true;
         }
     }
@@ -3561,6 +3618,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
     ) {
         if self.default_export_ctxt_pushed {
             self.stack_ctxt.pop();
+            self.raw_stack_ctxt.pop();
             self.default_export_ctxt_pushed = false;
         }
     }
@@ -3614,7 +3672,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         }
 
         // Push to context stack so the initializer expression has this name in scope.
-        self.stack_ctxt.push(name);
+        self.stack_ctxt.push(name.clone());
+        self.raw_stack_ctxt.push(name);
         self.var_decl_ctxt_push_stack.push(true);
     }
 
@@ -3626,6 +3685,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         if let Some(pushed) = self.var_decl_ctxt_push_stack.pop() {
             if pushed {
                 self.stack_ctxt.pop();
+                self.raw_stack_ctxt.pop();
             }
         }
     }
@@ -3650,7 +3710,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 frame.push((name.clone(), IdentType::Fn));
             }
             // Push to context stack for display_name accumulation.
-            self.stack_ctxt.push(name);
+            self.stack_ctxt.push(name.clone());
+            self.raw_stack_ctxt.push(name);
             true
         } else {
             false
@@ -3687,6 +3748,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         if let Some(pushed) = self.fn_ctxt_push_stack.pop() {
             if pushed {
                 self.stack_ctxt.pop();
+                self.raw_stack_ctxt.pop();
             }
         }
     }
@@ -4532,6 +4594,7 @@ mod tests {
             rel_path: "test",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -4562,6 +4625,7 @@ mod tests {
             rel_path: "test",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -4944,6 +5008,7 @@ mod tests {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5188,6 +5253,7 @@ mod tests {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: true,
@@ -5338,6 +5404,7 @@ mod tests {
             rel_path: "test",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5386,6 +5453,7 @@ mod tests {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5422,6 +5490,7 @@ mod tests {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5476,6 +5545,7 @@ const Cmp = component$(() => {});"#;
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5505,6 +5575,7 @@ const Cmp = component$(() => {});"#;
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5639,6 +5710,7 @@ const Cmp = component$(() => {
             rel_path: "test",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -5723,6 +5795,7 @@ const Cmp = component$(() => {});"#;
             rel_path: "test",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6054,6 +6127,7 @@ export const A = component$(() => {});"#;
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6092,6 +6166,7 @@ export const A = component$(() => {});"#;
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6301,6 +6376,7 @@ export const App = () => {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6405,6 +6481,7 @@ export const App = () => {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6455,6 +6532,7 @@ export const App = () => {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6498,6 +6576,7 @@ export const App = () => {
             rel_path: "test.tsx",
             file_name: "test.tsx",
             file_stem: "test",
+            raw_file_stem: "test",
             entry_strategy: &strategy,
             extension: "tsx",
             explicit_extensions: false,
@@ -6587,6 +6666,7 @@ const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
             rel_path,
             file_name,
             file_stem,
+            raw_file_stem: file_stem,
             entry_strategy: &EntryStrategy::Segment,
             extension: "tsx",
             explicit_extensions: false,
@@ -6682,6 +6762,133 @@ export default component$(() => {});"#;
         assert!(
             seg.display_name.contains("mongo_component"),
             "export default component$ in mongo/index.tsx should produce 'mongo_component', got: {}",
+            seg.display_name
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Task 2 TDD tests: handle_inlined_qsegment ctx_name derivation (21-01)
+    // -----------------------------------------------------------------------
+
+    /// Test E: inlinedQrl with bare symbol_name (no hash suffix) uses the raw name as ctx_name.
+    /// symbol_name_raw = "task" → ctx_name = "task" (not "inlinedQrl")
+    #[test]
+    fn inlined_qsegment_bare_symbol_ctx_name() {
+        let src = r#"import { inlinedQrl } from "@qwik.dev/core";
+const x = inlinedQrl(() => {}, "task");"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        assert!(!xfrm.segments.is_empty(), "expected at least one segment");
+        let seg = &xfrm.segments[0];
+        assert_eq!(
+            seg.ctx_name, "task",
+            "bare symbol_name 'task' should produce ctx_name='task', got: {}",
+            seg.ctx_name
+        );
+    }
+
+    /// Test F: inlinedQrl with composed symbol_name derives ctx_name from last meaningful part.
+    /// symbol_name_raw = "Works_component_t45qL4vNGv0" → strip hash → "component" → ctx_name = "component$"
+    #[test]
+    fn inlined_qsegment_composed_symbol_ctx_name() {
+        let src = r#"import { inlinedQrl } from "@qwik.dev/core";
+const x = inlinedQrl(() => {}, "Works_component_t45qL4vNGv0");"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        assert!(!xfrm.segments.is_empty(), "expected at least one segment");
+        let seg = &xfrm.segments[0];
+        assert_eq!(
+            seg.ctx_name, "component$",
+            "composed symbol 'Works_component_t45qL4vNGv0' should produce ctx_name='component$', got: {}",
+            seg.ctx_name
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Task 2 TDD tests: raw_file_stem for entry key construction (21-02)
+    // -----------------------------------------------------------------------
+
+    /// Helper: run transform with custom file_stem, raw_file_stem, rel_path, and entry strategy.
+    /// Returns (code, xfrm).
+    fn run_transform_with_raw_stem(
+        src: &str,
+        file_name: &str,
+        file_stem: &str,
+        raw_file_stem: &str,
+        rel_path: &str,
+        entry_strategy: &EntryStrategy,
+    ) -> (String, QwikTransform) {
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &EmitMode::Dev,
+            scope: None,
+            rel_path,
+            file_name,
+            file_stem,
+            raw_file_stem,
+            entry_strategy,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+            source_text: "",
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let semantic = SemanticBuilder::new().build(&program);
+        let scoping = semantic.semantic.into_scoping();
+        let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+        let code = Codegen::new().build(&program).code;
+        (code, xfrm)
+    }
+
+    /// Test G: export default in a file with special chars in stem uses raw stem in entry key.
+    ///
+    /// For file "[[...slug]].tsx", file_stem (escaped) = "slug", raw_file_stem = "[[...slug]]".
+    /// With Smart entry strategy, the entry key should contain "[[...slug]]", not "slug".
+    #[test]
+    fn export_default_special_chars_stem_uses_raw_in_entry_key() {
+        // Component$ with a captured variable so SmartStrategy returns per-component (not None)
+        let src = r#"import { component$ } from "@qwik.dev/core";
+const x = 1;
+export default component$(() => {
+    return x;
+});"#;
+        let origin = "src/routes/_repl/[id]/[[...slug]].tsx";
+        let (_code, xfrm) = run_transform_with_raw_stem(
+            src,
+            "[[...slug]].tsx",
+            "slug",             // escaped file stem (display_name uses this)
+            "[[...slug]]",     // raw file stem (entry key must use this)
+            origin,
+            &EntryStrategy::Smart,
+        );
+        assert_eq!(xfrm.segments.len(), 1, "expected 1 segment");
+        let seg = &xfrm.segments[0];
+        // The entry key should contain the raw stem, not the escaped one
+        let entry = seg.entry.as_deref().unwrap_or("");
+        assert!(
+            entry.contains("[[...slug]]"),
+            "entry key should contain raw stem '[[...slug]]', got: {:?}",
+            seg.entry
+        );
+        assert!(
+            !entry.contains("_entry_slug"),
+            "entry key should NOT contain escaped stem 'slug', got: {:?}",
+            seg.entry
+        );
+        // display_name should still use the escaped stem (not raw)
+        assert!(
+            seg.display_name.contains("slug_component"),
+            "display_name should use escaped stem 'slug', got: {}",
             seg.display_name
         );
     }

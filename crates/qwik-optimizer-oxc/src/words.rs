@@ -17,16 +17,18 @@ pub(crate) fn dollar_to_qrl_name(name: &str) -> String {
 /// Classify the context kind of a dollar call site.
 ///
 /// Returns `CtxKind::EventHandler` for:
-/// - `event$` (explicit event handler API)
 /// - JSX event handler attribute names: `on[A-Z]*$` (e.g., `onClick$`, `onInput$`)
 /// - Namespaced JSX event handlers: `document:onClick$`, `window:onFocus$`
 ///
 /// Returns `CtxKind::Function` for everything else:
-/// - `$`, `component$`, `useTask$`, `useStyles$`, `useVisibleTask$`, etc.
+/// - `$`, `component$`, `useTask$`, `useStyles$`, `useVisibleTask$`, `event$`, etc.
 ///
 /// This matches the SWC optimizer behavior where `component$`, `useTask$`,
-/// and bare `$` all get `Function`, while JSX `onClick$` attributes get
+/// `event$`, and bare `$` all get `Function`, while JSX `onClick$` attributes get
 /// `EventHandler`.
+///
+/// NOTE: `event$` returns `Function` — it is a regular API call, not a JSX attribute.
+/// Only JSX attribute patterns (`on[A-Z]*$`) map to `EventHandler`.
 pub(crate) fn classify_ctx_kind(callee_name: &str) -> CtxKind {
     // Strip any namespace prefix (e.g., "document:onClick$" -> "onClick$")
     let base_name = if let Some(pos) = callee_name.find(':') {
@@ -34,10 +36,6 @@ pub(crate) fn classify_ctx_kind(callee_name: &str) -> CtxKind {
     } else {
         callee_name
     };
-
-    if base_name == "event$" {
-        return CtxKind::EventHandler;
-    }
 
     // Check for on[A-Z]*$ pattern (JSX event handler attributes)
     if base_name.starts_with("on") && base_name.ends_with('$') && base_name.len() > 3 {
@@ -77,8 +75,13 @@ mod tests {
     }
 
     #[test]
+    fn test_classify_ctx_kind_event_dollar_is_function() {
+        // event$ is a regular function marker, NOT an event handler — SWC returns ctxKind "function"
+        assert!(matches!(classify_ctx_kind("event$"), CtxKind::Function));
+    }
+
+    #[test]
     fn test_classify_ctx_kind_event_handler() {
-        assert!(matches!(classify_ctx_kind("event$"), CtxKind::EventHandler));
         // JSX event handler attributes
         assert!(matches!(
             classify_ctx_kind("onClick$"),

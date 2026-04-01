@@ -27,8 +27,13 @@ const PROJECT_ROOT = path.resolve(__dirname, "..");
 function resolveQwikDir() {
   // 1. --qwik-dir <path> CLI flag
   const argIdx = process.argv.indexOf("--qwik-dir");
-  if (argIdx !== -1 && process.argv[argIdx + 1]) {
-    return path.resolve(process.argv[argIdx + 1]);
+  if (argIdx !== -1) {
+    const val = process.argv[argIdx + 1];
+    if (!val || val.startsWith("-")) {
+      console.error("[ERROR] --qwik-dir requires a path argument");
+      process.exit(2);
+    }
+    return path.resolve(val);
   }
 
   // 2. QWIK_DIR environment variable

@@ -14,10 +14,10 @@
 
 import { describe, it, expect } from "bun:test";
 import * as path from "node:path";
-import { parseSnapFile } from "../src/parser.ts";
-import { compareFixture } from "../src/comparator.ts";
-import { FailureCategory } from "../src/contract.ts";
-import type { ParsedSection, ParsedSnapshot, SegmentMetadata } from "../src/types.ts";
+import { parseSnapFile } from "../src/parser.js";
+import { compareFixture } from "../src/comparator.js";
+import { FailureCategory } from "../src/contract.js";
+import type { ParsedSection, ParsedSnapshot, SegmentMetadata } from "../src/types.js";
 
 // ---------------------------------------------------------------------------
 // Helpers

@@ -10,10 +10,10 @@
  */
 
 import { describe, it, expect } from "bun:test";
-import { formatTerminalReport, formatStableJson, explainDerivedFailure } from "../src/reporter.ts";
-import { FailureCategory } from "../src/contract.ts";
-import type { HarnessOutput, FailureCategoryValue } from "../src/contract.ts";
-import type { SegmentMetadata } from "../src/types.ts";
+import { formatTerminalReport, formatStableJson, explainDerivedFailure } from "../src/reporter.js";
+import { FailureCategory } from "../src/contract.js";
+import type { HarnessOutput, FailureCategoryValue } from "../src/contract.js";
+import type { SegmentMetadata } from "../src/types.js";
 
 // ---------------------------------------------------------------------------
 // Helpers

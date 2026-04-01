@@ -43,8 +43,13 @@ const DRY_RUN = args.includes("--dry-run");
 
 function resolveQwikDir() {
   const argIdx = args.indexOf("--qwik-dir");
-  if (argIdx !== -1 && args[argIdx + 1]) {
-    return path.resolve(args[argIdx + 1]);
+  if (argIdx !== -1) {
+    const val = args[argIdx + 1];
+    if (!val || val.startsWith("-")) {
+      console.error("[ERROR] --qwik-dir requires a path argument");
+      process.exit(2);
+    }
+    return path.resolve(val);
   }
   if (process.env.QWIK_DIR) {
     return path.resolve(process.env.QWIK_DIR);
@@ -221,34 +226,75 @@ if (currentCount !== null && currentCount !== newCount) {
   } else {
     // Update contract.ts
     let contractSource = fs.readFileSync(CONTRACT_TS, "utf8");
+    const contractBefore = contractSource;
     contractSource = contractSource.replace(
       /export const CORPUS_SIZE = \d+;/,
       `export const CORPUS_SIZE = ${newCount};`
     );
+    if (contractSource === contractBefore) {
+      logFail(`CORPUS_SIZE pattern not found in src/contract.ts — file may be stale`);
+      process.exit(1);
+    }
     fs.writeFileSync(CONTRACT_TS, contractSource, "utf8");
     logPass(`Updated CORPUS_SIZE in src/contract.ts`);
 
     // Update verify-corpus.mjs
     let verifySource = fs.readFileSync(VERIFY_CORPUS_MJS, "utf8");
+    const verifyBefore = verifySource;
     verifySource = verifySource.replace(
       /const EXPECTED_COUNT = \d+;/,
       `const EXPECTED_COUNT = ${newCount};`
     );
+    if (verifySource === verifyBefore) {
+      logFail(`EXPECTED_COUNT pattern not found in scripts/verify-corpus.mjs — file may be stale`);
+      process.exit(1);
+    }
     fs.writeFileSync(VERIFY_CORPUS_MJS, verifySource, "utf8");
     logPass(`Updated EXPECTED_COUNT in scripts/verify-corpus.mjs`);
 
     // Update build-fixtures-json.mjs fixtureCount guard
     const buildFixturesMjs = path.join(PROJECT_ROOT, "scripts", "build-fixtures-json.mjs");
     let buildSource = fs.readFileSync(buildFixturesMjs, "utf8");
+    const buildBefore = buildSource;
     buildSource = buildSource.replace(
       /fixtureCount !== \d+/,
       `fixtureCount !== ${newCount}`
     );
+    if (buildSource === buildBefore) {
+      logFail(`fixtureCount guard pattern not found in scripts/build-fixtures-json.mjs — file may be stale`);
+      process.exit(1);
+    }
     fs.writeFileSync(buildFixturesMjs, buildSource, "utf8");
     logPass(`Updated fixtureCount guard in scripts/build-fixtures-json.mjs`);
   }
 } else if (currentCount === newCount) {
   log(`\nCount unchanged: ${newCount} fixtures`);
+
+  // Even when contract.ts is current, verify the other files haven't drifted
+  if (!DRY_RUN) {
+    let driftFixed = false;
+
+    const verifySource = fs.readFileSync(VERIFY_CORPUS_MJS, "utf8");
+    const verifyMatch = verifySource.match(/const EXPECTED_COUNT = (\d+);/);
+    if (verifyMatch && parseInt(verifyMatch[1], 10) !== newCount) {
+      fs.writeFileSync(VERIFY_CORPUS_MJS, verifySource.replace(/const EXPECTED_COUNT = \d+;/, `const EXPECTED_COUNT = ${newCount};`), "utf8");
+      logPass(`Fixed drifted EXPECTED_COUNT in scripts/verify-corpus.mjs: ${verifyMatch[1]} -> ${newCount}`);
+      driftFixed = true;
+    }
+
+    const buildFixturesMjs = path.join(PROJECT_ROOT, "scripts", "build-fixtures-json.mjs");
+    const buildSource = fs.readFileSync(buildFixturesMjs, "utf8");
+    const buildMatch = buildSource.match(/fixtureCount !== (\d+)/);
+    if (buildMatch && parseInt(buildMatch[1], 10) !== newCount) {
+      fs.writeFileSync(buildFixturesMjs, buildSource.replace(/fixtureCount !== \d+/, `fixtureCount !== ${newCount}`), "utf8");
+      logPass(`Fixed drifted fixtureCount guard in scripts/build-fixtures-json.mjs: ${buildMatch[1]} -> ${newCount}`);
+      driftFixed = true;
+    }
+
+    if (!driftFixed) {
+      log(`All count literals in sync.`);
+    }
+  }
 } else {
   log(`\nCount: ${newCount} fixtures (src/contract.ts not found, skipping CORPUS_SIZE update)`);
 }

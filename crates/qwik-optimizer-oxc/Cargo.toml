@@ -1,0 +1,62 @@
+[package]
+name = "qwik-optimizer-oxc"
+version = "0.1.0"
+edition = "2024"
+description = "Qwik optimizer using OXC for code transformation"
+license = "MIT"
+
+[features]
+default = ["parallel", "source-maps"]
+
+# Enable parallel module transformation via rayon.
+# Disable for single-threaded environments (WASM).
+parallel = ["dep:rayon"]
+
+# Enable source map generation.
+source-maps = []
+
+[dependencies]
+# OXC umbrella crate -- provides parser, AST, traverse, codegen, semantic analysis.
+# NOTE: The "transformer" feature is intentionally excluded. It pulls in babel-compat
+# layers we don't need. Import management is implemented directly in import_rewrite.rs
+# and the exit_program hook.
+oxc = { version = "0.113", features = [
+    "codegen",      # oxc_codegen for AST -> JavaScript output
+    "semantic",     # oxc_semantic for SemanticBuilder (scope/symbol analysis)
+    "serialize",    # ESTree JSON serialization (for debugging/testing)
+    "ast_visit",    # VisitMut trait for const_replace pre-pass
+] }
+# NOTE: oxc always includes oxc_parser and oxc_traverse (no feature flags needed).
+
+# oxc_traverse is a separate crate needed for the Traverse trait.
+oxc_traverse = "0.113"
+
+# Serialization for TransformOutput, SegmentAnalysis, and all public types.
+serde = { version = "1", features = ["derive"] }
+
+# JSON encoding/decoding for transform options and output.
+serde_json = "1"
+
+# Error handling with context chains.
+anyhow = "1"
+
+# Base64 encoding for segment hash computation and source maps.
+base64 = "0.22"
+
+# SipHash 1-3 with deterministic seed (0,0) -- required for byte-identical hashes.
+# std::collections::hash_map::DefaultHasher uses a randomized seed since Rust 1.36.
+siphasher = "1"
+
+# Relative path computation for import paths between segments.
+pathdiff = "0.2"
+
+# Cross-platform path normalization (consistent / separators).
+path-slash = "0.2"
+
+# Parallel module transformation.
+# Only included when "parallel" feature is active.
+rayon = { version = "1", optional = true }
+
+[dev-dependencies]
+# Snapshot testing for comparing output against golden spec files.
+insta = { version = "1", features = ["json"] }

@@ -368,6 +368,8 @@ pub(crate) struct QwikTransformOptions<'b> {
     pub explicit_extensions: bool,
     /// Whether the transform is running in a server context (for Dev mode metadata).
     pub is_server: bool,
+    /// Source text for diagnostic span computation (byte-offset to line/col).
+    pub source_text: &'b str,
 }
 
 // ---------------------------------------------------------------------------
@@ -502,6 +504,13 @@ pub(crate) struct QwikTransform {
     /// owned by `transform_code` and outlives the `QwikTransform` instance.
     /// Mutable access is only used in `ensure_export` which inserts into `exports`.
     global_collect: *mut GlobalCollect,
+
+    /// Raw pointer to the source text for diagnostic span computation.
+    ///
+    /// # Safety
+    /// The pointer is valid for the duration of the traversal: source text is
+    /// arena-allocated in `transform_code` and outlives the `QwikTransform` instance.
+    source_text: *const str,
 
     // ---- Phase 13: Level 2 loop-context .w() hoisting ----------------------
 
@@ -687,6 +696,7 @@ impl QwikTransform {
             explicit_extensions: options.explicit_extensions,
             is_server: options.is_server,
             global_collect: options.global_collect as *const GlobalCollect as *mut GlobalCollect,
+            source_text: options.source_text as *const str,
             // Phase 13: Level 2 hoisting fields
             hoisted_qrls: Vec::new(),
             iteration_var_stack: Vec::new(),
@@ -743,6 +753,31 @@ impl QwikTransform {
     /// module).
     ///
     /// # Safety
+    // -----------------------------------------------------------------------
+    // Diagnostic span helpers
+    // -----------------------------------------------------------------------
+
+    /// Compute `(line, col)` (1-indexed line, 0-indexed col) from a byte offset.
+    fn byte_offset_to_line_col(src: &str, offset: u32) -> (u32, u32) {
+        let offset = offset as usize;
+        let clamped = offset.min(src.len());
+        let prefix = &src[..clamped];
+        let line = prefix.bytes().filter(|&b| b == b'\n').count() as u32 + 1;
+        let col = match prefix.rfind('\n') {
+            Some(last_nl) => (clamped - last_nl - 1) as u32,
+            None => clamped as u32,
+        };
+        (line, col)
+    }
+
+    /// Build a [`SourceLocation`] from a byte span `(lo, hi)` using arena-stored source text.
+    fn span_to_source_location(&self, lo: u32, hi: u32) -> crate::types::SourceLocation {
+        let src = unsafe { &*self.source_text };
+        let (start_line, start_col) = Self::byte_offset_to_line_col(src, lo);
+        let (end_line, end_col) = Self::byte_offset_to_line_col(src, hi);
+        crate::types::SourceLocation { lo, hi, start_line, start_col, end_line, end_col }
+    }
+
     /// `self.global_collect` is a raw pointer set in `QwikTransform::new` to the
     /// `GlobalCollect` owned by `transform_code`, which outlives this transform.
     pub(crate) fn get_local_idents(&self, expr: &Expression<'_>) -> Vec<String> {
@@ -2098,11 +2133,31 @@ impl QwikTransform {
             }
         }
 
-        // Step 3: If any descendent_ident is in invalid_decl → return (None, false).
+        // Step 3: If any descendent_ident is in invalid_decl → emit C02 + return (None, false).
+        let mut found_invalid = false;
         for ident in &descendent_idents {
             if invalid_decl_names.contains(ident) {
-                return (None, false);
+                found_invalid = true;
+                // C02: emit diagnostic for each fn/class reference captured by QRL scope.
+                // No span (highlights: None) per SPEC.
+                if !matches!(self.mode, EmitMode::Lib) {
+                    self.diagnostics.push(Diagnostic {
+                        scope: "optimizer".to_string(),
+                        category: DiagnosticCategory::Error,
+                        code: Some("C02".to_string()),
+                        file: self.file_name.clone(),
+                        message: format!(
+                            "Reference to identifier '{}' can not be used inside a Qrl($) scope because it's a function",
+                            ident
+                        ),
+                        highlights: None,
+                        suggestions: None,
+                    });
+                }
             }
+        }
+        if found_invalid {
+            return (None, false);
         }
 
         // Step 4: For each ident NOT in decl_collect: check via global_collect → side effects.
@@ -2989,10 +3044,33 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             let first_arg = match first_arg_opt {
                 Some(expr) => expr,
                 None => {
-                    // No first arg — nothing to extract. Just rename callee.
+                    // No first arg — nothing to extract. Just rename callee + check C05.
                     if let Expression::Identifier(id) = &mut call.callee {
                         let callee_name = id.name.as_str().to_string();
                         if self.marker_functions.contains_key(&callee_name) || callee_name == "$" {
+                            // C05: locally-exported $-function missing Qrl counterpart.
+                            if let Some(specifier) = self.marker_functions.get(&callee_name).cloned() {
+                                let collect = unsafe { &*self.global_collect };
+                                let is_local_export = specifier == callee_name && !collect.imports.contains_key(&callee_name);
+                                if is_local_export {
+                                    let qrl_name = words::dollar_to_qrl_name(&specifier);
+                                    if !collect.has_export_symbol(&qrl_name) {
+                                        let loc = self.span_to_source_location(call.span.start, call.span.end);
+                                        self.diagnostics.push(Diagnostic {
+                                            scope: "optimizer".to_string(),
+                                            category: DiagnosticCategory::Error,
+                                            code: Some("C05".to_string()),
+                                            file: self.file_name.clone(),
+                                            message: format!(
+                                                "Found '{}' but did not find the corresponding '{}' exported in the same file. Please check that it is exported and spelled correctly",
+                                                callee_name, qrl_name
+                                            ),
+                                            highlights: Some(vec![loc]),
+                                            suggestions: None,
+                                        });
+                                    }
+                                }
+                            }
                             let qrl_name = words::dollar_to_qrl_name(&callee_name);
                             id.name = ctx.ast.atom(&qrl_name).into();
                         }
@@ -3038,14 +3116,18 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
             // C03: if not a function/arrow and has captures, clear and emit diagnostic.
             if !can_capture_scope(&first_arg) && !scoped_idents.is_empty() {
+                let msg = format!(
+                    "Qrl($) scope is not a function, but it's capturing local identifiers: {}",
+                    scoped_idents.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", ")
+                );
+                let loc = self.span_to_source_location(span.0, span.1);
                 self.diagnostics.push(Diagnostic {
                     scope: "optimizer".to_string(),
-                    category: DiagnosticCategory::SourceError,
+                    category: DiagnosticCategory::Error,
                     code: Some("C03".to_string()),
                     file: self.file_name.clone(),
-                    message: "CanNotCapture: non-function expression cannot capture scope variables"
-                        .to_string(),
-                    highlights: None,
+                    message: msg,
+                    highlights: Some(vec![loc]),
                     suggestions: None,
                 });
                 scoped_idents.clear();
@@ -3162,9 +3244,34 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             if is_bare_dollar {
                 let qrl_name = words::dollar_to_qrl_name(&callee_name);
                 id.name = ctx.ast.atom(&qrl_name).into();
-            } else if let Some(specifier) = self.marker_functions.get(&callee_name) {
+            } else if let Some(specifier) = self.marker_functions.get(&callee_name).cloned() {
+                // C05: check if this is a locally-exported $-function missing its Qrl counterpart.
+                // A locally-exported marker is self-referential (specifier == callee_name) and
+                // NOT in the imports map (not imported from an external module).
+                {
+                    let collect = unsafe { &*self.global_collect };
+                    let is_local_export = specifier == callee_name && !collect.imports.contains_key(&callee_name);
+                    if is_local_export {
+                        let qrl_name = words::dollar_to_qrl_name(&specifier);
+                        if !collect.has_export_symbol(&qrl_name) {
+                            let loc = self.span_to_source_location(call.span.start, call.span.end);
+                            self.diagnostics.push(Diagnostic {
+                                scope: "optimizer".to_string(),
+                                category: DiagnosticCategory::Error,
+                                code: Some("C05".to_string()),
+                                file: self.file_name.clone(),
+                                message: format!(
+                                    "Found '{}' but did not find the corresponding '{}' exported in the same file. Please check that it is exported and spelled correctly",
+                                    callee_name, qrl_name
+                                ),
+                                highlights: Some(vec![loc]),
+                                suggestions: None,
+                            });
+                        }
+                    }
+                }
                 // Use the resolved specifier for QRL name computation, not the local alias.
-                let qrl_name = words::dollar_to_qrl_name(specifier);
+                let qrl_name = words::dollar_to_qrl_name(&specifier);
                 id.name = ctx.ast.atom(&qrl_name).into();
             }
         }
@@ -4113,6 +4220,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         }
     }
 
@@ -4141,6 +4249,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -4520,6 +4629,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         QwikTransform::new(opts)
     }
@@ -4762,6 +4872,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: true,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts2);
         let mut names_map = std::collections::HashMap::new();
@@ -4910,6 +5021,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -4956,6 +5068,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -4990,6 +5103,7 @@ mod tests {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -5042,6 +5156,7 @@ const Cmp = component$(() => {});"#;
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         // Override to Segment-like: use Prod mode (non-Lib) with Segment strategy
@@ -5069,6 +5184,7 @@ const Cmp = component$(() => {});"#;
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm2 = QwikTransform::new(opts2);
         let semantic2 = SemanticBuilder::new().build(&program2);
@@ -5201,6 +5317,7 @@ const Cmp = component$(() => {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -5283,6 +5400,7 @@ const Cmp = component$(() => {});"#;
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let ast = AstBuilder::new(&allocator);
@@ -5612,6 +5730,7 @@ export const A = component$(() => {});"#;
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let k0 = xfrm.gen_jsx_key();
@@ -5648,6 +5767,7 @@ export const A = component$(() => {});"#;
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let xfrm = QwikTransform::new(opts);
         assert_eq!(xfrm.jsx_key_counter, 0, "jsx_key_counter should start at 0");
@@ -5855,6 +5975,7 @@ export const App = () => {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         // Push the variable into decl_stack root frame.
@@ -5957,6 +6078,7 @@ export const App = () => {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let arrow = "p0 => p0.color";
@@ -6005,6 +6127,7 @@ export const App = () => {
             extension: "tsx",
             explicit_extensions: false,
             is_server: true,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let arrow = "p0 => p0.color";
@@ -6046,6 +6169,7 @@ export const App = () => {
             extension: "tsx",
             explicit_extensions: false,
             is_server: false,
+            source_text: "",
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);

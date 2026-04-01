@@ -24,7 +24,8 @@ import {
   type FailureCategoryValue,
   type HarnessOutput,
 } from "./contract.js";
-import { formatTerminalReport, formatStableJson } from "./reporter.js";
+import { formatTerminalReport, formatStableJson, type StepTraceEntry } from "./reporter.js";
+import { matchSegments } from "./matcher.js";
 
 /**
  * Parse CLI arguments into a typed options object.
@@ -192,9 +193,59 @@ async function main() {
   if (args.json) {
     console.log(formatStableJson(output));
   } else {
-    // Build annotations array for step-trace (REPT-05) — in-memory only, NOT serialized
-    // Step-trace is only available when OXC snapshots are provided (metadata required)
-    console.log(formatTerminalReport(output));
+    // Build step-trace annotations for derived-field failure explanations (REPT-05)
+    const stepTraces: StepTraceEntry[] = [];
+    if (OXC_DIR !== null) {
+      // Load fixtures.json for scope/relPath data needed by step-trace
+      const fixturesJsonPath = path.resolve(path.dirname(SNAP_DIR), "fixtures.json");
+      let fixtureConfigs: Record<string, { scope?: string | null; inputs?: Array<{ path: string }> }> = {};
+      try {
+        fixtureConfigs = JSON.parse(fs.readFileSync(fixturesJsonPath, "utf8")).fixtures ?? {};
+      } catch {
+        // fixtures.json not available — step-trace will lack scope/relPath context
+      }
+
+      for (const fixture of output.fixtures) {
+        if (fixture.pass || fixture.failures.length === 0) continue;
+
+        // Re-match segments to get metadata pairings
+        const swcParsed = parseSnapFile(path.join(SNAP_DIR, `${fixture.name}.snap`));
+        const oxcParsed = parseSnapFile(path.join(OXC_DIR, `${fixture.name}.snap`));
+        const matchResult = matchSegments(swcParsed.sections, oxcParsed.sections);
+
+        const config = fixtureConfigs[fixture.name];
+        const scope = config?.scope ?? null;
+        const firstInput = config?.inputs?.[0]?.path?.replace(/\\/g, "/");
+
+        const entries: StepTraceEntry["failures"] = [];
+        for (const failure of fixture.failures) {
+          // Find the matching segment pair for this failure's field
+          const matchedPair = matchResult.matches.find((m) => {
+            const swcMeta = m.swcSection.metadata;
+            const oxcMeta = m.oxcSection.metadata;
+            if (!swcMeta || !oxcMeta) return false;
+            // Match by checking if the failure's expected/actual values correspond
+            if (failure.field && failure.field in swcMeta) {
+              return (swcMeta as unknown as Record<string, unknown>)[failure.field] === failure.expected;
+            }
+            return false;
+          });
+
+          entries.push({
+            failure,
+            swcMeta: matchedPair?.swcSection.metadata ?? null,
+            oxcMeta: matchedPair?.oxcSection.metadata ?? null,
+            scope,
+            relPath: firstInput,
+          });
+        }
+
+        if (entries.length > 0) {
+          stepTraces.push({ fixtureName: fixture.name, failures: entries });
+        }
+      }
+    }
+    console.log(formatTerminalReport(output, stepTraces));
   }
 
   process.exit(exitCode);

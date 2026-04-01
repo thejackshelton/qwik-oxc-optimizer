@@ -74,8 +74,8 @@ impl<'a> VisitMut<'a> for PropsDestructurer<'a> {
             return;
         }
 
-        // Body must qualify (expression body with call, or block body with return).
-        if !qualifies(&node.body) {
+        // Body must qualify (expression body, or block body with return).
+        if !qualifies(&node.body, node.expression) {
             return;
         }
 
@@ -398,22 +398,16 @@ fn is_valid_identifier(s: &str) -> bool {
 
 /// Returns true if the arrow body qualifies for props destructuring.
 ///
-/// Triggers:
-/// - Expression body (`node.expression == true`): body has 1 ExpressionStatement with a CallExpression.
-/// - Block body: body has at least 1 ReturnStatement.
-fn qualifies(body: &FunctionBody<'_>) -> bool {
-    for stmt in &body.statements {
-        match stmt {
-            Statement::ReturnStatement(_) => return true,
-            Statement::ExpressionStatement(expr_stmt) => {
-                if matches!(expr_stmt.expression, Expression::CallExpression(_)) {
-                    return true;
-                }
-            }
-            _ => {}
-        }
+/// Triggers per SPEC lines 1140-1164:
+/// - Expression body (`node.expression == true`): always qualifies (the expression is the return value).
+/// - Block body: must contain at least 1 ReturnStatement.
+fn qualifies(body: &FunctionBody<'_>, is_expression: bool) -> bool {
+    if is_expression {
+        // Expression bodies always qualify — the expression IS the return value.
+        return true;
     }
-    false
+    // Block body: must have at least one return statement.
+    body.statements.iter().any(|stmt| matches!(stmt, Statement::ReturnStatement(_)))
 }
 
 /// Returns true if the first statement is `const x = _captures[N]`.

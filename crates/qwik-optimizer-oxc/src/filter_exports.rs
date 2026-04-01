@@ -73,46 +73,37 @@ pub(crate) fn filter_exports<'a>(
     }
 }
 
-/// Replace the initializer with a throw stub.
+/// Replace the initializer with a synchronous zero-arg arrow throw stub.
 ///
-/// Handles:
-///   - `ArrowFunctionExpression` → body replaced with `{ throw STRIP_MESSAGE; }`
-///   - `FunctionExpression` → body replaced with `{ throw STRIP_MESSAGE; }`
-///   - Other expressions (identifiers, calls, etc.) → replaced with `() => { throw STRIP_MESSAGE; }`
+/// Per SPEC lines 1025-1028, the stub shape is always:
+/// `() => { throw "Symbol removed ..." }`
+///
+/// This ensures async functions throw synchronously (not reject a promise)
+/// and the original arity/constructibility is not preserved.
 fn replace_init_body<'a>(init: &mut Option<Expression<'a>>, ast: &AstBuilder<'a>) {
-    if let Some(expr) = init {
-        match expr {
-            Expression::ArrowFunctionExpression(arrow) => {
-                arrow.expression = false;
-                let throw_body = build_throw_body(ast);
-                arrow.body = ast.alloc(throw_body);
-            }
-            Expression::FunctionExpression(func) => {
-                let throw_body = build_throw_body(ast);
-                func.body = Some(ast.alloc(throw_body));
-            }
-            _ => {
-                // Non-function init (identifier, call, etc.): replace with arrow throw stub.
-                let throw_body = build_throw_body(ast);
-                let params = ast.formal_parameters(
-                    SPAN,
-                    FormalParameterKind::ArrowFormalParameters,
-                    ast.vec(),
-                    Option::<FormalParameterRest<'a>>::None,
-                );
-                let arrow = ast.expression_arrow_function(
-                    SPAN,
-                    false, // expression
-                    false, // async
-                    Option::<TSTypeParameterDeclaration<'a>>::None,
-                    params,
-                    Option::<TSTypeAnnotation<'a>>::None,
-                    throw_body,
-                );
-                *expr = arrow;
-            }
-        }
+    if init.is_some() {
+        *init = Some(build_arrow_throw_stub(ast));
     }
+}
+
+/// Build `() => { throw "Symbol removed ..." }` arrow expression.
+fn build_arrow_throw_stub<'a>(ast: &AstBuilder<'a>) -> Expression<'a> {
+    let throw_body = build_throw_body(ast);
+    let params = ast.formal_parameters(
+        SPAN,
+        FormalParameterKind::ArrowFormalParameters,
+        ast.vec(),
+        Option::<FormalParameterRest<'a>>::None,
+    );
+    ast.expression_arrow_function(
+        SPAN,
+        false, // expression
+        false, // async
+        Option::<TSTypeParameterDeclaration<'a>>::None,
+        params,
+        Option::<TSTypeAnnotation<'a>>::None,
+        throw_body,
+    )
 }
 
 /// Replace a function declaration's body with the throw stub.

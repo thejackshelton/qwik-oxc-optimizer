@@ -22,29 +22,29 @@ export const FieldInput = component$(() => {
 });
 
 
-============================= test.tsx_FieldInput_component_1_gl0T6R0Ul64.js (ENTRY POINT)==
+============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
-export const FieldInput_component_1_gl0T6R0Ul64 = () => {
+const q_FieldInput_component_input_q_e_input_wqR1xEjZjf4 = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_input_wqR1xEjZjf4"), "FieldInput_component_input_q_e_input_wqR1xEjZjf4");
+export const FieldInput_component_V4XAtJSTRKg = () => {
 	const localValue = useSignal(false);
 	return _jsxSorted("input", null, {
 		checked: localValue,
-		"q-e:input": q_FieldInput_component_V4XAtJSTRKg
+		"q-e:input": q_FieldInput_component_input_q_e_input_wqR1xEjZjf4
 	}, null, 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_1_gl0T6R0Ul64\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_FieldInput_component_V4XAtJSTRKg = qrl(() => import(\\"./test.tsx_FieldInput_component_V4XAtJSTRKg\\"), \\"FieldInput_component_V4XAtJSTRKg\\");\nexport const FieldInput_component_1_gl0T6R0Ul64 = () => {\n\tconst localValue = useSignal(false);\n\treturn _jsxSorted(\\"input\\", null, {\n\t\tchecked: localValue,\n\t\t\\"q-e:input\\": q_FieldInput_component_V4XAtJSTRKg\n\t}, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,qCAAqC,UAAU,OAAO,gDAAgD,mCAAmC;AAC/I,OAAO,MAAM,2CAA2C;CACvD,MAAM,aAAa,UAAU,MAAM;AACnC,QAAO,WAAW,SAAS,MAAM;EAChC,SAAS;EACT,aAAa;EACb,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_FieldInput_component_input_q_e_input_wqR1xEjZjf4 = qrl(() => import(\\"./test.tsx_FieldInput_component_input_q_e_input_wqR1xEjZjf4\\"), \\"FieldInput_component_input_q_e_input_wqR1xEjZjf4\\");\nexport const FieldInput_component_V4XAtJSTRKg = () => {\n\tconst localValue = useSignal(false);\n\treturn _jsxSorted(\\"input\\", null, {\n\t\tchecked: localValue,\n\t\t\\"q-e:input\\": q_FieldInput_component_input_q_e_input_wqR1xEjZjf4\n\t}, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,qDAAqD,UAAU,OAAO,gEAAgE,mDAAmD;AAC/L,OAAO,MAAM,yCAAyC;CACrD,MAAM,aAAa,UAAU,MAAM;AACnC,QAAO,WAAW,SAAS,MAAM;EAChC,SAAS;EACT,aAAa;EACb,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "FieldInput_component_1_gl0T6R0Ul64",
+  "name": "FieldInput_component_V4XAtJSTRKg",
   "entry": null,
-  "displayName": "test.tsx_FieldInput_component_1",
-  "hash": "gl0T6R0Ul64",
-  "canonicalFilename": "test.tsx_FieldInput_component_1_gl0T6R0Ul64",
+  "displayName": "test.tsx_FieldInput_component",
+  "hash": "V4XAtJSTRKg",
+  "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -58,28 +58,28 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_1
 }
 */
 
-============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
+============================= test.tsx_FieldInput_component_input_q_e_input_wqR1xEjZjf4.js (ENTRY POINT)==
 
-export const FieldInput_component_V4XAtJSTRKg = () => {
+export const FieldInput_component_input_q_e_input_wqR1xEjZjf4 = () => {
 	console.log("test");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"export const FieldInput_component_V4XAtJSTRKg = () => {\n\tconsole.log(\\"test\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC;AACrD,SAAQ,IAAI,OAAO;;AAClB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_input_wqR1xEjZjf4\"],\"sourcesContent\":[\"export const FieldInput_component_input_q_e_input_wqR1xEjZjf4 = () => {\n\tconsole.log(\\"test\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yDAAyD;AACrE,SAAQ,IAAI,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "FieldInput_component_V4XAtJSTRKg",
+  "name": "FieldInput_component_input_q_e_input_wqR1xEjZjf4",
   "entry": null,
-  "displayName": "test.tsx_FieldInput_component",
-  "hash": "V4XAtJSTRKg",
-  "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
+  "displayName": "test.tsx_FieldInput_component_input_q_e_input",
+  "hash": "wqR1xEjZjf4",
+  "canonicalFilename": "test.tsx_FieldInput_component_input_q_e_input_wqR1xEjZjf4",
   "path": "",
   "extension": "js",
-  "parent": "FieldInput_component_1_gl0T6R0Ul64",
+  "parent": "FieldInput_component_V4XAtJSTRKg",
   "ctxKind": "eventHandler",
-  "ctxName": "onInput",
+  "ctxName": "onInput$",
   "captures": false,
   "loc": [
     214,
@@ -92,12 +92,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V
 
 import { _chk } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-const q_FieldInput_component_1_gl0T6R0Ul64 = qrl(() => import("./test.tsx_FieldInput_component_1_gl0T6R0Ul64"), "FieldInput_component_1_gl0T6R0Ul64");
+const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 import { component$, useSignal } from "@qwik.dev/core";
-export const FieldInput = componentQrl(q_FieldInput_component_1_gl0T6R0Ul64);
+export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
 
-Some("{\"version\":3,\"names\":[\" com\",\" component\",\"t { component$, useSignal } from \\"@q\",\".de\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n  const localValue = useSignal(false);\n\n  return (\n    <input\n      bind:checked={localValue}\n      onInput$={() => {\n        console.log(\\"test\\");\n      }}\n    />\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,YAAY;AADpB,SACQC,kBAAkB;AAD1B,MACKC,uCAAuCC,UAAU,OAElD,kDACK,qCAEH;AALN,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,aAAaC,kDAWxB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from \\"\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n  const localValue = useSignal(false);\n\n  return (\n    <input\n      bind:checked={localValue}\n      onInput$={() => {\n        console.log(\\"test\\");\n      }}\n    />\n  );\n});\n\"],\"mappings\":\"AAAA,qBACoB;AADpB,2BAC0B;AAD1B,MACKA,+CAA+C,OAElD,gDACG,mCAEL;AALA,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,aAAaC,gDAWxB\"}")
 == DIAGNOSTICS ==
 
 []

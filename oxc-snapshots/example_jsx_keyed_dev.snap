@@ -72,7 +72,7 @@ import { component$, useStore } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_KGLYFBhvJc0);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" compone\",\" useStore\",\"t { component$, useStore } \",\"m '@qw\",\"ff\\">\",\"/C\",\"<C\",\"\\"23\\"></Cmp>\",\"component$\"],\"sources\":[\"project/index.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,8BAA8BC,aAAa,OAChD,8CAC6C,6BAGpC,EAAE,EAAE;CAAGC,MAAM;CACbC,IAAI;CACVC,IAAI;CAAMC,aACZ;CAA2B,CAAC;AAR7B,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
+Some("{\"version\":3,\"names\":[\" useStore\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"project/index.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,2CAA2C,OAChD,8CAC6C,6BAGpC,EAAE,EAAE;OAAS;KACT;KACN;cACN;CAA2B,CAAC;AAR7B,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
 == DIAGNOSTICS ==
 
 []

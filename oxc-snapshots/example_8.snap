@@ -107,7 +107,7 @@ import { $, component$ } from "@qwik.dev/core";
 export const Header = componentQrl(q_Header_component_1_2B8d0oH9ZWc.w([Header]));
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwik.\",\"/co\",\"st {so\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\treturn $((hola) => {\n\t\tconst hola = this;\n\t\tconst {something, styff} = hola;\n\t\tconst hello = hola.nothere.stuff[global];\n\t\treturn (\n\t\t\t<Header/>\n\t\t);\n\t});\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,mCAAmCC,UAEvC,OAAO,8CACK,kCAET,CAACC,OAAO,CAAC;AALb,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,0DASpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\treturn $((hola) => {\n\t\tconst hola = this;\n\t\tconst {something, styff} = hola;\n\t\tconst hello = hola.nothere.stuff[global];\n\t\treturn (\n\t\t\t<Header/>\n\t\t);\n\t});\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,6CAEJ,OAAO,8CACK,kCAET,QAAQ,CAAC;AALb,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,0DASpB\"}")
 == DIAGNOSTICS ==
 
 []

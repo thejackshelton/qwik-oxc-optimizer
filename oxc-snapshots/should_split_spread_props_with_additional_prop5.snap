@@ -65,7 +65,7 @@ export default componentQrl(q_component_ZUK1E201Ins);
 export { Hola as _auto_Hola };
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from\",\"qwi\",\"component$\",\" { c\",\"nent$ } fr\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tfunction Hola(props: any) {\n\t\t\treturn <div {...props}></div>;\n\t\t}\n\n\t\texport default component$(() => {\n\t\treturn <Hola>\n\t\t\t<div>1</div>\n\t\t\t<div>2</div>\n\t\t</Hola>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OAEzC,qCACO,wBAAwB;AAH7B,SAAS,kBAAkB;AAE3B,SAAS,KAAK,YAAY;AACzB,2CAAgB;;AAGjB,eAAeC,qCAKb;AAZJ,SACQC,QAAQC\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tfunction Hola(props: any) {\n\t\t\treturn <div {...props}></div>;\n\t\t}\n\n\t\texport default component$(() => {\n\t\treturn <Hola>\n\t\t\t<div>1</div>\n\t\t\t<div>2</div>\n\t\t</Hola>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OAEzC,qCACO,wBAAwB;AAH7B,SAAS,kBAAkB;AAE3B,SAAS,KAAK,YAAY;AACzB,2CAAgB;;AAGjB,eAAeC,qCAKb;AAZJ\"}")
 == DIAGNOSTICS ==
 
 []

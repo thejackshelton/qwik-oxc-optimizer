@@ -27,7 +27,7 @@ import { component$ } from "@qwik.dev/core";
 export const Issue3795 = componentQrl(q_Issue3795_component_wsE8beycatI);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.dev/\",\"e';\n\nexp\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Issue3795 = component$(() => {\n\tlet base = \\"foo\\";\n\tconst firstAssignment = base;\n\tbase += \\"bar\\";\n\tconst secondAssignment = base;\n\treturn (\n\t\t<div id='issue-3795-result'>{firstAssignment} {secondAssignment}</div>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,oCAAoCC,SAErC,kCAAkC;AAFtC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,YAAYC,+CAQtB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Issue3795 = component$(() => {\n\tlet base = \\"foo\\";\n\tconst firstAssignment = base;\n\tbase += \\"bar\\";\n\tconst secondAssignment = base;\n\treturn (\n\t\t<div id='issue-3795-result'>{firstAssignment} {secondAssignment}</div>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,6CAED,kCAAkC;AAFtC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,YAAYC,+CAQtB\"}")
 == DIAGNOSTICS ==
 
 []

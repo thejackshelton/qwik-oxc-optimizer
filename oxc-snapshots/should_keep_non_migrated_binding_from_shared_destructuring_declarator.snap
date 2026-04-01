@@ -64,7 +64,7 @@ export const handler = Qrl(q_handler_T7IDIUVU4lI);
 export { a as _auto_a };
 
 
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"cor\",\"$\",\" \",\"from '@\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst { a, b } = {\n  a: 1,\n  b: 2,\n};\n\nconsole.log('root', b);\n\nexport const handler = $(() => {\n  console.log('qrl', a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,wBAAwBC,UAE3B,OAAO,mCAKJ,sBAEH;AATF,SAAS,SAAS;AAElB,MAAM,EAAE,GAAG,MAAM;CACf,GAAG;CACH,GAAG;CACJ;AAED,QAAQ,IAAI,QAAQ,EAAE;AAEtB,OAAO,MAAM,UAAUC,0BAErB;AAZF,SACQC,KAAKC\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst { a, b } = {\n  a: 1,\n  b: 2,\n};\n\nconsole.log('root', b);\n\nexport const handler = $(() => {\n  console.log('qrl', a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAKJ,sBAEH;AATF,SAAS,SAAS;AAElB,MAAM,EAAE,GAAG,MAAM;CACf,GAAG;CACH,GAAG;CACJ;AAED,QAAQ,IAAI,QAAQ,EAAE;AAEtB,OAAO,MAAM,UAAUC,0BAErB;AAZF\"}")
 == DIAGNOSTICS ==
 
 []

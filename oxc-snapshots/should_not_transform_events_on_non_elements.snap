@@ -65,7 +65,7 @@ import { AnotherComponent } from "./another-component";
 export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$, $ } from '@qwik\",\"v/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,kCAAkCC,UACtC,OAAO,6CAA6C,gCACtB;AAF/B,SAAS,YAAY,SAAS;AAC9B,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,4CACJ,OAAO,6CAA6C,gCACtB;AAF/B,SAAS,YAAY,SAAS;AAC9B,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
 == DIAGNOSTICS ==
 
 []

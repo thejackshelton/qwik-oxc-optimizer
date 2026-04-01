@@ -70,7 +70,7 @@ import { $, component$ } from "@qwik.dev/core";
 const Header = Qrl(q_Header_WjUaUQN7Oxg);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"m '\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\tconst {decl4, key: decl5} = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, {decl12}, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, {decl16}, [decl17]) {}\n\t}\n\ttry{}catch(decl18){}\n\ttry{}catch({decl19}){}\n});\n\"],\"mappings\":\"AAAA,MACKA,uBAAuBC,UAAU,OAAO,kCACd,qBAC3B;AAFJ,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\tconst {decl4, key: decl5} = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, {decl12}, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, {decl16}, [decl17]) {}\n\t}\n\ttry{}catch(decl18){}\n\ttry{}catch({decl19}){}\n});\n\"],\"mappings\":\"AAAA,MACKA,iCAAiC,OAAO,kCACd,qBAC3B;AAFJ,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAUb\"}")
 == DIAGNOSTICS ==
 
 [

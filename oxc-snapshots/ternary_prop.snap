@@ -104,7 +104,7 @@ import { component$, $, useSignal } from "@qwik.dev/core";
 export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
 
-Some("{\"version\":3,\"names\":[\" { compon\",\" { compone\",\"ort { component$, $, useSig\",\" } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCACpB,4BACZ;AAFlB,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, $, useSig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCACpB,4BACZ;AAFlB,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
 == DIAGNOSTICS ==
 
 []

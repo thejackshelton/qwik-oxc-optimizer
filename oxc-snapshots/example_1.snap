@@ -122,7 +122,7 @@ export const renderHeader1 = Qrl(q_renderHeader1_jMxQsjbyDss);
 const renderHeader2 = component(Qrl(q_renderHeader2_component_Ay6ibkfFYsw));
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component, onRender \",\"rom\",\"t { $, component, onRender } from '@q\",\".de\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCAEjB,4BAErB;AALd,MACKC,wCAAwCC,UAAU,OAEnD,mDAEE,sCAAsC;AAJ5C,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component, onRender \",\"t { $, component, onRender } from '@q\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAEjB,4BAErB;AALd,MACKC,kDAAkD,OAEnD,mDAEE,sCAAsC;AAJ5C,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

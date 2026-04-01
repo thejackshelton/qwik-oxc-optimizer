@@ -48,7 +48,7 @@ import { $, component$ } from "@qwik.dev/core";
 export const sym1 = Qrl(q_sym1_aXUrPXX5Lak);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ \",\"rom\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const sym1 = $((ctx) => console.log(\\"1\\"));\n\"],\"mappings\":\"AAAA,MACKA,qBAAqBC,UAAU,OAAO,gCAChB,mBAAmB;AAD9C,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,OAAOC,uBAA4B\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const sym1 = $((ctx) => console.log(\\"1\\"));\n\"],\"mappings\":\"AAAA,MACKA,+BAA+B,OAAO,gCAChB,mBAAmB;AAD9C,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,OAAOC,uBAA4B\"}")
 == DIAGNOSTICS ==
 
 []

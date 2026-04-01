@@ -63,7 +63,7 @@ import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, useSi\",\"l }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\n\t\texport default component$(() => {\n\t\tconst toggle = useSignal(true);\n\t\tconst t = (key: string) => key;\n\t\treturn (\n\t\t\t<button\n\t\t\t\ttype=\\"button\\"\n\t\t\t\ttitle={\n\t\t\t\ttoggle.value !== ''\n\t\t\t\t\t? t('app.message.exists@@there is a message for you')\n\t\t\t\t\t: t('app.message.not_exists@@click to get a message!')\n\t\t\t\t}\n\t\t\t></button>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCAGvB,wBACZ;AAJX,SAAS,YAAY,iBAAiB;AAGtC,eAAeC,qCAab\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\n\t\texport default component$(() => {\n\t\tconst toggle = useSignal(true);\n\t\tconst t = (key: string) => key;\n\t\treturn (\n\t\t\t<button\n\t\t\t\ttype=\\"button\\"\n\t\t\t\ttitle={\n\t\t\t\ttoggle.value !== ''\n\t\t\t\t\t? t('app.message.exists@@there is a message for you')\n\t\t\t\t\t: t('app.message.not_exists@@click to get a message!')\n\t\t\t\t}\n\t\t\t></button>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCAGvB,wBACZ;AAJX,SAAS,YAAY,iBAAiB;AAGtC,eAAeC,qCAab\"}")
 == DIAGNOSTICS ==
 
 []

@@ -118,7 +118,7 @@ import css3 from "./style.css";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStyles$ \",\"rom\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\nimport css3 from './style.css';\n\nexport const App = component$(() => {\n\tuseStyles$(`${css1}${css2}`);\n\tuseStyles$(css3);\n})\n\"],\"mappings\":\"AAAA,MACKA,8BAA8BC,UAAU,OAAO,yCAEjD,4BAA4B;AAF/B,SAAS,YAAY,kBAAkB;AACvC,OAAO,UAAU;AACjB,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,yCAGjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStyles$ \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\nimport css3 from './style.css';\n\nexport const App = component$(() => {\n\tuseStyles$(`${css1}${css2}`);\n\tuseStyles$(css3);\n})\n\"],\"mappings\":\"AAAA,MACKA,wCAAwC,OAAO,yCAEjD,4BAA4B;AAF/B,SAAS,YAAY,kBAAkB;AACvC,OAAO,UAAU;AACjB,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,yCAGjB\"}")
 == DIAGNOSTICS ==
 
 []

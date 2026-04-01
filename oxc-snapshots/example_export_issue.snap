@@ -105,7 +105,7 @@ export { Other as App };
 export default App;
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwi\",\"ev/\",\"t { component$ } from '@qwik\",\"v/c\",\"t R\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OACM,yCAEA,4BAKA;AAVN,MACKC,+BAA+BC,UAEpC,OAAO,0CAEC,8BAKE,CAACC,IAAI,CAAC;AAThB,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,mDAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCAEA,4BAKA;AAVN,MACKC,yCAEL,OAAO,0CAEC,8BAKE,KAAK,CAAC;AAThB,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,mDAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
 == DIAGNOSTICS ==
 
 []

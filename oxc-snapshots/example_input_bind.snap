@@ -37,7 +37,7 @@ import { component$, $ } from "@qwik.dev/core";
 export const Greeter = componentQrl(q_s_n7HuG2hhU0Q);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" com\",\" component\",\" compone\",\" $ } from\",\"t { component$,\",\"} from '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\n\nexport const Greeter = component$(() => {\n\tconst value = useSignal(0);\n\tconst checked = useSignal(false);\n\tconst stuff = useSignal();\n\treturn (\n\t\t<>\n\t\t\t<input bind:value={value} />\n\t\t\t<input bind:checked={checked} />\n\t\t\t<input bind:stuff={stuff} />\n\t\t\t<div>{value}</div>\n\t\t\t<div>{value.value}</div>\n\t\t</>\n\n\t)\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,YAAY;AADpB,SACQA,YAAY;AADpB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,kBAAkBC,SAAS,gBAChC;AADA,SAAS,YAAY,SAAS;AAE9B,OAAO,MAAM,UAAUC,6BAcrB\"}")
+Some("{\"version\":3,\"names\":[\" $ } from\",\"t { component$,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\n\nexport const Greeter = component$(() => {\n\tconst value = useSignal(0);\n\tconst checked = useSignal(false);\n\tconst stuff = useSignal();\n\treturn (\n\t\t<>\n\t\t\t<input bind:value={value} />\n\t\t\t<input bind:checked={checked} />\n\t\t\t<input bind:stuff={stuff} />\n\t\t\t<div>{value}</div>\n\t\t\t<div>{value.value}</div>\n\t\t</>\n\n\t)\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,qBACoB;AADpB,qBACoB;AADpB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,2BAA2B,gBAChC;AADA,SAAS,YAAY,SAAS;AAE9B,OAAO,MAAM,UAAUC,6BAcrB\"}")
 == DIAGNOSTICS ==
 
 []

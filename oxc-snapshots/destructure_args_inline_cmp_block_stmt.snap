@@ -68,7 +68,7 @@ export default (_rawProps) => {
 };
 
 
-Some("{\"version\":3,\"names\":[\" default \",\" default (\",\"ort \",\"{ \",\"ata }: { data: any }\",\"ort default ({ data }: { da\",\" an\",\"cted\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAMC,GAAGC,yBAAyB;AAD9C,MACKC,8BAA8BC,UAAU,OACzC,yCAEK,6BAA6B,CAACC,KAAK,CAAC;AAH3C,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort default ({ data }: { da\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,QAAO,mCAAkC;AAD9C,MACKC,wCAAwC,OACzC,yCAEK,6BAA6B,MAAM,CAAC;AAH3C,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
 == DIAGNOSTICS ==
 
 []

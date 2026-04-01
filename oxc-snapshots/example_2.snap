@@ -86,7 +86,7 @@ import { $, component$ } from "@qwik.dev/core";
 export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UACtC,OAAO,4CACG,+BAEF;AAJR,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAKpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,2CACL,OAAO,4CACG,+BAEF;AAJR,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAKpB\"}")
 == DIAGNOSTICS ==
 
 []

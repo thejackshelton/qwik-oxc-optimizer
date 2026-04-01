@@ -63,7 +63,7 @@ import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" compone\",\"} from '@\",\"t { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OACtC,qCACF,wBAAwB;AAFzB,SAAS,kBAAkB;AAC3B,eAAeC,qCAQb\"}")
+Some("{\"version\":3,\"names\":[\"} from '@\",\"t { component$ } from '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,oCAAoC,OACtC,qCACF,wBAAwB;AAFzB,SAAS,kBAAkB;AAC3B,eAAeC,qCAQb\"}")
 == DIAGNOSTICS ==
 
 []

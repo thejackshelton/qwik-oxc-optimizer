@@ -32,7 +32,7 @@ export const Root = () => {
 };
 
 
-Some("{\"version\":3,\"names\":[\" Counter }\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { Counter } from \\"./counter.tsx\\";\n\nexport const Root = () => {\n\treturn (\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<meta charset=\\"utf-8\\" />\n\t\t\t\t<title>Qwik Blank App</title>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<Counter initial={3} />\n\t\t\t</body>\n\t\t</html>\n\t);\n};\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAA1B,SAAS,eAAe;AAExB,OAAO,MAAM,aAAa;AACzB,kRAOqB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { Counter } from \\"./counter.tsx\\";\n\nexport const Root = () => {\n\treturn (\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<meta charset=\\"utf-8\\" />\n\t\t\t\t<title>Qwik Blank App</title>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<Counter initial={3} />\n\t\t\t</body>\n\t\t</html>\n\t);\n};\n\"],\"mappings\":\"AAAA,2BAC0B;AAA1B,SAAS,eAAe;AAExB,OAAO,MAAM,aAAa;AACzB,kRAOqB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -31,7 +31,7 @@ import { component$, useSignal } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" compone\",\" useSigna\",\"t { \",\"$,\",\"useSi\",\"t { component$, useSignal }\",\"om '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst toggle = useSignal(false);\n\treturn (\n\t\t<>\n\t\t\t<div data-nu={toggle.value ? $localize`singular` : 'plural'}></div>\n\t\t\t<div>{toggle.value ? $localize`singular` : $localize`plural`}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,QAAO,OAAMC,GAAGC,QAAQ,SAAS,aAAa;AADnD,MACKF,QAAO,OAAMC,GAAGC,QAAQ,SAAS,aAAa,SAEhD;AAHH,MACKC,8BAA8BC,SAAS,4BAE7B;AAFf,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,MAAMC,yCAQjB\"}")
+Some("{\"version\":3,\"names\":[\" useSigna\",\"t { \",\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst toggle = useSignal(false);\n\treturn (\n\t\t<>\n\t\t\t<div data-nu={toggle.value ? $localize`singular` : 'plural'}></div>\n\t\t\t<div>{toggle.value ? $localize`singular` : $localize`plural`}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,QAAO,kBAAiB,SAAS,aAAa;AADnD,MACKA,QAAO,kBAAiB,SAAS,aAAa,SAEhD;AAHH,MACKC,uCAAuC,4BAE7B;AAFf,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,MAAMC,yCAQjB\"}")
 == DIAGNOSTICS ==
 
 []

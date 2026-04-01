@@ -112,7 +112,7 @@ export const onGet = () => {
 export default componentQrl(q_component_ZUK1E201Ins.w([onGet]));
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useReso\",\"e$ \",\" () =\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCACtB,yBAEP,CAACC,MAAM,CAAC;AAH3B,SAAS,YAAY,oBAAoB;AACzC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,gDAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useReso\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCACtB,yBAEP,OAAO,CAAC;AAH3B,SAAS,YAAY,oBAAoB;AACzC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,gDAKb\"}")
 == DIAGNOSTICS ==
 
 []

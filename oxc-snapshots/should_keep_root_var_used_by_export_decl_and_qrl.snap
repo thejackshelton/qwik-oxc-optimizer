@@ -65,7 +65,7 @@ export const handler = Qrl(q_handler_T7IDIUVU4lI.w([shared]));
 export { shared as _auto_shared };
 
 
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"cor\",\"d.id;\n\",\"$\",\" $ } f\",\"'@qwik.dev/c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport const exportedValue = shared.id;\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,wBAAwBC,UAE3B,OAAO,mCAIC,uBAAuB,CAACC,OAElC,CAAC;AARD,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,MAAM,gBAAgB,OAAO;AAEpC,OAAO,MAAM,UAAUC,sCAErB;AAXF,SACQC,UAAUC\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport const exportedValue = shared.id;\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAIC,uBAAuB,QAEjC,CAAC;AARD,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,MAAM,gBAAgB,OAAO;AAEpC,OAAO,MAAM,UAAUC,sCAErB;AAXF\"}")
 == DIAGNOSTICS ==
 
 []

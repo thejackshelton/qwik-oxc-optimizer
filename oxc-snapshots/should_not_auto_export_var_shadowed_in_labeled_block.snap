@@ -62,7 +62,7 @@ import { formAction$ } from "forms";
 export const action = formActionQrl(q_action_formAction_dIQV5vh1He4);
 
 
-Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"nst\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  label: {\n    const x = 'shadowed';\n    break label;\n  }\n  return {};\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACHC,UAAU,OAAO,6CACmB,gCAEzB;AAJb,SAAS,mBAAmB;AAE5B,OAAO,MAAM,SAASC,8CAMpB\"}")
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  label: {\n    const x = 'shadowed';\n    break label;\n  }\n  return {};\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,4CACO,OAAO,6CACmB,gCAEzB;AAJb,SAAS,mBAAmB;AAE5B,OAAO,MAAM,SAASC,8CAMpB\"}")
 == DIAGNOSTICS ==
 
 []

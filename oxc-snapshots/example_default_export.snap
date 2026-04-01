@@ -87,7 +87,7 @@ import { sibling } from "./sibling";
 export default componentQrl(q_component_6n0k9fnD07Y);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OACtC,gDAEU,wBACV;AAJH,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,qCAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OACtC,gDAEU,wBACV;AAJH,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,qCAKb\"}")
 == DIAGNOSTICS ==
 
 []

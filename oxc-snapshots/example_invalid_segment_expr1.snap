@@ -126,7 +126,7 @@ import css2 from "./style.css";
 export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useStyles$\",\"fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\n\nexport const App = component$(() => {\n\tconst style = `${css1}${css2}`;\n\tuseStyles$(style);\n\tconst render = () => {\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t};\n\treturn $(render);\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAAO,2CAElD,8BAEH;AAJD,SAAS,GAAG,YAAY,kBAAkB;AAC1C,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,2CASjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\n\nexport const App = component$(() => {\n\tconst style = `${css1}${css2}`;\n\tuseStyles$(style);\n\tconst render = () => {\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t};\n\treturn $(render);\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,2CAElD,8BAEH;AAJD,SAAS,GAAG,YAAY,kBAAkB;AAC1C,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,2CASjB\"}")
 == DIAGNOSTICS ==
 
 [

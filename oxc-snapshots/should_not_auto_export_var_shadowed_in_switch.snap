@@ -80,7 +80,7 @@ export const action = formActionQrl(q_action_formAction_dIQV5vh1He4.w([x]));
 export { x as _auto_x };
 
 
-Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"nst\",\" \",\"formAction$\",\"Action$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  switch (data.kind) {\n    case 'a': {\n      const x = 'shadowed-in-block';\n      return x;\n    }\n    case 'b': {\n      const x = 'shadowed-in-case';\n      return x;\n    }\n  }\n  return x;\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACHC,UAAU,OAAO,6CACmB,iCAEpC,CAACC,EAAE,CAAC;AAJN,SAAS,mBAAmB;AAC5B,MAAM,IAAI;AACV,OAAO,MAAM,SAASC,qDAYpB;AAfF,SACQD,KAAKE\"}")
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  switch (data.kind) {\n    case 'a': {\n      const x = 'shadowed-in-block';\n      return x;\n    }\n    case 'b': {\n      const x = 'shadowed-in-case';\n      return x;\n    }\n  }\n  return x;\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,4CACO,OAAO,6CACmB,iCAEpC,GAAG,CAAC;AAJN,SAAS,mBAAmB;AAC5B,MAAM,IAAI;AACV,OAAO,MAAM,SAASC,qDAYpB;AAfF\"}")
 == DIAGNOSTICS ==
 
 []

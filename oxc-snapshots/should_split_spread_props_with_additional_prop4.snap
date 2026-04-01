@@ -13,24 +13,59 @@ expression: output
 		});
 		
 
-============================= test.tsx_component_1_vX1B9oMEgiI.js (ENTRY POINT)==
+============================= test.tsx_component_button_q_e_click_FYwYzV6GJKA.js (ENTRY POINT)==
 
-const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins", [props]);
-export const component_1_vX1B9oMEgiI = (props: any) => {
+import { _captures } from "@qwik.dev/core";
+export const component_button_q_e_click_FYwYzV6GJKA = () => {
+	const props = _captures[0];
+	return props.onClick$();
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_button_q_e_click_FYwYzV6GJKA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_button_q_e_click_FYwYzV6GJKA = () => {\nconst props = _captures[0];\nreturn props.onClick$();;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,+CAA+C;CAC5D,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM,UAAU;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_button_q_e_click_FYwYzV6GJKA",
+  "entry": null,
+  "displayName": "test.tsx_component_button_q_e_click",
+  "hash": "FYwYzV6GJKA",
+  "canonicalFilename": "test.tsx_component_button_q_e_click_FYwYzV6GJKA",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "props"
+  ],
+  "loc": [
+    135,
+    157
+  ]
+}
+*/
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+const q_component_button_q_e_click_FYwYzV6GJKA = qrl(() => import("./test.tsx_component_button_q_e_click_FYwYzV6GJKA"), "component_button_q_e_click_FYwYzV6GJKA", [props]);
+export const component_ZUK1E201Ins = (props: any) => {
 	return _jsxSplit("button", { ..._getVarProps(props) }, {
 		..._getConstProps(props),
-		"q-e:click": q_component_ZUK1E201Ins.w([props])
+		"q-e:click": q_component_button_q_e_click_FYwYzV6GJKA.w([props])
 	}, null, 0, "u6_0");
 };;
 
 /*
 {
   "origin": "test.tsx",
-  "name": "component_1_vX1B9oMEgiI",
+  "name": "component_ZUK1E201Ins",
   "entry": null,
-  "displayName": "test.tsx_component_1",
-  "hash": "vX1B9oMEgiI",
-  "canonicalFilename": "test.tsx_component_1_vX1B9oMEgiI",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -47,52 +82,17 @@ export const component_1_vX1B9oMEgiI = (props: any) => {
 }
 */
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
-
-import { _captures } from "@qwik.dev/core";
-export const component_ZUK1E201Ins = () => {
-	const props = _captures[0];
-	return props.onClick$();
-	;
-};
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\nconst props = _captures[0];\nreturn props.onClick$();;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC3C,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM,UAAU;AAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
-  "entry": null,
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
-  "path": "",
-  "extension": "js",
-  "parent": "component_1_vX1B9oMEgiI",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick",
-  "captures": true,
-  "captureNames": [
-    "props"
-  ],
-  "loc": [
-    135,
-    157
-  ]
-}
-*/
-
 ============================= test.js ==
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
-const q_component_1_vX1B9oMEgiI = qrl(() => import("./test.tsx_component_1_vX1B9oMEgiI"), "component_1_vX1B9oMEgiI");
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
 import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_component_1_vX1B9oMEgiI);
+export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,4BAA4BC,UAAU,OAEzC,uCAAuC,0BACpB;AAHnB,SAAS,kBAAkB;AAE3B,eAAeC,uCAEb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OAEzC,qCAAqC,wBACtB;AAHb,SAAS,kBAAkB;AAE3B,eAAeC,qCAEb\"}")
 == DIAGNOSTICS ==
 
 []

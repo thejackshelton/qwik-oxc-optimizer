@@ -23,30 +23,30 @@ export const Issue3742 = component$(({description = '', other}: any) => {
 	});
 	
 
-============================= test.tsx_Issue3742_component_svSy0PlWTAw.js ==
+============================= test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY.js ==
 
 import { _captures } from "@qwik.dev/core";
-export const Issue3742_component_svSy0PlWTAw = () => {
+export const Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = () => {
 	const counter = _captures[0];
 	return counter.value++;
 	;
 };
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Issue3742_component_svSy0PlWTAw\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Issue3742_component_svSy0PlWTAw = () => {\nconst counter = _captures[0];\nreturn counter.value++;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wCAAwC;CACrD,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ;AAAQ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = () => {\nconst counter = _captures[0];\nreturn counter.value++;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ;AAAQ\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Issue3742_component_svSy0PlWTAw",
+  "name": "Issue3742_component_div_button_q_e_click_95Hlm8WgsYY",
   "entry": "entry_segments",
-  "displayName": "test.tsx_Issue3742_component",
-  "hash": "svSy0PlWTAw",
-  "canonicalFilename": "test.tsx_Issue3742_component_svSy0PlWTAw",
+  "displayName": "test.tsx_Issue3742_component_div_button_q_e_click",
+  "hash": "95Hlm8WgsYY",
+  "canonicalFilename": "test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY",
   "path": "",
   "extension": "js",
-  "parent": "Issue3742_component_1_fXeSfDPuyrA",
+  "parent": "Issue3742_component_svSy0PlWTAw",
   "ctxKind": "eventHandler",
-  "ctxName": "onClick",
+  "ctxName": "onClick$",
   "captures": true,
   "captureNames": [
     "counter"
@@ -63,13 +63,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Issue3742_component_sv
 import { _fnSignal } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
 const _hf0 = (p0, p1, p2) => p1 && "p1" in p2 ? `Hello ${p0.value}` : `Bye ${p0.value}`;
-const q_Issue3742_component_svSy0PlWTAw = qrl(() => import("./test.tsx_Issue3742_component_svSy0PlWTAw"), "Issue3742_component_svSy0PlWTAw", [counter]);
-const q_Issue3742_component_1_fXeSfDPuyrA = _noopQrl("Issue3742_component_1_fXeSfDPuyrA");
+const q_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = qrl(() => import("./test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY"), "Issue3742_component_div_button_q_e_click_95Hlm8WgsYY", [counter]);
+const q_Issue3742_component_svSy0PlWTAw = _noopQrl("Issue3742_component_svSy0PlWTAw");
 import { component$, useSignal } from "@qwik.dev/core";
-export const Issue3742 = componentQrl(q_Issue3742_component_1_fXeSfDPuyrA);
+export const Issue3742 = componentQrl(q_Issue3742_component_svSy0PlWTAw);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { \",\"al\",\"ik\",\"\ne\",\"port \",\"74\",\" = co\",\"t { component$, useSignal } from \",\"wik\",\"nter = \",\"t { component$, useSignal } from '@\",\"k.dev/co\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const Issue3742 = component$(({description = '', other}: any) => {\n\tconst counter = useSignal(0);\n\treturn (\n\t\t<div\n\t\ttitle={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}\n\t\t>\n\t\tIssue3742\n\t\t<button onClick$={() => counter.value++}>\n\t\t\tIncrement\n\t\t</button>\n\t\t</div>\n\t)\n\t});\n\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAQ,IAAI,IAAI,OAAOC,MAAM,QAAQC,KAAK,SAC/CC,GACEC,UAAU,OAAOC,GAAGC;AAHtB,MACKC,oCAAoCC,UAAU,OAElD,+CAA+C,mCACvC,CAACC,QAAQ,CAAC;AAJnB,MACKC,sCAAsCC,SAAS,oCAErB;AAF/B,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,YAAYC,iDAYtB\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { component$, useSignal } from '@qwik.dev/core';\n\nex\",\"t { component$, useSignal } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const Issue3742 = component$(({description = '', other}: any) => {\n\tconst counter = useSignal(0);\n\treturn (\n\t\t<div\n\t\ttitle={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}\n\t\t>\n\t\tIssue3742\n\t\t<button onClick$={() => counter.value++}>\n\t\t\tIncrement\n\t\t</button>\n\t\t</div>\n\t)\n\t});\n\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,QAAQ,IAAI,IAAI,aAAa,aAAa,sBAEnC;AAHZ,MACKC,mEAEU,OAAO,oEACN,wDAGQ,SAAS,CAAC;AAPlC,MACKC,6CAA6C,kCAEvB;AAF3B,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,YAAYC,+CAYtB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -69,7 +69,7 @@ export const handler = Qrl(q_handler_T7IDIUVU4lI.w([shared]));
 export { shared as _auto_shared };
 
 
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"cor\",\"eturn \",\"$\",\" $ } f\",\"'@qwik.dev/c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport function readShared() {\n  return shared.id;\n}\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,wBAAwBC,UAE3B,OAAO,mCAIC,uBACR,CAACC,OAAO,CAAC;AAPX,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,SAAS,aAAa;AAC3B,QAAO,OAAO;;AAGhB,OAAO,MAAM,UAAUC,sCAErB;AAbF,SACQC,UAAUC\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport function readShared() {\n  return shared.id;\n}\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAIC,uBACR,QAAQ,CAAC;AAPX,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,SAAS,aAAa;AAC3B,QAAO,OAAO;;AAGhB,OAAO,MAAM,UAAUC,sCAErB;AAbF\"}")
 == DIAGNOSTICS ==
 
 []

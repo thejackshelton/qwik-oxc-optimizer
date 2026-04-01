@@ -57,7 +57,7 @@ export const handler = Qrl(q_handler_T7IDIUVU4lI);
 export { a as _auto_a };
 
 
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"cor\",\"$\",\" \",\"from '@\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\nimport { source } from 'lib';\n\nconst { a } = source;\n\nexport const handler = $(() => {\n  console.log(a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,wBAAwBC,UAC1B,OAAO,mCAEI,sBAED;AALb,SAAS,SAAS;AAClB,SAAS,cAAc;AAEvB,MAAM,EAAE,MAAM;AAEd,OAAO,MAAM,UAAUC,0BAErB;AARF,SACQC,KAAKC\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\nimport { source } from 'lib';\n\nconst { a } = source;\n\nexport const handler = $(() => {\n  console.log(a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACF,OAAO,mCAEI,sBAED;AALb,SAAS,SAAS;AAClB,SAAS,cAAc;AAEvB,MAAM,EAAE,MAAM;AAEd,OAAO,MAAM,UAAUC,0BAErB;AARF\"}")
 == DIAGNOSTICS ==
 
 []

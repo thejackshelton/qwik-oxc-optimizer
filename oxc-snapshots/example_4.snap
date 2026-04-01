@@ -92,7 +92,7 @@ export function App() {
 }
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwik.de\",\"ore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport function App() {\n\tconst Header = component$(() => {\n\t\tconsole.log(\\"mount\\");\n\t\treturn (\n\t\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t\t);\n\t});\n\treturn Header;\n}\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,qCAAqCC,UACtC,OAAO,gDAEX,mCAEA;AALA,SAAS,GAAG,kBAAkB;AAC9B,OAAO,SAAS,MAAM;CACrB,MAAM,SAASC,gDAKb;AACF,QAAO\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.de\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport function App() {\n\tconst Header = component$(() => {\n\t\tconsole.log(\\"mount\\");\n\t\treturn (\n\t\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t\t);\n\t});\n\treturn Header;\n}\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,+CACD,OAAO,gDAEX,mCAEA;AALA,SAAS,GAAG,kBAAkB;AAC9B,OAAO,SAAS,MAAM;CACrB,MAAM,SAASC,gDAKb;AACF,QAAO\"}")
 == DIAGNOSTICS ==
 
 []

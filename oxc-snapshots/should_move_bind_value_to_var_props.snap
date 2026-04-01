@@ -27,31 +27,61 @@ export const FieldInput = component$(
 );
 
 
-============================= test.tsx_FieldInput_component_1_gl0T6R0Ul64.js (ENTRY POINT)==
+============================= test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60.js (ENTRY POINT)==
+
+export const FieldInput_component_input_q_e_click_fZgZHYZXt60 = () => {
+	console.log("clicked");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60\"],\"sourcesContent\":[\"export const FieldInput_component_input_q_e_click_fZgZHYZXt60 = () => {\n\tconsole.log(\\"clicked\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yDAAyD;AACrE,SAAQ,IAAI,UAAU;;AACrB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "FieldInput_component_input_q_e_click_fZgZHYZXt60",
+  "entry": null,
+  "displayName": "test.tsx_FieldInput_component_input_q_e_click",
+  "hash": "fZgZHYZXt60",
+  "canonicalFilename": "test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60",
+  "path": "",
+  "extension": "js",
+  "parent": "FieldInput_component_V4XAtJSTRKg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    396,
+    434
+  ]
+}
+*/
+
+============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
 import { destructureBindings } from "./destructure-bindings";
-const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
-export const FieldInput_component_1_gl0T6R0Ul64 = (props) => {
+const q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60"), "FieldInput_component_input_q_e_click_fZgZHYZXt60");
+export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const initialValues = { value: undefined as string | undefined };
 	const rest = destructureBindings(props, initialValues);
 	return _jsxSplit("input", {
 		..._getVarProps(rest),
 		..._getConstProps(rest),
 		"bind:value": finalValue
-	}, { "q-e:click": q_FieldInput_component_V4XAtJSTRKg }, null, 0, "u6_0");
+	}, { "q-e:click": q_FieldInput_component_input_q_e_click_fZgZHYZXt60 }, null, 0, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_1_gl0T6R0Ul64\"],\"sourcesContent\":[\"import { destructureBindings } from \\"./destructure-bindings\\";\nconst q_FieldInput_component_V4XAtJSTRKg = qrl(() => import(\\"./test.tsx_FieldInput_component_V4XAtJSTRKg\\"), \\"FieldInput_component_V4XAtJSTRKg\\");\nexport const FieldInput_component_1_gl0T6R0Ul64 = (props) => {\n\tconst initialValues = { value: undefined as string | undefined };\n\tconst rest = destructureBindings(props, initialValues);\n\treturn _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(rest),\n\t\t..._getConstProps(rest),\n\t\t\\"bind:value\\": finalValue\n\t}, { \\"q-e:click\\": q_FieldInput_component_V4XAtJSTRKg }, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,2BAA2B;AACpC,MAAM,qCAAqC,UAAU,OAAO,gDAAgD,mCAAmC;AAC/I,OAAO,MAAM,sCAAsC,UAAU;CAC5D,MAAM,gBAAgB,EAAE,OAAO,iCAAiC;CAChE,MAAM,OAAO,oBAAoB,OAAO,cAAc;AACtD,QAAO,UAAU,SAAS;EACzB,GAAG,aAAa,KAAK;EACrB,GAAG,eAAe,KAAK;EACvB,cAAc;EACd,EAAE,EAAE,aAAa,oCAAoC,EAAE,MAAM,GAAG,OAAO;;AACvE\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { destructureBindings } from \\"./destructure-bindings\\";\nconst q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = qrl(() => import(\\"./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60\\"), \\"FieldInput_component_input_q_e_click_fZgZHYZXt60\\");\nexport const FieldInput_component_V4XAtJSTRKg = (props) => {\n\tconst initialValues = { value: undefined as string | undefined };\n\tconst rest = destructureBindings(props, initialValues);\n\treturn _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(rest),\n\t\t..._getConstProps(rest),\n\t\t\\"bind:value\\": finalValue\n\t}, { \\"q-e:click\\": q_FieldInput_component_input_q_e_click_fZgZHYZXt60 }, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,2BAA2B;AACpC,MAAM,qDAAqD,UAAU,OAAO,gEAAgE,mDAAmD;AAC/L,OAAO,MAAM,oCAAoC,UAAU;CAC1D,MAAM,gBAAgB,EAAE,OAAO,iCAAiC;CAChE,MAAM,OAAO,oBAAoB,OAAO,cAAc;AACtD,QAAO,UAAU,SAAS;EACzB,GAAG,aAAa,KAAK;EACrB,GAAG,eAAe,KAAK;EACvB,cAAc;EACd,EAAE,EAAE,aAAa,oDAAoD,EAAE,MAAM,GAAG,OAAO;;AACvF\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "FieldInput_component_1_gl0T6R0Ul64",
+  "name": "FieldInput_component_V4XAtJSTRKg",
   "entry": null,
-  "displayName": "test.tsx_FieldInput_component_1",
-  "hash": "gl0T6R0Ul64",
-  "canonicalFilename": "test.tsx_FieldInput_component_1_gl0T6R0Ul64",
+  "displayName": "test.tsx_FieldInput_component",
+  "hash": "V4XAtJSTRKg",
+  "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
   "path": "",
   "extension": "js",
   "parent": null,
@@ -68,48 +98,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_1
 }
 */
 
-============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
-
-export const FieldInput_component_V4XAtJSTRKg = () => {
-	console.log("clicked");
-};
-;
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"export const FieldInput_component_V4XAtJSTRKg = () => {\n\tconsole.log(\\"clicked\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC;AACrD,SAAQ,IAAI,UAAU;;AACrB\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "FieldInput_component_V4XAtJSTRKg",
-  "entry": null,
-  "displayName": "test.tsx_FieldInput_component",
-  "hash": "V4XAtJSTRKg",
-  "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
-  "path": "",
-  "extension": "js",
-  "parent": "FieldInput_component_1_gl0T6R0Ul64",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick",
-  "captures": false,
-  "loc": [
-    396,
-    434
-  ]
-}
-*/
-
 ============================= test.js ==
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
-const q_FieldInput_component_1_gl0T6R0Ul64 = qrl(() => import("./test.tsx_FieldInput_component_1_gl0T6R0Ul64"), "FieldInput_component_1_gl0T6R0Ul64");
+const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 import { $, component$, useSignal } from "@qwik.dev/core";
 import { destructureBindings } from "./destructure-bindings";
-export const FieldInput = componentQrl(q_FieldInput_component_1_gl0T6R0Ul64);
+export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
 
-Some("{\"version\":3,\"names\":[\" $, componen\",\" $, component$\",\" $, compo\",\"t { $, component$, useSignal } from \",\"wik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,uCAAuCC,UAAU,OACpD,kDAAkD,qCAE1B;AAH1B,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,kDAezB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,+CAA+C,OACpD,gDAAgD,mCAE5B;AAHpB,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,gDAezB\"}")
 == DIAGNOSTICS ==
 
 []

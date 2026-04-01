@@ -30,7 +30,7 @@ export const App = component$((props) => {
 });
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"\nimport {\",\"compo\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender } from '@qwik.dev/core';\n\nexport const handler = $(()=>console.log('hola'));\n\nexport const App = component$((props) => {\n\tuseStyles$('hola');\n\treturn $(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAA1B,SAAS,cAAc,WAAW,KAAK,gBAAgB;AAEvD,OAAO,MAAM,UAAU,QAAM,QAAQ,IAAI,OAAO,CAAC;AAEjD,OAAO,MAAM,MAAM,YAAY,UAAU;AACxC,YAAW,OAAO;AAClB,QAAO,sCAPRC,UACSC,OAAO,QAAQ,aAQrB;EACD\"}")
+Some("{\"version\":3,\"names\":[\"\nimport {\",\"compo\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender } from '@qwik.dev/core';\n\nexport const handler = $(()=>console.log('hola'));\n\nexport const App = component$((props) => {\n\tuseStyles$('hola');\n\treturn $(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAA1B,SAAS,cAAc,WAAW,KAAK,gBAAgB;AAEvD,OAAO,MAAM,UAAU,QAAM,QAAQ,IAAI,OAAO,CAAC;AAEjD,OAAO,MAAM,MAAM,YAAY,UAAU;AACxC,YAAW,OAAO;AAClB,QAAO,sCAPRA,UACSC,OAAO,QAAQ,aAQrB;EACD\"}")
 == DIAGNOSTICS ==
 
 []

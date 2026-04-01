@@ -53,7 +53,7 @@ import json from "./foo.json" assert { type: "json" };
 export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"v/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport json from \\"./foo.json\\" assert { type: \\"json\\" };\n\nexport const Greeter = component$(() => {\n\treturn json;\n});\n\"],\"mappings\":\"AAAA,MACKA,kCAAkCC,UACtC,OAAO,6CAA6C,gCAExB;AAH7B,SAAS,YAAY,SAAS;AAC9B,OAAO,UAAU,aAAoB,eAAQ;AAE7C,OAAO,MAAM,UAAUC,6CAErB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport json from \\"./foo.json\\" assert { type: \\"json\\" };\n\nexport const Greeter = component$(() => {\n\treturn json;\n});\n\"],\"mappings\":\"AAAA,MACKA,4CACJ,OAAO,6CAA6C,gCAExB;AAH7B,SAAS,YAAY,SAAS;AAC9B,OAAO,UAAU,aAAoB,eAAQ;AAE7C,OAAO,MAAM,UAAUC,6CAErB\"}")
 == DIAGNOSTICS ==
 
 []

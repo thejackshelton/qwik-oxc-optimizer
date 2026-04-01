@@ -208,7 +208,7 @@ export const Foo = componentQrl(q_Foo_component_fn_1_G5NYYY16TaA);
 export const Bar = componentQrl(q_Foo_component_Bar_component_1_5vw0zGYfuOY);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwik.\",\"/co\",\"t { $, component$ } from '@qwik.dev/core';\n\",\"por\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(({foo}) => {\n\tconst arg0 = 20;\n\treturn $(() => {\n\t\tconst fn = ({aaa}) => aaa;\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{foo}{fn()}{arg0}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\nexport const Bar = component$(({bar}) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{bar}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,mCAAmCC,UAEvC,OAAO,8CACG,iCAEH;AANR,MACKC,8CAEHC,UAAU,OAAO,yDAEJ,4CAGd;AAPD,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,8CAUjB;AAEF,OAAO,MAAM,MAAMA,yDAQjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"t { $, component$ } from '@qwik.dev/core';\n\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(({foo}) => {\n\tconst arg0 = 20;\n\treturn $(() => {\n\t\tconst fn = ({aaa}) => aaa;\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{foo}{fn()}{arg0}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\nexport const Bar = component$(({bar}) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{bar}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,6CAEJ,OAAO,8CACG,iCAEH;AANR,MACKC,wDAEO,OAAO,yDAEJ,4CAGd;AAPD,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,8CAUjB;AAEF,OAAO,MAAM,MAAMA,yDAQjB\"}")
 == DIAGNOSTICS ==
 
 []

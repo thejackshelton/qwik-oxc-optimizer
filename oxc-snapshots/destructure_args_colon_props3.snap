@@ -64,7 +64,7 @@ import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { compon\",\" { compone\",\" { compo\",\"$, useSig\",\"ort { component$, useSi\",\"l }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { test, ...rest } = props;\n\t\t\tconst test = useSignal(rest['bind:value']);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{test.value}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OAAO,qCACrB,wBACjB;AAFR,SAAS,YAAY,iBAAiB;AACtC,eAAeC,qCAQb\"}")
+Some("{\"version\":3,\"names\":[\"$, useSig\",\"ort { component$, useSi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { test, ...rest } = props;\n\t\t\tconst test = useSignal(rest['bind:value']);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{test.value}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,oCAAoC,OAAO,qCACrB,wBACjB;AAFR,SAAS,YAAY,iBAAiB;AACtC,eAAeC,qCAQb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -100,7 +100,7 @@ import { inlineTranslate } from "translate-lib";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, useCo\",\"ted\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$ } from '@qwik.dev/core';\n\t\timport { inlineTranslate } from 'translate-lib';\n\n\t\texport default component$(() => {\n\t\t\tconst t = inlineTranslate();\n\n\t\t\tconst productTitle = useComputed$(() => {\n\t\t\t\treturn 'Test title';\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<img \n\t\t\t\t\tattr={t('home.imageAlt.founded-product:')}\n\t\t\t\t\talt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCACxB,wBAAwB;AAD9C,SAAS,YAAY,oBAAoB;AACzC,SAAS,uBAAuB;AAEhC,eAAeC,qCAYb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useCo\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$ } from '@qwik.dev/core';\n\t\timport { inlineTranslate } from 'translate-lib';\n\n\t\texport default component$(() => {\n\t\t\tconst t = inlineTranslate();\n\n\t\t\tconst productTitle = useComputed$(() => {\n\t\t\t\treturn 'Test title';\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<img \n\t\t\t\t\tattr={t('home.imageAlt.founded-product:')}\n\t\t\t\t\talt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,oCAAoC,OAAO,qCACxB,wBAAwB;AAD9C,SAAS,YAAY,oBAAoB;AACzC,SAAS,uBAAuB;AAEhC,eAAeC,qCAYb\"}")
 == DIAGNOSTICS ==
 
 []

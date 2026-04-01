@@ -75,7 +75,7 @@ import { component$ } from "@qwik.dev/core";
 export const Tree = componentQrl(q_Tree_component_T0k10EAlawU.w([Tree]));
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" component$ \",\" component$ } \",\"t { component$ } from '@qwik\",\"v/c\",\" the\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Root-level self-referential component\n// The QRL should NOT be hoisted before the component function is defined\n// or should use two-phase emission to avoid forward reference\nexport const Tree = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t{props.label}\n\t\t\t{props.children && props.children.map((child) => <Tree {...child} />)}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQH,iBAAiB;AADzB,MACKI,+BAA+BC,UAEpC,OAAO,0CACC,8BAA8B,CAACC,KAAK,CAAC;AAH7C,SAAS,kBAAkB;;;;AAK3B,OAAO,MAAM,OAAOC,oDAOlB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Root-level self-referential component\n// The QRL should NOT be hoisted before the component function is defined\n// or should use two-phase emission to avoid forward reference\nexport const Tree = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t{props.label}\n\t\t\t{props.children && props.children.map((child) => <Tree {...child} />)}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,yCAEL,OAAO,0CACC,8BAA8B,MAAM,CAAC;AAH7C,SAAS,kBAAkB;;;;AAK3B,OAAO,MAAM,OAAOC,oDAOlB\"}")
 == DIAGNOSTICS ==
 
 []

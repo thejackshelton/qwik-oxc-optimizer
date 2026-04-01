@@ -96,7 +96,7 @@ import { component$, useTask$ } from "@qwik.dev/core";
 export default componentQrl<any>(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useTa\",\" } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$<any>(({ ...props }) => {\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,0BAA0BC,UAAU,OAAO,qCAEpB,wBAAwB;AAFlD,SAAS,YAAY,gBAAgB;AAErC,eAAeC,0CAMb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useTa\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$<any>(({ ...props }) => {\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,oCAAoC,OAAO,qCAEpB,wBAAwB;AAFlD,SAAS,YAAY,gBAAgB;AAErC,eAAeC,0CAMb\"}")
 == DIAGNOSTICS ==
 
 []

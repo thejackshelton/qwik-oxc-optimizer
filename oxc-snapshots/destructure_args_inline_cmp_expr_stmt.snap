@@ -65,7 +65,7 @@ export default (_rawProps) => {
 };
 
 
-Some("{\"version\":3,\"names\":[\" default \",\" default (\",\"ort \",\"{ \",\"ata }: { data: any }\",\"ort default ({ data }: { da\",\" an\",\"'opt\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) =>\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />;\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAMC,GAAGC,yBACrB;AAFA,MACKC,8BAA8BC,UAAU,OACvC,yCACwB,6BAA6B,CAACC,KAAK,CAAC;AAFhE,8BACU;;;oBAFZC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAEd\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort default ({ data }: { da\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) =>\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />;\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,QAAO,mCACZ;AAFA,MACKC,wCAAwC,OACvC,yCACwB,6BAA6B,MAAM,CAAC;AAFhE,8BACU;;;oBAFZC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAEd\"}")
 == DIAGNOSTICS ==
 
 []

@@ -60,7 +60,7 @@ import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\" { compo\",\"$ } from \",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { 'bind:value': bindValue } = props;\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{bindValue}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OACxC,qCAAqC,wBACjB;AAFnB,SAAS,kBAAkB;AAC3B,eAAeC,qCAOb\"}")
+Some("{\"version\":3,\"names\":[\"$ } from \",\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { 'bind:value': bindValue } = props;\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{bindValue}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,oCAAoC,OACxC,qCAAqC,wBACjB;AAFnB,SAAS,kBAAkB;AAC3B,eAAeC,qCAOb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -71,7 +71,7 @@ import { sync$, component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { sync$, \",\" { sync$\",\"mponent$ \",\"ort { sync$, component$\",\"fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OAAO,qCAElB,wBAG7B;AALC,SAAS,OAAO,kBAAkB;AAElC,eAAeC,qCAab\"}")
+Some("{\"version\":3,\"names\":[\"mponent$ \",\"ort { sync$, component$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,oCAAoC,OAAO,qCAElB,wBAG7B;AALC,SAAS,OAAO,kBAAkB;AAElC,eAAeC,qCAab\"}")
 == DIAGNOSTICS ==
 
 []

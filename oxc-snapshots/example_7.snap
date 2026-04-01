@@ -131,7 +131,7 @@ export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
 const App = componentQrl(q_App_component_ckEPmXZlub0.w([Header]));
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwi\",\"ev/\",\"t { $, component$ } from '@\",\"k.d\",\"\t\t<div\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n\t});\n\nconst App = component$(() => {\n\treturn (\n\t\t<Header/>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UACtC,OACM,4CACG,+BAEF;AANP,MACKC,8BAA8BC,UAAU,OAE1C,yCACA,6BACM,CACTC,OAAO,CAAC;AALR,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,4CAKnB;AAEH,MAAM,MAAMA,qDAIV\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"t { $, component$ } from '@\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n\t});\n\nconst App = component$(() => {\n\treturn (\n\t\t<Header/>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,2CACL,OACM,4CACG,+BAEF;AANP,MACKC,wCAAwC,OAE1C,yCACA,6BACM,QACF,CAAC;AALR,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,4CAKnB;AAEH,MAAM,MAAMA,qDAIV\"}")
 == DIAGNOSTICS ==
 
 []

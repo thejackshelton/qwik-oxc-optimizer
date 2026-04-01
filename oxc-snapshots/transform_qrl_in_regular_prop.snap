@@ -84,7 +84,7 @@ import { component$, $ } from "@qwik.dev/core";
 export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE.w([Cmp]));
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, $ } from \",\"wik\",\"i t\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAC3C,yCACG,6BAA6B,CAACC,IAAI,CAAC;AAFtC,SAAS,YAAY,SAAS;AAC9B,OAAO,MAAM,MAAMC,kDAC2C\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAC3C,yCACG,6BAA6B,KAAK,CAAC;AAFtC,SAAS,YAAY,SAAS;AAC9B,OAAO,MAAM,MAAMC,kDAC2C\"}")
 == DIAGNOSTICS ==
 
 []

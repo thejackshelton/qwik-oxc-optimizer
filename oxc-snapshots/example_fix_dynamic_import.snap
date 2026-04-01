@@ -66,7 +66,7 @@ export function foo() {
 export const Header = componentQrl(q_Header_component_RGgm7Ks9QWI);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UACtC,OAAO,4CAEa,+BACO;AAJ3B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,2CACL,OAAO,4CAEa,+BACO;AAJ3B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
 == DIAGNOSTICS ==
 
 []

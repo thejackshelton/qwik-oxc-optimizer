@@ -67,7 +67,7 @@ import { Foo } from "./foo";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OACxC,qCAEK,wBAAwB;AAH5B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AAEpB,eAAeC,qCAIb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OACxC,qCAEK,wBAAwB;AAH5B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AAEpB,eAAeC,qCAIb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -4006,6 +4006,13 @@ fn parse_single_expression<'a>(src: &str, allocator: &'a Allocator) -> Option<Ex
 ///
 /// Returns `None` if parsing fails or produces an empty program.
 ///
+/// **Span zeroing:** All `IdentifierName` spans in the returned statement are reset
+/// to `SPAN {0, 0}`. This is necessary because these statements are re-inserted
+/// into the main program AST which is codegen'd with the original source text.
+/// OXC codegen's sourcemap builder asserts `span.end <= source_text.len()` for
+/// `IdentifierName` nodes; since the parsed `src` string can be longer than the
+/// original source, the re-parsed spans could violate this assertion.
+///
 /// Used by `exit_program` to materialize serialized `HoistedConst` / `RefAssignment`
 /// strings back into AST nodes without manual construction.
 /// Also used by `code_move.rs` for segment module helpers.
@@ -4019,9 +4026,27 @@ pub(crate) fn parse_single_statement<'a>(src: &str, allocator: &'a Allocator) ->
     }
     // SAFETY: the parsed program borrows from `allocator`; we're returning a Statement
     // that also borrows from `allocator`. Both have the same lifetime.
-    let program: Program<'a> = unsafe {
+    let mut program: Program<'a> = unsafe {
         std::mem::transmute::<Program<'_>, Program<'a>>(ret.program)
     };
+    // Zero out all IdentifierName spans in the program so that re-inserting these
+    // statements into the main program (codegen'd with the original source text)
+    // does not trigger OXC's sourcemap builder assertion.
+    {
+        use oxc::ast_visit::VisitMut;
+        use oxc::ast_visit::walk_mut;
+        struct SpanZeroer;
+        impl<'b> VisitMut<'b> for SpanZeroer {
+            fn visit_identifier_name(&mut self, node: &mut oxc::ast::ast::IdentifierName<'b>) {
+                node.span = SPAN;
+            }
+            fn visit_identifier_reference(&mut self, node: &mut oxc::ast::ast::IdentifierReference<'b>) {
+                node.span = SPAN;
+                walk_mut::walk_identifier_reference(self, node);
+            }
+        }
+        SpanZeroer.visit_program(&mut program);
+    }
     // Drain the first statement from body.
     let mut body = program.body;
     if body.is_empty() {

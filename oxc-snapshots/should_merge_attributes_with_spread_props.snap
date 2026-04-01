@@ -60,7 +60,7 @@ import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_ZUK1E201Ins);
 
 
-Some("{\"version\":3,\"names\":[\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn <div {...props} class={[props.class, 'component']} />;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OAEzC,qCAAqC,wBACjB;AAHlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAEb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn <div {...props} class={[props.class, 'component']} />;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,oCAAoC,OAEzC,qCAAqC,wBACjB;AAHlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAEb\"}")
 == DIAGNOSTICS ==
 
 []

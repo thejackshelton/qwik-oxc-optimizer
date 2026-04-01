@@ -84,7 +84,7 @@ import { $, component$ } from "@qwik.dev/core";
 const Header = Qrl(q_Header_WlR3xnI6u38);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } \",\"m '\",\"$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], {ident7}, {key: ident8});\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\n\treturn (\n\t\t<div onClick={(ident11) => ident11 + ident12} required={false}/>\n\t)\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,uBAAuBC,UAAU,OAAO,kCACd,qBAE5B;AAHH,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAiBb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], {ident7}, {key: ident8});\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\n\treturn (\n\t\t<div onClick={(ident11) => ident11 + ident12} required={false}/>\n\t)\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,iCAAiC,OAAO,kCACd,qBAE5B;AAHH,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAiBb\"}")
 == DIAGNOSTICS ==
 
 []

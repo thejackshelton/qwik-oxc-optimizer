@@ -17,22 +17,57 @@ const Foo = component$(() => {
 })
 
 
+============================= test.tsx_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY = () => {
+	const item = _captures[0];
+	return console.log(item.value.id);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY = () => {\nconst item = _captures[0];\nreturn console.log(item.value.id);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kEAAkE;CAC/E,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,KAAK,MAAM,GAAG;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_Inner_component_div_p_q_e_click",
+  "hash": "7oFgEhSmgvY",
+  "canonicalFilename": "test.tsx_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_Inner_component_AuJ9mTBx5YA",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "item"
+  ],
+  "loc": [
+    266,
+    298
+  ]
+}
+*/
+
 ============================= test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
 const _hf0 = (p0) => p0.value.id;
-const q_Foo_component_Inner_component_div_zaDQheVFSA0 = qrl(() => import("./test.tsx_Foo_component_Inner_component_div_zaDQheVFSA0"), "Foo_component_Inner_component_div_zaDQheVFSA0", [item]);
+const q_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY = qrl(() => import("./test.tsx_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY"), "Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY", [item]);
 export const Foo_component_Inner_component_AuJ9mTBx5YA = (props) => {
 	const data = _captures[0];
 	const _ref = {};
 	_ref.data = props._ref.data;
 	const { data } = _ref;
-	return _jsxSorted("div", null, null, data.value.map((item) => _jsxSorted("p", { "q:p": item }, { "q-e:click": q_Foo_component_Inner_component_div_zaDQheVFSA0.w([item]) }, _fnSignal(_hf0, [item], "p0 => p0.value.id;"), 7, null)), 3, "u6_0");
+	return _jsxSorted("div", null, null, data.value.map((item) => _jsxSorted("p", { "q:p": item }, { "q-e:click": q_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY.w([item]) }, _fnSignal(_hf0, [item], "p0 => p0.value.id;"), 7, null)), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nconst _hf0 = (p0) => p0.value.id;\nconst q_Foo_component_Inner_component_div_zaDQheVFSA0 = qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_div_zaDQheVFSA0\\"), \\"Foo_component_Inner_component_div_zaDQheVFSA0\\", [item]);\nexport const Foo_component_Inner_component_AuJ9mTBx5YA = (props) => { const data = _captures[0];\n\n\tconst _ref = {};\n\t_ref.data = props._ref.data;\n\tconst { data } = _ref;\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((item) => _jsxSorted(\\"p\\", { \\"q:p\\": item }, { \\"q-e:click\\": q_Foo_component_Inner_component_div_zaDQheVFSA0.w([item]) }, _fnSignal(_hf0, [item], \\"p0 => p0.value.id;\\"), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,QAAQ,OAAO,GAAG,MAAM;AAC9B,MAAM,kDAAkD,UAAU,OAAO,6DAA6D,iDAAiD,CAAC,KAAK,CAAC;AAC9L,OAAO,MAAM,6CAA6C,UAAU;CAAE,MAAM,OAAO,UAAU;CAE5F,MAAM,OAAO,EAAE;AACf,MAAK,OAAO,MAAM,KAAK;CACvB,MAAM,EAAE,SAAS;AACjB,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,SAAS,WAAW,KAAK,EAAE,OAAO,MAAM,EAAE,EAAE,aAAa,gDAAgD,EAAE,CAAC,KAAK,CAAC,EAAE,EAAE,UAAU,MAAM,CAAC,KAAK,EAAE,qBAAqB,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC9O\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nconst _hf0 = (p0) => p0.value.id;\nconst q_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY = qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY\\"), \\"Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY\\", [item]);\nexport const Foo_component_Inner_component_AuJ9mTBx5YA = (props) => { const data = _captures[0];\n\n\tconst _ref = {};\n\t_ref.data = props._ref.data;\n\tconst { data } = _ref;\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((item) => _jsxSorted(\\"p\\", { \\"q:p\\": item }, { \\"q-e:click\\": q_Foo_component_Inner_component_div_p_q_e_click_7oFgEhSmgvY.w([item]) }, _fnSignal(_hf0, [item], \\"p0 => p0.value.id;\\"), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,QAAQ,OAAO,GAAG,MAAM;AAC9B,MAAM,8DAA8D,UAAU,OAAO,yEAAyE,6DAA6D,CAAC,KAAK,CAAC;AAClO,OAAO,MAAM,6CAA6C,UAAU;CAAE,MAAM,OAAO,UAAU;CAE5F,MAAM,OAAO,EAAE;AACf,MAAK,OAAO,MAAM,KAAK;CACvB,MAAM,EAAE,SAAS;AACjB,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,SAAS,WAAW,KAAK,EAAE,OAAO,MAAM,EAAE,EAAE,aAAa,4DAA4D,EAAE,CAAC,KAAK,CAAC,EAAE,EAAE,UAAU,MAAM,CAAC,KAAK,EAAE,qBAAqB,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC1P\"}")
 /*
 {
   "origin": "test.tsx",
@@ -95,41 +130,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_wy
 }
 */
 
-============================= test.tsx_Foo_component_Inner_component_div_zaDQheVFSA0.js (ENTRY POINT)==
-
-import { _captures } from "@qwik.dev/core";
-export const Foo_component_Inner_component_div_zaDQheVFSA0 = () => {
-	const item = _captures[0];
-	return console.log(item.value.id);
-	;
-};
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_component_div_zaDQheVFSA0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_Inner_component_div_zaDQheVFSA0 = () => {\nconst item = _captures[0];\nreturn console.log(item.value.id);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sDAAsD;CACnE,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,KAAK,MAAM,GAAG;AAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "Foo_component_Inner_component_div_zaDQheVFSA0",
-  "entry": null,
-  "displayName": "test.tsx_Foo_component_Inner_component_div",
-  "hash": "zaDQheVFSA0",
-  "canonicalFilename": "test.tsx_Foo_component_Inner_component_div_zaDQheVFSA0",
-  "path": "",
-  "extension": "js",
-  "parent": "Foo_component_Inner_component_AuJ9mTBx5YA",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick",
-  "captures": true,
-  "captureNames": [
-    "item"
-  ],
-  "loc": [
-    266,
-    298
-  ]
-}
-*/
-
 ============================= test.js ==
 
 import { _fnSignal } from "@qwik.dev/core";
@@ -139,7 +139,7 @@ import { $, component$, useSignal, Signal } from "@qwik.dev/core";
 const Foo = componentQrl(q_Foo_component_Inner_wyVIXUKBdfk);
 
 
-Some("{\"version\":3,\"names\":[\" $, compo\",\" $, compon\",\"t { $, component$, useSignal, Sig\",\" } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(() => {\n  const data = useSignal<Signal<any>[]>([]);\n  const Inner = component$((props) => {\n    const data = props.data\n    return <div>{data.value.map(item => <p onClick$={() => console.log(item.value.id)}>{item.value.id}</p>)}</div>\n  })\n  return <Inner data={data} />\n})\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,oCAAoCC,UAAU,OAAO,+CAEnD,kCAAkC;AAFzC,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,MAAM,MAAMC,+CAOV\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal, Sig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(() => {\n  const data = useSignal<Signal<any>[]>([]);\n  const Inner = component$((props) => {\n    const data = props.data\n    return <div>{data.value.map(item => <p onClick$={() => console.log(item.value.id)}>{item.value.id}</p>)}</div>\n  })\n  return <Inner data={data} />\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,8CAA8C,OAAO,+CAEnD,kCAAkC;AAFzC,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,MAAM,MAAMC,+CAOV\"}")
 == DIAGNOSTICS ==
 
 []

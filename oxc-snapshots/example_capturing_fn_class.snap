@@ -101,7 +101,7 @@ import { $, component$ } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
 
 
-Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qw\",\"dev\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAE1C,2CACK,8BACW;AAJrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAcjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAE1C,2CACK,8BACW;AAJrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAcjB\"}")
 == DIAGNOSTICS ==
 
 []

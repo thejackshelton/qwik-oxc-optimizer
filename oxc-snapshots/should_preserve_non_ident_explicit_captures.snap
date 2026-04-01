@@ -75,7 +75,7 @@ export { left as _auto_left };
 export { right as _auto_right };
 
 
-Some("{\"version\":3,\"names\":[\"t { _c\",\"ures, \",\"= 1;\",\"onst \",\"= 2;\",\"ta\",\"in\",\" => {\n\tcons\",\" _ca\",\"es, inline\",\" _cap\",\"s, inlinedQ\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { _captures, inlinedQrl } from '@qwik.dev/core';\n\nconst left = 1;\nconst right = 2;\n\nexport const task = inlinedQrl(() => {\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n}, 'task', [left, true, right]);\n\"],\"mappings\":\"AAAA,MACKA,SAASC,aAAa,OAAO,yBAEhC,QAAQ,CAACC,MACVC,MAAM,EAAE;CAAGC,MAEZ;CAAaC,IAAI;CAAMC,IAAI;CAAMC,aAC1B;CAAiB,CAAC;AANzB,SAAS,WAAW,kBAAkB;AAEtC,MAAM,OAAO;AACb,MAAM,QAAQ;AAEd,OAAO,MAAM;AANb,SACQC,QAAQC;AADhB,SACQC,SAASC\"}")
+Some("{\"version\":3,\"names\":[\"t { _c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { _captures, inlinedQrl } from '@qwik.dev/core';\n\nconst left = 1;\nconst right = 2;\n\nexport const task = inlinedQrl(() => {\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n}, 'task', [left, true, right]);\n\"],\"mappings\":\"AAAA,MACKA,sBAAsB,OAAO,yBAEhC,QAAQ,aACH,EAAE;OAET;KAAiB;KAAU;cACpB;CAAiB,CAAC;AANzB,SAAS,WAAW,kBAAkB;AAEtC,MAAM,OAAO;AACb,MAAM,QAAQ;AAEd,OAAO,MAAM;AANb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -97,7 +97,7 @@ import { component$, useStore } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useStore } \",\"m '@qw\",\"onCl\",\"so\",\"'w\",\"ello Qwik</\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,aAAa,OAChD,yCAEE,6BAEW,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAKC,IAAI;CAAMC,aAAa;;AALvE,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,2CAA2C,OAChD,yCAEE,6BAEW,EAAE,EAAE;OAAS;KAAiB;KAAS;cAAmB;;AALvE,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAMjB\"}")
 == DIAGNOSTICS ==
 
 []

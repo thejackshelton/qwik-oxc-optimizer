@@ -98,7 +98,7 @@ import { component$ as Component, $ as onRender, useStore } from "@qwik.dev/core
 export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
 
 
-Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$ as Component, \",\"s o\",\"Component\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore } from '@qwik.dev/core';\n\nexport const App = Component((props) => {\n\tconst state = useStore({thing: 0});\n\n\treturn onRender(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAAO,2CAEzC,8BACZ;AAHD,SAAS,cAAc,WAAW,KAAK,UAAU,gBAAgB;AAEjE,OAAO,MAAM,MAAMC,2CAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ as Component, \",\"Component\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore } from '@qwik.dev/core';\n\nexport const App = Component((props) => {\n\tconst state = useStore({thing: 0});\n\n\treturn onRender(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,2CAEzC,8BACZ;AAHD,SAAS,cAAc,WAAW,KAAK,UAAU,gBAAgB;AAEjE,OAAO,MAAM,MAAMC,2CAMjB\"}")
 == DIAGNOSTICS ==
 
 []

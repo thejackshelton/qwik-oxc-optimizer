@@ -105,6 +105,19 @@ impl GlobalCollect {
             || self.root.contains_key(name)
     }
 
+    /// Returns the names of top-level declarations that are also exported.
+    ///
+    /// These are names that appear in both `self.exports` and `self.root`.
+    /// Used by `QwikTransform::new` to detect locally-exported `$`-suffixed
+    /// identifiers that act as marker functions.
+    pub(crate) fn export_local_ids(&self) -> Vec<String> {
+        self.exports
+            .keys()
+            .filter(|name| self.root.contains_key(name.as_str()))
+            .cloned()
+            .collect()
+    }
+
     /// Register a synthetic import binding.
     ///
     /// Inserts into `imports`, `rev_imports`, AND `synthetic`.

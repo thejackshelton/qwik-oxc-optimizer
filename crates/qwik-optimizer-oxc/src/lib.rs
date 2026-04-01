@@ -613,6 +613,150 @@ const Cmp = component$(() => {});"#;
     }
 
     // -----------------------------------------------------------------------
+    // Integration: Phase 16 — Segment module generation
+    // -----------------------------------------------------------------------
+
+    fn make_component_opts(src: &str, path: &str) -> TransformModulesOptions {
+        TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, path)],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        }
+    }
+
+    fn make_component_src() -> &'static str {
+        r#"import { component$ } from "@qwik.dev/core";
+export const MyComp = component$(() => {
+    return "hello";
+});"#
+    }
+
+    #[test]
+    fn segment_module_appears_in_output() {
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        assert_eq!(
+            result.modules.len(),
+            2,
+            "Expected root + 1 segment module, got {} modules: {:?}",
+            result.modules.len(),
+            result.modules.iter().map(|m| &m.path).collect::<Vec<_>>()
+        );
+        // One module should have a segment analysis populated
+        let seg_modules: Vec<_> = result.modules.iter().filter(|m| m.segment.is_some()).collect();
+        assert_eq!(seg_modules.len(), 1, "Expected exactly 1 segment module");
+    }
+
+    #[test]
+    fn segment_module_has_correct_path() {
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let seg = result.modules.iter().find(|m| m.segment.is_some()).expect("no segment module");
+        // Path should be canonical_filename + extension (no subdir for root-level file)
+        assert!(
+            seg.path.ends_with(".tsx"),
+            "Segment path should end with .tsx extension, got: {}",
+            seg.path
+        );
+        assert!(
+            !seg.path.contains('/') || seg.path.starts_with("test"),
+            "Segment path should not have unexpected subdirs, got: {}",
+            seg.path
+        );
+    }
+
+    #[test]
+    fn segment_module_is_entry_inversion() {
+        // With Segment strategy (entry=None), is_entry should be true
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let seg = result.modules.iter().find(|m| m.segment.is_some()).expect("no segment module");
+        assert!(
+            seg.is_entry,
+            "Segment with entry=None should have is_entry=true (inverted semantics), path={}",
+            seg.path
+        );
+    }
+
+    #[test]
+    fn inline_segment_skipped() {
+        // Inline strategy should produce only root module (no segment modules)
+        let src = make_component_src();
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Inline,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let seg_modules: Vec<_> = result.modules.iter().filter(|m| m.segment.is_some()).collect();
+        assert_eq!(
+            seg_modules.len(),
+            0,
+            "Inline strategy should produce no segment modules, got {} segment modules",
+            seg_modules.len()
+        );
+    }
+
+    #[test]
+    fn segment_analysis_populated() {
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let seg = result.modules.iter().find(|m| m.segment.is_some()).expect("no segment module");
+        let analysis = seg.segment.as_ref().unwrap();
+        assert!(!analysis.name.is_empty(), "SegmentAnalysis.name should not be empty");
+        assert!(!analysis.hash.is_empty(), "SegmentAnalysis.hash should not be empty");
+        assert!(!analysis.canonical_filename.is_empty(), "SegmentAnalysis.canonical_filename should not be empty");
+        assert_eq!(
+            analysis.ctx_kind,
+            CtxKind::Function,
+            "component$ should have ctx_kind=Function"
+        );
+        assert_eq!(
+            analysis.ctx_name,
+            "component$",
+            "ctx_name should be 'component$'"
+        );
+    }
+
+    #[test]
+    fn root_module_order_uses_default_hasher() {
+        // Root module order should be non-zero (DefaultHasher of non-empty path)
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        assert_ne!(
+            root.order,
+            0,
+            "Root module order should be non-zero (DefaultHasher of path)"
+        );
+    }
+
+    #[test]
+    fn segment_module_order_uses_hash() {
+        // Segment module order should be non-zero (derived from hash field)
+        let opts = make_component_opts(make_component_src(), "test.tsx");
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let seg = result.modules.iter().find(|m| m.segment.is_some()).expect("no segment module");
+        // Order can be 0 if hash starts with "0" but is unlikely; we just check it is set
+        let analysis = seg.segment.as_ref().unwrap();
+        let expected_order = u64::from_str_radix(
+            &analysis.hash[..std::cmp::min(8, analysis.hash.len())],
+            36,
+        ).unwrap_or(0);
+        assert_eq!(
+            seg.order,
+            expected_order,
+            "Segment order should be derived from hash field (first 8 chars base36)"
+        );
+    }
+
+    // -----------------------------------------------------------------------
     // Integration: Stage 9 (const replace) via transform_modules
     // -----------------------------------------------------------------------
 

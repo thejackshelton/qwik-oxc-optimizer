@@ -194,8 +194,9 @@ pub struct TransformModule {
 
     /// Sort order for deterministic output ordering.
     /// Main modules get order 0; segments get their extraction order.
+    /// u64 to match SPEC.md (supports large segment counts).
     #[serde(default)]
-    pub order: u32,
+    pub order: u64,
 }
 
 /// Metadata about an extracted segment (a lazy-loadable code fragment).

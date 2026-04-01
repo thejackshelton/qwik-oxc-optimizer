@@ -7,6 +7,7 @@
 pub mod hash;
 
 mod errors;
+pub(crate) mod emit;
 mod is_const;
 pub(crate) mod parse;
 mod types;

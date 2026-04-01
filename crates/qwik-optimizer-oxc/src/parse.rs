@@ -83,7 +83,11 @@ pub(crate) fn parse_path(
     relative_path: &str,
     src_dir: &Path,
 ) -> Result<PathData, anyhow::Error> {
-    let rel_path = Path::new(relative_path);
+    // Normalize Windows-style path separators to forward slashes.
+    // The input may contain backslashes (e.g., from Windows fixture configs) even
+    // when running on macOS/Linux. Path::new() does not split on \ on non-Windows.
+    let normalized_path = relative_path.replace('\\', "/");
+    let rel_path = Path::new(&normalized_path);
 
     let file_name = rel_path
         .file_name()
@@ -150,8 +154,8 @@ pub(crate) fn output_extension(
             }
         }
         "js" => "js",
-        "mjs" => "mjs",
-        "cjs" => "cjs",
+        "mjs" => "js", // SWC normalizes .mjs to "js"
+        "cjs" => "js", // SWC normalizes .cjs to "js"
         _ => "js", // unknown: default to js
     }
 }
@@ -376,6 +380,15 @@ const x = $(() => {
         assert_eq!(result.abs_dir, PathBuf::from("/app/routes"));
     }
 
+    #[test]
+    fn test_parse_path_windows_backslash() {
+        let src_dir = Path::new("/src");
+        let result = parse_path("components\\apps\\apps.tsx", src_dir).unwrap();
+        assert_eq!(result.file_name, "apps.tsx");
+        assert_eq!(result.file_stem, "apps");
+        assert_eq!(result.rel_dir, PathBuf::from("components/apps"));
+    }
+
     // ---- output_extension tests ------------------------------------------
 
     #[test]
@@ -418,5 +431,19 @@ const x = $(() => {
     fn test_output_extension_js_unchanged() {
         assert_eq!(output_extension("test.js", true, true), "js");
         assert_eq!(output_extension("test.js", false, false), "js");
+    }
+
+    #[test]
+    fn test_output_extension_mjs_normalizes_to_js() {
+        // SWC normalizes .mjs output extension to "js" — OXC must match
+        assert_eq!(output_extension("lib.mjs", true, true), "js");
+        assert_eq!(output_extension("lib.mjs", false, false), "js");
+    }
+
+    #[test]
+    fn test_output_extension_cjs_normalizes_to_js() {
+        // SWC normalizes .cjs output extension to "js" — OXC must match
+        assert_eq!(output_extension("lib.cjs", true, true), "js");
+        assert_eq!(output_extension("lib.cjs", false, false), "js");
     }
 }

@@ -35,6 +35,7 @@ describe("parity integration (real OXC-vs-SWC comparison)", () => {
         const oxcPath = path.join(OXC_DIR, file);
 
         if (!fs.existsSync(oxcPath)) {
+          errors.push(`${file}: OXC snapshot missing at ${oxcPath}`);
           failCount++;
           continue;
         }

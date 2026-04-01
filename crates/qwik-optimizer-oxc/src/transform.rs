@@ -434,9 +434,10 @@ pub(crate) struct QwikTransform {
     pub(crate) strip_event_handlers: bool,
 
     // ---- Variable declaration kind tracking --------------------------------
-    /// Set in `enter_variable_declaration`, cleared in `exit_variable_declaration`.
+    /// Stack of variable declaration kinds, matching nesting depth.
+    /// Pushed in `enter_variable_declaration`, popped in `exit_variable_declaration`.
     /// Used by `enter_variable_declarator` to know if the binding is `const`.
-    current_var_kind: Option<VariableDeclarationKind>,
+    var_kind_stack: Vec<VariableDeclarationKind>,
 
     /// Stack tracking whether each variable declarator (LIFO with nesting) pushed
     /// a name to `stack_ctxt`. `true` = pushed, `false` = no push.
@@ -714,7 +715,7 @@ impl QwikTransform {
             ctxt_pushed_calls: HashSet::new(),
             strip_ctx_name: options.strip_ctx_name.to_vec(),
             strip_event_handlers: options.strip_event_handlers,
-            current_var_kind: None,
+            var_kind_stack: Vec::new(),
             var_decl_ctxt_push_stack: Vec::new(),
             default_export_ctxt_pushed: false,
             fn_ctxt_push_stack: Vec::new(),
@@ -3575,7 +3576,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         decl: &mut VariableDeclaration<'a>,
         _ctx: &mut TraverseCtx<'a, ()>,
     ) {
-        self.current_var_kind = Some(decl.kind);
+        self.var_kind_stack.push(decl.kind);
     }
 
     fn exit_variable_declaration(
@@ -3583,7 +3584,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         _decl: &mut VariableDeclaration<'a>,
         _ctx: &mut TraverseCtx<'a, ()>,
     ) {
-        self.current_var_kind = None;
+        self.var_kind_stack.pop();
     }
 
     /// Add binding to the current decl_stack frame, and push var name to `stack_ctxt`.
@@ -3602,7 +3603,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         };
 
-        let is_const = matches!(self.current_var_kind, Some(VariableDeclarationKind::Const));
+        let is_const = matches!(self.var_kind_stack.last(), Some(VariableDeclarationKind::Const));
         let is_static = decl
             .init
             .as_ref()

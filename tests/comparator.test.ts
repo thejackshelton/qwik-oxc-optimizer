@@ -207,6 +207,46 @@ describe("compareFixture — COMP-01: structural segment mismatch reporting", ()
     }
   });
 
+  it("midstream insertion: correctly identifies the extra segment by identity, not just tail", () => {
+    // SWC has [A, C], OXC has [A, B, C] — B is the extra, not C
+    const swcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [201, 300] }),
+    ];
+    const oxcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "server$", loc: [101, 200] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [201, 300] }),
+    ];
+
+    const failures = compareFixture(makeSnapshot(swcSections), makeSnapshot(oxcSections));
+
+    const extraFailures = failures.filter((f) => f.category === FailureCategory.EXTRA_SEGMENT);
+    expect(extraFailures).toHaveLength(1);
+    // The extra segment should be server$ (midstream insertion), not useTask$ (tail)
+    expect(extraFailures[0].actual).toEqual({ ctxName: "server$", loc: [101, 200] });
+  });
+
+  it("midstream deletion: correctly identifies the missing segment by identity, not just tail", () => {
+    // SWC has [A, B, C], OXC has [A, C] — B is missing, not C
+    const swcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "server$", loc: [101, 200] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [201, 300] }),
+    ];
+    const oxcSections = [
+      makeSyntheticSection({ ctxName: "component$", loc: [0, 100] }),
+      makeSyntheticSection({ ctxName: "useTask$", loc: [201, 300] }),
+    ];
+
+    const failures = compareFixture(makeSnapshot(swcSections), makeSnapshot(oxcSections));
+
+    const missingFailures = failures.filter((f) => f.category === FailureCategory.MISSING_SEGMENT);
+    expect(missingFailures).toHaveLength(1);
+    // The missing segment should be server$ (midstream), not useTask$ (tail)
+    expect(missingFailures[0].expected).toEqual({ ctxName: "server$", loc: [101, 200] });
+  });
+
   it("no SEGMENT_COUNT_MISMATCH failure is ever emitted (all mismatch scenarios)", () => {
     // Scenario A: SWC > OXC
     const scenarioA = compareFixture(

@@ -12,7 +12,9 @@
     "harness": "bun src/cli.ts --swc-snapshots swc-snapshots/",
     "fmt:snapshot-blocks": "bun scripts/format-snapshot-code-blocks.mjs",
     "fmt:snapshot-blocks:check": "bun scripts/format-snapshot-code-blocks.mjs --check",
-    "oxfmt:version": "oxfmt --version"
+    "oxfmt:version": "oxfmt --version",
+    "sync:snapshots": "node scripts/sync-upstream-snapshots.mjs",
+    "sync:snapshots:dry": "node scripts/sync-upstream-snapshots.mjs --dry-run"
   },
   "dependencies": {
     "siphash": "^1.2.0"

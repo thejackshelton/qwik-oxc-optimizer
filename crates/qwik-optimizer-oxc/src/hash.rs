@@ -258,6 +258,45 @@ pub(crate) fn register_context_name(
 }
 
 // ---------------------------------------------------------------------------
+// parse_symbol_name
+// ---------------------------------------------------------------------------
+
+/// Parse an existing inlinedQrl symbol name into its components.
+///
+/// Used when re-processing library code that contains existing `inlinedQrl(fn, "symbolName")`
+/// calls (SPEC lines 1826-1836).
+///
+/// # Arguments
+/// - `symbol_name` — the second arg string from an existing inlinedQrl call (e.g. `"test_component_ABC"`)
+/// - `mode` — emit mode (Prod uses `s_{hash}` symbol names; other modes keep original)
+/// - `file_name` — RAW filename with extension (used for display_name prefix)
+///
+/// # Returns
+/// `(new_symbol_name, display_name, hash)` where:
+/// - `new_symbol_name` — Prod: `"s_{hash}"`, other: `symbol_name` unchanged
+/// - `display_name` — `"{file_name}_{prefix}"` where prefix is the part before the last `_`
+/// - `hash` — the portion after the last `_`, or `""` if no `_` found
+pub(crate) fn parse_symbol_name(
+    symbol_name: &str,
+    mode: &EmitMode,
+    file_name: &str,
+) -> (String, String, String) {
+    let (prefix, hash) = match symbol_name.rsplit_once('_') {
+        Some((p, h)) => (p, h),
+        None => (symbol_name, ""),
+    };
+
+    let display_name = format!("{file_name}_{prefix}");
+
+    let new_symbol_name = match mode {
+        EmitMode::Prod => format!("s_{hash}"),
+        _ => symbol_name.to_string(),
+    };
+
+    (new_symbol_name, display_name, hash.to_string())
+}
+
+// ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
@@ -574,6 +613,62 @@ mod tests {
             "display_name must use raw file_name with extension, got: {}",
             result.display_name
         );
+    }
+
+    // -----------------------------------------------------------------------
+    // parse_symbol_name
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn parse_symbol_name_prod_mode() {
+        // Prod mode: new_symbol_name = "s_{hash}"
+        let (sym, display, hash) = parse_symbol_name("test_component_ABC", &EmitMode::Prod, "test.tsx");
+        assert_eq!(sym, "s_ABC");
+        assert_eq!(display, "test.tsx_test_component");
+        assert_eq!(hash, "ABC");
+    }
+
+    #[test]
+    fn parse_symbol_name_dev_mode_unchanged() {
+        // Non-prod: symbol_name returned unchanged
+        let (sym, display, hash) = parse_symbol_name("test_component_ABC", &EmitMode::Dev, "test.tsx");
+        assert_eq!(sym, "test_component_ABC");
+        assert_eq!(display, "test.tsx_test_component");
+        assert_eq!(hash, "ABC");
+    }
+
+    #[test]
+    fn parse_symbol_name_lib_mode_unchanged() {
+        let (sym, display, hash) = parse_symbol_name("test_component_ABC", &EmitMode::Lib, "test.tsx");
+        assert_eq!(sym, "test_component_ABC");
+        assert_eq!(display, "test.tsx_test_component");
+        assert_eq!(hash, "ABC");
+    }
+
+    #[test]
+    fn parse_symbol_name_no_underscore() {
+        // No underscore: prefix = symbol_name, hash = ""
+        let (sym, display, hash) = parse_symbol_name("singleword", &EmitMode::Prod, "f.tsx");
+        assert_eq!(sym, "s_");
+        assert_eq!(display, "f.tsx_singleword");
+        assert_eq!(hash, "");
+    }
+
+    #[test]
+    fn parse_symbol_name_nested_symbol() {
+        // Multi-segment name: splits on LAST underscore
+        let (sym, display, hash) = parse_symbol_name("foo_bar_baz_XYZ123", &EmitMode::Dev, "app.tsx");
+        assert_eq!(sym, "foo_bar_baz_XYZ123"); // Dev: unchanged
+        assert_eq!(display, "app.tsx_foo_bar_baz");
+        assert_eq!(hash, "XYZ123");
+    }
+
+    #[test]
+    fn parse_symbol_name_nested_symbol_prod() {
+        let (sym, display, hash) = parse_symbol_name("foo_bar_baz_XYZ123", &EmitMode::Prod, "app.tsx");
+        assert_eq!(sym, "s_XYZ123");
+        assert_eq!(display, "app.tsx_foo_bar_baz");
+        assert_eq!(hash, "XYZ123");
     }
 
     #[test]

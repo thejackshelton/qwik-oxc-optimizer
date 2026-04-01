@@ -11,6 +11,7 @@ pub(crate) mod emit;
 mod filter_exports;
 mod is_const;
 pub(crate) mod parse;
+mod rename_imports;
 mod types;
 mod words;
 

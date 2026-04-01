@@ -791,6 +791,12 @@ impl QwikTransform {
         let allocator: &'a Allocator = ctx.ast.allocator;
         let ast = AstBuilder::new(allocator);
 
+        // Save jsx_mutable — each element gets its own mutable state.
+        // Child elements may set jsx_mutable=true, but that should not leak
+        // into the parent's static_subtree flag computation.
+        let saved_jsx_mutable = self.jsx_mutable;
+        self.jsx_mutable = false;
+
         let opening = el.opening_element.unbox();
         let mut children_vec = el.children;
 
@@ -869,6 +875,11 @@ impl QwikTransform {
             self.needs_jsx_sorted = true;
             "_jsxSorted"
         };
+
+        // Restore parent's jsx_mutable state — if this element was mutable,
+        // propagate up so the parent knows its subtree is not fully static.
+        let this_mutable = self.jsx_mutable;
+        self.jsx_mutable = saved_jsx_mutable || this_mutable;
 
         build_jsx_call(callee_name, tag_expr, var_props_opt, const_props_opt, children_opt, flags, key_expr, &ast, allocator)
     }
@@ -1924,8 +1935,10 @@ impl QwikTransform {
             return component_hoist_idx.min(max_valid);
         }
 
-        // Find the shallowest decl_stack frame that declares ANY captured ident.
-        let mut min_decl_scope: usize = self.decl_stack.len().saturating_sub(1);
+        // Find the deepest decl_stack frame that declares any captured ident.
+        // This is the shallowest scope that sees ALL captures — we must hoist
+        // to at least this depth so all captured bindings are in scope.
+        let mut max_decl_scope: usize = 1; // Start at first non-root frame
         for (frame_idx, frame) in self.decl_stack.iter().enumerate() {
             if frame_idx == 0 {
                 continue; // Skip root frame — no hoisted_qrls entry for it.
@@ -1934,16 +1947,16 @@ impl QwikTransform {
                 frame.iter().any(|(name, _)| name == cap)
             });
             if frame_has_capture {
-                min_decl_scope = frame_idx;
-                break;
+                max_decl_scope = frame_idx;
+                // Don't break — keep scanning to find the DEEPEST frame with a capture
             }
         }
 
         // Convert to hoisted_qrls index (subtract 1 for root frame).
-        let min_hoist_idx = min_decl_scope.saturating_sub(1);
+        let max_hoist_idx = max_decl_scope.saturating_sub(1);
 
-        // Target = max(min_hoist_idx, component_hoist_idx), clamped to valid range.
-        let target = min_hoist_idx.max(component_hoist_idx);
+        // Target = max(max_hoist_idx, component_hoist_idx), clamped to valid range.
+        let target = max_hoist_idx.max(component_hoist_idx);
         target.min(max_valid)
     }
 

@@ -15,6 +15,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parseSnapFile } from "./parser.js";
+import { assertOxfmtVersion } from "./normalizer.js";
 import {
   FailureCategory,
   type FailureCategoryValue,
@@ -73,6 +74,14 @@ async function main() {
     process.exit(2);
   }
   const SNAP_DIR = path.resolve(args.swcSnapshots);
+
+  // Fail fast if oxfmt version doesn't match frozen contract
+  try {
+    assertOxfmtVersion();
+  } catch (err) {
+    console.error(`Harness error: ${(err as Error).message}`);
+    process.exit(2);
+  }
 
   // Validate --category if provided
   if (args.category !== null) {

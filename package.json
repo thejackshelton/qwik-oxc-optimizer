@@ -8,7 +8,8 @@
     "tsx": "^4.21.0"
   },
   "scripts": {
-    "harness": "node --import tsx/esm src/cli.ts",
+    "test": "node --import tsx/esm src/cli.ts --swc-snapshots swc-snapshots/",
+    "harness": "node --import tsx/esm src/cli.ts --swc-snapshots swc-snapshots/",
     "fmt:snapshot-blocks": "node scripts/format-snapshot-code-blocks.mjs",
     "fmt:snapshot-blocks:check": "node scripts/format-snapshot-code-blocks.mjs --check",
     "oxfmt:version": "oxfmt --version"

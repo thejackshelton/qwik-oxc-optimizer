@@ -21,8 +21,6 @@ import {
   type HarnessOutput,
 } from "./contract.js";
 
-const SNAP_DIR = new URL("../swc-snapshots/", import.meta.url).pathname;
-
 /**
  * Parse CLI arguments into a typed options object.
  */
@@ -30,10 +28,14 @@ function parseArgs(argv: string[]): {
   fixture: string | null;
   category: string | null;
   json: boolean;
+  swcSnapshots: string | null;
+  oxcSnapshots: string | null;
 } {
   let fixture: string | null = null;
   let category: string | null = null;
   let json = false;
+  let swcSnapshots: string | null = null;
+  let oxcSnapshots: string | null = null;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
@@ -43,10 +45,14 @@ function parseArgs(argv: string[]): {
       category = argv[++i]!;
     } else if (arg === "--json") {
       json = true;
+    } else if (arg === "--swc-snapshots" && argv[i + 1] !== undefined) {
+      swcSnapshots = argv[++i]!;
+    } else if (arg === "--oxc-snapshots" && argv[i + 1] !== undefined) {
+      oxcSnapshots = argv[++i]!;
     }
   }
 
-  return { fixture, category, json };
+  return { fixture, category, json, swcSnapshots, oxcSnapshots };
 }
 
 /**
@@ -62,6 +68,15 @@ function buildEmptyByCategory(): Record<FailureCategoryValue, number> {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  if (!args.swcSnapshots) {
+    console.error(
+      "Error: --swc-snapshots <dir> is required.\n" +
+      "Usage: harness --swc-snapshots <dir> [--oxc-snapshots <dir>] [--fixture <glob>] [--category <name>] [--json]"
+    );
+    process.exit(2);
+  }
+  const SNAP_DIR = path.resolve(args.swcSnapshots);
 
   // Validate --category if provided
   if (args.category !== null) {

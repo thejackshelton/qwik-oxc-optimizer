@@ -337,12 +337,12 @@ fn transform_code(
             canonical_filename: record.canonical_filename.clone(),
             path: seg_path,
             extension: record_extension.to_string(),
-            parent: None, // Phase 18 will wire segment_stack parent tracking
+            parent: record.parent.clone(),
             ctx_kind: record.ctx_kind.clone(),
             ctx_name: record.ctx_name.clone(),
             captures: !record.scoped_idents.is_empty(),
             loc: record.span,
-            param_names: None, // Phase 18 populates
+            param_names: record.param_names.clone(),
             capture_names: if record.scoped_idents.is_empty() {
                 None
             } else {

@@ -112,6 +112,10 @@ pub(crate) struct SegmentRecord {
     /// Root-level variable declarations migrated into this segment module (Stage 12).
     /// Each entry is a complete declaration code string (e.g. `"const THRESHOLD = 100;"`).
     pub migrated_root_vars: Vec<String>,
+    /// Parent segment name if this segment is nested inside another (Phase 18).
+    pub parent: Option<String>,
+    /// Ordered function parameter names extracted from the closure (Phase 18).
+    pub param_names: Option<Vec<String>>,
 }
 
 // ---------------------------------------------------------------------------
@@ -256,6 +260,43 @@ pub(crate) fn get_function_params(expr: &Expression<'_>) -> HashSet<String> {
         }
     }
     result
+}
+
+// ---------------------------------------------------------------------------
+// extract_ordered_param_names
+// ---------------------------------------------------------------------------
+
+/// Extract parameter names in order from a function or arrow function expression.
+///
+/// Returns `None` if the expression has no parameters or is not a function.
+/// Returns `Some(names)` with the binding names in parameter order.
+pub(crate) fn extract_ordered_param_names(expr: &Expression<'_>) -> Option<Vec<String>> {
+    let params: Option<&[FormalParameter<'_>]> = match expr {
+        Expression::ArrowFunctionExpression(arrow) => Some(&arrow.params.items),
+        Expression::FunctionExpression(func) => Some(&func.params.items),
+        _ => None,
+    };
+    let items = params?;
+    if items.is_empty() {
+        return None;
+    }
+    let mut names = Vec::with_capacity(items.len());
+    for param in items {
+        // Collect the top-level binding name from the pattern.
+        // For BindingIdentifier: use its name directly.
+        // For destructured patterns: collect_binding_names would give all nested
+        // names, but we want the top-level parameter name.
+        // Props destructuring rewrites to `_rawProps`, so we simply take the
+        // first (and only) identifier name from collect_binding_names.
+        let mut collected: Vec<String> = Vec::new();
+        collect_binding_names(&param.pattern, &mut |name| {
+            collected.push(name.to_string());
+        });
+        if let Some(first) = collected.into_iter().next() {
+            names.push(first);
+        }
+    }
+    if names.is_empty() { None } else { Some(names) }
 }
 
 // ---------------------------------------------------------------------------
@@ -1801,6 +1842,12 @@ impl QwikTransform {
         let ast = AstBuilder::new(allocator);
         let is_dev = matches!(self.mode, EmitMode::Dev | EmitMode::Hmr);
 
+        // Extract param_names BEFORE folded_expr is consumed for codegen.
+        let param_names = extract_ordered_param_names(&folded_expr);
+
+        // Capture parent from segment_stack BEFORE pushing (parent = current top = enclosing segment).
+        let parent = self.segment_stack.last().cloned();
+
         // Serialize `folded_expr` for the SegmentRecord.expr field.
         // folded_expr is the extracted closure body; the QRL call itself uses a fresh
         // `() => import('./canonical')` arrow, so we consume folded_expr here for codegen.
@@ -1937,6 +1984,8 @@ impl QwikTransform {
             hash: names.hash.clone(),
             is_inline: false,
             migrated_root_vars: Vec::new(),
+            parent,
+            param_names,
         });
 
         qrl_call

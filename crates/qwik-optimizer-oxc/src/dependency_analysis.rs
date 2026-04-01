@@ -597,6 +597,8 @@ mod tests {
             hash: "abc12345678".to_string(),
             is_inline: false,
             migrated_root_vars: Vec::new(),
+            parent: None,
+            param_names: None,
         }
     }
 

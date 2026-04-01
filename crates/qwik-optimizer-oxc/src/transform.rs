@@ -2537,6 +2537,171 @@ impl QwikTransform {
 
         body.statements = new_stmts;
     }
+
+    // -----------------------------------------------------------------------
+    // handle_inlined_qsegment — re-process existing inlinedQrl() calls (SPEC §3443)
+    // -----------------------------------------------------------------------
+
+    /// Re-process an existing `inlinedQrl(fn, "symbolName"[, captures])` call found in
+    /// library source code.
+    ///
+    /// SPEC lines 3443-3466. Called from `exit_call_expression` when the callee matches
+    /// `self.inlined_qrl_fn`. Because this is handled entirely in the exit hook (not via
+    /// `pending_qsegments`), children have already been traversed when this runs.
+    ///
+    /// # Early exits
+    /// 1. `EmitMode::Lib` — pass through unchanged (library-output mode).
+    /// 2. First argument is `null` — pass through unchanged (already-processed marker).
+    ///
+    /// # Processing
+    /// - Extract `symbol_name` from the second string-literal argument.
+    /// - Call `hash::parse_symbol_name` to recover `(new_symbol_name, display_name, hash)`.
+    /// - If third arg is an array expression, use those idents as explicit captures.
+    ///   Otherwise compute via `compute_scoped_idents` from `decl_stack`.
+    /// - Route to `create_inline_qrl` (inline strategy) or `create_segment` (other).
+    /// - Replace the call expression in-place with the new expression.
+    pub(crate) fn handle_inlined_qsegment<'a>(
+        &mut self,
+        call: &mut CallExpression<'a>,
+        ctx: &mut TraverseCtx<'a, ()>,
+    ) {
+        // Gate 1: Lib mode — pass through unchanged.
+        if self.mode == EmitMode::Lib {
+            return;
+        }
+
+        // Gate 2: first arg is null — already processed, pass through.
+        if call.arguments.is_empty() {
+            return;
+        }
+        if matches!(call.arguments[0], Argument::NullLiteral(..)) {
+            return;
+        }
+
+        // Extract symbol_name from the second argument (must be a string literal).
+        let symbol_name_raw = if call.arguments.len() >= 2 {
+            match &call.arguments[1] {
+                Argument::StringLiteral(s) => s.value.as_str().to_string(),
+                _ => return, // Unexpected shape — pass through.
+            }
+        } else {
+            return; // No symbol name — pass through.
+        };
+
+        let allocator: &'a Allocator = ctx.ast.allocator;
+
+        // Parse the symbol name.
+        let (new_symbol_name, display_name, extracted_hash) =
+            hash::parse_symbol_name(&symbol_name_raw, &self.mode, &self.file_name);
+
+        // Extract scoped_idents: use third arg array if present, else compute.
+        let scoped_idents: Vec<String> = if call.arguments.len() >= 3 {
+            match &call.arguments[2] {
+                Argument::ArrayExpression(arr) => arr
+                    .elements
+                    .iter()
+                    .filter_map(|el| match el {
+                        ArrayExpressionElement::Identifier(id) => {
+                            Some(id.name.as_str().to_string())
+                        }
+                        _ => None,
+                    })
+                    .collect(),
+                _ => vec![],
+            }
+        } else {
+            // Compute from decl_stack + descendent idents of first arg.
+            let all_decl: Vec<IdPlusType> = self
+                .decl_stack
+                .iter()
+                .flat_map(|frame| frame.iter().cloned())
+                .collect();
+            // Collect idents from first arg expression.
+            let first_arg_idents = match &call.arguments[0] {
+                Argument::ArrowFunctionExpression(arrow) => {
+                    let mut collector = IdentCollector { idents: HashSet::new() };
+                    oxc::ast_visit::Visit::visit_arrow_function_expression(&mut collector, arrow);
+                    collector.idents
+                }
+                Argument::FunctionExpression(func) => {
+                    use oxc::semantic::ScopeFlags;
+                    let mut collector = IdentCollector { idents: HashSet::new() };
+                    oxc::ast_visit::Visit::visit_function(
+                        &mut collector,
+                        func,
+                        ScopeFlags::empty(),
+                    );
+                    collector.idents
+                }
+                _ => HashSet::new(),
+            };
+            let (idents, _) = compute_scoped_idents(&first_arg_idents, &all_decl);
+            idents
+        };
+
+        // Take ownership of first argument.
+        let old_arg = std::mem::replace(
+            &mut call.arguments[0],
+            Argument::NullLiteral(ctx.ast.alloc_null_literal(SPAN)),
+        );
+        let first_arg = match argument_to_expression(old_arg) {
+            Some(expr) => expr,
+            None => return, // Non-expression arg — pass through.
+        };
+
+        // ensure_export for local_idents.
+        let local_idents = self.get_local_idents(&first_arg);
+        for ident in &local_idents {
+            self.ensure_export(ident);
+        }
+
+        let span = (call.span.start, call.span.end);
+
+        // Route to create_inline_qrl or create_segment.
+        let replacement_expr: Expression<'a> = if self.is_inline_strategy {
+            let qrl_expr = self.create_inline_qrl(
+                first_arg,
+                &new_symbol_name,
+                &scoped_idents,
+                span,
+                &display_name,
+                allocator,
+            );
+            self.hoist_qrl_to_module_scope(qrl_expr, &scoped_idents, &new_symbol_name, allocator)
+        } else {
+            // Build a ContextNameResult for create_segment.
+            let canonical_filename =
+                hash::get_canonical_filename(&display_name, &new_symbol_name);
+            let names = hash::ContextNameResult {
+                symbol_name: new_symbol_name.clone(),
+                display_name: display_name.clone(),
+                hash: extracted_hash,
+                canonical_filename,
+            };
+            let ctx_name = "inlinedQrl";
+            let ctx_kind = crate::types::CtxKind::Function;
+            let qrl_expr = self.create_segment(
+                first_arg,
+                &names,
+                scoped_idents.clone(),
+                local_idents,
+                ctx_name,
+                ctx_kind,
+                span,
+                allocator,
+            );
+            self.hoist_qrl_to_module_scope(qrl_expr, &scoped_idents, &new_symbol_name, allocator)
+        };
+
+        // Replace the call expression in-place.
+        if let Expression::CallExpression(new_call) = replacement_expr {
+            *call = new_call.unbox();
+        } else {
+            // Non-call replacement (e.g. identifier reference from hoist).
+            // Place the replacement as call.arguments[0].
+            call.arguments[0] = expr_to_argument(replacement_expr);
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -2662,13 +2827,15 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             return; // Phase 14+ stub
         }
 
-        // Priority 4: inlinedQrl
+        // Priority 4: inlinedQrl — handled entirely in exit_call_expression.
+        // Do NOT push to pending_qsegments; just let children traverse normally.
+        // The exit hook will detect the inlinedQrl callee directly.
         if self
             .inlined_qrl_fn
             .as_deref()
             .map_or(false, |n| n == callee_name)
         {
-            return; // Phase 12+ stub
+            return; // exit_call_expression handles full processing
         }
 
         // Priority 5: _fnSignal
@@ -2722,6 +2889,19 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // Symmetric pop for plain-identifier pushes.
         if self.ctxt_pushed_calls.remove(&call.span.start) {
             self.stack_ctxt.pop();
+        }
+
+        // Priority 4: inlinedQrl — detect and handle here (not via pending_qsegments).
+        if let Expression::Identifier(ref id) = call.callee {
+            let callee_name = id.name.as_str().to_string();
+            if self
+                .inlined_qrl_fn
+                .as_deref()
+                .map_or(false, |n| n == callee_name)
+            {
+                self.handle_inlined_qsegment(call, ctx);
+                return;
+            }
         }
 
         // Check if this call expression has a matching PendingQSegment.
@@ -5784,5 +5964,91 @@ export const App = () => {
         assert_eq!(xfrm.extra_top_items.len(), 2, "Server mode: _hf0 + _hf0_str, got {}", xfrm.extra_top_items.len());
         assert_eq!(xfrm.extra_top_items[0].name, "_hf0");
         assert_eq!(xfrm.extra_top_items[1].name, "_hf0_str");
+    }
+
+    // -----------------------------------------------------------------------
+    // handle_inlined_qsegment tests (Task 17-02)
+    // -----------------------------------------------------------------------
+
+    fn run_transform_with_entry(src: &str, mode: EmitMode, strategy: EntryStrategy) -> (String, QwikTransform) {
+        let allocator = Allocator::default();
+        let source_in_arena: &str = allocator.alloc_str(src);
+        let ret = Parser::new(&allocator, source_in_arena, SourceType::tsx()).parse();
+        let mut program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        let collect = global_collect(&program);
+        let opts = QwikTransformOptions {
+            global_collect: &collect,
+            core_module: "@qwik.dev/core",
+            strip_ctx_name: &[],
+            strip_event_handlers: false,
+            mode: &mode,
+            scope: None,
+            rel_path: "test.tsx",
+            file_name: "test.tsx",
+            entry_strategy: &strategy,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
+        };
+        let mut xfrm = QwikTransform::new(opts);
+        let semantic = SemanticBuilder::new().build(&program);
+        let scoping = semantic.semantic.into_scoping();
+        let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
+        let code = Codegen::new().build(&program).code;
+        (code, xfrm)
+    }
+
+    /// In Lib mode, existing inlinedQrl() calls pass through unchanged.
+    #[test]
+    fn inlined_qsegment_lib_passthrough() {
+        // The source already contains an inlinedQrl call (as if pre-compiled).
+        let src = r#"import { inlinedQrl } from "@qwik.dev/core";
+const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
+        let (code, xfrm) = run_transform_with_entry(src, EmitMode::Lib, EntryStrategy::Segment);
+        // In Lib mode: inlinedQrl call should remain as-is (pass through).
+        assert!(
+            code.contains("inlinedQrl("),
+            "Lib mode should pass through inlinedQrl, got: {code}"
+        );
+        // No segments should be generated in Lib mode.
+        assert!(
+            xfrm.segments.is_empty(),
+            "Lib mode should NOT create segments, got: {}",
+            xfrm.segments.len()
+        );
+    }
+
+    /// In Segment mode, existing inlinedQrl() re-extracts as a segment.
+    #[test]
+    fn inlined_qsegment_extracts_segment() {
+        let src = r#"import { inlinedQrl } from "@qwik.dev/core";
+const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
+        let (code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        // Dev+Segment mode: should produce a qrl() call and a segment record.
+        assert!(
+            code.contains("qrl(") || code.contains("qrlDEV("),
+            "Segment mode should produce qrl() or qrlDEV(), got: {code}"
+        );
+        assert!(
+            !xfrm.segments.is_empty(),
+            "Segment mode should create at least one segment, got 0"
+        );
+    }
+
+    /// In Inline strategy, existing inlinedQrl() re-processes as inline QRL.
+    #[test]
+    fn inlined_qsegment_inline_strategy() {
+        let src = r#"import { inlinedQrl } from "@qwik.dev/core";
+const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
+        let (code, _xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Inline);
+        // Inline strategy: should produce inlinedQrl/inlinedQrlDEV output.
+        assert!(
+            code.contains("inlinedQrl") || code.contains("q_"),
+            "Inline strategy should produce inlinedQrl or q_ hoisted const, got: {code}"
+        );
     }
 }

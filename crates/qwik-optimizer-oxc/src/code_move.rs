@@ -928,6 +928,10 @@ pub(crate) struct NewModuleCtx<'a> {
     pub explicit_extensions: bool,
     /// Hoisted const declarations from the parent module needed by this segment.
     pub extra_top_items: &'a [HoistedConst],
+    /// Root-level declarations migrated into this segment module (Stage 12).
+    /// Each entry is a complete statement string inserted after imports and before
+    /// the named export (before `create_named_export`).
+    pub migrated_root_vars: &'a [String],
 }
 
 /// Build a complete segment module string from the 13-step pipeline.
@@ -1063,9 +1067,19 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     all_items.extend(sorted_items.into_iter().map(|(_sym, code)| code));
     let deduped = dedup_by_sym(all_items);
 
-    // Step 13: append named export
-    let export_stmt = create_named_export(ctx.name, &final_expr);
+    // Step 13: append migrated root var declarations (before named export)
+    // These are complete statement strings (e.g. "const THRESHOLD = 100;") that
+    // were moved out of the root module and belong to this segment only.
     let mut result_parts = deduped;
+    for migrated_stmt in ctx.migrated_root_vars {
+        let stmt = migrated_stmt.trim().to_string();
+        if !stmt.is_empty() {
+            result_parts.push(stmt);
+        }
+    }
+
+    // Step 14 (was 13): append named export
+    let export_stmt = create_named_export(ctx.name, &final_expr);
     result_parts.push(export_stmt);
 
     result_parts.join("\n")
@@ -1502,6 +1516,7 @@ mod tests {
             core_module: "@qwik.dev/core",
             explicit_extensions: false,
             extra_top_items: &[],
+            migrated_root_vars: &[],
         };
         let result = new_module(ctx);
         // Should contain the export
@@ -1531,6 +1546,7 @@ mod tests {
             core_module: "@qwik.dev/core",
             explicit_extensions: false,
             extra_top_items: &[],
+            migrated_root_vars: &[],
         };
         let result = new_module(ctx);
         assert!(

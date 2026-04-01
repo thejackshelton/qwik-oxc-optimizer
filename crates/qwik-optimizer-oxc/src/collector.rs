@@ -297,6 +297,24 @@ pub(crate) fn global_collect(program: &Program<'_>) -> GlobalCollect {
     collect
 }
 
+/// Convenience: parse `source` and return a `GlobalCollect`.
+///
+/// Used in tests and by `dependency_analysis` helpers to build a collect from
+/// raw source strings.  On parse failure returns an empty `GlobalCollect`.
+pub(crate) fn global_collect_from_str(source: &str) -> GlobalCollect {
+    use oxc::allocator::Allocator;
+    use oxc::parser::Parser;
+    use oxc::span::SourceType;
+
+    let allocator = Allocator::default();
+    let src: &str = allocator.alloc_str(source);
+    let ret = Parser::new(&allocator, src, SourceType::mjs()).parse();
+    if ret.panicked {
+        return GlobalCollect::new_empty();
+    }
+    global_collect(&ret.program)
+}
+
 /// Collect binding names from a declaration, inserting into `exports` and
 /// optionally into `root`.
 fn collect_decl_names(

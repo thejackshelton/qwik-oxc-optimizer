@@ -109,6 +109,9 @@ pub(crate) struct SegmentRecord {
     pub hash: String,
     /// Whether this segment was created via `create_inline_qrl` (not its own module).
     pub is_inline: bool,
+    /// Root-level variable declarations migrated into this segment module (Stage 12).
+    /// Each entry is a complete declaration code string (e.g. `"const THRESHOLD = 100;"`).
+    pub migrated_root_vars: Vec<String>,
 }
 
 // ---------------------------------------------------------------------------
@@ -1933,6 +1936,7 @@ impl QwikTransform {
             span,
             hash: names.hash.clone(),
             is_inline: false,
+            migrated_root_vars: Vec::new(),
         });
 
         qrl_call

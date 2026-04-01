@@ -24,6 +24,7 @@ pub(crate) mod transform;
 pub(crate) mod code_move;
 pub(crate) mod clean_side_effects;
 pub(crate) mod add_side_effect;
+pub(crate) mod dependency_analysis;
 
 // Re-export all public types
 pub use types::{
@@ -285,6 +286,7 @@ fn transform_code(
             core_module: &config.core_module,
             explicit_extensions: config.explicit_extensions,
             extra_top_items: &xfrm.extra_top_items,
+            migrated_root_vars: &record.migrated_root_vars,
         });
 
         // Parse + codegen for normalization (double-quote, whitespace)

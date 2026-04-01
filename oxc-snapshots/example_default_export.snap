@@ -32,7 +32,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
   "name": "slug_component_0AM8HPnkNs4",
-  "entry": "src/routes/_repl/[id]/[[...slug]].tsx_entry_slug",
+  "entry": "src/routes/_repl/[id]/[[...slug]].tsx_entry_[[...slug]]",
   "displayName": "[[...slug]].tsx_slug_component",
   "hash": "0AM8HPnkNs4",
   "canonicalFilename": "[[...slug]].tsx_slug_component_0AM8HPnkNs4",

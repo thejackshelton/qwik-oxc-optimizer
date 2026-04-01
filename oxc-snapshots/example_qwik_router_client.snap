@@ -2244,7 +2244,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_spaInit_event_Js
   "path": "../node_modules/@qwik.dev/router",
   "extension": "mjs",
   "parent": null,
-  "ctxKind": "eventHandler",
+  "ctxKind": "function",
   "ctxName": "event$",
   "captures": true,
   "captureNames": [

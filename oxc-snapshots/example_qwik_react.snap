@@ -145,7 +145,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
   "extension": "mjs",
   "parent": null,
   "ctxKind": "function",
-  "ctxName": "inlinedQrl",
+  "ctxName": "useWatch$",
   "captures": true,
   "captureNames": [
     "hostElement",
@@ -222,7 +222,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
   "extension": "mjs",
   "parent": null,
   "ctxKind": "function",
-  "ctxName": "inlinedQrl",
+  "ctxName": "component$",
   "captures": true,
   "captureNames": [
     "reactCmpQrl"

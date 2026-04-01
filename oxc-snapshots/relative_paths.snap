@@ -43,7 +43,7 @@ export const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{
 
 
 
-============================= ../../node_modules/dep/dist/lib.mjs_App_component_div_p_button_onClick_8dWUa0cJAr4.mjs (ENTRY POINT)==
+============================= ../../node_modules/dep/dist/lib.mjs_App_component_div_p_button_onClick_8dWUa0cJAr4.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
 import { useLexicalScope } from "@qwik.dev/core";
@@ -65,10 +65,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_div_p_but
   "hash": "8dWUa0cJAr4",
   "canonicalFilename": "lib.mjs_App_component_div_p_button_onClick_8dWUa0cJAr4",
   "path": "../../node_modules/dep/dist",
-  "extension": "mjs",
+  "extension": "js",
   "parent": null,
   "ctxKind": "function",
-  "ctxName": "inlinedQrl",
+  "ctxName": "onClick$",
   "captures": true,
   "captureNames": [
     "store"
@@ -80,7 +80,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_div_p_but
 }
 */
 
-============================= ../../node_modules/dep/dist/lib.mjs_App_component_AkbU84a8zes.mjs (ENTRY POINT)==
+============================= ../../node_modules/dep/dist/lib.mjs_App_component_AkbU84a8zes.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
 import { jsx } from "@qwik.dev/core/jsx-runtime";
@@ -107,10 +107,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_AkbU84a8z
   "hash": "AkbU84a8zes",
   "canonicalFilename": "lib.mjs_App_component_AkbU84a8zes",
   "path": "../../node_modules/dep/dist",
-  "extension": "mjs",
+  "extension": "js",
   "parent": null,
   "ctxKind": "function",
-  "ctxName": "inlinedQrl",
+  "ctxName": "component$",
   "captures": true,
   "captureNames": [
     "useData"
@@ -164,7 +164,7 @@ export const Local = componentQrl(q_Local_component_jJ0v28bs0p8);
 
 Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qw\",\"component$\"],\"sources\":[\"components/main.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { state } from './sibling';\n\nexport const Local = component$(() => {\n\treturn (\n\t\t<div>{state}</div>\n\t)\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OACzC,+CAEW,8BACV;AAJP,SAAS,YAAY,SAAS;AAC9B,SAAS,aAAa;AAEtB,OAAO,MAAM,QAAQC,2CAInB\"}")
 
-============================= ../../node_modules/dep/dist/lib.mjs ==
+============================= ../../node_modules/dep/dist/lib.js ==
 
 const q_App_component_AkbU84a8zes = qrl(() => import("./lib.mjs_App_component_AkbU84a8zes.mjs"), "App_component_AkbU84a8zes", [useData]);
 import { componentQrl, inlinedQrl, useStore, useLexicalScope } from "@qwik.dev/core";

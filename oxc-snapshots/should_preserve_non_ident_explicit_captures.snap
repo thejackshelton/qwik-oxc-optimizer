@@ -46,7 +46,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_task_task\"],\"sources
   "extension": "tsx",
   "parent": null,
   "ctxKind": "function",
-  "ctxName": "inlinedQrl",
+  "ctxName": "task",
   "captures": true,
   "captureNames": [
     "left",

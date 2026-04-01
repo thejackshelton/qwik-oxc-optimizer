@@ -104,6 +104,21 @@ impl GlobalCollect {
             || self.exports.contains_key(name)
             || self.root.contains_key(name)
     }
+
+    /// Register a synthetic import binding.
+    ///
+    /// Inserts into `imports`, `rev_imports`, AND `synthetic`.
+    /// No-op if the specifier+source pair is already imported.
+    ///
+    /// Called by Stage 8 (props destructuring) for `_restProps`.
+    pub(crate) fn add_synthetic_import(&mut self, local: String, import: Import) {
+        // Guard: don't double-add
+        if self.get_imported_local(&import.specifier, &import.source).is_some() {
+            return;
+        }
+        self.synthetic.push((local.clone(), import.clone()));
+        self.insert_import(local, import);
+    }
 }
 
 // ---------------------------------------------------------------------------

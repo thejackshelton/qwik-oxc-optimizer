@@ -8,6 +8,7 @@ pub mod hash;
 
 mod collector;
 mod const_replace;
+mod props_destructuring;
 mod errors;
 pub(crate) mod emit;
 mod filter_exports;

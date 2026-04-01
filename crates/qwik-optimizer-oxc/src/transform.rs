@@ -1041,6 +1041,58 @@ impl QwikTransform {
         let mut static_listeners = !should_runtime_sort;
         let static_subtree = !should_runtime_sort;
 
+        // ---- Phase 1b: element_lifted_params pre-pass (q:p/q:ps) ---------------
+        // Only computed for native elements (not component JSX).
+        let element_lifted_params: Vec<String> = if !is_fn && !should_runtime_sort {
+            if !self.iteration_var_stack.is_empty() {
+                // Case 1: loop context — intersect innermost iteration vars with
+                // handler references.
+                let iter_vars = self.iteration_var_stack.last().unwrap().clone();
+                let mut handler_idents: HashSet<String> = HashSet::new();
+                for attr in attrs.iter() {
+                    if let JSXAttributeItem::Attribute(a) = attr {
+                        let k = jsx_attr_key_owned(&a.name);
+                        if QwikTransform::jsx_event_to_html_attribute(&k).is_some() {
+                            if let Some(JSXAttributeValue::ExpressionContainer(ec)) = &a.value {
+                                if let Some(expr) = ec.expression.as_expression() {
+                                    handler_idents.extend(IdentCollector::collect(expr));
+                                }
+                            }
+                        }
+                    }
+                }
+                let mut result: Vec<String> = iter_vars
+                    .iter()
+                    .filter(|v| handler_idents.contains(*v))
+                    .cloned()
+                    .collect();
+                result.sort();
+                result
+            } else {
+                // Case 2: no loop — union of compute_handler_captures over all
+                // event handler props.
+                let mut all_captures: std::collections::BTreeSet<String> =
+                    std::collections::BTreeSet::new();
+                for attr in attrs.iter() {
+                    if let JSXAttributeItem::Attribute(a) = attr {
+                        let k = jsx_attr_key_owned(&a.name);
+                        if QwikTransform::jsx_event_to_html_attribute(&k).is_some() {
+                            if let Some(JSXAttributeValue::ExpressionContainer(ec)) = &a.value {
+                                if let Some(expr) = ec.expression.as_expression() {
+                                    let caps = self.compute_handler_captures(expr);
+                                    all_captures.extend(caps);
+                                }
+                            }
+                        }
+                    }
+                }
+                all_captures.into_iter().collect()
+            }
+        } else {
+            Vec::new()
+        };
+        let mut moved_captures = false;
+
         // ---- Phase 2: Main loop -----------------------------------------------
         let mut var_props: Vec<ObjectPropertyKind<'a>> = Vec::new();
         let mut const_props: Vec<ObjectPropertyKind<'a>> = Vec::new();
@@ -1138,9 +1190,100 @@ impl QwikTransform {
                         None => continue, // skip JSXEmptyExpression
                     };
 
+                    // ---- bind:value / bind:checked expansion (native elements) ----
+                    if !is_fn && (key == "bind:value" || key == "bind:checked") {
+                        if should_runtime_sort {
+                            // _jsxSplit mode: pass through unchanged
+                            let prop = build_object_prop(&key, value_expr, &ast, allocator);
+                            var_props.push(prop);
+                        } else {
+                            // Expand into accessor prop + inlinedQrl handler
+                            let is_bind_value = key == "bind:value";
+                            let prop_name = if is_bind_value { "value" } else { "checked" };
+                            let (handler_ident, handler_str) = if is_bind_value {
+                                self.needs_val = true;
+                                ("_val", "\"_val\"")
+                            } else {
+                                self.needs_chk = true;
+                                ("_chk", "\"_chk\"")
+                            };
+
+                            // Serialize the signal ident for use in the handler.
+                            let signal_code = Self::serialize_expression(&value_expr, allocator);
+
+                            // Accessor prop: value/checked = signal
+                            let accessor_prop = build_object_prop(prop_name, value_expr, &ast, allocator);
+
+                            // Handler: inlinedQrl(_val/_chk, "_val"/"_chk", [signal])
+                            let handler_code = format!(
+                                "inlinedQrl({handler_ident}, {handler_str}, [{signal_code}])"
+                            );
+
+                            let is_target_const = remaining_spreads == 0;
+
+                            // Add accessor prop
+                            if is_target_const {
+                                const_props.push(accessor_prop);
+                            } else {
+                                var_props.push(accessor_prop);
+                            }
+
+                            // Build handler expression and merge with existing q-e:input
+                            if let Some(handler_expr) = parse_single_expression(&handler_code, allocator) {
+                                let handler_prop_key = "q-e:input";
+                                // Check if q-e:input already exists in the target list
+                                let target_list = if is_target_const { &mut const_props } else { &mut var_props };
+                                let existing_idx = target_list.iter().position(|p| {
+                                    object_prop_key_str(p) == handler_prop_key
+                                });
+                                if let Some(idx) = existing_idx {
+                                    // Merge: wrap both in an array
+                                    let existing_prop = target_list.remove(idx);
+                                    if let ObjectPropertyKind::ObjectProperty(existing_op) = existing_prop {
+                                        let existing_val = existing_op.unbox().value;
+                                        // Build [existing_val, handler_expr]
+                                        let mut elements: ArenaVec<ArrayExpressionElement<'a>> = ArenaVec::new_in(allocator);
+                                        elements.push(ArrayExpressionElement::from(existing_val));
+                                        elements.push(ArrayExpressionElement::from(handler_expr));
+                                        let arr_expr = ast.expression_array(SPAN, elements);
+                                        target_list.push(build_object_prop(handler_prop_key, arr_expr, &ast, allocator));
+                                    } else {
+                                        // Fallback: just push the new handler
+                                        target_list.push(build_object_prop(handler_prop_key, handler_expr, &ast, allocator));
+                                    }
+                                } else {
+                                    target_list.push(build_object_prop(handler_prop_key, handler_expr, &ast, allocator));
+                                }
+                            }
+                        }
+                        continue;
+                    }
+
+                    // ---- bind:other passthrough (non-value/checked) ----
+                    // bind:* props that are not bind:value/bind:checked fall through
+                    // to normal classification below.
+
                     // ---- Event handler renaming (native elements only) ----
                     if !is_fn {
                         if let Some(html_attr) = QwikTransform::jsx_event_to_html_attribute(&key) {
+                            // q:p / q:ps injection (once per element, before first handler)
+                            if !element_lifted_params.is_empty() && !moved_captures {
+                                if element_lifted_params.len() == 1 {
+                                    let cap_name = &element_lifted_params[0];
+                                    let cap_expr = ast.expression_identifier(SPAN, ast.atom(cap_name.as_str()));
+                                    var_props.push(build_object_prop("q:p", cap_expr, &ast, allocator));
+                                } else {
+                                    let mut elements: ArenaVec<ArrayExpressionElement<'a>> = ArenaVec::new_in(allocator);
+                                    for cap_name in &element_lifted_params {
+                                        let cap_expr = ast.expression_identifier(SPAN, ast.atom(cap_name.as_str()));
+                                        elements.push(ArrayExpressionElement::from(cap_expr));
+                                    }
+                                    let arr_expr = ast.expression_array(SPAN, elements);
+                                    var_props.push(build_object_prop("q:ps", arr_expr, &ast, allocator));
+                                }
+                                moved_captures = true;
+                            }
+
                             let is_target_const = remaining_spreads == 0;
                             let prop = build_object_prop(&html_attr, value_expr, &ast, allocator);
                             if is_target_const {
@@ -1163,17 +1306,37 @@ impl QwikTransform {
 
                     let is_target_const = remaining_spreads == 0;
 
+                    // ---- Signal wrapping for native element non-event props ----
+                    // For native elements with non-const values: apply create_synthetic_qqsegment.
+                    let (effective_value_expr, effective_goes_to_const) =
+                        if !is_fn && !is_const && key != "children" && is_target_const {
+                            let (wrapped_opt, _new_is_const) =
+                                self.create_synthetic_qqsegment(&value_expr, allocator);
+                            if let Some(wrapped_code) = wrapped_opt {
+                                if let Some(wrapped_expr) = parse_single_expression(&wrapped_code, allocator) {
+                                    // Wrapped expressions go to const_props (they are reactive wrappers)
+                                    (wrapped_expr, true)
+                                } else {
+                                    (value_expr, is_const)
+                                }
+                            } else {
+                                (value_expr, is_const)
+                            }
+                        } else {
+                            (value_expr, is_const)
+                        };
+
                     let goes_to_const = if is_fn || !is_target_const {
                         // For components or when inside spreads:
                         // const && no active spreads → const_props, else → var_props
-                        is_const && is_target_const
+                        effective_goes_to_const && is_target_const
                     } else {
                         // For native elements with no spreads:
                         // not const → var_props, const → const_props
-                        is_const
+                        effective_goes_to_const
                     };
 
-                    let prop = build_object_prop(&key, value_expr, &ast, allocator);
+                    let prop = build_object_prop(&key, effective_value_expr, &ast, allocator);
                     if goes_to_const {
                         const_props.push(prop);
                     } else {
@@ -1196,8 +1359,10 @@ impl QwikTransform {
         let children_opt = self.build_children(children, is_text_only, ctx);
 
         // ---- Compute flags --------------------------------------------------
-        // bit 0 = static_listeners, bit 1 = static_subtree
-        let flags: u32 = (static_listeners as u32) | ((static_subtree as u32) << 1);
+        // bit 0 = static_listeners, bit 1 = static_subtree, bit 2 = moved_captures
+        let flags: u32 = (static_listeners as u32)
+            | ((static_subtree as u32) << 1)
+            | ((moved_captures as u32) << 2);
 
         // ---- Build final expressions ----------------------------------------
         // Non-empty var_props means jsx_mutable = true
@@ -1254,7 +1419,18 @@ impl QwikTransform {
                 }
                 JSXChild::ExpressionContainer(ec) => {
                     if let Some(e) = jsx_expression_to_expr(ec.unbox().expression) {
-                        exprs.push(e);
+                        // Apply signal wrapping to children expressions.
+                        let (wrapped_opt, _is_const) =
+                            self.create_synthetic_qqsegment(&e, allocator);
+                        if let Some(wrapped_code) = wrapped_opt {
+                            if let Some(wrapped_expr) = parse_single_expression(&wrapped_code, allocator) {
+                                exprs.push(wrapped_expr);
+                            } else {
+                                exprs.push(e);
+                            }
+                        } else {
+                            exprs.push(e);
+                        }
                     }
                     // EmptyExpression ({}) → skip
                 }
@@ -1978,6 +2154,33 @@ impl QwikTransform {
 
         // Replace the arrow in the call with the new _hf<N> ident.
         replace_fn_signal_arrow(&fn_signal_code, &arrow_code, &hf_name)
+    }
+
+    // -----------------------------------------------------------------------
+    // compute_handler_captures — Phase 15 q:p/q:ps capture computation
+    // -----------------------------------------------------------------------
+
+    /// Compute the runtime captures for a JSX event handler expression.
+    ///
+    /// Algorithm:
+    /// 1. Collect all identifiers referenced in `handler_expr`.
+    /// 2. Partition `decl_stack` entries into `Var`-typed and others.
+    /// 3. Call `compute_scoped_idents` to find the intersection.
+    /// 4. Remove the handler's own parameters from the result.
+    /// 5. Return the remaining scoped identifiers (sorted).
+    pub(crate) fn compute_handler_captures(&self, handler_expr: &Expression<'_>) -> Vec<String> {
+        let all_idents = IdentCollector::collect(handler_expr);
+        let all_decl: Vec<IdPlusType> = self
+            .decl_stack
+            .iter()
+            .flat_map(|frame| frame.iter().cloned())
+            .filter(|(_, ty)| matches!(ty, IdentType::Var(_)))
+            .collect();
+        let (mut scoped, _is_const) = compute_scoped_idents(&all_idents, &all_decl);
+        // Remove the handler's own parameters.
+        let own_params = get_function_params(handler_expr);
+        scoped.retain(|name| !own_params.contains(name));
+        scoped
     }
 
     // -----------------------------------------------------------------------
@@ -3142,6 +3345,38 @@ fn extract_fn_signal_third_arg(fn_signal_code: &str) -> Option<String> {
         Some(trimmed[pos + 2..].to_string() + "\"")
     } else if let Some(pos) = trimmed.rfind(", '") {
         Some(trimmed[pos + 2..].to_string() + "'")
+    } else {
+        None
+    }
+}
+
+// ---------------------------------------------------------------------------
+// parse_single_expression — parse a source string into a single Expression<'a>
+// ---------------------------------------------------------------------------
+
+/// Parse `src` (a single JavaScript expression) and return the `Expression`
+/// extracted from the first `ExpressionStatement` in the resulting program body,
+/// allocated into `allocator`.
+///
+/// Returns `None` if parsing fails or the first statement is not an ExpressionStatement.
+fn parse_single_expression<'a>(src: &str, allocator: &'a Allocator) -> Option<Expression<'a>> {
+    use oxc::parser::Parser;
+
+    let src_owned: &str = allocator.alloc_str(src);
+    let ret = Parser::new(allocator, src_owned, SourceType::default()).parse();
+    if ret.panicked {
+        return None;
+    }
+    let program: Program<'a> = unsafe {
+        std::mem::transmute::<Program<'_>, Program<'a>>(ret.program)
+    };
+    let mut body = program.body;
+    if body.is_empty() {
+        return None;
+    }
+    let first = body.remove(0);
+    if let Statement::ExpressionStatement(expr_stmt) = first {
+        Some(expr_stmt.unbox().expression)
     } else {
         None
     }

@@ -108,9 +108,12 @@ fn transform_code(
     rename_imports::rename_imports(&mut program, &allocator);
 
     // Stage 7: Global collect (always).
-    let collect = collector::global_collect(&program);
+    let mut collect = collector::global_collect(&program);
 
-    // Stage 8: Props destructuring — Phase 10, no-op.
+    // Stage 8: Props destructuring (always, all modes).
+    props_destructuring::transform_props_destructuring(
+        &mut program, &mut collect, &config.core_module, &allocator,
+    );
 
     // Stage 9: Const replacement (denylist: skip Lib and Test modes).
     const_replace::replace_build_constants(&mut program, config, &collect, &allocator);
@@ -447,6 +450,56 @@ mod tests {
         assert!(
             !code.contains("@builder.io/qwik"),
             "Old import source should be gone, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Integration: Stage 8 (props destructuring) via transform_modules
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn integration_props_destructuring_basic() {
+        let src = r#"const Cmp = ({ foo, bar }) => { return foo + bar; };"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("_rawProps"),
+            "Destructured params should be rewritten to _rawProps, got: {code}"
+        );
+        assert!(
+            code.contains("_rawProps.foo"),
+            "Should have _rawProps.foo access, got: {code}"
+        );
+    }
+
+    #[test]
+    fn integration_props_destructuring_skips_plain_param() {
+        let src = r#"const Cmp = (props) => { return props; };"#;
+        let opts = opts_with_inputs("/project", vec![make_input(src, "test.tsx")]);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            !code.contains("_rawProps"),
+            "Plain param should NOT be rewritten, got: {code}"
+        );
+    }
+
+    #[test]
+    fn integration_props_destructuring_lib_mode_runs() {
+        let src = r#"const Cmp = ({ foo }) => { return foo; };"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Lib,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let code = &result.modules[0].code;
+        assert!(
+            code.contains("_rawProps"),
+            "Lib mode should still run props destructuring, got: {code}"
         );
     }
 

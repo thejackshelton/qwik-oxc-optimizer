@@ -78,6 +78,11 @@ impl GlobalCollect {
         }
     }
 
+    /// Create an empty `GlobalCollect` for use in tests.
+    pub(crate) fn new_empty() -> Self {
+        Self::new()
+    }
+
     /// Insert an import binding, updating both `imports` and `rev_imports`.
     fn insert_import(&mut self, local: String, import: Import) {
         let key = (import.specifier.clone(), import.source.clone());

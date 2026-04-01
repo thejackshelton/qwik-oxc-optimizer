@@ -85,17 +85,6 @@ async function main() {
   const SNAP_DIR = path.resolve(args.swcSnapshots);
   const OXC_DIR = args.oxcSnapshots ? path.resolve(args.oxcSnapshots) : null;
 
-  // Fail fast if oxfmt version doesn't match frozen contract
-  // Only needed when OXC snapshots are provided (comparison normalizes code)
-  if (OXC_DIR !== null) {
-    try {
-      assertOxfmtVersion();
-    } catch (err) {
-      console.error(`Harness error: ${(err as Error).message}`);
-      process.exit(2);
-    }
-  }
-
   // Validate --category if provided
   if (args.category !== null) {
     const validCategories = Object.values(FailureCategory) as string[];
@@ -126,6 +115,17 @@ async function main() {
       const name = path.basename(f, ".snap");
       return path.matchesGlob(name, glob);
     });
+  }
+
+  // Fail fast if oxfmt version doesn't match frozen contract
+  // Only needed when OXC snapshots are provided AND there are fixtures to compare
+  if (OXC_DIR !== null && snapFiles.length > 0) {
+    try {
+      assertOxfmtVersion();
+    } catch (err) {
+      console.error(`Harness error: ${(err as Error).message}`);
+      process.exit(2);
+    }
   }
 
   // Parse each fixture and compare

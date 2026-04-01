@@ -172,16 +172,18 @@ export function compareFixture(
   }
 
   // COMP-04: Parent module comparison
-  // Compare ALL parent sections (metadata === null) by order, not just when exactly 1
+  // Match parent sections by headerName for identity-based pairing
   const swcParents = swcSnapshot.sections.filter((s) => s.metadata === null);
   const oxcParents = oxcSnapshot.sections.filter((s) => s.metadata === null);
 
-  const parentCount = Math.max(swcParents.length, oxcParents.length);
-  for (let i = 0; i < parentCount; i++) {
-    const swcParent = i < swcParents.length ? swcParents[i] : null;
-    const oxcParent = i < oxcParents.length ? oxcParents[i] : null;
+  // Build headerName → section lookup for OXC parents
+  const oxcParentByName = new Map(oxcParents.map((s) => [s.headerName, s]));
+  const matchedOxcNames = new Set<string>();
 
-    if (swcParent !== null && oxcParent !== null) {
+  for (const swcParent of swcParents) {
+    const oxcParent = oxcParentByName.get(swcParent.headerName) ?? null;
+    if (oxcParent !== null) {
+      matchedOxcNames.add(swcParent.headerName);
       const swcFilepath = getStdinFilepath(swcParent.headerName);
       const oxcFilepath = getStdinFilepath(oxcParent.headerName);
       const swcNorm = tryNormalizeCode(swcParent.code, swcFilepath);
@@ -194,14 +196,19 @@ export function compareFixture(
           actual: oxcNorm,
         });
       }
-    } else if (swcParent !== null) {
+    } else {
+      // SWC has parent but OXC does not
       failures.push({
         category: FailureCategory.CODE_DIFF,
         field: "parentModule",
         expected: swcParent.code,
         actual: undefined,
       });
-    } else if (oxcParent !== null) {
+    }
+  }
+  // OXC parents not matched to any SWC parent
+  for (const oxcParent of oxcParents) {
+    if (!matchedOxcNames.has(oxcParent.headerName)) {
       failures.push({
         category: FailureCategory.CODE_DIFF,
         field: "parentModule",

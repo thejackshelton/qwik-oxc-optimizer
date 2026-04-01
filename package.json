@@ -13,5 +13,8 @@
     "fmt:snapshot-blocks": "bun scripts/format-snapshot-code-blocks.mjs",
     "fmt:snapshot-blocks:check": "bun scripts/format-snapshot-code-blocks.mjs --check",
     "oxfmt:version": "oxfmt --version"
+  },
+  "dependencies": {
+    "siphash": "^1.2.0"
   }
 }

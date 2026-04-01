@@ -3394,7 +3394,8 @@ fn parse_single_expression<'a>(src: &str, allocator: &'a Allocator) -> Option<Ex
 ///
 /// Used by `exit_program` to materialize serialized `HoistedConst` / `RefAssignment`
 /// strings back into AST nodes without manual construction.
-fn parse_single_statement<'a>(src: &str, allocator: &'a Allocator) -> Option<Statement<'a>> {
+/// Also used by `code_move.rs` for segment module helpers.
+pub(crate) fn parse_single_statement<'a>(src: &str, allocator: &'a Allocator) -> Option<Statement<'a>> {
     use oxc::parser::Parser;
 
     let src_owned: &str = allocator.alloc_str(src);

@@ -118,6 +118,29 @@ impl GlobalCollect {
             .collect()
     }
 
+    /// Returns true if `sym` appears as a key in `self.exports`.
+    /// Used by new_module Step 7 priority-4 import resolution.
+    pub(crate) fn has_export_symbol(&self, sym: &str) -> bool {
+        self.exports.contains_key(sym)
+    }
+
+    /// If `sym` is exported, return the exported alias name.
+    /// For auto-exports this is `_auto_<sym>`. For regular exports, returns the key itself.
+    /// Used by new_module Step 7 to build `import { _auto_x as x } from "./parent"`.
+    pub(crate) fn resolve_export_for_id(&self, sym: &str) -> Option<String> {
+        // Look for an _auto_ prefixed export that refers to this sym
+        for key in self.exports.keys() {
+            if key == &format!("_auto_{}", sym) {
+                return Some(key.clone());
+            }
+        }
+        // If the sym itself is directly exported
+        if self.exports.contains_key(sym) {
+            return Some(sym.to_string());
+        }
+        None
+    }
+
     /// Register a synthetic import binding.
     ///
     /// Inserts into `imports`, `rev_imports`, AND `synthetic`.

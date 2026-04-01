@@ -21,6 +21,7 @@ mod words;
 
 pub(crate) mod entry_strategy;
 pub(crate) mod transform;
+pub(crate) mod code_move;
 
 // Re-export all public types
 pub use types::{

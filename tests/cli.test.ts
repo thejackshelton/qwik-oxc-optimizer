@@ -118,6 +118,12 @@ describe("CLI-04: exit codes", () => {
     expect(exitCode).toBe(0);
   });
 
+  test("missing --swc-snapshots exits 2 with usage message", () => {
+    const { exitCode, stderr } = runCLI(["--json"]);
+    expect(exitCode).toBe(2);
+    expect(stderr).toContain("--swc-snapshots");
+  });
+
   test("normal run without --json exits 0 and prints human summary", () => {
     const { stdout, exitCode } = runCLI([...SWC_FLAG]);
     expect(exitCode).toBe(0);

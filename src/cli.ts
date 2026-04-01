@@ -29,13 +29,11 @@ function parseArgs(argv: string[]): {
   category: string | null;
   json: boolean;
   swcSnapshots: string | null;
-  oxcSnapshots: string | null;
 } {
   let fixture: string | null = null;
   let category: string | null = null;
   let json = false;
   let swcSnapshots: string | null = null;
-  let oxcSnapshots: string | null = null;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
@@ -47,12 +45,10 @@ function parseArgs(argv: string[]): {
       json = true;
     } else if (arg === "--swc-snapshots" && argv[i + 1] !== undefined) {
       swcSnapshots = argv[++i]!;
-    } else if (arg === "--oxc-snapshots" && argv[i + 1] !== undefined) {
-      oxcSnapshots = argv[++i]!;
     }
   }
 
-  return { fixture, category, json, swcSnapshots, oxcSnapshots };
+  return { fixture, category, json, swcSnapshots };
 }
 
 /**
@@ -72,7 +68,7 @@ async function main() {
   if (!args.swcSnapshots) {
     console.error(
       "Error: --swc-snapshots <dir> is required.\n" +
-      "Usage: harness --swc-snapshots <dir> [--oxc-snapshots <dir>] [--fixture <glob>] [--category <name>] [--json]"
+      "Usage: harness --swc-snapshots <dir> [--fixture <glob>] [--category <name>] [--json]"
     );
     process.exit(2);
   }

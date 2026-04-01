@@ -201,6 +201,27 @@ describe("PARSE-03: Edge cases", () => {
     expect(Array.isArray(snap.sections)).toBeTruthy();
   });
 
+  test("malformed diagnostics JSON throws with fixture name and raw text", () => {
+    // Create a temporary snap file with malformed diagnostics
+    const fs = require("node:fs");
+    const os = require("node:os");
+    const tmpDir = os.tmpdir();
+    const tmpFile = path.join(tmpDir, "bad_diag.snap");
+    fs.writeFileSync(tmpFile, [
+      "---",
+      "---",
+      "==INPUT==",
+      "const x = 1;",
+      "== DIAGNOSTICS ==",
+      "{ this is not valid JSON !!!",
+    ].join("\n"));
+    try {
+      expect(() => parseSnapFile(tmpFile)).toThrow(/Malformed diagnostics JSON in bad_diag/);
+    } finally {
+      fs.unlinkSync(tmpFile);
+    }
+  });
+
   test("fixture with 0 content sections (only parent + diagnostics) parses without error", () => {
     // Find a 0-segment fixture. Based on research there are 46 such files.
     // example_build_server.snap is a known build-server fixture - check it parses

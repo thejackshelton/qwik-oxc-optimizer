@@ -8,6 +8,7 @@ pub mod hash;
 
 mod errors;
 mod is_const;
+pub(crate) mod parse;
 mod types;
 mod words;
 

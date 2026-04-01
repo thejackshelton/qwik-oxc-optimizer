@@ -1,0 +1,67 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';
+import mongo from 'mongodb';
+import redis from 'redis';
+import threejs from 'threejs';
+import { a } from './keep';
+import { b } from '../keep2';
+import { c } from '../../remove';
+
+export const Parent = component$(() => {
+	const state = useStore({
+		text: ''
+	});
+
+	// Double count watch
+	useClientMount$(async () => {
+		state.text = await mongo.users();
+		redis.set(state.text, a, b, c);
+	});
+
+	useTask$(() => {
+		// Code
+	});
+
+	return (
+		<div
+			shouldRemove$={() => state.text}
+			onClick$={() => console.log('parent', state, threejs)}
+		>
+			<Div
+				onClick$={() => console.log('keep')}
+				render$={() => state.text}
+			/>
+			{state.text}
+		</div>
+	);
+});
+
+
+============================= components/component.tsx ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Parent_component_useClientMount_Yn2kIDABoYw = _noopQrl("Parent_component_useClientMount_Yn2kIDABoYw", [state]);
+const q_Parent_component_useTask_ngmvcygWux8 = _noopQrl("Parent_component_useTask_ngmvcygWux8");
+const q_Parent_component_t6Wy3C0Q0XM = _noopQrl("Parent_component_t6Wy3C0Q0XM");
+import { component$, useClientMount$, useStore, useTask$ } from "@qwik.dev/core";
+import mongo from "mongodb";
+import redis from "redis";
+import threejs from "threejs";
+import { a } from "./keep";
+import { b } from "../keep2";
+import { c } from "../../remove";
+export const Parent = componentQrl(q_Parent_component_t6Wy3C0Q0XM);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$, useClientMount$, useStore, us\",\"sk$ } fr\",\"\nimpo\",\"t { component$, useClientMount$, useSt\",\", useTas\",\"t { component$, useClientMount\",\"useStore\",\"component$\"],\"sources\":[\"components/component.tsx\"],\"sourcesContent\":[\"\nimport { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport threejs from 'threejs';\nimport { a } from './keep';\nimport { b } from '../keep2';\nimport { c } from '../../remove';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseClientMount$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text, a, b, c);\n\t});\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div\n\t\t\tshouldRemove$={() => state.text}\n\t\t\tonClick$={() => console.log('parent', state, threejs)}\n\t\t>\n\t\t\t<Div\n\t\t\t\tonClick$={() => console.log('keep')}\n\t\t\t\trender$={() => state.text}\n\t\t\t/>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,gDAAgDC,SAAS,+CACnC,CAACC,MACvB,CAAC;AAHN,MACKC,yCAAyCC,SAAS,uCAC3C;AAFZ,MACKC,iCAAiCC,SAAS,+BAA+B;AAA9E,SAAS,YAAY,iBAAiB,UAAU,gBAAgB;AAChE,OAAO,WAAW;AAClB,OAAO,WAAW;AAClB,OAAO,aAAa;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAElB,OAAO,MAAM,SAASC,4CA2BpB\"}")
+== DIAGNOSTICS ==
+
+[]

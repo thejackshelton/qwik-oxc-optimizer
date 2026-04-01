@@ -1,0 +1,98 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, component$, $ } from "@qwik.dev/core";
+
+		export const TestGetsHmr = component$(() => {
+			return <div>Test</div>;
+		});
+		export const TestNoHmr = componentQrl($(() => {
+			return <div>Test</div>;
+		}));
+		
+
+============================= test.tsx_TestGetsHmr_component_jBUoou0sxX4.js (ENTRY POINT)==
+
+export const TestGetsHmr_component_jBUoou0sxX4 = () => {
+	return _jsxSorted("div", null, null, "Test", 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestGetsHmr_component_jBUoou0sxX4\"],\"sourcesContent\":[\"export const TestGetsHmr_component_jBUoou0sxX4 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,0CAA0C;AACtD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "TestGetsHmr_component_jBUoou0sxX4",
+  "displayName": "test.tsx_TestGetsHmr_component",
+  "hash": "jBUoou0sxX4",
+  "canonicalFilename": "test.tsx_TestGetsHmr_component_jBUoou0sxX4",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    93,
+    143
+  ]
+}
+*/
+
+============================= test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs.js (ENTRY POINT)==
+
+export const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {
+	return _jsxSorted("div", null, null, "Test", 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs\"],\"sourcesContent\":[\"export const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C;AACvD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "TestNoHmr_componentQrl_Uqk3jGTNmYs",
+  "displayName": "test.tsx_TestNoHmr_componentQrl",
+  "hash": "Uqk3jGTNmYs",
+  "canonicalFilename": "test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    185,
+    226
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_TestGetsHmr_component_jBUoou0sxX4 = qrlDEV(() => import("./test.tsx_TestGetsHmr_component_jBUoou0sxX4"), "TestGetsHmr_component_jBUoou0sxX4", [], {
+	file: "test.tsx",
+	lo: 93,
+	hi: 143,
+	displayName: "test.tsx_TestGetsHmr_component"
+});
+const q_TestNoHmr_componentQrl_Uqk3jGTNmYs = qrlDEV(() => import("./test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs"), "TestNoHmr_componentQrl_Uqk3jGTNmYs", [], {
+	file: "test.tsx",
+	lo: 185,
+	hi: 226,
+	displayName: "test.tsx_TestNoHmr_componentQrl"
+});
+import { component$, component$, $ } from "@qwik.dev/core";
+export const TestGetsHmr = componentQrl(q_TestGetsHmr_component_jBUoou0sxX4);
+export const TestNoHmr = componentQrl(Qrl(q_TestNoHmr_componentQrl_Uqk3jGTNmYs));
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, component$, $ } f\",\" \\"@qwi\",\"st T\",\"on\",\"$(\",\"\t\t\treturn <\",\"ort { component$, component$, $ } fr\",\"\\"@qwik\",\"Test\",\"nt\",\" =\",\"eturn <div>\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, component$, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const TestGetsHmr = component$(() => {\n\t\t\treturn <div>Test</div>;\n\t\t});\n\t\texport const TestNoHmr = componentQrl($(() => {\n\t\t\treturn <div>Test</div>;\n\t\t}));\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,sCAAsCC,aAAa,OAExD,iDACC,qCAEI,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAKC,IAAI;CAC5CC,aAAa;;AAPb,MACKC,uCAAuCC,aAAa,OAExD,kDACE,sCAEK,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAC5CC,aAAa;;AANf,SAAS,YAAY,YAAY,SAAS;AAE1C,OAAO,MAAM,cAAcC,iDAEzB;AACF,OAAO,MAAM,YAAY,aAAaC,yCAEpC,CAAC\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,62 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useStore } from '@qwik.dev/core';
+const Header = component$(() => {
+	const thing = useStore();
+	const {foo, bar} = foo();
+
+	return (
+		<div>{thing}</div>
+	);
+});
+
+
+============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
+
+import { useStore } from "@qwik.dev/core";
+export const Header_component_J4uyIhaBNR4 = () => {
+	const thing = useStore();
+	const { foo, bar } = foo();
+	return _jsxSorted("div", null, null, thing, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"import { useStore } from \\"@qwik.dev/core\\";\nexport const Header_component_J4uyIhaBNR4 = () => {\n\tconst thing = useStore();\n\tconst { foo, bar } = foo();\n\treturn _jsxSorted(\\"div\\", null, null, thing, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,gBAAgB;AACzB,OAAO,MAAM,qCAAqC;CACjD,MAAM,QAAQ,UAAU;CACxB,MAAM,EAAE,KAAK,QAAQ,KAAK;AAC1B,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_J4uyIhaBNR4",
+  "displayName": "test.tsx_Header_component",
+  "hash": "J4uyIhaBNR4",
+  "canonicalFilename": "test.tsx_Header_component_J4uyIhaBNR4",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    74,
+    185
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
+import { $, component$, useStore } from "@qwik.dev/core";
+const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useStore } \",\"m '\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore } from '@qwik.dev/core';\nconst Header = component$(() => {\n\tconst thing = useStore();\n\tconst {foo, bar} = foo();\n\n\treturn (\n\t\t<div>{thing}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UAAU,OAAO,4CAEhD,+BACI;AAHX,SAAS,GAAG,YAAY,gBAAgB;AACxC,MAAM,SAASC,4CAOb\"}")
+== DIAGNOSTICS ==
+
+[]

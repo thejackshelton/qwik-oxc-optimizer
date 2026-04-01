@@ -1,0 +1,95 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+export function App() {
+	const Header = component$(() => {
+		console.log("mount");
+		return (
+			<div onClick={$((ctx) => console.log(ctx))}/>
+		);
+	});
+	return Header;
+}
+
+
+============================= test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ.tsx (ENTRY POINT)==
+
+export const App_Header_component_div_onClick_aO7uI7Iw6oQ = (ctx) => console.log(ctx);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ\"],\"sourcesContent\":[\"export const App_Header_component_div_onClick_aO7uI7Iw6oQ = (ctx) => console.log(ctx);;\"],\"mappings\":\"AAAA,OAAO,MAAM,gDAAgD,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Header_component_div_onClick_aO7uI7Iw6oQ",
+  "displayName": "test.tsx_App_Header_component_div_onClick",
+  "hash": "aO7uI7Iw6oQ",
+  "canonicalFilename": "test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    160,
+    188
+  ],
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+============================= test.tsx_App_Header_component_B9F3YeqcO1w.tsx (ENTRY POINT)==
+
+const q_App_Header_component_div_onClick_aO7uI7Iw6oQ = qrl(() => import("./test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ"), "App_Header_component_div_onClick_aO7uI7Iw6oQ");
+export const App_Header_component_B9F3YeqcO1w = () => {
+	console.log("mount");
+	return _jsxSorted("div", { onClick: Qrl(q_App_Header_component_div_onClick_aO7uI7Iw6oQ) }, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Header_component_B9F3YeqcO1w\"],\"sourcesContent\":[\"const q_App_Header_component_div_onClick_aO7uI7Iw6oQ = qrl(() => import(\\"./test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ\\"), \\"App_Header_component_div_onClick_aO7uI7Iw6oQ\\");\nexport const App_Header_component_B9F3YeqcO1w = () => {\n\tconsole.log(\\"mount\\");\n\treturn _jsxSorted(\\"div\\", { onClick: Qrl(q_App_Header_component_div_onClick_aO7uI7Iw6oQ) }, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,iDAAiD,UAAU,OAAO,4DAA4D,+CAA+C;AACnL,OAAO,MAAM,yCAAyC;AACrD,SAAQ,IAAI,QAAQ;AACpB,QAAO,WAAW,OAAO,EAAE,SAAS,IAAI,+CAA+C,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO;;AAChH\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Header_component_B9F3YeqcO1w",
+  "displayName": "test.tsx_App_Header_component",
+  "hash": "B9F3YeqcO1w",
+  "canonicalFilename": "test.tsx_App_Header_component_B9F3YeqcO1w",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    89,
+    200
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_Header_component_B9F3YeqcO1w = qrl(() => import("./test.tsx_App_Header_component_B9F3YeqcO1w"), "App_Header_component_B9F3YeqcO1w");
+import { $, component$ } from "@qwik.dev/core";
+export function App() {
+	const Header = componentQrl(q_App_Header_component_B9F3YeqcO1w);
+	return Header;
+}
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwik.de\",\"ore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport function App() {\n\tconst Header = component$(() => {\n\t\tconsole.log(\\"mount\\");\n\t\treturn (\n\t\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t\t);\n\t});\n\treturn Header;\n}\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,qCAAqCC,UACtC,OAAO,gDAEX,mCAEA;AALA,SAAS,GAAG,kBAAkB;AAC9B,OAAO,SAAS,MAAM;CACrB,MAAM,SAASC,gDAKb;AACF,QAAO\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,27 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export const App = component$(() => {
+	return <div>Hello</div>;
+});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
+import { component$ } from "@qwik.dev/core";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwi\",\"ev/core'\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn <div>Hello</div>;\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,SAAS,4BAElB;AAF1B,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAEjB\"}")
+== DIAGNOSTICS ==
+
+[]

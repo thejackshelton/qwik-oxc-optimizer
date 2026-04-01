@@ -1,0 +1,38 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		export default (props: { data: any }) => {
+		  const { data } = props;
+          return (
+            <div
+              data-is-active={data.selectedOutputDetail === 'options'}
+              onClick$={() => {
+                data.selectedOutputDetail = 'options';
+              }}
+            />
+          );
+		};
+		
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+export default (props: {
+	data: any;
+}) => {
+	const { data } = props;
+	return _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": () => {
+		data.selectedOutputDetail = "options";
+	} }, null, 3, "u6_0");
+};
+
+
+Some("{\"version\":3,\"names\":[\" default (\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAAxB,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB,kCAC9B;AACd,OAAK,uBAAuB\"}")
+== DIAGNOSTICS ==
+
+[]

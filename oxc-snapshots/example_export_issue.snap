@@ -1,0 +1,107 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+const App = component$(() => {
+	return (
+		<div>hola</div>
+	);
+});
+
+
+export const Root = component$((props: Stuff) => {
+	return (
+		<App/>
+	);
+});
+
+const Other = 12;
+export { Other as App };
+
+export default App;
+
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+export const App_component_ckEPmXZlub0 = () => {
+	return _jsxSorted("div", null, null, "hola", 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"hola\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    59,
+    112
+  ]
+}
+*/
+
+============================= test.tsx_Root_component_royhjYaCbYE.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { App } from "./test";
+export const Root_component_royhjYaCbYE = (props: Stuff) => {
+	return _jsxSorted(App, null, null, null, 3, "u6_1");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Root_component_royhjYaCbYE",
+  "displayName": "test.tsx_Root_component",
+  "hash": "royhjYaCbYE",
+  "canonicalFilename": "test.tsx_Root_component_royhjYaCbYE",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "App"
+  ],
+  "loc": [
+    136,
+    192
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_Root_component_royhjYaCbYE = qrl(() => import("./test.tsx_Root_component_royhjYaCbYE"), "Root_component_royhjYaCbYE", [App]);
+import { component$ } from "@qwik.dev/core";
+const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const Root = componentQrl(q_Root_component_royhjYaCbYE.w([App]));
+const Other = 12;
+export { Other as App };
+export default App;
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwi\",\"ev/\",\"t { component$ } from '@qwik\",\"v/c\",\"t R\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OACM,yCAEA,4BAKA;AAVN,MACKC,+BAA+BC,UAEpC,OAAO,0CAEC,8BAKE,CAACC,IAAI,CAAC;AAThB,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,mDAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
+== DIAGNOSTICS ==
+
+[]

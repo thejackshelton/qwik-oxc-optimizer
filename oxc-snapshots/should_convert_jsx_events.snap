@@ -1,0 +1,82 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$ } from '@qwik.dev/core';
+
+		const ManyEventsComponent = component$(() => {
+			return (
+				<div>
+					<button
+						onClick$={() => {}}
+						onDblClick$={() => {}}
+					>
+						click
+					</button>
+					<button
+						onClick$={() => {}}
+						onBlur$={() => {}}
+						on-anotherCustom$={() => {}}
+						document:onFocus$={() => {}}
+						window:onClick$={() => {}}
+					>
+						click
+					</button>
+				</div>
+			);
+		});
+		
+
+============================= test.tsx_ManyEventsComponent_component_ndbrzxiyG3g.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_ndbrzxiyG3g = () => {
+	return _jsxSorted("div", null, null, [_jsxSorted("button", null, {
+		"q-e:click": () => {},
+		"q-e:dbl-click": () => {}
+	}, "click", 3, null), _jsxSorted("button", null, {
+		"q-e:click": () => {},
+		"q-e:blur": () => {},
+		"q-e:anotherCustom": () => {},
+		"q-d:focus": () => {},
+		"q-w:click": () => {}
+	}, "click", 3, null)], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_ndbrzxiyG3g\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_ndbrzxiyG3g = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": () => {},\n\t\t\\"q-e:dbl-click\\": () => {}\n\t}, \\"click\\", 3, null), _jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": () => {},\n\t\t\\"q-e:blur\\": () => {},\n\t\t\\"q-e:anotherCustom\\": () => {},\n\t\t\\"q-d:focus\\": () => {},\n\t\t\\"q-w:click\\": () => {}\n\t}, \\"click\\", 3, null)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kDAAkD;AAC9D,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,MAAM;EAChE,mBAAmB;EACnB,uBAAuB;EACvB,EAAE,SAAS,GAAG,KAAK,EAAE,WAAW,UAAU,MAAM;EAChD,mBAAmB;EACnB,kBAAkB;EAClB,2BAA2B;EAC3B,mBAAmB;EACnB,mBAAmB;EACnB,EAAE,SAAS,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAChC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_ndbrzxiyG3g",
+  "displayName": "test.tsx_ManyEventsComponent_component",
+  "hash": "ndbrzxiyG3g",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_ndbrzxiyG3g",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    79,
+    444
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_ManyEventsComponent_component_ndbrzxiyG3g = qrl(() => import("./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g"), "ManyEventsComponent_component_ndbrzxiyG3g");
+import { component$ } from "@qwik.dev/core";
+const ManyEventsComponent = componentQrl(q_ManyEventsComponent_component_ndbrzxiyG3g);
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$ } from '@qwik.dev/core';\n\n\",\"ons\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent = component$(() => {\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonDblClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonBlur$={() => {}}\n\t\t\t\t\t\ton-anotherCustom$={() => {}}\n\t\t\t\t\t\tdocument:onFocus$={() => {}}\n\t\t\t\t\t\twindow:onClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8CAEFC,UAAU,OAAO,yDAGd,4CAEK;AAPT,SAAS,kBAAkB;AAE3B,MAAM,sBAAsBC,yDAoB1B\"}")
+== DIAGNOSTICS ==
+
+[]

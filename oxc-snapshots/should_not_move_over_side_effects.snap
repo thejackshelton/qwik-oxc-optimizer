@@ -1,0 +1,36 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		export const $promoteToRoot$ = (ref: SeenRef) => {
+			const path = $getObjectPath$(ref) as string;
+			// should stay before the push
+			const idx = roots.length;
+			roots.push(new BackRef(path));
+			ref.$parent$ = null;
+			ref.$index$ = idx;
+			return idx;
+		};
+		
+
+============================= test.tsx ==
+
+export const $promoteToRoot$ = (ref: SeenRef) => {
+	const path = $getObjectPath$(ref) as string;
+	// should stay before the push
+	const idx = roots.length;
+	roots.push(new BackRef(path));
+	ref.$parent$ = null;
+	ref.$index$ = idx;
+	return idx;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport const $promoteToRoot$ = (ref: SeenRef) => {\n\t\t\tconst path = $getObjectPath$(ref) as string;\n\t\t\t// should stay before the push\n\t\t\tconst idx = roots.length;\n\t\t\troots.push(new BackRef(path));\n\t\t\tref.$parent$ = null;\n\t\t\tref.$index$ = idx;\n\t\t\treturn idx;\n\t\t};\n\t\t\"],\"mappings\":\"AACE,OAAO,MAAM,mBAAmB,KAAK,YAAY;CAChD,MAAM,OAAO,gBAAgB,IAAI;;CAEjC,MAAM,MAAM,MAAM;AAClB,OAAM,KAAK,IAAI,QAAQ,KAAK,CAAC;AAC7B,KAAI,WAAW;AACf,KAAI,UAAU;AACd,QAAO\"}")
+== DIAGNOSTICS ==
+
+[]

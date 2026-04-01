@@ -1,0 +1,69 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+import mongodb from 'mongodb';
+
+export const onGet = () => {
+	const data = mongodb.collection.whatever;
+	return {
+		body: {
+		data
+		}
+	}
+};
+
+export default component$(()=> {
+	return <div>cmp</div>
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.tsx (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = () => {
+	return _jsxSorted("div", null, null, "cmp", 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    203,
+    246
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+import mongodb from "mongodb";
+export const onGet = () => {
+	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
+};
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OACtC,qCAEK,wBACL;AAJH,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,qCAEb\"}")
+== DIAGNOSTICS ==
+
+[]

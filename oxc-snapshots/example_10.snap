@@ -1,0 +1,88 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+const Header = $((decl1, {decl2}, [decl3]) => {
+
+	const hola = ident1.no;
+	ident2;
+	const a = ident1 + ident3;
+	const b = ident1 + ident3;
+	ident4(ident5, [ident6], {ident7}, {key: ident8});
+	class Some {
+		prop = ident9;
+		method() {
+			return ident10;
+		}
+	}
+
+	return (
+		<div onClick={(ident11) => ident11 + ident12} required={false}/>
+	)
+});
+
+
+============================= project/test.tsx_Header_WlR3xnI6u38.tsx (ENTRY POINT)==
+
+export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {
+	const hola = ident1.no;
+	ident2;
+	const a = ident1 + ident3;
+	const b = ident1 + ident3;
+	ident4(ident5, [ident6], { ident7 }, { key: ident8 });
+	class Some {
+		prop = ident9;
+		method() {
+			return ident10;
+		}
+	}
+	return _jsxSorted("div", null, {
+		onClick: (ident11) => ident11 + ident12,
+		required: false
+	}, null, 3, "cA_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WlR3xnI6u38\"],\"sourcesContent\":[\"export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], { ident7 }, { key: ident8 });\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\treturn _jsxSorted(\\"div\\", null, {\n\t\tonClick: (ident11) => ident11 + ident12,\n\t\trequired: false\n\t}, null, 3, \\"cA_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,MAAM,OAAO,OAAO;AACpB;CACA,MAAM,IAAI,SAAS;CACnB,MAAM,IAAI,SAAS;AACnB,QAAO,QAAQ,CAAC,OAAO,EAAE,EAAE,QAAQ,EAAE,EAAE,KAAK,QAAQ,CAAC;CACrD,MAAM,KAAK;EACV,OAAO;EACP,SAAS;AACR,UAAO;;;AAGT,QAAO,WAAW,OAAO,MAAM;EAC9B,UAAU,YAAY,UAAU;EAChC,UAAU;EACV,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
+/*
+{
+  "origin": "project/test.tsx",
+  "name": "Header_WlR3xnI6u38",
+  "displayName": "test.tsx_Header",
+  "hash": "WlR3xnI6u38",
+  "canonicalFilename": "test.tsx_Header_WlR3xnI6u38",
+  "path": "project",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    64,
+    393
+  ],
+  "paramNames": [
+    "decl1",
+    "decl2",
+    "decl3"
+  ]
+}
+*/
+
+============================= project/test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_WlR3xnI6u38 = qrl(() => import("./test.tsx_Header_WlR3xnI6u38"), "Header_WlR3xnI6u38");
+import { $, component$ } from "@qwik.dev/core";
+const Header = Qrl(q_Header_WlR3xnI6u38);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } \",\"m '\",\"$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], {ident7}, {key: ident8});\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\n\treturn (\n\t\t<div onClick={(ident11) => ident11 + ident12} required={false}/>\n\t)\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,uBAAuBC,UAAU,OAAO,kCACd,qBAE5B;AAHH,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAiBb\"}")
+== DIAGNOSTICS ==
+
+[]

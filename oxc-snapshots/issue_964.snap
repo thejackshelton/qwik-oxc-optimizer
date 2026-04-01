@@ -1,0 +1,59 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export const App = component$(() => {
+	console.log(function*(lo: any, t: any) {
+	console.log(yield (yield lo)(t.href).then((r) => r.json()));
+	});
+
+	return <p>Hello Qwik</p>;
+});
+
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+export const App_component_ckEPmXZlub0 = () => {
+	console.log(function* (lo: any, t: any) {
+		console.log(yield (yield lo)(t.href).then((r) => r.json()));
+	});
+	return _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    66,
+    224
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+import { component$ } from "@qwik.dev/core";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconsole.log(function*(lo: any, t: any) {\n\tconsole.log(yield (yield lo)(t.href).then((r) => r.json()));\n\t});\n\n\treturn <p>Hello Qwik</p>;\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OACM,yCACG,4BAA4B;AAHrC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAMjB\"}")
+== DIAGNOSTICS ==
+
+[]

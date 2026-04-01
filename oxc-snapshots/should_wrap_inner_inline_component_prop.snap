@@ -1,0 +1,79 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useStore, useSignal } from '@qwik.dev/core';
+export default component$((props: { id: number }) => {
+      const renders = useStore(
+        {
+          count: 0,
+        },
+        { reactive: false }
+      );
+      renders.count++;
+      const rerenders = renders.count + 0;
+      const Id = (props: any) => <div>Id: {props.id}</div>;
+      return (
+        <>
+          <Id id={props.id} />
+          {rerenders}
+        </>
+      );
+    });
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { useStore } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = (props: {
+	id: number;
+}) => {
+	const renders = useStore({ count: 0 }, { reactive: false });
+	renders.count++;
+	const rerenders = renders.count + 0;
+	const _ref = {};
+	_ref.Id = (props: any) => _jsxSorted("div", null, null, ["_ref.Id:", _wrapProp(props, "id")], 3, "u6_0");
+	const { Id } = _ref;
+	return _jsxSorted(_Fragment, null, null, [_jsxSorted(Id, { id: props.id }, null, null, 3, "u6_2"), rerenders], 1, "u6_1");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    85,
+    467
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { $, component$, useStore, useSignal } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" $, compo\",\" $, compon\",\" $, comp\",\"t$, useSt\",\"t { $, component$, useS\",\"e, \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport default component$((props: { id: number }) => {\n      const renders = useStore(\n        {\n          count: 0,\n        },\n        { reactive: false }\n      );\n      renders.count++;\n      const rerenders = renders.count + 0;\n      const Id = (props: any) => <div>Id: {props.id}</div>;\n      return (\n        <>\n          <Id id={props.id} />\n          {rerenders}\n        </>\n      );\n    });\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OAAO,qCAChC,wBAAwB;AADxC,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,eAAeC,qCAgBT\"}")
+== DIAGNOSTICS ==
+
+[]

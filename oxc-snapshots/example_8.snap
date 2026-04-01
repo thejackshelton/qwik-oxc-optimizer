@@ -1,0 +1,110 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+
+export const Header = component$(() => {
+	return $((hola) => {
+		const hola = this;
+		const {something, styff} = hola;
+		const hello = hola.nothere.stuff[global];
+		return (
+			<Header/>
+		);
+	});
+});
+
+
+============================= test.tsx_Header_component_1_2B8d0oH9ZWc.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { Header } from "./test";
+const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4", [Header]);
+export const Header_component_1_2B8d0oH9ZWc = () => {
+	const Header = _captures[0];
+	return Qrl(q_Header_component_J4uyIhaBNR4.w([Header]));
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_2B8d0oH9ZWc\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Header } from \\"./test\\";\nconst q_Header_component_J4uyIhaBNR4 = qrl(() => import(\\"./test.tsx_Header_component_J4uyIhaBNR4\\"), \\"Header_component_J4uyIhaBNR4\\", [Header]);\nexport const Header_component_1_2B8d0oH9ZWc = () => { const Header = _captures[0];\n\n\treturn Qrl(q_Header_component_J4uyIhaBNR4.w([Header]));\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,cAAc;AACvB,MAAM,iCAAiC,UAAU,OAAO,4CAA4C,gCAAgC,CAAC,OAAO,CAAC;AAC7I,OAAO,MAAM,uCAAuC;CAAE,MAAM,SAAS,UAAU;AAE9E,QAAO,IAAI,+BAA+B,EAAE,CAAC,OAAO,CAAC,CAAC;;AACrD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_1_2B8d0oH9ZWc",
+  "displayName": "test.tsx_Header_component_1",
+  "hash": "2B8d0oH9ZWc",
+  "canonicalFilename": "test.tsx_Header_component_1_2B8d0oH9ZWc",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "Header"
+  ],
+  "loc": [
+    72,
+    249
+  ]
+}
+*/
+
+============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { Header } from "./test";
+export const Header_component_J4uyIhaBNR4 = (hola) => {
+	const Header = _captures[0];
+	const hola = this;
+	const { something, styff } = hola;
+	const hello = hola.nothere.stuff[global];
+	return _jsxSorted(Header, null, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Header } from \\"./test\\";\nexport const Header_component_J4uyIhaBNR4 = (hola) => { const Header = _captures[0];\n\n\tconst hola = this;\n\tconst { something, styff } = hola;\n\tconst hello = hola.nothere.stuff[global];\n\treturn _jsxSorted(Header, null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,cAAc;AACvB,OAAO,MAAM,gCAAgC,SAAS;CAAE,MAAM,SAAS,UAAU;CAEhF,MAAM,OAAO;CACb,MAAM,EAAE,WAAW,UAAU;CAC7B,MAAM,QAAQ,KAAK,QAAQ,MAAM;AACjC,QAAO,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,OAAO;;AACrD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_J4uyIhaBNR4",
+  "displayName": "test.tsx_Header_component",
+  "hash": "J4uyIhaBNR4",
+  "canonicalFilename": "test.tsx_Header_component_J4uyIhaBNR4",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "Header"
+  ],
+  "loc": [
+    99,
+    245
+  ],
+  "paramNames": [
+    "hola"
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_component_1_2B8d0oH9ZWc = qrl(() => import("./test.tsx_Header_component_1_2B8d0oH9ZWc"), "Header_component_1_2B8d0oH9ZWc", [Header]);
+import { $, component$ } from "@qwik.dev/core";
+export const Header = componentQrl(q_Header_component_1_2B8d0oH9ZWc.w([Header]));
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwik.\",\"/co\",\"st {so\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\treturn $((hola) => {\n\t\tconst hola = this;\n\t\tconst {something, styff} = hola;\n\t\tconst hello = hola.nothere.stuff[global];\n\t\treturn (\n\t\t\t<Header/>\n\t\t);\n\t});\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,mCAAmCC,UAEvC,OAAO,8CACK,kCAET,CAACC,OAAO,CAAC;AALb,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,0DASpB\"}")
+== DIAGNOSTICS ==
+
+[]

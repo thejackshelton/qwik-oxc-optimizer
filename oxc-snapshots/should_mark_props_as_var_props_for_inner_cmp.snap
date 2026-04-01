@@ -1,0 +1,178 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useResource$, Resource } from "@qwik.dev/core";
+import { type ModelProps } from "./modelMenu";
+import { serverImg } from "~/routes/(authenticated)/layout";
+
+export const Image = component$((props) => {
+  return (
+    <>
+      <img src={`${props.src}`} />
+    </>
+  );
+});
+
+export const ModelImg = component$<ModelProps>((props) => {
+  const imgLoc = useResource$(async ({ track }) => {
+    track(() => props.store.model);
+    return await serverImg('some.png');
+  });
+  return (
+    <>
+      <Resource
+        value={imgLoc}
+        onRejected={() => <p>error ...</p>}
+        onResolved={(res) =>
+          res && (
+            <>
+              <Image
+                src={res}
+              />
+            </>
+          )
+        }
+      />
+    </>
+  );
+});
+
+
+============================= test.tsx_Image_component_CS20HgBlRYI.js (ENTRY POINT)==
+
+export const Image_component_CS20HgBlRYI = (props) => {
+	return _jsxSorted(_Fragment, null, null, _jsxSorted("img", { src: `${props.src}` }, null, null, 3, null), 1, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Image_component_CS20HgBlRYI\"],\"sourcesContent\":[\"export const Image_component_CS20HgBlRYI = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"img\\", { src: `${props.src}` }, null, null, 3, null), 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,+BAA+B,UAAU;AACrD,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,KAAK,GAAG,MAAM,OAAO,EAAE,MAAM,MAAM,GAAG,KAAK,EAAE,GAAG,OAAO;;AACnH\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Image_component_CS20HgBlRYI",
+  "displayName": "test.tsx_Image_component",
+  "hash": "CS20HgBlRYI",
+  "canonicalFilename": "test.tsx_Image_component_CS20HgBlRYI",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    200,
+    292
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx_ModelImg_component_imgLoc_esO2cJSbtaI.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { Image } from "./test";
+import { Resource } from "@qwik.dev/core";
+export const ModelImg_component_imgLoc_esO2cJSbtaI = (props) => {
+	const Image = _captures[0];
+	const imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));
+	return _jsxSorted(_Fragment, null, null, _jsxSorted(Resource, { value: imgLoc }, {
+		onRejected: () => _jsxSorted("p", null, null, "error ...", 3, null),
+		onResolved: (res) => res && _jsxSorted(_Fragment, null, null, _jsxSorted(Image, { src: res }, null, null, 3, "u6_1"), 1, null)
+	}, null, 3, "u6_3"), 1, "u6_2");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_esO2cJSbtaI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Image } from \\"./test\\";\nimport { Resource } from \\"@qwik.dev/core\\";\nexport const ModelImg_component_imgLoc_esO2cJSbtaI = (props) => { const Image = _captures[0];\n\n\tconst imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(Resource, { value: imgLoc }, {\n\t\tonRejected: () => _jsxSorted(\\"p\\", null, null, \\"error ...\\", 3, null),\n\t\tonResolved: (res) => res && _jsxSorted(_Fragment, null, null, _jsxSorted(Image, { src: res }, null, null, 3, \\"u6_1\\"), 1, null)\n\t}, null, 3, \\"u6_3\\"), 1, \\"u6_2\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,aAAa;AACtB,SAAS,gBAAgB;AACzB,OAAO,MAAM,yCAAyC,UAAU;CAAE,MAAM,QAAQ,UAAU;CAEzF,MAAM,SAAS,eAAe,oDAAoD,EAAE,CAAC,MAAM,CAAC,CAAC;AAC7F,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,UAAU,EAAE,OAAO,QAAQ,EAAE;EAChF,kBAAkB,WAAW,KAAK,MAAM,MAAM,aAAa,GAAG,KAAK;EACnE,aAAa,QAAQ,OAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,KAAK,KAAK,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,KAAK;EAC9H,EAAE,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC9B\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ModelImg_component_imgLoc_esO2cJSbtaI",
+  "displayName": "test.tsx_ModelImg_component_imgLoc",
+  "hash": "esO2cJSbtaI",
+  "canonicalFilename": "test.tsx_ModelImg_component_imgLoc_esO2cJSbtaI",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "Image"
+  ],
+  "loc": [
+    319,
+    780
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { serverImg } from "~/routes/(authenticated)/layout";
+export const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => {
+	const props = _captures[0];
+	const _ref = {};
+	_ref.track = _rawProps._ref.track;
+	const { track } = _ref;
+	track(() => props.store.model);
+	return await serverImg("some.png");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\nexport const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => { const props = _captures[0];\n\n\tconst _ref = {};\n\t_ref.track = _rawProps._ref.track;\n\tconst { track } = _ref;\n\ttrack(() => props.store.model);\n\treturn await serverImg(\\"some.png\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAE/G,MAAM,OAAO,EAAE;AACf,MAAK,QAAQ,UAAU,KAAK;CAC5B,MAAM,EAAE,UAAU;AAClB,aAAY,MAAM,MAAM,MAAM;AAC9B,QAAO,MAAM,UAAU,WAAW;;AACjC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI",
+  "displayName": "test.tsx_ModelImg_component_imgLoc_useResource",
+  "hash": "Ogi9hEJvtmI",
+  "canonicalFilename": "test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useResource$",
+  "captures": true,
+  "captureNames": [
+    "props"
+  ],
+  "loc": [
+    372,
+    488
+  ],
+  "paramNames": [
+    "_rawProps"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_Image_component_CS20HgBlRYI = qrl(() => import("./test.tsx_Image_component_CS20HgBlRYI"), "Image_component_CS20HgBlRYI");
+const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
+const q_ModelImg_component_imgLoc_esO2cJSbtaI = qrl(() => import("./test.tsx_ModelImg_component_imgLoc_esO2cJSbtaI"), "ModelImg_component_imgLoc_esO2cJSbtaI", [Image]);
+import { component$, useResource$, Resource } from "@qwik.dev/core";
+import { type ModelProps } from "./modelMenu";
+import { serverImg } from "~/routes/(authenticated)/layout";
+export const Image = componentQrl(q_Image_component_CS20HgBlRYI);
+export const ModelImg = componentQrl<ModelProps>(q_ModelImg_component_imgLoc_esO2cJSbtaI.w([Image]));
+
+
+Some("{\"version\":3,\"names\":[\" component\",\" compone\",\" useResou\",\"t { component$, useResource$,\",\"sou\",\"t { component$, useResource$, Resource } from \\"@qwi\",\"ev/\",\"e = c\",\"t { component$, useResource$, Resource \",\"rom\",\"ticat\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$, Resource } from \\"@qwik.dev/core\\";\nimport { type ModelProps } from \\"./modelMenu\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\n\nexport const Image = component$((props) => {\n  return (\n    <>\n      <img src={`${props.src}`} />\n    </>\n  );\n});\n\nexport const ModelImg = component$<ModelProps>((props) => {\n  const imgLoc = useResource$(async ({ track }) => {\n    track(() => props.store.model);\n    return await serverImg('some.png');\n  });\n  return (\n    <>\n      <Resource\n        value={imgLoc}\n        onRejected={() => <p>error ...</p>}\n        onResolved={(res) =>\n          res && (\n            <>\n              <Image\n                src={res}\n              />\n            </>\n          )\n        }\n      />\n    </>\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,gCAAgCC,UAAU,OAAO,2CAC1B,8BACjB;AAHX,MACKC,sDAAsDC,UAC3D,OAAO,iEACkB,qDAET,CAACC,MAAM,CAAC;AALxB,MACKC,0CAA0CC,UAAU,OAAO,qDAE/D,yCAAyC,CAACC,MAAM,CAAC;AAFlD,SAAS,YAAY,cAAc,gBAAgB;AACnD,cAAc,kBAAkB;AAChC,SAAS,iBAAiB;AAE1B,OAAO,MAAM,QAAQC,2CAMnB;AAEF,OAAO,MAAM,WAAWA,aAAW,+DAsBjC\"}")
+== DIAGNOSTICS ==
+
+[]

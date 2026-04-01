@@ -1,0 +1,118 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+import { server$ } from '@qwik.dev/router';
+import { clientSupabase } from 'supabase';
+import { Client } from 'openai';
+import { secret } from './secret';
+import { sideEffect } from './secret';
+
+const supabase = clientSupabase();
+const dfd = new Client(secret);
+
+(function() {
+	console.log('run');
+	})();
+	(() => {
+	console.log('run');
+	})();
+
+sideEffect();
+
+export const api = server$(() => {
+	supabase.from('ffg').do(dfd);
+});
+
+export default component$(() => {
+	return (
+		<button onClick$={() => await api()}></button>
+	)
+	});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { api } from "./test";
+export const component_ZUK1E201Ins = () => {
+	const api = _captures[0];
+	return _jsxSorted("button", { "q:p": api }, { "q-e:click": () => await api() }, null, 7, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { api } from \\"./test\\";\nexport const component_ZUK1E201Ins = () => { const api = _captures[0];\n\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": api }, { \\"q-e:click\\": () => await api() }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,OAAO,MAAM,8BAA8B;CAAE,MAAM,MAAM,UAAU;AAElE,QAAO,WAAW,UAAU,EAAE,OAAO,KAAK,EAAE,EAAE,mBAAmB,MAAM,KAAK,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC/F\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "api"
+  ],
+  "loc": [
+    491,
+    575
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_api_server_JonPp043gH0 = _noopQrlDEV("api_server_JonPp043gH0", [dfd, supabase], {
+	file: "test.tsx",
+	lo: 424,
+	hi: 473,
+	displayName: "test.tsx_api_server"
+});
+const q_component_ZUK1E201Ins = qrlDEV(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins", [api], {
+	file: "test.tsx",
+	lo: 491,
+	hi: 575,
+	displayName: "test.tsx_component"
+});
+import { component$ } from "@qwik.dev/core";
+import { server$ } from "@qwik.dev/router";
+import { clientSupabase } from "supabase";
+import { Client } from "openai";
+import { secret } from "./secret";
+import { sideEffect } from "./secret";
+const supabase = clientSupabase();
+const dfd = new Client(secret);
+(function() {
+	console.log("run");
+})();
+(() => {
+	console.log("run");
+})();
+sideEffect();
+export const api = serverQrl(q_api_server_JonPp043gH0.w([dfd, supabase]));
+export default componentQrl(q_component_ZUK1E201Ins.w([api]));
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@\",\"k.dev/core'\",\"qwi\",\"dev/rout\",\"mpor\",\"as\",\" '\",\"';\nimport {\",\"t { component$ } from '\",\"ik.dev\",\" fr\",\"paba\",\"li\",\"om\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,2BAA2BC,YAAY,0BACnB,CAACC,KAAKC,SAAS,EAAE;CACzCC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAAMC,aAC9B;CACV,CAAC;AALD,MACKC,0BAA0BC,aAAa,OACtC,qCAAqC,yBACnB,CAACC,IAAI,EAAE;CAAGC,MAAM;CAC9BC,IAAI;CAAMC,IAAI;CAAMN,aACpB;CAAsB,CAAC;AAJjC,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AACxB,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMO,sDAEjB;AAEF,eAAeC,8CAIZ\"}")
+== DIAGNOSTICS ==
+
+[
+  {
+    "scope": "optimizer",
+    "category": "sourceError",
+    "code": null,
+    "file": "test.tsx",
+    "message": "`await` is only allowed within async functions and at the top levels of modules"
+  }
+]

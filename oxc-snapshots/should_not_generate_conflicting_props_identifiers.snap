@@ -1,0 +1,34 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useComputed$, useTask$ } from '@qwik.dev/core'
+
+		export default component$(({ color, ...props }) => {
+		useComputed$(() => color)
+
+		useTask$(() => {
+			props.checked
+		})
+
+		return 'hi'
+		})
+		
+
+============================= test.tsx ==
+
+const q_component_useComputed_97haPIkKcj4 = _noopQrl("component_useComputed_97haPIkKcj4");
+const q_component_useTask_q0Wg23FFwVQ = _noopQrl("component_useTask_q0Wg23FFwVQ");
+const q_component_ZUK1E201Ins = _noopQrl("component_ZUK1E201Ins");
+import { component$, useComputed$, useTask$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, use\",\"k$ } fro\",\"ort { component$, useComputed$,\",\"eTask$ }\",\"ort { component$, useCo\",\"ted$, us\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,sCAAsCC,SAAS,oCAEnC;AAHjB,MACKC,kCAAkCC,SAAS,gCAEvC;AAHT,MACKC,0BAA0BC,SAAS,wBAAwB;AAA9D,SAAS,YAAY,cAAc,gBAAgB;AAEnD,eAAeC,qCAQb\"}")
+== DIAGNOSTICS ==
+
+[]

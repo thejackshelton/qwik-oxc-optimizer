@@ -1,0 +1,89 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+export const Header = component$(() => {
+	console.log("mount");
+	return (
+		<div onClick={$((ctx) => console.log(ctx))}/>
+	);
+});
+
+
+============================= test.tsx_Header_component_div_onClick_i7ekvWH3674.tsx (ENTRY POINT)==
+
+export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(ctx);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_onClick_i7ekvWH3674\"],\"sourcesContent\":[\"export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(ctx);;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_div_onClick_i7ekvWH3674",
+  "displayName": "test.tsx_Header_component_div_onClick",
+  "hash": "i7ekvWH3674",
+  "canonicalFilename": "test.tsx_Header_component_div_onClick_i7ekvWH3674",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    139,
+    167
+  ],
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
+
+const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
+export const Header_component_J4uyIhaBNR4 = () => {
+	console.log("mount");
+	return _jsxSorted("div", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import(\\"./test.tsx_Header_component_div_onClick_i7ekvWH3674\\"), \\"Header_component_div_onClick_i7ekvWH3674\\");\nexport const Header_component_J4uyIhaBNR4 = () => {\n\tconsole.log(\\"mount\\");\n\treturn _jsxSorted(\\"div\\", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,2CAA2C;AACvK,OAAO,MAAM,qCAAqC;AACjD,SAAQ,IAAI,QAAQ;AACpB,QAAO,WAAW,OAAO,EAAE,SAAS,IAAI,2CAA2C,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO;;AAC5G\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_J4uyIhaBNR4",
+  "displayName": "test.tsx_Header_component",
+  "hash": "J4uyIhaBNR4",
+  "canonicalFilename": "test.tsx_Header_component_J4uyIhaBNR4",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    71,
+    177
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
+import { $, component$ } from "@qwik.dev/core";
+export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UACtC,OAAO,4CACG,+BAEF;AAJR,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAKpB\"}")
+== DIAGNOSTICS ==
+
+[]

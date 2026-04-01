@@ -1,0 +1,137 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useStore } from '@qwik.dev/core';
+
+export const App = component$(() => {
+	const store = useStore({
+		count: 0,
+		stuff: 0,
+		nested: {
+			count: 0
+		}
+	});
+	const signal = useSignal(0);
+	return (
+		<Cmp
+			prop={'true' + 1 ? 'true' : ''}
+			count={store.count}
+			nested={store.nested.count}
+			signal={signal}
+			store={store.stuff + 12}
+			value={signal.formData?.get('username')}
+		>
+		</Cmp>
+	);
+});
+
+export const Cmp = component$((props) => {
+	return (
+		<>
+			<p data-value={props.count}>{props.nested.count}</p>
+			<p>Value {props.count}<span></span></p>
+		</>
+	);
+});
+
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+import { Cmp } from "./test";
+import { useStore } from "@qwik.dev/core";
+export const App_component_ckEPmXZlub0 = () => {
+	const store = useStore({
+		count: 0,
+		stuff: 0,
+		nested: { count: 0 }
+	});
+	const signal = useSignal(0);
+	return _jsxSorted(Cmp, {
+		count: store.count,
+		nested: store.nested.count,
+		signal,
+		store: store.stuff + 12,
+		value: signal.formData?.get("username")
+	}, { prop: "true" + 1 ? "true" : "" }, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { Cmp } from \\"./test\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: { count: 0 }\n\t});\n\tconst signal = useSignal(0);\n\treturn _jsxSorted(Cmp, {\n\t\tcount: store.count,\n\t\tnested: store.nested.count,\n\t\tsignal,\n\t\tstore: store.stuff + 12,\n\t\tvalue: signal.formData?.get(\\"username\\")\n\t}, { prop: \\"true\\" + 1 ? \\"true\\" : \\"\\" }, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,SAAS,gBAAgB;AACzB,OAAO,MAAM,kCAAkC;CAC9C,MAAM,QAAQ,SAAS;EACtB,OAAO;EACP,OAAO;EACP,QAAQ,EAAE,OAAO,GAAG;EACpB,CAAC;CACF,MAAM,SAAS,UAAU,EAAE;AAC3B,QAAO,WAAW,KAAK;EACtB,OAAO,MAAM;EACb,QAAQ,MAAM,OAAO;EACrB;EACA,OAAO,MAAM,QAAQ;EACrB,OAAO,OAAO,UAAU,IAAI,WAAW;EACvC,EAAE,EAAE,MAAM,SAAS,IAAI,SAAS,IAAI,EAAE,MAAM,GAAG,OAAO;;AACtD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    76,
+    424
+  ]
+}
+*/
+
+============================= test.tsx_App_Cmp_component_PetHcOP03HU.js (ENTRY POINT)==
+
+const _hf0 = (p0) => p0.nested.count;
+export const App_Cmp_component_PetHcOP03HU = (props) => {
+	return _jsxSorted(_Fragment, null, null, [_jsxSorted("p", null, { "data-value": _wrapProp(props, "count") }, _fnSignal(_hf0, [props], "p0 => p0.nested.count;"), 3, null), _jsxSorted("p", null, null, [
+		"Value",
+		_wrapProp(props, "count"),
+		_jsxSorted("span", null, null, null, 3, null)
+	], 3, null)], 1, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Cmp_component_PetHcOP03HU\"],\"sourcesContent\":[\"const _hf0 = (p0) => p0.nested.count;\nexport const App_Cmp_component_PetHcOP03HU = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"p\\", null, { \\"data-value\\": _wrapProp(props, \\"count\\") }, _fnSignal(_hf0, [props], \\"p0 => p0.nested.count;\\"), 3, null), _jsxSorted(\\"p\\", null, null, [\n\t\t\\"Value\\",\n\t\t_wrapProp(props, \\"count\\"),\n\t\t_jsxSorted(\\"span\\", null, null, null, 3, null)\n\t], 3, null)], 1, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,MAAM,QAAQ,OAAO,GAAG,OAAO;AAC/B,OAAO,MAAM,iCAAiC,UAAU;AACvD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,EAAE,cAAc,UAAU,OAAO,QAAQ,EAAE,EAAE,UAAU,MAAM,CAAC,MAAM,EAAE,yBAAyB,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM;EACtM;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK;EAC7C,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACvB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Cmp_component_PetHcOP03HU",
+  "displayName": "test.tsx_App_Cmp_component",
+  "hash": "PetHcOP03HU",
+  "canonicalFilename": "test.tsx_App_Cmp_component_PetHcOP03HU",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    446,
+    596
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_App_Cmp_component_PetHcOP03HU = qrl(() => import("./test.tsx_App_Cmp_component_PetHcOP03HU"), "App_Cmp_component_PetHcOP03HU");
+import { component$, useStore } from "@qwik.dev/core";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const Cmp = componentQrl(q_App_Cmp_component_PetHcOP03HU);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" compone\",\" useStore\",\"t { component$, useStore } \",\"m '\",\"t { component$, useStore } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: {\n\t\t\tcount: 0\n\t\t}\n\t});\n\tconst signal = useSignal(0);\n\treturn (\n\t\t<Cmp\n\t\t\tprop={'true' + 1 ? 'true' : ''}\n\t\t\tcount={store.count}\n\t\t\tnested={store.nested.count}\n\t\t\tsignal={signal}\n\t\t\tstore={store.stuff + 12}\n\t\t\tvalue={signal.formData?.get('username')}\n\t\t>\n\t\t</Cmp>\n\t);\n});\n\nexport const Cmp = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<p data-value={props.count}>{props.nested.count}</p>\n\t\t\t<p>Value {props.count}<span></span></p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,8BAA8BC,UAAU,OAAO,yCAEf,4BAEpC;AALD,MACKC,kCAAkCC,UAAU,OAEjD,6CACO,gCAEN;AALD,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAoBjB;AAEF,OAAO,MAAM,MAAMA,6CAOjB\"}")
+== DIAGNOSTICS ==
+
+[]

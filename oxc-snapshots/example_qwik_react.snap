@@ -1,0 +1,270 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { componentQrl, inlinedQrl, useLexicalScope, useHostElement, useStore, useTaskQrl, noSerialize, SkipRerender, implicit$FirstArg } from '@qwik.dev/core';
+import { jsx, Fragment } from '@qwik.dev/core/jsx-runtime';
+import { isBrowser, isServer } from '@qwik.dev/core';
+
+function qwikifyQrl(reactCmpQrl) {
+	return /*#__PURE__*/ componentQrl(inlinedQrl((props)=>{
+		const [reactCmpQrl] = useLexicalScope();
+		const hostElement = useHostElement();
+		const store = useStore({});
+		let run;
+		if (props['client:visible']) run = 'visible';
+		else if (props['client:load'] || props['client:only']) run = 'load';
+		useTaskQrl(inlinedQrl(async (track)=>{
+			const [hostElement, props, reactCmpQrl, store] = useLexicalScope();
+			track(props);
+			if (isBrowser) {
+				if (store.data) store.data.root.render(store.data.client.Main(store.data.cmp, filterProps(props)));
+				else {
+					const [Cmp, client] = await Promise.all([
+						reactCmpQrl.resolve(),
+						import('./client-f762f78c.js')
+					]);
+					let root;
+					if (hostElement.childElementCount > 0) root = client.hydrateRoot(hostElement, client.Main(Cmp, filterProps(props), store.event));
+					else {
+						root = client.createRoot(hostElement);
+						root.render(client.Main(Cmp, filterProps(props)));
+					}
+					store.data = noSerialize({
+						client,
+						cmp: Cmp,
+						root
+					});
+				}
+			}
+		}, "qwikifyQrl_component_useWatch_x04JC5xeP1U", [
+			hostElement,
+			props,
+			reactCmpQrl,
+			store
+		]), {
+			run
+		});
+		if (isServer && !props['client:only']) {
+			const jsx$1 = Promise.all([
+				reactCmpQrl.resolve(),
+				import('./server-9ac6caad.js')
+			]).then(([Cmp, server])=>{
+				const html = server.render(Cmp, filterProps(props));
+				return /*#__PURE__*/ jsx(Host, {
+					dangerouslySetInnerHTML: html,
+					[_IMMUTABLE]: [
+						"dangerouslySetInnerHTML"
+					]
+				});
+			});
+			return /*#__PURE__*/ jsx(Fragment, {
+				children: jsx$1
+			});
+		}
+		return /*#__PURE__*/ jsx(Host, {
+			children: /*#__PURE__*/ jsx(SkipRerender, {})
+		});
+	}, "qwikifyQrl_component_zH94hIe0Ick", [
+		reactCmpQrl
+	]), {
+		tagName: 'qwik-wrap'
+	});
+}
+const filterProps = (props)=>{
+	const obj = {};
+	Object.keys(props).forEach((key)=>{
+		if (!key.startsWith('client:')) obj[key] = props[key];
+	});
+	return obj;
+};
+const qwikify$ = implicit$FirstArg(qwikifyQrl);
+
+async function renderToString(rootNode, opts) {
+	const mod = await import('./server-9ac6caad.js');
+	const result = await mod.renderToString(rootNode, opts);
+	const styles = mod.getGlobalStyleTag(result.html);
+	const finalHtml = styles + result.html;
+	return {
+		...result,
+		html: finalHtml
+	};
+}
+
+export { qwikify$, qwikifyQrl, renderToString };
+		
+
+============================= ../node_modules/@qwik.dev/react/index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U.mjs (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { isBrowser } from "@qwik.dev/core";
+import { noSerialize } from "@qwik.dev/core";
+import { useLexicalScope } from "@qwik.dev/core";
+export const qwikifyQrl_component_useWatch_x04JC5xeP1U = async (track) => {
+	const hostElement = _captures[0];
+	const props = _captures[1];
+	const reactCmpQrl = _captures[2];
+	const store = _captures[3];
+	const [hostElement, props, reactCmpQrl, store] = useLexicalScope();
+	track(props);
+	if (isBrowser) {
+		if (store.data) store.data.root.render(store.data.client.Main(store.data.cmp, filterProps(props)));
+		else {
+			const [Cmp, client] = await Promise.all([reactCmpQrl.resolve(), import("./client-f762f78c.js")]);
+			let root;
+			if (hostElement.childElementCount > 0) root = client.hydrateRoot(hostElement, client.Main(Cmp, filterProps(props), store.event));
+			else {
+				root = client.createRoot(hostElement);
+				root.render(client.Main(Cmp, filterProps(props)));
+			}
+			store.data = noSerialize({
+				client,
+				cmp: Cmp,
+				root
+			});
+		}
+	}
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { isBrowser } from \\"@qwik.dev/core\\";\nimport { noSerialize } from \\"@qwik.dev/core\\";\nimport { useLexicalScope } from \\"@qwik.dev/core\\";\nexport const qwikifyQrl_component_useWatch_x04JC5xeP1U = async (track) => { const hostElement = _captures[0];\nconst props = _captures[1];\nconst reactCmpQrl = _captures[2];\nconst store = _captures[3];\n\n\tconst [hostElement, props, reactCmpQrl, store] = useLexicalScope();\n\ttrack(props);\n\tif (isBrowser) {\n\t\tif (store.data) store.data.root.render(store.data.client.Main(store.data.cmp, filterProps(props)));\n\t\telse {\n\t\t\tconst [Cmp, client] = await Promise.all([reactCmpQrl.resolve(), import(\\"./client-f762f78c.js\\")]);\n\t\t\tlet root;\n\t\t\tif (hostElement.childElementCount > 0) root = client.hydrateRoot(hostElement, client.Main(Cmp, filterProps(props), store.event));\n\t\t\telse {\n\t\t\t\troot = client.createRoot(hostElement);\n\t\t\t\troot.render(client.Main(Cmp, filterProps(props)));\n\t\t\t}\n\t\t\tstore.data = noSerialize({\n\t\t\t\tclient,\n\t\t\t\tcmp: Cmp,\n\t\t\t\troot\n\t\t\t});\n\t\t}\n\t}\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,SAAS,mBAAmB;AAC5B,SAAS,uBAAuB;AAChC,OAAO,MAAM,4CAA4C,OAAO,UAAU;CAAE,MAAM,cAAc,UAAU;CAC1G,MAAM,QAAQ,UAAU;CACxB,MAAM,cAAc,UAAU;CAC9B,MAAM,QAAQ,UAAU;CAEvB,MAAM,CAAC,aAAa,OAAO,aAAa,SAAS,iBAAiB;AAClE,OAAM,MAAM;AACZ,KAAI,WAAW;AACd,MAAI,MAAM,KAAM,OAAM,KAAK,KAAK,OAAO,MAAM,KAAK,OAAO,KAAK,MAAM,KAAK,KAAK,YAAY,MAAM,CAAC,CAAC;OAC7F;GACJ,MAAM,CAAC,KAAK,UAAU,MAAM,QAAQ,IAAI,CAAC,YAAY,SAAS,EAAE,OAAO,wBAAwB,CAAC;GAChG,IAAI;AACJ,OAAI,YAAY,oBAAoB,EAAG,QAAO,OAAO,YAAY,aAAa,OAAO,KAAK,KAAK,YAAY,MAAM,EAAE,MAAM,MAAM,CAAC;QAC3H;AACJ,WAAO,OAAO,WAAW,YAAY;AACrC,SAAK,OAAO,OAAO,KAAK,KAAK,YAAY,MAAM,CAAC,CAAC;;AAElD,SAAM,OAAO,YAAY;IACxB;IACA,KAAK;IACL;IACA,CAAC;;;;AAGH\"}")
+/*
+{
+  "origin": "../node_modules/@qwik.dev/react/index.qwik.mjs",
+  "name": "qwikifyQrl_component_useWatch_x04JC5xeP1U",
+  "displayName": "index.qwik.mjs_qwikifyQrl_component_useWatch",
+  "hash": "x04JC5xeP1U",
+  "canonicalFilename": "index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U",
+  "path": "../node_modules/@qwik.dev/react",
+  "extension": "mjs",
+  "ctxKind": "function",
+  "ctxName": "inlinedQrl",
+  "captures": true,
+  "captureNames": [
+    "hostElement",
+    "props",
+    "reactCmpQrl",
+    "store"
+  ],
+  "loc": [
+    624,
+    1468
+  ],
+  "paramNames": [
+    "track"
+  ]
+}
+*/
+
+============================= ../node_modules/@qwik.dev/react/index.qwik.mjs_qwikifyQrl_component_zH94hIe0Ick.mjs (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { Fragment } from "@qwik.dev/core/jsx-runtime";
+import { SkipRerender } from "@qwik.dev/core";
+import { isServer } from "@qwik.dev/core";
+import { jsx } from "@qwik.dev/core/jsx-runtime";
+import { useHostElement } from "@qwik.dev/core";
+import { useLexicalScope } from "@qwik.dev/core";
+import { useStore } from "@qwik.dev/core";
+import { useTaskQrl } from "@qwik.dev/core";
+const q_qwikifyQrl_component_useWatch_x04JC5xeP1U = qrl(() => import("./index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U.mjs"), "qwikifyQrl_component_useWatch_x04JC5xeP1U", [
+	hostElement,
+	props,
+	reactCmpQrl,
+	store
+]);
+export const qwikifyQrl_component_zH94hIe0Ick = (props) => {
+	const reactCmpQrl = _captures[0];
+	const [reactCmpQrl] = useLexicalScope();
+	const hostElement = useHostElement();
+	const store = useStore({});
+	let run;
+	if (props["client:visible"]) run = "visible";
+	else if (props["client:load"] || props["client:only"]) run = "load";
+	useTaskQrl(q_qwikifyQrl_component_useWatch_x04JC5xeP1U.w([
+		hostElement,
+		props,
+		reactCmpQrl,
+		store
+	]), { run });
+	if (isServer && !props["client:only"]) {
+		const jsx$1 = Promise.all([reactCmpQrl.resolve(), import("./server-9ac6caad.js")]).then(([Cmp, server]) => {
+			const html = server.render(Cmp, filterProps(props));
+			return /* @__PURE__ */ jsx(Host, {
+				dangerouslySetInnerHTML: html,
+				[_IMMUTABLE]: ["dangerouslySetInnerHTML"]
+			});
+		});
+		return /* @__PURE__ */ jsx(Fragment, { children: jsx$1 });
+	}
+	return /* @__PURE__ */ jsx(Host, { children: /* @__PURE__ */ jsx(SkipRerender, {}) });
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_component_zH94hIe0Ick\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { SkipRerender } from \\"@qwik.dev/core\\";\nimport { isServer } from \\"@qwik.dev/core\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { useHostElement } from \\"@qwik.dev/core\\";\nimport { useLexicalScope } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nimport { useTaskQrl } from \\"@qwik.dev/core\\";\nconst q_qwikifyQrl_component_useWatch_x04JC5xeP1U = qrl(() => import(\\"./index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U.mjs\\"), \\"qwikifyQrl_component_useWatch_x04JC5xeP1U\\", [\n\thostElement,\n\tprops,\n\treactCmpQrl,\n\tstore\n]);\nexport const qwikifyQrl_component_zH94hIe0Ick = (props) => { const reactCmpQrl = _captures[0];\n\n\tconst [reactCmpQrl] = useLexicalScope();\n\tconst hostElement = useHostElement();\n\tconst store = useStore({});\n\tlet run;\n\tif (props[\\"client:visible\\"]) run = \\"visible\\";\n\telse if (props[\\"client:load\\"] || props[\\"client:only\\"]) run = \\"load\\";\n\tuseTaskQrl(q_qwikifyQrl_component_useWatch_x04JC5xeP1U.w([\n\t\thostElement,\n\t\tprops,\n\t\treactCmpQrl,\n\t\tstore\n\t]), { run });\n\tif (isServer && !props[\\"client:only\\"]) {\n\t\tconst jsx$1 = Promise.all([reactCmpQrl.resolve(), import(\\"./server-9ac6caad.js\\")]).then(([Cmp, server]) => {\n\t\t\tconst html = server.render(Cmp, filterProps(props));\n\t\t\treturn /* @__PURE__ */ jsx(Host, {\n\t\t\t\tdangerouslySetInnerHTML: html,\n\t\t\t\t[_IMMUTABLE]: [\\"dangerouslySetInnerHTML\\"]\n\t\t\t});\n\t\t});\n\t\treturn /* @__PURE__ */ jsx(Fragment, { children: jsx$1 });\n\t}\n\treturn /* @__PURE__ */ jsx(Host, { children: /* @__PURE__ */ jsx(SkipRerender, {}) });\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,SAAS,oBAAoB;AAC7B,SAAS,gBAAgB;AACzB,SAAS,WAAW;AACpB,SAAS,sBAAsB;AAC/B,SAAS,uBAAuB;AAChC,SAAS,gBAAgB;AACzB,SAAS,kBAAkB;AAC3B,MAAM,8CAA8C,UAAU,OAAO,mEAAmE,6CAA6C;CACpL;CACA;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,oCAAoC,UAAU;CAAE,MAAM,cAAc,UAAU;CAE1F,MAAM,CAAC,eAAe,iBAAiB;CACvC,MAAM,cAAc,gBAAgB;CACpC,MAAM,QAAQ,SAAS,EAAE,CAAC;CAC1B,IAAI;AACJ,KAAI,MAAM,kBAAmB,OAAM;UAC1B,MAAM,kBAAkB,MAAM,eAAgB,OAAM;AAC7D,YAAW,4CAA4C,EAAE;EACxD;EACA;EACA;EACA;EACA,CAAC,EAAE,EAAE,KAAK,CAAC;AACZ,KAAI,YAAY,CAAC,MAAM,gBAAgB;EACtC,MAAM,QAAQ,QAAQ,IAAI,CAAC,YAAY,SAAS,EAAE,OAAO,wBAAwB,CAAC,CAAC,MAAM,CAAC,KAAK,YAAY;GAC1G,MAAM,OAAO,OAAO,OAAO,KAAK,YAAY,MAAM,CAAC;AACnD,UAAuB,oBAAI,MAAM;IAChC,yBAAyB;KACxB,aAAa,CAAC,0BAA0B;IACzC,CAAC;IACD;AACF,SAAuB,oBAAI,UAAU,EAAE,UAAU,OAAO,CAAC;;AAE1D,QAAuB,oBAAI,MAAM,EAAE,UAA0B,oBAAI,cAAc,EAAE,CAAC,EAAE,CAAC;;AACpF\"}")
+/*
+{
+  "origin": "../node_modules/@qwik.dev/react/index.qwik.mjs",
+  "name": "qwikifyQrl_component_zH94hIe0Ick",
+  "displayName": "index.qwik.mjs_qwikifyQrl_component",
+  "hash": "zH94hIe0Ick",
+  "canonicalFilename": "index.qwik.mjs_qwikifyQrl_component_zH94hIe0Ick",
+  "path": "../node_modules/@qwik.dev/react",
+  "extension": "mjs",
+  "ctxKind": "function",
+  "ctxName": "inlinedQrl",
+  "captures": true,
+  "captureNames": [
+    "reactCmpQrl"
+  ],
+  "loc": [
+    346,
+    2076
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= ../node_modules/@qwik.dev/react/index.qwik.mjs ==
+
+const q_qwikifyQrl_component_zH94hIe0Ick = qrl(() => import("./index.qwik.mjs_qwikifyQrl_component_zH94hIe0Ick.mjs"), "qwikifyQrl_component_zH94hIe0Ick", [reactCmpQrl]);
+import { componentQrl, inlinedQrl, useLexicalScope, useHostElement, useStore, useTaskQrl, noSerialize, SkipRerender, implicit$FirstArg } from "@qwik.dev/core";
+import { jsx, Fragment } from "@qwik.dev/core/jsx-runtime";
+import { isBrowser, isServer } from "@qwik.dev/core";
+function qwikifyQrl(reactCmpQrl) {
+	return /* @__PURE__ */ componentQrl(q_qwikifyQrl_component_zH94hIe0Ick.w([reactCmpQrl]), { tagName: "qwik-wrap" });
+}
+const filterProps = (props) => {
+	const obj = {};
+	Object.keys(props).forEach((key) => {
+		if (!key.startsWith("client:")) obj[key] = props[key];
+	});
+	return obj;
+};
+const qwikify$ = implicit$FirstArg(qwikifyQrl);
+async function renderToString(rootNode, opts) {
+	const mod = await import("./server-9ac6caad.js");
+	const result = await mod.renderToString(rootNode, opts);
+	const styles = mod.getGlobalStyleTag(result.html);
+	const finalHtml = styles + result.html;
+	return {
+		...result,
+		html: finalHtml
+	};
+}
+export { qwikify$, qwikifyQrl, renderToString };
+export { filterProps as _auto_filterProps };
+
+
+Some("{\"version\":3,\"names\":[\"t { componentQrl, inlinedQrl, useL\",\"cal\",\"ore';\nimpor\",\" componentQ\",\"inlinedQrl, useLe\"],\"sources\":[\"../node_modules/@qwik.dev/react/index.qwik.mjs\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useLexicalScope, useHostElement, useStore, useTaskQrl, noSerialize, SkipRerender, implicit$FirstArg } from '@qwik.dev/core';\nimport { jsx, Fragment } from '@qwik.dev/core/jsx-runtime';\nimport { isBrowser, isServer } from '@qwik.dev/core';\n\nfunction qwikifyQrl(reactCmpQrl) {\n\treturn /*#__PURE__*/ componentQrl(inlinedQrl((props)=>{\n\t\tconst [reactCmpQrl] = useLexicalScope();\n\t\tconst hostElement = useHostElement();\n\t\tconst store = useStore({});\n\t\tlet run;\n\t\tif (props['client:visible']) run = 'visible';\n\t\telse if (props['client:load'] || props['client:only']) run = 'load';\n\t\tuseTaskQrl(inlinedQrl(async (track)=>{\n\t\t\tconst [hostElement, props, reactCmpQrl, store] = useLexicalScope();\n\t\t\ttrack(props);\n\t\t\tif (isBrowser) {\n\t\t\t\tif (store.data) store.data.root.render(store.data.client.Main(store.data.cmp, filterProps(props)));\n\t\t\t\telse {\n\t\t\t\t\tconst [Cmp, client] = await Promise.all([\n\t\t\t\t\t\treactCmpQrl.resolve(),\n\t\t\t\t\t\timport('./client-f762f78c.js')\n\t\t\t\t\t]);\n\t\t\t\t\tlet root;\n\t\t\t\t\tif (hostElement.childElementCount > 0) root = client.hydrateRoot(hostElement, client.Main(Cmp, filterProps(props), store.event));\n\t\t\t\t\telse {\n\t\t\t\t\t\troot = client.createRoot(hostElement);\n\t\t\t\t\t\troot.render(client.Main(Cmp, filterProps(props)));\n\t\t\t\t\t}\n\t\t\t\t\tstore.data = noSerialize({\n\t\t\t\t\t\tclient,\n\t\t\t\t\t\tcmp: Cmp,\n\t\t\t\t\t\troot\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t}\n\t\t}, \\"qwikifyQrl_component_useWatch_x04JC5xeP1U\\", [\n\t\t\thostElement,\n\t\t\tprops,\n\t\t\treactCmpQrl,\n\t\t\tstore\n\t\t]), {\n\t\t\trun\n\t\t});\n\t\tif (isServer && !props['client:only']) {\n\t\t\tconst jsx$1 = Promise.all([\n\t\t\t\treactCmpQrl.resolve(),\n\t\t\t\timport('./server-9ac6caad.js')\n\t\t\t]).then(([Cmp, server])=>{\n\t\t\t\tconst html = server.render(Cmp, filterProps(props));\n\t\t\t\treturn /*#__PURE__*/ jsx(Host, {\n\t\t\t\t\tdangerouslySetInnerHTML: html,\n\t\t\t\t\t[_IMMUTABLE]: [\n\t\t\t\t\t\t\\"dangerouslySetInnerHTML\\"\n\t\t\t\t\t]\n\t\t\t\t});\n\t\t\t});\n\t\t\treturn /*#__PURE__*/ jsx(Fragment, {\n\t\t\t\tchildren: jsx$1\n\t\t\t});\n\t\t}\n\t\treturn /*#__PURE__*/ jsx(Host, {\n\t\t\tchildren: /*#__PURE__*/ jsx(SkipRerender, {})\n\t\t});\n\t}, \\"qwikifyQrl_component_zH94hIe0Ick\\", [\n\t\treactCmpQrl\n\t]), {\n\t\ttagName: 'qwik-wrap'\n\t});\n}\nconst filterProps = (props)=>{\n\tconst obj = {};\n\tObject.keys(props).forEach((key)=>{\n\t\tif (!key.startsWith('client:')) obj[key] = props[key];\n\t});\n\treturn obj;\n};\nconst qwikify$ = implicit$FirstArg(qwikifyQrl);\n\nasync function renderToString(rootNode, opts) {\n\tconst mod = await import('./server-9ac6caad.js');\n\tconst result = await mod.renderToString(rootNode, opts);\n\tconst styles = mod.getGlobalStyleTag(result.html);\n\tconst finalHtml = styles + result.html;\n\treturn {\n\t\t...result,\n\t\thtml: finalHtml\n\t};\n}\n\nexport { qwikify$, qwikifyQrl, renderToString };\n\t\t\"],\"mappings\":\"AAAA,MACKA,qCAAqCC,UAAU,OAAO,0DAA0D,oCAAoC,CAACC,YACpJ,CAAC;AADP,SAAS,cAAc,YAAY,iBAAiB,gBAAgB,UAAU,YAAY,aAAa,cAAc,yBAAyB;AAC9I,SAAS,KAAK,gBAAgB;AAC9B,SAAS,WAAW,gBAAgB;AAEpC,SAAS,WAAW,aAAa;AAChC,QAAqB,kFA4DjB,EACH,SAAS,aACT,CAAC;;AAEH,MAAM,eAAe,UAAQ;CAC5B,MAAM,MAAM,EAAE;AACd,QAAO,KAAK,MAAM,CAAC,SAAS,QAAM;AACjC,MAAI,CAAC,IAAI,WAAW,UAAU,CAAE,KAAI,OAAO,MAAM;GAChD;AACF,QAAO;;AAER,MAAM,WAAW,kBAAkB,WAAW;AAE9C,eAAe,eAAe,UAAU,MAAM;CAC7C,MAAM,MAAM,MAAM,OAAO;CACzB,MAAM,SAAS,MAAM,IAAI,eAAe,UAAU,KAAK;CACvD,MAAM,SAAS,IAAI,kBAAkB,OAAO,KAAK;CACjD,MAAM,YAAY,SAAS,OAAO;AAClC,QAAO;EACN,GAAG;EACH,MAAM;EACN;;AAGF,SAAS,UAAU,YAAY;AA1F/B,SACQC,eAAeC\"}")
+== DIAGNOSTICS ==
+
+[]

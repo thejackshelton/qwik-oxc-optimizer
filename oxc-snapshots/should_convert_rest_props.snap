@@ -1,0 +1,99 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useTask$ } from '@qwik.dev/core'
+
+		export default component$<any>(({ ...props }) => {
+		useTask$(() => {
+			props.checked
+		})
+
+		return 'hi'
+		})
+		
+
+============================= test.tsx_component_useTask_q0Wg23FFwVQ.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_useTask_q0Wg23FFwVQ = () => {
+	const props = _captures[0];
+	props.checked;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_useTask_q0Wg23FFwVQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_useTask_q0Wg23FFwVQ = () => { const props = _captures[0];\n\n\tprops.checked;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sCAAsC;CAAE,MAAM,QAAQ,UAAU;AAE5E,OAAM;;AACL\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_useTask_q0Wg23FFwVQ",
+  "displayName": "test.tsx_component_useTask",
+  "hash": "q0Wg23FFwVQ",
+  "canonicalFilename": "test.tsx_component_useTask_q0Wg23FFwVQ",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": true,
+  "captureNames": [
+    "props"
+  ],
+  "loc": [
+    113,
+    151
+  ]
+}
+*/
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { _restProps } from "@qwik.dev/core";
+const q_component_useTask_q0Wg23FFwVQ = qrl(() => import("./test.tsx_component_useTask_q0Wg23FFwVQ"), "component_useTask_q0Wg23FFwVQ", [props]);
+export const component_ZUK1E201Ins = (_rawProps) => {
+	const props = _restProps(_rawProps);
+	useTaskQrl(q_component_useTask_q0Wg23FFwVQ.w([props]));
+	return "hi";
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _restProps } from \\"@qwik.dev/core\\";\nconst q_component_useTask_q0Wg23FFwVQ = qrl(() => import(\\"./test.tsx_component_useTask_q0Wg23FFwVQ\\"), \\"component_useTask_q0Wg23FFwVQ\\", [props]);\nexport const component_ZUK1E201Ins = (_rawProps) => {\n\tconst props = _restProps(_rawProps);\n\tuseTaskQrl(q_component_useTask_q0Wg23FFwVQ.w([props]));\n\treturn \\"hi\\";\n};;\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,MAAM,kCAAkC,UAAU,OAAO,6CAA6C,iCAAiC,CAAC,MAAM,CAAC;AAC/I,OAAO,MAAM,yBAAyB,cAAc;CACnD,MAAM,QAAQ,WAAW,UAAU;AACnC,YAAW,gCAAgC,EAAE,CAAC,MAAM,CAAC,CAAC;AACtD,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    75,
+    171
+  ],
+  "paramNames": [
+    "_rawProps"
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useTask$ } from "@qwik.dev/core";
+export default componentQrl<any>(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\"ort { component$, useTa\",\" } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$<any>(({ ...props }) => {\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,0BAA0BC,UAAU,OAAO,qCAEpB,wBAAwB;AAFlD,SAAS,YAAY,gBAAgB;AAErC,eAAeC,0CAMb\"}")
+== DIAGNOSTICS ==
+
+[]

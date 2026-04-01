@@ -1,0 +1,23 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { inlinedQrl } from '@qwik.dev/core';
+
+		const foo = inlinedQrl(null, 'some_hash');
+		
+
+============================= test.tsx ==
+
+import { inlinedQrl } from "@qwik.dev/core";
+const foo = inlinedQrl(null, "some_hash");
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { inlinedQrl } from '@qwik.dev/core';\n\n\t\tconst foo = inlinedQrl(null, 'some_hash');\n\t\t\"],\"mappings\":\"AACE,SAAS,kBAAkB;AAE3B,MAAM,MAAM,WAAW,MAAM,YAAY\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,80 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useStore, mutable } from '@qwik.dev/core';
+
+import {dep} from './file';
+import styles from './styles.module.css';
+
+export const App = component$((props) => {
+	const signal = useSignal(0);
+	const store = useStore({});
+	const count = props.counter.count;
+
+	return (
+		<div
+			class={{
+				even: count % 2 === 0,
+				odd: count % 2 === 1,
+				stable0: true,
+				hidden: false,
+			}}
+			staticClass={styles.foo}
+			staticDocument={window.document}
+			staticText="text"
+			staticText2={`text`}
+			staticNumber={1}
+			staticBoolean={true}
+			staticExpr={`text${12}`}
+			staticExpr2={typeof `text${12}` === 'string' ? 12 : 43}
+
+			signal={signal}
+			signalValue={signal.value}
+			signalComputedValue={12 + signal.value}
+
+			store={store.address.city.name}
+			storeComputed={store.address.city.name ? 'true' : 'false'}
+
+			dep={dep}
+			depAccess={dep.thing}
+			depComputed={dep.thing + 'stuff'}
+
+			global={globalThing}
+			globalAccess={globalThing.thing}
+			globalComputed={globalThing.thing + 'stuff'}
+
+
+			noInline={signal.value()}
+			noInline2={signal.value + unknown()}
+			noInline3={mutable(signal)}
+			noInline4={signal.value + dep}
+		/>
+
+	);
+});
+
+
+============================= test.tsx ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const _hf0 = (p0) => 12 + p0.value;
+const _hf1 = (p0) => p0.address.city.name;
+const _hf2 = (p0) => p0.address.city.name ? "true" : "false";
+const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
+import { component$, useStore, mutable } from "@qwik.dev/core";
+import { dep } from "./file";
+import styles from "./styles.module.css";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { \",\"eS\",\"ore, \",\"$,\",\"useStor\",\", mu\",\"able\",\"t { component$, useStore, m\",\"ble } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, mutable } from '@qwik.dev/core';\n\nimport {dep} from './file';\nimport styles from './styles.module.css';\n\nexport const App = component$((props) => {\n\tconst signal = useSignal(0);\n\tconst store = useStore({});\n\tconst count = props.counter.count;\n\n\treturn (\n\t\t<div\n\t\t\tclass={{\n\t\t\t\teven: count % 2 === 0,\n\t\t\t\todd: count % 2 === 1,\n\t\t\t\tstable0: true,\n\t\t\t\thidden: false,\n\t\t\t}}\n\t\t\tstaticClass={styles.foo}\n\t\t\tstaticDocument={window.document}\n\t\t\tstaticText=\\"text\\"\n\t\t\tstaticText2={`text`}\n\t\t\tstaticNumber={1}\n\t\t\tstaticBoolean={true}\n\t\t\tstaticExpr={`text${12}`}\n\t\t\tstaticExpr2={typeof `text${12}` === 'string' ? 12 : 43}\n\n\t\t\tsignal={signal}\n\t\t\tsignalValue={signal.value}\n\t\t\tsignalComputedValue={12 + signal.value}\n\n\t\t\tstore={store.address.city.name}\n\t\t\tstoreComputed={store.address.city.name ? 'true' : 'false'}\n\n\t\t\tdep={dep}\n\t\t\tdepAccess={dep.thing}\n\t\t\tdepComputed={dep.thing + 'stuff'}\n\n\t\t\tglobal={globalThing}\n\t\t\tglobalAccess={globalThing.thing}\n\t\t\tglobalComputed={globalThing.thing + 'stuff'}\n\n\n\t\t\tnoInline={signal.value()}\n\t\t\tnoInline2={signal.value + unknown()}\n\t\t\tnoInline3={mutable(signal)}\n\t\t\tnoInline4={signal.value + dep}\n\t\t/>\n\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAM,KAAKC,GAAGC;AAD1B,MACKF,QAAO,OAAMG,GAAGC,QAAQC,KAAKC;AADlC,MACKN,QAAO,OAAMG,GAAGC,QAAQC,KAAKC,OAAO,SAAS;AADlD,MACKC,8BAA8BC,SAAS,4BAErC;AAFP,SAAS,YAAY,UAAU,eAAe;AAE9C,SAAQ,WAAU;AAClB,OAAO,YAAY;AAEnB,OAAO,MAAM,MAAMC,yCA6CjB\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,65 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export const Foo = component$(() => {
+	return (
+		<div>
+			<div onClick$={() => console.log('first')}/>
+			<div onClick$={() => console.log('second')}/>
+			<div onClick$={() => console.log('third')}/>
+		</div>
+	);
+});
+
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
+
+export const s_HTDRsvUbLiE = () => {
+	return _jsxSorted("div", null, null, [
+		_jsxSorted("div", null, { "q-e:click": () => console.log("first") }, null, 3, null),
+		_jsxSorted("div", null, { "q-e:click": () => console.log("second") }, null, 3, null),
+		_jsxSorted("div", null, { "q-e:click": () => console.log("third") }, null, 3, null)
+	], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"export const s_HTDRsvUbLiE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"first\\") }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"second\\") }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"third\\") }, null, 3, null)\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB;AAClC,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,KAAK;EACnF,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,SAAS,EAAE,EAAE,MAAM,GAAG,KAAK;EACpF,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,KAAK;EACnF,EAAE,GAAG,OAAO;;AACZ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    66,
+    263
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_s_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "s_HTDRsvUbLiE");
+import { component$ } from "@qwik.dev/core";
+export const Foo = componentQrl(q_s_HTDRsvUbLiE);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ \",\"rom\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => console.log('first')}/>\n\t\t\t<div onClick$={() => console.log('second')}/>\n\t\t\t<div onClick$={() => console.log('third')}/>\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,kBAAkBC,UAAU,OAAO,yCAEL,gBAEhC;AAJH,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,6BAQjB\"}")
+== DIAGNOSTICS ==
+
+[]

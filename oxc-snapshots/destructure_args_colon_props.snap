@@ -1,0 +1,64 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$ } from "@qwik.dev/core";
+		export default component$((props) => {
+			const { 'bind:value': bindValue } = props;
+			return (
+				<>
+				{bindValue}
+				</>
+			);
+		});
+		
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = (props) => {
+	const { "bind:value": bindValue } = props;
+	return _jsxSorted(_Fragment, null, null, bindValue, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = (props) => {\n\tconst { \\"bind:value\\": bindValue } = props;\n\treturn _jsxSorted(_Fragment, null, null, bindValue, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yBAAyB,UAAU;CAC/C,MAAM,EAAE,cAAc,cAAc;AACpC,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,GAAG,OAAO;;AAC7D\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    65,
+    188
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\" { compo\",\"$ } from \",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { 'bind:value': bindValue } = props;\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{bindValue}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,0BAA0BC,UAAU,OACxC,qCAAqC,wBACjB;AAFnB,SAAS,kBAAkB;AAC3B,eAAeC,qCAOb\"}")
+== DIAGNOSTICS ==
+
+[]

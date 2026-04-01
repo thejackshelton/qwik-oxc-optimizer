@@ -113,7 +113,12 @@ pub(crate) struct SegmentRecord {
     /// Each entry is a complete declaration code string (e.g. `"const THRESHOLD = 100;"`).
     pub migrated_root_vars: Vec<String>,
     /// Parent segment name if this segment is nested inside another (Phase 18).
+    /// NOTE: Initially set from segment_stack (which holds specifiers/placeholders).
+    /// Post-processed by `patch_segment_parents` to hold the actual symbol name.
     pub parent: Option<String>,
+    /// Span-start of the parent segment's call expression.
+    /// Used by `patch_segment_parents` to look up the actual parent symbol_name.
+    pub pending_parent_span: Option<u32>,
     /// Ordered function parameter names extracted from the closure (Phase 18).
     pub param_names: Option<Vec<String>>,
 }
@@ -579,6 +584,28 @@ pub(crate) struct QwikTransform {
 
     /// Whether `_chk` import from "@qwik.dev/core" is needed (bind:checked).
     pub(crate) needs_chk: bool,
+
+    // ---- Phase 18: stack_ctxt push tracking for JSX and marker calls ----------
+
+    /// Span-start values of JSX elements that pushed their tag name to `stack_ctxt`.
+    jsx_element_pushed_spans: HashSet<u32>,
+
+    /// Span-start values of JSX attributes that pushed their key to `stack_ctxt`.
+    jsx_attr_pushed_spans: HashSet<u32>,
+
+    /// Span-start values of marker function calls that pushed ctx_name to `stack_ctxt`.
+    marker_ctxt_pushed_spans: HashSet<u32>,
+
+    // ---- Phase 18: deferred parent resolution ----------------------------
+
+    /// Parallel to `segment_stack`: tracks the call-expression span_start of each
+    /// pending segment. Used to resolve the actual symbol_name for `parent` fields
+    /// after all segments have been registered.
+    segment_span_stack: Vec<u32>,
+
+    /// Maps call-expression span_start → final symbol_name.
+    /// Filled in `exit_call_expression` after `register_context_name` computes the symbol.
+    segment_span_to_symbol: HashMap<u32, String>,
 }
 
 // ---------------------------------------------------------------------------
@@ -721,6 +748,13 @@ impl QwikTransform {
             needs_fn_signal: false,
             needs_val: false,
             needs_chk: false,
+            // Phase 18: stack_ctxt push tracking for JSX and marker calls
+            jsx_element_pushed_spans: HashSet::new(),
+            jsx_attr_pushed_spans: HashSet::new(),
+            marker_ctxt_pushed_spans: HashSet::new(),
+            // Phase 18: deferred parent resolution
+            segment_span_stack: Vec::new(),
+            segment_span_to_symbol: HashMap::new(),
         }
     }
 
@@ -1880,8 +1914,10 @@ impl QwikTransform {
         // Extract param_names BEFORE folded_expr is consumed for codegen.
         let param_names = extract_ordered_param_names(&folded_expr);
 
-        // Capture parent from segment_stack BEFORE pushing (parent = current top = enclosing segment).
-        let parent = self.segment_stack.last().cloned();
+        // Capture parent span_start from segment_span_stack (the enclosing segment's call span).
+        // The actual symbol_name will be resolved in `patch_segment_parents` after all
+        // segments have been registered.
+        let pending_parent_span = self.segment_span_stack.last().copied();
 
         // Serialize `folded_expr` for the SegmentRecord.expr field.
         // folded_expr is the extracted closure body; the QRL call itself uses a fresh
@@ -1984,7 +2020,7 @@ impl QwikTransform {
             origin: self.rel_path.clone(),
             extension: self.extension.clone(),
             span,
-            parent: self.segment_stack.last().cloned(),
+            parent: None, // not used for entry policy; deferred parent resolution fills SegmentRecord
             scoped_idents: scoped_idents.clone(),
             captures: !scoped_idents.is_empty(),
             capture_names: scoped_idents.clone(),
@@ -2019,7 +2055,8 @@ impl QwikTransform {
             hash: names.hash.clone(),
             is_inline: false,
             migrated_root_vars: Vec::new(),
-            parent,
+            parent: None, // will be patched in patch_segment_parents
+            pending_parent_span,
             param_names,
         });
 
@@ -2880,6 +2917,73 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
     /// 7-priority dispatch for call expressions.
     ///
     /// Only fires for `Expression::Identifier` callees (member expressions are
+    // -----------------------------------------------------------------------
+    // JSX element / attribute stack_ctxt management (Phase 18)
+    // -----------------------------------------------------------------------
+    //
+    // To match SWC golden naming, the display_name of a segment includes the JSX
+    // element tag name and attribute key of any enclosing JSX. For example, a `$`
+    // call inside `<div onClick={...}>` gets display_name "..._div_onClick".
+    //
+    // We push the element tag to stack_ctxt in enter_jsx_element (fires BEFORE
+    // children, including attribute values, are traversed), and pop it in
+    // exit_jsx_element (fires AFTER). Similarly for JSXAttribute keys.
+    //
+    // Only native elements (lowercase tag) push their name. Component elements
+    // (uppercase) push their name too — SWC behavior.
+
+    fn enter_jsx_element(&mut self, node: &mut oxc::ast::ast::JSXElement<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+        // Extract tag name from the opening element
+        let tag_name = match &node.opening_element.name {
+            oxc::ast::ast::JSXElementName::Identifier(id) => id.name.as_str().to_string(),
+            oxc::ast::ast::JSXElementName::IdentifierReference(id) => id.name.as_str().to_string(),
+            _ => return, // member expressions, namespaced names — skip
+        };
+        if tag_name.is_empty() {
+            return;
+        }
+        self.stack_ctxt.push(tag_name);
+        self.jsx_element_pushed_spans.insert(node.span.start);
+    }
+
+    fn exit_jsx_element(&mut self, node: &mut oxc::ast::ast::JSXElement<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+        if self.jsx_element_pushed_spans.remove(&node.span.start) {
+            self.stack_ctxt.pop();
+        }
+    }
+
+    fn enter_jsx_attribute(&mut self, node: &mut oxc::ast::ast::JSXAttribute<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+        // Only push when the attribute has an expression container value (not a string literal or boolean)
+        let has_expr_value = matches!(
+            &node.value,
+            Some(oxc::ast::ast::JSXAttributeValue::ExpressionContainer(_))
+        );
+        if !has_expr_value {
+            return;
+        }
+        let attr_name = match &node.name {
+            oxc::ast::ast::JSXAttributeName::Identifier(id) => id.name.as_str().to_string(),
+            oxc::ast::ast::JSXAttributeName::NamespacedName(nn) => {
+                format!("{}:{}", nn.namespace.name.as_str(), nn.name.name.as_str())
+            }
+        };
+        if attr_name.is_empty() {
+            return;
+        }
+        self.stack_ctxt.push(attr_name);
+        self.jsx_attr_pushed_spans.insert(node.span.start);
+    }
+
+    fn exit_jsx_attribute(&mut self, node: &mut oxc::ast::ast::JSXAttribute<'a>, _ctx: &mut TraverseCtx<'a, ()>) {
+        if self.jsx_attr_pushed_spans.remove(&node.span.start) {
+            self.stack_ctxt.pop();
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Call expressions (XFRM-02, XFRM-08)
+    // -----------------------------------------------------------------------
+    //
     /// handled separately in later phases via segment extraction).
     ///
     /// Priority order:
@@ -2919,6 +3023,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             let ctx_name = "$".to_string();
             let ctx_kind = words::classify_ctx_kind(&ctx_name);
             self.segment_stack.push("$".to_string());
+            self.segment_span_stack.push(call.span.start);
             self.pending_qsegments.push(PendingQSegment {
                 ctx_name,
                 ctx_kind,
@@ -2970,7 +3075,16 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             if specifier.starts_with("component") {
                 self.component_depths.push(self.decl_stack.len());
             }
+            // Phase 18: push ctx_name (without $) to stack_ctxt so inner $-calls
+            // include it in their display_name (matches SWC golden naming behavior).
+            // E.g. for component$, push "component"; for useTask$, push "useTask".
+            let ctx_name_no_dollar = specifier.trim_end_matches('$').to_string();
+            if !ctx_name_no_dollar.is_empty() {
+                self.stack_ctxt.push(ctx_name_no_dollar);
+                self.marker_ctxt_pushed_spans.insert(call.span.start);
+            }
             self.segment_stack.push(specifier.clone());
+            self.segment_span_stack.push(call.span.start);
             self.pending_qsegments.push(PendingQSegment {
                 ctx_name: specifier,
                 ctx_kind,
@@ -3023,6 +3137,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         if has_pending {
             let pending = self.pending_qsegments.pop().unwrap();
             self.segment_stack.pop();
+            self.segment_span_stack.pop();
 
             // Retrieve the allocator via ctx.ast.
             let allocator: &'a Allocator = ctx.ast.allocator;
@@ -3086,7 +3201,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 .flat_map(|frame| frame.iter().cloned())
                 .collect();
 
-            let span = (call.span.start, call.span.end);
+            // Use first_arg span (matches SWC's behavior of reporting the argument's span,
+            // not the entire call expression span).
+            let first_arg_span = first_arg.span();
+            let span = (first_arg_span.start, first_arg_span.end);
             let ctx_name = &pending.ctx_name;
             let ctx_kind = pending.ctx_kind.clone();
 
@@ -3102,6 +3220,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 pending.display_name_override.as_deref(),
                 pending.hash_override.as_deref(),
             );
+
+            // Register this call's span → symbol_name for deferred parent resolution.
+            self.segment_span_to_symbol
+                .insert(call.span.start, names.symbol_name.clone());
 
             // --- Check if we should emit ---
             let should_emit = self.should_emit_segment(ctx_name, ctx_kind.clone());
@@ -3227,6 +3349,11 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // Phase 13: pop component_depths if this was a component$ exit.
             if ctx_name.starts_with("component") {
                 self.component_depths.pop();
+            }
+
+            // Phase 18: pop marker ctx_name from stack_ctxt if we pushed it.
+            if self.marker_ctxt_pushed_spans.remove(&call.span.start) {
+                self.stack_ctxt.pop();
             }
         }
 
@@ -4340,13 +4467,14 @@ mod tests {
 
     #[test]
     fn stack_ctxt_marker_call() {
-        // component$ is a marker function (priority 6), so it must NOT be pushed to stack_ctxt.
+        // component$ is a marker function (priority 6). After full traversal, the
+        // ctx_name push ("component") must have been popped (stack is symmetric).
         let xfrm = make_transform(
             r#"import { component$ } from "@qwik.dev/core"; const Cmp = component$(() => {});"#,
         );
         assert!(
             xfrm.stack_ctxt.is_empty(),
-            "stack_ctxt should be empty after traversal (marker calls must not push), got: {:?}",
+            "stack_ctxt should be empty after traversal (all pushes must be popped), got: {:?}",
             xfrm.stack_ctxt
         );
     }

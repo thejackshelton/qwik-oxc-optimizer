@@ -1,0 +1,84 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useSignal } from "@qwik.dev/core";
+import { destructureBindings } from "./destructure-bindings";
+
+export const FieldInput = component$(
+  (props) => {
+    const initialValues = { value: undefined as string | undefined };
+    const rest = destructureBindings(props, initialValues);
+
+    return (
+      <input
+        {...rest}
+        bind:value={finalValue}
+		onClick$={() => {
+			console.log('clicked');
+		}}
+      />
+    );
+  }
+);
+
+
+============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
+
+import { destructureBindings } from "./destructure-bindings";
+export const FieldInput_component_V4XAtJSTRKg = (props) => {
+	const initialValues = { value: undefined as string | undefined };
+	const rest = destructureBindings(props, initialValues);
+	return _jsxSplit("input", {
+		..._getVarProps(rest),
+		..._getConstProps(rest),
+		"bind:value": finalValue
+	}, { "q-e:click": () => {
+		console.log("clicked");
+	} }, null, 0, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { destructureBindings } from \\"./destructure-bindings\\";\nexport const FieldInput_component_V4XAtJSTRKg = (props) => {\n\tconst initialValues = { value: undefined as string | undefined };\n\tconst rest = destructureBindings(props, initialValues);\n\treturn _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(rest),\n\t\t..._getConstProps(rest),\n\t\t\\"bind:value\\": finalValue\n\t}, { \\"q-e:click\\": () => {\n\t\tconsole.log(\\"clicked\\");\n\t} }, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,2BAA2B;AACpC,OAAO,MAAM,oCAAoC,UAAU;CAC1D,MAAM,gBAAgB,EAAE,OAAO,iCAAiC;CAChE,MAAM,OAAO,oBAAoB,OAAO,cAAc;AACtD,QAAO,UAAU,SAAS;EACzB,GAAG,aAAa,KAAK;EACrB,GAAG,eAAe,KAAK;EACvB,cAAc;EACd,EAAE,EAAE,mBAAmB;AACvB,UAAQ,IAAI,UAAU;IACpB,EAAE,MAAM,GAAG,OAAO;;AACpB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "FieldInput_component_V4XAtJSTRKg",
+  "displayName": "test.tsx_FieldInput_component",
+  "hash": "V4XAtJSTRKg",
+  "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    149,
+    456
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _getVarProps } from "@qwik.dev/core";
+import { _getConstProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
+import { $, component$, useSignal } from "@qwik.dev/core";
+import { destructureBindings } from "./destructure-bindings";
+export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
+
+
+Some("{\"version\":3,\"names\":[\" $, componen\",\" $, component$\",\" $, compo\",\"t { $, component$, useSignal } fro\",\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,qCAAqCC,UAAU,OACpD,gDAAgD,mCAE5B;AAHpB,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,gDAezB\"}")
+== DIAGNOSTICS ==
+
+[]

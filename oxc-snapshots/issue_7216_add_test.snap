@@ -1,0 +1,74 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@builder.io/qwik';
+export default component$((props) => {
+  return (<p 
+		onHi$={() => 'hi'} 
+		{...props.foo} 
+		onHello$={props.helloHandler$} 
+		{...props.rest} 
+		onVar$={props.onVarHandler$} 
+		onConst$={() => 'const'} 
+		asd={"1"}
+	/>);
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = (props) => {
+	return _jsxSplit("p", {
+		"q-e:hi": () => "hi",
+		...props.foo,
+		"q-e:hello": props.helloHandler$,
+		...props.rest
+	}, {
+		"q-e:var": props.onVarHandler$,
+		"q-e:const": () => "const",
+		asd: "1"
+	}, null, 0, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = (props) => {\n\treturn _jsxSplit(\\"p\\", {\n\t\t\\"q-e:hi\\": () => \\"hi\\",\n\t\t...props.foo,\n\t\t\\"q-e:hello\\": props.helloHandler$,\n\t\t...props.rest\n\t}, {\n\t\t\\"q-e:var\\": props.onVarHandler$,\n\t\t\\"q-e:const\\": () => \\"const\\",\n\t\tasd: \\"1\\"\n\t}, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yBAAyB,UAAU;AAC/C,QAAO,UAAU,KAAK;EACrB,gBAAgB;EAChB,GAAG,MAAM;EACT,aAAa,MAAM;EACnB,GAAG,MAAM;EACT,EAAE;EACF,WAAW,MAAM;EACjB,mBAAmB;EACnB,KAAK;EACL,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    63,
+    274
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSplit } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\"t { component$ } from '\",\"ild\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OACxC,qCAAqC,wBAE7B;AAHT,SAAS,kBAAkB;AAC3B,eAAeC,qCAUb\"}")
+== DIAGNOSTICS ==
+
+[]

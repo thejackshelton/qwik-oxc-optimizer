@@ -1,0 +1,31 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export default component$(() => {
+	return (
+		<div onClick$={() => console.log(mongodb)}>
+		</div>
+	);
+});
+
+
+
+============================= src/components/mongo/index.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_rKJvPlyphow = _noopQrl("component_rKJvPlyphow");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_rKJvPlyphow);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.dev/c\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,SAAS,wBAEtB;AAFlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
+== DIAGNOSTICS ==
+
+[]

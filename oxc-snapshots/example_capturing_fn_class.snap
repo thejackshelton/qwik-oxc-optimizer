@@ -1,0 +1,104 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+
+export const App = component$(() => {
+	function hola() {
+		console.log('hola');
+	}
+	class Thing {}
+	class Other {}
+
+	return $(() => {
+		hola();
+		new Thing();
+		return (
+			<div></div>
+		)
+	});
+})
+
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+export const App_component_ckEPmXZlub0 = () => {
+	hola();
+	new Thing();
+	return _jsxSorted("div", null, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\thola();\n\tnew Thing();\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,OAAM;AACN,KAAI,OAAO;AACX,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    174,
+    242
+  ]
+}
+*/
+
+============================= test.tsx_App_component_1_w0t0o3QMovU.js (ENTRY POINT)==
+
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+export const App_component_1_w0t0o3QMovU = () => {
+	function hola() {
+		console.log("hola");
+	}
+	class Thing {}
+	class Other {}
+	return Qrl(q_App_component_ckEPmXZlub0);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3QMovU\"],\"sourcesContent\":[\"const q_App_component_ckEPmXZlub0 = qrl(() => import(\\"./test.tsx_App_component_ckEPmXZlub0\\"), \\"App_component_ckEPmXZlub0\\");\nexport const App_component_1_w0t0o3QMovU = () => {\n\tfunction hola() {\n\t\tconsole.log(\\"hola\\");\n\t}\n\tclass Thing {}\n\tclass Other {}\n\treturn Qrl(q_App_component_ckEPmXZlub0);\n};;\"],\"mappings\":\"AAAA,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,OAAO,MAAM,oCAAoC;CAChD,SAAS,OAAO;AACf,UAAQ,IAAI,OAAO;;CAEpB,MAAM,MAAM;CACZ,MAAM,MAAM;AACZ,QAAO,IAAI,4BAA4B;;AACtC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_1_w0t0o3QMovU",
+  "displayName": "test.tsx_App_component_1",
+  "hash": "w0t0o3QMovU",
+  "canonicalFilename": "test.tsx_App_component_1_w0t0o3QMovU",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    69,
+    246
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
+import { $, component$ } from "@qwik.dev/core";
+export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qw\",\"dev\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAE1C,2CACK,8BACW;AAJrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAcjB\"}")
+== DIAGNOSTICS ==
+
+[]

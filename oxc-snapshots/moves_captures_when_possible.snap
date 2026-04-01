@@ -1,0 +1,74 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useSignal, $ } from "@qwik.dev/core";
+
+		export const Test = component$(() => {
+			const sig = useSignal(0);
+			const foo = useSignal('foo');
+			const bar = useSignal('bar');
+			return <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;
+		});
+		
+
+============================= test.tsx_Test_component_qJXYteHpGTQ.js (ENTRY POINT)==
+
+import { useSignal } from "@qwik.dev/core";
+export const Test_component_qJXYteHpGTQ = () => {
+	const sig = useSignal(0);
+	const _ref = {};
+	_ref.foo = useSignal("_ref.foo");
+	const { foo } = _ref;
+	const _ref = {};
+	_ref.bar = useSignal("_ref.bar");
+	const { bar } = _ref;
+	return _jsxSorted("button", { "q:ps": [
+		bar,
+		foo,
+		sig
+	] }, {
+		"q-e:click": () => sig.value++,
+		"q-e:dbl-click": () => foo.value += sig.value,
+		"q-e:hover": () => sig.value += bar.value
+	}, sig, 7, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_qJXYteHpGTQ\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const Test_component_qJXYteHpGTQ = () => {\n\tconst sig = useSignal(0);\n\tconst _ref = {};\n\t_ref.foo = useSignal(\\"_ref.foo\\");\n\tconst { foo } = _ref;\n\tconst _ref = {};\n\t_ref.bar = useSignal(\\"_ref.bar\\");\n\tconst { bar } = _ref;\n\treturn _jsxSorted(\\"button\\", { \\"q:ps\\": [\n\t\tbar,\n\t\tfoo,\n\t\tsig\n\t] }, {\n\t\t\\"q-e:click\\": () => sig.value++,\n\t\t\\"q-e:dbl-click\\": () => foo.value += sig.value,\n\t\t\\"q-e:hover\\": () => sig.value += bar.value\n\t}, sig, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,EAAE;CACxB,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,WAAW;CAChC,MAAM,EAAE,QAAQ;CAChB,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,WAAW;CAChC,MAAM,EAAE,QAAQ;AAChB,QAAO,WAAW,UAAU,EAAE,QAAQ;EACrC;EACA;EACA;EACA,EAAE,EAAE;EACJ,mBAAmB,IAAI;EACvB,uBAAuB,IAAI,SAAS,IAAI;EACxC,mBAAmB,IAAI,SAAS,IAAI;EACpC,EAAE,KAAK,GAAG,OAAO;;AACjB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Test_component_qJXYteHpGTQ",
+  "displayName": "test.tsx_Test_component",
+  "hash": "qJXYteHpGTQ",
+  "canonicalFilename": "test.tsx_Test_component_qJXYteHpGTQ",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    85,
+    345
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Test_component_qJXYteHpGTQ = qrl(() => import("./test.tsx_Test_component_qJXYteHpGTQ"), "Test_component_qJXYteHpGTQ");
+import { component$, useSignal, $ } from "@qwik.dev/core";
+export const Test = componentQrl(q_Test_component_qJXYteHpGTQ);
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, useSignal,\",\"} f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const Test = component$(() => {\n\t\t\tconst sig = useSignal(0);\n\t\t\tconst foo = useSignal('foo');\n\t\t\tconst bar = useSignal('bar');\n\t\t\treturn <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,+BAA+BC,UAAU,OAAO,0CAEpB,6BACZ;AAHnB,SAAS,YAAY,WAAW,SAAS;AAEzC,OAAO,MAAM,OAAOC,0CAKlB\"}")
+== DIAGNOSTICS ==
+
+[]

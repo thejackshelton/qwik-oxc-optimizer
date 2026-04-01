@@ -1,0 +1,69 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $ } from '@qwik.dev/core';
+
+const shared = {
+  id: 'abc',
+};
+
+export const exportedValue = shared.id;
+
+export const handler = $(() => {
+  console.log(shared.id);
+});
+
+		
+
+============================= test.tsx_handler_T7IDIUVU4lI.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const handler_T7IDIUVU4lI = () => {
+	const shared = _captures[0];
+	console.log(shared.id);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const handler_T7IDIUVU4lI = () => { const shared = _captures[0];\n\n\tconsole.log(shared.id);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4BAA4B;CAAE,MAAM,SAAS,UAAU;AAEnE,SAAQ,IAAI,OAAO,GAAG;;AACrB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "handler_T7IDIUVU4lI",
+  "displayName": "test.tsx_handler",
+  "hash": "T7IDIUVU4lI",
+  "canonicalFilename": "test.tsx_handler_T7IDIUVU4lI",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "shared"
+  ],
+  "loc": [
+    136,
+    174
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_handler_T7IDIUVU4lI = qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI", [shared]);
+import { $ } from "@qwik.dev/core";
+const shared = { id: "abc" };
+export const exportedValue = shared.id;
+export const handler = Qrl(q_handler_T7IDIUVU4lI.w([shared]));
+export { shared as _auto_shared };
+
+
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"cor\",\"d.id;\n\",\"$\",\" $ } f\",\"'@qwik.dev/c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport const exportedValue = shared.id;\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,wBAAwBC,UAE3B,OAAO,mCAIC,uBAAuB,CAACC,OAElC,CAAC;AARD,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,MAAM,gBAAgB,OAAO;AAEpC,OAAO,MAAM,UAAUC,sCAErB;AAXF,SACQC,UAAUC\"}")
+== DIAGNOSTICS ==
+
+[]

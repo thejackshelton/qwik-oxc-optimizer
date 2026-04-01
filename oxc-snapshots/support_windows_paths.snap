@@ -1,0 +1,50 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+export const Greeter = component$(() => <div/>)
+
+
+============================= components\apps\apps.tsx_Greeter_component_Q7eEoxaolmI.ts (ENTRY POINT)==
+
+export const Greeter_component_Q7eEoxaolmI = () => _jsxSorted("div", null, null, null, 3, "9H_0");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"components\\apps\\apps.tsx_Greeter_component_Q7eEoxaolmI\"],\"sourcesContent\":[\"export const Greeter_component_Q7eEoxaolmI = () => _jsxSorted(\\"div\\", null, null, null, 3, \\"9H_0\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;AAAC\"}")
+/*
+{
+  "origin": "components\\apps\\apps.tsx",
+  "name": "Greeter_component_Q7eEoxaolmI",
+  "displayName": "components\\apps\\apps.tsx_Greeter_component",
+  "hash": "Q7eEoxaolmI",
+  "canonicalFilename": "components\\apps\\apps.tsx_Greeter_component_Q7eEoxaolmI",
+  "path": "",
+  "extension": "ts",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    69,
+    93
+  ]
+}
+*/
+
+============================= components\apps\apps.ts ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Greeter_component_Q7eEoxaolmI = qrl(() => import("./components\\apps\\apps.tsx_Greeter_component_Q7eEoxaolmI"), "Greeter_component_Q7eEoxaolmI");
+import { component$ } from "@qwik.dev/core";
+export const Greeter = componentQrl(q_Greeter_component_Q7eEoxaolmI);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.de\",\"ore\",\"component$\"],\"sources\":[\"components\\apps\\apps.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport const Greeter = component$(() => <div/>)\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,kCAAkCC,UACnC,OAAO,+DACe;AAF1B,SAAS,kBAAkB;AAC3B,OAAO,MAAM,UAAUC,6CAAwB\"}")
+== DIAGNOSTICS ==
+
+[]

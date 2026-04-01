@@ -1,0 +1,48 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';
+import { thing } from './sibling';
+import mongodb from 'mongodb';
+
+export const Child = component$(() => {
+
+	useStyles$('somestring');
+	const state = useStore({
+		count: 0
+	});
+
+	// Double count watch
+	useBrowserVisibleTask$(() => {
+		state.count = thing.doStuff() + import("./sibling");
+	});
+
+	return (
+		<div onClick$={() => console.log(mongodb)}>
+		</div>
+	);
+});
+
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Child_component_useStyles_qBZTuFM0160 = _noopQrl("Child_component_useStyles_qBZTuFM0160");
+const q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA = _noopQrl("Child_component_useBrowserVisibleTask_0IGFPOyJmQA");
+const q_Child_component_9GyF01GDKqw = _noopQrl("Child_component_9GyF01GDKqw");
+import { component$, useBrowserVisibleTask$, useStore, useStyles$ } from "@qwik.dev/core";
+import { thing } from "./sibling";
+import mongodb from "mongodb";
+export const Child = componentQrl(q_Child_component_9GyF01GDKqw);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useBrowserVisibleTask$,\",\"eStore, \",\"t { component$, useBrowserVisibleTask$, useStore, u\",\"tyles$ }\",\"t { component$, useBrowserVis\",\"eTask$, \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport { thing } from './sibling';\nimport mongodb from 'mongodb';\n\nexport const Child = component$(() => {\n\n\tuseStyles$('somestring');\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tstate.count = thing.doStuff() + import(\\"./sibling\\");\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0CAA0CC,SAAS,wCACnD;AAFL,MACKC,sDAAsDC,SAAS,oDACvC;AAF7B,MACKC,gCAAgCC,SAAS,8BAA8B;AAA5E,SAAS,YAAY,wBAAwB,UAAU,kBAAkB;AACzE,SAAS,aAAa;AACtB,OAAO,aAAa;AAEpB,OAAO,MAAM,QAAQC,2CAgBnB\"}")
+== DIAGNOSTICS ==
+
+[]

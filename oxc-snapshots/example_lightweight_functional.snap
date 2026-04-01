@@ -1,0 +1,96 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+
+export const Foo = component$((props) => {
+	return (
+		<div>
+			<Button {...props} />
+			<ButtonArrow {...props} />
+		</div>
+	);
+}, {
+	tagName: "my-foo",
+});
+
+export function Button({text, color}) {
+	return (
+		<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>
+	);
+}
+
+export const ButtonArrow = ({text, color}) => {
+	return (
+		<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>
+	);
+}
+
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
+
+import { Button } from "./test";
+import { ButtonArrow } from "./test";
+export const Foo_component_HTDRsvUbLiE = (props) => {
+	return _jsxSorted("div", null, null, [_jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_1"), _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_2")], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Button } from \\"./test\\";\nimport { ButtonArrow } from \\"./test\\";\nexport const Foo_component_HTDRsvUbLiE = (props) => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_1\\"), _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_2\\")], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,mBAAmB;AAC5B,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,UAAU,QAAQ,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,EAAE,UAAU,aAAa,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO;;AACjP\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    69,
+    206
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _getConstProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+import { $, component$ } from "@qwik.dev/core";
+export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE, { tagName: "my-foo" });
+export function Button({ text, color }) {
+	return _jsxSorted("button", { "q:ps": [color, text] }, {
+		"q-e:color": color,
+		"q-e:click": () => console.log(text, color)
+	}, text, 7, "u6_3");
+}
+export const ButtonArrow = (_rawProps) => {
+	const text = _rawProps.text;
+	const color = _rawProps.color;
+	return _jsxSorted("button", { "q:ps": [color, text] }, {
+		"q-e:color": color,
+		"q-e:click": () => console.log(text, color)
+	}, text, 7, "u6_4");
+};
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\" $, componen\",\" $, component$\",\" $, compo\",\"t { $, component$ } from '@\",\"k.d\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t<Button {...props} />\n\t\t\t<ButtonArrow {...props} />\n\t\t</div>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport function Button({text, color}) {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\nexport const ButtonArrow = ({text, color}) => {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,8BAA8BC,UAAU,OAE1C,yCACF,4BAEU;AALX,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,0CAOhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,SAAS,OAAO,EAAC,MAAM,SAAQ;AACrC;eACmB;qBAAqB,QAAQ,IAAI,MAAM,MAAM;IAAG;;AAIpE,OAAO,MAAM,6BAAiC;;;AAC7C;eACmB;qBAAqB,QAAQ,IAAI,MAAM,MAAM;IAAG\"}")
+== DIAGNOSTICS ==
+
+[]

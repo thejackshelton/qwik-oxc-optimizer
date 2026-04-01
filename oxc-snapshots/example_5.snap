@@ -1,0 +1,91 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+export const Header = component$(() => {
+	return (
+		<>
+			<div onClick={(ctx) => console.log("1")}/>
+			<div onClick={$((ctx) => console.log("2"))}/>
+		</>
+	);
+});
+
+
+============================= test.tsx_Header_component_div_onClick_i7ekvWH3674.tsx (ENTRY POINT)==
+
+export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log("2");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_onClick_i7ekvWH3674\"],\"sourcesContent\":[\"export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(\\"2\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_div_onClick_i7ekvWH3674",
+  "displayName": "test.tsx_Header_component_div_onClick",
+  "hash": "i7ekvWH3674",
+  "canonicalFilename": "test.tsx_Header_component_div_onClick_i7ekvWH3674",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    168,
+    196
+  ],
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
+
+const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
+export const Header_component_J4uyIhaBNR4 = () => {
+	return _jsxSorted(_Fragment, null, null, [_jsxSorted("div", null, { onClick: (ctx) => console.log("1") }, null, 3, null), _jsxSorted("div", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, null)], 1, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import(\\"./test.tsx_Header_component_div_onClick_i7ekvWH3674\\"), \\"Header_component_div_onClick_i7ekvWH3674\\");\nexport const Header_component_J4uyIhaBNR4 = () => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"div\\", null, { onClick: (ctx) => console.log(\\"1\\") }, null, 3, null), _jsxSorted(\\"div\\", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, null)], 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,2CAA2C;AACvK,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,OAAO,MAAM,EAAE,UAAU,QAAQ,QAAQ,IAAI,IAAI,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,WAAW,OAAO,EAAE,SAAS,IAAI,2CAA2C,EAAE,EAAE,MAAM,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC1O\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_J4uyIhaBNR4",
+  "displayName": "test.tsx_Header_component",
+  "hash": "J4uyIhaBNR4",
+  "canonicalFilename": "test.tsx_Header_component_J4uyIhaBNR4",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    71,
+    212
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
+import { $, component$ } from "@qwik.dev/core";
+export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\" $, comp\",\"t$ } from\",\"t { $, component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\treturn (\n\t\t<>\n\t\t\t<div onClick={(ctx) => console.log(\\"1\\")}/>\n\t\t\t<div onClick={$((ctx) => console.log(\\"2\\"))}/>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,iCAAiCC,UACtC,OAAO,4CAEP,+BAC0B;AAJ1B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAOpB\"}")
+== DIAGNOSTICS ==
+
+[]

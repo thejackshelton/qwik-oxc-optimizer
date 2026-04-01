@@ -1,0 +1,64 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$ } from '@qwik.dev/core';
+
+		export default component$((props) => {
+			return <div {...props} class={[props.class, 'component']} />;
+		});
+		
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = (props) => {
+	return _jsxSplit("div", {
+		..._getVarProps(props),
+		..._getConstProps(props),
+		class: [props.class, "component"]
+	}, null, null, 0, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"export const component_ZUK1E201Ins = (props) => {\n\treturn _jsxSplit(\\"div\\", {\n\t\t..._getVarProps(props),\n\t\t..._getConstProps(props),\n\t\tclass: [props.class, \\"component\\"]\n\t}, null, null, 0, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yBAAyB,UAAU;AAC/C,QAAO,UAAU,OAAO;EACvB,GAAG,aAAa,MAAM;EACtB,GAAG,eAAe,MAAM;EACxB,OAAO,CAAC,MAAM,OAAO,YAAY;EACjC,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    66,
+    159
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _getVarProps } from "@qwik.dev/core";
+import { _getConstProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn <div {...props} class={[props.class, 'component']} />;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OAEzC,qCAAqC,wBACjB;AAHlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAEb\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,76 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, $ } from '@qwik.dev/core';
+import mongo from 'mongodb';
+
+export const Greeter = component$(() => {
+	// Double count watch
+	useTask$(async () => {
+		await mongo.users();
+	});
+	return (
+		<div>
+			<div onClick$={() => {}}/>
+			<div onClick$={() => {}}/>
+			<div onClick$={() => {}}/>
+		</div>
+	)
+});
+
+
+
+============================= test.tsx_Greeter_component_n7HuG2hhU0Q.tsx (ENTRY POINT)==
+
+import { default as mongo } from "mongodb";
+export const Greeter_component_n7HuG2hhU0Q = () => {
+	useTask$(async () => {
+		await mongo.users();
+	});
+	return _jsxSorted("div", null, null, [
+		_jsxSorted("div", null, { "q-e:click": () => {} }, null, 3, null),
+		_jsxSorted("div", null, { "q-e:click": () => {} }, null, 3, null),
+		_jsxSorted("div", null, { "q-e:click": () => {} }, null, 3, null)
+	], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7HuG2hhU0Q\"],\"sourcesContent\":[\"import { default as mongo } from \\"mongodb\\";\nexport const Greeter_component_n7HuG2hhU0Q = () => {\n\tuseTask$(async () => {\n\t\tawait mongo.users();\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => {} }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => {} }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => {} }, null, 3, null)\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW,aAAa;AACjC,OAAO,MAAM,sCAAsC;AAClD,UAAS,YAAY;AACpB,QAAM,MAAM,OAAO;GAClB;AACF,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,OAAO,MAAM,EAAE,mBAAmB,IAAI,EAAE,MAAM,GAAG,KAAK;EACjE,WAAW,OAAO,MAAM,EAAE,mBAAmB,IAAI,EAAE,MAAM,GAAG,KAAK;EACjE,WAAW,OAAO,MAAM,EAAE,mBAAmB,IAAI,EAAE,MAAM,GAAG,KAAK;EACjE,EAAE,GAAG,OAAO;;AACZ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_n7HuG2hhU0Q",
+  "displayName": "test.tsx_Greeter_component",
+  "hash": "n7HuG2hhU0Q",
+  "canonicalFilename": "test.tsx_Greeter_component_n7HuG2hhU0Q",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    102,
+    318
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
+import { component$, $ } from "@qwik.dev/core";
+import mongo from "mongodb";
+export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, $ } from '@qwik\",\"v/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\n\nexport const Greeter = component$(() => {\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tawait mongo.users();\n\t});\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,kCAAkCC,UACtC,OAAO,6CAEe,gCACV;AAJb,SAAS,YAAY,SAAS;AAC9B,OAAO,WAAW;AAElB,OAAO,MAAM,UAAUC,6CAYrB\"}")
+== DIAGNOSTICS ==
+
+[]

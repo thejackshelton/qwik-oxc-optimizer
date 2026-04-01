@@ -1,0 +1,69 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, $ } from '@qwik.dev/core';
+import { CustomComponent } from './custom-component';
+import { AnotherComponent } from './another-component';
+
+export const Greeter = component$(() => {
+	return (
+		<div>
+			<CustomComponent onClick$={() => {}}/>
+			{array.map(item => (
+				<AnotherComponent onClick$={() => {}}/>
+			))}
+		</div>
+	)
+});
+
+
+
+============================= test.tsx_Greeter_component_n7HuG2hhU0Q.tsx (ENTRY POINT)==
+
+import { AnotherComponent } from "./another-component";
+import { CustomComponent } from "./custom-component";
+export const Greeter_component_n7HuG2hhU0Q = () => {
+	return _jsxSorted("div", null, null, [_jsxSorted(CustomComponent, null, { onClick$: () => {} }, null, 3, "u6_2"), array.map((item) => _jsxSorted(AnotherComponent, null, { onClick$: () => {} }, null, 3, "u6_0"))], 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7HuG2hhU0Q\"],\"sourcesContent\":[\"import { AnotherComponent } from \\"./another-component\\";\nimport { CustomComponent } from \\"./custom-component\\";\nexport const Greeter_component_n7HuG2hhU0Q = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(CustomComponent, null, { onClick$: () => {} }, null, 3, \\"u6_2\\"), array.map((item) => _jsxSorted(AnotherComponent, null, { onClick$: () => {} }, null, 3, \\"u6_0\\"))], 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,wBAAwB;AACjC,SAAS,uBAAuB;AAChC,OAAO,MAAM,sCAAsC;AAClD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,iBAAiB,MAAM,EAAE,gBAAgB,IAAI,EAAE,MAAM,GAAG,OAAO,EAAE,MAAM,KAAK,SAAS,WAAW,kBAAkB,MAAM,EAAE,gBAAgB,IAAI,EAAE,MAAM,GAAG,OAAO,CAAC,CAAC,EAAE,GAAG,OAAO;;AAC9N\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_n7HuG2hhU0Q",
+  "displayName": "test.tsx_Greeter_component",
+  "hash": "n7HuG2hhU0Q",
+  "canonicalFilename": "test.tsx_Greeter_component_n7HuG2hhU0Q",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    183,
+    351
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
+import { component$, $ } from "@qwik.dev/core";
+import { CustomComponent } from "./custom-component";
+import { AnotherComponent } from "./another-component";
+export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, $ } from '@qwik\",\"v/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,kCAAkCC,UACtC,OAAO,6CAA6C,gCACtB;AAF/B,SAAS,YAAY,SAAS;AAC9B,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,37 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useTask$ } from '@qwik.dev/core';
+import { CONST } from 'const';
+export const Works = component$((props) => {
+	const {countNested} = useStore({value:{count:0}}).value;
+	const countNested2 = countNested;
+	const {hello} = countNested2;
+	const bye = hello.bye;
+	const {ciao} = bye.italian;
+
+
+	return (
+		<div ciao={ciao} >{foo}</div>
+	);
+});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
+import { $, component$, useTask$ } from "@qwik.dev/core";
+import { CONST } from "const";
+export const Works = componentQrl(q_Works_component_t45qL4vNGv0);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useTask$ }\",\"om '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useTask$ } from '@qwik.dev/core';\nimport { CONST } from 'const';\nexport const Works = component$((props) => {\n\tconst {countNested} = useStore({value:{count:0}}).value;\n\tconst countNested2 = countNested;\n\tconst {hello} = countNested2;\n\tconst bye = hello.bye;\n\tconst {ciao} = bye.italian;\n\n\n\treturn (\n\t\t<div ciao={ciao} >{foo}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,SAAS,8BAC5B;AADlB,SAAS,GAAG,YAAY,gBAAgB;AACxC,SAAS,aAAa;AACtB,OAAO,MAAM,QAAQC,2CAWnB\"}")
+== DIAGNOSTICS ==
+
+[]

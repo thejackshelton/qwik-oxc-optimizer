@@ -1,0 +1,71 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+import thing from "../state";
+
+export function foo() {
+	return import("../foo/state2")
+}
+
+export const Header = component$(() => {
+	return (
+		<div>
+			{import("../folder/state3")}
+			{thing}
+		</div>
+	);
+});
+
+
+============================= project/folder/test.tsx_Header_component_RGgm7Ks9QWI.tsx ==
+
+import { default as thing } from "../state";
+export const Header_component_RGgm7Ks9QWI = () => {
+	return _jsxSorted("div", null, null, [import("../folder/state3"), thing], 3, "R9_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_RGgm7Ks9QWI\"],\"sourcesContent\":[\"import { default as thing } from \\"../state\\";\nexport const Header_component_RGgm7Ks9QWI = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [import(\\"../folder/state3\\"), thing], 3, \\"R9_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW,aAAa;AACjC,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,OAAO,qBAAqB,MAAM,EAAE,GAAG,OAAO;;AACnF\"}")
+/*
+{
+  "origin": "project/folder/test.tsx",
+  "name": "Header_component_RGgm7Ks9QWI",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_Header_component",
+  "hash": "RGgm7Ks9QWI",
+  "canonicalFilename": "test.tsx_Header_component_RGgm7Ks9QWI",
+  "path": "project/folder",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    161,
+    256
+  ]
+}
+*/
+
+============================= project/folder/test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_component_RGgm7Ks9QWI = qrl(() => import("./test.tsx_Header_component_RGgm7Ks9QWI"), "Header_component_RGgm7Ks9QWI");
+import { $, component$ } from "@qwik.dev/core";
+import thing from "../state";
+export function foo() {
+	return import("../foo/state2");
+}
+export const Header = componentQrl(q_Header_component_RGgm7Ks9QWI);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,iCAAiCC,UACtC,OAAO,4CAEa,+BACO;AAJ3B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
+== DIAGNOSTICS ==
+
+[]

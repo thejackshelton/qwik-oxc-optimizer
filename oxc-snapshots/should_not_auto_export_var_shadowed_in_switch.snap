@@ -1,0 +1,84 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { formAction$ } from 'forms';
+const x = 'module-level';
+export const action = formAction$((data) => {
+  switch (data.kind) {
+    case 'a': {
+      const x = 'shadowed-in-block';
+      return x;
+    }
+    case 'b': {
+      const x = 'shadowed-in-case';
+      return x;
+    }
+  }
+  return x;
+});
+		
+
+============================= test.tsx_action_formAction_dIQV5vh1He4.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const action_formAction_dIQV5vh1He4 = (data) => {
+	const x = _captures[0];
+	switch (data.kind) {
+		case "a": {
+			const x = "shadowed-in-block";
+			return x;
+		}
+		case "b": {
+			const x = "shadowed-in-case";
+			return x;
+		}
+	}
+	return x;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV5vh1He4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const action_formAction_dIQV5vh1He4 = (data) => { const x = _captures[0];\n\n\tswitch (data.kind) {\n\t\tcase \\"a\\": {\n\t\t\tconst x = \\"shadowed-in-block\\";\n\t\t\treturn x;\n\t\t}\n\t\tcase \\"b\\": {\n\t\t\tconst x = \\"shadowed-in-case\\";\n\t\t\treturn x;\n\t\t}\n\t}\n\treturn x;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,iCAAiC,SAAS;CAAE,MAAM,IAAI,UAAU;AAE5E,SAAQ,KAAK,MAAb;EACC,KAAK,KAAK;GACT,MAAM,IAAI;AACV,UAAO;;EAER,KAAK,KAAK;GACT,MAAM,IAAI;AACV,UAAO;;;AAGT,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "action_formAction_dIQV5vh1He4",
+  "displayName": "test.tsx_action_formAction",
+  "hash": "dIQV5vh1He4",
+  "canonicalFilename": "test.tsx_action_formAction_dIQV5vh1He4",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "formAction$",
+  "captures": true,
+  "captureNames": [
+    "x"
+  ],
+  "loc": [
+    86,
+    300
+  ],
+  "paramNames": [
+    "data"
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_action_formAction_dIQV5vh1He4 = qrl(() => import("./test.tsx_action_formAction_dIQV5vh1He4"), "action_formAction_dIQV5vh1He4", [x]);
+import { formAction$ } from "forms";
+const x = "module-level";
+export const action = formActionQrl(q_action_formAction_dIQV5vh1He4.w([x]));
+export { x as _auto_x };
+
+
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"nst\",\" \",\"formAction$\",\"Action$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  switch (data.kind) {\n    case 'a': {\n      const x = 'shadowed-in-block';\n      return x;\n    }\n    case 'b': {\n      const x = 'shadowed-in-case';\n      return x;\n    }\n  }\n  return x;\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACHC,UAAU,OAAO,6CACmB,iCAEpC,CAACC,EAAE,CAAC;AAJN,SAAS,mBAAmB;AAC5B,MAAM,IAAI;AACV,OAAO,MAAM,SAASC,qDAYpB;AAfF,SACQD,KAAKE\"}")
+== DIAGNOSTICS ==
+
+[]

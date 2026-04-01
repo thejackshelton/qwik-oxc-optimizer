@@ -1,0 +1,59 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export default component$(() => {
+	return (
+		<div onClick$={() => console.log(mongodb)}>
+		</div>
+	);
+});
+
+
+
+============================= src/components/mongo/404.tsx_component_fw9Bo3UeA0o.tsx (ENTRY POINT)==
+
+export const component_fw9Bo3UeA0o = () => {
+	return _jsxSorted("div", null, { "q-e:click": () => console.log(mongodb) }, null, 3, "0B_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx_component_fw9Bo3UeA0o\"],\"sourcesContent\":[\"export const component_fw9Bo3UeA0o = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(mongodb) }, null, 3, \\"0B_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC3F\"}")
+/*
+{
+  "origin": "src/components/mongo/404.tsx",
+  "name": "component_fw9Bo3UeA0o",
+  "displayName": "404.tsx_component",
+  "hash": "fw9Bo3UeA0o",
+  "canonicalFilename": "404.tsx_component_fw9Bo3UeA0o",
+  "path": "src/components/mongo",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    62,
+    152
+  ]
+}
+*/
+
+============================= src/components/mongo/404.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_fw9Bo3UeA0o = qrl(() => import("./404.tsx_component_fw9Bo3UeA0o"), "component_fw9Bo3UeA0o");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_fw9Bo3UeA0o);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"src/components/mongo/404.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAEvC,oCACE,wBACc;AAJlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,68 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { formAction$ } from 'forms';
+const x = 'module-level';
+export const action = formAction$((data) => {
+  let i = 0;
+  do {
+    const x = 'shadowed';
+    i++;
+  } while (i < 3);
+  return {};
+});
+		
+
+============================= test.tsx_action_formAction_dIQV5vh1He4.js (ENTRY POINT)==
+
+const x = "module-level";
+export const action_formAction_dIQV5vh1He4 = (data) => {
+	let i = 0;
+	do {
+		const x = "shadowed";
+		i++;
+	} while (i < 3);
+	return {};
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV5vh1He4\"],\"sourcesContent\":[\"const x = \\"module-level\\";\nexport const action_formAction_dIQV5vh1He4 = (data) => {\n\tlet i = 0;\n\tdo {\n\t\tconst x = \\"shadowed\\";\n\t\ti++;\n\t} while (i < 3);\n\treturn {};\n};;\"],\"mappings\":\"AAAA,MAAM,IAAI;AACV,OAAO,MAAM,iCAAiC,SAAS;CACtD,IAAI,IAAI;AACR,IAAG;EACF,MAAM,IAAI;AACV;UACQ,IAAI;AACb,QAAO,EAAE;;AACR\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "action_formAction_dIQV5vh1He4",
+  "displayName": "test.tsx_action_formAction",
+  "hash": "dIQV5vh1He4",
+  "canonicalFilename": "test.tsx_action_formAction_dIQV5vh1He4",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "formAction$",
+  "captures": false,
+  "loc": [
+    86,
+    199
+  ],
+  "paramNames": [
+    "data"
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_action_formAction_dIQV5vh1He4 = qrl(() => import("./test.tsx_action_formAction_dIQV5vh1He4"), "action_formAction_dIQV5vh1He4");
+import { formAction$ } from "forms";
+export const action = formActionQrl(q_action_formAction_dIQV5vh1He4);
+
+
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"nst\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  let i = 0;\n  do {\n    const x = 'shadowed';\n    i++;\n  } while (i < 3);\n  return {};\n});\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACHC,UAAU,OAAO,6CACmB,gCAGlC;AALJ,SAAS,mBAAmB;AAE5B,OAAO,MAAM,SAASC,8CAOpB\"}")
+== DIAGNOSTICS ==
+
+[]

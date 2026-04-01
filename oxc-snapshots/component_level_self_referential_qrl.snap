@@ -1,0 +1,175 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useAsync$ } from '@qwik.dev/core';
+		
+// Component-level self-referential component
+export const Foo = component$((props) => {
+	const sig = useAsync$(async ({cleanup}) => {
+		const timer = setInterval(() => {
+			sig.value++;
+		}, 1000);
+		cleanup(() => clearInterval(timer));
+		return 0;
+	});
+	const other = useAsync$(async ({cleanup}) => {
+		const timer = setInterval(() => {
+			other.value++;
+		}, 900);
+		cleanup(() => clearInterval(timer));
+		return 0;
+	});
+	return (
+		<div>
+			{other.value}
+		</div>
+	);
+});
+
+
+============================= test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_sig_other_useAsync_dt8J7BiPmsg = async (_rawProps) => {
+	const other = _captures[0];
+	const _ref = {};
+	_ref.cleanup = _rawProps._ref.cleanup;
+	const { cleanup } = _ref;
+	const timer = setInterval(() => {
+		other.value++;
+	}, 900);
+	cleanup(() => clearInterval(timer));
+	return 0;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_other_useAsync_dt8J7BiPmsg = async (_rawProps) => { const other = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tother.value++;\n\t}, 900);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,+CAA+C,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAE1G,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_sig_other_useAsync_dt8J7BiPmsg",
+  "displayName": "test.tsx_Foo_component_sig_other_useAsync",
+  "hash": "dt8J7BiPmsg",
+  "canonicalFilename": "test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useAsync$",
+  "captures": true,
+  "captureNames": [
+    "other"
+  ],
+  "loc": [
+    330,
+    482
+  ],
+  "paramNames": [
+    "_rawProps"
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => {
+	const sig = _captures[0];
+	const _ref = {};
+	_ref.cleanup = _rawProps._ref.cleanup;
+	const { cleanup } = _ref;
+	const timer = setInterval(() => {
+		sig.value++;
+	}, 1e3);
+	cleanup(() => clearInterval(timer));
+	return 0;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => { const sig = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tsig.value++;\n\t}, 1e3);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC,OAAO,cAAc;CAAE,MAAM,MAAM,UAAU;CAElG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,MAAI;IACF,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_sig_useAsync_f0BGwWm4eeY",
+  "displayName": "test.tsx_Foo_component_sig_useAsync",
+  "hash": "f0BGwWm4eeY",
+  "canonicalFilename": "test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useAsync$",
+  "captures": true,
+  "captureNames": [
+    "sig"
+  ],
+  "loc": [
+    162,
+    313
+  ],
+  "paramNames": [
+    "_rawProps"
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_sig_other_sN0VIZknwRQ.tsx (ENTRY POINT)==
+
+const q_Foo_component_sig_other_useAsync_dt8J7BiPmsg = qrl(() => import("./test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg"), "Foo_component_sig_other_useAsync_dt8J7BiPmsg", [other]);
+const q_Foo_component_sig_useAsync_f0BGwWm4eeY = qrl(() => import("./test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY"), "Foo_component_sig_useAsync_f0BGwWm4eeY", [sig]);
+export const Foo_component_sig_other_sN0VIZknwRQ = (props) => {
+	const _ref = {};
+	_ref.sig = useAsyncQrl(q_Foo_component_sig_useAsync_f0BGwWm4eeY.w([_ref.sig]));
+	const { sig } = _ref;
+	const _ref = {};
+	_ref.other = useAsyncQrl(q_Foo_component_sig_other_useAsync_dt8J7BiPmsg.w([_ref.other]));
+	const { other } = _ref;
+	return _jsxSorted("div", null, null, _wrapProp(other), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_other_sN0VIZknwRQ\"],\"sourcesContent\":[\"const q_Foo_component_sig_other_useAsync_dt8J7BiPmsg = qrl(() => import(\\"./test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg\\"), \\"Foo_component_sig_other_useAsync_dt8J7BiPmsg\\", [other]);\nconst q_Foo_component_sig_useAsync_f0BGwWm4eeY = qrl(() => import(\\"./test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\\"), \\"Foo_component_sig_useAsync_f0BGwWm4eeY\\", [sig]);\nexport const Foo_component_sig_other_sN0VIZknwRQ = (props) => {\n\tconst _ref = {};\n\t_ref.sig = useAsyncQrl(q_Foo_component_sig_useAsync_f0BGwWm4eeY.w([_ref.sig]));\n\tconst { sig } = _ref;\n\tconst _ref = {};\n\t_ref.other = useAsyncQrl(q_Foo_component_sig_other_useAsync_dt8J7BiPmsg.w([_ref.other]));\n\tconst { other } = _ref;\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(other), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,iDAAiD,UAAU,OAAO,4DAA4D,gDAAgD,CAAC,MAAM,CAAC;AAC5L,MAAM,2CAA2C,UAAU,OAAO,sDAAsD,0CAA0C,CAAC,IAAI,CAAC;AACxK,OAAO,MAAM,uCAAuC,UAAU;CAC7D,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,YAAY,yCAAyC,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC;CAC9E,MAAM,EAAE,QAAQ;CAChB,MAAM,OAAO,EAAE;AACf,MAAK,QAAQ,YAAY,+CAA+C,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC;CACxF,MAAM,EAAE,UAAU;AAClB,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,MAAM,EAAE,GAAG,OAAO;;AAChE\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_sig_other_sN0VIZknwRQ",
+  "displayName": "test.tsx_Foo_component_sig_other",
+  "hash": "sN0VIZknwRQ",
+  "canonicalFilename": "test.tsx_Foo_component_sig_other_sN0VIZknwRQ",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    125,
+    534
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_sig_other_sN0VIZknwRQ = qrl(() => import("./test.tsx_Foo_component_sig_other_sN0VIZknwRQ"), "Foo_component_sig_other_sN0VIZknwRQ");
+import { component$, useAsync$ } from "@qwik.dev/core";
+// Component-level self-referential component
+export const Foo = componentQrl(q_Foo_component_sig_other_sN0VIZknwRQ);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$, useAsync$ } from '@qw\",\"dev\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useAsync$ } from '@qwik.dev/core';\n\t\t\n// Component-level self-referential component\nexport const Foo = component$((props) => {\n\tconst sig = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tsig.value++;\n\t\t}, 1000);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\tconst other = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tother.value++;\n\t\t}, 900);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\treturn (\n\t\t<div>\n\t\t\t{other.value}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,wCAAwCC,UAAU,OAEpD,mDACK,sCACL;AAJH,SAAS,YAAY,iBAAiB;;AAGtC,OAAO,MAAM,MAAMC,mDAoBjB\"}")
+== DIAGNOSTICS ==
+
+[]

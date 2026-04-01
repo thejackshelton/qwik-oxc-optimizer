@@ -1,0 +1,86 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useSignal } from '@qwik.dev/core';
+
+export default component$(() => {
+  const data = useSignal([
+    [['a', 'b'], ['c', 'd']],
+    [['e', 'f'], ['g', 'h']],
+  ]);
+  return (
+    <div>
+      {data.value.map((plane, pi) => {
+        const planeId = 'p' + pi;
+        return (
+          <div key={pi}>
+            {plane.map((row, ri) => (
+              <div key={ri}>
+                {row.map((cell, ci) => (
+                  <button key={ci} onClick$={() => console.log(planeId)}>
+                    {cell}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { useSignal } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = () => {
+	const data = useSignal([[["a", "b"], ["c", "d"]], [["e", "f"], ["g", "h"]]]);
+	return _jsxSorted("div", null, null, data.value.map((plane, pi) => {
+		const planeId = "p" + pi;
+		return _jsxSorted("div", { key: pi }, null, plane.map((row, ri) => _jsxSorted("div", { key: ri }, null, row.map((cell, ci) => _jsxSorted("button", {
+			key: ci,
+			"q:p": planeId
+		}, { "q-e:click": () => console.log(planeId) }, cell, 7, null)), 3, null)), 3, null);
+	}), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst data = useSignal([[[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]], [[\\"e\\", \\"f\\"], [\\"g\\", \\"h\\"]]]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((plane, pi) => {\n\t\tconst planeId = \\"p\\" + pi;\n\t\treturn _jsxSorted(\\"div\\", { key: pi }, null, plane.map((row, ri) => _jsxSorted(\\"div\\", { key: ri }, null, row.map((cell, ci) => _jsxSorted(\\"button\\", {\n\t\t\tkey: ci,\n\t\t\t\\"q:p\\": planeId\n\t\t}, { \\"q-e:click\\": () => console.log(planeId) }, cell, 7, null)), 3, null)), 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,OAAO,UAAU,CAAC,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC,CAAC;AAC5E,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,OAAO,OAAO;EAClE,MAAM,UAAU,MAAM;AACtB,SAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,MAAM,KAAK,KAAK,OAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,IAAI,KAAK,MAAM,OAAO,WAAW,UAAU;GAClJ,KAAK;GACL,OAAO;GACP,EAAE,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GACnF,EAAE,GAAG,OAAO;;AACb\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    73,
+    671
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useSignal } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useSign\",\"} f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const data = useSignal([\n    [['a', 'b'], ['c', 'd']],\n    [['e', 'f'], ['g', 'h']],\n  ]);\n  return (\n    <div>\n      {data.value.map((plane, pi) => {\n        const planeId = 'p' + pi;\n        return (\n          <div key={pi}>\n            {plane.map((row, ri) => (\n              <div key={ri}>\n                {row.map((cell, ci) => (\n                  <button key={ci} onClick$={() => console.log(planeId)}>\n                    {cell}\n                  </button>\n                ))}\n              </div>\n            ))}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCAyBb\"}")
+== DIAGNOSTICS ==
+
+[]

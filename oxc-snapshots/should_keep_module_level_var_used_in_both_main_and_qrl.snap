@@ -1,0 +1,92 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, isServer } from '@qwik.dev/core';
+
+const state = {
+  counter: 0,
+  id: Math.random().toString(36).slice(2, 8),
+};
+
+console.log('Module init, id:', state.id);
+
+export function doSomething() {
+  if (!isServer) {
+    state.counter++;
+  }
+}
+
+export function useHook() {
+  const fn = $(() => {
+    state.counter++;
+    console.log(state.id);
+  });
+  return fn;
+}
+
+		
+
+============================= test.tsx_useHook_fn_kScGJcREaTg.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const useHook_fn_kScGJcREaTg = () => {
+	const state = _captures[0];
+	state.counter++;
+	console.log(state.id);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const useHook_fn_kScGJcREaTg = () => { const state = _captures[0];\n\n\tstate.counter++;\n\tconsole.log(state.id);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,+BAA+B;CAAE,MAAM,QAAQ,UAAU;AAErE,OAAM;AACN,SAAQ,IAAI,MAAM,GAAG;;AACpB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "useHook_fn_kScGJcREaTg",
+  "displayName": "test.tsx_useHook_fn",
+  "hash": "kScGJcREaTg",
+  "canonicalFilename": "test.tsx_useHook_fn_kScGJcREaTg",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    292,
+    354
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_useHook_fn_kScGJcREaTg = qrl(() => import("./test.tsx_useHook_fn_kScGJcREaTg"), "useHook_fn_kScGJcREaTg", [state]);
+import { $, isServer } from "@qwik.dev/core";
+const state = {
+	counter: 0,
+	id: Math.random().toString(36).slice(2, 8)
+};
+console.log("Module init, id:", state.id);
+export function doSomething() {
+	if (!isServer) {
+		state.counter++;
+	}
+}
+export function useHook() {
+	const fn = Qrl(q_useHook_fn_kScGJcREaTg.w([state]));
+	return fn;
+}
+export { state as _auto_state };
+
+
+Some("{\"version\":3,\"names\":[\"t { $, isServer } from '\",\"ik.\",\"e(2, \",\"$\",\" $, i\",\"ver } from \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, isServer } from '@qwik.dev/core';\n\nconst state = {\n  counter: 0,\n  id: Math.random().toString(36).slice(2, 8),\n};\n\nconsole.log('Module init, id:', state.id);\n\nexport function doSomething() {\n  if (!isServer) {\n    state.counter++;\n  }\n}\n\nexport function useHook() {\n  const fn = $(() => {\n    state.counter++;\n    console.log(state.id);\n  });\n  return fn;\n}\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,2BAA2BC,UAAU,OAExC,sCAEQ,0BAA0B,CAACC,MAAM,CAAC;AAJ5C,SAAS,GAAG,gBAAgB;AAE5B,MAAM,QAAQ;CACZ,SAAS;CACT,IAAI,KAAK,QAAQ,CAAC,SAAS,GAAG,CAAC,MAAM,GAAG,EAAE;CAC3C;AAED,QAAQ,IAAI,oBAAoB,MAAM,GAAG;AAEzC,OAAO,SAAS,cAAc;AAC5B,KAAI,CAAC,UAAU;AACb,QAAM;;;AAIV,OAAO,SAAS,UAAU;CACxB,MAAM,KAAKC,wCAGT;AACF,QAAO;;AArBT,SACQC,SAASC\"}")
+== DIAGNOSTICS ==
+
+[]

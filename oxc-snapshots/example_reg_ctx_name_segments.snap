@@ -1,0 +1,36 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, server$ } from '@qwik.dev/core';
+import { foo } from './foo';
+export const Works = component$((props) => {
+	const text = 'hola';
+	return (
+		<>
+		<div onClick$={server$(() => console.log('in server', text))}></div>
+		<div onClick$={() => foo()}></div>
+		</>
+	);
+});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_Works_component_div_onClick_server_OsNoEFc5SM4 = _noopQrl("Works_component_div_onClick_server_OsNoEFc5SM4");
+const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
+import { $, component$, server$ } from "@qwik.dev/core";
+import { foo } from "./foo";
+export const Works = componentQrl(q_Works_component_t45qL4vNGv0);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\" $, comp\",\"t$, serve\",\"t { $, component$, server$ } from '@qwik.dev/cor\",\"\nimport \",\"t { $, component$, server$ } \",\"m '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$ } from '@qwik.dev/core';\nimport { foo } from './foo';\nexport const Works = component$((props) => {\n\tconst text = 'hola';\n\treturn (\n\t\t<>\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t\t<div onClick$={() => foo()}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,mDAAmDC,SAChD,iDACoB;AAH5B,MACKC,gCAAgCC,SAAS,8BAC3B;AADnB,SAAS,GAAG,YAAY,eAAe;AACvC,SAAS,WAAW;AACpB,OAAO,MAAM,QAAQC,2CAQnB\"}")
+== DIAGNOSTICS ==
+
+[]

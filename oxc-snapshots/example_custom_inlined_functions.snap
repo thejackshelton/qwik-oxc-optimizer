@@ -1,0 +1,192 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, $, useStore, wrap, useEffect } from '@qwik.dev/core';
+
+export const useMemoQrl = (qrt) => {
+	useEffect(qrt);
+};
+
+export const useMemo$ = wrap(useMemoQrl);
+
+export const App = component$((props) => {
+	const state = useStore({count: 0});
+	useMemo$(() => {
+		console.log(state.count);
+	});
+	return $(() => (
+		<div>{state.count}</div>
+	));
+});
+
+export const Lightweight = (props) => {
+	useMemo$(() => {
+		console.log(state.count);
+	});
+};
+
+
+============================= test.tsx_App_component_useMemo_6Sc9KVki3Y0.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_useMemo_6Sc9KVki3Y0 = () => {
+	const state = _captures[0];
+	console.log(state.count);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_6Sc9KVki3Y0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_useMemo_6Sc9KVki3Y0 = () => { const state = _captures[0];\n\n\tconsole.log(state.count);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0CAA0C;CAAE,MAAM,QAAQ,UAAU;AAEhF,SAAQ,IAAI,MAAM,MAAM;;AACvB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_useMemo_6Sc9KVki3Y0",
+  "displayName": "test.tsx_App_component_useMemo",
+  "hash": "6Sc9KVki3Y0",
+  "canonicalFilename": "test.tsx_App_component_useMemo_6Sc9KVki3Y0",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useMemo$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    259,
+    307
+  ]
+}
+*/
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_ckEPmXZlub0 = () => {
+	const state = _captures[0];
+	return _jsxSorted("div", null, null, _wrapProp(state, "count"), 3, "u6_0");
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\nconst state = _captures[0];\nreturn _jsxSorted(\\"div\\", null, null, _wrapProp(state, \\"count\\"), 3, \\"u6_0\\");;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,QAAQ,UAAU;AACxB,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,OAAO,QAAQ,EAAE,GAAG,OAAO;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    317,
+    357
+  ]
+}
+*/
+
+============================= test.tsx_App_Lightweight_useMemo_KF0arENeVdg.js (ENTRY POINT)==
+
+export const App_Lightweight_useMemo_KF0arENeVdg = () => {
+	console.log(state.count);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Lightweight_useMemo_KF0arENeVdg\"],\"sourcesContent\":[\"export const App_Lightweight_useMemo_KF0arENeVdg = () => {\n\tconsole.log(state.count);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,SAAQ,IAAI,MAAM,MAAM;;AACvB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Lightweight_useMemo_KF0arENeVdg",
+  "displayName": "test.tsx_App_Lightweight_useMemo",
+  "hash": "KF0arENeVdg",
+  "canonicalFilename": "test.tsx_App_Lightweight_useMemo_KF0arENeVdg",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "useMemo$",
+  "captures": false,
+  "loc": [
+    405,
+    453
+  ]
+}
+*/
+
+============================= test.tsx_App_component_1_w0t0o3QMovU.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { useMemoQrl } from "./test";
+import { useStore } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0", [state]);
+const q_App_component_useMemo_6Sc9KVki3Y0 = qrl(() => import("./test.tsx_App_component_useMemo_6Sc9KVki3Y0"), "App_component_useMemo_6Sc9KVki3Y0", [state]);
+export const App_component_1_w0t0o3QMovU = (props) => {
+	const useMemo$ = _captures[0];
+	const state = useStore({ count: 0 });
+	useMemoQrl(q_App_component_useMemo_6Sc9KVki3Y0.w([state]));
+	return Qrl(q_App_component_ckEPmXZlub0.w([state]));
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3QMovU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { useMemoQrl } from \\"./test\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_App_component_ckEPmXZlub0 = qrl(() => import(\\"./test.tsx_App_component_ckEPmXZlub0\\"), \\"App_component_ckEPmXZlub0\\", [state]);\nconst q_App_component_useMemo_6Sc9KVki3Y0 = qrl(() => import(\\"./test.tsx_App_component_useMemo_6Sc9KVki3Y0\\"), \\"App_component_useMemo_6Sc9KVki3Y0\\", [state]);\nexport const App_component_1_w0t0o3QMovU = (props) => { const useMemo$ = _captures[0];\n\n\tconst state = useStore({ count: 0 });\n\tuseMemoQrl(q_App_component_useMemo_6Sc9KVki3Y0.w([state]));\n\treturn Qrl(q_App_component_ckEPmXZlub0.w([state]));\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,gBAAgB;AACzB,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,6BAA6B,CAAC,MAAM,CAAC;AACnI,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,qCAAqC,CAAC,MAAM,CAAC;AAC3J,OAAO,MAAM,+BAA+B,UAAU;CAAE,MAAM,WAAW,UAAU;CAElF,MAAM,QAAQ,SAAS,EAAE,OAAO,GAAG,CAAC;AACpC,YAAW,oCAAoC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC1D,QAAO,IAAI,4BAA4B,EAAE,CAAC,MAAM,CAAC,CAAC;;AACjD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_1_w0t0o3QMovU",
+  "displayName": "test.tsx_App_component_1",
+  "hash": "w0t0o3QMovU",
+  "canonicalFilename": "test.tsx_App_component_1_w0t0o3QMovU",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "useMemo$"
+  ],
+  "loc": [
+    197,
+    361
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU", [useMemo$]);
+const q_App_Lightweight_useMemo_KF0arENeVdg = qrl(() => import("./test.tsx_App_Lightweight_useMemo_KF0arENeVdg"), "App_Lightweight_useMemo_KF0arENeVdg");
+import { component$, $, useStore, wrap, useEffect } from "@qwik.dev/core";
+export const useMemoQrl = (qrt) => {
+	useEffect(qrt);
+};
+export const useMemo$ = wrap(useMemoQrl);
+export const App = componentQrl(q_App_component_1_w0t0o3QMovU.w([useMemo$]));
+export const Lightweight = (props) => {
+	useMemoQrl(q_App_Lightweight_useMemo_KF0arENeVdg);
+};
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$, $, useStore, \",\"p, \",\"\n};\n\nexp\",\"t { component$, $, useStore, wrap, us\",\"fec\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $, useStore, wrap, useEffect } from '@qwik.dev/core';\n\nexport const useMemoQrl = (qrt) => {\n\tuseEffect(qrt);\n};\n\nexport const useMemo$ = wrap(useMemoQrl);\n\nexport const App = component$((props) => {\n\tconst state = useStore({count: 0});\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n\treturn $(() => (\n\t\t<div>{state.count}</div>\n\t));\n});\n\nexport const Lightweight = (props) => {\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n};\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAAO,2CAEjC,+BACN,CAACC,SAGZ,CAAC;AAPL,MACKC,wCAAwCC,UAAU,OAAO,mDAG9D,sCAGiB;AANjB,SAAS,YAAY,GAAG,UAAU,MAAM,iBAAiB;AAEzD,OAAO,MAAM,cAAc,QAAQ;AAClC,WAAU,IAAI;;AAGf,OAAO,MAAM,WAAW,KAAK,WAAW;AAExC,OAAO,MAAM,MAAMC,yDAQjB;AAEF,OAAO,MAAM,eAAe,UAAU;AACrC,kDAEE\"}")
+== DIAGNOSTICS ==
+
+[]

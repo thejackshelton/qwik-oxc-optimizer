@@ -1,0 +1,89 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useStyles$ } from '@qwik.dev/core';
+
+export const Foo = component$(() => {
+	useStyles$('.class {}');
+	return (
+		<div class="class"/>
+	);
+}, {
+	tagName: "my-foo",
+});
+
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
+
+const q_Foo_component_useStyles_pV9TSCBIhw8 = qrl(() => import("./test.tsx_Foo_component_useStyles_pV9TSCBIhw8"), "Foo_component_useStyles_pV9TSCBIhw8");
+export const Foo_component_HTDRsvUbLiE = () => {
+	useStylesQrl(q_Foo_component_useStyles_pV9TSCBIhw8);
+	return _jsxSorted("div", null, { class: "class" }, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"const q_Foo_component_useStyles_pV9TSCBIhw8 = qrl(() => import(\\"./test.tsx_Foo_component_useStyles_pV9TSCBIhw8\\"), \\"Foo_component_useStyles_pV9TSCBIhw8\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tuseStylesQrl(q_Foo_component_useStyles_pV9TSCBIhw8);\n\treturn _jsxSorted(\\"div\\", null, { class: \\"class\\" }, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,wCAAwC,UAAU,OAAO,mDAAmD,sCAAsC;AACxJ,OAAO,MAAM,kCAAkC;AAC9C,cAAa,sCAAsC;AACnD,QAAO,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,MAAM,GAAG,OAAO;;AAClE\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    81,
+    190
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_useStyles_pV9TSCBIhw8.tsx (ENTRY POINT)==
+
+export const Foo_component_useStyles_pV9TSCBIhw8 = ".class {}";
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_useStyles_pV9TSCBIhw8\"],\"sourcesContent\":[\"export const Foo_component_useStyles_pV9TSCBIhw8 = \\".class {}\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC;AAAY\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_useStyles_pV9TSCBIhw8",
+  "displayName": "test.tsx_Foo_component_useStyles",
+  "hash": "pV9TSCBIhw8",
+  "canonicalFilename": "test.tsx_Foo_component_useStyles_pV9TSCBIhw8",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useStyles$",
+  "captures": false,
+  "loc": [
+    101,
+    124
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+import { $, component$, useStyles$ } from "@qwik.dev/core";
+export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE, { tagName: "my-foo" });
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useStyle\",\"} f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\tuseStyles$('.class {}');\n\treturn (\n\t\t<div class=\\"class\\"/>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCAEpB,4BACV;AAHtB,SAAS,GAAG,YAAY,kBAAkB;AAE1C,OAAO,MAAM,MAAMC,0CAKhB,EACF,SAAS,UACT,CAAC\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,82 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export const App2 = component$(() => {
+	const signal = useSignal();
+	const computed = signal.value + 'foo';
+	return (
+		<>
+			<div className="hola"></div>
+			<div className={signal.value}></div>
+			<div className={signal}></div>
+			<div className={computed}></div>
+
+			<Foo className="hola"></Foo>
+			<Foo className={signal.value}></Foo>
+			<Foo className={signal}></Foo>
+			<Foo className={computed}></Foo>
+		</>
+	);
+});
+
+
+============================= test.tsx_App2_component_3yveMqbQ3Fs.js (ENTRY POINT)==
+
+export const App2_component_3yveMqbQ3Fs = () => {
+	const signal = useSignal();
+	const computed = signal.value + "foo";
+	return _jsxSorted(_Fragment, null, null, [
+		_jsxSorted("div", null, { class: "hola" }, null, 3, null),
+		_jsxSorted("div", null, { class: _wrapProp(signal) }, null, 3, null),
+		_jsxSorted("div", { class: signal }, null, null, 3, null),
+		_jsxSorted("div", { class: computed }, null, null, 3, null),
+		_jsxSorted(Foo, null, { className: "hola" }, null, 3, "u6_1"),
+		_jsxSorted(Foo, { className: signal.value }, null, null, 3, "u6_2"),
+		_jsxSorted(Foo, { className: signal }, null, null, 3, "u6_3"),
+		_jsxSorted(Foo, { className: computed }, null, null, 3, "u6_4")
+	], 1, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_component_3yveMqbQ3Fs\"],\"sourcesContent\":[\"export const App2_component_3yveMqbQ3Fs = () => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + \\"foo\\";\n\treturn _jsxSorted(_Fragment, null, null, [\n\t\t_jsxSorted(\\"div\\", null, { class: \\"hola\\" }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { class: _wrapProp(signal) }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", { class: signal }, null, null, 3, null),\n\t\t_jsxSorted(\\"div\\", { class: computed }, null, null, 3, null),\n\t\t_jsxSorted(Foo, null, { className: \\"hola\\" }, null, 3, \\"u6_1\\"),\n\t\t_jsxSorted(Foo, { className: signal.value }, null, null, 3, \\"u6_2\\"),\n\t\t_jsxSorted(Foo, { className: signal }, null, null, 3, \\"u6_3\\"),\n\t\t_jsxSorted(Foo, { className: computed }, null, null, 3, \\"u6_4\\")\n\t], 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;CAC/C,MAAM,SAAS,WAAW;CAC1B,MAAM,WAAW,OAAO,QAAQ;AAChC,QAAO,WAAW,WAAW,MAAM,MAAM;EACxC,WAAW,OAAO,MAAM,EAAE,OAAO,QAAQ,EAAE,MAAM,GAAG,KAAK;EACzD,WAAW,OAAO,MAAM,EAAE,OAAO,UAAU,OAAO,EAAE,EAAE,MAAM,GAAG,KAAK;EACpE,WAAW,OAAO,EAAE,OAAO,QAAQ,EAAE,MAAM,MAAM,GAAG,KAAK;EACzD,WAAW,OAAO,EAAE,OAAO,UAAU,EAAE,MAAM,MAAM,GAAG,KAAK;EAC3D,WAAW,KAAK,MAAM,EAAE,WAAW,QAAQ,EAAE,MAAM,GAAG,OAAO;EAC7D,WAAW,KAAK,EAAE,WAAW,OAAO,OAAO,EAAE,MAAM,MAAM,GAAG,OAAO;EACnE,WAAW,KAAK,EAAE,WAAW,QAAQ,EAAE,MAAM,MAAM,GAAG,OAAO;EAC7D,WAAW,KAAK,EAAE,WAAW,UAAU,EAAE,MAAM,MAAM,GAAG,OAAO;EAC/D,EAAE,GAAG,OAAO;;AACZ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App2_component_3yveMqbQ3Fs",
+  "displayName": "test.tsx_App2_component",
+  "hash": "3yveMqbQ3Fs",
+  "canonicalFilename": "test.tsx_App2_component_3yveMqbQ3Fs",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    67,
+    467
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_App2_component_3yveMqbQ3Fs = qrl(() => import("./test.tsx_App2_component_3yveMqbQ3Fs.tsx"), "App2_component_3yveMqbQ3Fs");
+import { component$ } from "@qwik.dev/core";
+export const App2 = componentQrl(q_App2_component_3yveMqbQ3Fs);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\" compone\",\"} from '@\",\"t { component$ } from '@qwik\",\"v/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App2 = component$(() => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + 'foo';\n\treturn (\n\t\t<>\n\t\t\t<div className=\\"hola\\"></div>\n\t\t\t<div className={signal.value}></div>\n\t\t\t<div className={signal}></div>\n\t\t\t<div className={computed}></div>\n\n\t\t\t<Foo className=\\"hola\\"></Foo>\n\t\t\t<Foo className={signal.value}></Foo>\n\t\t\t<Foo className={signal}></Foo>\n\t\t\t<Foo className={computed}></Foo>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,+BAA+BC,UAEpC,OAAO,8CACO,6BACA;AAJd,SAAS,kBAAkB;AAE3B,OAAO,MAAM,OAAOC,0CAgBlB\"}")
+== DIAGNOSTICS ==
+
+[]

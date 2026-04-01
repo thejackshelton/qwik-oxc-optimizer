@@ -1,0 +1,207 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useStore, useTask$ } from '@qwik.dev/core';
+		import { useForm, useForm2 } from './some-file.ts';
+
+		export const Input = component$<{error: string, error2: string, error3: string}>(
+			(props) => {
+				useTask$(({ track }) => {
+					track(() => props.error);
+					track(() => props.error2);
+					track(() => props.error3);
+				});
+
+				return (
+					<>
+					</>
+				);
+			}
+		);
+
+		export default component$(() => {
+			const [store, math] = [useStore({errors: {}}), Math.random()];
+			const [[store2]] = [[useStore({errors: {}})]];
+			const { store3, math4 } = { store3: useStore({errors: {}}), math4: Math.random() };
+			const math2 = [Math.random()];
+			const { math3 } = { math3: Math.random() };
+			const [store4] = useForm();
+			const {store5} = useForm2();
+
+			return (
+				<div>
+					<button onClick$={() => {
+						store.errors.test = store.errors.test ? undefined : 'ERROR TEST';
+					}}>click</button>
+					<Input 
+						error={store.errors.test}
+						error2={store2.errors.test}
+						error3={store3.errors.test}
+						error4={store4.errors.test}
+						error5={store5.errors.test}
+						math={math}
+						math2={math2}
+						math3={math3}
+						math4={math4}
+					/>
+				</div>
+			);
+		});
+		
+
+============================= test.tsx_Input_component_9metqqaxlN8.js (ENTRY POINT)==
+
+export const Input_component_9metqqaxlN8 = (props) => {
+	useTaskQrl(q_Input_component_useTask_Sbgs9Wtfkt0.w([props]));
+	return _jsxSorted(_Fragment, null, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Input_component_9metqqaxlN8\"],\"sourcesContent\":[\"export const Input_component_9metqqaxlN8 = (props) => {\n\tuseTaskQrl(q_Input_component_useTask_Sbgs9Wtfkt0.w([props]));\n\treturn _jsxSorted(_Fragment, null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,+BAA+B,UAAU;AACrD,YAAW,sCAAsC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC5D,QAAO,WAAW,WAAW,MAAM,MAAM,MAAM,GAAG,OAAO;;AACxD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Input_component_9metqqaxlN8",
+  "displayName": "test.tsx_Input_component",
+  "hash": "9metqqaxlN8",
+  "canonicalFilename": "test.tsx_Input_component_9metqqaxlN8",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    146,
+    402
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx_Input_component_useTask_Sbgs9Wtfkt0.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Input_component_useTask_Sbgs9Wtfkt0 = ({ track }) => {
+	const props = _captures[0];
+	track(() => props.error);
+	track(() => props.error2);
+	track(() => props.error3);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Input_component_useTask_Sbgs9Wtfkt0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Input_component_useTask_Sbgs9Wtfkt0 = ({ track }) => { const props = _captures[0];\n\n\ttrack(() => props.error);\n\ttrack(() => props.error2);\n\ttrack(() => props.error3);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,uCAAuC,EAAE,YAAY;CAAE,MAAM,QAAQ,UAAU;AAE3F,aAAY,MAAM,MAAM;AACxB,aAAY,MAAM,OAAO;AACzB,aAAY,MAAM,OAAO;;AACxB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Input_component_useTask_Sbgs9Wtfkt0",
+  "displayName": "test.tsx_Input_component_useTask",
+  "hash": "Sbgs9Wtfkt0",
+  "canonicalFilename": "test.tsx_Input_component_useTask_Sbgs9Wtfkt0",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": true,
+  "captureNames": [
+    "props"
+  ],
+  "loc": [
+    227,
+    354
+  ],
+  "paramNames": [
+    "track"
+  ]
+}
+*/
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { Input } from "./test";
+import { useForm } from "./some-file.ts";
+import { useForm2 } from "./some-file.ts";
+import { useStore } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = () => {
+	const Input = _captures[0];
+	const [store, math] = [useStore({ errors: {} }), Math.random()];
+	const [[store2]] = [[useStore({ errors: {} })]];
+	const { store3, math4 } = {
+		store3: useStore({ errors: {} }),
+		math4: Math.random()
+	};
+	const math2 = [Math.random()];
+	const { math3 } = { math3: Math.random() };
+	const [store4] = useForm();
+	const { store5 } = useForm2();
+	return _jsxSorted("div", null, null, [_jsxSorted("button", null, { "q-e:click": () => {
+		store.errors.test = store.errors.test ? undefined : "ERROR TEST";
+	} }, "click", 3, null), _jsxSorted(Input, {
+		error: store.errors.test,
+		error2: store2.errors.test,
+		error3: store3.errors.test,
+		error4: store4.errors.test,
+		error5: store5.errors.test,
+		math,
+		math2,
+		math3,
+		math4
+	}, null, null, 3, "u6_2")], 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Input } from \\"./test\\";\nimport { useForm } from \\"./some-file.ts\\";\nimport { useForm2 } from \\"./some-file.ts\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => { const Input = _captures[0];\n\n\tconst [store, math] = [useStore({ errors: {} }), Math.random()];\n\tconst [[store2]] = [[useStore({ errors: {} })]];\n\tconst { store3, math4 } = {\n\t\tstore3: useStore({ errors: {} }),\n\t\tmath4: Math.random()\n\t};\n\tconst math2 = [Math.random()];\n\tconst { math3 } = { math3: Math.random() };\n\tconst [store4] = useForm();\n\tconst { store5 } = useForm2();\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", null, { \\"q-e:click\\": () => {\n\t\tstore.errors.test = store.errors.test ? undefined : \\"ERROR TEST\\";\n\t} }, \\"click\\", 3, null), _jsxSorted(Input, {\n\t\terror: store.errors.test,\n\t\terror2: store2.errors.test,\n\t\terror3: store3.errors.test,\n\t\terror4: store4.errors.test,\n\t\terror5: store5.errors.test,\n\t\tmath,\n\t\tmath2,\n\t\tmath3,\n\t\tmath4\n\t}, null, null, 3, \\"u6_2\\")], 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,aAAa;AACtB,SAAS,eAAe;AACxB,SAAS,gBAAgB;AACzB,SAAS,gBAAgB;AACzB,OAAO,MAAM,8BAA8B;CAAE,MAAM,QAAQ,UAAU;CAEpE,MAAM,CAAC,OAAO,QAAQ,CAAC,SAAS,EAAE,QAAQ,EAAE,EAAE,CAAC,EAAE,KAAK,QAAQ,CAAC;CAC/D,MAAM,CAAC,CAAC,WAAW,CAAC,CAAC,SAAS,EAAE,QAAQ,EAAE,EAAE,CAAC,CAAC,CAAC;CAC/C,MAAM,EAAE,QAAQ,UAAU;EACzB,QAAQ,SAAS,EAAE,QAAQ,EAAE,EAAE,CAAC;EAChC,OAAO,KAAK,QAAQ;EACpB;CACD,MAAM,QAAQ,CAAC,KAAK,QAAQ,CAAC;CAC7B,MAAM,EAAE,UAAU,EAAE,OAAO,KAAK,QAAQ,EAAE;CAC1C,MAAM,CAAC,UAAU,SAAS;CAC1B,MAAM,EAAE,WAAW,UAAU;AAC7B,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,MAAM,EAAE,mBAAmB;AACrF,QAAM,OAAO,OAAO,MAAM,OAAO,OAAO,YAAY;IAClD,EAAE,SAAS,GAAG,KAAK,EAAE,WAAW,OAAO;EACzC,OAAO,MAAM,OAAO;EACpB,QAAQ,OAAO,OAAO;EACtB,QAAQ,OAAO,OAAO;EACtB,QAAQ,OAAO,OAAO;EACtB,QAAQ,OAAO,OAAO;EACtB;EACA;EACA;EACA;EACA,EAAE,MAAM,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO;;AACrC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "Input"
+  ],
+  "loc": [
+    422,
+    1225
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_Input_component_useTask_Sbgs9Wtfkt0 = qrl(() => import("./test.tsx_Input_component_useTask_Sbgs9Wtfkt0"), "Input_component_useTask_Sbgs9Wtfkt0", [props]);
+const q_Input_component_9metqqaxlN8 = qrl(() => import("./test.tsx_Input_component_9metqqaxlN8"), "Input_component_9metqqaxlN8");
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins", [Input]);
+import { component$, useStore, useTask$ } from "@qwik.dev/core";
+import { useForm, useForm2 } from "./some-file.ts";
+export const Input = componentQrl<{
+	error: string;
+	error2: string;
+	error3: string;
+}>(q_Input_component_9metqqaxlN8);
+export default componentQrl(q_component_ZUK1E201Ins.w([Input]));
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\" { compo\",\"$, useSto\",\"ort { component$, useStore, useTask$ \",\"rom\",\"t$<{e\",\"ort { component$, useStore, u\",\"ask\",\"ort { component$, useSt\",\", u\",\"file.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore, useTask$ } from '@qwik.dev/core';\n\t\timport { useForm, useForm2 } from './some-file.ts';\n\n\t\texport const Input = component$<{error: string, error2: string, error3: string}>(\n\t\t\t(props) => {\n\t\t\t\tuseTask$(({ track }) => {\n\t\t\t\t\ttrack(() => props.error);\n\t\t\t\t\ttrack(() => props.error2);\n\t\t\t\t\ttrack(() => props.error3);\n\t\t\t\t});\n\n\t\t\t\treturn (\n\t\t\t\t\t<>\n\t\t\t\t\t</>\n\t\t\t\t);\n\t\t\t}\n\t\t);\n\n\t\texport default component$(() => {\n\t\t\tconst [store, math] = [useStore({errors: {}}), Math.random()];\n\t\t\tconst [[store2]] = [[useStore({errors: {}})]];\n\t\t\tconst { store3, math4 } = { store3: useStore({errors: {}}), math4: Math.random() };\n\t\t\tconst math2 = [Math.random()];\n\t\t\tconst { math3 } = { math3: Math.random() };\n\t\t\tconst [store4] = useForm();\n\t\t\tconst {store5} = useForm2();\n\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button onClick$={() => {\n\t\t\t\t\t\tstore.errors.test = store.errors.test ? undefined : 'ERROR TEST';\n\t\t\t\t\t}}>click</button>\n\t\t\t\t\t<Input \n\t\t\t\t\t\terror={store.errors.test}\n\t\t\t\t\t\terror2={store2.errors.test}\n\t\t\t\t\t\terror3={store3.errors.test}\n\t\t\t\t\t\terror4={store4.errors.test}\n\t\t\t\t\t\terror5={store5.errors.test}\n\t\t\t\t\t\tmath={math}\n\t\t\t\t\t\tmath2={math2}\n\t\t\t\t\t\tmath3={math3}\n\t\t\t\t\t\tmath4={math4}\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,wCAAwCC,UAAU,OAAO,mDAChB,uCAEhB,CAACC,MAAM,CAAC;AAJtC,MACKC,gCAAgCC,UAAU,OAAO,2CACxB,8BAEzB;AAJL,MACKC,0BAA0BC,UAAU,OAAO,qCAC9B,yBAAyB,CAACC,MAAM,CAAC;AADjD,SAAS,YAAY,UAAU,gBAAgB;AAC/C,SAAS,SAAS,gBAAgB;AAElC,OAAO,MAAM,QAAQC,aAAW;CAAC;CAAe;CAAgB;iCAa/D;AAED,eAAeA,gDA2Bb\"}")
+== DIAGNOSTICS ==
+
+[]

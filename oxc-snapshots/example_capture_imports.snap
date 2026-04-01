@@ -1,0 +1,120 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useStyles$ } from '@qwik.dev/core';
+import css1 from './global.css';
+import css2 from './style.css';
+import css3 from './style.css';
+
+export const App = component$(() => {
+	useStyles$(`${css1}${css2}`);
+	useStyles$(css3);
+})
+
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+const q_App_component_useStyles_1_xBK4W0ZKWe8 = qrl(() => import("./test.tsx_App_component_useStyles_1_xBK4W0ZKWe8"), "App_component_useStyles_1_xBK4W0ZKWe8");
+const q_App_component_useStyles_t35nSa5UV7U = qrl(() => import("./test.tsx_App_component_useStyles_t35nSa5UV7U"), "App_component_useStyles_t35nSa5UV7U");
+export const App_component_ckEPmXZlub0 = () => {
+	useStylesQrl(q_App_component_useStyles_t35nSa5UV7U);
+	useStylesQrl(q_App_component_useStyles_1_xBK4W0ZKWe8);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"const q_App_component_useStyles_1_xBK4W0ZKWe8 = qrl(() => import(\\"./test.tsx_App_component_useStyles_1_xBK4W0ZKWe8\\"), \\"App_component_useStyles_1_xBK4W0ZKWe8\\");\nconst q_App_component_useStyles_t35nSa5UV7U = qrl(() => import(\\"./test.tsx_App_component_useStyles_t35nSa5UV7U\\"), \\"App_component_useStyles_t35nSa5UV7U\\");\nexport const App_component_ckEPmXZlub0 = () => {\n\tuseStylesQrl(q_App_component_useStyles_t35nSa5UV7U);\n\tuseStylesQrl(q_App_component_useStyles_1_xBK4W0ZKWe8);\n};;\"],\"mappings\":\"AAAA,MAAM,0CAA0C,UAAU,OAAO,qDAAqD,wCAAwC;AAC9J,MAAM,wCAAwC,UAAU,OAAO,mDAAmD,sCAAsC;AACxJ,OAAO,MAAM,kCAAkC;AAC9C,cAAa,sCAAsC;AACnD,cAAa,wCAAwC;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    175,
+    246
+  ]
+}
+*/
+
+============================= test.tsx_App_component_useStyles_t35nSa5UV7U.js (ENTRY POINT)==
+
+import { default as css1 } from "./global.css";
+export const App_component_useStyles_t35nSa5UV7U = `${css1}${css2}`;
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_t35nSa5UV7U\"],\"sourcesContent\":[\"import { default as css1 } from \\"./global.css\\";\nexport const App_component_useStyles_t35nSa5UV7U = `${css1}${css2}`;;\"],\"mappings\":\"AAAA,SAAS,WAAW,YAAY;AAChC,OAAO,MAAM,sCAAsC,GAAG,OAAO;AAAO\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_useStyles_t35nSa5UV7U",
+  "displayName": "test.tsx_App_component_useStyles",
+  "hash": "t35nSa5UV7U",
+  "canonicalFilename": "test.tsx_App_component_useStyles_t35nSa5UV7U",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useStyles$",
+  "captures": false,
+  "loc": [
+    195,
+    223
+  ]
+}
+*/
+
+============================= test.tsx_App_component_useStyles_1_xBK4W0ZKWe8.js (ENTRY POINT)==
+
+import { default as css3 } from "./style.css";
+export const App_component_useStyles_1_xBK4W0ZKWe8 = css3;
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_1_xBK4W0ZKWe8\"],\"sourcesContent\":[\"import { default as css3 } from \\"./style.css\\";\nexport const App_component_useStyles_1_xBK4W0ZKWe8 = css3;;\"],\"mappings\":\"AAAA,SAAS,WAAW,YAAY;AAChC,OAAO,MAAM,wCAAwC;AAAK\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_useStyles_1_xBK4W0ZKWe8",
+  "displayName": "test.tsx_App_component_useStyles_1",
+  "hash": "xBK4W0ZKWe8",
+  "canonicalFilename": "test.tsx_App_component_useStyles_1_xBK4W0ZKWe8",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useStyles$",
+  "captures": false,
+  "loc": [
+    226,
+    242
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+import { component$, useStyles$ } from "@qwik.dev/core";
+import css1 from "./global.css";
+import css2 from "./style.css";
+import css3 from "./style.css";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+
+
+Some("{\"version\":3,\"names\":[\"t { component$, useStyles$ \",\"rom\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\nimport css3 from './style.css';\n\nexport const App = component$(() => {\n\tuseStyles$(`${css1}${css2}`);\n\tuseStyles$(css3);\n})\n\"],\"mappings\":\"AAAA,MACKA,8BAA8BC,UAAU,OAAO,yCAEjD,4BAA4B;AAF/B,SAAS,YAAY,kBAAkB;AACvC,OAAO,UAAU;AACjB,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,yCAGjB\"}")
+== DIAGNOSTICS ==
+
+[]

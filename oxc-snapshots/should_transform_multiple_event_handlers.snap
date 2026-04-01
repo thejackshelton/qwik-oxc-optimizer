@@ -1,0 +1,67 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useSignal, Signal } from '@qwik.dev/core';
+const Foo = component$(function() {
+  const data = useSignal<Signal<any>[]>([]);
+  return <div>
+	{data.value.map(row => (
+	  <div onClick$={() => console.log(row.value.id)} onMouseOver$={() => console.log('over' + row.value.id)}>
+		<p onClick$={() => console.log('inner' + row.value.id)}>{item.value.id}</p>
+	  </div>
+	))}
+  </div>;
+})
+
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
+
+import { Signal } from "@qwik.dev/core";
+import { useSignal } from "@qwik.dev/core";
+export const Foo_component_HTDRsvUbLiE = function() {
+	const data = useSignal < Signal < any > [] > [];
+	return _jsxSorted("div", null, null, data.value.map((row) => _jsxSorted("div", { "q:p": row }, {
+		"q-e:click": () => console.log(row.value.id),
+		"q-e:mouse-over": () => console.log("over" + row.value.id)
+	}, _jsxSorted("p", { "q:p": row }, { "q-e:click": () => console.log("inner" + row.value.id) }, item.value.id, 7, null), 7, null)), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((row) => _jsxSorted(\\"div\\", { \\"q:p\\": row }, {\n\t\t\\"q-e:click\\": () => console.log(row.value.id),\n\t\t\\"q-e:mouse-over\\": () => console.log(\\"over\\" + row.value.id)\n\t}, _jsxSorted(\\"p\\", { \\"q:p\\": row }, { \\"q-e:click\\": () => console.log(\\"inner\\" + row.value.id) }, item.value.id, 7, null), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4BAA4B,WAAW;CACnD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;AACxC,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE;EAC9F,mBAAmB,QAAQ,IAAI,IAAI,MAAM,GAAG;EAC5C,wBAAwB,QAAQ,IAAI,SAAS,IAAI,MAAM,GAAG;EAC1D,EAAE,WAAW,KAAK,EAAE,OAAO,KAAK,EAAE,EAAE,mBAAmB,QAAQ,IAAI,UAAU,IAAI,MAAM,GAAG,EAAE,EAAE,KAAK,MAAM,IAAI,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC5I\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    77,
+    400
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+import { component$, useSignal, Signal } from "@qwik.dev/core";
+const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useSignal, \",\"nal\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(function() {\n  const data = useSignal<Signal<any>[]>([]);\n  return <div>\n\t{data.value.map(row => (\n\t  <div onClick$={() => console.log(row.value.id)} onMouseOver$={() => console.log('over' + row.value.id)}>\n\t\t<p onClick$={() => console.log('inner' + row.value.id)}>{item.value.id}</p>\n\t  </div>\n\t))}\n  </div>;\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCACvB,4BACR;AAFrB,SAAS,YAAY,WAAW,cAAc;AAC9C,MAAM,MAAMC,yCASV\"}")
+== DIAGNOSTICS ==
+
+[]

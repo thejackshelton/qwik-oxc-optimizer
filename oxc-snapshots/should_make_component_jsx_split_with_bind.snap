@@ -1,0 +1,64 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useSignal } from '@qwik.dev/core';
+
+export default component$(() => {
+  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'
+  const sig = useSignal(0)
+  return (
+    <div>
+      <Cmp bind:value={sig} />
+    </div>
+  );
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { useSignal } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = () => {
+	const Cmp = Math.random() >= .5 ? "button" : "input";
+	const sig = useSignal(0);
+	return _jsxSorted("div", null, null, _jsxSorted(Cmp, { "bind:value": sig }, null, null, 3, "u6_1"), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst Cmp = Math.random() >= .5 ? \\"button\\" : \\"input\\";\n\tconst sig = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Cmp, { \\"bind:value\\": sig }, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,KAAK,QAAQ,IAAI,KAAK,WAAW;CAC7C,MAAM,MAAM,UAAU,EAAE;AACxB,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,KAAK,EAAE,cAAc,KAAK,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC7G\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    73,
+    245
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useSignal } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useSign\",\"} f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'\n  const sig = useSignal(0)\n  return (\n    <div>\n      <Cmp bind:value={sig} />\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCAQb\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,204 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useTask$, useStore, useStyles$ } from '@qwik.dev/core';
+import mongo from 'mongodb';
+import redis from 'redis';
+
+export const Parent = component$(() => {
+	const state = useStore({
+		text: ''
+	});
+
+	// Double count watch
+	useTask$(async () => {
+		state.text = await mongo.users();
+		redis.set(state.text);
+	});
+
+	return (
+		<div onClick$={() => console.log('parent')}>
+			{state.text}
+		</div>
+	);
+});
+
+export const Child = component$(() => {
+	const state = useStore({
+		text: ''
+	});
+
+	// Double count watch
+	useTask$(async () => {
+		state.text = await mongo.users();
+	});
+
+	return (
+		<div onClick$={() => console.log('child')}>
+			{state.text}
+		</div>
+	);
+});
+
+
+============================= test.tsx_Parent_component_0TaiDayHrlo.js ==
+
+import { useStore } from "@qwik.dev/core";
+const q_Parent_component_useTask_gDH1EtUWqBU = qrl(() => import("./test.tsx_Parent_component_useTask_gDH1EtUWqBU"), "Parent_component_useTask_gDH1EtUWqBU", [state]);
+export const Parent_component_0TaiDayHrlo = () => {
+	const state = useStore({ text: "" });
+	useTaskQrl(q_Parent_component_useTask_gDH1EtUWqBU.w([state]));
+	return _jsxSorted("div", null, { "q-e:click": () => console.log("parent") }, _wrapProp(state, "text"), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_0TaiDayHrlo\"],\"sourcesContent\":[\"import { useStore } from \\"@qwik.dev/core\\";\nconst q_Parent_component_useTask_gDH1EtUWqBU = qrl(() => import(\\"./test.tsx_Parent_component_useTask_gDH1EtUWqBU\\"), \\"Parent_component_useTask_gDH1EtUWqBU\\", [state]);\nexport const Parent_component_0TaiDayHrlo = () => {\n\tconst state = useStore({ text: \\"\\" });\n\tuseTaskQrl(q_Parent_component_useTask_gDH1EtUWqBU.w([state]));\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"parent\\") }, _wrapProp(state, \\"text\\"), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,gBAAgB;AACzB,MAAM,yCAAyC,UAAU,OAAO,oDAAoD,wCAAwC,CAAC,MAAM,CAAC;AACpK,OAAO,MAAM,qCAAqC;CACjD,MAAM,QAAQ,SAAS,EAAE,MAAM,IAAI,CAAC;AACpC,YAAW,uCAAuC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC7D,QAAO,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,SAAS,EAAE,EAAE,UAAU,OAAO,OAAO,EAAE,GAAG,OAAO;;AAChH\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Parent_component_0TaiDayHrlo",
+  "entry": "test.tsx_entry_Parent",
+  "displayName": "test.tsx_Parent_component",
+  "hash": "0TaiDayHrlo",
+  "canonicalFilename": "test.tsx_Parent_component_0TaiDayHrlo",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    157,
+    421
+  ]
+}
+*/
+
+============================= test.tsx_Parent_Child_component_useTask_eBn9da7dexY.js ==
+
+import { _captures } from "@qwik.dev/core";
+import { default as mongo } from "mongodb";
+export const Parent_Child_component_useTask_eBn9da7dexY = async () => {
+	const state = _captures[0];
+	state.text = await mongo.users();
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_Child_component_useTask_eBn9da7dexY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { default as mongo } from \\"mongodb\\";\nexport const Parent_Child_component_useTask_eBn9da7dexY = async () => { const state = _captures[0];\n\n\tstate.text = await mongo.users();\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW,aAAa;AACjC,OAAO,MAAM,6CAA6C,YAAY;CAAE,MAAM,QAAQ,UAAU;AAE/F,OAAM,OAAO,MAAM,MAAM,OAAO;;AAC/B\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Parent_Child_component_useTask_eBn9da7dexY",
+  "entry": "test.tsx_entry_Parent",
+  "displayName": "test.tsx_Parent_Child_component_useTask",
+  "hash": "eBn9da7dexY",
+  "canonicalFilename": "test.tsx_Parent_Child_component_useTask_eBn9da7dexY",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    531,
+    593
+  ]
+}
+*/
+
+============================= test.tsx_Parent_component_useTask_gDH1EtUWqBU.js ==
+
+import { _captures } from "@qwik.dev/core";
+import { default as mongo } from "mongodb";
+export const Parent_component_useTask_gDH1EtUWqBU = async () => {
+	const state = _captures[0];
+	state.text = await mongo.users();
+	redis.set(state.text);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_useTask_gDH1EtUWqBU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { default as mongo } from \\"mongodb\\";\nexport const Parent_component_useTask_gDH1EtUWqBU = async () => { const state = _captures[0];\n\n\tstate.text = await mongo.users();\n\tredis.set(state.text);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW,aAAa;AACjC,OAAO,MAAM,uCAAuC,YAAY;CAAE,MAAM,QAAQ,UAAU;AAEzF,OAAM,OAAO,MAAM,MAAM,OAAO;AAChC,OAAM,IAAI,MAAM,KAAK;;AACpB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Parent_component_useTask_gDH1EtUWqBU",
+  "entry": "test.tsx_entry_Parent",
+  "displayName": "test.tsx_Parent_component_useTask",
+  "hash": "gDH1EtUWqBU",
+  "canonicalFilename": "test.tsx_Parent_component_useTask_gDH1EtUWqBU",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    243,
+    330
+  ]
+}
+*/
+
+============================= test.tsx_Parent_Child_component_Xt400DcHSR8.js ==
+
+import { useStore } from "@qwik.dev/core";
+const q_Parent_Child_component_useTask_eBn9da7dexY = qrl(() => import("./test.tsx_Parent_Child_component_useTask_eBn9da7dexY"), "Parent_Child_component_useTask_eBn9da7dexY", [state]);
+export const Parent_Child_component_Xt400DcHSR8 = () => {
+	const state = useStore({ text: "" });
+	useTaskQrl(q_Parent_Child_component_useTask_eBn9da7dexY.w([state]));
+	return _jsxSorted("div", null, { "q-e:click": () => console.log("child") }, _wrapProp(state, "text"), 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_Child_component_Xt400DcHSR8\"],\"sourcesContent\":[\"import { useStore } from \\"@qwik.dev/core\\";\nconst q_Parent_Child_component_useTask_eBn9da7dexY = qrl(() => import(\\"./test.tsx_Parent_Child_component_useTask_eBn9da7dexY\\"), \\"Parent_Child_component_useTask_eBn9da7dexY\\", [state]);\nexport const Parent_Child_component_Xt400DcHSR8 = () => {\n\tconst state = useStore({ text: \\"\\" });\n\tuseTaskQrl(q_Parent_Child_component_useTask_eBn9da7dexY.w([state]));\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"child\\") }, _wrapProp(state, \\"text\\"), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,gBAAgB;AACzB,MAAM,+CAA+C,UAAU,OAAO,0DAA0D,8CAA8C,CAAC,MAAM,CAAC;AACtL,OAAO,MAAM,2CAA2C;CACvD,MAAM,QAAQ,SAAS,EAAE,MAAM,IAAI,CAAC;AACpC,YAAW,6CAA6C,EAAE,CAAC,MAAM,CAAC,CAAC;AACnE,QAAO,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,UAAU,OAAO,OAAO,EAAE,GAAG,OAAO;;AAC/G\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Parent_Child_component_Xt400DcHSR8",
+  "entry": "test.tsx_entry_Parent",
+  "displayName": "test.tsx_Parent_Child_component",
+  "hash": "Xt400DcHSR8",
+  "canonicalFilename": "test.tsx_Parent_Child_component_Xt400DcHSR8",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    445,
+    683
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Parent_component_0TaiDayHrlo = qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
+const q_Parent_Child_component_Xt400DcHSR8 = qrl(() => import("./test.tsx_Parent_Child_component_Xt400DcHSR8"), "Parent_Child_component_Xt400DcHSR8");
+import { component$, useTask$, useStore, useStyles$ } from "@qwik.dev/core";
+import mongo from "mongodb";
+import redis from "redis";
+export const Parent = componentQrl(q_Parent_component_0TaiDayHrlo);
+export const Child = componentQrl(q_Parent_Child_component_Xt400DcHSR8);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$, useTask$, useS\",\"e, \",\"t { component$, useTask$, useStore, \",\"Sty\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text);\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('parent')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\nexport const Child = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('child')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,iCAAiCC,UAAU,OAAO,4CACjC,+BACE;AAHxB,MACKC,uCAAuCC,UAAU,OAAO,kDAExD,qCAES;AAJd,SAAS,YAAY,UAAU,UAAU,kBAAkB;AAC3D,OAAO,WAAW;AAClB,OAAO,WAAW;AAElB,OAAO,MAAM,SAASC,4CAgBpB;AAEF,OAAO,MAAM,QAAQA,kDAenB\"}")
+== DIAGNOSTICS ==
+
+[]

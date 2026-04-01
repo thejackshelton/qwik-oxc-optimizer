@@ -212,7 +212,7 @@ pub struct SegmentAnalysis {
     pub name: String,
 
     /// Entry point name, if this segment is a named entry.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Always serialized (null when None) to match SWC golden format.
     pub entry: Option<String>,
 
     /// Human-readable display name (e.g., "test.tsx_renderHeader").
@@ -231,7 +231,7 @@ pub struct SegmentAnalysis {
     pub extension: String,
 
     /// Parent segment name, if this segment is nested inside another.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Always serialized (null when None) to match SWC golden format.
     pub parent: Option<String>,
 
     /// Context kind: whether this is an event handler or a function.

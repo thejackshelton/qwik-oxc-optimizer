@@ -1,0 +1,60 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$ } from '@qwik.dev/core';
+
+		export default component$((props: any) => {
+			return <button {...props} onClick$={() => props.onClick$()}></button>;
+		});
+		
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = (props: any) => {
+	return _jsxSplit("button", { ..._getVarProps(props) }, {
+		..._getConstProps(props),
+		"q-e:click": () => props.onClick$()
+	}, null, 0, "u6_0");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    66,
+    173
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _getVarProps } from "@qwik.dev/core";
+import { _getConstProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" { component\",\" { component$ \",\" { compon\",\"ort { component$ } from\",\"qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,oBAAoB;AAD5B,SACQC,sBAAsB;AAD9B,SACQC,iBAAiB;AADzB,MACKC,0BAA0BC,UAAU,OAEzC,qCAAqC,wBACtB;AAHb,SAAS,kBAAkB;AAE3B,eAAeC,qCAEb\"}")
+== DIAGNOSTICS ==
+
+[]

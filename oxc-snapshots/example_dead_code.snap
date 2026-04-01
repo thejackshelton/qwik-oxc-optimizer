@@ -1,0 +1,76 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+import { deps } from 'deps';
+
+export const Foo = component$(({foo}) => {
+	useMount$(() => {
+		if (false) {
+			deps();
+		}
+	});
+	return (
+		<div />
+	);
+})
+
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
+
+import { deps } from "deps";
+export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
+	const _ref = {};
+	_ref.foo = _rawProps._ref.foo;
+	const { foo } = _ref;
+	useMount$(() => {
+		if (false) {
+			deps();
+		}
+	});
+	return _jsxSorted("div", null, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { deps } from \\"deps\\";\nexport const Foo_component_HTDRsvUbLiE = (_rawProps) => {\n\tconst _ref = {};\n\t_ref.foo = _rawProps._ref.foo;\n\tconst { foo } = _ref;\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,YAAY;AACrB,OAAO,MAAM,6BAA6B,cAAc;CACvD,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,KAAK;CAC1B,MAAM,EAAE,QAAQ;AAChB,iBAAgB;AACf,MAAI,OAAO;AACV,SAAM;;GAEN;AACF,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    95,
+    199
+  ],
+  "paramNames": [
+    "_rawProps"
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+import { component$ } from "@qwik.dev/core";
+import { deps } from "deps";
+export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwi\",\"ev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { deps } from 'deps';\n\nexport const Foo = component$(({foo}) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn (\n\t\t<div />\n\t);\n})\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OAAO,yCAEW,4BACf;AAJH,SAAS,kBAAkB;AAC3B,SAAS,YAAY;AAErB,OAAO,MAAM,MAAMC,yCASjB\"}")
+== DIAGNOSTICS ==
+
+[]

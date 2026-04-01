@@ -1,0 +1,79 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { _captures, inlinedQrl } from '@qwik.dev/core';
+
+const left = 1;
+const right = 2;
+
+export const task = inlinedQrl(() => {
+	const left = _captures[0];
+	const middle = _captures[1];
+	const right = _captures[2];
+	return middle ? left : right;
+}, 'task', [left, true, right]);
+
+
+============================= test.tsx_task_task.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const task = () => {
+	const left = _captures[0];
+	const right = _captures[1];
+	const left = _captures[0];
+	const middle = _captures[1];
+	const right = _captures[2];
+	return middle ? left : right;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_task_task\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const task = () => { const left = _captures[0];\nconst right = _captures[1];\n\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,aAAa;CAAE,MAAM,OAAO,UAAU;CACnD,MAAM,QAAQ,UAAU;CAEvB,MAAM,OAAO,UAAU;CACvB,MAAM,SAAS,UAAU;CACzB,MAAM,QAAQ,UAAU;AACxB,QAAO,SAAS,OAAO;;AACtB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "task",
+  "displayName": "test.tsx_task",
+  "hash": "",
+  "canonicalFilename": "test.tsx_task_task",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "inlinedQrl",
+  "captures": true,
+  "captureNames": [
+    "left",
+    "right"
+  ],
+  "loc": [
+    112,
+    280
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+const q_task = qrlDEV(() => import("./test.tsx_task_task"), "task", [left, right], {
+	file: "test.tsx",
+	lo: 112,
+	hi: 280,
+	displayName: "test.tsx_task"
+});
+import { _captures, inlinedQrl } from "@qwik.dev/core";
+const left = 1;
+const right = 2;
+export const task = q_task.w([left, right]);
+export { left as _auto_left };
+export { right as _auto_right };
+
+
+Some("{\"version\":3,\"names\":[\"t { _c\",\"ures, \",\"= 1;\",\"onst \",\"= 2;\",\"ta\",\"in\",\" => {\n\tcons\",\" _ca\",\"es, inline\",\" _cap\",\"s, inlinedQ\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { _captures, inlinedQrl } from '@qwik.dev/core';\n\nconst left = 1;\nconst right = 2;\n\nexport const task = inlinedQrl(() => {\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n}, 'task', [left, true, right]);\n\"],\"mappings\":\"AAAA,MACKA,SAASC,aAAa,OAAO,yBAEhC,QAAQ,CAACC,MACVC,MAAM,EAAE;CAAGC,MAEZ;CAAaC,IAAI;CAAMC,IAAI;CAAMC,aAC1B;CAAiB,CAAC;AANzB,SAAS,WAAW,kBAAkB;AAEtC,MAAM,OAAO;AACb,MAAM,QAAQ;AAEd,OAAO,MAAM;AANb,SACQC,QAAQC;AADhB,SACQC,SAASC\"}")
+== DIAGNOSTICS ==
+
+[]

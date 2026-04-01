@@ -1,0 +1,38 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { Counter } from "./counter.tsx";
+
+export const Root = () => {
+	return (
+		<html>
+			<head>
+				<meta charset="utf-8" />
+				<title>Qwik Blank App</title>
+			</head>
+			<body>
+				<Counter initial={3} />
+			</body>
+		</html>
+	);
+};
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Counter } from "./counter.tsx";
+export const Root = () => {
+	return _jsxSorted("html", null, null, [_jsxSorted("head", null, null, [_jsxSorted("meta", null, { charset: "utf-8" }, null, 3, null), _jsxSorted("title", null, null, "Qwik Blank App", 3, null)], 3, null), _jsxSorted("body", null, null, _jsxSorted(Counter, null, { initial: 3 }, null, 3, "u6_1"), 3, null)], 3, "u6_0");
+};
+
+
+Some("{\"version\":3,\"names\":[\" Counter }\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { Counter } from \\"./counter.tsx\\";\n\nexport const Root = () => {\n\treturn (\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<meta charset=\\"utf-8\\" />\n\t\t\t\t<title>Qwik Blank App</title>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<Counter initial={3} />\n\t\t\t</body>\n\t\t</html>\n\t);\n};\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAA1B,SAAS,eAAe;AAExB,OAAO,MAAM,aAAa;AACzB,kRAOqB\"}")
+== DIAGNOSTICS ==
+
+[]

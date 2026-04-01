@@ -1,0 +1,123 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component, onRender } from '@qwik.dev/core';
+
+export const renderHeader1 = $(() => {
+	return (
+		<div onClick={$((ctx) => console.log(ctx))}/>
+	);
+});
+const renderHeader2 = component($(() => {
+	console.log("mount");
+	return render;
+}));
+
+
+============================= test.tsx_renderHeader2_component_Ay6ibkfFYsw.tsx (ENTRY POINT)==
+
+export const renderHeader2_component_Ay6ibkfFYsw = () => {
+	console.log("mount");
+	return render;
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_component_Ay6ibkfFYsw\"],\"sourcesContent\":[\"export const renderHeader2_component_Ay6ibkfFYsw = () => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,SAAQ,IAAI,QAAQ;AACpB,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader2_component_Ay6ibkfFYsw",
+  "displayName": "test.tsx_renderHeader2_component",
+  "hash": "Ay6ibkfFYsw",
+  "canonicalFilename": "test.tsx_renderHeader2_component_Ay6ibkfFYsw",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    196,
+    247
+  ]
+}
+*/
+
+============================= test.tsx_renderHeader1_jMxQsjbyDss.tsx (ENTRY POINT)==
+
+const q_renderHeader1_div_onClick_USi8k1jUb40 = qrl(() => import("./test.tsx_renderHeader1_div_onClick_USi8k1jUb40"), "renderHeader1_div_onClick_USi8k1jUb40");
+export const renderHeader1_jMxQsjbyDss = () => {
+	return _jsxSorted("div", { onClick: Qrl(q_renderHeader1_div_onClick_USi8k1jUb40) }, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_jMxQsjbyDss\"],\"sourcesContent\":[\"const q_renderHeader1_div_onClick_USi8k1jUb40 = qrl(() => import(\\"./test.tsx_renderHeader1_div_onClick_USi8k1jUb40\\"), \\"renderHeader1_div_onClick_USi8k1jUb40\\");\nexport const renderHeader1_jMxQsjbyDss = () => {\n\treturn _jsxSorted(\\"div\\", { onClick: Qrl(q_renderHeader1_div_onClick_USi8k1jUb40) }, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,0CAA0C,UAAU,OAAO,qDAAqD,wCAAwC;AAC9J,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,EAAE,SAAS,IAAI,wCAAwC,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO;;AACzG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader1_jMxQsjbyDss",
+  "displayName": "test.tsx_renderHeader1",
+  "hash": "jMxQsjbyDss",
+  "canonicalFilename": "test.tsx_renderHeader1_jMxQsjbyDss",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    88,
+    162
+  ]
+}
+*/
+
+============================= test.tsx_renderHeader1_div_onClick_USi8k1jUb40.tsx (ENTRY POINT)==
+
+export const renderHeader1_div_onClick_USi8k1jUb40 = (ctx) => console.log(ctx);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onClick_USi8k1jUb40\"],\"sourcesContent\":[\"export const renderHeader1_div_onClick_USi8k1jUb40 = (ctx) => console.log(ctx);;\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "renderHeader1_div_onClick_USi8k1jUb40",
+  "displayName": "test.tsx_renderHeader1_div_onClick",
+  "hash": "USi8k1jUb40",
+  "canonicalFilename": "test.tsx_renderHeader1_div_onClick_USi8k1jUb40",
+  "path": "",
+  "extension": "tsx",
+  "parent": "$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    124,
+    152
+  ],
+  "paramNames": [
+    "ctx"
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_renderHeader1_jMxQsjbyDss = qrl(() => import("./test.tsx_renderHeader1_jMxQsjbyDss"), "renderHeader1_jMxQsjbyDss");
+const q_renderHeader2_component_Ay6ibkfFYsw = qrl(() => import("./test.tsx_renderHeader2_component_Ay6ibkfFYsw"), "renderHeader2_component_Ay6ibkfFYsw");
+import { $, component, onRender } from "@qwik.dev/core";
+export const renderHeader1 = Qrl(q_renderHeader1_jMxQsjbyDss);
+const renderHeader2 = component(Qrl(q_renderHeader2_component_Ay6ibkfFYsw));
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component, onRender \",\"rom\",\"t { $, component, onRender } from '@q\",\".de\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCAEjB,4BAErB;AALd,MACKC,wCAAwCC,UAAU,OAEnD,mDAEE,sCAAsC;AAJ5C,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
+== DIAGNOSTICS ==
+
+[]

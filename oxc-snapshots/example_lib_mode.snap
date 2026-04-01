@@ -1,0 +1,51 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, server$, useStyle$, useTask$, useSignal } from '@qwik.dev/core';
+
+export const Works = component$((props) => {
+	useStyle$(STYLES);
+	const text = 'hola';
+	const sig = useSignal('hola');
+	useTask$(() => {
+		console.log(sig.value, text);
+	});
+	return (
+		<div onClick$={server$(() => console.log('in server', sig.value, text))}></div>
+	);
+});
+
+const STYLES = '.class {}';
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { $, component$, server$, useStyle$, useTask$, useSignal } from "@qwik.dev/core";
+export const Works = componentQrl(inlinedQrl((props) => {
+	useStyleQrl(inlinedQrl(STYLES, "Works_component_useStyle_i40UL9JyQpg"));
+	const text = "hola";
+	const sig = useSignal("hola");
+	useTaskQrl(inlinedQrl((_captures) => {
+		const sig = _captures[0];
+		const text = _captures[1];
+		console.log(sig.value, text);
+	}, "Works_component_useTask_pjo5U5Ikll0", [sig, text]));
+	return _jsxSorted("div", { "q:ps": [sig, text] }, { "q-e:click": serverQrl(inlinedQrl((_captures) => {
+		const sig = _captures[0];
+		const text = _captures[1];
+		return console.log("in server", sig.value, text);
+	}, "Works_component_div_onClick_server_OsNoEFc5SM4", [sig, text])) }, null, 7, "u6_0");
+}, "Works_component_t45qL4vNGv0"));
+const STYLES = ".class {}";
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"component$\",\"server$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$, useTask$, useSignal } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\tconst sig = useSignal('hola');\n\tuseTask$(() => {\n\t\tconsole.log(sig.value, text);\n\t});\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', sig.value, text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAA1B,SAAS,GAAG,YAAY,SAAS,WAAW,UAAU,iBAAiB;AAEvE,OAAO,MAAM,QAAQC,yBAAY,UAAU;AAC1C,wBAAU,gDAAO;CACjB,MAAM,OAAO;CACb,MAAM,MAAM,UAAU,OAAO;AAC7B;;;AACC,UAAQ,IAAI,IAAI,OAAO,KAAK;wDAC3B;AACF,kEACgBC;;;SAAc,QAAQ,IAAI,aAAa,IAAI,OAAO,KAAK;mEAAC;kCAEvE;AAEF,MAAM,SAAS\"}")
+== DIAGNOSTICS ==
+
+[]

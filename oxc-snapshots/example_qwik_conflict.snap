@@ -1,0 +1,190 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useStyles } from '@qwik.dev/core';
+import { qrl } from '@qwik.dev/core/what';
+
+export const hW = 12;
+export const handleWatch = 42;
+
+const componentQrl = () => console.log('not this', qrl());
+
+componentQrl();
+export const Foo = component$(() => {
+	useStyles$('thing');
+	const qwik = hW + handleWatch;
+	console.log(qwik);
+	const qrl = 23;
+	return (
+		<div onClick$={()=> console.log(qrl)}/>
+	)
+}, {
+	tagName: "my-foo",
+});
+
+export const Root = component$(() => {
+	useStyles($('thing'));
+	return $(() => {
+		return (
+			<div/>
+		)
+	});
+}, {
+	tagName: "my-foo",
+});
+
+
+============================= test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM.js (ENTRY POINT)==
+
+export const Foo_Root_component_useStyles_4xwGedOJBWM = "thing";
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM\"],\"sourcesContent\":[\"export const Foo_Root_component_useStyles_4xwGedOJBWM = \\"thing\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C;AAAQ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_Root_component_useStyles_4xwGedOJBWM",
+  "displayName": "test.tsx_Foo_Root_component_useStyles",
+  "hash": "4xwGedOJBWM",
+  "canonicalFilename": "test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    498,
+    508
+  ]
+}
+*/
+
+============================= test.tsx_Foo_Root_component_1_aRO0NNwMS6Y.js (ENTRY POINT)==
+
+import { useStyles } from "@qwik.dev/core";
+const q_Foo_Root_component_axal36VvL64 = qrl(() => import("./test.tsx_Foo_Root_component_axal36VvL64"), "Foo_Root_component_axal36VvL64");
+const q_Foo_Root_component_useStyles_4xwGedOJBWM = qrl(() => import("./test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM"), "Foo_Root_component_useStyles_4xwGedOJBWM");
+export const Foo_Root_component_1_aRO0NNwMS6Y = () => {
+	useStyles(Qrl(q_Foo_Root_component_useStyles_4xwGedOJBWM));
+	return Qrl(q_Foo_Root_component_axal36VvL64);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_1_aRO0NNwMS6Y\"],\"sourcesContent\":[\"import { useStyles } from \\"@qwik.dev/core\\";\nconst q_Foo_Root_component_axal36VvL64 = qrl(() => import(\\"./test.tsx_Foo_Root_component_axal36VvL64\\"), \\"Foo_Root_component_axal36VvL64\\");\nconst q_Foo_Root_component_useStyles_4xwGedOJBWM = qrl(() => import(\\"./test.tsx_Foo_Root_component_useStyles_4xwGedOJBWM\\"), \\"Foo_Root_component_useStyles_4xwGedOJBWM\\");\nexport const Foo_Root_component_1_aRO0NNwMS6Y = () => {\n\tuseStyles(Qrl(q_Foo_Root_component_useStyles_4xwGedOJBWM));\n\treturn Qrl(q_Foo_Root_component_axal36VvL64);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,mCAAmC,UAAU,OAAO,8CAA8C,iCAAiC;AACzI,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,2CAA2C;AACvK,OAAO,MAAM,yCAAyC;AACrD,WAAU,IAAI,2CAA2C,CAAC;AAC1D,QAAO,IAAI,iCAAiC;;AAC3C\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_Root_component_1_aRO0NNwMS6Y",
+  "displayName": "test.tsx_Foo_Root_component_1",
+  "hash": "aRO0NNwMS6Y",
+  "canonicalFilename": "test.tsx_Foo_Root_component_1_aRO0NNwMS6Y",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    468,
+    586
+  ]
+}
+*/
+
+============================= test.tsx_Foo_Root_component_axal36VvL64.js (ENTRY POINT)==
+
+export const Foo_Root_component_axal36VvL64 = () => {
+	return _jsxSorted("div", null, null, null, 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_Root_component_axal36VvL64\"],\"sourcesContent\":[\"export const Foo_Root_component_axal36VvL64 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AACnD,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_Root_component_axal36VvL64",
+  "displayName": "test.tsx_Foo_Root_component",
+  "hash": "axal36VvL64",
+  "canonicalFilename": "test.tsx_Foo_Root_component_axal36VvL64",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    519,
+    557
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { hW } from "./test";
+import { handleWatch } from "./test";
+import { qrl } from "@qwik.dev/core/what";
+export const Foo_component_HTDRsvUbLiE = () => {
+	const hW = _captures[0];
+	const handleWatch = _captures[1];
+	useStyles$("thing");
+	const qwik = hW + handleWatch;
+	console.log(qwik);
+	const qrl = 23;
+	return _jsxSorted("div", { "q:p": qrl }, { "q-e:click": () => console.log(qrl) }, null, 7, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { hW } from \\"./test\\";\nimport { handleWatch } from \\"./test\\";\nimport { qrl } from \\"@qwik.dev/core/what\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const hW = _captures[0];\nconst handleWatch = _captures[1];\n\n\tuseStyles$(\\"thing\\");\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": qrl }, { \\"q-e:click\\": () => console.log(qrl) }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,UAAU;AACnB,SAAS,mBAAmB;AAC5B,SAAS,WAAW;AACpB,OAAO,MAAM,kCAAkC;CAAE,MAAM,KAAK,UAAU;CACtE,MAAM,cAAc,UAAU;AAE7B,YAAW,QAAQ;CACnB,MAAM,OAAO,KAAK;AAClB,SAAQ,IAAI,KAAK;CACjB,MAAM,MAAM;AACZ,QAAO,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,mBAAmB,QAAQ,IAAI,IAAI,EAAE,EAAE,MAAM,GAAG,OAAO;;AACjG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "hW",
+    "handleWatch"
+  ],
+  "loc": [
+    253,
+    445
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE", [hW, handleWatch]);
+const q_Foo_Root_component_1_aRO0NNwMS6Y = qrl(() => import("./test.tsx_Foo_Root_component_1_aRO0NNwMS6Y"), "Foo_Root_component_1_aRO0NNwMS6Y");
+import { $, component$, useStyles } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core/what";
+export const hW = 12;
+export const handleWatch = 42;
+const componentQrl = () => console.log("not this", qrl());
+componentQrl();
+export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE.w([hW, handleWatch]), { tagName: "my-foo" });
+export const Root = componentQrl(q_Foo_Root_component_1_aRO0NNwMS6Y, { tagName: "my-foo" });
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useStyle\",\" fr\",\";\n\",\"port const \",\"t { $, component$, useStyles } fro\",\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles } from '@qwik.dev/core';\nimport { qrl } from '@qwik.dev/core/what';\n\nexport const hW = 12;\nexport const handleWatch = 42;\n\nconst componentQrl = () => console.log('not this', qrl());\n\ncomponentQrl();\nexport const Foo = component$(() => {\n\tuseStyles$('thing');\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn (\n\t\t<div onClick$={()=> console.log(qrl)}/>\n\t)\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport const Root = component$(() => {\n\tuseStyles($('thing'));\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,yCAClB,6BAEf,CAACC,IAClBC,YAAY,CAAC;AALf,MACKC,qCAAqCC,UAAU,OACpD,gDAEI,mCACa;AAJjB,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,WAAW;AAEpB,OAAO,MAAM,KAAK;AAClB,OAAO,MAAM,cAAc;AAE3B,MAAM,qBAAqB,QAAQ,IAAI,YAAY,KAAK,CAAC;AAEzD,cAAc;AACd,OAAO,MAAM,MAAMC,+DAQhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,MAAM,OAAOA,iDAOjB,EACF,SAAS,UACT,CAAC\"}")
+== DIAGNOSTICS ==
+
+[]

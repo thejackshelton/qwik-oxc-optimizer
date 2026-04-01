@@ -1,0 +1,65 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export default component$(() => {
+  const loop: string[] = ['abcd', 'xyz'];
+  return (
+    <div>
+      {loop.map((item, index) => {
+        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>
+      })}
+    </div>
+  );
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+export const component_ZUK1E201Ins = () => {
+	const loop: string[] = ["abcd", "xyz"];
+	return _jsxSorted("div", null, null, loop.map((item, index) => {
+		return _jsxSorted("div", { "q:ps": [index, item] }, {
+			"q-e:click": () => console.log(item),
+			"q-e:hover": () => console.log(index)
+		}, item, 7, null);
+	}), 3, "u6_0");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    62,
+    311
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$ } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAEvC,qCACG,wBAAwB;AAH7B,SAAS,kBAAkB;AAE3B,eAAeC,qCASb\"}")
+== DIAGNOSTICS ==
+
+[]

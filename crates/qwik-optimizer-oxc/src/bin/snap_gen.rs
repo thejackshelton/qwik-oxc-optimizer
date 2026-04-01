@@ -205,17 +205,25 @@ fn emit_snap(
 
     // Module sections ordered by module.order (already sorted by transform_modules)
     for module in &output.modules {
-        if module.is_entry {
-            // Segment / entry point
-            buf.push_str(&format!(
-                "\n============================= {} (ENTRY POINT)==\n\n",
-                module.path
-            ));
+        if module.segment.is_some() {
+            // Segment module: header with or without (ENTRY POINT) depending on is_entry
+            if module.is_entry {
+                buf.push_str(&format!(
+                    "\n============================= {} (ENTRY POINT)==\n\n",
+                    module.path
+                ));
+            } else {
+                buf.push_str(&format!(
+                    "\n============================= {} ==\n\n",
+                    module.path
+                ));
+            }
             buf.push_str(&module.code);
             buf.push_str("\n\n");
             if let Some(ref map) = module.map {
                 buf.push_str(&format!("Some(\"{}\")\n", escape_source_map(map)));
             }
+            // Always emit metadata for segment modules
             if let Some(ref segment) = module.segment {
                 buf.push_str("/*\n");
                 buf.push_str(&format_segment_json(segment));

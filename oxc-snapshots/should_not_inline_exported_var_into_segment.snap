@@ -1,0 +1,113 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { wrapperFn, getEnv } from 'utils';
+		import { formAction$, valiForm$ } from 'forms';
+
+		const flagEnabled = getEnv().PUBLIC_FEATURE;
+		export const FeatureSchema = wrapperFn(flagEnabled);
+
+		export const featureAction = formAction$(async (requestEvent) => {
+			return {
+				status: 'success',
+			};
+		}, valiForm$(FeatureSchema));
+		
+
+============================= test.tsx_featureAction_formAction_valiForm_3yxd03SSzJ8.js (ENTRY POINT)==
+
+import { FeatureSchema } from "./test";
+export const featureAction_formAction_valiForm_3yxd03SSzJ8 = FeatureSchema;
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_featureAction_formAction_valiForm_3yxd03SSzJ8\"],\"sourcesContent\":[\"import { FeatureSchema } from \\"./test\\";\nexport const featureAction_formAction_valiForm_3yxd03SSzJ8 = FeatureSchema;;\"],\"mappings\":\"AAAA,SAAS,qBAAqB;AAC9B,OAAO,MAAM,gDAAgD;AAAc\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "featureAction_formAction_valiForm_3yxd03SSzJ8",
+  "displayName": "test.tsx_featureAction_formAction_valiForm",
+  "hash": "3yxd03SSzJ8",
+  "canonicalFilename": "test.tsx_featureAction_formAction_valiForm_3yxd03SSzJ8",
+  "path": "",
+  "extension": "js",
+  "parent": "formAction$",
+  "ctxKind": "function",
+  "ctxName": "valiForm$",
+  "captures": false,
+  "loc": [
+    315,
+    339
+  ]
+}
+*/
+
+============================= test.tsx_featureAction_formAction_cZgh2PzV1cc.js (ENTRY POINT)==
+
+export const featureAction_formAction_cZgh2PzV1cc = async (requestEvent) => {
+	return { status: "success" };
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_featureAction_formAction_cZgh2PzV1cc\"],\"sourcesContent\":[\"export const featureAction_formAction_cZgh2PzV1cc = async (requestEvent) => {\n\treturn { status: \\"success\\" };\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC,OAAO,iBAAiB;AAC3E,QAAO,EAAE,QAAQ,WAAW;;AAC3B\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "featureAction_formAction_cZgh2PzV1cc",
+  "displayName": "test.tsx_featureAction_formAction",
+  "hash": "cZgh2PzV1cc",
+  "canonicalFilename": "test.tsx_featureAction_formAction_cZgh2PzV1cc",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "formAction$",
+  "captures": false,
+  "loc": [
+    231,
+    340
+  ],
+  "paramNames": [
+    "requestEvent"
+  ]
+}
+*/
+
+============================= test.js ==
+
+const q_featureAction_formAction_valiForm_3yxd03SSzJ8 = qrl(() => import("./test.tsx_featureAction_formAction_valiForm_3yxd03SSzJ8"), "featureAction_formAction_valiForm_3yxd03SSzJ8");
+const q_featureAction_formAction_cZgh2PzV1cc = qrl(() => import("./test.tsx_featureAction_formAction_cZgh2PzV1cc"), "featureAction_formAction_cZgh2PzV1cc");
+import { wrapperFn, getEnv } from "utils";
+import { formAction$, valiForm$ } from "forms";
+const flagEnabled = getEnv().PUBLIC_FEATURE;
+export const FeatureSchema = wrapperFn(flagEnabled);
+export const featureAction = formActionQrl(q_featureAction_formAction_cZgh2PzV1cc, valiFormQrl(q_featureAction_formAction_valiForm_3yxd03SSzJ8));
+
+
+Some("{\"version\":3,\"names\":[\"ort { wrapperFn, getEnv } from 'utils';\n\t\timpor\",\" fo\",\"ort { wrapperFn, getEnv } from 'utils'\",\"\tim\",\"formAction$\",\"valiForm$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { wrapperFn, getEnv } from 'utils';\n\t\timport { formAction$, valiForm$ } from 'forms';\n\n\t\tconst flagEnabled = getEnv().PUBLIC_FEATURE;\n\t\texport const FeatureSchema = wrapperFn(flagEnabled);\n\n\t\texport const featureAction = formAction$(async (requestEvent) => {\n\t\t\treturn {\n\t\t\t\tstatus: 'success',\n\t\t\t};\n\t\t}, valiForm$(FeatureSchema));\n\t\t\"],\"mappings\":\"AAAA,MACKA,kDACKC,UAAU,OAAO,6DAEU,gDACC;AALtC,MACKC,yCACJC,UAAU,OAAO,oDAEC,uCACR;AAJT,SAAS,WAAW,cAAc;AAClC,SAAS,aAAa,iBAAiB;AAEvC,MAAM,cAAc,QAAQ,CAAC;AAC7B,OAAO,MAAM,gBAAgB,UAAU,YAAY;AAEnD,OAAO,MAAM,gBAAgBC,sDAI1BC,4DAAwB,CAAC\"}")
+== DIAGNOSTICS ==
+
+[
+  {
+    "scope": "optimizer",
+    "category": "error",
+    "code": "C03",
+    "file": "test.tsx",
+    "message": "Qrl($) scope is not a function, but it's capturing local identifiers: FeatureSchema",
+    "highlights": [
+      {
+        "lo": 315,
+        "hi": 339,
+        "startLine": 12,
+        "startCol": 5,
+        "endLine": 12,
+        "endCol": 29
+      }
+    ]
+  }
+]

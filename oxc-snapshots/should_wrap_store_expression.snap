@@ -1,0 +1,90 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useStore } from '@qwik.dev/core';
+
+		export default component$(() => {
+			const panelStore = useStore(() => ({
+				active: 'Input',
+				list: PANELS,
+			}));
+
+			return (
+				<div
+					stuff={panelStore.active ? 'yes' : 'no'}
+					class={{
+						'too-long-to-wrap': true,
+						'examples-panel-input': panelStore.active === 'Input',
+						'examples-panel-output': panelStore.active === 'Output',
+						'examples-panel-console': panelStore.active === 'Console',
+					}}
+				/>
+			);
+		});
+		export const PANELS: ActivePanel[] = ['Examples', 'Input', 'Output', 'Console'];
+		
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { PANELS } from "./test";
+import { useStore } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = () => {
+	const panelStore = useStore(() => ({
+		active: "Input",
+		list: PANELS
+	}));
+	return _jsxSorted("div", { class: {
+		"too-long-to-wrap": true,
+		"examples-panel-input": panelStore.active === "Input",
+		"examples-panel-output": panelStore.active === "Output",
+		"examples-panel-console": panelStore.active === "Console"
+	} }, { stuff: _fnSignal(_hf0, [panelStore], "p0 => p0.active ? \"yes\" : \"no\";") }, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { PANELS } from \\"./test\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst panelStore = useStore(() => ({\n\t\tactive: \\"Input\\",\n\t\tlist: PANELS\n\t}));\n\treturn _jsxSorted(\\"div\\", { class: {\n\t\t\\"too-long-to-wrap\\": true,\n\t\t\\"examples-panel-input\\": panelStore.active === \\"Input\\",\n\t\t\\"examples-panel-output\\": panelStore.active === \\"Output\\",\n\t\t\\"examples-panel-console\\": panelStore.active === \\"Console\\"\n\t} }, { stuff: _fnSignal(_hf0, [panelStore], \\"p0 => p0.active ? \\\\"yes\\\\" : \\\\"no\\\\";\\") }, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,gBAAgB;AACzB,OAAO,MAAM,8BAA8B;CAC1C,MAAM,aAAa,gBAAgB;EAClC,QAAQ;EACR,MAAM;EACN,EAAE;AACH,QAAO,WAAW,OAAO,EAAE,OAAO;EACjC,oBAAoB;EACpB,wBAAwB,WAAW,WAAW;EAC9C,yBAAyB,WAAW,WAAW;EAC/C,0BAA0B,WAAW,WAAW;EAChD,EAAE,EAAE,EAAE,OAAO,UAAU,MAAM,CAAC,WAAW,EAAE,sCAAsC,EAAE,EAAE,MAAM,GAAG,OAAO;;AACrG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    76,
+    510
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const _hf0 = (p0) => p0.active ? "yes" : "no";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useStore } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+export const PANELS: ActivePanel[] = [
+	"Examples",
+	"Input",
+	"Output",
+	"Console"
+];
+
+
+Some("{\"version\":3,\"names\":[\" { compon\",\" { compone\",\"ort \",\"nt\",\", useS\",\"ort { component$, useSt\",\" } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst panelStore = useStore(() => ({\n\t\t\t\tactive: 'Input',\n\t\t\t\tlist: PANELS,\n\t\t\t}));\n\n\t\t\treturn (\n\t\t\t\t<div\n\t\t\t\t\tstuff={panelStore.active ? 'yes' : 'no'}\n\t\t\t\t\tclass={{\n\t\t\t\t\t\t'too-long-to-wrap': true,\n\t\t\t\t\t\t'examples-panel-input': panelStore.active === 'Input',\n\t\t\t\t\t\t'examples-panel-output': panelStore.active === 'Output',\n\t\t\t\t\t\t'examples-panel-console': panelStore.active === 'Console',\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t);\n\t\t});\n\t\texport const PANELS: ActivePanel[] = ['Examples', 'Input', 'Output', 'Console'];\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAMC,GAAGC,SAAS,QAAQ;AADtC,MACKC,0BAA0BC,UAAU,OAAO,qCAErB,wBACZ;AAHb,SAAS,YAAY,gBAAgB;AAErC,eAAeC,qCAiBb;AACF,OAAO,MAAM,QAAQ,gBAAgB;CAAC;CAAY;CAAS;CAAU;CAAU\"}")
+== DIAGNOSTICS ==
+
+[]

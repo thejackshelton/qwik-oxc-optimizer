@@ -1,0 +1,103 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$, useComputed$ } from '@qwik.dev/core';
+		import { inlineTranslate } from 'translate-lib';
+
+		export default component$(() => {
+			const t = inlineTranslate();
+
+			const productTitle = useComputed$(() => {
+				return 'Test title';
+			});
+
+			return (
+				<img 
+					attr={t('home.imageAlt.founded-product:')}
+					alt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />
+			);
+		});
+		
+
+============================= test.tsx_component_productTitle_useComputed_qyvYoxyiPuk.js (ENTRY POINT)==
+
+export const component_productTitle_useComputed_qyvYoxyiPuk = () => {
+	return "Test title";
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_productTitle_useComputed_qyvYoxyiPuk\"],\"sourcesContent\":[\"export const component_productTitle_useComputed_qyvYoxyiPuk = () => {\n\treturn \\"Test title\\";\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uDAAuD;AACnE,QAAO;;AACN\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_productTitle_useComputed_qyvYoxyiPuk",
+  "displayName": "test.tsx_component_productTitle_useComputed",
+  "hash": "qyvYoxyiPuk",
+  "canonicalFilename": "test.tsx_component_productTitle_useComputed_qyvYoxyiPuk",
+  "path": "",
+  "extension": "js",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "useComputed$",
+  "captures": false,
+  "loc": [
+    207,
+    258
+  ]
+}
+*/
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { inlineTranslate } from "translate-lib";
+const q_component_productTitle_useComputed_qyvYoxyiPuk = qrl(() => import("./test.tsx_component_productTitle_useComputed_qyvYoxyiPuk"), "component_productTitle_useComputed_qyvYoxyiPuk");
+export const component_ZUK1E201Ins = () => {
+	const t = inlineTranslate();
+	const productTitle = useComputedQrl(q_component_productTitle_useComputed_qyvYoxyiPuk);
+	return _jsxSorted("img", {
+		alt: `${t("home.imageAlt.founded-product:")} ${productTitle.value}`,
+		attr: t("home.imageAlt.founded-product:")
+	}, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { inlineTranslate } from \\"translate-lib\\";\nconst q_component_productTitle_useComputed_qyvYoxyiPuk = qrl(() => import(\\"./test.tsx_component_productTitle_useComputed_qyvYoxyiPuk\\"), \\"component_productTitle_useComputed_qyvYoxyiPuk\\");\nexport const component_ZUK1E201Ins = () => {\n\tconst t = inlineTranslate();\n\tconst productTitle = useComputedQrl(q_component_productTitle_useComputed_qyvYoxyiPuk);\n\treturn _jsxSorted(\\"img\\", {\n\t\talt: `${t(\\"home.imageAlt.founded-product:\\")} ${productTitle.value}`,\n\t\tattr: t(\\"home.imageAlt.founded-product:\\")\n\t}, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,uBAAuB;AAChC,MAAM,mDAAmD,UAAU,OAAO,8DAA8D,iDAAiD;AACzL,OAAO,MAAM,8BAA8B;CAC1C,MAAM,IAAI,iBAAiB;CAC3B,MAAM,eAAe,eAAe,iDAAiD;AACrF,QAAO,WAAW,OAAO;EACxB,KAAK,GAAG,EAAE,iCAAiC,CAAC,GAAG,aAAa;EAC5D,MAAM,EAAE,iCAAiC;EACzC,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    131,
+    418
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useComputed$ } from "@qwik.dev/core";
+import { inlineTranslate } from "translate-lib";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, useCo\",\"ted\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$ } from '@qwik.dev/core';\n\t\timport { inlineTranslate } from 'translate-lib';\n\n\t\texport default component$(() => {\n\t\t\tconst t = inlineTranslate();\n\n\t\t\tconst productTitle = useComputed$(() => {\n\t\t\t\treturn 'Test title';\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<img \n\t\t\t\t\tattr={t('home.imageAlt.founded-product:')}\n\t\t\t\t\talt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCACxB,wBAAwB;AAD9C,SAAS,YAAY,oBAAoB;AACzC,SAAS,uBAAuB;AAEhC,eAAeC,qCAYb\"}")
+== DIAGNOSTICS ==
+
+[]

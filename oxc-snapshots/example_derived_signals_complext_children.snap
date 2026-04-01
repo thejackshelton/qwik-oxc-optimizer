@@ -1,0 +1,43 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useStore, mutable } from '@qwik.dev/core';
+
+import {dep} from './file';
+
+export const App = component$(() => {
+	const signal = useSignal(0);
+	const store = useStore({});
+	return (
+		<>
+			<ul id="issue-2800-result">
+				{Object.entries(store).map(([key, value]) => (
+				<li>
+					{key} - {value}
+				</li>
+				))}
+			</ul>
+		</>
+	);
+});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
+import { component$, useStore, mutable } from "@qwik.dev/core";
+import { dep } from "./file";
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\" compone\",\" useStore\",\"t { component$, useStore, m\",\"ble } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, mutable } from '@qwik.dev/core';\n\nimport {dep} from './file';\n\nexport const App = component$(() => {\n\tconst signal = useSignal(0);\n\tconst store = useStore({});\n\treturn (\n\t\t<>\n\t\t\t<ul id=\\"issue-2800-result\\">\n\t\t\t\t{Object.entries(store).map(([key, value]) => (\n\t\t\t\t<li>\n\t\t\t\t\t{key} - {value}\n\t\t\t\t</li>\n\t\t\t\t))}\n\t\t\t</ul>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,8BAA8BC,SAAS,4BAErC;AAFP,SAAS,YAAY,UAAU,eAAe;AAE9C,SAAQ,WAAU;AAElB,OAAO,MAAM,MAAMC,yCAcjB\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,30 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+export const App = () => {
+	const Header = component$(() => {
+		console.log("mount");
+		return (
+			<div onClick={$((ctx) => console.log(ctx))}/>
+		);
+	});
+	return Header;
+});
+
+== DIAGNOSTICS ==
+
+[
+  {
+    "scope": "optimizer",
+    "category": "sourceError",
+    "code": null,
+    "file": "test.tsx",
+    "message": "Expected a semicolon or an implicit semicolon after a statement, but found none"
+  }
+]

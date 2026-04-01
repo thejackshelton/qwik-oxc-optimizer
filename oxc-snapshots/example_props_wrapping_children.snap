@@ -1,0 +1,36 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$, useSignal } from '@qwik.dev/core';
+export const Works = component$(({fromProps}) => {
+	let fromLocal = useSignal(0);
+	return (
+		<div>
+			{fromLocal}
+			{fromProps}
+			{fromLocal + fromProps}
+			{{props: fromProps}}
+			{{local: fromLocal}}
+			{{props: fromProps, local: fromLocal}}
+		</div>
+	);
+});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
+import { $, component$, useSignal } from "@qwik.dev/core";
+export const Works = componentQrl(q_Works_component_t45qL4vNGv0);
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$, useSignal \",\"rom '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from '@qwik.dev/core';\nexport const Works = component$(({fromProps}) => {\n\tlet fromLocal = useSignal(0);\n\treturn (\n\t\t<div>\n\t\t\t{fromLocal}\n\t\t\t{fromProps}\n\t\t\t{fromLocal + fromProps}\n\t\t\t{{props: fromProps}}\n\t\t\t{{local: fromLocal}}\n\t\t\t{{props: fromProps, local: fromLocal}}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,SAAS,8BAC7B;AADjB,SAAS,GAAG,YAAY,iBAAiB;AACzC,OAAO,MAAM,QAAQC,2CAYnB\"}")
+== DIAGNOSTICS ==
+
+[]

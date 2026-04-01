@@ -1,0 +1,59 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { componentQrl, inlinedQrl, useStore, jsxs, jsx, useLexicalScope } from '@qwik.dev/core';
+
+export const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{
+	useStyles$(inlinedQrl(STYLES, "STYLES_odz7dfdfdM"));
+	useStyles$(inlinedQrl(STYLES, "STYLES_odzdfdfdM"));
+
+	const store = useStore({
+		count: 0
+	});
+	return /*#__PURE__*/ jsxs("div", {
+		children: [
+			/*#__PURE__*/ jsxs("p", {
+				children: [
+					"Count: ",
+					store.count
+				]
+			}),
+			/*#__PURE__*/ jsx("p", {
+				children: /*#__PURE__*/ jsx("button", {
+					onClick$: inlinedQrl(()=>{
+						const [store] = useLexicalScope();
+						return store.count++;
+					}, "App_component_div_p_button_onClick_odz7eidI4GM", [
+						store
+					]),
+					children: "Click"
+				})
+			})
+		]
+	});
+}, "App_component_Fh88JClhbC0"));
+
+export const STYLES = ".red { color: red; }";
+
+
+
+============================= test.tsx ==
+
+const q_s_odz7dfdfdM = _noopQrl("s_odz7dfdfdM");
+const q_s_odzdfdfdM = _noopQrl("s_odzdfdfdM");
+const q_s_odz7eidI4GM = _noopQrl("s_odz7eidI4GM");
+const q_s_Fh88JClhbC0 = _noopQrl("s_Fh88JClhbC0");
+import { componentQrl, inlinedQrl, useStore, jsxs, jsx, useLexicalScope } from "@qwik.dev/core";
+export const App = /* @__PURE__ */ componentQrl(inlinedQrl(q_s_Fh88JClhbC0, "App_component_Fh88JClhbC0"));
+export const STYLES = ".red { color: red; }";
+
+
+Some("{\"version\":3,\"names\":[\"t { componentQ\",\" inlined\",\"t { component\",\", inline\",\"t { componentQr\",\"inlinedQ\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useStore, jsxs, jsx, useLexicalScope } from '@qwik.dev/core';\n\nexport const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odz7dfdfdM\\"));\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odzdfdfdM\\"));\n\n\tconst store = useStore({\n\t\tcount: 0\n\t});\n\treturn /*#__PURE__*/ jsxs(\\"div\\", {\n\t\tchildren: [\n\t\t\t/*#__PURE__*/ jsxs(\\"p\\", {\n\t\t\t\tchildren: [\n\t\t\t\t\t\\"Count: \\",\n\t\t\t\t\tstore.count\n\t\t\t\t]\n\t\t\t}),\n\t\t\t/*#__PURE__*/ jsx(\\"p\\", {\n\t\t\t\tchildren: /*#__PURE__*/ jsx(\\"button\\", {\n\t\t\t\t\tonClick$: inlinedQrl(()=>{\n\t\t\t\t\t\tconst [store] = useLexicalScope();\n\t\t\t\t\t\treturn store.count++;\n\t\t\t\t\t}, \\"App_component_div_p_button_onClick_odz7eidI4GM\\", [\n\t\t\t\t\t\tstore\n\t\t\t\t\t]),\n\t\t\t\t\tchildren: \\"Click\\"\n\t\t\t\t})\n\t\t\t})\n\t\t]\n\t});\n}, \\"App_component_Fh88JClhbC0\\"));\n\nexport const STYLES = \\".red { color: red; }\\";\n\n\"],\"mappings\":\"AAAA,MACKA,iBAAiBC,SAAS,eAAe;AAD9C,MACKC,gBAAgBC,SAAS,cAAc;AAD5C,MACKC,kBAAkBC,SAAS,gBAAgB;AADhD,MACKD,kBAAkBC,SAAS,gBAAgB;AAAhD,SAAS,cAAc,YAAY,UAAU,MAAM,KAAK,uBAAuB;AAE/E,OAAO,MAAM,MAAoB,6BAAa,4BA4B3C,4BAA4B,CAAC;AAEhC,OAAO,MAAM,SAAS\"}")
+== DIAGNOSTICS ==
+
+[]

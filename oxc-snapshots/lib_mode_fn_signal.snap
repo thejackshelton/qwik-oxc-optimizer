@@ -1,0 +1,65 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+		import { component$ } from '@qwik.dev/core';
+		export const Counter = component$(() => {
+			const count = useSignal(0);
+
+			return (
+				<div>
+					<p>Count: {count.value}</p>
+					<p>
+						<button onClick$={() => count.value++}>Increment</button>
+					</p>
+				</div>
+			);
+		});
+
+
+============================= test.tsx_Counter_component_zTmRHlL09Gg.ts (ENTRY POINT)==
+
+export const Counter_component_zTmRHlL09Gg = () => {
+	const count = useSignal(0);
+	return _jsxSorted("div", null, null, [_jsxSorted("p", null, null, ["Count:", _wrapProp(count)], 3, null), _jsxSorted("p", null, null, _jsxSorted("button", { "q:p": count }, { "q-e:click": () => count.value++ }, "Increment", 7, null), 3, null)], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Counter_component_zTmRHlL09Gg\"],\"sourcesContent\":[\"export const Counter_component_zTmRHlL09Gg = () => {\n\tconst count = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"p\\", null, null, [\\"Count:\\", _wrapProp(count)], 3, null), _jsxSorted(\\"p\\", null, null, _jsxSorted(\\"button\\", { \\"q:p\\": count }, { \\"q-e:click\\": () => count.value++ }, \\"Increment\\", 7, null), 3, null)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC;CAClD,MAAM,QAAQ,UAAU,EAAE;AAC1B,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,MAAM,CAAC,UAAU,UAAU,MAAM,CAAC,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM,WAAW,UAAU,EAAE,OAAO,OAAO,EAAE,EAAE,mBAAmB,MAAM,SAAS,EAAE,aAAa,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC9P\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Counter_component_zTmRHlL09Gg",
+  "displayName": "test.tsx_Counter_component",
+  "hash": "zTmRHlL09Gg",
+  "canonicalFilename": "test.tsx_Counter_component_zTmRHlL09Gg",
+  "path": "",
+  "extension": "ts",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    73,
+    283
+  ]
+}
+*/
+
+============================= test.ts ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Counter_component_zTmRHlL09Gg = qrl(() => import("./test.tsx_Counter_component_zTmRHlL09Gg"), "Counter_component_zTmRHlL09Gg");
+import { component$ } from "@qwik.dev/core";
+export const Counter = componentQrl(q_Counter_component_zTmRHlL09Gg);
+
+
+Some("{\"version\":3,\"names\":[\" { compon\",\" { compone\",\"ort { component$ } from '@qwik.\",\"/co\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\texport const Counter = component$(() => {\n\t\t\tconst count = useSignal(0);\n\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<p>Count: {count.value}</p>\n\t\t\t\t\t<p>\n\t\t\t\t\t\t<button onClick$={() => count.value++}>Increment</button>\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,kCAAkCC,UACrC,OAAO,6CACC,gCAEA;AAJR,SAAS,kBAAkB;AAC3B,OAAO,MAAM,UAAUC,6CAWrB\"}")
+== DIAGNOSTICS ==
+
+[]

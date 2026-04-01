@@ -1,0 +1,72 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useSignal } from '@qwik.dev/core';
+
+export default component$(() => {
+  const arr = useSignal(['a', 'b'])
+  return (
+    <div>
+      {arr.value.map((val, i) => {
+        const index = i+1;
+        return <div onClick$={() => console.log(val, i, index)}>{val}</div>
+      })}
+    </div>
+  );
+});
+
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { useSignal } from "@qwik.dev/core";
+export const component_ZUK1E201Ins = () => {
+	const arr = useSignal(["a", "b"]);
+	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
+		const index = i + 1;
+		return _jsxSorted("div", { "q:ps": [
+			i,
+			index,
+			val
+		] }, { "q-e:click": () => console.log(val, i, index) }, val, 7, null);
+	}), 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [\n\t\t\ti,\n\t\t\tindex,\n\t\t\tval\n\t\t] }, { \\"q-e:click\\": () => console.log(val, i, index) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;AAClB,SAAO,WAAW,OAAO,EAAE,QAAQ;GAClC;GACA;GACA;GACA,EAAE,EAAE,EAAE,mBAAmB,QAAQ,IAAI,KAAK,GAAG,MAAM,EAAE,EAAE,KAAK,GAAG,KAAK;GACpE,EAAE,GAAG,OAAO;;AACb\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    73,
+    315
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_component_ZUK1E201Ins = qrl(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins");
+import { component$, useSignal } from "@qwik.dev/core";
+export default componentQrl(q_component_ZUK1E201Ins);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useSign\",\"} f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n        return <div onClick$={() => console.log(val, i, index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,UAAU,OAAO,qCAEpB,wBACV;AAHlB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,qCAUb\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,42 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+export const Issue3561 = component$(() => {
+	const props = useStore({
+		product: {
+		currentVariant: {
+			variantImage: 'image',
+			variantNumber: 'number',
+			setContents: 'contents',
+		},
+		},
+	});
+	const {
+		currentVariant: { variantImage, variantNumber, setContents } = {},
+	} = props.product;
+
+	console.log(variantImage, variantNumber, setContents)
+
+	return <p></p>;
+	});
+
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Issue3561_component_hHTw654BZB8 = _noopQrl("Issue3561_component_hHTw654BZB8");
+import { component$ } from "@qwik.dev/core";
+export const Issue3561 = componentQrl(q_Issue3561_component_hHTw654BZB8);
+
+
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.dev/\",\"e';\n\nexp\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Issue3561 = component$(() => {\n\tconst props = useStore({\n\t\tproduct: {\n\t\tcurrentVariant: {\n\t\t\tvariantImage: 'image',\n\t\t\tvariantNumber: 'number',\n\t\t\tsetContents: 'contents',\n\t\t},\n\t\t},\n\t});\n\tconst {\n\t\tcurrentVariant: { variantImage, variantNumber, setContents } = {},\n\t} = props.product;\n\n\tconsole.log(variantImage, variantNumber, setContents)\n\n\treturn <p></p>;\n\t});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,oCAAoCC,SAErC,kCAAkC;AAFtC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,YAAYC,+CAiBtB\"}")
+== DIAGNOSTICS ==
+
+[]

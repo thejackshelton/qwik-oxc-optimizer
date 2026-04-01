@@ -1,0 +1,92 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { $, component$ } from '@qwik.dev/core';
+
+export const Foo = component$(() => {
+	return $(() => {
+		return (
+			<div>
+			</div>
+		)
+	});
+}, {
+	tagName: "my-foo",
+});
+
+
+============================= test.tsx_Foo_component_1_DvU6FitWglY.tsx (ENTRY POINT)==
+
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+export const Foo_component_1_DvU6FitWglY = () => {
+	return Qrl(q_Foo_component_HTDRsvUbLiE);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"const q_Foo_component_HTDRsvUbLiE = qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\");\nexport const Foo_component_1_DvU6FitWglY = () => {\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE);\n};;\"],\"mappings\":\"AAAA,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,OAAO,MAAM,oCAAoC;AAChD,QAAO,IAAI,4BAA4B;;AACtC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_1_DvU6FitWglY",
+  "displayName": "test.tsx_Foo_component_1",
+  "hash": "DvU6FitWglY",
+  "canonicalFilename": "test.tsx_Foo_component_1_DvU6FitWglY",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    69,
+    172
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
+
+export const Foo_component_HTDRsvUbLiE = () => {
+	return _jsxSorted("div", null, null, null, 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"export const Foo_component_HTDRsvUbLiE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "tsx",
+  "parent": "component$",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "loc": [
+    96,
+    143
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
+import { $, component$ } from "@qwik.dev/core";
+export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
+
+
+Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qw\",\"dev\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAE1C,2CACK,8BAGR;AANF,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CAOhB,EACF,SAAS,UACT,CAAC\"}")
+== DIAGNOSTICS ==
+
+[]

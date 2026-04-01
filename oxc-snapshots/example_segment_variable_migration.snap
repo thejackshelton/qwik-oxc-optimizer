@@ -1,0 +1,127 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$ } from '@qwik.dev/core';
+
+// This helper is only used by App component, so it should be migrated to its segment
+const helperFn = (msg) => {
+	console.log('Helper: ' + msg);
+	return msg.toUpperCase();
+};
+
+// This shared variable is used by multiple segments, so it should stay at root
+const SHARED_CONFIG = { value: 42 };
+
+// This is an export, so it must stay at root
+export const publicHelper = () => console.log('public');
+
+export const App = component$(() => {
+	const result = helperFn('hello');
+	return <div>{result} {SHARED_CONFIG.value}</div>;
+});
+
+export const Other = component$(() => {
+	return <div>{SHARED_CONFIG.value}</div>;
+});
+
+
+============================= test.tsx_App_Other_component_0sFPwqLRBMw.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_Other_component_0sFPwqLRBMw = () => {
+	const SHARED_CONFIG = _captures[0];
+	return _jsxSorted("div", null, null, _wrapProp(SHARED_CONFIG), 3, "u6_1");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Other_component_0sFPwqLRBMw\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_Other_component_0sFPwqLRBMw = () => { const SHARED_CONFIG = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(SHARED_CONFIG), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wCAAwC;CAAE,MAAM,gBAAgB,UAAU;AAEtF,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,cAAc,EAAE,GAAG,OAAO;;AACxE\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Other_component_0sFPwqLRBMw",
+  "displayName": "test.tsx_App_Other_component",
+  "hash": "0sFPwqLRBMw",
+  "canonicalFilename": "test.tsx_App_Other_component_0sFPwqLRBMw",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "SHARED_CONFIG"
+  ],
+  "loc": [
+    596,
+    659
+  ]
+}
+*/
+
+============================= test.tsx_App_component_ckEPmXZlub0.tsx (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_ckEPmXZlub0 = () => {
+	const SHARED_CONFIG = _captures[0];
+	const helperFn = _captures[1];
+	const result = helperFn("hello");
+	return _jsxSorted("div", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, "u6_0");
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => { const SHARED_CONFIG = _captures[0];\nconst helperFn = _captures[1];\n\n\tconst result = helperFn(\\"hello\\");\n\treturn _jsxSorted(\\"div\\", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAAE,MAAM,gBAAgB,UAAU;CACjF,MAAM,WAAW,UAAU;CAE1B,MAAM,SAAS,SAAS,QAAQ;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,QAAQ,UAAU,cAAc,CAAC,EAAE,GAAG,OAAO;;AAClF\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "tsx",
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": true,
+  "captureNames": [
+    "SHARED_CONFIG",
+    "helperFn"
+  ],
+  "loc": [
+    465,
+    572
+  ]
+}
+*/
+
+============================= test.tsx ==
+
+import { _wrapProp } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0", [SHARED_CONFIG, helperFn]);
+const q_App_Other_component_0sFPwqLRBMw = qrl(() => import("./test.tsx_App_Other_component_0sFPwqLRBMw"), "App_Other_component_0sFPwqLRBMw", [SHARED_CONFIG]);
+import { component$ } from "@qwik.dev/core";
+// This helper is only used by App component, so it should be migrated to its segment
+const helperFn = (msg) => {
+	console.log("Helper: " + msg);
+	return msg.toUpperCase();
+};
+// This shared variable is used by multiple segments, so it should stay at root
+const SHARED_CONFIG = { value: 42 };
+// This is an export, so it must stay at root
+export const publicHelper = () => console.log("public");
+export const App = componentQrl(q_App_component_ckEPmXZlub0.w([SHARED_CONFIG, helperFn]));
+export const Other = componentQrl(q_App_Other_component_0sFPwqLRBMw.w([SHARED_CONFIG]));
+export { SHARED_CONFIG as _auto_SHARED_CONFIG };
+export { helperFn as _auto_helperFn };
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { component$ } from '@qwi\",\"ev/\",\" segment\ncons\",\"t { component$ } from '@qwik.dev/\",\"e';\",\"perFn = (msg)\",\"component$\",\" component$ }\",\"m '@qwik.dev/core';\",\" compone\",\"} from '@qwik.\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// This helper is only used by App component, so it should be migrated to its segment\nconst helperFn = (msg) => {\n\tconsole.log('Helper: ' + msg);\n\treturn msg.toUpperCase();\n};\n\n// This shared variable is used by multiple segments, so it should stay at root\nconst SHARED_CONFIG = { value: 42 };\n\n// This is an export, so it must stay at root\nexport const publicHelper = () => console.log('public');\n\nexport const App = component$(() => {\n\tconst result = helperFn('hello');\n\treturn <div>{result} {SHARED_CONFIG.value}</div>;\n});\n\nexport const Other = component$(() => {\n\treturn <div>{SHARED_CONFIG.value}</div>;\n});\n\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,8BAA8BC,UACnC,OACM,yCAAyC,6BAA6B,CAACC,eACvE,SAAS,CAAC;AAJhB,MACKC,oCAAoCC,UAEpC,OAAO,+CAA+C,mCACnD,CAACC,cAAc,CAAC;AAHxB,SAAS,kBAAkB;;AAG3B,MAAM,YAAY,QAAQ;AACzB,SAAQ,IAAI,aAAa,IAAI;AAC7B,QAAO,IAAI,aAAa;;;AAIzB,MAAM,gBAAgB,EAAE,OAAO,IAAI;;AAGnC,OAAO,MAAM,qBAAqB,QAAQ,IAAI,SAAS;AAEvD,OAAO,MAAM,MAAMC,sEAGjB;AAEF,OAAO,MAAM,QAAQA,kEAEnB;AAtBF,SACQC,iBAAiBC;AADzB,SACQC,YAAYC\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -1,0 +1,39 @@
+---
+source: packages/optimizer/core/src/test.rs
+assertion_line: 0
+expression: output
+---
+==INPUT==
+
+
+import { component$, useSignal } from '@qwik.dev/core';
+
+export const Issue3742 = component$(({description = '', other}: any) => {
+	const counter = useSignal(0);
+	return (
+		<div
+		title={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}
+		>
+		Issue3742
+		<button onClick$={() => counter.value++}>
+			Increment
+		</button>
+		</div>
+	)
+	});
+	
+
+============================= test.tsx ==
+
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+const _hf0 = (p0, p1, p2) => p1 && "p1" in p2 ? `Hello ${p0.value}` : `Bye ${p0.value}`;
+const q_Issue3742_component_svSy0PlWTAw = _noopQrl("Issue3742_component_svSy0PlWTAw");
+import { component$, useSignal } from "@qwik.dev/core";
+export const Issue3742 = componentQrl(q_Issue3742_component_svSy0PlWTAw);
+
+
+Some("{\"version\":3,\"names\":[\" componen\",\" component\",\"t { \",\"al\",\"ik\",\"\ne\",\"port \",\"74\",\" = co\",\"t { component$, useSignal } from \",\"wik.dev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const Issue3742 = component$(({description = '', other}: any) => {\n\tconst counter = useSignal(0);\n\treturn (\n\t\t<div\n\t\ttitle={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}\n\t\t>\n\t\tIssue3742\n\t\t<button onClick$={() => counter.value++}>\n\t\t\tIncrement\n\t\t</button>\n\t\t</div>\n\t)\n\t});\n\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAQ,IAAI,IAAI,OAAOC,MAAM,QAAQC,KAAK,SAC/CC,GACEC,UAAU,OAAOC,GAAGC;AAHtB,MACKC,oCAAoCC,SAAS,kCAEvB;AAF3B,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,YAAYC,+CAYtB\"}")
+== DIAGNOSTICS ==
+
+[]

@@ -277,12 +277,19 @@ impl<'a> PropsDestructurer<'a> {
         let local_atom = self.ast.atom(local_name);
         let raw_props_atom = self.ast.atom("_rawProps");
 
-        // Build `_rawProps.key`
+        // Build `_rawProps.key` or `_rawProps["key"]` for non-identifier keys.
         let raw_props = self.ast.expression_identifier(SPAN, raw_props_atom.clone());
-        let key_ident = self.ast.identifier_name(SPAN, key_atom);
-        let member = Expression::StaticMemberExpression(
-            self.ast.alloc_static_member_expression(SPAN, raw_props, key_ident, false)
-        );
+        let member = if is_valid_identifier(key_name) {
+            let key_ident = self.ast.identifier_name(SPAN, key_atom);
+            Expression::StaticMemberExpression(
+                self.ast.alloc_static_member_expression(SPAN, raw_props, key_ident, false)
+            )
+        } else {
+            let key_str = self.ast.expression_string_literal(SPAN, key_atom, None);
+            Expression::ComputedMemberExpression(
+                self.ast.alloc_computed_member_expression(SPAN, raw_props, key_str, false)
+            )
+        };
 
         // Build init expression: either member access or member ?? default.
         let init = if has_default {
@@ -375,6 +382,19 @@ impl<'a> PropsDestructurer<'a> {
 // ---------------------------------------------------------------------------
 // Helper functions
 // ---------------------------------------------------------------------------
+
+/// Returns true if the string is a valid JavaScript identifier (safe for static member access).
+fn is_valid_identifier(s: &str) -> bool {
+    if s.is_empty() {
+        return false;
+    }
+    let mut chars = s.chars();
+    let first = chars.next().unwrap();
+    if !first.is_ascii_alphabetic() && first != '_' && first != '$' {
+        return false;
+    }
+    chars.all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '$')
+}
 
 /// Returns true if the arrow body qualifies for props destructuring.
 ///
@@ -516,6 +536,14 @@ mod tests {
         assert!(code.contains("_rawProps"), "Expected _rawProps in: {code}");
         assert!(code.contains("_rawProps.count"), "Expected _rawProps.count (key) in: {code}");
         assert!(code.contains("const c = _rawProps.count"), "Expected const c in: {code}");
+    }
+
+    #[test]
+    fn string_literal_key_computed_access() {
+        let (code, _) = transform(r#"({ "foo-bar": x }) => { return x; }"#);
+        assert!(code.contains("_rawProps"), "Expected _rawProps in: {code}");
+        assert!(code.contains(r#"_rawProps["foo-bar"]"#), "Expected computed access _rawProps[\"foo-bar\"] in: {code}");
+        assert!(code.contains("const x = _rawProps[\"foo-bar\"]"), "Expected const x in: {code}");
     }
 
     #[test]

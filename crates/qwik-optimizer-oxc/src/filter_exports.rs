@@ -73,12 +73,12 @@ pub(crate) fn filter_exports<'a>(
     }
 }
 
-/// Replace the body of a function/arrow initializer with the throw stub.
+/// Replace the initializer with a throw stub.
 ///
 /// Handles:
 ///   - `ArrowFunctionExpression` → body replaced with `{ throw STRIP_MESSAGE; }`
 ///   - `FunctionExpression` → body replaced with `{ throw STRIP_MESSAGE; }`
-///   - Other expressions → left as-is (not a function)
+///   - Other expressions (identifiers, calls, etc.) → replaced with `() => { throw STRIP_MESSAGE; }`
 fn replace_init_body<'a>(init: &mut Option<Expression<'a>>, ast: &AstBuilder<'a>) {
     if let Some(expr) = init {
         match expr {
@@ -91,7 +91,26 @@ fn replace_init_body<'a>(init: &mut Option<Expression<'a>>, ast: &AstBuilder<'a>
                 let throw_body = build_throw_body(ast);
                 func.body = Some(ast.alloc(throw_body));
             }
-            _ => {}
+            _ => {
+                // Non-function init (identifier, call, etc.): replace with arrow throw stub.
+                let throw_body = build_throw_body(ast);
+                let params = ast.formal_parameters(
+                    SPAN,
+                    FormalParameterKind::ArrowFormalParameters,
+                    ast.vec(),
+                    Option::<FormalParameterRest<'a>>::None,
+                );
+                let arrow = ast.expression_arrow_function(
+                    SPAN,
+                    false, // expression
+                    false, // async
+                    Option::<TSTypeParameterDeclaration<'a>>::None,
+                    params,
+                    Option::<TSTypeAnnotation<'a>>::None,
+                    throw_body,
+                );
+                *expr = arrow;
+            }
         }
     }
 }
@@ -207,6 +226,25 @@ mod tests {
         assert!(
             out.contains("keep"),
             "Export name should be preserved, got: {out}"
+        );
+    }
+
+    #[test]
+    fn strips_non_function_init() {
+        // `export const onGet = someFn;` should be replaced with arrow throw stub.
+        let src = "export const onGet = someFn;";
+        let out = transform(src, &["onGet"]);
+        assert!(
+            out.contains("throw"),
+            "Non-function init should be stripped, got: {out}"
+        );
+        assert!(
+            out.contains(STRIP_MESSAGE),
+            "Expected STRIP_MESSAGE in output, got: {out}"
+        );
+        assert!(
+            !out.contains("someFn"),
+            "Original init should be gone, got: {out}"
         );
     }
 

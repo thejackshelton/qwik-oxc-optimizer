@@ -13,11 +13,13 @@
 use std::collections::{HashMap, HashSet};
 
 use oxc::ast::ast::*;
+use oxc::ast_visit::Visit;
 use oxc_traverse::{Traverse, TraverseCtx};
 
 use crate::collector::GlobalCollect;
+use crate::entry_strategy::{self, EntryPolicy};
 use crate::is_const;
-use crate::types::{CtxKind, EmitMode};
+use crate::types::{CtxKind, EmitMode, EntryStrategy};
 use crate::words;
 
 // ---------------------------------------------------------------------------
@@ -37,6 +39,131 @@ pub(crate) enum IdentType {
 
 /// A (binding-name, ident-type) pair stored per scope frame.
 pub(crate) type IdPlusType = (String, IdentType);
+
+// ---------------------------------------------------------------------------
+// SegmentRecord — accumulated extracted segment metadata
+// ---------------------------------------------------------------------------
+
+/// Internal record for a single extracted segment. Accumulated in
+/// `QwikTransform::segments` during the traversal. Phase 16 (Segment Module
+/// Generation) reads these to emit segment module files.
+pub(crate) struct SegmentRecord {
+    /// Symbol name (e.g. `test_tsx_component_ABC`).
+    pub name: String,
+    /// File-prefixed display name (e.g. `test.tsx_component_ABC`).
+    pub display_name: String,
+    /// Canonical filename for the segment module (e.g. `test.tsx_component_ABC`).
+    pub canonical_filename: String,
+    /// Output chunk key from `entry_policy.get_entry_for_sym`, or `None` for own chunk.
+    pub entry: Option<String>,
+    /// Serialized folded closure body (set by `create_segment` via OXC Codegen).
+    /// `None` for noop QRLs that do not require a segment module.
+    pub expr: Option<String>,
+    /// Runtime-captured identifiers (closed-over variables).
+    pub scoped_idents: Vec<String>,
+    /// Compile-time import names referenced inside the segment body.
+    pub local_idents: Vec<String>,
+    /// The context (marker function) name, e.g. `"component$"`.
+    pub ctx_name: String,
+    /// The context kind (Function, EventHandler, etc.).
+    pub ctx_kind: CtxKind,
+    /// Relative path of the source file (used as `origin` in SegmentData).
+    pub origin: String,
+    /// Byte span `(start, end)` of the original call expression.
+    pub span: (u32, u32),
+    /// 11-character SipHash-based segment hash.
+    pub hash: String,
+    /// Whether this segment was created via `create_inline_qrl` (not its own module).
+    pub is_inline: bool,
+}
+
+// ---------------------------------------------------------------------------
+// IdentCollector — read-only visitor that harvests IdentifierReference names
+// ---------------------------------------------------------------------------
+
+/// Collects all [`IdentifierReference`] names reachable from an expression.
+///
+/// Used by [`compute_scoped_idents`] and [`QwikTransform::get_local_idents`] to
+/// determine which identifiers a segment closure body references.
+pub(crate) struct IdentCollector {
+    pub idents: HashSet<String>,
+}
+
+impl IdentCollector {
+    /// Walk `expr` and return every `IdentifierReference` name found.
+    pub(crate) fn collect(expr: &Expression<'_>) -> HashSet<String> {
+        let mut collector = Self { idents: HashSet::new() };
+        collector.visit_expression(expr);
+        collector.idents
+    }
+}
+
+impl<'a> Visit<'a> for IdentCollector {
+    fn visit_identifier_reference(&mut self, id: &IdentifierReference<'a>) {
+        self.idents.insert(id.name.as_str().to_string());
+    }
+}
+
+// ---------------------------------------------------------------------------
+// compute_scoped_idents
+// ---------------------------------------------------------------------------
+
+/// Intersect `all_idents` with `all_decl` (keeping only `Var(_)` entries),
+/// deduplicate, sort, and compute `is_const` (true iff every matched entry is
+/// `Var(true)`).
+///
+/// Returns `(sorted_names, is_const)`.
+pub(crate) fn compute_scoped_idents(
+    all_idents: &HashSet<String>,
+    all_decl: &[IdPlusType],
+) -> (Vec<String>, bool) {
+    let mut matched: HashSet<String> = HashSet::new();
+    let mut is_const = true;
+
+    for name in all_idents {
+        for (decl_name, decl_type) in all_decl {
+            if name == decl_name {
+                match decl_type {
+                    IdentType::Var(c) => {
+                        matched.insert(name.clone());
+                        if !c {
+                            is_const = false;
+                        }
+                    }
+                    // Fn/Class entries are NOT captured as scoped idents
+                    IdentType::Fn | IdentType::Class => {}
+                }
+            }
+        }
+    }
+
+    let mut sorted: Vec<String> = matched.into_iter().collect();
+    sorted.sort();
+    (sorted, is_const)
+}
+
+// ---------------------------------------------------------------------------
+// get_function_params
+// ---------------------------------------------------------------------------
+
+/// Extract all parameter binding names from a function or arrow function
+/// expression. Returns an empty set for any other expression kind.
+pub(crate) fn get_function_params(expr: &Expression<'_>) -> HashSet<String> {
+    let mut result = HashSet::new();
+    let params: Option<&[FormalParameter<'_>]> = match expr {
+        Expression::ArrowFunctionExpression(arrow) => Some(&arrow.params.items),
+        Expression::FunctionExpression(func) => Some(&func.params.items),
+        _ => None,
+    };
+    if let Some(items) = params {
+        for param in items {
+            collect_binding_names(&param.pattern, &mut |name| {
+                result.insert(name.to_string());
+            });
+        }
+    }
+    result
+}
 
 // ---------------------------------------------------------------------------
 // QwikTransformOptions — construction-time config (borrows from caller)
@@ -60,6 +187,14 @@ pub(crate) struct QwikTransformOptions<'b> {
     pub rel_path: &'b str,
     /// File name of the source file (for display_name prefix).
     pub file_name: &'b str,
+    /// Entry strategy for determining output chunk grouping.
+    pub entry_strategy: &'b EntryStrategy,
+    /// Source file extension (e.g. "tsx", "js").
+    pub extension: &'b str,
+    /// Whether to append file extension to import paths in segment modules.
+    pub explicit_extensions: bool,
+    /// Whether the transform is running in a server context (for Dev mode metadata).
+    pub is_server: bool,
 }
 
 // ---------------------------------------------------------------------------
@@ -126,6 +261,62 @@ pub(crate) struct QwikTransform {
     /// Stack tracking whether each function frame (LIFO with `decl_stack`) also
     /// pushed a name to `stack_ctxt`. `true` = pushed, `false` = no push.
     fn_ctxt_push_stack: Vec<bool>,
+
+    // ---- Phase 12: segment extraction state --------------------------------
+    /// Accumulated extracted segments (filled by `create_segment` in Plans 12-02+).
+    pub(crate) segments: Vec<SegmentRecord>,
+
+    /// Stack of segment names for nested `$` detection (Phase 12).
+    pub(crate) segment_stack: Vec<String>,
+
+    /// Placeholder for top-level statements prepended to the output module.
+    /// Final AST type resolved in Plan 12-03 (exit_program).
+    pub(crate) extra_top_items: Vec<String>,
+
+    /// Placeholder for top-level statements appended to the output module.
+    pub(crate) extra_bottom_items: Vec<String>,
+
+    /// Maps `const` binding names to their serialized initializer expressions.
+    ///
+    /// Populated from variable declarators where `is_const_expression(init) == true`
+    /// and the binding is not exported. Consumed in Step 0 of
+    /// `_create_synthetic_qsegment` (Plan 12-02) for inlining const captures.
+    pub(crate) const_initializers: HashMap<String, String>,
+
+    /// Entry policy derived from `entry_strategy` option.
+    pub(crate) entry_policy: Box<dyn EntryPolicy>,
+
+    /// Cached result of `entry_strategy::is_inline()` for the given strategy.
+    pub(crate) is_inline_strategy: bool,
+
+    // ---- Config (owned copies for Phase 12+) ------------------------------
+    /// Owned copy of the emit mode.
+    pub(crate) mode: EmitMode,
+
+    /// Owned scope prefix (for hash computation).
+    pub(crate) scope: Option<String>,
+
+    /// Relative file path (used as `origin` in SegmentData).
+    pub(crate) rel_path: String,
+
+    /// File name (used as display_name prefix).
+    pub(crate) file_name: String,
+
+    /// Source file extension (e.g. "tsx").
+    pub(crate) extension: String,
+
+    /// Whether to append extension to import paths in segment modules.
+    pub(crate) explicit_extensions: bool,
+
+    /// Whether running in a server context (for Dev mode metadata).
+    pub(crate) is_server: bool,
+
+    /// Raw pointer to the `GlobalCollect` for `get_local_idents`.
+    ///
+    /// # Safety
+    /// The pointer is valid for the duration of the traversal: `GlobalCollect` is
+    /// owned by `transform_code` and outlives the `QwikTransform` instance.
+    global_collect: *const GlobalCollect,
 }
 
 // ---------------------------------------------------------------------------
@@ -187,6 +378,9 @@ impl QwikTransform {
             }
         }
 
+        let is_inline_strategy = entry_strategy::is_inline(options.entry_strategy);
+        let entry_policy = entry_strategy::parse_entry_strategy(options.entry_strategy);
+
         Self {
             marker_functions,
             qsegment_fn,
@@ -203,6 +397,22 @@ impl QwikTransform {
             current_var_kind: None,
             var_decl_ctxt_pushed: false,
             fn_ctxt_push_stack: Vec::new(),
+            // Phase 12 fields
+            segments: Vec::new(),
+            segment_stack: Vec::new(),
+            extra_top_items: Vec::new(),
+            extra_bottom_items: Vec::new(),
+            const_initializers: HashMap::new(),
+            entry_policy,
+            is_inline_strategy,
+            mode: options.mode.clone(),
+            scope: options.scope.map(|s| s.to_string()),
+            rel_path: options.rel_path.to_string(),
+            file_name: options.file_name.to_string(),
+            extension: options.extension.to_string(),
+            explicit_extensions: options.explicit_extensions,
+            is_server: options.is_server,
+            global_collect: options.global_collect as *const GlobalCollect,
         }
     }
 
@@ -225,6 +435,27 @@ impl QwikTransform {
             return false;
         }
         true
+    }
+
+    /// Return all identifiers from `expr` that are globally known (imports, exports, root).
+    ///
+    /// Uses [`IdentCollector`] to gather all `IdentifierReference` names from the
+    /// expression, then filters to those present in `GlobalCollect` (i.e., imported or
+    /// exported names that should become explicit `import` dependencies of the segment
+    /// module).
+    ///
+    /// # Safety
+    /// `self.global_collect` is a raw pointer set in `QwikTransform::new` to the
+    /// `GlobalCollect` owned by `transform_code`, which outlives this transform.
+    pub(crate) fn get_local_idents(&self, expr: &Expression<'_>) -> Vec<String> {
+        let all_idents = IdentCollector::collect(expr);
+        let collect = unsafe { &*self.global_collect };
+        let mut result: Vec<String> = all_idents
+            .into_iter()
+            .filter(|name| collect.is_global(name))
+            .collect();
+        result.sort();
+        result
     }
 }
 
@@ -542,6 +773,8 @@ mod tests {
     // Test helpers
     // -----------------------------------------------------------------------
 
+    use crate::types::EntryStrategy;
+
     /// Options with sensible defaults for tests.
     fn default_opts<'b>(
         collect: &'b GlobalCollect,
@@ -557,6 +790,10 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
         }
     }
 
@@ -581,6 +818,10 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -785,6 +1026,148 @@ mod tests {
     // convert_qrl_word (XFRM-08) — end-to-end via codegen
     // -----------------------------------------------------------------------
 
+    // -----------------------------------------------------------------------
+    // IdentCollector
+    // -----------------------------------------------------------------------
+
+    /// Parse `src` as an expression (wrapped in `const _x = <src>;`) and return
+    /// the allocator + a `'static` transmuted program so tests can borrow the
+    /// expression for the lifetime of the allocator.
+    ///
+    /// Returns the allocator (must stay alive) and the initializer expression.
+    fn parse_expr_program(src: &str) -> (Allocator, oxc::ast::ast::Program<'static>) {
+        let allocator = Allocator::default();
+        let wrapped = allocator.alloc_str(&format!("const _x = {src};"));
+        let ret = Parser::new(&allocator, wrapped, SourceType::tsx()).parse();
+        let program = unsafe {
+            std::mem::transmute::<oxc::ast::ast::Program<'_>, oxc::ast::ast::Program<'static>>(
+                ret.program,
+            )
+        };
+        (allocator, program)
+    }
+
+    /// Extract the first variable declarator's `init` expression from a program.
+    fn first_init<'a>(program: &'a oxc::ast::ast::Program<'a>) -> &'a Expression<'a> {
+        program
+            .body
+            .iter()
+            .find_map(|stmt| {
+                if let oxc::ast::ast::Statement::VariableDeclaration(decl) = stmt {
+                    decl.declarations.first().and_then(|d| d.init.as_ref())
+                } else {
+                    None
+                }
+            })
+            .expect("expected a variable declaration with init")
+    }
+
+    #[test]
+    fn ident_collector_basic() {
+        let (_alloc, program) = parse_expr_program("a + b.c + foo(d)");
+        let expr = first_init(&program);
+        let idents = IdentCollector::collect(expr);
+        assert!(idents.contains("a"), "should contain a");
+        assert!(idents.contains("b"), "should contain b (object of member expr)");
+        assert!(idents.contains("foo"), "should contain foo");
+        assert!(idents.contains("d"), "should contain d");
+        // "c" is a static property name, not an IdentifierReference
+        assert!(!idents.contains("c"), "c is a property name, not an ident ref");
+    }
+
+    // -----------------------------------------------------------------------
+    // compute_scoped_idents
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn compute_scoped_idents_partial_match_not_all_const() {
+        let idents: HashSet<String> = ["a", "b", "c"].iter().map(|s| s.to_string()).collect();
+        let decl: Vec<IdPlusType> = vec![
+            ("a".to_string(), IdentType::Var(true)),
+            ("b".to_string(), IdentType::Var(false)),
+        ];
+        let (names, is_const) = compute_scoped_idents(&idents, &decl);
+        // c is not in decl, so only a and b match
+        assert_eq!(names, vec!["a".to_string(), "b".to_string()]);
+        assert!(!is_const, "is_const should be false because b is Var(false)");
+    }
+
+    #[test]
+    fn compute_scoped_idents_all_const() {
+        let idents: HashSet<String> = ["a", "b"].iter().map(|s| s.to_string()).collect();
+        let decl: Vec<IdPlusType> = vec![
+            ("a".to_string(), IdentType::Var(true)),
+            ("b".to_string(), IdentType::Var(true)),
+        ];
+        let (names, is_const) = compute_scoped_idents(&idents, &decl);
+        assert_eq!(names, vec!["a".to_string(), "b".to_string()]);
+        assert!(is_const, "is_const should be true when all matched are Var(true)");
+    }
+
+    #[test]
+    fn compute_scoped_idents_no_intersection() {
+        let idents: HashSet<String> = ["x"].iter().map(|s| s.to_string()).collect();
+        let decl: Vec<IdPlusType> = vec![("y".to_string(), IdentType::Var(true))];
+        let (names, is_const) = compute_scoped_idents(&idents, &decl);
+        assert!(names.is_empty(), "no intersection should return empty vec");
+        // is_const starts true and is never set false (no matches), so stays true
+        assert!(is_const, "is_const is true when no matches (vacuously)");
+    }
+
+    #[test]
+    fn compute_scoped_idents_excludes_fn_class() {
+        let idents: HashSet<String> =
+            ["myFn", "MyClass", "x"].iter().map(|s| s.to_string()).collect();
+        let decl: Vec<IdPlusType> = vec![
+            ("myFn".to_string(), IdentType::Fn),
+            ("MyClass".to_string(), IdentType::Class),
+            ("x".to_string(), IdentType::Var(true)),
+        ];
+        let (names, is_const) = compute_scoped_idents(&idents, &decl);
+        // Only Var entries should be captured
+        assert_eq!(names, vec!["x".to_string()]);
+        assert!(is_const);
+    }
+
+    // -----------------------------------------------------------------------
+    // get_function_params
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn get_function_params_arrow() {
+        let (_alloc, program) = parse_expr_program("(a, b) => a + b");
+        let expr = first_init(&program);
+        let params = get_function_params(expr);
+        assert!(params.contains("a"));
+        assert!(params.contains("b"));
+    }
+
+    #[test]
+    fn get_function_params_function_expr() {
+        let (_alloc, program) = parse_expr_program("function(a, b) {}");
+        let expr = first_init(&program);
+        let params = get_function_params(expr);
+        assert!(params.contains("a"));
+        assert!(params.contains("b"));
+    }
+
+    #[test]
+    fn get_function_params_non_fn_empty() {
+        let (_alloc, program) = parse_expr_program("42");
+        let expr = first_init(&program);
+        let params = get_function_params(expr);
+        assert!(params.is_empty());
+    }
+
+    #[test]
+    fn get_function_params_destructured() {
+        let (_alloc, program) = parse_expr_program("({ x, y }) => x");
+        let expr = first_init(&program);
+        let params = get_function_params(expr);
+        assert!(params.contains("x"), "destructured x should be included");
+        assert!(params.contains("y"), "destructured y should be included");
+    }
+
     #[test]
     fn convert_qrl_word_in_output() {
         let allocator = Allocator::default();
@@ -807,6 +1190,10 @@ mod tests {
             scope: None,
             rel_path: "test",
             file_name: "test.tsx",
+            entry_strategy: &EntryStrategy::Segment,
+            extension: "tsx",
+            explicit_extensions: false,
+            is_server: false,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);

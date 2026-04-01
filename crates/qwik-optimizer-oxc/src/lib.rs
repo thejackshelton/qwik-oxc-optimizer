@@ -132,6 +132,13 @@ fn transform_code(
         format!("{}/{}", path_data.rel_dir.to_slash_lossy(), path_data.file_name)
     };
 
+    let file_extension = path_data
+        .file_name
+        .rsplit('.')
+        .next()
+        .unwrap_or("js")
+        .to_string();
+
     let mut xfrm = transform::QwikTransform::new(transform::QwikTransformOptions {
         global_collect: &collect,
         core_module: &config.core_module,
@@ -141,6 +148,10 @@ fn transform_code(
         scope: config.scope.as_deref(),
         rel_path: &rel_path,
         file_name: &path_data.file_name,
+        entry_strategy: &config.entry_strategy,
+        extension: &file_extension,
+        explicit_extensions: config.explicit_extensions,
+        is_server: config.is_server,
     });
     let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
     // Stages 11–13: No-op until future phases.

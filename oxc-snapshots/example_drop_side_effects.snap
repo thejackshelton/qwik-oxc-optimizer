@@ -36,27 +36,35 @@ export default component$(() => {
 	});
 
 
-============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+============================= test.tsx_component_1_vX1B9oMEgiI.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
 import { api } from "./test";
-export const component_ZUK1E201Ins = () => {
+const q_component_ZUK1E201Ins = qrlDEV(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins", [api], {
+	file: "test.tsx",
+	lo: 540,
+	hi: 557,
+	displayName: "test.tsx_component"
+});
+export const component_1_vX1B9oMEgiI = () => {
 	const api = _captures[0];
-	return _jsxSorted("button", { "q:p": api }, { "q-e:click": () => await api() }, null, 7, "u6_0");
+	return _jsxSorted("button", { "q:p": api }, { "q-e:click": q_component_ZUK1E201Ins.w([api]) }, null, 7, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { api } from \\"./test\\";\nexport const component_ZUK1E201Ins = () => { const api = _captures[0];\n\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": api }, { \\"q-e:click\\": () => await api() }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,OAAO,MAAM,8BAA8B;CAAE,MAAM,MAAM,UAAU;AAElE,QAAO,WAAW,UAAU,EAAE,OAAO,KAAK,EAAE,EAAE,mBAAmB,MAAM,KAAK,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC/F\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_1_vX1B9oMEgiI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { api } from \\"./test\\";\nconst q_component_ZUK1E201Ins = qrlDEV(() => import(\\"./test.tsx_component_ZUK1E201Ins\\"), \\"component_ZUK1E201Ins\\", [api], {\n\tfile: \\"test.tsx\\",\n\tlo: 540,\n\thi: 557,\n\tdisplayName: \\"test.tsx_component\\"\n});\nexport const component_1_vX1B9oMEgiI = () => { const api = _captures[0];\n\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": api }, { \\"q-e:click\\": q_component_ZUK1E201Ins.w([api]) }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,MAAM,0BAA0B,aAAa,OAAO,qCAAqC,yBAAyB,CAAC,IAAI,EAAE;CACxH,MAAM;CACN,IAAI;CACJ,IAAI;CACJ,aAAa;CACb,CAAC;AACF,OAAO,MAAM,gCAAgC;CAAE,MAAM,MAAM,UAAU;AAEpE,QAAO,WAAW,UAAU,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,wBAAwB,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC9G\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "component_ZUK1E201Ins",
-  "displayName": "test.tsx_component",
-  "hash": "ZUK1E201Ins",
-  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "name": "component_1_vX1B9oMEgiI",
+  "entry": null,
+  "displayName": "test.tsx_component_1",
+  "hash": "vX1B9oMEgiI",
+  "canonicalFilename": "test.tsx_component_1_vX1B9oMEgiI",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -64,8 +72,44 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
     "api"
   ],
   "loc": [
-    491,
+    503,
     575
+  ]
+}
+*/
+
+============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+import { api } from "./test";
+export const component_ZUK1E201Ins = () => {
+	const api = _captures[0];
+	return await api();
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { api } from \\"./test\\";\nexport const component_ZUK1E201Ins = () => {\nconst api = _captures[0];\nreturn await api();;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,OAAO,MAAM,8BAA8B;CAC3C,MAAM,MAAM,UAAU;AACtB,QAAO,MAAM,KAAK;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_ZUK1E201Ins",
+  "entry": null,
+  "displayName": "test.tsx_component",
+  "hash": "ZUK1E201Ins",
+  "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
+  "path": "",
+  "extension": "js",
+  "parent": "component_1_vX1B9oMEgiI",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "api"
+  ],
+  "loc": [
+    541,
+    558
   ]
 }
 */
@@ -75,15 +119,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 import { _jsxSorted } from "@qwik.dev/core";
 const q_api_server_JonPp043gH0 = _noopQrlDEV("api_server_JonPp043gH0", [dfd, supabase], {
 	file: "test.tsx",
-	lo: 424,
-	hi: 473,
+	lo: 432,
+	hi: 472,
 	displayName: "test.tsx_api_server"
 });
-const q_component_ZUK1E201Ins = qrlDEV(() => import("./test.tsx_component_ZUK1E201Ins"), "component_ZUK1E201Ins", [api], {
+const q_component_1_vX1B9oMEgiI = qrlDEV(() => import("./test.tsx_component_1_vX1B9oMEgiI"), "component_1_vX1B9oMEgiI", [api], {
 	file: "test.tsx",
-	lo: 491,
-	hi: 575,
-	displayName: "test.tsx_component"
+	lo: 502,
+	hi: 574,
+	displayName: "test.tsx_component_1"
 });
 import { component$ } from "@qwik.dev/core";
 import { server$ } from "@qwik.dev/router";
@@ -101,10 +145,10 @@ const dfd = new Client(secret);
 })();
 sideEffect();
 export const api = serverQrl(q_api_server_JonPp043gH0.w([dfd, supabase]));
-export default componentQrl(q_component_ZUK1E201Ins.w([api]));
+export default componentQrl(q_component_1_vX1B9oMEgiI.w([api]));
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@\",\"k.dev/core'\",\"qwi\",\"dev/rout\",\"mpor\",\"as\",\" '\",\"';\nimport {\",\"t { component$ } from '\",\"ik.dev\",\" fr\",\"paba\",\"li\",\"om\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,2BAA2BC,YAAY,0BACnB,CAACC,KAAKC,SAAS,EAAE;CACzCC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAAMC,aAC9B;CACV,CAAC;AALD,MACKC,0BAA0BC,aAAa,OACtC,qCAAqC,yBACnB,CAACC,IAAI,EAAE;CAAGC,MAAM;CAC9BC,IAAI;CAAMC,IAAI;CAAMN,aACpB;CAAsB,CAAC;AAJjC,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AACxB,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMO,sDAEjB;AAEF,eAAeC,8CAIZ\"}")
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@\",\"k.dev/core'\",\"qwi\",\"dev/rout\",\"mpor\",\"as\",\" '\",\"';\nimport {\",\"t { component$ } from '@q\",\".dev/c\",\"'su\",\"';\ni\",\"} \",\"en\",\"ort { secre\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,2BAA2BC,YAAY,0BACnB,CAACC,KAAKC,SAAS,EAAE;CACzCC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAAMC,aAC9B;CACV,CAAC;AALD,MACKC,4BAA4BC,aAChC,OAAO,uCACL,2BAA2B,CAACC,IAAI,EAAE;CAAGC,MACrC;CAAaC,IAAI;CAAMC,IAAI;CAC3BC,aAAa;CACX,CAAC;AALN,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AACxB,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMC,sDAEjB;AAEF,eAAeC,gDAIZ\"}")
 == DIAGNOSTICS ==
 
 [

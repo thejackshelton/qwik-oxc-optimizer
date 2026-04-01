@@ -17,7 +17,7 @@ use oxc::ast::AstBuilder;
 use oxc::ast::ast::*;
 use oxc::ast_visit::Visit;
 use oxc::codegen::Codegen;
-use oxc::span::{SourceType, SPAN};
+use oxc::span::{GetSpan, SourceType, SPAN};
 use oxc_traverse::{Traverse, TraverseCtx};
 
 use crate::collector::GlobalCollect;
@@ -1429,8 +1429,76 @@ impl QwikTransform {
                                 moved_captures = true;
                             }
 
+                            // Extract segment if the value is a function expression (onClick$={() => ...})
+                            let handler_expr = if matches!(
+                                &value_expr,
+                                Expression::ArrowFunctionExpression(_) | Expression::FunctionExpression(_)
+                            ) {
+                                // Determine context kind for the handler
+                                let ctx_kind = crate::types::CtxKind::EventHandler;
+                                // ctx_name keeps the full $-suffixed name (e.g. "onClick$") to
+                                // match SWC's ctxName field in segment metadata.
+                                let ctx_name_for_seg = key.clone();
+                                // Collect descendent idents from the fn body
+                                let descendent_idents = IdentCollector::collect(&value_expr);
+                                // Flatten decl_stack for scoped_idents computation
+                                let all_decl: Vec<IdPlusType> = self
+                                    .decl_stack
+                                    .iter()
+                                    .flat_map(|frame| frame.iter().cloned())
+                                    .collect();
+                                let (mut scoped_idents, _) = compute_scoped_idents(&descendent_idents, &all_decl);
+                                // Exclude fn params
+                                let fn_params = get_function_params(&value_expr);
+                                scoped_idents.retain(|id| !fn_params.contains(id));
+                                let scoped_for_hoist = scoped_idents.clone();
+                                // Push the HTML attribute name (e.g. "q-e:click") so that
+                                // register_context_name sees the full stack and produces the
+                                // correct display_name / hash (matching SWC behaviour where the
+                                // attr name is still on the context stack during processing).
+                                self.stack_ctxt.push(html_attr.clone());
+                                let names = hash::register_context_name(
+                                    &self.stack_ctxt,
+                                    &mut self.segment_names,
+                                    self.scope.as_deref(),
+                                    &self.rel_path,
+                                    &self.file_name,
+                                    &self.mode,
+                                    None,
+                                    None,
+                                    None,
+                                );
+                                self.stack_ctxt.pop();
+                                let sym_for_hoist = names.symbol_name.clone();
+                                // Store span → symbol for deferred parent resolution
+                                let fn_span = value_expr.span();
+                                self.segment_span_to_symbol
+                                    .insert(fn_span.start, names.symbol_name.clone());
+                                let fn_span_tuple = (fn_span.start, fn_span.end);
+                                // Get local idents referenced in the fn body
+                                let local_idents = self.get_local_idents(&value_expr);
+                                for ident in &local_idents {
+                                    self.ensure_export(ident);
+                                }
+                                // Extract segment
+                                let qrl_expr = self.create_segment(
+                                    value_expr,
+                                    &names,
+                                    scoped_idents,
+                                    local_idents,
+                                    &ctx_name_for_seg,
+                                    ctx_kind,
+                                    fn_span_tuple,
+                                    allocator,
+                                );
+                                // Hoist qrl to module scope
+                                self.hoist_qrl_to_module_scope(qrl_expr, &scoped_for_hoist, &sym_for_hoist, allocator)
+                            } else {
+                                value_expr
+                            };
+
                             let is_target_const = remaining_spreads == 0;
-                            let prop = build_object_prop(&html_attr, value_expr, &ast, allocator);
+                            let prop = build_object_prop(&html_attr, handler_expr, &ast, allocator);
                             if is_target_const {
                                 const_props.push(prop);
                                 // static_listeners stays true
@@ -2061,6 +2129,26 @@ impl QwikTransform {
         });
 
         qrl_call
+    }
+
+    // -----------------------------------------------------------------------
+    // patch_segment_parents — resolve deferred parent symbol names
+    // -----------------------------------------------------------------------
+
+    /// After all segments have been registered, resolve each segment's parent field.
+    ///
+    /// During traversal, `pending_parent_span` stores the call-expression span_start of
+    /// the enclosing (parent) segment. After traversal completes, `segment_span_to_symbol`
+    /// maps each span_start to the actual symbol_name computed by `register_context_name`.
+    ///
+    /// This two-phase approach is required because OXC uses exit-order traversal (inner
+    /// before outer), so inner segments register before their parent's symbol_name is known.
+    pub(crate) fn patch_segment_parents(&mut self) {
+        for segment in &mut self.segments {
+            if let Some(span) = segment.pending_parent_span {
+                segment.parent = self.segment_span_to_symbol.get(&span).cloned();
+            }
+        }
     }
 
     // -----------------------------------------------------------------------

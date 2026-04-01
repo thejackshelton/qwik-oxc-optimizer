@@ -39,31 +39,58 @@ export const Foo = component$(() => {
 });
 
 
-============================= test.tsx_Foo_component_1_DvU6FitWglY.js (ENTRY POINT)==
+============================= test.tsx_Foo_component_5_4OhyeH93t0U.js (ENTRY POINT)==
 
-const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
-export const Foo_component_1_DvU6FitWglY = () => {
-	return Qrl(q_Foo_component_HTDRsvUbLiE);
-};
+export const Foo_component_5_4OhyeH93t0U = () => console.log("onDocument-scroLL");
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"const q_Foo_component_HTDRsvUbLiE = qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\");\nexport const Foo_component_1_DvU6FitWglY = () => {\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE);\n};;\"],\"mappings\":\"AAAA,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,OAAO,MAAM,oCAAoC;AAChD,QAAO,IAAI,4BAA4B;;AACtC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_5_4OhyeH93t0U\"],\"sourcesContent\":[\"export const Foo_component_5_4OhyeH93t0U = () => console.log(\\"onDocument-scroLL\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC,QAAQ,IAAI,oBAAoB;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_5_4OhyeH93t0U",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_5",
+  "hash": "4OhyeH93t0U",
+  "canonicalFilename": "test.tsx_Foo_component_5_4OhyeH93t0U",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocument-scroLL",
+  "captures": false,
+  "loc": [
+    470,
+    506
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_1_DvU6FitWglY.js (ENTRY POINT)==
+
+export const Foo_component_1_DvU6FitWglY = () => console.log("onDocumentScroll");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"export const Foo_component_1_DvU6FitWglY = () => console.log(\\"onDocumentScroll\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC,QAAQ,IAAI,mBAAmB;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "Foo_component_1_DvU6FitWglY",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_1",
   "hash": "DvU6FitWglY",
   "canonicalFilename": "test.tsx_Foo_component_1_DvU6FitWglY",
   "path": "",
   "extension": "js",
-  "ctxKind": "function",
-  "ctxName": "component$",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocumentScroll",
   "captures": false,
   "loc": [
-    69,
-    870
+    243,
+    278
   ]
 }
 */
@@ -79,17 +106,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_handler_
 {
   "origin": "test.tsx",
   "name": "Foo_component_handler_H10xZtD0e7w",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_handler",
   "hash": "H10xZtD0e7w",
   "canonicalFilename": "test.tsx_Foo_component_handler_H10xZtD0e7w",
   "path": "",
   "extension": "js",
-  "parent": "$",
+  "parent": "Foo_component_6_nMUpldpaqfg",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    125,
+    128,
     155
   ]
 }
@@ -97,16 +125,106 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_handler_
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
+export const Foo_component_HTDRsvUbLiE = () => console.log("onClick$");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"export const Foo_component_HTDRsvUbLiE = () => console.log(\\"onClick$\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC,QAAQ,IAAI,WAAW;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_HTDRsvUbLiE",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component",
+  "hash": "HTDRsvUbLiE",
+  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    191,
+    218
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_4_lXKyKMdZ9uE.js (ENTRY POINT)==
+
+export const Foo_component_4_lXKyKMdZ9uE = () => console.log("onDocument-sCroll");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_4_lXKyKMdZ9uE\"],\"sourcesContent\":[\"export const Foo_component_4_lXKyKMdZ9uE = () => console.log(\\"onDocument-sCroll\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC,QAAQ,IAAI,oBAAoB;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_4_lXKyKMdZ9uE",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_4",
+  "hash": "lXKyKMdZ9uE",
+  "canonicalFilename": "test.tsx_Foo_component_4_lXKyKMdZ9uE",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocument-sCroll",
+  "captures": false,
+  "loc": [
+    408,
+    444
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_3_MR8bedwLpZk.js (ENTRY POINT)==
+
+export const Foo_component_3_MR8bedwLpZk = () => console.log("on-cLick$");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_3_MR8bedwLpZk\"],\"sourcesContent\":[\"export const Foo_component_3_MR8bedwLpZk = () => console.log(\\"on-cLick$\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC,QAAQ,IAAI,YAAY;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_3_MR8bedwLpZk",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_3",
+  "hash": "MR8bedwLpZk",
+  "canonicalFilename": "test.tsx_Foo_component_3_MR8bedwLpZk",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "on-cLick",
+  "captures": false,
+  "loc": [
+    354,
+    382
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_6_nMUpldpaqfg.js (ENTRY POINT)==
+
+const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
+const q_Foo_component_2_UZs7Ch7GDxg = qrl(() => import("./test.tsx_Foo_component_2_UZs7Ch7GDxg"), "Foo_component_2_UZs7Ch7GDxg");
+const q_Foo_component_3_MR8bedwLpZk = qrl(() => import("./test.tsx_Foo_component_3_MR8bedwLpZk"), "Foo_component_3_MR8bedwLpZk");
+const q_Foo_component_4_lXKyKMdZ9uE = qrl(() => import("./test.tsx_Foo_component_4_lXKyKMdZ9uE"), "Foo_component_4_lXKyKMdZ9uE");
+const q_Foo_component_5_4OhyeH93t0U = qrl(() => import("./test.tsx_Foo_component_5_4OhyeH93t0U"), "Foo_component_5_4OhyeH93t0U");
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 const q_Foo_component_handler_H10xZtD0e7w = qrl(() => import("./test.tsx_Foo_component_handler_H10xZtD0e7w"), "Foo_component_handler_H10xZtD0e7w");
-export const Foo_component_HTDRsvUbLiE = () => {
+export const Foo_component_6_nMUpldpaqfg = () => {
 	const handler = Qrl(q_Foo_component_handler_H10xZtD0e7w);
 	return _jsxSorted("div", { "q:p": handler }, {
-		"q-e:click": () => console.log("onClick$"),
-		"q-e:document-scroll": () => console.log("onDocumentScroll"),
-		"q-e:document-scroll": () => console.log("onWindowScroll"),
-		"q-e:cLick": () => console.log("on-cLick$"),
-		"q-e:document-s-croll": () => console.log("onDocument-sCroll"),
-		"q-e:document-scro-l-l": () => console.log("onDocument-scroLL"),
+		"q-e:click": q_Foo_component_HTDRsvUbLiE,
+		"q-e:document-scroll": q_Foo_component_1_DvU6FitWglY,
+		"q-e:document-scroll": q_Foo_component_2_UZs7Ch7GDxg,
+		"q-e:cLick": q_Foo_component_3_MR8bedwLpZk,
+		"q-e:document-s-croll": q_Foo_component_4_lXKyKMdZ9uE,
+		"q-e:document-scro-l-l": q_Foo_component_5_4OhyeH93t0U,
 		"host:onClick$": () => console.log("host:onClick$"),
 		"host:onDocumentScroll$": () => console.log("host:onDocument:scroll"),
 		"host:onDocumentScroll$": () => console.log("host:onWindow:scroll"),
@@ -119,23 +237,83 @@ export const Foo_component_HTDRsvUbLiE = () => {
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"const q_Foo_component_handler_H10xZtD0e7w = qrl(() => import(\\"./test.tsx_Foo_component_handler_H10xZtD0e7w\\"), \\"Foo_component_handler_H10xZtD0e7w\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tconst handler = Qrl(q_Foo_component_handler_H10xZtD0e7w);\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": handler }, {\n\t\t\\"q-e:click\\": () => console.log(\\"onClick$\\"),\n\t\t\\"q-e:document-scroll\\": () => console.log(\\"onDocumentScroll\\"),\n\t\t\\"q-e:document-scroll\\": () => console.log(\\"onWindowScroll\\"),\n\t\t\\"q-e:cLick\\": () => console.log(\\"on-cLick$\\"),\n\t\t\\"q-e:document-s-croll\\": () => console.log(\\"onDocument-sCroll\\"),\n\t\t\\"q-e:document-scro-l-l\\": () => console.log(\\"onDocument-scroLL\\"),\n\t\t\\"host:onClick$\\": () => console.log(\\"host:onClick$\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onDocument:scroll\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onWindow:scroll\\"),\n\t\t\\"q-e:keyup\\": handler,\n\t\t\\"q-e:document:keyup\\": handler,\n\t\t\\"q-e:window:keyup\\": handler,\n\t\tcustom$: () => console.log(\\"custom\\")\n\t}, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,oCAAoC;AAClJ,OAAO,MAAM,kCAAkC;CAC9C,MAAM,UAAU,IAAI,oCAAoC;AACxD,QAAO,WAAW,OAAO,EAAE,OAAO,SAAS,EAAE;EAC5C,mBAAmB,QAAQ,IAAI,WAAW;EAC1C,6BAA6B,QAAQ,IAAI,mBAAmB;EAC5D,6BAA6B,QAAQ,IAAI,iBAAiB;EAC1D,mBAAmB,QAAQ,IAAI,YAAY;EAC3C,8BAA8B,QAAQ,IAAI,oBAAoB;EAC9D,+BAA+B,QAAQ,IAAI,oBAAoB;EAC/D,uBAAuB,QAAQ,IAAI,gBAAgB;EACnD,gCAAgC,QAAQ,IAAI,yBAAyB;EACrE,gCAAgC,QAAQ,IAAI,uBAAuB;EACnE,aAAa;EACb,sBAAsB;EACtB,oBAAoB;EACpB,eAAe,QAAQ,IAAI,SAAS;EACpC,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_6_nMUpldpaqfg\"],\"sourcesContent\":[\"const q_Foo_component_1_DvU6FitWglY = qrl(() => import(\\"./test.tsx_Foo_component_1_DvU6FitWglY\\"), \\"Foo_component_1_DvU6FitWglY\\");\nconst q_Foo_component_2_UZs7Ch7GDxg = qrl(() => import(\\"./test.tsx_Foo_component_2_UZs7Ch7GDxg\\"), \\"Foo_component_2_UZs7Ch7GDxg\\");\nconst q_Foo_component_3_MR8bedwLpZk = qrl(() => import(\\"./test.tsx_Foo_component_3_MR8bedwLpZk\\"), \\"Foo_component_3_MR8bedwLpZk\\");\nconst q_Foo_component_4_lXKyKMdZ9uE = qrl(() => import(\\"./test.tsx_Foo_component_4_lXKyKMdZ9uE\\"), \\"Foo_component_4_lXKyKMdZ9uE\\");\nconst q_Foo_component_5_4OhyeH93t0U = qrl(() => import(\\"./test.tsx_Foo_component_5_4OhyeH93t0U\\"), \\"Foo_component_5_4OhyeH93t0U\\");\nconst q_Foo_component_HTDRsvUbLiE = qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\");\nconst q_Foo_component_handler_H10xZtD0e7w = qrl(() => import(\\"./test.tsx_Foo_component_handler_H10xZtD0e7w\\"), \\"Foo_component_handler_H10xZtD0e7w\\");\nexport const Foo_component_6_nMUpldpaqfg = () => {\n\tconst handler = Qrl(q_Foo_component_handler_H10xZtD0e7w);\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": handler }, {\n\t\t\\"q-e:click\\": q_Foo_component_HTDRsvUbLiE,\n\t\t\\"q-e:document-scroll\\": q_Foo_component_1_DvU6FitWglY,\n\t\t\\"q-e:document-scroll\\": q_Foo_component_2_UZs7Ch7GDxg,\n\t\t\\"q-e:cLick\\": q_Foo_component_3_MR8bedwLpZk,\n\t\t\\"q-e:document-s-croll\\": q_Foo_component_4_lXKyKMdZ9uE,\n\t\t\\"q-e:document-scro-l-l\\": q_Foo_component_5_4OhyeH93t0U,\n\t\t\\"host:onClick$\\": () => console.log(\\"host:onClick$\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onDocument:scroll\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onWindow:scroll\\"),\n\t\t\\"q-e:keyup\\": handler,\n\t\t\\"q-e:document:keyup\\": handler,\n\t\t\\"q-e:window:keyup\\": handler,\n\t\tcustom$: () => console.log(\\"custom\\")\n\t}, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,oCAAoC;AAClJ,OAAO,MAAM,oCAAoC;CAChD,MAAM,UAAU,IAAI,oCAAoC;AACxD,QAAO,WAAW,OAAO,EAAE,OAAO,SAAS,EAAE;EAC5C,aAAa;EACb,uBAAuB;EACvB,uBAAuB;EACvB,aAAa;EACb,wBAAwB;EACxB,yBAAyB;EACzB,uBAAuB,QAAQ,IAAI,gBAAgB;EACnD,gCAAgC,QAAQ,IAAI,yBAAyB;EACrE,gCAAgC,QAAQ,IAAI,uBAAuB;EACnE,aAAa;EACb,sBAAsB;EACtB,oBAAoB;EACpB,eAAe,QAAQ,IAAI,SAAS;EACpC,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "Foo_component_HTDRsvUbLiE",
-  "displayName": "test.tsx_Foo_component",
-  "hash": "HTDRsvUbLiE",
-  "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
+  "name": "Foo_component_6_nMUpldpaqfg",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_6",
+  "hash": "nMUpldpaqfg",
+  "canonicalFilename": "test.tsx_Foo_component_6_nMUpldpaqfg",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "Foo_component_7_Ybn5ifyDtTk",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    97,
+    100,
     841
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_2_UZs7Ch7GDxg.js (ENTRY POINT)==
+
+export const Foo_component_2_UZs7Ch7GDxg = () => console.log("onWindowScroll");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_2_UZs7Ch7GDxg\"],\"sourcesContent\":[\"export const Foo_component_2_UZs7Ch7GDxg = () => console.log(\\"onWindowScroll\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC,QAAQ,IAAI,iBAAiB;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_2_UZs7Ch7GDxg",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_2",
+  "hash": "UZs7Ch7GDxg",
+  "canonicalFilename": "test.tsx_Foo_component_2_UZs7Ch7GDxg",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_6_nMUpldpaqfg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDocumentScroll",
+  "captures": false,
+  "loc": [
+    303,
+    336
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_7_Ybn5ifyDtTk.js (ENTRY POINT)==
+
+const q_Foo_component_6_nMUpldpaqfg = qrl(() => import("./test.tsx_Foo_component_6_nMUpldpaqfg"), "Foo_component_6_nMUpldpaqfg");
+export const Foo_component_7_Ybn5ifyDtTk = () => {
+	return Qrl(q_Foo_component_6_nMUpldpaqfg);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_7_Ybn5ifyDtTk\"],\"sourcesContent\":[\"const q_Foo_component_6_nMUpldpaqfg = qrl(() => import(\\"./test.tsx_Foo_component_6_nMUpldpaqfg\\"), \\"Foo_component_6_nMUpldpaqfg\\");\nexport const Foo_component_7_Ybn5ifyDtTk = () => {\n\treturn Qrl(q_Foo_component_6_nMUpldpaqfg);\n};;\"],\"mappings\":\"AAAA,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,8BAA8B;AAChI,OAAO,MAAM,oCAAoC;AAChD,QAAO,IAAI,8BAA8B;;AACxC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_7_Ybn5ifyDtTk",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_7",
+  "hash": "Ybn5ifyDtTk",
+  "canonicalFilename": "test.tsx_Foo_component_7_Ybn5ifyDtTk",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    81,
+    845
   ]
 }
 */
@@ -143,9 +321,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
+const q_Foo_component_7_Ybn5ifyDtTk = qrl(() => import("./test.tsx_Foo_component_7_Ybn5ifyDtTk"), "Foo_component_7_Ybn5ifyDtTk");
 import { $, component$ } from "@qwik.dev/core";
-export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
+export const Foo = componentQrl(q_Foo_component_7_Ybn5ifyDtTk, { tagName: "my-foo" });
 
 
 Some("{\"version\":3,\"names\":[\" $, compon\",\"t { $, component$ } from '@qw\",\"dev\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\n\treturn $(() => {\n\t\tconst handler = $(() => console.log('reused'));\n\t\treturn (\n\t\t\t<div\n\t\t\t\tonClick$={()=>console.log('onClick$')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onDocumentScroll')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onWindowScroll')}\n\n\t\t\t\ton-cLick$={()=>console.log('on-cLick$')}\n\t\t\t\tonDocument-sCroll$={()=>console.log('onDocument-sCroll')}\n\t\t\t\tonDocument-scroLL$={()=>console.log('onDocument-scroLL')}\n\n\t\t\t\thost:onClick$={()=>console.log('host:onClick$')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onDocument:scroll')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onWindow:scroll')}\n\n\t\t\t\tonKeyup$={handler}\n\t\t\t\tonDocument:keyup$={handler}\n\t\t\t\tonWindow:keyup$={handler}\n\n\t\t\t\tcustom$={()=>console.log('custom')}\n\t\t\t/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gCAAgCC,UAAU,OAE1C,2CAEI,8BACY;AALrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CA0BhB,EACF,SAAS,UACT,CAAC\"}")

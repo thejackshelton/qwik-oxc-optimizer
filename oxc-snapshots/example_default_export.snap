@@ -20,14 +20,14 @@ export default component$(() => {
 
 ============================= src/routes/_repl/[id]/[[...slug]].tsx_component_6n0k9fnD07Y.js ==
 
-import { sibling } from "./sibling";
+const q_component_q_e_click_fRUp0wVb0LI = qrl(() => import("./[[...slug]].tsx_component_q_e_click_fRUp0wVb0LI.tsx"), "component_q_e_click_fRUp0wVb0LI");
 export const component_6n0k9fnD07Y = () => {
-	return _jsxSorted("div", null, { "q-e:click": () => console.log(mongodb, sibling) }, null, 3, "W4_0");
+	return _jsxSorted("div", null, { "q-e:click": q_component_q_e_click_fRUp0wVb0LI }, null, 3, "W4_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_6n0k9fnD07Y\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const component_6n0k9fnD07Y = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(mongodb, sibling) }, null, 3, \\"W4_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,SAAS,QAAQ,EAAE,EAAE,MAAM,GAAG,OAAO;;AACpG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_6n0k9fnD07Y\"],\"sourcesContent\":[\"const q_component_q_e_click_fRUp0wVb0LI = qrl(() => import(\\"./[[...slug]].tsx_component_q_e_click_fRUp0wVb0LI.tsx\\"), \\"component_q_e_click_fRUp0wVb0LI\\");\nexport const component_6n0k9fnD07Y = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_component_q_e_click_fRUp0wVb0LI }, null, 3, \\"W4_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,oCAAoC,UAAU,OAAO,0DAA0D,kCAAkC;AACvJ,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,mCAAmC,EAAE,MAAM,GAAG,OAAO;;AAClG\"}")
 /*
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
@@ -38,12 +38,42 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_6n0k9
   "canonicalFilename": "[[...slug]].tsx_component_6n0k9fnD07Y",
   "path": "src/routes/_repl/[id]",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    99,
+    111,
     198
+  ]
+}
+*/
+
+============================= src/routes/_repl/[id]/[[...slug]].tsx_component_q_e_click_fRUp0wVb0LI.js (ENTRY POINT)==
+
+import { sibling } from "./sibling";
+export const component_q_e_click_fRUp0wVb0LI = () => console.log(mongodb, sibling);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_component_q_e_click_fRUp0wVb0LI\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const component_q_e_click_fRUp0wVb0LI = () => console.log(mongodb, sibling);;\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,wCAAwC,QAAQ,IAAI,SAAS,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
+  "name": "component_q_e_click_fRUp0wVb0LI",
+  "entry": null,
+  "displayName": "[[...slug]].tsx_component_q_e_click",
+  "hash": "fRUp0wVb0LI",
+  "canonicalFilename": "[[...slug]].tsx_component_q_e_click_fRUp0wVb0LI",
+  "path": "src/routes/_repl/[id]",
+  "extension": "js",
+  "parent": "component_6n0k9fnD07Y",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    146,
+    181
   ]
 }
 */

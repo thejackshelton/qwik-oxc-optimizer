@@ -37,17 +37,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_productTitle
 {
   "origin": "test.tsx",
   "name": "component_productTitle_useComputed_qyvYoxyiPuk",
+  "entry": null,
   "displayName": "test.tsx_component_productTitle_useComputed",
   "hash": "qyvYoxyiPuk",
   "canonicalFilename": "test.tsx_component_productTitle_useComputed_qyvYoxyiPuk",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "component_ZUK1E201Ins",
   "ctxKind": "function",
   "ctxName": "useComputed$",
   "captures": false,
   "loc": [
-    207,
+    221,
     258
   ]
 }
@@ -73,16 +74,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    131,
+    143,
     418
   ]
 }

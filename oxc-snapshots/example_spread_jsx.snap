@@ -80,16 +80,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RouterHead_component_D
 {
   "origin": "test.tsx",
   "name": "RouterHead_component_DPA76mgIou0",
+  "entry": null,
   "displayName": "test.tsx_RouterHead_component",
   "hash": "DPA76mgIou0",
   "canonicalFilename": "test.tsx_RouterHead_component_DPA76mgIou0",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    225,
+    237,
     767
   ]
 }

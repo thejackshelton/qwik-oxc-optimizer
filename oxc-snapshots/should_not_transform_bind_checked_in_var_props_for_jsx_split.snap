@@ -50,16 +50,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V
 {
   "origin": "test.tsx",
   "name": "FieldInput_component_V4XAtJSTRKg",
+  "entry": null,
   "displayName": "test.tsx_FieldInput_component",
   "hash": "V4XAtJSTRKg",
   "canonicalFilename": "test.tsx_FieldInput_component_V4XAtJSTRKg",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    87,
+    99,
     329
   ],
   "paramNames": [

@@ -33,12 +33,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
   "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    134,
+    137,
     161
   ]
 }
@@ -61,12 +61,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyle
   "canonicalFilename": "test.tsx_App_component_useStyles_t35nSa5UV7U",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "useStyles$",
   "captures": false,
   "loc": [
-    106,
+    118,
     124
   ]
 }
@@ -94,11 +94,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
   "canonicalFilename": "test.tsx_App_component_1_w0t0o3QMovU",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    81,
+    93,
     165
   ],
   "paramNames": [

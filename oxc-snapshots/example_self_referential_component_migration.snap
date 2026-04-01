@@ -67,16 +67,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentA_component_1
 {
   "origin": "test.tsx",
   "name": "ComponentA_component_100sEyGkGuA",
+  "entry": null,
   "displayName": "test.tsx_ComponentA_component",
   "hash": "100sEyGkGuA",
   "canonicalFilename": "test.tsx_ComponentA_component_100sEyGkGuA",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    692,
+    704,
     767
   ]
 }
@@ -98,11 +100,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQ
 {
   "origin": "test.tsx",
   "name": "Nested_component_8cqIQQSPqhE",
+  "entry": null,
   "displayName": "test.tsx_Nested_component",
   "hash": "8cqIQQSPqhE",
   "canonicalFilename": "test.tsx_Nested_component_8cqIQQSPqhE",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -110,7 +114,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQ
     "Nested"
   ],
   "loc": [
-    270,
+    282,
     336
   ]
 }
@@ -137,11 +141,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_componen
 {
   "origin": "test.tsx",
   "name": "RecursiveList_component_ignTe6QguYQ",
+  "entry": null,
   "displayName": "test.tsx_RecursiveList_component",
   "hash": "ignTe6QguYQ",
   "canonicalFilename": "test.tsx_RecursiveList_component_ignTe6QguYQ",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -149,7 +155,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_componen
     "RecursiveList"
   ],
   "loc": [
-    433,
+    445,
     605
   ],
   "paramNames": [
@@ -173,11 +179,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_componen
 {
   "origin": "test.tsx",
   "name": "MutualExample_component_LXt10RL0k44",
+  "entry": null,
   "displayName": "test.tsx_MutualExample_component",
   "hash": "LXt10RL0k44",
   "canonicalFilename": "test.tsx_MutualExample_component_LXt10RL0k44",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -185,7 +193,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_componen
     "ComponentA"
   ],
   "loc": [
-    896,
+    908,
     941
   ]
 }
@@ -206,11 +214,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_W
 {
   "origin": "test.tsx",
   "name": "ComponentB_component_WfCOFVxlmq4",
+  "entry": null,
   "displayName": "test.tsx_ComponentB_component",
   "hash": "WfCOFVxlmq4",
   "canonicalFilename": "test.tsx_ComponentB_component_WfCOFVxlmq4",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -218,7 +228,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_W
     "ComponentA"
   ],
   "loc": [
-    789,
+    801,
     864
   ]
 }

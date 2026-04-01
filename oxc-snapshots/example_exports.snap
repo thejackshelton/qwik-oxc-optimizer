@@ -74,12 +74,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_UVBJu
 {
   "origin": "project/test.tsx",
   "name": "Header_component_UVBJuFYfvDo",
+  "entry": null,
   "displayName": "test.tsx_Header_component",
   "hash": "UVBJuFYfvDo",
   "canonicalFilename": "test.tsx_Header_component_UVBJuFYfvDo",
   "path": "project",
   "extension": "jsx",
-  "parent": "component$",
+  "parent": "Header_component_1_uWM1kg0IGO0",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -88,7 +89,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_UVBJu
     "internal"
   ],
   "loc": [
-    320,
+    323,
     458
   ]
 }
@@ -111,11 +112,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_uWM
 {
   "origin": "project/test.tsx",
   "name": "Header_component_1_uWM1kg0IGO0",
+  "entry": null,
   "displayName": "test.tsx_Header_component_1",
   "hash": "uWM1kg0IGO0",
   "canonicalFilename": "test.tsx_Header_component_1_uWM1kg0IGO0",
   "path": "project",
   "extension": "jsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -124,7 +127,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_uWM
     "internal"
   ],
   "loc": [
-    293,
+    305,
     461
   ]
 }

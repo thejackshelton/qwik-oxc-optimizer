@@ -44,12 +44,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_Heade
   "canonicalFilename": "test.tsx_Header_component_Header_onClick_KjD9TCNkNxY",
   "path": "project",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "Header_component_UVBJuFYfvDo",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    228,
+    231,
     247
   ],
   "paramNames": [
@@ -80,6 +80,7 @@ export const Header_component_UVBJuFYfvDo = () => { const Header = _captures[0];
   "canonicalFilename": "test.tsx_Header_component_UVBJuFYfvDo",
   "path": "project",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -87,7 +88,7 @@ export const Header_component_UVBJuFYfvDo = () => { const Header = _captures[0];
     "Header"
   ],
   "loc": [
-    180,
+    192,
     294
   ]
 }
@@ -116,6 +117,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_wGkRHWXa
   "canonicalFilename": "test.tsx_App_component_wGkRHWXaqjs",
   "path": "project",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -123,7 +125,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_wGkRHWXa
     "Header"
   ],
   "loc": [
-    316,
+    328,
     378
   ]
 }

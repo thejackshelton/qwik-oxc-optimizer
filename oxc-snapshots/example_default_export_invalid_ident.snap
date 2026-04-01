@@ -17,29 +17,60 @@ export default component$(() => {
 
 
 
+============================= src/components/mongo/404.tsx_component_q_e_click_1nb8fOGHStE.tsx (ENTRY POINT)==
+
+export const component_q_e_click_1nb8fOGHStE = () => console.log(mongodb);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx_component_q_e_click_1nb8fOGHStE\"],\"sourcesContent\":[\"export const component_q_e_click_1nb8fOGHStE = () => console.log(mongodb);;\"],\"mappings\":\"AAAA,OAAO,MAAM,wCAAwC,QAAQ,IAAI,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "src/components/mongo/404.tsx",
+  "name": "component_q_e_click_1nb8fOGHStE",
+  "entry": null,
+  "displayName": "404.tsx_component_q_e_click",
+  "hash": "1nb8fOGHStE",
+  "canonicalFilename": "404.tsx_component_q_e_click_1nb8fOGHStE",
+  "path": "src/components/mongo",
+  "extension": "tsx",
+  "parent": "component_fw9Bo3UeA0o",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    109,
+    135
+  ]
+}
+*/
+
 ============================= src/components/mongo/404.tsx_component_fw9Bo3UeA0o.tsx (ENTRY POINT)==
 
+const q_component_q_e_click_1nb8fOGHStE = qrl(() => import("./404.tsx_component_q_e_click_1nb8fOGHStE"), "component_q_e_click_1nb8fOGHStE");
 export const component_fw9Bo3UeA0o = () => {
-	return _jsxSorted("div", null, { "q-e:click": () => console.log(mongodb) }, null, 3, "0B_0");
+	return _jsxSorted("div", null, { "q-e:click": q_component_q_e_click_1nb8fOGHStE }, null, 3, "0B_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx_component_fw9Bo3UeA0o\"],\"sourcesContent\":[\"export const component_fw9Bo3UeA0o = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(mongodb) }, null, 3, \\"0B_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC3F\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx_component_fw9Bo3UeA0o\"],\"sourcesContent\":[\"const q_component_q_e_click_1nb8fOGHStE = qrl(() => import(\\"./404.tsx_component_q_e_click_1nb8fOGHStE\\"), \\"component_q_e_click_1nb8fOGHStE\\");\nexport const component_fw9Bo3UeA0o = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_component_q_e_click_1nb8fOGHStE }, null, 3, \\"0B_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,oCAAoC,UAAU,OAAO,8CAA8C,kCAAkC;AAC3I,OAAO,MAAM,8BAA8B;AAC1C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,mCAAmC,EAAE,MAAM,GAAG,OAAO;;AAClG\"}")
 /*
 {
   "origin": "src/components/mongo/404.tsx",
   "name": "component_fw9Bo3UeA0o",
+  "entry": null,
   "displayName": "404.tsx_component",
   "hash": "fw9Bo3UeA0o",
   "canonicalFilename": "404.tsx_component_fw9Bo3UeA0o",
   "path": "src/components/mongo",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    62,
+    74,
     152
   ]
 }

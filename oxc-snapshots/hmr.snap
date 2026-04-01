@@ -29,16 +29,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestGetsHmr_component_
 {
   "origin": "test.tsx",
   "name": "TestGetsHmr_component_jBUoou0sxX4",
+  "entry": null,
   "displayName": "test.tsx_TestGetsHmr_component",
   "hash": "jBUoou0sxX4",
   "canonicalFilename": "test.tsx_TestGetsHmr_component_jBUoou0sxX4",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    93,
+    105,
     143
   ]
 }
@@ -57,16 +59,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl
 {
   "origin": "test.tsx",
   "name": "TestNoHmr_componentQrl_Uqk3jGTNmYs",
+  "entry": null,
   "displayName": "test.tsx_TestNoHmr_componentQrl",
   "hash": "Uqk3jGTNmYs",
   "canonicalFilename": "test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    185,
+    188,
     226
   ]
 }
@@ -77,14 +81,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl
 import { _jsxSorted } from "@qwik.dev/core";
 const q_TestGetsHmr_component_jBUoou0sxX4 = qrlDEV(() => import("./test.tsx_TestGetsHmr_component_jBUoou0sxX4"), "TestGetsHmr_component_jBUoou0sxX4", [], {
 	file: "test.tsx",
-	lo: 93,
-	hi: 143,
+	lo: 104,
+	hi: 142,
 	displayName: "test.tsx_TestGetsHmr_component"
 });
 const q_TestNoHmr_componentQrl_Uqk3jGTNmYs = qrlDEV(() => import("./test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs"), "TestNoHmr_componentQrl_Uqk3jGTNmYs", [], {
 	file: "test.tsx",
-	lo: 185,
-	hi: 226,
+	lo: 187,
+	hi: 225,
 	displayName: "test.tsx_TestNoHmr_componentQrl"
 });
 import { component$, component$, $ } from "@qwik.dev/core";
@@ -92,7 +96,7 @@ export const TestGetsHmr = componentQrl(q_TestGetsHmr_component_jBUoou0sxX4);
 export const TestNoHmr = componentQrl(Qrl(q_TestNoHmr_componentQrl_Uqk3jGTNmYs));
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, component$, $ } f\",\" \\"@qwi\",\"st T\",\"on\",\"$(\",\"\t\t\treturn <\",\"ort { component$, component$, $ } fr\",\"\\"@qwik\",\"Test\",\"nt\",\" =\",\"eturn <div>\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, component$, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const TestGetsHmr = component$(() => {\n\t\t\treturn <div>Test</div>;\n\t\t});\n\t\texport const TestNoHmr = componentQrl($(() => {\n\t\t\treturn <div>Test</div>;\n\t\t}));\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,sCAAsCC,aAAa,OAExD,iDACC,qCAEI,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAKC,IAAI;CAC5CC,aAAa;;AAPb,MACKC,uCAAuCC,aAAa,OAExD,kDACE,sCAEK,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAC5CC,aAAa;;AANf,SAAS,YAAY,YAAY,SAAS;AAE1C,OAAO,MAAM,cAAcC,iDAEzB;AACF,OAAO,MAAM,YAAY,aAAaC,yCAEpC,CAAC\"}")
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$, component$, $ } f\",\" \\"@qwi\",\"st T\",\"on\",\"((\",\"\t\treturn <d\",\"ort { component$, component$, $ } fr\",\"\\"@qwik\",\"Test\",\"nt\",\" =\",\"eturn <div>\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, component$, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const TestGetsHmr = component$(() => {\n\t\t\treturn <div>Test</div>;\n\t\t});\n\t\texport const TestNoHmr = componentQrl($(() => {\n\t\t\treturn <div>Test</div>;\n\t\t}));\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,sCAAsCC,aAAa,OAExD,iDACC,qCAEI,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAC5CC,aAAa;;AAPd,MACKC,uCAAuCC,aAAa,OAExD,kDACE,sCAEK,EAAE,EAAE;CAAGC,MAAM;CAAaC,IAAI;CAAMC,IAAI;CAC5CC,aAAa;;AANf,SAAS,YAAY,YAAY,SAAS;AAE1C,OAAO,MAAM,cAAcC,iDAEzB;AACF,OAAO,MAAM,YAAY,aAAaC,yCAEpC,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

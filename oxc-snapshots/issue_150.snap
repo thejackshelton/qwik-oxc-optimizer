@@ -42,16 +42,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_1_kr
 {
   "origin": "test.tsx",
   "name": "Greeter_component_1_krCndSwhX4U",
+  "entry": null,
   "displayName": "test.tsx_Greeter_component_1",
   "hash": "krCndSwhX4U",
   "canonicalFilename": "test.tsx_Greeter_component_1_krCndSwhX4U",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    103,
+    115,
     307
   ]
 }
@@ -77,12 +79,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7Hu
 {
   "origin": "test.tsx",
   "name": "Greeter_component_n7HuG2hhU0Q",
+  "entry": null,
   "displayName": "test.tsx_Greeter_component",
   "hash": "n7HuG2hhU0Q",
   "canonicalFilename": "test.tsx_Greeter_component_n7HuG2hhU0Q",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "Greeter_component_1_krCndSwhX4U",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -90,7 +93,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7Hu
     "stuff"
   ],
   "loc": [
-    157,
+    160,
     303
   ]
 }
@@ -107,16 +110,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_d_QSWg23VDMkU\
 {
   "origin": "test.tsx",
   "name": "Greeter_d_QSWg23VDMkU",
+  "entry": null,
   "displayName": "test.tsx_Greeter_d",
   "hash": "QSWg23VDMkU",
   "canonicalFilename": "test.tsx_Greeter_d_QSWg23VDMkU",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    320,
+    323,
     347
   ]
 }

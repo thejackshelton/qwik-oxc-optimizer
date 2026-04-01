@@ -29,17 +29,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Header_component_d
 {
   "origin": "test.tsx",
   "name": "App_Header_component_div_onClick_aO7uI7Iw6oQ",
+  "entry": null,
   "displayName": "test.tsx_App_Header_component_div_onClick",
   "hash": "aO7uI7Iw6oQ",
   "canonicalFilename": "test.tsx_App_Header_component_div_onClick_aO7uI7Iw6oQ",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "App_Header_component_B9F3YeqcO1w",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    160,
+    163,
     188
   ],
   "paramNames": [
@@ -63,16 +64,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Header_component_B
 {
   "origin": "test.tsx",
   "name": "App_Header_component_B9F3YeqcO1w",
+  "entry": null,
   "displayName": "test.tsx_App_Header_component",
   "hash": "B9F3YeqcO1w",
   "canonicalFilename": "test.tsx_App_Header_component_B9F3YeqcO1w",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    89,
+    101,
     200
   ]
 }

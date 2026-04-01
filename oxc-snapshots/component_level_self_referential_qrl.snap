@@ -54,12 +54,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_othe
 {
   "origin": "test.tsx",
   "name": "Foo_component_sig_other_useAsync_dt8J7BiPmsg",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_sig_other_useAsync",
   "hash": "dt8J7BiPmsg",
   "canonicalFilename": "test.tsx_Foo_component_sig_other_useAsync_dt8J7BiPmsg",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "Foo_component_sig_other_sN0VIZknwRQ",
   "ctxKind": "function",
   "ctxName": "useAsync$",
   "captures": true,
@@ -67,7 +68,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_othe
     "other"
   ],
   "loc": [
-    330,
+    341,
     482
   ],
   "paramNames": [
@@ -98,12 +99,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useA
 {
   "origin": "test.tsx",
   "name": "Foo_component_sig_useAsync_f0BGwWm4eeY",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_sig_useAsync",
   "hash": "f0BGwWm4eeY",
   "canonicalFilename": "test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "Foo_component_sig_other_sN0VIZknwRQ",
   "ctxKind": "function",
   "ctxName": "useAsync$",
   "captures": true,
@@ -111,7 +113,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useA
     "sig"
   ],
   "loc": [
-    162,
+    173,
     313
   ],
   "paramNames": [
@@ -141,16 +143,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_othe
 {
   "origin": "test.tsx",
   "name": "Foo_component_sig_other_sN0VIZknwRQ",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_sig_other",
   "hash": "sN0VIZknwRQ",
   "canonicalFilename": "test.tsx_Foo_component_sig_other_sN0VIZknwRQ",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    125,
+    137,
     534
   ],
   "paramNames": [

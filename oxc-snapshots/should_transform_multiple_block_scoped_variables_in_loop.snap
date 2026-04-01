@@ -22,35 +22,75 @@ export default component$(() => {
 });
 
 
+============================= test.tsx_component_div_xgN6LizSsxg.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_xgN6LizSsxg = () => {
+	const index = _captures[0];
+	const value = _captures[1];
+	return console.log(value, index);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_xgN6LizSsxg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_xgN6LizSsxg = () => {\nconst index = _captures[0];\nconst value = _captures[1];\nreturn console.log(value, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,QAAQ,UAAU;CACxB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,OAAO,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_xgN6LizSsxg",
+  "entry": null,
+  "displayName": "test.tsx_component_div",
+  "hash": "xgN6LizSsxg",
+  "canonicalFilename": "test.tsx_component_div_xgN6LizSsxg",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "index",
+    "value"
+  ],
+  "loc": [
+    277,
+    308
+  ]
+}
+*/
+
 ============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+const q_component_div_xgN6LizSsxg = qrl(() => import("./test.tsx_component_div_xgN6LizSsxg"), "component_div_xgN6LizSsxg", [index, value]);
 export const component_ZUK1E201Ins = () => {
 	const arr = useSignal(["a", "b"]);
 	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
 		const index = i + 1;
 		const value = val.toUpperCase();
-		return _jsxSorted("div", { "q:ps": [index, value] }, { "q-e:click": () => console.log(value, index) }, val, 7, null);
+		return _jsxSorted("div", { "q:ps": [index, value] }, { "q-e:click": q_component_div_xgN6LizSsxg.w([index, value]) }, val, 7, null);
 	}), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\tconst value = val.toUpperCase();\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [index, value] }, { \\"q-e:click\\": () => console.log(value, index) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;EAClB,MAAM,QAAQ,IAAI,aAAa;AAC/B,SAAO,WAAW,OAAO,EAAE,QAAQ,CAAC,OAAO,MAAM,EAAE,EAAE,EAAE,mBAAmB,QAAQ,IAAI,OAAO,MAAM,EAAE,EAAE,KAAK,GAAG,KAAK;GACnH,EAAE,GAAG,OAAO;;AACb\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_xgN6LizSsxg = qrl(() => import(\\"./test.tsx_component_div_xgN6LizSsxg\\"), \\"component_div_xgN6LizSsxg\\", [index, value]);\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\tconst value = val.toUpperCase();\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [index, value] }, { \\"q-e:click\\": q_component_div_xgN6LizSsxg.w([index, value]) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,6BAA6B,CAAC,OAAO,MAAM,CAAC;AAC1I,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;EAClB,MAAM,QAAQ,IAAI,aAAa;AAC/B,SAAO,WAAW,OAAO,EAAE,QAAQ,CAAC,OAAO,MAAM,EAAE,EAAE,EAAE,aAAa,4BAA4B,EAAE,CAAC,OAAO,MAAM,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK;GACjI,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    73,
+    85,
     349
   ]
 }

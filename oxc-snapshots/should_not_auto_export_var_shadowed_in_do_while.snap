@@ -37,16 +37,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV
 {
   "origin": "test.tsx",
   "name": "action_formAction_dIQV5vh1He4",
+  "entry": null,
   "displayName": "test.tsx_action_formAction",
   "hash": "dIQV5vh1He4",
   "canonicalFilename": "test.tsx_action_formAction_dIQV5vh1He4",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "formAction$",
   "captures": false,
   "loc": [
-    86,
+    99,
     199
   ],
   "paramNames": [

@@ -27,35 +27,109 @@ export default component$(() => {
 });
 
 
+============================= test.tsx_component_div_1_kVFSCv0p6H0.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_1_kVFSCv0p6H0 = () => {
+	const label = _captures[0];
+	return console.log(label);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_1_kVFSCv0p6H0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_1_kVFSCv0p6H0 = () => {\nconst label = _captures[0];\nreturn console.log(label);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC;CACjD,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_1_kVFSCv0p6H0",
+  "entry": null,
+  "displayName": "test.tsx_component_div_1",
+  "hash": "kVFSCv0p6H0",
+  "canonicalFilename": "test.tsx_component_div_1_kVFSCv0p6H0",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onKeyDown",
+  "captures": true,
+  "captureNames": [
+    "label"
+  ],
+  "loc": [
+    389,
+    413
+  ]
+}
+*/
+
+============================= test.tsx_component_div_xgN6LizSsxg.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_xgN6LizSsxg = () => {
+	const index = _captures[0];
+	return console.log(index);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_xgN6LizSsxg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_xgN6LizSsxg = () => {\nconst index = _captures[0];\nreturn console.log(index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_xgN6LizSsxg",
+  "entry": null,
+  "displayName": "test.tsx_component_div",
+  "hash": "xgN6LizSsxg",
+  "canonicalFilename": "test.tsx_component_div_xgN6LizSsxg",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "index"
+  ],
+  "loc": [
+    318,
+    342
+  ]
+}
+*/
+
 ============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+const q_component_div_1_kVFSCv0p6H0 = qrl(() => import("./test.tsx_component_div_1_kVFSCv0p6H0"), "component_div_1_kVFSCv0p6H0", [label]);
+const q_component_div_xgN6LizSsxg = qrl(() => import("./test.tsx_component_div_xgN6LizSsxg"), "component_div_xgN6LizSsxg", [index]);
 export const component_ZUK1E201Ins = () => {
 	const arr = useSignal(["a", "b"]);
 	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
 		const index = i + 1;
 		const label = val.toUpperCase();
-		return _jsxSorted("div", null, null, [_jsxSorted("button", { "q:p": index }, { "q-e:click": () => console.log(index) }, val, 7, null), _jsxSorted("span", { "q:p": label }, { "q-e:key-down": () => console.log(label) }, label, 7, null)], 3, null);
+		return _jsxSorted("div", null, null, [_jsxSorted("button", { "q:p": index }, { "q-e:click": q_component_div_xgN6LizSsxg.w([index]) }, val, 7, null), _jsxSorted("span", { "q:p": label }, { "q-e:key-down": q_component_div_1_kVFSCv0p6H0.w([label]) }, label, 7, null)], 3, null);
 	}), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\tconst label = val.toUpperCase();\n\t\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", { \\"q:p\\": index }, { \\"q-e:click\\": () => console.log(index) }, val, 7, null), _jsxSorted(\\"span\\", { \\"q:p\\": label }, { \\"q-e:key-down\\": () => console.log(label) }, label, 7, null)], 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;EAClB,MAAM,QAAQ,IAAI,aAAa;AAC/B,SAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,EAAE,OAAO,OAAO,EAAE,EAAE,mBAAmB,QAAQ,IAAI,MAAM,EAAE,EAAE,KAAK,GAAG,KAAK,EAAE,WAAW,QAAQ,EAAE,OAAO,OAAO,EAAE,EAAE,sBAAsB,QAAQ,IAAI,MAAM,EAAE,EAAE,OAAO,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GACnP,EAAE,GAAG,OAAO;;AACb\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_1_kVFSCv0p6H0 = qrl(() => import(\\"./test.tsx_component_div_1_kVFSCv0p6H0\\"), \\"component_div_1_kVFSCv0p6H0\\", [label]);\nconst q_component_div_xgN6LizSsxg = qrl(() => import(\\"./test.tsx_component_div_xgN6LizSsxg\\"), \\"component_div_xgN6LizSsxg\\", [index]);\nexport const component_ZUK1E201Ins = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\tconst label = val.toUpperCase();\n\t\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", { \\"q:p\\": index }, { \\"q-e:click\\": q_component_div_xgN6LizSsxg.w([index]) }, val, 7, null), _jsxSorted(\\"span\\", { \\"q:p\\": label }, { \\"q-e:key-down\\": q_component_div_1_kVFSCv0p6H0.w([label]) }, label, 7, null)], 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,gCAAgC,UAAU,OAAO,2CAA2C,+BAA+B,CAAC,MAAM,CAAC;AACzI,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,6BAA6B,CAAC,MAAM,CAAC;AACnI,OAAO,MAAM,8BAA8B;CAC1C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;EAClB,MAAM,QAAQ,IAAI,aAAa;AAC/B,SAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,EAAE,OAAO,OAAO,EAAE,EAAE,aAAa,4BAA4B,EAAE,CAAC,MAAM,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK,EAAE,WAAW,QAAQ,EAAE,OAAO,OAAO,EAAE,EAAE,gBAAgB,8BAA8B,EAAE,CAAC,MAAM,CAAC,EAAE,EAAE,OAAO,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GACjR,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    73,
+    85,
     484
   ]
 }

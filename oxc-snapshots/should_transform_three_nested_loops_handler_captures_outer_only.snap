@@ -36,9 +36,45 @@ export default component$(() => {
 });
 
 
+============================= test.tsx_component_div_div_div_51J1O3LnsvQ.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_div_div_51J1O3LnsvQ = () => {
+	const planeId = _captures[0];
+	return console.log(planeId);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_div_51J1O3LnsvQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_div_51J1O3LnsvQ = () => {\nconst planeId = _captures[0];\nreturn console.log(planeId);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0CAA0C;CACvD,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_div_div_51J1O3LnsvQ",
+  "entry": null,
+  "displayName": "test.tsx_component_div_div_div",
+  "hash": "51J1O3LnsvQ",
+  "canonicalFilename": "test.tsx_component_div_div_div_51J1O3LnsvQ",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "planeId"
+  ],
+  "loc": [
+    475,
+    501
+  ]
+}
+*/
+
 ============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+const q_component_div_div_div_51J1O3LnsvQ = qrl(() => import("./test.tsx_component_div_div_div_51J1O3LnsvQ"), "component_div_div_div_51J1O3LnsvQ", [planeId]);
 export const component_ZUK1E201Ins = () => {
 	const data = useSignal([[["a", "b"], ["c", "d"]], [["e", "f"], ["g", "h"]]]);
 	return _jsxSorted("div", null, null, data.value.map((plane, pi) => {
@@ -46,27 +82,29 @@ export const component_ZUK1E201Ins = () => {
 		return _jsxSorted("div", { key: pi }, null, plane.map((row, ri) => _jsxSorted("div", { key: ri }, null, row.map((cell, ci) => _jsxSorted("button", {
 			key: ci,
 			"q:p": planeId
-		}, { "q-e:click": () => console.log(planeId) }, cell, 7, null)), 3, null)), 3, null);
+		}, { "q-e:click": q_component_div_div_div_51J1O3LnsvQ.w([planeId]) }, cell, 7, null)), 3, null)), 3, null);
 	}), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst data = useSignal([[[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]], [[\\"e\\", \\"f\\"], [\\"g\\", \\"h\\"]]]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((plane, pi) => {\n\t\tconst planeId = \\"p\\" + pi;\n\t\treturn _jsxSorted(\\"div\\", { key: pi }, null, plane.map((row, ri) => _jsxSorted(\\"div\\", { key: ri }, null, row.map((cell, ci) => _jsxSorted(\\"button\\", {\n\t\t\tkey: ci,\n\t\t\t\\"q:p\\": planeId\n\t\t}, { \\"q-e:click\\": () => console.log(planeId) }, cell, 7, null)), 3, null)), 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,OAAO,UAAU,CAAC,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC,CAAC;AAC5E,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,OAAO,OAAO;EAClE,MAAM,UAAU,MAAM;AACtB,SAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,MAAM,KAAK,KAAK,OAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,IAAI,KAAK,MAAM,OAAO,WAAW,UAAU;GAClJ,KAAK;GACL,OAAO;GACP,EAAE,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GACnF,EAAE,GAAG,OAAO;;AACb\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_div_div_51J1O3LnsvQ = qrl(() => import(\\"./test.tsx_component_div_div_div_51J1O3LnsvQ\\"), \\"component_div_div_div_51J1O3LnsvQ\\", [planeId]);\nexport const component_ZUK1E201Ins = () => {\n\tconst data = useSignal([[[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]], [[\\"e\\", \\"f\\"], [\\"g\\", \\"h\\"]]]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((plane, pi) => {\n\t\tconst planeId = \\"p\\" + pi;\n\t\treturn _jsxSorted(\\"div\\", { key: pi }, null, plane.map((row, ri) => _jsxSorted(\\"div\\", { key: ri }, null, row.map((cell, ci) => _jsxSorted(\\"button\\", {\n\t\t\tkey: ci,\n\t\t\t\\"q:p\\": planeId\n\t\t}, { \\"q-e:click\\": q_component_div_div_div_51J1O3LnsvQ.w([planeId]) }, cell, 7, null)), 3, null)), 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,qCAAqC,CAAC,QAAQ,CAAC;AAC7J,OAAO,MAAM,8BAA8B;CAC1C,MAAM,OAAO,UAAU,CAAC,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC,CAAC;AAC5E,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,OAAO,OAAO;EAClE,MAAM,UAAU,MAAM;AACtB,SAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,MAAM,KAAK,KAAK,OAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,IAAI,KAAK,MAAM,OAAO,WAAW,UAAU;GAClJ,KAAK;GACL,OAAO;GACP,EAAE,EAAE,aAAa,oCAAoC,EAAE,CAAC,QAAQ,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GACzG,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    73,
+    85,
     671
   ]
 }

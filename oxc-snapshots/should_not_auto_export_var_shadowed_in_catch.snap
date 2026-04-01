@@ -44,11 +44,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV
 {
   "origin": "test.tsx",
   "name": "action_formAction_dIQV5vh1He4",
+  "entry": null,
   "displayName": "test.tsx_action_formAction",
   "hash": "dIQV5vh1He4",
   "canonicalFilename": "test.tsx_action_formAction_dIQV5vh1He4",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "formAction$",
   "captures": true,
@@ -56,7 +58,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV
     "t"
   ],
   "loc": [
-    118,
+    131,
     292
   ],
   "paramNames": [

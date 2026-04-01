@@ -43,16 +43,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 {
   "origin": "test.tsx",
   "name": "Foo_component_HTDRsvUbLiE",
+  "entry": null,
   "displayName": "test.tsx_Foo_component",
   "hash": "HTDRsvUbLiE",
   "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    95,
+    107,
     199
   ],
   "paramNames": [

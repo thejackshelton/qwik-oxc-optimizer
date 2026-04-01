@@ -17,15 +17,44 @@ export const App = component$((props: Stuff) => {
 });
 
 
-============================= test.tsx ==
+============================= test.tsx_App_component_ckEPmXZlub0.jsx ==
+
+export const App_component_ckEPmXZlub0 = () => console.log("warn");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => console.log(\\"warn\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC,QAAQ,IAAI,OAAO;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "jsx",
+  "parent": "App_component_1_w0t0o3QMovU",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    156,
+    181
+  ]
+}
+*/
+
+============================= test.jsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0.tsx"), "App_component_ckEPmXZlub0");
+const q_App_component_1_w0t0o3QMovU = _noopQrl("App_component_1_w0t0o3QMovU");
 import { component$, useStore } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useStore } \",\"m '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,SAAS,4BAE5B;AAFhB,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useStore } \",\"m '\",\"t { component$, useStore } fr\",\"'@qwik.d\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8BAA8BC,UAAU,OAAO,6CAEX,4BAGxC;AAND,MACKC,gCAAgCC,SAAS,8BAE1B;AAFpB,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,2CAMjB\"}")
 == DIAGNOSTICS ==
 
 []

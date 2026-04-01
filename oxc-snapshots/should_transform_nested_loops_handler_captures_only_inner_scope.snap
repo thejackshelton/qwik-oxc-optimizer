@@ -29,34 +29,72 @@ export default component$(() => {
 });
 
 
+============================= test.tsx_component_div_div_7lSkz80PN6U.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_div_7lSkz80PN6U = () => {
+	const cellKey = _captures[0];
+	return console.log(cellKey);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_div_7lSkz80PN6U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_div_7lSkz80PN6U = () => {\nconst cellKey = _captures[0];\nreturn console.log(cellKey);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sCAAsC;CACnD,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_div_7lSkz80PN6U",
+  "entry": null,
+  "displayName": "test.tsx_component_div_div",
+  "hash": "7lSkz80PN6U",
+  "canonicalFilename": "test.tsx_component_div_div_7lSkz80PN6U",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "cellKey"
+  ],
+  "loc": [
+    390,
+    416
+  ]
+}
+*/
+
 ============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+const q_component_div_div_7lSkz80PN6U = qrl(() => import("./test.tsx_component_div_div_7lSkz80PN6U"), "component_div_div_7lSkz80PN6U", [cellKey]);
 export const component_ZUK1E201Ins = () => {
 	const matrix = useSignal([["a", "b"], ["c", "d"]]);
 	return _jsxSorted("div", null, null, matrix.value.map((row, i) => _jsxSorted("div", { key: i }, null, row.map((cell, j) => {
 		const cellKey = cell + "-" + j;
-		return _jsxSorted("span", { key: j }, null, _jsxSorted("button", { "q:p": cellKey }, { "q-e:click": () => console.log(cellKey) }, cell, 7, null), 3, null);
+		return _jsxSorted("span", { key: j }, null, _jsxSorted("button", { "q:p": cellKey }, { "q-e:click": q_component_div_div_7lSkz80PN6U.w([cellKey]) }, cell, 7, null), 3, null);
 	}), 3, null)), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const component_ZUK1E201Ins = () => {\n\tconst matrix = useSignal([[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]]);\n\treturn _jsxSorted(\\"div\\", null, null, matrix.value.map((row, i) => _jsxSorted(\\"div\\", { key: i }, null, row.map((cell, j) => {\n\t\tconst cellKey = cell + \\"-\\" + j;\n\t\treturn _jsxSorted(\\"span\\", { key: j }, null, _jsxSorted(\\"button\\", { \\"q:p\\": cellKey }, { \\"q-e:click\\": () => console.log(cellKey) }, cell, 7, null), 3, null);\n\t}), 3, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAC1C,MAAM,SAAS,UAAU,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC;AAClD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,MAAM,KAAK,KAAK,MAAM,WAAW,OAAO,EAAE,KAAK,GAAG,EAAE,MAAM,IAAI,KAAK,MAAM,MAAM;EAC1H,MAAM,UAAU,OAAO,MAAM;AAC7B,SAAO,WAAW,QAAQ,EAAE,KAAK,GAAG,EAAE,MAAM,WAAW,UAAU,EAAE,OAAO,SAAS,EAAE,EAAE,mBAAmB,QAAQ,IAAI,QAAQ,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK;GACzJ,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACxB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_component_div_div_7lSkz80PN6U = qrl(() => import(\\"./test.tsx_component_div_div_7lSkz80PN6U\\"), \\"component_div_div_7lSkz80PN6U\\", [cellKey]);\nexport const component_ZUK1E201Ins = () => {\n\tconst matrix = useSignal([[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]]);\n\treturn _jsxSorted(\\"div\\", null, null, matrix.value.map((row, i) => _jsxSorted(\\"div\\", { key: i }, null, row.map((cell, j) => {\n\t\tconst cellKey = cell + \\"-\\" + j;\n\t\treturn _jsxSorted(\\"span\\", { key: j }, null, _jsxSorted(\\"button\\", { \\"q:p\\": cellKey }, { \\"q-e:click\\": q_component_div_div_7lSkz80PN6U.w([cellKey]) }, cell, 7, null), 3, null);\n\t}), 3, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,kCAAkC,UAAU,OAAO,6CAA6C,iCAAiC,CAAC,QAAQ,CAAC;AACjJ,OAAO,MAAM,8BAA8B;CAC1C,MAAM,SAAS,UAAU,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC;AAClD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,MAAM,KAAK,KAAK,MAAM,WAAW,OAAO,EAAE,KAAK,GAAG,EAAE,MAAM,IAAI,KAAK,MAAM,MAAM;EAC1H,MAAM,UAAU,OAAO,MAAM;AAC7B,SAAO,WAAW,QAAQ,EAAE,KAAK,GAAG,EAAE,MAAM,WAAW,UAAU,EAAE,OAAO,SAAS,EAAE,EAAE,aAAa,gCAAgC,EAAE,CAAC,QAAQ,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK;GAC3K,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACxB\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    73,
+    85,
     527
   ]
 }

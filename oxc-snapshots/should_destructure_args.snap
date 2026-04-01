@@ -54,17 +54,19 @@ export const component_ZUK1E201Ins = (_rawProps) => {
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    169,
-    525
+    181,
+    522
   ],
   "paramNames": [
     "_rawProps"

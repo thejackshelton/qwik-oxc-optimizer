@@ -32,12 +32,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_useTask_q0Wg
 {
   "origin": "test.tsx",
   "name": "component_useTask_q0Wg23FFwVQ",
+  "entry": null,
   "displayName": "test.tsx_component_useTask",
   "hash": "q0Wg23FFwVQ",
   "canonicalFilename": "test.tsx_component_useTask_q0Wg23FFwVQ",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "component_ZUK1E201Ins",
   "ctxKind": "function",
   "ctxName": "useTask$",
   "captures": true,
@@ -45,7 +46,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_useTask_q0Wg
     "props"
   ],
   "loc": [
-    113,
+    123,
     151
   ]
 }
@@ -68,16 +69,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_ZUK1E201Ins\
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    75,
+    92,
     171
   ],
   "paramNames": [

@@ -67,16 +67,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 {
   "origin": "test.tsx",
   "name": "App_component_ckEPmXZlub0",
+  "entry": null,
   "displayName": "test.tsx_App_component",
   "hash": "ckEPmXZlub0",
   "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    76,
+    88,
     424
   ]
 }
@@ -100,16 +102,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Cmp_component_PetH
 {
   "origin": "test.tsx",
   "name": "App_Cmp_component_PetHcOP03HU",
+  "entry": null,
   "displayName": "test.tsx_App_Cmp_component",
   "hash": "PetHcOP03HU",
   "canonicalFilename": "test.tsx_App_Cmp_component_PetHcOP03HU",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    446,
+    458,
     596
   ],
   "paramNames": [

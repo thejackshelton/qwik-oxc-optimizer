@@ -43,11 +43,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_RGgm7
   "canonicalFilename": "test.tsx_Header_component_RGgm7Ks9QWI",
   "path": "project/folder",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    161,
+    173,
     256
   ]
 }

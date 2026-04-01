@@ -41,16 +41,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],
 {
   "origin": "test.tsx",
   "name": "Header_WjUaUQN7Oxg",
+  "entry": null,
   "displayName": "test.tsx_Header",
   "hash": "WjUaUQN7Oxg",
   "canonicalFilename": "test.tsx_Header_WjUaUQN7Oxg",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    64,
+    67,
     344
   ],
   "paramNames": [

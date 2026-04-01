@@ -51,16 +51,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_component_3yveMqb
 {
   "origin": "test.tsx",
   "name": "App2_component_3yveMqbQ3Fs",
+  "entry": null,
   "displayName": "test.tsx_App2_component",
   "hash": "3yveMqbQ3Fs",
   "canonicalFilename": "test.tsx_App2_component_3yveMqbQ3Fs",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    67,
+    79,
     467
   ]
 }

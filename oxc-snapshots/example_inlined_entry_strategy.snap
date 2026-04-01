@@ -30,19 +30,49 @@ export const Child = component$(() => {
 
 
 
+============================= test.tsx_Child_component_9GyF01GDKqw.tsx ==
+
+import { default as mongodb } from "mongodb";
+export const Child_component_9GyF01GDKqw = () => console.log(mongodb);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_9GyF01GDKqw\"],\"sourcesContent\":[\"import { default as mongodb } from \\"mongodb\\";\nexport const Child_component_9GyF01GDKqw = () => console.log(mongodb);;\"],\"mappings\":\"AAAA,SAAS,WAAW,eAAe;AACnC,OAAO,MAAM,oCAAoC,QAAQ,IAAI,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Child_component_9GyF01GDKqw",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_Child_component",
+  "hash": "9GyF01GDKqw",
+  "canonicalFilename": "test.tsx_Child_component_9GyF01GDKqw",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Child_component_1_3jdVFMMCKpQ",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    414,
+    440
+  ]
+}
+*/
+
 ============================= test.tsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
 const q_Child_component_useStyles_qBZTuFM0160 = _noopQrl("Child_component_useStyles_qBZTuFM0160");
 const q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA = _noopQrl("Child_component_useBrowserVisibleTask_0IGFPOyJmQA");
-const q_Child_component_9GyF01GDKqw = _noopQrl("Child_component_9GyF01GDKqw");
+const q_Child_component_9GyF01GDKqw = qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
+const q_Child_component_1_3jdVFMMCKpQ = _noopQrl("Child_component_1_3jdVFMMCKpQ");
 import { component$, useBrowserVisibleTask$, useStore, useStyles$ } from "@qwik.dev/core";
 import { thing } from "./sibling";
 import mongodb from "mongodb";
-export const Child = componentQrl(q_Child_component_9GyF01GDKqw);
+export const Child = componentQrl(q_Child_component_1_3jdVFMMCKpQ);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useBrowserVisibleTask$,\",\"eStore, \",\"t { component$, useBrowserVisibleTask$, useStore, u\",\"tyles$ }\",\"t { component$, useBrowserVis\",\"eTask$, \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport { thing } from './sibling';\nimport mongodb from 'mongodb';\n\nexport const Child = component$(() => {\n\n\tuseStyles$('somestring');\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tstate.count = thing.doStuff() + import(\\"./sibling\\");\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0CAA0CC,SAAS,wCACnD;AAFL,MACKC,sDAAsDC,SAAS,oDACvC;AAF7B,MACKC,gCAAgCC,SAAS,8BAA8B;AAA5E,SAAS,YAAY,wBAAwB,UAAU,kBAAkB;AACzE,SAAS,aAAa;AACtB,OAAO,aAAa;AAEpB,OAAO,MAAM,QAAQC,2CAgBnB\"}")
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$, useBrowserVisibleTask$,\",\"eStore, \",\"t { component$, useBrowserVisibleTask$, useStore, u\",\"tyles$ }\",\"t { component$, useBrowserVis\",\"eTa\",\"t { component$, useBrowserVisib\",\"ask$, us\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport { thing } from './sibling';\nimport mongodb from 'mongodb';\n\nexport const Child = component$(() => {\n\n\tuseStyles$('somestring');\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tstate.count = thing.doStuff() + import(\\"./sibling\\");\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0CAA0CC,SAAS,wCACnD;AAFL,MACKC,sDAAsDC,SAAS,oDACvC;AAF7B,MACKC,gCAAgCC,UAAU,OAAO,2CAChD,8BACL;AAHD,MACKC,kCAAkCC,SAAS,gCAAgC;AAAhF,SAAS,YAAY,wBAAwB,UAAU,kBAAkB;AACzE,SAAS,aAAa;AACtB,OAAO,aAAa;AAEpB,OAAO,MAAM,QAAQC,6CAgBnB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -31,17 +31,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_featureAction_formActi
 {
   "origin": "test.tsx",
   "name": "featureAction_formAction_valiForm_3yxd03SSzJ8",
+  "entry": null,
   "displayName": "test.tsx_featureAction_formAction_valiForm",
   "hash": "3yxd03SSzJ8",
   "canonicalFilename": "test.tsx_featureAction_formAction_valiForm_3yxd03SSzJ8",
   "path": "",
   "extension": "js",
-  "parent": "formAction$",
+  "parent": "featureAction_formAction_cZgh2PzV1cc",
   "ctxKind": "function",
   "ctxName": "valiForm$",
   "captures": false,
   "loc": [
-    315,
+    326,
     339
   ]
 }
@@ -60,17 +61,19 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_featureAction_formActi
 {
   "origin": "test.tsx",
   "name": "featureAction_formAction_cZgh2PzV1cc",
+  "entry": null,
   "displayName": "test.tsx_featureAction_formAction",
   "hash": "cZgh2PzV1cc",
   "canonicalFilename": "test.tsx_featureAction_formAction_cZgh2PzV1cc",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "formAction$",
   "captures": false,
   "loc": [
-    231,
-    340
+    244,
+    314
   ],
   "paramNames": [
     "requestEvent"
@@ -101,12 +104,12 @@ Some("{\"version\":3,\"names\":[\"ort { wrapperFn, getEnv } from 'utils';\n\t\ti
     "message": "Qrl($) scope is not a function, but it's capturing local identifiers: FeatureSchema",
     "highlights": [
       {
-        "lo": 315,
-        "hi": 339,
+        "lo": 325,
+        "hi": 338,
         "startLine": 12,
-        "startCol": 5,
+        "startCol": 15,
         "endLine": 12,
-        "endCol": 29
+        "endCol": 28
       }
     ]
   }

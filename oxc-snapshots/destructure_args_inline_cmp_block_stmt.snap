@@ -18,23 +18,57 @@ expression: output
 		};
 		
 
-============================= test.tsx ==
+============================= test.tsx_q_e_click_bakT2ymzGgg.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const q_e_click_bakT2ymzGgg = () => {
+	const data = _captures[0];
+	data.selectedOutputDetail = "options";
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_q_e_click_bakT2ymzGgg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const q_e_click_bakT2ymzGgg = () => { const data = _captures[0];\n\n\tdata.selectedOutputDetail = \\"options\\";\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B;CAAE,MAAM,OAAO,UAAU;AAEnE,MAAK,uBAAuB;;AAC3B\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "q_e_click_bakT2ymzGgg",
+  "entry": null,
+  "displayName": "test.tsx_q_e_click",
+  "hash": "bakT2ymzGgg",
+  "canonicalFilename": "test.tsx_q_e_click_bakT2ymzGgg",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "data"
+  ],
+  "loc": [
+    181,
+    259
+  ]
+}
+*/
+
+============================= test.js ==
 
 import { _fnSignal } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
 const _hf0 = (p0) => p0.selectedOutputDetail === "options";
+const q_q_e_click_bakT2ymzGgg = qrl(() => import("./test.tsx_q_e_click_bakT2ymzGgg"), "q_e_click_bakT2ymzGgg", [data]);
 export default (_rawProps) => {
 	const data = _rawProps.data;
 	return _jsxSorted("div", { "q:p": data }, {
 		"data-is-active": _fnSignal(_hf0, [data], "p0 => p0.selectedOutputDetail === \"options\";"),
-		"q-e:click": () => {
-			data.selectedOutputDetail = "options";
-		}
+		"q-e:click": q_q_e_click_bakT2ymzGgg.w([data])
 	}, null, 7, "u6_0");
 };
 
 
-Some("{\"version\":3,\"names\":[\" default \",\" default (\",\"ort \",\"{ \",\"ata }: { data: any }\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAMC,GAAGC,yBAAyB;AAA5C,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB;qBAEyB;AACd,QAAK,uBAAuB\"}")
+Some("{\"version\":3,\"names\":[\" default \",\" default (\",\"ort \",\"{ \",\"ata }: { data: any }\",\"ort default ({ data }: \",\"ata\",\"e={d\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,SACQA,iBAAiB;AADzB,SACQC,kBAAkB;AAD1B,MACKC,QAAO,OAAMC,GAAGC,yBAAyB;AAD9C,MACKC,0BAA0BC,UAAU,OACzC,qCAEC,yBAAyB,CAACC,KAAK,CAAC;AAH/B,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
 == DIAGNOSTICS ==
 
 []

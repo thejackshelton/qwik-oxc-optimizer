@@ -43,16 +43,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOK
 {
   "origin": "test.tsx",
   "name": "Cmp_component_4ryKJTOKjWE",
+  "entry": null,
   "displayName": "test.tsx_Cmp_component",
   "hash": "4ryKJTOKjWE",
   "canonicalFilename": "test.tsx_Cmp_component_4ryKJTOKjWE",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    83,
+    95,
     379
   ]
 }
@@ -73,12 +75,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleCl
 {
   "origin": "test.tsx",
   "name": "Cmp_component_handleClick_WawHV3HwS1A",
+  "entry": null,
   "displayName": "test.tsx_Cmp_component_handleClick",
   "hash": "WawHV3HwS1A",
   "canonicalFilename": "test.tsx_Cmp_component_handleClick_WawHV3HwS1A",
   "path": "",
   "extension": "ts",
-  "parent": "component$",
+  "parent": "Cmp_component_4ryKJTOKjWE",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -86,7 +89,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleCl
     "toggleSig"
   ],
   "loc": [
-    166,
+    169,
     221
   ]
 }

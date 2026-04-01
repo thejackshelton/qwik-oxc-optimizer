@@ -28,31 +28,69 @@ export const Cmp = component$(() => {
 
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.js (ENTRY POINT)==
 
-import { A } from "./componentA";
-import { useSignal } from "@qwik.dev/core";
+import { _captures } from "@qwik.dev/core";
 export const Cmp_component_4ryKJTOKjWE = () => {
-	const currentStep = useSignal("STEP_1");
-	const currentType = useSignal<"NEXT" | "PREVIOUS">("PREVIOUS");
-	const getStep = (step: string, type: "NEXT" | "PREVIOUS") => {
-		return step === "STEP_1" ? "STEP_2" : "STEP_1";
-	};
-	return _jsxSorted(_Fragment, null, null, [_jsxSorted("button", { "q:p": currentType }, { "q-e:click": () => currentType.value = "NEXT" }, "CLICK", 7, null), _jsxSorted(A, { href: getStep(currentStep.value, currentType.value) }, null, null, 3, "u6_1")], 1, "u6_0");
-};;
+	const currentType = _captures[0];
+	return currentType.value = "NEXT";
+	;
+};
 
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_4ryKJTOKjWE = () => {\nconst currentType = _captures[0];\nreturn currentType.value = \\"NEXT\\";;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,cAAc,UAAU;AAC9B,QAAO,YAAY,QAAQ;AAAO\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "Cmp_component_4ryKJTOKjWE",
+  "entry": null,
   "displayName": "test.tsx_Cmp_component",
   "hash": "4ryKJTOKjWE",
   "canonicalFilename": "test.tsx_Cmp_component_4ryKJTOKjWE",
   "path": "",
   "extension": "js",
+  "parent": "Cmp_component_1_8XAbbq1Oi8Q",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "currentType"
+  ],
+  "loc": [
+    394,
+    428
+  ]
+}
+*/
+
+============================= test.tsx_Cmp_component_1_8XAbbq1Oi8Q.js (ENTRY POINT)==
+
+import { A } from "./componentA";
+import { useSignal } from "@qwik.dev/core";
+const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE", [currentType]);
+export const Cmp_component_1_8XAbbq1Oi8Q = () => {
+	const currentStep = useSignal("STEP_1");
+	const currentType = useSignal<"NEXT" | "PREVIOUS">("PREVIOUS");
+	const getStep = (step: string, type: "NEXT" | "PREVIOUS") => {
+		return step === "STEP_1" ? "STEP_2" : "STEP_1";
+	};
+	return _jsxSorted(_Fragment, null, null, [_jsxSorted("button", { "q:p": currentType }, { "q-e:click": q_Cmp_component_4ryKJTOKjWE.w([currentType]) }, "CLICK", 7, null), _jsxSorted(A, { href: getStep(currentStep.value, currentType.value) }, null, null, 3, "u6_1")], 1, "u6_0");
+};;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Cmp_component_1_8XAbbq1Oi8Q",
+  "entry": null,
+  "displayName": "test.tsx_Cmp_component_1",
+  "hash": "8XAbbq1Oi8Q",
+  "canonicalFilename": "test.tsx_Cmp_component_1_8XAbbq1Oi8Q",
+  "path": "",
+  "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    111,
+    123,
     518
   ]
 }
@@ -62,13 +100,13 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 
 import { _jsxSorted } from "@qwik.dev/core";
 import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
-const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+const q_Cmp_component_1_8XAbbq1Oi8Q = qrl(() => import("./test.tsx_Cmp_component_1_8XAbbq1Oi8Q"), "Cmp_component_1_8XAbbq1Oi8Q");
 import { component$, useSignal } from "@qwik.dev/core";
 import { A } from "./componentA";
-export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
+export const Cmp = componentQrl(q_Cmp_component_1_8XAbbq1Oi8Q);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\" compone\",\" useSigna\",\"t { component$, useSignal }\",\"om \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,8BAA8BC,UAAU,OAAO,yCAGlD,4BAA4B;AAH9B,SAAS,YAAY,iBAAiB;AACtC,SAAS,SAAS;AAElB,OAAO,MAAM,MAAMC,yCAcjB\"}")
+Some("{\"version\":3,\"names\":[\" component\",\" compone\",\" useSigna\",\"t { component$, useSignal } f\",\" \\"@\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,SACQC,YAAYC,iBAAiB;AADrC,MACKC,gCAAgCC,UAAU,OAAO,2CAGhD,8BAA8B;AAHpC,SAAS,YAAY,iBAAiB;AACtC,SAAS,SAAS;AAElB,OAAO,MAAM,MAAMC,2CAcjB\"}")
 == DIAGNOSTICS ==
 
 []

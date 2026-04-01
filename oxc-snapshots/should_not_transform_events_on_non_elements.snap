@@ -38,16 +38,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7Hu
 {
   "origin": "test.tsx",
   "name": "Greeter_component_n7HuG2hhU0Q",
+  "entry": null,
   "displayName": "test.tsx_Greeter_component",
   "hash": "n7HuG2hhU0Q",
   "canonicalFilename": "test.tsx_Greeter_component_n7HuG2hhU0Q",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    183,
+    195,
     351
   ]
 }

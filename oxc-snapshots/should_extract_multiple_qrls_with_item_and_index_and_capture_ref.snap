@@ -23,9 +23,85 @@ export default component$(() => {
 
 
 
+============================= test.tsx_component_div_1_kVFSCv0p6H0.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_1_kVFSCv0p6H0 = () => {
+	const bar = _captures[0];
+	const index = _captures[1];
+	return console.log(bar.value, index);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_1_kVFSCv0p6H0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_1_kVFSCv0p6H0 = () => {\nconst bar = _captures[0];\nconst index = _captures[1];\nreturn console.log(bar.value, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC;CACjD,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,IAAI,OAAO,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_1_kVFSCv0p6H0",
+  "entry": null,
+  "displayName": "test.tsx_component_div_1",
+  "hash": "kVFSCv0p6H0",
+  "canonicalFilename": "test.tsx_component_div_1_kVFSCv0p6H0",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onHover",
+  "captures": true,
+  "captureNames": [
+    "bar",
+    "index"
+  ],
+  "loc": [
+    329,
+    364
+  ]
+}
+*/
+
+============================= test.tsx_component_div_xgN6LizSsxg.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const component_div_xgN6LizSsxg = () => {
+	const foo = _captures[0];
+	const item = _captures[1];
+	return console.log(item, foo.value);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_component_div_xgN6LizSsxg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const component_div_xgN6LizSsxg = () => {\nconst foo = _captures[0];\nconst item = _captures[1];\nreturn console.log(item, foo.value);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,MAAM,IAAI,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "component_div_xgN6LizSsxg",
+  "entry": null,
+  "displayName": "test.tsx_component_div",
+  "hash": "xgN6LizSsxg",
+  "canonicalFilename": "test.tsx_component_div_xgN6LizSsxg",
+  "path": "",
+  "extension": "js",
+  "parent": "component_ZUK1E201Ins",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "foo",
+    "item"
+  ],
+  "loc": [
+    283,
+    317
+  ]
+}
+*/
+
 ============================= test.tsx_component_ZUK1E201Ins.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+const q_component_div_1_kVFSCv0p6H0 = qrl(() => import("./test.tsx_component_div_1_kVFSCv0p6H0"), "component_div_1_kVFSCv0p6H0", [bar, index]);
+const q_component_div_xgN6LizSsxg = qrl(() => import("./test.tsx_component_div_xgN6LizSsxg"), "component_div_xgN6LizSsxg", [foo, item]);
 export const component_ZUK1E201Ins = () => {
 	const foo = useSignal("hi");
 	const bar = useSignal("ho");
@@ -37,8 +113,8 @@ export const component_ZUK1E201Ins = () => {
 			index,
 			item
 		] }, {
-			"q-e:click": () => console.log(item, foo.value),
-			"q-e:hover": () => console.log(bar.value, index)
+			"q-e:click": q_component_div_xgN6LizSsxg.w([foo, item]),
+			"q-e:hover": q_component_div_1_kVFSCv0p6H0.w([bar, index])
 		}, item, 7, null);
 	}), 3, "u6_0");
 };;
@@ -47,16 +123,18 @@ export const component_ZUK1E201Ins = () => {
 {
   "origin": "test.tsx",
   "name": "component_ZUK1E201Ins",
+  "entry": null,
   "displayName": "test.tsx_component",
   "hash": "ZUK1E201Ins",
   "canonicalFilename": "test.tsx_component_ZUK1E201Ins",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    73,
+    85,
     406
   ]
 }

@@ -48,16 +48,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Bar_comp
 {
   "origin": "test.tsx",
   "name": "Foo_component_Bar_component_1_5vw0zGYfuOY",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_Bar_component_1",
   "hash": "5vw0zGYfuOY",
   "canonicalFilename": "test.tsx_Foo_component_Bar_component_1_5vw0zGYfuOY",
   "path": "",
   "extension": "jsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    242,
+    254,
     335
   ],
   "paramNames": [
@@ -81,12 +83,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Bar_comp
 {
   "origin": "test.tsx",
   "name": "Foo_component_Bar_component_fx3AR2PjyII",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_Bar_component",
   "hash": "fx3AR2PjyII",
   "canonicalFilename": "test.tsx_Foo_component_Bar_component_fx3AR2PjyII",
   "path": "",
   "extension": "jsx",
-  "parent": "component$",
+  "parent": "Foo_component_Bar_component_1_5vw0zGYfuOY",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -94,7 +97,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Bar_comp
     "bar"
   ],
   "loc": [
-    274,
+    277,
     331
   ]
 }
@@ -126,16 +129,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_fn_1_G5N
 {
   "origin": "test.tsx",
   "name": "Foo_component_fn_1_G5NYYY16TaA",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_fn_1",
   "hash": "G5NYYY16TaA",
   "canonicalFilename": "test.tsx_Foo_component_fn_1_G5NYYY16TaA",
   "path": "",
   "extension": "jsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    69,
+    81,
     221
   ],
   "paramNames": [
@@ -171,12 +176,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_fn_Rg9OT
 {
   "origin": "test.tsx",
   "name": "Foo_component_fn_Rg9OTXcFQw8",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_fn",
   "hash": "Rg9OTXcFQw8",
   "canonicalFilename": "test.tsx_Foo_component_fn_Rg9OTXcFQw8",
   "path": "",
   "extension": "jsx",
-  "parent": "component$",
+  "parent": "Foo_component_fn_1_G5NYYY16TaA",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -186,7 +192,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_fn_Rg9OT
     "foo"
   ],
   "loc": [
-    119,
+    122,
     217
   ]
 }

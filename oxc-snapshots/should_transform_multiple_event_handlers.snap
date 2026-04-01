@@ -19,36 +19,146 @@ const Foo = component$(function() {
 })
 
 
+============================= test.tsx_Foo_component_div_bGZCVxdUPaU.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_div_bGZCVxdUPaU = () => {
+	const row = _captures[0];
+	return console.log(row.value.id);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_bGZCVxdUPaU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_div_bGZCVxdUPaU = () => {\nconst row = _captures[0];\nreturn console.log(row.value.id);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sCAAsC;CACnD,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,IAAI,MAAM,GAAG;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_bGZCVxdUPaU",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div",
+  "hash": "bGZCVxdUPaU",
+  "canonicalFilename": "test.tsx_Foo_component_div_bGZCVxdUPaU",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_HTDRsvUbLiE",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "row"
+  ],
+  "loc": [
+    206,
+    237
+  ]
+}
+*/
+
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
 import { Signal } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
+const q_Foo_component_div_1_NBGs00rW0yQ = qrl(() => import("./test.tsx_Foo_component_div_1_NBGs00rW0yQ"), "Foo_component_div_1_NBGs00rW0yQ", [row]);
+const q_Foo_component_div_2_u70S0QqwTCw = qrl(() => import("./test.tsx_Foo_component_div_2_u70S0QqwTCw"), "Foo_component_div_2_u70S0QqwTCw", [row]);
+const q_Foo_component_div_bGZCVxdUPaU = qrl(() => import("./test.tsx_Foo_component_div_bGZCVxdUPaU"), "Foo_component_div_bGZCVxdUPaU", [row]);
 export const Foo_component_HTDRsvUbLiE = function() {
 	const data = useSignal < Signal < any > [] > [];
 	return _jsxSorted("div", null, null, data.value.map((row) => _jsxSorted("div", { "q:p": row }, {
-		"q-e:click": () => console.log(row.value.id),
-		"q-e:mouse-over": () => console.log("over" + row.value.id)
-	}, _jsxSorted("p", { "q:p": row }, { "q-e:click": () => console.log("inner" + row.value.id) }, item.value.id, 7, null), 7, null)), 3, "u6_0");
+		"q-e:click": q_Foo_component_div_bGZCVxdUPaU.w([row]),
+		"q-e:mouse-over": q_Foo_component_div_1_NBGs00rW0yQ.w([row])
+	}, _jsxSorted("p", { "q:p": row }, { "q-e:click": q_Foo_component_div_2_u70S0QqwTCw.w([row]) }, item.value.id, 7, null), 7, null)), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((row) => _jsxSorted(\\"div\\", { \\"q:p\\": row }, {\n\t\t\\"q-e:click\\": () => console.log(row.value.id),\n\t\t\\"q-e:mouse-over\\": () => console.log(\\"over\\" + row.value.id)\n\t}, _jsxSorted(\\"p\\", { \\"q:p\\": row }, { \\"q-e:click\\": () => console.log(\\"inner\\" + row.value.id) }, item.value.id, 7, null), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4BAA4B,WAAW;CACnD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;AACxC,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE;EAC9F,mBAAmB,QAAQ,IAAI,IAAI,MAAM,GAAG;EAC5C,wBAAwB,QAAQ,IAAI,SAAS,IAAI,MAAM,GAAG;EAC1D,EAAE,WAAW,KAAK,EAAE,OAAO,KAAK,EAAE,EAAE,mBAAmB,QAAQ,IAAI,UAAU,IAAI,MAAM,GAAG,EAAE,EAAE,KAAK,MAAM,IAAI,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC5I\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_div_1_NBGs00rW0yQ = qrl(() => import(\\"./test.tsx_Foo_component_div_1_NBGs00rW0yQ\\"), \\"Foo_component_div_1_NBGs00rW0yQ\\", [row]);\nconst q_Foo_component_div_2_u70S0QqwTCw = qrl(() => import(\\"./test.tsx_Foo_component_div_2_u70S0QqwTCw\\"), \\"Foo_component_div_2_u70S0QqwTCw\\", [row]);\nconst q_Foo_component_div_bGZCVxdUPaU = qrl(() => import(\\"./test.tsx_Foo_component_div_bGZCVxdUPaU\\"), \\"Foo_component_div_bGZCVxdUPaU\\", [row]);\nexport const Foo_component_HTDRsvUbLiE = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((row) => _jsxSorted(\\"div\\", { \\"q:p\\": row }, {\n\t\t\\"q-e:click\\": q_Foo_component_div_bGZCVxdUPaU.w([row]),\n\t\t\\"q-e:mouse-over\\": q_Foo_component_div_1_NBGs00rW0yQ.w([row])\n\t}, _jsxSorted(\\"p\\", { \\"q:p\\": row }, { \\"q-e:click\\": q_Foo_component_div_2_u70S0QqwTCw.w([row]) }, item.value.id, 7, null), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,oCAAoC,UAAU,OAAO,+CAA+C,mCAAmC,CAAC,IAAI,CAAC;AACnJ,MAAM,oCAAoC,UAAU,OAAO,+CAA+C,mCAAmC,CAAC,IAAI,CAAC;AACnJ,MAAM,kCAAkC,UAAU,OAAO,6CAA6C,iCAAiC,CAAC,IAAI,CAAC;AAC7I,OAAO,MAAM,4BAA4B,WAAW;CACnD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;AACxC,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE;EAC9F,aAAa,gCAAgC,EAAE,CAAC,IAAI,CAAC;EACrD,kBAAkB,kCAAkC,EAAE,CAAC,IAAI,CAAC;EAC5D,EAAE,WAAW,KAAK,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,kCAAkC,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,KAAK,MAAM,IAAI,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC7I\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "Foo_component_HTDRsvUbLiE",
+  "entry": null,
   "displayName": "test.tsx_Foo_component",
   "hash": "HTDRsvUbLiE",
   "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    77,
+    89,
     400
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_div_1_NBGs00rW0yQ.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_div_1_NBGs00rW0yQ = () => {
+	const row = _captures[0];
+	return console.log("over" + row.value.id);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_1_NBGs00rW0yQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_div_1_NBGs00rW0yQ = () => {\nconst row = _captures[0];\nreturn console.log(\\"over\\" + row.value.id);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wCAAwC;CACrD,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,SAAS,IAAI,MAAM,GAAG;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_1_NBGs00rW0yQ",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_1",
+  "hash": "NBGs00rW0yQ",
+  "canonicalFilename": "test.tsx_Foo_component_div_1_NBGs00rW0yQ",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_HTDRsvUbLiE",
+  "ctxKind": "eventHandler",
+  "ctxName": "onMouseOver",
+  "captures": true,
+  "captureNames": [
+    "row"
+  ],
+  "loc": [
+    253,
+    293
+  ]
+}
+*/
+
+============================= test.tsx_Foo_component_div_2_u70S0QqwTCw.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const Foo_component_div_2_u70S0QqwTCw = () => {
+	const row = _captures[0];
+	return console.log("inner" + row.value.id);
+	;
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_2_u70S0QqwTCw\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_div_2_u70S0QqwTCw = () => {\nconst row = _captures[0];\nreturn console.log(\\"inner\\" + row.value.id);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wCAAwC;CACrD,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,UAAU,IAAI,MAAM,GAAG;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_div_2_u70S0QqwTCw",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_2",
+  "hash": "u70S0QqwTCw",
+  "canonicalFilename": "test.tsx_Foo_component_div_2_u70S0QqwTCw",
+  "path": "",
+  "extension": "js",
+  "parent": "Foo_component_HTDRsvUbLiE",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": true,
+  "captureNames": [
+    "row"
+  ],
+  "loc": [
+    311,
+    352
   ]
 }
 */

@@ -46,12 +46,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_
 {
   "origin": "test.tsx",
   "name": "App_component_useMemo_6Sc9KVki3Y0",
+  "entry": null,
   "displayName": "test.tsx_App_component_useMemo",
   "hash": "6Sc9KVki3Y0",
   "canonicalFilename": "test.tsx_App_component_useMemo_6Sc9KVki3Y0",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "useMemo$",
   "captures": true,
@@ -59,7 +60,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_
     "state"
   ],
   "loc": [
-    259,
+    269,
     307
   ]
 }
@@ -80,12 +81,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 {
   "origin": "test.tsx",
   "name": "App_component_ckEPmXZlub0",
+  "entry": null,
   "displayName": "test.tsx_App_component",
   "hash": "ckEPmXZlub0",
   "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -93,7 +95,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
     "state"
   ],
   "loc": [
-    317,
+    320,
     357
   ]
 }
@@ -112,16 +114,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Lightweight_useMem
 {
   "origin": "test.tsx",
   "name": "App_Lightweight_useMemo_KF0arENeVdg",
+  "entry": null,
   "displayName": "test.tsx_App_Lightweight_useMemo",
   "hash": "KF0arENeVdg",
   "canonicalFilename": "test.tsx_App_Lightweight_useMemo_KF0arENeVdg",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "useMemo$",
   "captures": false,
   "loc": [
-    405,
+    415,
     453
   ]
 }
@@ -148,11 +152,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 {
   "origin": "test.tsx",
   "name": "App_component_1_w0t0o3QMovU",
+  "entry": null,
   "displayName": "test.tsx_App_component_1",
   "hash": "w0t0o3QMovU",
   "canonicalFilename": "test.tsx_App_component_1_w0t0o3QMovU",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -160,7 +166,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
     "useMemo$"
   ],
   "loc": [
-    197,
+    209,
     361
   ],
   "paramNames": [

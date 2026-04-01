@@ -36,11 +36,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1
 {
   "origin": "test.tsx",
   "name": "SecretForm_component_1noi8FsTz7c",
+  "entry": null,
   "displayName": "test.tsx_SecretForm_component",
   "hash": "1noi8FsTz7c",
   "canonicalFilename": "test.tsx_SecretForm_component_1noi8FsTz7c",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -48,7 +50,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1
     "useSecretAction"
   ],
   "loc": [
-    234,
+    246,
     330
   ]
 }
@@ -65,17 +67,19 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_global
 {
   "origin": "test.tsx",
   "name": "useSecretAction_globalAction_Cbn41AEUQ0Q",
+  "entry": null,
   "displayName": "test.tsx_useSecretAction_globalAction",
   "hash": "Cbn41AEUQ0Q",
   "canonicalFilename": "test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "globalAction$",
   "captures": false,
   "loc": [
-    134,
-    203
+    153,
+    200
   ],
   "paramNames": [
     "payload"

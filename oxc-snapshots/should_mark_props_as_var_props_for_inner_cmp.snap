@@ -56,16 +56,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Image_component_CS20Hg
 {
   "origin": "test.tsx",
   "name": "Image_component_CS20HgBlRYI",
+  "entry": null,
   "displayName": "test.tsx_Image_component",
   "hash": "CS20HgBlRYI",
   "canonicalFilename": "test.tsx_Image_component_CS20HgBlRYI",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    200,
+    212,
     292
   ],
   "paramNames": [
@@ -95,11 +97,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
 {
   "origin": "test.tsx",
   "name": "ModelImg_component_imgLoc_esO2cJSbtaI",
+  "entry": null,
   "displayName": "test.tsx_ModelImg_component_imgLoc",
   "hash": "esO2cJSbtaI",
   "canonicalFilename": "test.tsx_ModelImg_component_imgLoc_esO2cJSbtaI",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -107,7 +111,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
     "Image"
   ],
   "loc": [
-    319,
+    343,
     780
   ],
   "paramNames": [
@@ -136,12 +140,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
 {
   "origin": "test.tsx",
   "name": "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI",
+  "entry": null,
   "displayName": "test.tsx_ModelImg_component_imgLoc_useResource",
   "hash": "Ogi9hEJvtmI",
   "canonicalFilename": "test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "ModelImg_component_imgLoc_esO2cJSbtaI",
   "ctxKind": "function",
   "ctxName": "useResource$",
   "captures": true,
@@ -149,7 +154,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
     "props"
   ],
   "loc": [
-    372,
+    386,
     488
   ],
   "paramNames": [

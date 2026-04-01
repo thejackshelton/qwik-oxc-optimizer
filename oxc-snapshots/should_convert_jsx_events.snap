@@ -31,39 +31,244 @@ expression: output
 		});
 		
 
-============================= test.tsx_ManyEventsComponent_component_ndbrzxiyG3g.js (ENTRY POINT)==
+============================= test.tsx_ManyEventsComponent_component_7_cbqBqhknIaM.js (ENTRY POINT)==
 
-export const ManyEventsComponent_component_ndbrzxiyG3g = () => {
+const q_ManyEventsComponent_component_1_PsrKKRuNhzY = qrl(() => import("./test.tsx_ManyEventsComponent_component_1_PsrKKRuNhzY"), "ManyEventsComponent_component_1_PsrKKRuNhzY");
+const q_ManyEventsComponent_component_2_zLQneUZvwHc = qrl(() => import("./test.tsx_ManyEventsComponent_component_2_zLQneUZvwHc"), "ManyEventsComponent_component_2_zLQneUZvwHc");
+const q_ManyEventsComponent_component_3_qTFCjDpAoD4 = qrl(() => import("./test.tsx_ManyEventsComponent_component_3_qTFCjDpAoD4"), "ManyEventsComponent_component_3_qTFCjDpAoD4");
+const q_ManyEventsComponent_component_4_QBKX5mkiGlU = qrl(() => import("./test.tsx_ManyEventsComponent_component_4_QBKX5mkiGlU"), "ManyEventsComponent_component_4_QBKX5mkiGlU");
+const q_ManyEventsComponent_component_5_wt9Y0zA7QkI = qrl(() => import("./test.tsx_ManyEventsComponent_component_5_wt9Y0zA7QkI"), "ManyEventsComponent_component_5_wt9Y0zA7QkI");
+const q_ManyEventsComponent_component_6_x12OGmWqbxE = qrl(() => import("./test.tsx_ManyEventsComponent_component_6_x12OGmWqbxE"), "ManyEventsComponent_component_6_x12OGmWqbxE");
+const q_ManyEventsComponent_component_ndbrzxiyG3g = qrl(() => import("./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g"), "ManyEventsComponent_component_ndbrzxiyG3g");
+export const ManyEventsComponent_component_7_cbqBqhknIaM = () => {
 	return _jsxSorted("div", null, null, [_jsxSorted("button", null, {
-		"q-e:click": () => {},
-		"q-e:dbl-click": () => {}
+		"q-e:click": q_ManyEventsComponent_component_ndbrzxiyG3g,
+		"q-e:dbl-click": q_ManyEventsComponent_component_1_PsrKKRuNhzY
 	}, "click", 3, null), _jsxSorted("button", null, {
-		"q-e:click": () => {},
-		"q-e:blur": () => {},
-		"q-e:anotherCustom": () => {},
-		"q-d:focus": () => {},
-		"q-w:click": () => {}
+		"q-e:click": q_ManyEventsComponent_component_2_zLQneUZvwHc,
+		"q-e:blur": q_ManyEventsComponent_component_3_qTFCjDpAoD4,
+		"q-e:anotherCustom": q_ManyEventsComponent_component_4_QBKX5mkiGlU,
+		"q-d:focus": q_ManyEventsComponent_component_5_wt9Y0zA7QkI,
+		"q-w:click": q_ManyEventsComponent_component_6_x12OGmWqbxE
 	}, "click", 3, null)], 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_ndbrzxiyG3g\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_ndbrzxiyG3g = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": () => {},\n\t\t\\"q-e:dbl-click\\": () => {}\n\t}, \\"click\\", 3, null), _jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": () => {},\n\t\t\\"q-e:blur\\": () => {},\n\t\t\\"q-e:anotherCustom\\": () => {},\n\t\t\\"q-d:focus\\": () => {},\n\t\t\\"q-w:click\\": () => {}\n\t}, \\"click\\", 3, null)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kDAAkD;AAC9D,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,MAAM;EAChE,mBAAmB;EACnB,uBAAuB;EACvB,EAAE,SAAS,GAAG,KAAK,EAAE,WAAW,UAAU,MAAM;EAChD,mBAAmB;EACnB,kBAAkB;EAClB,2BAA2B;EAC3B,mBAAmB;EACnB,mBAAmB;EACnB,EAAE,SAAS,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAChC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_7_cbqBqhknIaM\"],\"sourcesContent\":[\"const q_ManyEventsComponent_component_1_PsrKKRuNhzY = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_1_PsrKKRuNhzY\\"), \\"ManyEventsComponent_component_1_PsrKKRuNhzY\\");\nconst q_ManyEventsComponent_component_2_zLQneUZvwHc = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_2_zLQneUZvwHc\\"), \\"ManyEventsComponent_component_2_zLQneUZvwHc\\");\nconst q_ManyEventsComponent_component_3_qTFCjDpAoD4 = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_3_qTFCjDpAoD4\\"), \\"ManyEventsComponent_component_3_qTFCjDpAoD4\\");\nconst q_ManyEventsComponent_component_4_QBKX5mkiGlU = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_4_QBKX5mkiGlU\\"), \\"ManyEventsComponent_component_4_QBKX5mkiGlU\\");\nconst q_ManyEventsComponent_component_5_wt9Y0zA7QkI = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_5_wt9Y0zA7QkI\\"), \\"ManyEventsComponent_component_5_wt9Y0zA7QkI\\");\nconst q_ManyEventsComponent_component_6_x12OGmWqbxE = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_6_x12OGmWqbxE\\"), \\"ManyEventsComponent_component_6_x12OGmWqbxE\\");\nconst q_ManyEventsComponent_component_ndbrzxiyG3g = qrl(() => import(\\"./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g\\"), \\"ManyEventsComponent_component_ndbrzxiyG3g\\");\nexport const ManyEventsComponent_component_7_cbqBqhknIaM = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": q_ManyEventsComponent_component_ndbrzxiyG3g,\n\t\t\\"q-e:dbl-click\\": q_ManyEventsComponent_component_1_PsrKKRuNhzY\n\t}, \\"click\\", 3, null), _jsxSorted(\\"button\\", null, {\n\t\t\\"q-e:click\\": q_ManyEventsComponent_component_2_zLQneUZvwHc,\n\t\t\\"q-e:blur\\": q_ManyEventsComponent_component_3_qTFCjDpAoD4,\n\t\t\\"q-e:anotherCustom\\": q_ManyEventsComponent_component_4_QBKX5mkiGlU,\n\t\t\\"q-d:focus\\": q_ManyEventsComponent_component_5_wt9Y0zA7QkI,\n\t\t\\"q-w:click\\": q_ManyEventsComponent_component_6_x12OGmWqbxE\n\t}, \\"click\\", 3, null)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,8CAA8C;AAChL,MAAM,8CAA8C,UAAU,OAAO,yDAAyD,4CAA4C;AAC1K,OAAO,MAAM,oDAAoD;AAChE,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,UAAU,MAAM;EAChE,aAAa;EACb,iBAAiB;EACjB,EAAE,SAAS,GAAG,KAAK,EAAE,WAAW,UAAU,MAAM;EAChD,aAAa;EACb,YAAY;EACZ,qBAAqB;EACrB,aAAa;EACb,aAAa;EACb,EAAE,SAAS,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAChC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_7",
+  "hash": "cbqBqhknIaM",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_7_cbqBqhknIaM",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    91,
+    444
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_ndbrzxiyG3g.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_ndbrzxiyG3g = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_ndbrzxiyG3g\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_ndbrzxiyG3g = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kDAAkD;AAAG\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "ManyEventsComponent_component_ndbrzxiyG3g",
+  "entry": null,
   "displayName": "test.tsx_ManyEventsComponent_component",
   "hash": "ndbrzxiyG3g",
   "canonicalFilename": "test.tsx_ManyEventsComponent_component_ndbrzxiyG3g",
   "path": "",
   "extension": "js",
-  "ctxKind": "function",
-  "ctxName": "component$",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
   "captures": false,
   "loc": [
-    79,
-    444
+    150,
+    158
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_1_PsrKKRuNhzY.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_1_PsrKKRuNhzY = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_1_PsrKKRuNhzY\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_1_PsrKKRuNhzY = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_1_PsrKKRuNhzY",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_1",
+  "hash": "PsrKKRuNhzY",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_1_PsrKKRuNhzY",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "onDblClick",
+  "captures": false,
+  "loc": [
+    179,
+    187
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_4_QBKX5mkiGlU.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_4_QBKX5mkiGlU = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_4_QBKX5mkiGlU\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_4_QBKX5mkiGlU = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_4_QBKX5mkiGlU",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_4",
+  "hash": "QBKX5mkiGlU",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_4_QBKX5mkiGlU",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "on-anotherCustom",
+  "captures": false,
+  "loc": [
+    312,
+    320
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_3_qTFCjDpAoD4.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_3_qTFCjDpAoD4 = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_3_qTFCjDpAoD4\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_3_qTFCjDpAoD4 = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_3_qTFCjDpAoD4",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_3",
+  "hash": "qTFCjDpAoD4",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_3_qTFCjDpAoD4",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "onBlur",
+  "captures": false,
+  "loc": [
+    277,
+    285
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_5_wt9Y0zA7QkI.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_5_wt9Y0zA7QkI = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_5_wt9Y0zA7QkI\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_5_wt9Y0zA7QkI = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_5_wt9Y0zA7QkI",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_5",
+  "hash": "wt9Y0zA7QkI",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_5_wt9Y0zA7QkI",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "document:onFocus",
+  "captures": false,
+  "loc": [
+    347,
+    355
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_6_x12OGmWqbxE.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_6_x12OGmWqbxE = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_6_x12OGmWqbxE\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_6_x12OGmWqbxE = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_6_x12OGmWqbxE",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_6",
+  "hash": "x12OGmWqbxE",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_6_x12OGmWqbxE",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "window:onClick",
+  "captures": false,
+  "loc": [
+    380,
+    388
+  ]
+}
+*/
+
+============================= test.tsx_ManyEventsComponent_component_2_zLQneUZvwHc.js (ENTRY POINT)==
+
+export const ManyEventsComponent_component_2_zLQneUZvwHc = () => {};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_2_zLQneUZvwHc\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_2_zLQneUZvwHc = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oDAAoD;AAAG\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "ManyEventsComponent_component_2_zLQneUZvwHc",
+  "entry": null,
+  "displayName": "test.tsx_ManyEventsComponent_component_2",
+  "hash": "zLQneUZvwHc",
+  "canonicalFilename": "test.tsx_ManyEventsComponent_component_2_zLQneUZvwHc",
+  "path": "",
+  "extension": "js",
+  "parent": "ManyEventsComponent_component_7_cbqBqhknIaM",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    252,
+    260
   ]
 }
 */
@@ -71,12 +276,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_ManyEventsComponent_component_ndbrzxiyG3g = qrl(() => import("./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g"), "ManyEventsComponent_component_ndbrzxiyG3g");
+const q_ManyEventsComponent_component_7_cbqBqhknIaM = qrl(() => import("./test.tsx_ManyEventsComponent_component_7_cbqBqhknIaM"), "ManyEventsComponent_component_7_cbqBqhknIaM");
 import { component$ } from "@qwik.dev/core";
-const ManyEventsComponent = componentQrl(q_ManyEventsComponent_component_ndbrzxiyG3g);
+const ManyEventsComponent = componentQrl(q_ManyEventsComponent_component_7_cbqBqhknIaM);
 
 
-Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$ } from '@qwik.dev/core';\n\n\",\"ons\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent = component$(() => {\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonDblClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonBlur$={() => {}}\n\t\t\t\t\t\ton-anotherCustom$={() => {}}\n\t\t\t\t\t\tdocument:onFocus$={() => {}}\n\t\t\t\t\t\twindow:onClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,8CAEFC,UAAU,OAAO,yDAGd,4CAEK;AAPT,SAAS,kBAAkB;AAE3B,MAAM,sBAAsBC,yDAoB1B\"}")
+Some("{\"version\":3,\"names\":[\" { compone\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\t\",\"st \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent = component$(() => {\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonDblClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonBlur$={() => {}}\n\t\t\t\t\t\ton-anotherCustom$={() => {}}\n\t\t\t\t\t\tdocument:onFocus$={() => {}}\n\t\t\t\t\t\twindow:onClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,gDAEAC,UAAU,OAAO,2DAGZ,8CAEO;AAPf,SAAS,kBAAkB;AAE3B,MAAM,sBAAsBC,2DAoB1B\"}")
 == DIAGNOSTICS ==
 
 []

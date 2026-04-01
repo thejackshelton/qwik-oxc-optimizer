@@ -105,42 +105,134 @@ export const App = component$(() => {
     });
 
 
+============================= test.tsx_App_component_loopArrowFn_q_e_click_9u0kYsT95ek.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_loopArrowFn_q_e_click_9u0kYsT95ek = () => {
+	const cart = _captures[0];
+	const item = _captures[1];
+	cart.push(item);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopArrowFn_q_e_click_9u0kYsT95ek\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopArrowFn_q_e_click_9u0kYsT95ek = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CAAE,MAAM,OAAO,UAAU;CAC9F,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_loopArrowFn_q_e_click_9u0kYsT95ek",
+  "entry": null,
+  "displayName": "test.tsx_App_component_loopArrowFn_q_e_click",
+  "hash": "9u0kYsT95ek",
+  "canonicalFilename": "test.tsx_App_component_loopArrowFn_q_e_click_9u0kYsT95ek",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "item"
+  ],
+  "loc": [
+    319,
+    371
+  ]
+}
+*/
+
+============================= test.tsx_App_component_loopForOf_q_e_click_buzz4l8ZRw4.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_loopForOf_q_e_click_buzz4l8ZRw4 = () => {
+	const cart = _captures[0];
+	const item = _captures[1];
+	cart.push(item);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForOf_q_e_click_buzz4l8ZRw4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForOf_q_e_click_buzz4l8ZRw4 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sDAAsD;CAAE,MAAM,OAAO,UAAU;CAC5F,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_loopForOf_q_e_click_buzz4l8ZRw4",
+  "entry": null,
+  "displayName": "test.tsx_App_component_loopForOf_q_e_click",
+  "hash": "buzz4l8ZRw4",
+  "canonicalFilename": "test.tsx_App_component_loopForOf_q_e_click_buzz4l8ZRw4",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "item"
+  ],
+  "loc": [
+    980,
+    1036
+  ]
+}
+*/
+
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
+const q_App_component_div_q_e_click_mi4E1piTWe8 = qrl(() => import("./test.tsx_App_component_div_q_e_click_mi4E1piTWe8"), "App_component_div_q_e_click_mi4E1piTWe8", [cart, item]);
+const q_App_component_loopArrowFn_q_e_click_9u0kYsT95ek = qrl(() => import("./test.tsx_App_component_loopArrowFn_q_e_click_9u0kYsT95ek"), "App_component_loopArrowFn_q_e_click_9u0kYsT95ek", [cart, item]);
+const q_App_component_loopForI_q_e_click_h56ovA7009A = qrl(() => import("./test.tsx_App_component_loopForI_q_e_click_h56ovA7009A"), "App_component_loopForI_q_e_click_h56ovA7009A", [
+	cart,
+	i,
+	results
+]);
+const q_App_component_loopForIn_q_e_click_INXH9mcLNXk = qrl(() => import("./test.tsx_App_component_loopForIn_q_e_click_INXH9mcLNXk"), "App_component_loopForIn_q_e_click_INXH9mcLNXk", [
+	cart,
+	key,
+	results
+]);
+const q_App_component_loopForOf_q_e_click_buzz4l8ZRw4 = qrl(() => import("./test.tsx_App_component_loopForOf_q_e_click_buzz4l8ZRw4"), "App_component_loopForOf_q_e_click_buzz4l8ZRw4", [cart, item]);
+const q_App_component_loopWhile_q_e_click_tVcNDTn5f4U = qrl(() => import("./test.tsx_App_component_loopWhile_q_e_click_tVcNDTn5f4U"), "App_component_loopWhile_q_e_click_tVcNDTn5f4U", [
+	cart,
+	i,
+	results
+]);
 export const App_component_ckEPmXZlub0 = () => {
 	const cart = useStore<string[]>([]);
 	const results = useSignal(["foo"]);
 	function loopArrowFn(results: string[]) {
-		return results.map((item) => _jsxSorted("span", { "q:ps": [cart, item] }, { "q-e:click": () => {
-			cart.push(item);
-		} }, item, 7, "u6_0"));
+		return results.map((item) => _jsxSorted("span", { "q:ps": [cart, item] }, { "q-e:click": q_App_component_loopArrowFn_q_e_click_9u0kYsT95ek.w([cart, item]) }, item, 7, "u6_0"));
 	}
 	function loopForI(results: string[]) {
 		const items = [];
 		for (let i = 0; i < results.length; i++) {
-			items.push(_jsxSorted("span", null, { "q-e:click": () => {
-				cart.push(results[i]);
-			} }, results[i], 3, "u6_1"));
+			items.push(_jsxSorted("span", null, { "q-e:click": q_App_component_loopForI_q_e_click_h56ovA7009A.w([
+				cart,
+				i,
+				results
+			]) }, results[i], 3, "u6_1"));
 		}
 		return items;
 	}
 	function loopForOf(results: string[]) {
 		const items = [];
 		for (const item of results) {
-			items.push(_jsxSorted("span", { "q:p": item }, { "q-e:click": () => {
-				cart.push(item);
-			} }, item, 7, "u6_2"));
+			items.push(_jsxSorted("span", { "q:p": item }, { "q-e:click": q_App_component_loopForOf_q_e_click_buzz4l8ZRw4.w([cart, item]) }, item, 7, "u6_2"));
 		}
 		return items;
 	}
 	function loopForIn(results: string[]) {
 		const items = [];
 		for (const key in results) {
-			items.push(_jsxSorted("span", { "q:p": key }, { "q-e:click": () => {
-				cart.push(results[key]);
-			} }, results[key], 7, "u6_3"));
+			items.push(_jsxSorted("span", { "q:p": key }, { "q-e:click": q_App_component_loopForIn_q_e_click_INXH9mcLNXk.w([
+				cart,
+				key,
+				results
+			]) }, results[key], 7, "u6_3"));
 		}
 		return items;
 	}
@@ -148,9 +240,11 @@ export const App_component_ckEPmXZlub0 = () => {
 		const items = [];
 		let i = 0;
 		while (i < results.length) {
-			items.push(_jsxSorted("span", null, { "q-e:click": () => {
-				cart.push(results[i]);
-			} }, results[i], 3, "u6_4"));
+			items.push(_jsxSorted("span", null, { "q-e:click": q_App_component_loopWhile_q_e_click_tVcNDTn5f4U.w([
+				cart,
+				i,
+				results
+			]) }, results[i], 3, "u6_4"));
 			i++;
 		}
 		return items;
@@ -158,9 +252,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	return _jsxSorted("div", null, null, [
 		results.value.map((item) => _jsxSorted("button", { "q:ps": [cart, item] }, {
 			id: "second",
-			"q-e:click": () => {
-				cart.push(item);
-			}
+			"q-e:click": q_App_component_div_q_e_click_mi4E1piTWe8.w([cart, item])
 		}, item, 7, null)),
 		loopArrowFn(results.value),
 		loopForI(results.value),
@@ -174,17 +266,173 @@ export const App_component_ckEPmXZlub0 = () => {
 {
   "origin": "test.tsx",
   "name": "App_component_ckEPmXZlub0",
+  "entry": null,
   "displayName": "test.tsx_App_component",
   "hash": "ckEPmXZlub0",
   "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    89,
+    101,
     2370
+  ]
+}
+*/
+
+============================= test.tsx_App_component_loopForI_q_e_click_h56ovA7009A.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_loopForI_q_e_click_h56ovA7009A = () => {
+	const cart = _captures[0];
+	const i = _captures[1];
+	const results = _captures[2];
+	cart.push(results[i]);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI_q_e_click_h56ovA7009A\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForI_q_e_click_h56ovA7009A = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAAE,MAAM,OAAO,UAAU;CAC3F,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG;;AACpB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_loopForI_q_e_click_h56ovA7009A",
+  "entry": null,
+  "displayName": "test.tsx_App_component_loopForI_q_e_click",
+  "hash": "h56ovA7009A",
+  "canonicalFilename": "test.tsx_App_component_loopForI_q_e_click_h56ovA7009A",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "i",
+    "results"
+  ],
+  "loc": [
+    628,
+    690
+  ]
+}
+*/
+
+============================= test.tsx_App_component_loopForIn_q_e_click_INXH9mcLNXk.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_loopForIn_q_e_click_INXH9mcLNXk = () => {
+	const cart = _captures[0];
+	const key = _captures[1];
+	const results = _captures[2];
+	cart.push(results[key]);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForIn_q_e_click_INXH9mcLNXk\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForIn_q_e_click_INXH9mcLNXk = () => { const cart = _captures[0];\nconst key = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[key]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sDAAsD;CAAE,MAAM,OAAO,UAAU;CAC5F,MAAM,MAAM,UAAU;CACtB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,KAAK;;AACtB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_loopForIn_q_e_click_INXH9mcLNXk",
+  "entry": null,
+  "displayName": "test.tsx_App_component_loopForIn_q_e_click",
+  "hash": "INXH9mcLNXk",
+  "canonicalFilename": "test.tsx_App_component_loopForIn_q_e_click_INXH9mcLNXk",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "key",
+    "results"
+  ],
+  "loc": [
+    1319,
+    1383
+  ]
+}
+*/
+
+============================= test.tsx_App_component_div_q_e_click_mi4E1piTWe8.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_div_q_e_click_mi4E1piTWe8 = () => {
+	const cart = _captures[0];
+	const item = _captures[1];
+	cart.push(item);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_q_e_click_mi4E1piTWe8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_q_e_click_mi4E1piTWe8 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gDAAgD;CAAE,MAAM,OAAO,UAAU;CACtF,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_div_q_e_click_mi4E1piTWe8",
+  "entry": null,
+  "displayName": "test.tsx_App_component_div_q_e_click",
+  "hash": "mi4E1piTWe8",
+  "canonicalFilename": "test.tsx_App_component_div_q_e_click_mi4E1piTWe8",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "item"
+  ],
+  "loc": [
+    2026,
+    2082
+  ]
+}
+*/
+
+============================= test.tsx_App_component_loopWhile_q_e_click_tVcNDTn5f4U.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+export const App_component_loopWhile_q_e_click_tVcNDTn5f4U = () => {
+	const cart = _captures[0];
+	const i = _captures[1];
+	const results = _captures[2];
+	cart.push(results[i]);
+};
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopWhile_q_e_click_tVcNDTn5f4U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopWhile_q_e_click_tVcNDTn5f4U = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sDAAsD;CAAE,MAAM,OAAO,UAAU;CAC5F,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG;;AACpB\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_loopWhile_q_e_click_tVcNDTn5f4U",
+  "entry": null,
+  "displayName": "test.tsx_App_component_loopWhile_q_e_click",
+  "hash": "tVcNDTn5f4U",
+  "canonicalFilename": "test.tsx_App_component_loopWhile_q_e_click_tVcNDTn5f4U",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "cart",
+    "i",
+    "results"
+  ],
+  "loc": [
+    1693,
+    1755
   ]
 }
 */

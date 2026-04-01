@@ -37,11 +37,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Tree_component_T0k10EA
 {
   "origin": "test.tsx",
   "name": "Tree_component_T0k10EAlawU",
+  "entry": null,
   "displayName": "test.tsx_Tree_component",
   "hash": "T0k10EAlawU",
   "canonicalFilename": "test.tsx_Tree_component_T0k10EAlawU",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -49,7 +51,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Tree_component_T0k10EA
     "Tree"
   ],
   "loc": [
-    245,
+    257,
     393
   ],
   "paramNames": [

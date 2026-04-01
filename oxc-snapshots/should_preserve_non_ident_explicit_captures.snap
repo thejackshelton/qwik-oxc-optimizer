@@ -38,11 +38,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_task_task\"],\"sources
 {
   "origin": "test.tsx",
   "name": "task",
+  "entry": null,
   "displayName": "test.tsx_task",
   "hash": "",
   "canonicalFilename": "test.tsx_task_task",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "inlinedQrl",
   "captures": true,
@@ -51,8 +53,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_task_task\"],\"sources
     "right"
   ],
   "loc": [
-    112,
-    280
+    113,
+    281
   ]
 }
 */

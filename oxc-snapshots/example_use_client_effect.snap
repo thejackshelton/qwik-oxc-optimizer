@@ -52,12 +52,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_useBro
 {
   "origin": "test.tsx",
   "name": "Child_component_useBrowserVisibleTask_0IGFPOyJmQA",
+  "entry": null,
   "displayName": "test.tsx_Child_component_useBrowserVisibleTask",
   "hash": "0IGFPOyJmQA",
   "canonicalFilename": "test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA",
   "path": "",
   "extension": "js",
-  "parent": "component$",
+  "parent": "Child_component_9GyF01GDKqw",
   "ctxKind": "function",
   "ctxName": "useBrowserVisibleTask$",
   "captures": true,
@@ -65,7 +66,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_useBro
     "state"
   ],
   "loc": [
-    200,
+    224,
     344
   ]
 }
@@ -88,16 +89,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_9GyF01
 {
   "origin": "test.tsx",
   "name": "Child_component_9GyF01GDKqw",
+  "entry": null,
   "displayName": "test.tsx_Child_component",
   "hash": "9GyF01GDKqw",
   "canonicalFilename": "test.tsx_Child_component_9GyF01GDKqw",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    114,
+    126,
     395
   ]
 }

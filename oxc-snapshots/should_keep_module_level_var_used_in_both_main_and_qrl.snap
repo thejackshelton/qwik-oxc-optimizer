@@ -47,11 +47,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg
 {
   "origin": "test.tsx",
   "name": "useHook_fn_kScGJcREaTg",
+  "entry": null,
   "displayName": "test.tsx_useHook_fn",
   "hash": "kScGJcREaTg",
   "canonicalFilename": "test.tsx_useHook_fn_kScGJcREaTg",
   "path": "",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": true,
@@ -59,7 +61,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg
     "state"
   ],
   "loc": [
-    292,
+    295,
     354
   ]
 }

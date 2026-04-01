@@ -17,15 +17,44 @@ export default component$(() => {
 
 
 
+============================= src/components/mongo/index.tsx_component_q_e_click_c070IRxOJo0.tsx ==
+
+export const component_q_e_click_c070IRxOJo0 = () => console.log(mongodb);
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_component_q_e_click_c070IRxOJo0\"],\"sourcesContent\":[\"export const component_q_e_click_c070IRxOJo0 = () => console.log(mongodb);;\"],\"mappings\":\"AAAA,OAAO,MAAM,wCAAwC,QAAQ,IAAI,QAAQ;AAAC\"}")
+/*
+{
+  "origin": "src/components/mongo/index.tsx",
+  "name": "component_q_e_click_c070IRxOJo0",
+  "entry": "entry_segments",
+  "displayName": "index.tsx_component_q_e_click",
+  "hash": "c070IRxOJo0",
+  "canonicalFilename": "index.tsx_component_q_e_click_c070IRxOJo0",
+  "path": "src/components/mongo",
+  "extension": "tsx",
+  "parent": "component_rKJvPlyphow",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    109,
+    135
+  ]
+}
+*/
+
 ============================= src/components/mongo/index.tsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
+const q_component_q_e_click_c070IRxOJo0 = qrl(() => import("./index.tsx_component_q_e_click_c070IRxOJo0"), "component_q_e_click_c070IRxOJo0");
 const q_component_rKJvPlyphow = _noopQrl("component_rKJvPlyphow");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_component_rKJvPlyphow);
 
 
-Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '\",\"ik.dev/c\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,0BAA0BC,SAAS,wBAEtB;AAFlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
+Some("{\"version\":3,\"names\":[\" component\",\"t { component$ } from '@qwik.dev/\",\"e';\",\"t { component$ } from '\",\"ik.dev/c\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,oCAAoCC,UAEpC,OAAO,gDAEI,kCACZ;AANJ,MACKC,0BAA0BC,SAAS,wBAEtB;AAFlB,SAAS,kBAAkB;AAE3B,eAAeC,qCAKb\"}")
 == DIAGNOSTICS ==
 
 []

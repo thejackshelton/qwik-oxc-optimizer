@@ -137,11 +137,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
 {
   "origin": "../node_modules/@qwik.dev/react/index.qwik.mjs",
   "name": "qwikifyQrl_component_useWatch_x04JC5xeP1U",
+  "entry": null,
   "displayName": "index.qwik.mjs_qwikifyQrl_component_useWatch",
   "hash": "x04JC5xeP1U",
   "canonicalFilename": "index.qwik.mjs_qwikifyQrl_component_useWatch_x04JC5xeP1U",
   "path": "../node_modules/@qwik.dev/react",
   "extension": "mjs",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "inlinedQrl",
   "captures": true,
@@ -152,8 +154,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
     "store"
   ],
   "loc": [
-    624,
-    1468
+    625,
+    1469
   ],
   "paramNames": [
     "track"
@@ -212,11 +214,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
 {
   "origin": "../node_modules/@qwik.dev/react/index.qwik.mjs",
   "name": "qwikifyQrl_component_zH94hIe0Ick",
+  "entry": null,
   "displayName": "index.qwik.mjs_qwikifyQrl_component",
   "hash": "zH94hIe0Ick",
   "canonicalFilename": "index.qwik.mjs_qwikifyQrl_component_zH94hIe0Ick",
   "path": "../node_modules/@qwik.dev/react",
   "extension": "mjs",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "inlinedQrl",
   "captures": true,
@@ -224,8 +228,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
     "reactCmpQrl"
   ],
   "loc": [
-    346,
-    2076
+    347,
+    2077
   ],
   "paramNames": [
     "props"

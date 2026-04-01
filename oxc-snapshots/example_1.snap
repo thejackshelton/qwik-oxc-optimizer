@@ -33,16 +33,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_componen
 {
   "origin": "test.tsx",
   "name": "renderHeader2_component_Ay6ibkfFYsw",
+  "entry": null,
   "displayName": "test.tsx_renderHeader2_component",
   "hash": "Ay6ibkfFYsw",
   "canonicalFilename": "test.tsx_renderHeader2_component_Ay6ibkfFYsw",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    196,
+    199,
     247
   ]
 }
@@ -62,16 +64,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_jMxQsjby
 {
   "origin": "test.tsx",
   "name": "renderHeader1_jMxQsjbyDss",
+  "entry": null,
   "displayName": "test.tsx_renderHeader1",
   "hash": "jMxQsjbyDss",
   "canonicalFilename": "test.tsx_renderHeader1_jMxQsjbyDss",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    88,
+    91,
     162
   ]
 }
@@ -88,17 +92,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onCl
 {
   "origin": "test.tsx",
   "name": "renderHeader1_div_onClick_USi8k1jUb40",
+  "entry": null,
   "displayName": "test.tsx_renderHeader1_div_onClick",
   "hash": "USi8k1jUb40",
   "canonicalFilename": "test.tsx_renderHeader1_div_onClick_USi8k1jUb40",
   "path": "",
   "extension": "tsx",
-  "parent": "$",
+  "parent": "renderHeader1_jMxQsjbyDss",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    124,
+    127,
     152
   ],
   "paramNames": [

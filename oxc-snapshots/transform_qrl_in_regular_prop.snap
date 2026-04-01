@@ -28,11 +28,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOK
 {
   "origin": "test.tsx",
   "name": "Cmp_component_4ryKJTOKjWE",
+  "entry": null,
   "displayName": "test.tsx_Cmp_component",
   "hash": "4ryKJTOKjWE",
   "canonicalFilename": "test.tsx_Cmp_component_4ryKJTOKjWE",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": true,
@@ -40,7 +42,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOK
     "Cmp"
   ],
   "loc": [
-    72,
+    84,
     153
   ]
 }
@@ -57,17 +59,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_
 {
   "origin": "test.tsx",
   "name": "Cmp_component_Cmp_foo_iPpdemxi0uE",
+  "entry": null,
   "displayName": "test.tsx_Cmp_component_Cmp_foo",
   "hash": "iPpdemxi0uE",
   "canonicalFilename": "test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE",
   "path": "",
   "extension": "ts",
-  "parent": "component$",
+  "parent": "Cmp_component_4ryKJTOKjWE",
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    102,
+    105,
     134
   ]
 }

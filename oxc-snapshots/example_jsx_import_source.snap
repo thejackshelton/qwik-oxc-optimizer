@@ -19,27 +19,86 @@ export const App2 = qwikify$(() => (
 ));
 
 
-============================= test.tsx_App2_qwikify_RKJW7oCMdS4.js (ENTRY POINT)==
+============================= test.tsx_App_Jlq9hNxnCvw.js (ENTRY POINT)==
 
-export const App2_qwikify_RKJW7oCMdS4 = () => _jsxSorted("div", null, { "q-e:click": () => console.log("App2") }, null, 3, "u6_1");
+export const App_Jlq9hNxnCvw = () => console.log("App");
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_qwikify_RKJW7oCMdS4\"],\"sourcesContent\":[\"export const App2_qwikify_RKJW7oCMdS4 = () => _jsxSorted(\\"div\\", null, { \\"q-e:click\\": () => console.log(\\"App2\\") }, null, 3, \\"u6_1\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,iCAAiC,WAAW,OAAO,MAAM,EAAE,mBAAmB,QAAQ,IAAI,OAAO,EAAE,EAAE,MAAM,GAAG,OAAO;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_Jlq9hNxnCvw\"],\"sourcesContent\":[\"export const App_Jlq9hNxnCvw = () => console.log(\\"App\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,wBAAwB,QAAQ,IAAI,MAAM;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_Jlq9hNxnCvw",
+  "entry": null,
+  "displayName": "test.tsx_App",
+  "hash": "Jlq9hNxnCvw",
+  "canonicalFilename": "test.tsx_App_Jlq9hNxnCvw",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    113,
+    135
+  ]
+}
+*/
+
+============================= test.tsx_App2_qwikify_RKJW7oCMdS4.js (ENTRY POINT)==
+
+export const App2_qwikify_RKJW7oCMdS4 = () => console.log("App2");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_qwikify_RKJW7oCMdS4\"],\"sourcesContent\":[\"export const App2_qwikify_RKJW7oCMdS4 = () => console.log(\\"App2\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,iCAAiC,QAAQ,IAAI,OAAO;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
   "name": "App2_qwikify_RKJW7oCMdS4",
+  "entry": null,
   "displayName": "test.tsx_App2_qwikify",
   "hash": "RKJW7oCMdS4",
   "canonicalFilename": "test.tsx_App2_qwikify_RKJW7oCMdS4",
   "path": "",
   "extension": "js",
+  "parent": "App2_qwikify_1_SwCh0eYTQtA",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick",
+  "captures": false,
+  "loc": [
+    201,
+    224
+  ]
+}
+*/
+
+============================= test.tsx_App2_qwikify_1_SwCh0eYTQtA.js (ENTRY POINT)==
+
+const q_App2_qwikify_RKJW7oCMdS4 = qrl(() => import("./test.tsx_App2_qwikify_RKJW7oCMdS4.tsx"), "App2_qwikify_RKJW7oCMdS4");
+export const App2_qwikify_1_SwCh0eYTQtA = () => _jsxSorted("div", null, { "q-e:click": q_App2_qwikify_RKJW7oCMdS4 }, null, 3, "u6_1");
+;
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_qwikify_1_SwCh0eYTQtA\"],\"sourcesContent\":[\"const q_App2_qwikify_RKJW7oCMdS4 = qrl(() => import(\\"./test.tsx_App2_qwikify_RKJW7oCMdS4.tsx\\"), \\"App2_qwikify_RKJW7oCMdS4\\");\nexport const App2_qwikify_1_SwCh0eYTQtA = () => _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_App2_qwikify_RKJW7oCMdS4 }, null, 3, \\"u6_1\\");;\"],\"mappings\":\"AAAA,MAAM,6BAA6B,UAAU,OAAO,4CAA4C,2BAA2B;AAC3H,OAAO,MAAM,mCAAmC,WAAW,OAAO,MAAM,EAAE,aAAa,4BAA4B,EAAE,MAAM,GAAG,OAAO;AAAC\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App2_qwikify_1_SwCh0eYTQtA",
+  "entry": null,
+  "displayName": "test.tsx_App2_qwikify_1",
+  "hash": "SwCh0eYTQtA",
+  "canonicalFilename": "test.tsx_App2_qwikify_1_SwCh0eYTQtA",
+  "path": "",
+  "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "qwikify$",
   "captures": false,
   "loc": [
-    167,
+    177,
     234
   ]
 }
@@ -48,14 +107,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_qwikify_RKJW7oCMd
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_App2_qwikify_RKJW7oCMdS4 = qrl(() => import("./test.tsx_App2_qwikify_RKJW7oCMdS4.tsx"), "App2_qwikify_RKJW7oCMdS4");
+const q_App_Jlq9hNxnCvw = qrl(() => import("./test.tsx_App_Jlq9hNxnCvw.tsx"), "App_Jlq9hNxnCvw");
+const q_App2_qwikify_1_SwCh0eYTQtA = qrl(() => import("./test.tsx_App2_qwikify_1_SwCh0eYTQtA.tsx"), "App2_qwikify_1_SwCh0eYTQtA");
 /* @jsxImportSource react */
 import { qwikify$ } from "./qwikfy";
-export const App = () => _jsxSorted("div", null, { "q-e:click": () => console.log("App") }, null, 3, "u6_0");
-export const App2 = qwikifyQrl(q_App2_qwikify_RKJW7oCMdS4);
+export const App = () => _jsxSorted("div", null, { "q-e:click": q_App_Jlq9hNxnCvw }, null, 3, "u6_0");
+export const App2 = qwikifyQrl(q_App2_qwikify_1_SwCh0eYTQtA);
 
 
-Some("{\"version\":3,\"names\":[\"mportSourc\",\"sxImportSource react */\n\ni\",\"rt \",\"qwikify$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n/* @jsxImportSource react */\n\nimport { qwikify$ } from './qwikfy';\n\nexport const App = () => (\n\t<div onClick$={()=>console.log('App')}></div>\n);\n\nexport const App2 = qwikify$(() => (\n\t<div onClick$={()=>console.log('App2')}></div>\n));\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,6BAEDC,UAAU,OAAO,4CAGrB,2BAA2B;;AAH3B,SAAS,gBAAgB;AAEzB,OAAO,MAAM,yDACO,QAAQ,IAAI,MAAM;AAGtC,OAAO,MAAM,OAAOC,sCAElB\"}")
+Some("{\"version\":3,\"names\":[\"mportSourc\",\"sxImportSource re\",\" */\",\"sxImportSource react */\n\nimp\",\" { \",\"qwikify$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n/* @jsxImportSource react */\n\nimport { qwikify$ } from './qwikfy';\n\nexport const App = () => (\n\t<div onClick$={()=>console.log('App')}></div>\n);\n\nexport const App2 = qwikify$(() => (\n\t<div onClick$={()=>console.log('App2')}></div>\n));\n\"],\"mappings\":\"AAAA,SACQA,kBAAkB;AAD1B,MACKC,oBAAoBC,UAEpB,OAAO,mCAEH,kBACT;AANA,MACKC,+BAECC,UAAU,OAAO,8CAGnB,6BAA6B;;AAHjC,SAAS,gBAAgB;AAEzB,OAAO,MAAM;AAIb,OAAO,MAAM,OAAOC,wCAElB\"}")
 == DIAGNOSTICS ==
 
 []

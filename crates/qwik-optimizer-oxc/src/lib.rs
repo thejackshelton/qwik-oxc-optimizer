@@ -235,6 +235,11 @@ fn transform_code(
         apply_variable_migration(&mut program, &mut xfrm, &collect, &allocator);
     }
 
+    // Phase 18: resolve deferred parent symbol names.
+    // Must run after all segments are registered (after apply_variable_migration),
+    // before segments are consumed to build TransformModule entries.
+    xfrm.patch_segment_parents();
+
     // did_transform: true when segment extraction produced segments (Phase 12+).
     // Stages 3/4 (TS strip, JSX transpile) are still no-ops so this only tracks
     // segment extraction. When those stages are active, this flag will also be set
@@ -372,7 +377,9 @@ fn transform_code(
             ctx_kind: record.ctx_kind.clone(),
             ctx_name: record.ctx_name.clone(),
             captures: !record.scoped_idents.is_empty(),
-            loc: record.span,
+            // SWC uses 1-based byte offsets (BytePos); OXC uses 0-based.
+            // Add 1 to both to match SWC's golden span format.
+            loc: (record.span.0 + 1, record.span.1 + 1),
             param_names: record.param_names.clone(),
             capture_names: if record.scoped_idents.is_empty() {
                 None

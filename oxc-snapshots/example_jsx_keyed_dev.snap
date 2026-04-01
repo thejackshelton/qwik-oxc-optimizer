@@ -37,16 +37,18 @@ export const App_component_KGLYFBhvJc0 = (props: Stuff) => {
 {
   "origin": "project/index.tsx",
   "name": "App_component_KGLYFBhvJc0",
+  "entry": null,
   "displayName": "index.tsx_App_component",
   "hash": "KGLYFBhvJc0",
   "canonicalFilename": "index.tsx_App_component_KGLYFBhvJc0",
   "path": "project",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    76,
+    88,
     283
   ],
   "paramNames": [
@@ -62,8 +64,8 @@ import { _jsxSorted } from "@qwik.dev/core";
 import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_App_component_KGLYFBhvJc0 = qrlDEV(() => import("./index.tsx_App_component_KGLYFBhvJc0.tsx"), "App_component_KGLYFBhvJc0", [], {
 	file: "index.tsx",
-	lo: 76,
-	hi: 283,
+	lo: 87,
+	hi: 282,
 	displayName: "index.tsx_App_component"
 });
 import { component$, useStore } from "@qwik.dev/core";

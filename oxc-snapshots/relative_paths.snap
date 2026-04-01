@@ -60,11 +60,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_div_p_but
 {
   "origin": "../../node_modules/dep/dist/lib.mjs",
   "name": "App_component_div_p_button_onClick_8dWUa0cJAr4",
+  "entry": null,
   "displayName": "lib.mjs_App_component_div_p_button_onClick",
   "hash": "8dWUa0cJAr4",
   "canonicalFilename": "lib.mjs_App_component_div_p_button_onClick_8dWUa0cJAr4",
   "path": "../../node_modules/dep/dist",
   "extension": "mjs",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "inlinedQrl",
   "captures": true,
@@ -72,8 +74,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_div_p_but
     "store"
   ],
   "loc": [
-    558,
-    723
+    559,
+    724
   ]
 }
 */
@@ -100,11 +102,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_AkbU84a8z
 {
   "origin": "../../node_modules/dep/dist/lib.mjs",
   "name": "App_component_AkbU84a8zes",
+  "entry": null,
   "displayName": "lib.mjs_App_component",
   "hash": "AkbU84a8zes",
   "canonicalFilename": "lib.mjs_App_component_AkbU84a8zes",
   "path": "../../node_modules/dep/dist",
   "extension": "mjs",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "inlinedQrl",
   "captures": true,
@@ -112,8 +116,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_AkbU84a8z
     "useData"
   ],
   "loc": [
-    287,
-    801
+    288,
+    802
   ]
 }
 */
@@ -132,16 +136,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"main.tsx_Local_component_jJ0v28
 {
   "origin": "components/main.tsx",
   "name": "Local_component_jJ0v28bs0p8",
+  "entry": null,
   "displayName": "main.tsx_Local_component",
   "hash": "jJ0v28bs0p8",
   "canonicalFilename": "main.tsx_Local_component_jJ0v28bs0p8",
   "path": "components",
   "extension": "js",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    106,
+    118,
     161
   ]
 }

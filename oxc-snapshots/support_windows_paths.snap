@@ -21,16 +21,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"components\\apps\\apps.tsx_Gree
 {
   "origin": "components\\apps\\apps.tsx",
   "name": "Greeter_component_Q7eEoxaolmI",
+  "entry": null,
   "displayName": "components\\apps\\apps.tsx_Greeter_component",
   "hash": "Q7eEoxaolmI",
   "canonicalFilename": "components\\apps\\apps.tsx_Greeter_component_Q7eEoxaolmI",
   "path": "",
   "extension": "ts",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    69,
+    81,
     93
   ]
 }

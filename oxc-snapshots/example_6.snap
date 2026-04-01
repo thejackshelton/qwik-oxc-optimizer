@@ -21,16 +21,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_sym1_aXUrPXX5Lak\"],\"
 {
   "origin": "test.tsx",
   "name": "sym1_aXUrPXX5Lak",
+  "entry": null,
   "displayName": "test.tsx_sym1",
   "hash": "aXUrPXX5Lak",
   "canonicalFilename": "test.tsx_sym1_aXUrPXX5Lak",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    69,
+    72,
     97
   ],
   "paramNames": [

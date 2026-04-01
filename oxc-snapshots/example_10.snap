@@ -54,16 +54,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WlR3xnI6u38\"],
 {
   "origin": "project/test.tsx",
   "name": "Header_WlR3xnI6u38",
+  "entry": null,
   "displayName": "test.tsx_Header",
   "hash": "WlR3xnI6u38",
   "canonicalFilename": "test.tsx_Header_WlR3xnI6u38",
   "path": "project",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
   "captures": false,
   "loc": [
-    64,
+    67,
     393
   ],
   "paramNames": [

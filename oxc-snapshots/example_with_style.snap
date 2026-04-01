@@ -33,17 +33,19 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 {
   "origin": "test.tsx",
   "name": "Foo_component_HTDRsvUbLiE",
+  "entry": null,
   "displayName": "test.tsx_Foo_component",
   "hash": "HTDRsvUbLiE",
   "canonicalFilename": "test.tsx_Foo_component_HTDRsvUbLiE",
   "path": "",
   "extension": "tsx",
+  "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
   "captures": false,
   "loc": [
-    81,
-    190
+    93,
+    165
   ]
 }
 */
@@ -59,17 +61,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_useStyle
 {
   "origin": "test.tsx",
   "name": "Foo_component_useStyles_pV9TSCBIhw8",
+  "entry": null,
   "displayName": "test.tsx_Foo_component_useStyles",
   "hash": "pV9TSCBIhw8",
   "canonicalFilename": "test.tsx_Foo_component_useStyles_pV9TSCBIhw8",
   "path": "",
   "extension": "tsx",
-  "parent": "component$",
+  "parent": "Foo_component_HTDRsvUbLiE",
   "ctxKind": "function",
   "ctxName": "useStyles$",
   "captures": false,
   "loc": [
-    101,
+    113,
     124
   ]
 }

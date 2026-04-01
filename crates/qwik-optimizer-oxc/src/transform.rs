@@ -148,6 +148,62 @@ pub(crate) fn compute_scoped_idents(
 }
 
 // ---------------------------------------------------------------------------
+// argument_to_expression — comprehensive Argument → Expression conversion
+// ---------------------------------------------------------------------------
+
+/// Convert an OXC `Argument` variant to the corresponding `Expression` variant.
+/// OXC's `Argument` enum mirrors `Expression` but is a separate type. This function
+/// handles all common variants exhaustively to avoid dropping valid AST nodes.
+fn argument_to_expression<'a>(arg: Argument<'a>) -> Option<Expression<'a>> {
+    Some(match arg {
+        // Literals
+        Argument::BooleanLiteral(b) => Expression::BooleanLiteral(b),
+        Argument::NullLiteral(b) => Expression::NullLiteral(b),
+        Argument::NumericLiteral(b) => Expression::NumericLiteral(b),
+        Argument::BigIntLiteral(b) => Expression::BigIntLiteral(b),
+        Argument::RegExpLiteral(b) => Expression::RegExpLiteral(b),
+        Argument::StringLiteral(b) => Expression::StringLiteral(b),
+        Argument::TemplateLiteral(b) => Expression::TemplateLiteral(b),
+        // Identifiers
+        Argument::Identifier(b) => Expression::Identifier(b),
+        // Functions
+        Argument::ArrowFunctionExpression(b) => Expression::ArrowFunctionExpression(b),
+        Argument::FunctionExpression(b) => Expression::FunctionExpression(b),
+        // Calls / member access
+        Argument::CallExpression(b) => Expression::CallExpression(b),
+        Argument::StaticMemberExpression(b) => Expression::StaticMemberExpression(b),
+        Argument::ComputedMemberExpression(b) => Expression::ComputedMemberExpression(b),
+        Argument::PrivateFieldExpression(b) => Expression::PrivateFieldExpression(b),
+        // Compound expressions
+        Argument::ArrayExpression(b) => Expression::ArrayExpression(b),
+        Argument::ObjectExpression(b) => Expression::ObjectExpression(b),
+        Argument::TaggedTemplateExpression(b) => Expression::TaggedTemplateExpression(b),
+        Argument::UnaryExpression(b) => Expression::UnaryExpression(b),
+        Argument::BinaryExpression(b) => Expression::BinaryExpression(b),
+        Argument::LogicalExpression(b) => Expression::LogicalExpression(b),
+        Argument::ConditionalExpression(b) => Expression::ConditionalExpression(b),
+        Argument::AssignmentExpression(b) => Expression::AssignmentExpression(b),
+        Argument::SequenceExpression(b) => Expression::SequenceExpression(b),
+        Argument::ParenthesizedExpression(b) => Expression::ParenthesizedExpression(b),
+        Argument::NewExpression(b) => Expression::NewExpression(b),
+        Argument::AwaitExpression(b) => Expression::AwaitExpression(b),
+        Argument::YieldExpression(b) => Expression::YieldExpression(b),
+        Argument::ClassExpression(b) => Expression::ClassExpression(b),
+        Argument::UpdateExpression(b) => Expression::UpdateExpression(b),
+        // TS expressions
+        Argument::TSAsExpression(b) => Expression::TSAsExpression(b),
+        Argument::TSSatisfiesExpression(b) => Expression::TSSatisfiesExpression(b),
+        Argument::TSNonNullExpression(b) => Expression::TSNonNullExpression(b),
+        Argument::TSTypeAssertion(b) => Expression::TSTypeAssertion(b),
+        Argument::TSInstantiationExpression(b) => Expression::TSInstantiationExpression(b),
+        // Spread element — not a direct Expression, return None
+        Argument::SpreadElement(_) => return None,
+        // Catch-all for any future variants
+        _ => return None,
+    })
+}
+
+// ---------------------------------------------------------------------------
 // get_function_params
 // ---------------------------------------------------------------------------
 
@@ -1077,19 +1133,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     &mut call.arguments[0],
                     Argument::NullLiteral(ctx.ast.alloc_null_literal(SPAN)),
                 );
-                match old_arg {
-                    Argument::ArrowFunctionExpression(b) => Some(Expression::ArrowFunctionExpression(b)),
-                    Argument::FunctionExpression(b) => Some(Expression::FunctionExpression(b)),
-                    Argument::Identifier(b) => Some(Expression::Identifier(b)),
-                    Argument::CallExpression(b) => Some(Expression::CallExpression(b)),
-                    Argument::NullLiteral(b) => Some(Expression::NullLiteral(b)),
-                    other => {
-                        // For any other expression type, just drop and use null
-                        let _ = null_lit;
-                        let _ = other;
-                        None
-                    }
-                }
+                argument_to_expression(old_arg)
             };
 
             let first_arg = match first_arg_opt {
@@ -1219,15 +1263,20 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // convert_qrl_word: rewrite marker-function callee names (XFRM-08).
         // e.g. component$(...) → componentQrl(...)
         // Also handle bare $ → Qrl.
+        // For aliased imports (e.g. `import { component$ as c$ }`), we use the
+        // SPECIFIER (component$) not the local alias (c$) for the QRL name.
         if let Expression::Identifier(id) = &mut call.callee {
             let callee_name = id.name.as_str().to_string();
-            let is_marker = self.marker_functions.contains_key(&callee_name);
             let is_bare_dollar = self
                 .qsegment_fn
                 .as_deref()
                 .map_or(false, |n| n == callee_name);
-            if is_marker || is_bare_dollar {
+            if is_bare_dollar {
                 let qrl_name = words::dollar_to_qrl_name(&callee_name);
+                id.name = ctx.ast.atom(&qrl_name).into();
+            } else if let Some(specifier) = self.marker_functions.get(&callee_name) {
+                // Use the resolved specifier for QRL name computation, not the local alias.
+                let qrl_name = words::dollar_to_qrl_name(specifier);
                 id.name = ctx.ast.atom(&qrl_name).into();
             }
         }

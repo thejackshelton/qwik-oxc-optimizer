@@ -196,8 +196,11 @@ export function parseSnapFile(filePath: string): ParsedSnapshot {
   if (diagText) {
     try {
       diagnostics = JSON.parse(diagText) as unknown[];
-    } catch {
-      diagnostics = [];
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      throw new Error(
+        `Malformed diagnostics JSON in ${fixtureName}: ${msg}\nRaw text: ${diagText.slice(0, 200)}`
+      );
     }
   }
 

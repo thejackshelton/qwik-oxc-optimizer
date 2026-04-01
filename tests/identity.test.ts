@@ -20,6 +20,7 @@ import {
   decomposeDisplayName,
   recomputeHash,
   validateDisplayName,
+  validateName,
   recomputeCanonicalFilename,
   validateCanonicalFilename,
 } from "../src/identity.ts";
@@ -204,6 +205,35 @@ describe("validateDisplayName", () => {
 });
 
 // ---------------------------------------------------------------------------
+// validateName
+// ---------------------------------------------------------------------------
+
+describe("validateName", () => {
+  it("returns null for valid segment where name = prePrefix_hash", () => {
+    const metadata = makeMetadata({});
+    expect(validateName(metadata, metadata.origin)).toBeNull();
+  });
+
+  it("returns error when name has wrong hash suffix", () => {
+    const metadata = makeMetadata({
+      name: "renderHeader1_div_onClick_WRONGHASH1",
+    });
+    const result = validateName(metadata, metadata.origin);
+    expect(typeof result).toBe("string");
+    expect(result).not.toBeNull();
+  });
+
+  it("returns error when name has wrong prePrefix", () => {
+    const metadata = makeMetadata({
+      name: "WRONG_USi8k1jUb40",
+    });
+    const result = validateName(metadata, metadata.origin);
+    expect(typeof result).toBe("string");
+    expect(result).not.toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
 // validateCanonicalFilename
 // ---------------------------------------------------------------------------
 
@@ -316,7 +346,15 @@ it("corpus-wide: all SWC identity fields validate", async () => {
         );
       }
 
-      // 2. decomposeDisplayName (must succeed)
+      // 2. validateName (symbol name = prePrefix_hash)
+      const nameErr = validateName(metadata, origin);
+      if (nameErr !== null) {
+        failures.push(
+          `[${fixtureName}] segment "${metadata.name}": validateName failed: ${nameErr}`
+        );
+      }
+
+      // 3. decomposeDisplayName (must succeed for hash recomputation)
       const decomposed = decomposeDisplayName(metadata.displayName, origin);
       if (decomposed === null) {
         failures.push(
@@ -325,7 +363,7 @@ it("corpus-wide: all SWC identity fields validate", async () => {
         continue;
       }
 
-      // 3. recomputeHash — must match stored hash
+      // 4. recomputeHash — must match stored hash
       //    Skip when computed hash doesn't match but hash length is 11 AND origin has no "../":
       //    These are import-QRL hash_override cases (e.g. useStyles$(cssVar) where cssVar
       //    is a CSS module import — hash is computed from the CSS import source path, which
@@ -346,7 +384,7 @@ it("corpus-wide: all SWC identity fields validate", async () => {
         continue;
       }
 
-      // 4. validateCanonicalFilename
+      // 5. validateCanonicalFilename
       const canonErr = validateCanonicalFilename(metadata);
       if (canonErr !== null) {
         failures.push(
@@ -366,7 +404,7 @@ it("corpus-wide: all SWC identity fields validate", async () => {
   // Baseline: 32 skipped (known edge cases). Allow small margin for future
   // fixtures but fail loudly if recomputeHash regresses and starts skipping
   // segments that previously validated.
-  const MAX_EXPECTED_SKIPS = 35;
+  const MAX_EXPECTED_SKIPS = 32;
   if (skippedSegments > MAX_EXPECTED_SKIPS) {
     throw new Error(
       `Skip count regression: ${skippedSegments} segments skipped (max expected: ${MAX_EXPECTED_SKIPS}). ` +

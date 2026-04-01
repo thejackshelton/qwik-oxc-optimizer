@@ -2,7 +2,7 @@
  * Order-based segment matcher.
  *
  * Pairs SWC and OXC segments by section order index (primary key).
- * Uses ctxName + loc[0] as a confidence check — mismatch lowers confidence
+ * Uses ctxName + full loc tuple as a confidence check — mismatch lowers confidence
  * to "low" and sets ambiguous=true, but does NOT prevent pairing.
  *
  * SPEC-04 constraint: derived fields (displayName, hash, canonicalFilename,
@@ -48,13 +48,15 @@ export function matchSegments(
     const swc = swcSegs[i];
     const oxc = oxcSegs[i];
 
-    // Confidence check: ctxName match AND loc[0] match → high
+    // Confidence check: ctxName match AND full loc tuple match → high
     // CRITICAL: only ctxName and loc are accessed here — no derived fields
     const swcMeta = swc.metadata!;
     const oxcMeta = oxc.metadata!;
 
     const ctxNameMatch = swcMeta.ctxName === oxcMeta.ctxName;
-    const locMatch = swcMeta.loc[0] === oxcMeta.loc[0];
+    const locStartMatch = swcMeta.loc[0] === oxcMeta.loc[0];
+    const locEndMatch = swcMeta.loc[1] === oxcMeta.loc[1];
+    const locMatch = locStartMatch && locEndMatch;
 
     if (ctxNameMatch && locMatch) {
       matches.push({ swcSection: swc, oxcSection: oxc, confidence: "high" });
@@ -63,8 +65,11 @@ export function matchSegments(
       if (!ctxNameMatch) {
         reasons.push(`ctxName: "${swcMeta.ctxName}" vs "${oxcMeta.ctxName}"`);
       }
-      if (!locMatch) {
+      if (!locStartMatch) {
         reasons.push(`loc[0]: ${swcMeta.loc[0]} vs ${oxcMeta.loc[0]}`);
+      }
+      if (!locEndMatch) {
+        reasons.push(`loc[1]: ${swcMeta.loc[1]} vs ${oxcMeta.loc[1]}`);
       }
       matches.push({
         swcSection: swc,

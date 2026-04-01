@@ -205,6 +205,45 @@ export function recomputeCanonicalFilename(
 }
 
 // ---------------------------------------------------------------------------
+// validateName
+// ---------------------------------------------------------------------------
+
+/**
+ * Validate that a segment's stored name (symbol name) follows one of two
+ * spec conventions:
+ *   1. Development: name = "{prePrefix}_{hash}"
+ *   2. Production/mangled: name = "s_{hash}"
+ *
+ * Returns null on success, or a descriptive error string on failure.
+ */
+export function validateName(
+  metadata: SegmentMetadata,
+  origin: string
+): string | null {
+  // Production/mangled names use "s_{hash}" format
+  const mangledName = `s_${metadata.hash}`;
+  if (metadata.name === mangledName) {
+    return null;
+  }
+
+  // Development names use "{prePrefix}_{hash}" format
+  const decomposed = decomposeDisplayName(metadata.displayName, origin);
+  if (decomposed === null) {
+    return `cannot validate name: displayName decomposition failed for "${metadata.displayName}"`;
+  }
+
+  const expectedName = `${decomposed.prePrefix}_${metadata.hash}`;
+  if (metadata.name !== expectedName) {
+    return (
+      `name mismatch: stored "${metadata.name}" vs expected ` +
+      `"${expectedName}" or "${mangledName}" ` +
+      `(prePrefix: "${decomposed.prePrefix}", hash: "${metadata.hash}")`
+    );
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
 // validateCanonicalFilename
 // ---------------------------------------------------------------------------
 

@@ -149,6 +149,23 @@ describe("matchSegments", () => {
     expect(result.ambiguous).toBe(true);
   });
 
+  it("reports low confidence when loc[1] (end offset) differs", () => {
+    const swc = [
+      makeSyntheticSection({ ctxName: "component$", loc: [10, 50] }),
+    ];
+    const oxc = [
+      // Same loc[0] but different loc[1]
+      makeSyntheticSection({ ctxName: "component$", loc: [10, 999] }),
+    ];
+
+    const result = matchSegments(swc, oxc);
+
+    expect(result.matches).toHaveLength(1);
+    expect(result.matches[0].confidence).toBe("low");
+    expect(result.matches[0].reason).toContain("loc[1]");
+    expect(result.ambiguous).toBe(true);
+  });
+
   it("handles both empty", () => {
     const result = matchSegments([], []);
 

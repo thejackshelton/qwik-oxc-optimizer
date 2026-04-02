@@ -797,55 +797,49 @@ fn inject_comment_separators(code: &str) -> String {
         t.starts_with("import ") || t.starts_with("import{")
     };
     let is_q_const = |line: &str| line.trim().starts_with("const q_");
+    let is_hf_const = |line: &str| {
+        let t = line.trim();
+        t.starts_with("const _hf")
+    };
     let is_separator = |line: &str| line.trim() == "//";
     let is_blank = |line: &str| line.trim().is_empty();
 
-    // Find last import line index.
-    let last_import_idx = (0..n)
-        .rev()
-        .find(|&i| is_import(lines[i]));
+    // Find key boundary indices.
+    let last_import_idx = (0..n).rev().find(|&i| is_import(lines[i]));
+    let last_hf_idx = (0..n).rev().find(|&i| is_hf_const(lines[i]));
+    let last_q_idx = (0..n).rev().find(|&i| is_q_const(lines[i]));
 
-    // Find first q_const line index (must come after imports).
-    let first_q_idx = (0..n)
-        .find(|&i| is_q_const(lines[i]));
-
-    // Find last q_const line index.
-    let last_q_idx = (0..n)
-        .rev()
-        .find(|&i| is_q_const(lines[i]));
-
-    // Find first "content" line after imports (may be q_const or export or other).
-    let first_after_import = last_import_idx.and_then(|li| {
-        (li + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i]))
-    });
-
-    // Find first non-q_const non-import line after the q_const block.
-    let first_after_q = last_q_idx.and_then(|lq| {
-        (lq + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i]))
-    });
-
-    // Determine insertion points (indices in original lines before which to insert "//").
-    // Each entry is: (line_index_to_insert_before, already_has_separator_check_offset)
+    // Determine insertion points (line indices BEFORE which to insert "//").
     let mut insertions: Vec<usize> = Vec::new();
 
+    // Helper: check if separator already exists in range [from..to).
+    let has_sep_between = |from: usize, to: usize| -> bool {
+        (from..to).any(|i| is_separator(lines[i]))
+    };
+
     // Point 1: between last import and first content after imports.
-    if let (Some(li), Some(fai)) = (last_import_idx, first_after_import) {
-        // Check if there's already a "//" between li and fai.
-        let has_sep = (li + 1..fai).any(|i| is_separator(lines[i]));
-        if !has_sep {
-            insertions.push(fai);
+    if let Some(li) = last_import_idx {
+        // Find the first non-blank, non-separator line after imports.
+        if let Some(fai) = (li + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i])) {
+            if !has_sep_between(li + 1, fai) {
+                insertions.push(fai);
+            }
         }
     }
 
-    // Point 2: after last q_const block, before first non-q_const line.
-    if let (Some(lq), Some(faq)) = (last_q_idx, first_after_q) {
-        // Only insert if there are q_consts and something comes after.
-        // Also avoid double-inserting at the same position as Point 1.
-        let has_sep = (lq + 1..faq).any(|i| is_separator(lines[i]));
-        if !has_sep && !insertions.contains(&faq) {
-            // Only add this separator if the first q_const is DIFFERENT from first_after_import.
-            // i.e. there IS a q_const block separate from the imports.
-            if first_q_idx.is_some() {
+    // Point 2: between last _hf const and first q_ const (or other content after _hf block).
+    if let Some(lh) = last_hf_idx {
+        if let Some(next_content) = (lh + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i])) {
+            if !has_sep_between(lh + 1, next_content) && !insertions.contains(&next_content) {
+                insertions.push(next_content);
+            }
+        }
+    }
+
+    // Point 3: after last q_const block, before first non-q_const line.
+    if let Some(lq) = last_q_idx {
+        if let Some(faq) = (lq + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i])) {
+            if !has_sep_between(lq + 1, faq) && !insertions.contains(&faq) {
                 insertions.push(faq);
             }
         }
@@ -854,6 +848,10 @@ fn inject_comment_separators(code: &str) -> String {
     if insertions.is_empty() {
         return code.to_string();
     }
+
+    // Sort insertion points and remove duplicates.
+    insertions.sort();
+    insertions.dedup();
 
     let mut result_lines: Vec<&str> = Vec::with_capacity(n + insertions.len());
     for (i, &line) in lines.iter().enumerate() {

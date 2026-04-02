@@ -4707,7 +4707,18 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // emit `import { qrl }` before them and add `/*#__PURE__*/` annotations.
         // NOTE: Clone here so that extra_top_items remains populated for segment module
         // generation in lib.rs (new_module needs it to emit `import { qrl }` in segments).
-        let top_items: Vec<HoistedConst> = self.extra_top_items.clone();
+        let mut top_items: Vec<HoistedConst> = self.extra_top_items.clone();
+        // Phase 28-04: Sort _hf consts before q_ consts to match SWC output order.
+        // SWC emits: _hf0, _hf0_str, _hf1, _hf1_str, ..., q_name1, q_name2, ...
+        top_items.sort_by(|a, b| {
+            let a_is_hf = a.name.starts_with("_hf");
+            let b_is_hf = b.name.starts_with("_hf");
+            match (a_is_hf, b_is_hf) {
+                (true, false) => std::cmp::Ordering::Less,
+                (false, true) => std::cmp::Ordering::Greater,
+                _ => std::cmp::Ordering::Equal, // preserve relative order within group
+            }
+        });
         let has_qrl_hoisted = top_items.iter().any(|h| {
             h.rhs_code.starts_with("qrl(")
                 || h.rhs_code.starts_with("inlinedQrl(")

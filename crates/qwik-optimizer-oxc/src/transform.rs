@@ -4708,19 +4708,41 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         }
 
-        // Phase 25-03: emit `import { qrl }` or `import { qrlDEV }` when any hoisted const
-        // uses a qrl() variant. Detect which variant is needed from the rhs_code prefix.
+        // Phase 25-03 + Phase 28-02: emit imports for all QRL-variant identifiers used
+        // in hoisted consts. Each variant gets its own import statement.
         if has_qrl_hoisted {
-            // Determine which qrl variant to import based on the actual rhs_code.
-            let has_qrl_dev = top_items.iter().any(|h| {
-                h.rhs_code.starts_with("qrlDEV(")
-                    || h.rhs_code.starts_with("inlinedQrlDEV(")
-                    || h.rhs_code.starts_with("_noopQrlDEV(")
-            });
-            let qrl_import_name = if has_qrl_dev { "qrlDEV" } else { "qrl" };
-            let src = format!(r#"import {{ {} }} from "{}";"#, qrl_import_name, self.core_module);
-            if let Some(stmt) = parse_single_statement(&src, allocator) {
-                new_body.push(stmt);
+            let has_qrl = top_items.iter().any(|h| h.rhs_code.starts_with("qrl("));
+            let has_qrl_dev = top_items.iter().any(|h| h.rhs_code.starts_with("qrlDEV("));
+            let has_inlined_qrl = top_items.iter().any(|h| h.rhs_code.starts_with("inlinedQrl("));
+            let has_inlined_qrl_dev = top_items.iter().any(|h| h.rhs_code.starts_with("inlinedQrlDEV("));
+            let has_noop_qrl = top_items.iter().any(|h| h.rhs_code.starts_with("_noopQrl("));
+            let has_noop_qrl_dev = top_items.iter().any(|h| h.rhs_code.starts_with("_noopQrlDEV("));
+
+            // Import qrl/qrlDEV (covers both raw qrl() and as base for others)
+            if has_qrl || has_inlined_qrl {
+                let src = format!(r#"import {{ qrl }} from "{}";"#, self.core_module);
+                if let Some(stmt) = parse_single_statement(&src, allocator) {
+                    new_body.push(stmt);
+                }
+            }
+            if has_qrl_dev || has_inlined_qrl_dev {
+                let src = format!(r#"import {{ qrlDEV }} from "{}";"#, self.core_module);
+                if let Some(stmt) = parse_single_statement(&src, allocator) {
+                    new_body.push(stmt);
+                }
+            }
+            // Import _noopQrl/_noopQrlDEV
+            if has_noop_qrl {
+                let src = format!(r#"import {{ _noopQrl }} from "{}";"#, self.core_module);
+                if let Some(stmt) = parse_single_statement(&src, allocator) {
+                    new_body.push(stmt);
+                }
+            }
+            if has_noop_qrl_dev {
+                let src = format!(r#"import {{ _noopQrlDEV }} from "{}";"#, self.core_module);
+                if let Some(stmt) = parse_single_statement(&src, allocator) {
+                    new_body.push(stmt);
+                }
             }
         }
 

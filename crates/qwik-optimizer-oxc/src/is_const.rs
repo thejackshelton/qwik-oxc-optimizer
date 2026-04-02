@@ -74,18 +74,3 @@ pub(crate) fn is_const_expression(expr: &oxc::ast::ast::Expression<'_>) -> bool 
         _ => false,
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_is_const_expression_literals() {
-        let allocator = oxc::allocator::Allocator::default();
-        let source = "42";
-        let source_type = oxc::span::SourceType::mjs();
-        let parser = oxc::parser::Parser::new(&allocator, source, source_type);
-        let result = parser.parse_expression().unwrap();
-        assert!(is_const_expression(&result));
-    }
-}

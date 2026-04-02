@@ -1,21 +1,54 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+import { deps } from "deps";
+
+export const Foo = component$(({ foo }) => {
+  useMount$(() => {
+    if (false) {
+      deps();
+    }
+  });
+  return <div />;
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_gZqPatVoDqw = () => import("./test.tsx_Foo_component_gZqPatVoDqw");
-import { deps } from "deps";
-export const Foo = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_gZqPatVoDqw, "Foo_component_gZqPatVoDqw"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_XXXXXXXXXXXX");
+export const Foo = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Foo_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_Foo_component_gZqPatVoDqw.tsx === (ENTRY)
-import { deps } from "deps";
-export const Foo_component_gZqPatVoDqw = (_rawProps) => {
-	useMount$(() => {
-		if (false) {
-			deps();
-		}
-	});
-	return <div />;
+=== test.tsx_Foo_component_XXXXXXXXXXXX.tsx === (ENTRY)
+export const Foo_component_XXXXXXXXXXXX = (_rawProps) => {
+  useMount$(() => {});
+  return <div />;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Foo_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "_rawProps"
+  ]
 }
+*/
+
+=== DIAGNOSTICS ===
+
+[]

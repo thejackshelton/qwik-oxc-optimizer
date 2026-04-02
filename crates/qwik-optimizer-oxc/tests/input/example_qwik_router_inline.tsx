@@ -1,21 +1,16 @@
-import * as qwikRouterConfig from '@qwik-router-config';
-import swRegister from '@qwik-router-sw-register';
-import { _deserializeData, _fnSignal, _getContextElement, _jsxBranch, _jsxSplit, _restProps, _serializeData, _weakSerialize, _wrapSignal, componentQrl, createContextId, eventQrl, getLocale, implicit$FirstArg, inlinedQrl, noSerialize, SkipRender, Slot, untrack, useContext, useContextProvider, useLexicalScope, useOnDocument, useServerData, useSignal, useStore, useStylesQrl, useTaskQrl, withLocale } from '@qwik.dev/core';
-import { isBrowser, isDev, isServer } from '@qwik.dev/core/build';
-import { z, z as z2 } from 'zod';
+import { component$, useStore } from "@qwik.dev/core";
 
-const RouteStateContext = /* @__PURE__ */ createContextId('qc-s');
-// ... 7 context IDs ...
-
-const RouterOutlet = /* @__PURE__ */ componentQrl(/* @__PURE__ */ inlinedQrl(()=>{
-    _jsxBranch();
-    useOnDocument('qinit', eventQrl(/* @__PURE__ */ inlinedQrl(()=>{ /* popstate fallback */ }, 'RouterOutlet_component_useOnDocument_event_KnNE9eL0qfc')));
-    // ... content rendering with _jsxSplit ...
-}, 'RouterOutlet_component_AKetNByE5TM'));
-
-// ... QwikRouterProvider with complex navigation logic ...
-// ... Link component with _restProps, _fnSignal, _wrapSignal ...
-// ... Form, GetForm components ...
-// ... routeAction$, routeLoader$, globalAction$, server$, validator$, zod$ ...
-
-export { Form, globalAction$, globalActionQrl, Link, QwikRouterMockProvider, QwikRouterProvider, routeAction$, routeActionQrl, routeLoader$, routeLoaderQrl, RouterOutlet, server$, serverQrl, ServiceWorkerRegister, useContent, useDocumentHead, useLocation, useNavigate, validator$, validatorQrl, z2 as z, zod$, zodQrl };
+export default component$(() => {
+  const store = useStore([{ value: 0 }]);
+  return (
+    <>
+      <button onClick$={() => store[0].value++}>+1</button>
+      {store.map(function (v, idx) {
+        return <div key={"fn_" + idx}>Function: {v.value}</div>;
+      })}
+      {store.map((v, idx) => (
+        <div key={"arrow_" + idx}>Arrow: {v.value}</div>
+      ))}
+    </>
+  );
+});

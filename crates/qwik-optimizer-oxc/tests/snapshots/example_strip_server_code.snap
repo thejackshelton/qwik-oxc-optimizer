@@ -1,63 +1,226 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== test.js ===
-import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-import { _noopQrl } from "@qwik.dev/core";
-const i_fxETLug1yE4 = () => import("./test.tsx_Parent_component_fxETLug1yE4");
-const i_ZxfKmWQYEwc = () => import("./test.tsx_useTask_ZxfKmWQYEwc");
-const i_JsST9uKvaf4 = () => import("./test.tsx_a_JsST9uKvaf4");
-const i_0DD514zgBzU = () => import("./test.tsx_b_client_0DD514zgBzU");
-const i_ZxfKmWQYEwc = () => import("./test.tsx_useTask_ZxfKmWQYEwc");
-const i_N8VjxooYvus = () => import("./test.tsx_Parent_component_div_q_e_click_N8VjxooYvus");
-import { useStore } from "@qwik.dev/core";
+=== INPUT ===
+import {
+  component$,
+  serverLoader$,
+  serverStuff$,
+  $,
+  client$,
+  useStore,
+  useTask$,
+} from "@qwik.dev/core";
+import { isServer } from "@qwik.dev/core";
 import mongo from "mongodb";
 import redis from "redis";
 import { handler } from "serverless";
-export const Parent = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_fxETLug1yE4, "Parent_component_fxETLug1yE4"));
 
-=== test.tsx_Parent_component_fxETLug1yE4.js === (ENTRY)
+export const Parent = component$(() => {
+  const state = useStore({
+    text: "",
+  });
+
+  // Double count watch
+  useTask$(async () => {
+    if (!isServer) return;
+    state.text = await mongo.users();
+    redis.set(state.text);
+  });
+
+  serverStuff$(async () => {
+    // should be removed too
+    const a = $(() => {
+      // from $(), should not be removed
+    });
+    const b = client$(() => {
+      // from clien$(), should not be removed
+    });
+    return [a, b];
+  });
+
+  serverLoader$(handler);
+
+  useTask$(() => {
+    // Code
+  });
+
+  return <div onClick$={() => console.log("parent")}>{state.text}</div>;
+});
+
+=== test.js ===
+import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_ZxfKmWQYEwc = () => import("./test.tsx_useTask_ZxfKmWQYEwc");
-const i_ZxfKmWQYEwc = () => import("./test.tsx_useTask_ZxfKmWQYEwc");
-const i_N8VjxooYvus = () => import("./test.tsx_Parent_component_div_q_e_click_N8VjxooYvus");
-import { useTaskQrl } from "@qwik.dev/core";
-import { serverStuffQrl } from "@qwik.dev/core";
-import { serverLoaderQrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Parent_component_XXXXXXXXXXXX");
+export const Parent = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX"));
+
+=== test.tsx_Parent_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
 import { _noopQrl } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+import { serverLoaderQrl } from "@qwik.dev/core";
+import { serverStuffQrl } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
-export const Parent_component_fxETLug1yE4 = () => {
-	const state = useStore({ text: "" });
-	useTaskQrl(/* @__PURE__ */ qrl(i_ZxfKmWQYEwc, "useTask_ZxfKmWQYEwc", [state]));
-	serverStuffQrl(/* @__PURE__ */ _noopQrl("serverStuff_m6WhOB6TbVw"));
-	serverLoaderQrl(/* @__PURE__ */ _noopQrl("serverLoader_kkNmag62Eb0"));
-	useTaskQrl(/* @__PURE__ */ qrl(i_ZxfKmWQYEwc, "useTask_ZxfKmWQYEwc"));
-	return /* @__PURE__ */ _jsxSorted("div", null, { "q-e:click": /* @__PURE__ */ qrl(i_N8VjxooYvus, "Parent_component_div_q_e_click_N8VjxooYvus") }, state.text, 3, "u6_0");
+import { useTaskQrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Parent_component_useTask_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Parent_component_useTask_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Parent_component_div_q_e_click_XXXXXXXXXXXX");
+export const s_XXXXXXXXXXXX = () => {
+  const state = useStore({
+    text: "",
+  });
+  // Double count watch
+  useTaskQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX", [state]));
+  serverStuffQrl(/* @__PURE__ */ _noopQrl("s_r1qAHX7Opp0"));
+  serverLoaderQrl(/* @__PURE__ */ _noopQrl("s_k1L0DiPQV1I"));
+  useTaskQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX"));
+  return /* @__PURE__ */ _jsxSorted(
+    "div",
+    null,
+    {
+      "q-e:click": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX"),
+    },
+    _wrapProp(state, "text"),
+    3,
+    "u6_0",
+  );
 };
 
-=== test.tsx_useTask_ZxfKmWQYEwc.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Parent_component_useTask_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
 import mongo from "mongodb";
 import redis from "redis";
-export const useTask_ZxfKmWQYEwc = async () => {
-	const state = _captures[0];
-	return;
-	state.text = await mongo.users();
-	redis.set(state.text);
+export const s_XXXXXXXXXXXX = async () => {
+  const state = _captures[0];
+  state.text = await mongo.users();
+  redis.set(state.text);
 };
 
-=== test.tsx_a_JsST9uKvaf4.js === (ENTRY)
-export const a_JsST9uKvaf4 = () => {};
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_useTask",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_useTask_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ]
+}
+*/
 
-=== test.tsx_b_client_0DD514zgBzU.js === (ENTRY)
-export const b_client_0DD514zgBzU = () => {};
+=== test.tsx_Parent_component_serverStuff_a_XXXXXXXXXXXX.js === (ENTRY)
+export const s_XXXXXXXXXXXX = () => {
+  // from $(), should not be removed
+};
 
-=== test.tsx_useTask_ZxfKmWQYEwc.js === (ENTRY)
-export const useTask_ZxfKmWQYEwc = () => {};
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_serverStuff_a",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_serverStuff_a_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "s_r1qAHX7Opp0",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Parent_component_div_q_e_click_N8VjxooYvus.js === (ENTRY)
-export const Parent_component_div_q_e_click_N8VjxooYvus = () => console.log("parent");
+=== test.tsx_Parent_component_serverStuff_b_client_XXXXXXXXXXXX.js === (ENTRY)
+export const s_XXXXXXXXXXXX = () => {
+  // from clien$(), should not be removed
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_serverStuff_b_client",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_serverStuff_b_client_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "s_r1qAHX7Opp0",
+  "ctxKind": "function",
+  "ctxName": "client$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Parent_component_useTask_1_XXXXXXXXXXXX.js === (ENTRY)
+export const s_XXXXXXXXXXXX = () => {
+  // Code
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_useTask_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_useTask_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "useTask$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Parent_component_div_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("parent");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Parent_component_div_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

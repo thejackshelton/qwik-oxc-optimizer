@@ -1,1 +1,1 @@
-export const cache = patternCache[cacheKey] || (patternCache[cacheKey]={});
+export const cache = patternCache[cacheKey] || (patternCache[cacheKey] = {});

@@ -1,39 +1,129 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore } from "@qwik.dev/core";
+
+export default component$(() => {
+  const store = useStore([{ value: 0 }]);
+  return (
+    <>
+      <button onClick$={() => store[0].value++}>+1</button>
+      {store.map(function (v, idx) {
+        return <div key={"fn_" + idx}>Function: {v.value}</div>;
+      })}
+      {store.map((v, idx) => (
+        <div key={"arrow_" + idx}>Arrow: {v.value}</div>
+      ))}
+    </>
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_XXXXXXXXXXXX");
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_XXXXXXXXXXXX"),
+);
+
+=== test.tsx_test_component_XXXXXXXXXXXX.js === (ENTRY)
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 import { _jsxSorted } from "@qwik.dev/core";
 import { _wrapProp } from "@qwik.dev/core";
-const i_jN9ZUuuADmk = () => import("./test.tsx_default_component_jN9ZUuuADmk");
-const i_zo9wkw0NBzs = () => import("./test.tsx_default_component_button_q_e_click_zo9wkw0NBzs");
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
-import { useStore } from "@qwik.dev/core";
-export default /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_jN9ZUuuADmk, "default_component_jN9ZUuuADmk"));
-
-=== test.tsx_default_component_jN9ZUuuADmk.js === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_zo9wkw0NBzs = () => import("./test.tsx_default_component_button_q_e_click_zo9wkw0NBzs");
-import { _jsxSorted } from "@qwik.dev/core";
-import { _wrapProp } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 import { useStore } from "@qwik.dev/core";
-export const default_component_jN9ZUuuADmk = () => {
-	const store = useStore([{ value: 0 }]);
-	return /* @__PURE__ */ _jsxSorted(_Fragment, null, null, [
-		/* @__PURE__ */ _jsxSorted("button", null, { "q-e:click": /* @__PURE__ */ qrl(i_zo9wkw0NBzs, "default_component_button_q_e_click_zo9wkw0NBzs", [store]) }, "+1", 3, "u6_0"),
-		store.map(function(v, idx) {
-			return /* @__PURE__ */ _jsxSorted("div", null, null, ["Function:", _wrapProp(v)], 1, "fn_" + idx);
-		}),
-		store.map((v, idx) => /* @__PURE__ */ _jsxSorted("div", null, null, ["Arrow:", _wrapProp(v)], 1, "arrow_" + idx))
-	], 1, "u6_1");
+const i_XXXXXXXXXXXX = () =>
+  import("./test.tsx_test_component_Fragment_button_q_e_click_XXXXXXXXXXXX");
+export const test_component_XXXXXXXXXXXX = () => {
+  const store = useStore([
+    {
+      value: 0,
+    },
+  ]);
+  return /* @__PURE__ */ _jsxSorted(
+    _Fragment,
+    null,
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted(
+        "button",
+        null,
+        {
+          "q-e:click": /* @__PURE__ */ qrl(
+            i_XXXXXXXXXXXX,
+            "test_component_Fragment_button_q_e_click_XXXXXXXXXXXX",
+            [store],
+          ),
+        },
+        "+1",
+        3,
+        null,
+      ),
+      store.map(function (v, idx) {
+        return /* @__PURE__ */ _jsxSorted(
+          "div",
+          null,
+          null,
+          ["Function: ", _wrapProp(v)],
+          1,
+          "fn_" + idx,
+        );
+      }),
+      store.map((v, idx) =>
+        /* @__PURE__ */ _jsxSorted("div", null, null, ["Arrow: ", _wrapProp(v)], 1, "arrow_" + idx),
+      ),
+    ],
+    1,
+    "u6_0",
+  );
 };
 
-=== test.tsx_default_component_button_q_e_click_zo9wkw0NBzs.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_test_component_Fragment_button_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-export const default_component_button_q_e_click_zo9wkw0NBzs = () => {
-	const store = _captures[0];
-	return store[0].value++;
+export const test_component_Fragment_button_q_e_click_XXXXXXXXXXXX = () => {
+  const store = _captures[0];
+  return store[0].value++;
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_Fragment_button_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component_Fragment_button_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_Fragment_button_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "store"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

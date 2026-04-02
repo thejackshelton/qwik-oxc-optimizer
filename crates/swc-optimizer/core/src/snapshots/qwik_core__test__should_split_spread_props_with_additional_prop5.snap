@@ -1,76 +1,81 @@
 ---
-source: packages/qwik/src/optimizer/core/src/test.rs
-assertion_line: 4528
+source: src/test.rs
 expression: output
-snapshot_kind: text
 ---
-==INPUT==
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
 
+function Hola(props: any) {
+  return <div {...props}></div>;
+}
 
-		import { component$ } from '@qwik.dev/core';
+export default component$(() => {
+  return (
+    <Hola>
+      <div>1</div>
+      <div>2</div>
+    </Hola>
+  );
+});
 
-		function Hola(props: any) {
-			return <div {...props}></div>;
-		}
-
-		export default component$(() => {
-		return <Hola>
-			<div>1</div>
-			<div>2</div>
-		</Hola>;
-		});
-		
-============================= test.js ==
-
+=== test.js ===
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_LUXeXe0DQrg = ()=>import("./test.tsx_test_component_LUXeXe0DQrg");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_XXXXXXXXXXXX");
 function Hola(props) {
-    return /*#__PURE__*/ _jsxSplit("div", {
-        ..._getVarProps(props)
-    }, _getConstProps(props), null, 0, "u6_0");
+  return /* @__PURE__ */ _jsxSplit(
+    "div",
+    {
+      ..._getVarProps(props),
+    },
+    _getConstProps(props),
+    null,
+    0,
+    "u6_0",
+  );
 }
-export default /*#__PURE__*/ componentQrl(/*#__PURE__*/ qrl(i_LUXeXe0DQrg, "test_component_LUXeXe0DQrg"));
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_XXXXXXXXXXXX"),
+);
 export { Hola as _auto_Hola };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;;;;;AAGE,SAAS,KAAK,KAAU;IACvB,qBAAO,UAAC;wBAAQ;sBAAA;AACjB;AAEA,6BAAe,6EAKZ\"}")
-============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
-
+=== test.tsx_test_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _auto_Hola as Hola } from "./test";
 import { _jsxSorted } from "@qwik.dev/core";
-export const test_component_LUXeXe0DQrg = ()=>{
-    return /*#__PURE__*/ _jsxSorted(Hola, null, null, [
-        /*#__PURE__*/ _jsxSorted("div", null, null, "1", 3, null),
-        /*#__PURE__*/ _jsxSorted("div", null, null, "2", 3, null)
-    ], 3, "u6_1");
+export const test_component_XXXXXXXXXXXX = () => {
+  return /* @__PURE__ */ _jsxSorted(
+    Hola,
+    null,
+    null,
+    [
+      /* @__PURE__ */ _jsxSorted("div", null, null, "1", 3, null),
+      /* @__PURE__ */ _jsxSorted("div", null, null, "2", 3, null),
+    ],
+    3,
+    "u6_1",
+  );
 };
 
-
-Some("{\"version\":3,\"sources\":[\"/user/qwik/src/test.tsx\"],\"names\":[],\"mappings\":\";;0CAO4B;IAC1B,qBAAO,WAAC;sBACP,WAAC,mBAAI;sBACL,WAAC,mBAAI;;AAEN\"}")
 /*
 {
   "origin": "test.tsx",
-  "name": "test_component_LUXeXe0DQrg",
+  "name": "test_component_XXXXXXXXXXXX",
   "entry": null,
   "displayName": "test.tsx_test_component",
-  "hash": "LUXeXe0DQrg",
-  "canonicalFilename": "test.tsx_test_component_LUXeXe0DQrg",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_XXXXXXXXXXXX",
   "path": "",
   "extension": "js",
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": false,
-  "loc": [
-    147,
-    217
-  ]
+  "captures": false
 }
 */
-== DIAGNOSTICS ==
+
+=== DIAGNOSTICS ===
 
 []

@@ -1,43 +1,135 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== test.js ===
-import { serverQrl } from "@qwik.dev/core";
-import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-import { _noopQrl } from "@qwik.dev/core";
-const i_jN9ZUuuADmk = () => import("./test.tsx_default_component_jN9ZUuuADmk");
-const i_zo9wkw0NBzs = () => import("./test.tsx_default_component_button_q_e_click_zo9wkw0NBzs");
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+import { server$ } from "@qwik.dev/router";
 import { clientSupabase } from "supabase";
 import { Client } from "openai";
 import { secret } from "./secret";
 import { sideEffect } from "./secret";
+
 const supabase = clientSupabase();
 const dfd = new Client(secret);
-(function() {
-	console.log("run");
+
+(function () {
+  console.log("run");
 })();
 (() => {
-	console.log("run");
+  console.log("run");
+})();
+
+sideEffect();
+
+export const api = server$(() => {
+  supabase.from("ffg").do(dfd);
+});
+
+export default component$(() => {
+  return <button onClick$={async () => await api()}></button>;
+});
+
+=== test.js ===
+import { serverQrl } from "@qwik.dev/router";
+import { _noopQrlDEV } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrlDEV } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_XXXXXXXXXXXX");
+import { sideEffect } from "./secret";
+(function () {
+  console.log("run");
+})();
+(() => {
+  console.log("run");
 })();
 sideEffect();
-export const api = serverQrl(/* @__PURE__ */ _noopQrl("api_server_qbklcEGqqcY"));
-export default /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_jN9ZUuuADmk, "default_component_jN9ZUuuADmk"));
+export const api = serverQrl(
+  /* @__PURE__ */ _noopQrlDEV("api_server_JonPp043gH0", {
+    file: "/user/qwik/src/test.tsx",
+    lo: 0,
+    hi: 0,
+    displayName: "test.tsx_api_server",
+  }),
+);
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrlDEV(i_XXXXXXXXXXXX, "test_component_XXXXXXXXXXXX", {
+    file: "/user/qwik/src/test.tsx",
+    lo: 503,
+    hi: 575,
+    displayName: "test.tsx_test_component",
+  }),
+);
 
-=== test.tsx_default_component_jN9ZUuuADmk.js === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_zo9wkw0NBzs = () => import("./test.tsx_default_component_button_q_e_click_zo9wkw0NBzs");
+=== test.tsx_test_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-import { api } from "./test";
-export const default_component_jN9ZUuuADmk = () => {
-	return /* @__PURE__ */ _jsxSorted("button", null, { "q-e:click": /* @__PURE__ */ qrl(i_zo9wkw0NBzs, "default_component_button_q_e_click_zo9wkw0NBzs") }, null, 3, "u6_0");
+import { qrlDEV } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_button_q_e_click_XXXXXXXXXXXX");
+export const test_component_XXXXXXXXXXXX = () => {
+  return /* @__PURE__ */ _jsxSorted(
+    "button",
+    null,
+    {
+      "q-e:click": /* @__PURE__ */ qrlDEV(
+        i_XXXXXXXXXXXX,
+        "test_component_button_q_e_click_XXXXXXXXXXXX",
+        {
+          file: "/user/qwik/src/test.tsx",
+          lo: 538,
+          hi: 561,
+          displayName: "test.tsx_test_component_button_q_e_click",
+        },
+      ),
+    },
+    null,
+    3,
+    "u6_0",
+    {
+      fileName: "test.tsx",
+      lineNumber: 25,
+      columnNumber: 10,
+    },
+  );
 };
 
-=== test.tsx_default_component_button_q_e_click_zo9wkw0NBzs.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_test_component_button_q_e_click_XXXXXXXXXXXX.js === (ENTRY)
 import { api } from "./test";
-export const default_component_button_q_e_click_zo9wkw0NBzs = () => await api()
+export const test_component_button_q_e_click_XXXXXXXXXXXX = async () => await api();
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_button_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component_button_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_button_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
 
 === DIAGNOSTICS ===
-[SourceError] `await` is only allowed within async functions and at the top levels of modules
+
+[]

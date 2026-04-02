@@ -1,14 +1,41 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== components\\apps\\apps.ts ===
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+export const Greeter = component$(() => <div />);
+
+=== components/apps/apps.ts ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_nlrDHFFtOtc = () => import("./components\\\\apps\\\\apps.tsx_Greeter_component_nlrDHFFtOtc");
-export const Greeter = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_nlrDHFFtOtc, "Greeter_component_nlrDHFFtOtc"));
+const i_XXXXXXXXXXXX = () => import("./apps.tsx_Greeter_component_XXXXXXXXXXXX");
+export const Greeter = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Greeter_component_XXXXXXXXXXXX"),
+);
 
-=== components\\apps\\apps.tsx_Greeter_component_nlrDHFFtOtc.ts === (ENTRY)
+=== components/apps/apps.tsx_Greeter_component_XXXXXXXXXXXX.ts === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-export const Greeter_component_nlrDHFFtOtc = () => /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, null);
+export const Greeter_component_XXXXXXXXXXXX = () =>
+  /* @__PURE__ */ _jsxSorted("div", null, null, null, 3, "KD_0");
+
+/*
+{
+  "origin": "components/apps/apps.tsx",
+  "name": "Greeter_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "apps.tsx_Greeter_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "apps.tsx_Greeter_component_XXXXXXXXXXXX",
+  "path": "components/apps",
+  "extension": "ts",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

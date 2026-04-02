@@ -92,178 +92,33 @@ This decouples "what to do" from "doing it." SWC's `Fold` interleaves analysis a
 
 5. **Source maps for split modules must point to original positions:** When extracting code from line 15 of input and placing at line 1 of segment output, source map must map output line 1 to input line 15. Prevention: Pass original input source text to `Codegen::with_source_text()` for ALL modules (main and segments). Use original spans from moved nodes; use `SPAN` (zero-length) for synthetic constructs.
 
-## Implications for Roadmap
+## Implementation Approach: Snapshot-Driven TDD
 
-Based on research, the port has clear architectural constraints that dictate phase ordering. OXC's arena allocator and semantic analysis model require a fundamentally different approach than SWC's ownership model. The two-phase (analyze-then-emit) pattern is not optional -- it's required by OXC's safety guarantees.
+Instead of following a phased roadmap, we use **snapshot-driven TDD**. The 162 snapshot files in `crates/qwik-optimizer-oxc/tests/snapshots/` contain the old SWC optimizer's output as the expected baseline. Running `cargo test -p qwik-optimizer-oxc` shows exactly what differs. Each failing test is a feature to implement.
 
-### Phase 1: Foundation + Parse + Semantic
-**Rationale:** Establish project structure, types, and the parsing pipeline before any transformation logic. OXC requires semantic analysis before traversal, making this a hard dependency for all later phases.
+### Workflow
 
-**Delivers:**
-- Crate structure (`lib.rs`, `types.rs`, `parse.rs`, helper modules)
-- Public API types (`TransformModulesOptions`, `TransformOutput`, `TransformModule`, `SegmentAnalysis`)
-- Parse wrapper (source -> `Program` -> `Semantic`)
-- Test harness that loads 162 spec files
+1. Pick a failing snapshot test
+2. Read the snapshot to understand expected input → output transformation
+3. Read the old optimizer's source (SWC) to understand the logic
+4. Implement in the new optimizer (OXC)
+5. Run tests — when the snapshot matches, the feature works
 
-**Stack elements:** `oxc_parser`, `oxc_semantic::SemanticBuilder`, `serde`/`serde_json`, test dependencies (`insta`)
+### Architectural Constraints (from research)
 
-**Avoids:** Pitfall #1 (lifetime infection) by establishing helper function conventions early. Pitfall #3 (semantic invalidation) by making semantic analysis a foundational API.
+These must be followed regardless of which feature you're implementing:
 
-**Research flag:** No additional research needed. Standard project setup with well-documented APIs.
+- **Two-phase pipeline required:** Analyze (read-only traverse) → Emit (mutate). OXC's semantic data goes stale after AST mutation.
+- **Arena lifetime `'a`:** Every function that creates AST nodes needs the lifetime parameter. Separate pure analysis functions from AST construction functions.
+- **Multi-output:** Build segment `Program` ASTs AFTER traversal, not during. Use fresh allocators or shared allocator.
+- **Deferred statement insertion:** Use `exit_program` / `exit_statements` callbacks, not inline insertion.
 
----
+### Key Risk Areas
 
-### Phase 2: Capture Analysis (Isolated Module)
-**Rationale:** Capture analysis is the most complex and error-prone algorithm in the optimizer. It has 8+ edge cases, each causing runtime failures if wrong. Build and test this independently before any other transform logic.
-
-**Delivers:**
-- `capture.rs` module implementing capture analysis algorithm
-- Uses `oxc_semantic` APIs: `Scoping::find_binding()`, `get_resolved_references()`, `scope_ancestors()`, `symbol_declaration()`
-- Unit tests for all 8 edge cases (imports, exports, loops, shadowing, destructuring, const/let/var, hoisted functions, TypeScript types)
-- Integration tests against spec files: `example_multi_capture.md`, `example_capture_imports.md`, `example_functional_component_capture_props.md`, `example_component_with_event_listeners_inside_loop.md`
-
-**Addresses:** Pitfall #4 (capture edge cases) by comprehensive testing before integration.
-
-**Research flag:** Needs research. Capture analysis for loop variables and destructured props has subtle interactions with scope rules. May need deep dive into OXC's scope tree API during implementation.
-
----
-
-### Phase 3: Analysis Pass (Traversal + Detection)
-**Rationale:** With capture analysis complete, build the read-only traversal pass that detects all `$`-boundary sites, collects imports/exports, and produces a `TransformPlan`. This is the "what to do" phase.
-
-**Delivers:**
-- `analyze.rs` implementing `Traverse` trait with `enter_*`/`exit_*` methods
-- `collector.rs` for import/export/declaration collection
-- `TransformPlan` data structure (internal type, not public API)
-- `SegmentPlan` records for each extracted segment
-- Detection logic for `$()`, `component$`, `useStyles$`, etc.
-
-**Stack elements:** `oxc_traverse` (Traverse trait, TraverseCtx), `rustc-hash` (FxHashMap), `indexmap` (deterministic ordering)
-
-**Avoids:** Pitfall #2 (semantic invalidation) by keeping this phase read-only. No AST mutations yet.
-
-**Research flag:** No additional research needed. `Traverse` pattern is well-documented.
-
----
-
-### Phase 4: Main Module Mutation (Emit Core)
-**Rationale:** Execute the transformation plan against the main module AST. Replace `$`-calls with `qrl()` wrappers, rewrite imports, insert lazy import declarations, apply `#__PURE__` annotations.
-
-**Delivers:**
-- `emit.rs` implementing `PlanExecutor` that mutates main AST based on `TransformPlan`
-- Import rewriting (remove `component$` import, add `componentQrl` + `qrl` imports)
-- Expression replacement (`component$(fn)` -> `componentQrl(qrl(lazy_import, name))`)
-- Lazy import declaration insertion (`const i_HASH = () => import("./segment")`)
-- `#__PURE__` annotation attachment via `program.comments`
-
-**Addresses:** Pitfall #7 (statement insertion) by using deferred insertion pattern (`exit_program` callback).
-
-**Avoids:** Pitfall #2 (move_expression garbage) by using `std::mem::replace` for atomic swap.
-
-**Research flag:** No additional research needed. Standard mutation patterns.
-
----
-
-### Phase 5: Segment Module Construction
-**Rationale:** Build separate `Program` ASTs for each extracted segment from `SegmentPlan` data. This is the multi-output capability that defines the optimizer.
-
-**Delivers:**
-- `segment_builder.rs` constructing fresh `Program` per segment via `AstBuilder`
-- Import hoisting (re-import what segment needs)
-- Export wrapping (`export const SegmentName = (params) => { ... }`)
-- Capture restoration (`const x = _captures[0]`)
-- One `Program` per segment, ready for codegen
-
-**Stack elements:** `oxc_ast::AstBuilder`, allocator per segment strategy
-
-**Addresses:** Pitfall #3 (multi-allocator) by using post-traversal segment building with fresh allocators.
-
-**Research flag:** Needs research. Multi-output pattern has no OXC precedent. May need experimentation with allocator sharing vs separate allocators per segment.
-
----
-
-### Phase 6: Codegen + Source Maps
-**Rationale:** Serialize all `Program` ASTs (main + segments) to JavaScript strings with source maps. This is the final output stage.
-
-**Delivers:**
-- `codegen_bridge.rs` wrapping `oxc_codegen::Codegen`
-- Source map generation via `CodegenOptions { source_map_path }`
-- `TransformModule` assembly with code, map, metadata
-- Complete `TransformOutput` with all modules and diagnostics
-
-**Stack elements:** `oxc_codegen::Codegen`, `oxc_sourcemap::SourceMap`, `base64` for source map encoding
-
-**Addresses:** Pitfall #5 (source map positions) by passing original source text to `Codegen::with_source_text()`.
-
-**Avoids:** Pitfall #8 (pure comments) by explicitly adding `#__PURE__` comments to `program.comments` for new nodes.
-
-**Research flag:** No additional research needed. `Codegen` API is well-documented.
-
----
-
-### Phase 7: JSX Transformation
-**Rationale:** Transform JSX elements to `_jsxSorted()`/`_jsxSplit()` calls. This is a self-contained feature that can be added once core transform is working.
-
-**Delivers:**
-- `jsx.rs` implementing JSX detection (in analyze phase) and rewriting (in emit phase)
-- `_jsxSorted()` call construction for static JSX
-- `_jsxSplit()` for dynamic JSX with signal props
-- Signal wrapping for reactive props
-
-**Addresses:** Features from spec files: `example_jsx.md`, `example_jsx_props.md`
-
-**Research flag:** Needs research. JSX transformation has complex interaction with props destructuring and signal analysis. May need deep dive during implementation.
-
----
-
-### Phase 8: Advanced Features (Props Destructuring, Signals, Entry Strategy)
-**Rationale:** Optimization features that enhance output quality but are not required for basic functionality.
-
-**Delivers:**
-- Props destructuring optimization (rewrite parameters to `_rawProps` access)
-- Derived signal optimization (`_wrapProp`, `_fnSignal`)
-- Entry strategy implementation (segment, inline, smart, hook, component)
-- Code stripping (`strip_exports`, `strip_ctx_name`, `strip_event_handlers`)
-- Const folding (`if (false)` removal, `isServer`/`isBrowser`/`isDev` replacement)
-
-**Addresses:** Competitive features that improve bundle size and runtime performance.
-
-**Research flag:** Entry strategy and signal optimization are complex. Needs research during implementation.
-
----
-
-### Phase Ordering Rationale
-
-**Dependency-driven:**
-- Phase 1 (parse/semantic) is a hard prerequisite for all phases. OXC requires `SemanticBuilder` output before `Traverse`.
-- Phase 2 (capture analysis) must be independent and tested before Phase 3 uses it.
-- Phase 3 (analysis) produces data consumed by Phase 4-5 (emit/build segments).
-- Phase 6 (codegen) depends on Phases 4-5 producing complete ASTs.
-- Phase 7-8 (JSX, advanced) are feature additions layered on top of working core.
-
-**Risk mitigation:**
-- Building capture analysis first (Phase 2) isolates the highest-risk algorithm for independent testing.
-- Splitting analysis (Phase 3) from emit (Phase 4-5) prevents semantic invalidation bugs.
-- Deferring JSX and advanced features (Phases 7-8) allows core functionality to stabilize first.
-
-**OXC constraints:**
-- Two-phase (analyze-then-emit) is required by OXC's semantic analysis model.
-- Multi-allocator strategy (Phase 5) must be resolved before segment building.
-- Source map handling (Phase 6) requires understanding of span preservation during AST construction.
-
-### Research Flags
-
-**Phases needing deeper research during planning:**
-- **Phase 2 (Capture Analysis):** Loop variable capture and destructured props have subtle scope interactions. OXC's scope tree API needs exploration.
-- **Phase 5 (Segment Building):** Multi-output pattern has no precedent in OXC ecosystem. Need to experiment with allocator sharing strategies.
-- **Phase 7 (JSX Transformation):** Interaction between JSX rewriting, props destructuring, and signal wrapping is complex. Needs design work.
-- **Phase 8 (Advanced Features):** Entry strategy grouping logic and signal optimization have sparse documentation. May need SWC source code study.
-
-**Phases with standard patterns (skip research-phase):**
-- **Phase 1 (Foundation):** Standard Rust project setup with well-documented OXC APIs.
-- **Phase 3 (Analysis Pass):** `Traverse` trait pattern is standard and well-documented.
-- **Phase 4 (Main Module Mutation):** Expression replacement and import rewriting follow established patterns.
-- **Phase 6 (Codegen):** `Codegen` API is straightforward with clear examples.
+- **Capture analysis** — 8+ edge cases (see PITFALLS.md #5). Test heavily.
+- **Multi-module output** — No OXC precedent. Allocator management is the main challenge.
+- **Source maps** — Pass original source text to `Codegen::with_source_text()` for all modules.
+- **`#__PURE__` annotations** — Must explicitly add comments to `program.comments` for new nodes.
 
 ## Confidence Assessment
 

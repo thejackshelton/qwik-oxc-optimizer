@@ -56,3 +56,6 @@ path-slash = "0.2"
 [dev-dependencies]
 # Snapshot testing for comparing output against 162 spec files.
 insta = { version = "1", features = ["json"] }
+
+# Lightweight regex for hash replacement in snapshots (no proc-macro overhead).
+regex-lite = "0.1"

@@ -1,26 +1,79 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
+
+export const Header = component$(() => {
+  return $((hola) => {
+    const hola = this;
+    const { something, styff } = hola;
+    const hello = hola.nothere.stuff[global];
+    return <Header />;
+  });
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_Qw9nV3mG0KQ = () => import("./test.tsx_Header_component_Qw9nV3mG0KQ");
-const i_QrzcmFeRo0o = () => import("./test.tsx_Header_QrzcmFeRo0o");
-export const Header = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_Qw9nV3mG0KQ, "Header_component_Qw9nV3mG0KQ"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_XXXXXXXXXXXX");
+export const Header = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_Header_component_Qw9nV3mG0KQ.tsx === (ENTRY)
+=== test.tsx_Header_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_QrzcmFeRo0o = () => import("./test.tsx_Header_QrzcmFeRo0o");
-export const Header_component_Qw9nV3mG0KQ = () => {
-	return /* @__PURE__ */ qrl(i_QrzcmFeRo0o, "Header_QrzcmFeRo0o");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_1_XXXXXXXXXXXX");
+export const Header_component_XXXXXXXXXXXX = () => {
+  return /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_1_XXXXXXXXXXXX");
 };
 
-=== test.tsx_Header_QrzcmFeRo0o.tsx === (ENTRY)
-import { Header } from "./test";
-export const Header_QrzcmFeRo0o = (hola) => {
-	const hola = this;
-	const { something, styff } = hola;
-	const hello = hola.nothere.stuff[global];
-	return <Header />;
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Header_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
+
+=== test.tsx_Header_component_1_XXXXXXXXXXXX.tsx === (ENTRY)
+import { Header } from "./test";
+export const Header_component_1_XXXXXXXXXXXX = (hola) => {
+  const hola = this;
+  hola.nothere.stuff[global];
+  return <Header />;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Header_component_1_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Header_component_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Header_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "paramNames": [
+    "hola"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

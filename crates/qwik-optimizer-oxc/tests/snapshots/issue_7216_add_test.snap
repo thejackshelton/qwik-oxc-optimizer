@@ -1,31 +1,116 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@builder.io/qwik";
+export default component$((props) => {
+  return (
+    <p
+      onHi$={() => "hi"}
+      {...props.foo}
+      onHello$={props.helloHandler$}
+      {...props.rest}
+      onVar$={props.onVarHandler$}
+      onConst$={() => "const"}
+      asd={"1"}
+    />
+  );
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
-import { _jsxSplit } from "@qwik.dev/core";
-const i_jN9ZUuuADmk = () => import("./test.tsx_default_component_jN9ZUuuADmk");
-const i_2p9z0XXdr7M = () => import("./test.tsx_default_component_p_q_e_hi_2p9z0XXdr7M");
-const i_W7e7jpgFEgw = () => import("./test.tsx_default_component_p_q_e_const_W7e7jpgFEgw");
-export default /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_jN9ZUuuADmk, "default_component_jN9ZUuuADmk"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_XXXXXXXXXXXX");
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_default_component_jN9ZUuuADmk.js === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_2p9z0XXdr7M = () => import("./test.tsx_default_component_p_q_e_hi_2p9z0XXdr7M");
-const i_W7e7jpgFEgw = () => import("./test.tsx_default_component_p_q_e_const_W7e7jpgFEgw");
+=== test.tsx_test_component_XXXXXXXXXXXX.js === (ENTRY)
 import { _jsxSplit } from "@qwik.dev/core";
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
-export const default_component_jN9ZUuuADmk = (props) => {
-	return /* @__PURE__ */ _jsxSplit("p", { ..._getVarProps(props) }, _getConstProps(props.foo), null, 0, "u6_0");
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_p_q_e_const_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_p_q_e_hi_XXXXXXXXXXXX");
+export const test_component_XXXXXXXXXXXX = (props) => {
+  return /* @__PURE__ */ _jsxSplit(
+    "p",
+    {
+      "q-e:hi": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_p_q_e_hi_XXXXXXXXXXXX"),
+      ...props.foo,
+      "q-e:hello": props.helloHandler$,
+      ...props.rest,
+      "q-e:var": props.onVarHandler$,
+    },
+    {
+      "q-e:const": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_p_q_e_const_XXXXXXXXXXXX"),
+      asd: "1",
+    },
+    null,
+    0,
+    "u6_0",
+  );
 };
 
-=== test.tsx_default_component_p_q_e_hi_2p9z0XXdr7M.js === (ENTRY)
-export const default_component_p_q_e_hi_2p9z0XXdr7M = () => "hi";
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
+}
+*/
 
-=== test.tsx_default_component_p_q_e_const_W7e7jpgFEgw.js === (ENTRY)
-export const default_component_p_q_e_const_W7e7jpgFEgw = () => "const";
+=== test.tsx_test_component_p_q_e_hi_XXXXXXXXXXXX.js === (ENTRY)
+export const test_component_p_q_e_hi_XXXXXXXXXXXX = () => "hi";
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_p_q_e_hi_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component_p_q_e_hi",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_p_q_e_hi_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onHi$",
+  "captures": false
+}
+*/
+
+=== test.tsx_test_component_p_q_e_const_XXXXXXXXXXXX.js === (ENTRY)
+export const test_component_p_q_e_const_XXXXXXXXXXXX = () => "const";
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_p_q_e_const_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component_p_q_e_const",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_p_q_e_const_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "test_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onConst$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

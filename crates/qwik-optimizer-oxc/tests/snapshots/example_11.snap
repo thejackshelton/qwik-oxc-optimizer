@@ -1,38 +1,120 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
-=== project/test.tsx ===
-import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-const i_sHTSaq0AU4w = () => import("./project/test.tsx_Header_component_sHTSaq0AU4w");
-const i_kRS1L5K0500 = () => import("./project/test.tsx_Header_component___q_e_click_kRS1L5K0500");
-const i_36z8l5vFtdk = () => import("./project/test.tsx_App_component_36z8l5vFtdk");
+=== INPUT ===
+import { $, component$ } from "@qwik.dev/core";
 import { foo, bar as bbar } from "../state";
 import * as dep2 from "dep2";
 import dep3 from "dep3/something";
-export const Header = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_sHTSaq0AU4w, "Header_component_sHTSaq0AU4w"));
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_36z8l5vFtdk, "App_component_36z8l5vFtdk"));
 
-=== project/test.tsx_Header_component_sHTSaq0AU4w.tsx === (ENTRY)
+export const Header = component$(() => {
+  return (
+    <Header onClick={$((ev) => dep3(ev))}>
+      {dep2.stuff()}
+      {bbar()}
+    </Header>
+  );
+});
+
+export const App = component$(() => {
+  return <Header>{foo()}</Header>;
+});
+
+=== project/test.tsx ===
+import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_kRS1L5K0500 = () => import("./project/test.tsx_Header_component___q_e_click_kRS1L5K0500");
-import * as dep2 from "dep2";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX");
+export const Header = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_XXXXXXXXXXXX"),
+);
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
+
+=== project/test.tsx_Header_component_XXXXXXXXXXXX.tsx ===
+import { Header } from "./test";
 import { bar as bbar } from "../state";
-import { Header } from "./test";
-export const Header_component_sHTSaq0AU4w = () => {
-	return <Header onClick={/* @__PURE__ */ qrl(i_kRS1L5K0500, "Header_component___q_e_click_kRS1L5K0500")}>
-			{dep2.stuff()}{bbar()}
-		</Header>;
-}
+import * as dep2 from "dep2";
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Header_component_Header_onClick_XXXXXXXXXXXX");
+export const Header_component_XXXXXXXXXXXX = () => {
+  return (
+    <Header
+      onClick={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Header_component_Header_onClick_XXXXXXXXXXXX")}
+    >
+      {dep2.stuff()}
+      {bbar()}
+    </Header>
+  );
+};
 
-=== project/test.tsx_Header_component___q_e_click_kRS1L5K0500.tsx === (ENTRY)
+/*
+{
+  "origin": "project/test.tsx",
+  "name": "Header_component_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_Header_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_XXXXXXXXXXXX",
+  "path": "project",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== project/test.tsx_Header_component_Header_onClick_XXXXXXXXXXXX.tsx ===
 import dep3 from "dep3/something";
-export const Header_component___q_e_click_kRS1L5K0500 = (ev) => dep3(ev);
+export const Header_component_Header_onClick_XXXXXXXXXXXX = (ev) => dep3(ev);
 
-=== project/test.tsx_App_component_36z8l5vFtdk.tsx === (ENTRY)
-import { foo } from "../state";
-import { Header } from "./test";
-export const App_component_36z8l5vFtdk = () => {
-	return <Header>{foo()}</Header>;
+/*
+{
+  "origin": "project/test.tsx",
+  "name": "Header_component_Header_onClick_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_Header_component_Header_onClick",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Header_component_Header_onClick_XXXXXXXXXXXX",
+  "path": "project",
+  "extension": "tsx",
+  "parent": "Header_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false,
+  "paramNames": [
+    "ev"
+  ]
 }
+*/
+
+=== project/test.tsx_App_component_XXXXXXXXXXXX.tsx ===
+import { Header } from "./test";
+import { foo } from "../state";
+export const App_component_XXXXXXXXXXXX = () => {
+  return <Header>{foo()}</Header>;
+};
+
+/*
+{
+  "origin": "project/test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "project",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

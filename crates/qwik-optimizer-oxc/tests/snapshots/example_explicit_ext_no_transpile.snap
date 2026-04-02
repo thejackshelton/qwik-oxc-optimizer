@@ -1,27 +1,93 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, $, useStyles$ } from "@qwik.dev/core";
+
+export const App = component$((props) => {
+  useStyles$("hola");
+  return $(() => <div></div>);
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI.tsx");
-const i_IUcvUpNH0v8 = () => import("./test.tsx_App_useStyles_IUcvUpNH0v8.tsx");
-const i_w3unmdi0sm4 = () => import("./test.tsx_App_w3unmdi0sm4.tsx");
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX.tsx");
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.tsx === (ENTRY)
+=== test.tsx_App_component_XXXXXXXXXXXX.tsx ===
 import { qrl } from "@qwik.dev/core";
-const i_IUcvUpNH0v8 = () => import("./test.tsx_App_useStyles_IUcvUpNH0v8.tsx");
-const i_w3unmdi0sm4 = () => import("./test.tsx_App_w3unmdi0sm4.tsx");
 import { useStylesQrl } from "@qwik.dev/core";
-export const App_component_XumqEURaLxI = (props) => {
-	useStylesQrl(/* @__PURE__ */ qrl(i_IUcvUpNH0v8, "App_useStyles_IUcvUpNH0v8"));
-	return /* @__PURE__ */ qrl(i_w3unmdi0sm4, "App_w3unmdi0sm4");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_useStyles_XXXXXXXXXXXX.tsx");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_1_XXXXXXXXXXXX.tsx");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  useStylesQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_useStyles_XXXXXXXXXXXX"));
+  return /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_1_XXXXXXXXXXXX");
 };
 
-=== test.tsx_App_useStyles_IUcvUpNH0v8.tsx === (ENTRY)
-export const App_useStyles_IUcvUpNH0v8 = "hola";
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
+}
+*/
 
-=== test.tsx_App_w3unmdi0sm4.tsx === (ENTRY)
-export const App_w3unmdi0sm4 = () => <div></div>
+=== test.tsx_App_component_useStyles_XXXXXXXXXXXX.tsx ===
+export const App_component_useStyles_XXXXXXXXXXXX = "hola";
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_useStyles_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_App_component_useStyles",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_useStyles_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "useStyles$",
+  "captures": false
+}
+*/
+
+=== test.tsx_App_component_1_XXXXXXXXXXXX.tsx ===
+export const App_component_1_XXXXXXXXXXXX = () => <div></div>;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_1_XXXXXXXXXXXX",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_App_component_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

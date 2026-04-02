@@ -1,36 +1,103 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useBrowserVisibleTask$, useStore, useStyles$ } from "@qwik.dev/core";
+
+export const Child = component$(() => {
+  const state = useStore({
+    count: 0,
+  });
+
+  // Double count watch
+  useBrowserVisibleTask$(() => {
+    const timer = setInterval(() => {
+      state.count++;
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  });
+
+  return <div>{state.count}</div>;
+});
+
 === test.js ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_80js9RUUsfM = () => import("./test.tsx_Child_component_80js9RUUsfM");
-const i_0qCMfawldvU = () => import("./test.tsx_useBrowserVisibleTask_0qCMfawldvU");
-import { useStore } from "@qwik.dev/core";
-export const Child = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_80js9RUUsfM, "Child_component_80js9RUUsfM"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Child_component_XXXXXXXXXXXX");
+export const Child = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Child_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_Child_component_80js9RUUsfM.js === (ENTRY)
+=== test.tsx_Child_component_XXXXXXXXXXXX.js === (ENTRY)
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_0qCMfawldvU = () => import("./test.tsx_useBrowserVisibleTask_0qCMfawldvU");
 import { useBrowserVisibleTaskQrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
-export const Child_component_80js9RUUsfM = () => {
-	const state = useStore({ count: 0 });
-	useBrowserVisibleTaskQrl(/* @__PURE__ */ qrl(i_0qCMfawldvU, "useBrowserVisibleTask_0qCMfawldvU", [state]));
-	return /* @__PURE__ */ _jsxSorted("div", null, null, state.count, 3, "u6_0");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Child_component_useBrowserVisibleTask_XXXXXXXXXXXX");
+export const Child_component_XXXXXXXXXXXX = () => {
+  const state = useStore({
+    count: 0,
+  });
+  // Double count watch
+  useBrowserVisibleTaskQrl(
+    /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "Child_component_useBrowserVisibleTask_XXXXXXXXXXXX", [state]),
+  );
+  return /* @__PURE__ */ _jsxSorted("div", null, null, _wrapProp(state, "count"), 3, "u6_0");
 };
 
-=== test.tsx_useBrowserVisibleTask_0qCMfawldvU.js === (ENTRY)
+/*
+{
+  "origin": "test.tsx",
+  "name": "Child_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Child_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Child_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Child_component_useBrowserVisibleTask_XXXXXXXXXXXX.js === (ENTRY)
 import { _captures } from "@qwik.dev/core";
-export const useBrowserVisibleTask_0qCMfawldvU = () => {
-	const state = _captures[0];
-	const timer = setInterval(() => {
-		state.count++;
-	}, 1e3);
-	return () => {
-		clearInterval(timer);
-	};
+export const Child_component_useBrowserVisibleTask_XXXXXXXXXXXX = () => {
+  const state = _captures[0];
+  const timer = setInterval(() => {
+    state.count++;
+  }, 1000);
+  return () => {
+    clearInterval(timer);
+  };
 };
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "Child_component_useBrowserVisibleTask_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Child_component_useBrowserVisibleTask",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Child_component_useBrowserVisibleTask_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "js",
+  "parent": "Child_component_XXXXXXXXXXXX",
+  "ctxKind": "function",
+  "ctxName": "useBrowserVisibleTask$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ]
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

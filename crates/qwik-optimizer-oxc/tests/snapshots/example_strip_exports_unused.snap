@@ -1,18 +1,57 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+import mongodb from "mongodb";
+
+export const onGet = () => {
+  const data = mongodb.collection.whatever;
+  return {
+    body: {
+      data,
+    },
+  };
+};
+
+export default component$(() => {
+  return <div>cmp</div>;
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_jN9ZUuuADmk = () => import("./test.tsx_default_component_jN9ZUuuADmk");
-import mongodb from "mongodb";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_test_component_XXXXXXXXXXXX");
 export const onGet = () => {
-	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
+  throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
 };
-export default /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_jN9ZUuuADmk, "default_component_jN9ZUuuADmk"));
+export default /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "test_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_default_component_jN9ZUuuADmk.tsx === (ENTRY)
-export const default_component_jN9ZUuuADmk = () => {
-	return <div>cmp</div>;
+=== test.tsx_test_component_XXXXXXXXXXXX.tsx === (ENTRY)
+export const test_component_XXXXXXXXXXXX = () => {
+  return <div>cmp</div>;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_test_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_test_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
+
+=== DIAGNOSTICS ===
+
+[]

@@ -1,34 +1,118 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$ } from "@qwik.dev/core";
+
+export const Foo = component$(() => {
+  return (
+    <div>
+      <div onClick$={() => console.log("first")} />
+      <div onClick$={() => console.log("second")} />
+      <div onClick$={() => console.log("third")} />
+    </div>
+  );
+});
+
 === test.tsx ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const i_gZqPatVoDqw = () => import("./test.tsx_Foo_component_gZqPatVoDqw");
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-export const Foo = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_gZqPatVoDqw, "Foo_component_gZqPatVoDqw"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_XXXXXXXXXXXX");
+export const Foo = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX"));
 
-=== test.tsx_Foo_component_gZqPatVoDqw.tsx === (ENTRY)
+=== test.tsx_Foo_component_XXXXXXXXXXXX.tsx === (ENTRY)
 import { qrl } from "@qwik.dev/core";
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-const i_OJboCLusyIA = () => import("./test.tsx_Foo_component_div_q_e_click_OJboCLusyIA");
-export const Foo_component_gZqPatVoDqw = () => {
-	return <div>
-			<div onClick$={/* @__PURE__ */ qrl(i_OJboCLusyIA, "Foo_component_div_q_e_click_OJboCLusyIA")} />
-			<div onClick$={/* @__PURE__ */ qrl(i_OJboCLusyIA, "Foo_component_div_q_e_click_OJboCLusyIA")} />
-			<div onClick$={/* @__PURE__ */ qrl(i_OJboCLusyIA, "Foo_component_div_q_e_click_OJboCLusyIA")} />
-		</div>;
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX");
+const i_XXXXXXXXXXXX = () => import("./test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX");
+export const s_XXXXXXXXXXXX = () => {
+  return (
+    <div>
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+      <div q-e:click={/* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "s_XXXXXXXXXXXX")} />
+    </div>
+  );
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false
 }
+*/
 
-=== test.tsx_Foo_component_div_q_e_click_OJboCLusyIA.tsx === (ENTRY)
-export const Foo_component_div_q_e_click_OJboCLusyIA = () => console.log("first");
+=== test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("first");
 
-=== test.tsx_Foo_component_div_q_e_click_OJboCLusyIA.tsx === (ENTRY)
-export const Foo_component_div_q_e_click_OJboCLusyIA = () => console.log("second");
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_div_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
 
-=== test.tsx_Foo_component_div_q_e_click_OJboCLusyIA.tsx === (ENTRY)
-export const Foo_component_div_q_e_click_OJboCLusyIA = () => console.log("third");
+=== test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("second");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_div_q_e_click_1",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_1_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX.tsx === (ENTRY)
+export const s_XXXXXXXXXXXX = () => console.log("third");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_Foo_component_div_div_q_e_click_2",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_Foo_component_div_div_q_e_click_2_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "tsx",
+  "parent": "s_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

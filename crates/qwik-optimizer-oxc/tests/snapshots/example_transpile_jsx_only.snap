@@ -1,26 +1,93 @@
 ---
-source: crates/qwik-optimizer-oxc/tests/snapshot_tests.rs
+source: crates/qwik-optimizer-oxc/tests/test.rs
 expression: output
 ---
+=== INPUT ===
+import { component$, useStore } from "@qwik.dev/core";
+
+export const App = component$((props) => {
+  return (
+    <Cmp>
+      <p class="stuff" onClick$={() => console.log("warn")}>
+        Hello Qwik
+      </p>
+    </Cmp>
+  );
+});
+
 === test.ts ===
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-const i_XumqEURaLxI = () => import("./test.tsx_App_component_XumqEURaLxI.ts");
-const i_0VoFXPYUR5E = () => import("./test.tsx_App_component_p_q_e_click_0VoFXPYUR5E.ts");
-import { useStore } from "@qwik.dev/core";
-export const App = /* @__PURE__ */ componentQrl(/* @__PURE__ */ qrl(i_XumqEURaLxI, "App_component_XumqEURaLxI"));
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_XXXXXXXXXXXX.ts");
+export const App = /* @__PURE__ */ componentQrl(
+  /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_XXXXXXXXXXXX"),
+);
 
-=== test.tsx_App_component_XumqEURaLxI.ts === (ENTRY)
-import { qrl } from "@qwik.dev/core";
-const i_0VoFXPYUR5E = () => import("./test.tsx_App_component_p_q_e_click_0VoFXPYUR5E.ts");
+=== test.tsx_App_component_XXXXXXXXXXXX.ts === (ENTRY)
 import { _jsxSorted } from "@qwik.dev/core";
-export const App_component_XumqEURaLxI = (props) => {
-	return /* @__PURE__ */ _jsxSorted(Cmp, null, null, /* @__PURE__ */ _jsxSorted("p", null, {
-		class: "stuff",
-		"q-e:click": /* @__PURE__ */ qrl(i_0VoFXPYUR5E, "App_component_p_q_e_click_0VoFXPYUR5E")
-	}, "Hello Qwik", 3, "u6_0"), 3, "u6_1");
+import { qrl } from "@qwik.dev/core";
+const i_XXXXXXXXXXXX = () => import("./test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX.ts");
+export const App_component_XXXXXXXXXXXX = (props) => {
+  return /* @__PURE__ */ _jsxSorted(
+    Cmp,
+    null,
+    null,
+    /* @__PURE__ */ _jsxSorted(
+      "p",
+      null,
+      {
+        class: "stuff",
+        "q-e:click": /* @__PURE__ */ qrl(i_XXXXXXXXXXXX, "App_component_Cmp_p_q_e_click_XXXXXXXXXXXX"),
+      },
+      "Hello Qwik",
+      3,
+      null,
+    ),
+    3,
+    "u6_0",
+  );
 };
 
-=== test.tsx_App_component_p_q_e_click_0VoFXPYUR5E.ts === (ENTRY)
-export const App_component_p_q_e_click_0VoFXPYUR5E = () => console.log("warn");
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "ts",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+=== test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX.ts === (ENTRY)
+export const App_component_Cmp_p_q_e_click_XXXXXXXXXXXX = () => console.log("warn");
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Cmp_p_q_e_click_XXXXXXXXXXXX",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Cmp_p_q_e_click",
+  "hash": "XXXXXXXXXXXX",
+  "canonicalFilename": "test.tsx_App_component_Cmp_p_q_e_click_XXXXXXXXXXXX",
+  "path": "",
+  "extension": "ts",
+  "parent": "App_component_XXXXXXXXXXXX",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false
+}
+*/
+
+=== DIAGNOSTICS ===
+
+[]

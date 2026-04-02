@@ -1,8 +1,6 @@
-import { component$, $, useStyles$ } from '@qwik.dev/core';
+import { component$, $, useStyles$ } from "@qwik.dev/core";
 
 export const App = component$((props) => {
-	useStyles$('hola');
-	return $(() => (
-		<div></div>
-	));
+  useStyles$("hola");
+  return $(() => <div></div>);
 });

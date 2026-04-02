@@ -971,32 +971,20 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     // When JSX is transformed to _jsxSorted/_jsxSplit calls inside segment closures,
     // the segment module needs to import these identifiers.
     // Scan both the expression body and hoisted pairs for JSX runtime references.
+    //
+    // SWC import order: Fragment (from jsx-runtime subpath) first, then
+    // core_module imports sorted alphabetically by specifier name.
     {
         let all_code: String = {
             let mut parts = vec![final_expr.clone()];
             for (_, code) in &hoisted_pairs {
                 parts.push(code.clone());
             }
-            // Also scan the original expression for references
             parts.push(ctx.expr.to_string());
             parts.join("\n")
         };
 
-        // Signal wrapping imports (must come before JSX imports to match SWC order)
-        if all_code.contains("_wrapProp") {
-            header_items.push(format!(r#"import {{ _wrapProp }} from "{}";"#, ctx.core_module));
-        }
-        if all_code.contains("_fnSignal") {
-            header_items.push(format!(r#"import {{ _fnSignal }} from "{}";"#, ctx.core_module));
-        }
-        if all_code.contains("_val") {
-            header_items.push(format!(r#"import {{ _val }} from "{}";"#, ctx.core_module));
-        }
-        if all_code.contains("_chk") {
-            header_items.push(format!(r#"import {{ _chk }} from "{}";"#, ctx.core_module));
-        }
-
-        // Fragment import must come from jsx-runtime subpath
+        // Fragment import comes first (different source path: jsx-runtime)
         if all_code.contains("_Fragment") {
             header_items.push(format!(
                 r#"import {{ Fragment as _Fragment }} from "{}/jsx-runtime";"#,
@@ -1004,18 +992,35 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
             ));
         }
 
-        // JSX function imports
-        if all_code.contains("_jsxSorted") {
-            header_items.push(format!(r#"import {{ _jsxSorted }} from "{}";"#, ctx.core_module));
+        // Core module imports sorted alphabetically by specifier name
+        let mut core_jsx_imports: Vec<String> = Vec::new();
+        if all_code.contains("_chk") {
+            core_jsx_imports.push("_chk".to_string());
         }
-        if all_code.contains("_getVarProps") {
-            header_items.push(format!(r#"import {{ _getVarProps }} from "{}";"#, ctx.core_module));
+        if all_code.contains("_fnSignal") {
+            core_jsx_imports.push("_fnSignal".to_string());
         }
         if all_code.contains("_getConstProps") {
-            header_items.push(format!(r#"import {{ _getConstProps }} from "{}";"#, ctx.core_module));
+            core_jsx_imports.push("_getConstProps".to_string());
+        }
+        if all_code.contains("_getVarProps") {
+            core_jsx_imports.push("_getVarProps".to_string());
+        }
+        if all_code.contains("_jsxSorted") {
+            core_jsx_imports.push("_jsxSorted".to_string());
         }
         if all_code.contains("_jsxSplit") {
-            header_items.push(format!(r#"import {{ _jsxSplit }} from "{}";"#, ctx.core_module));
+            core_jsx_imports.push("_jsxSplit".to_string());
+        }
+        if all_code.contains("_val") {
+            core_jsx_imports.push("_val".to_string());
+        }
+        if all_code.contains("_wrapProp") {
+            core_jsx_imports.push("_wrapProp".to_string());
+        }
+        // Already sorted by the order we check them (alphabetical _chk < _fnSignal < ... < _wrapProp)
+        for name in &core_jsx_imports {
+            header_items.push(format!(r#"import {{ {} }} from "{}";"#, name, ctx.core_module));
         }
     }
 

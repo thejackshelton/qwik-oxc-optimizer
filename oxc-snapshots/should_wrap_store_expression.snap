@@ -38,6 +38,7 @@ import { useStore } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.active ? "yes" : "no";
 ;
+const _hf0_str = "p0.active ? \"yes\" : \"no\"";
 export const test_component_LUXeXe0DQrg = () => {
 	const panelStore = useStore(() => ({
 		active: "Input",
@@ -48,10 +49,10 @@ export const test_component_LUXeXe0DQrg = () => {
 		"examples-panel-input": panelStore.active === "Input",
 		"examples-panel-output": panelStore.active === "Output",
 		"examples-panel-console": panelStore.active === "Console"
-	} }, { stuff: _fnSignal(_hf0, [panelStore], "p0 => p0.active ? \"yes\" : \"no\";") }, null, 3, "u6_0");
+	} }, { stuff: _fnSignal(_hf0, [panelStore], _hf0_str) }, null, 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { PANELS } from \\"./test\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.active ? \\"yes\\" : \\"no\\";;\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst panelStore = useStore(() => ({\n\t\tactive: \\"Input\\",\n\t\tlist: PANELS\n\t}));\n\treturn _jsxSorted(\\"div\\", { class: {\n\t\t\\"too-long-to-wrap\\": true,\n\t\t\\"examples-panel-input\\": panelStore.active === \\"Input\\",\n\t\t\\"examples-panel-output\\": panelStore.active === \\"Output\\",\n\t\t\\"examples-panel-console\\": panelStore.active === \\"Console\\"\n\t} }, { stuff: _fnSignal(_hf0, [panelStore], \\"p0 => p0.active ? \\\\"yes\\\\" : \\\\"no\\\\";\\") }, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,SAAS,gBAAgB;AACzB,MAAM,QAAO,OAAM,GAAG,SAAS,QAAQ;AAAK;AAC5C,OAAO,MAAM,mCAAmC;CAC/C,MAAM,aAAa,gBAAgB;EAClC,QAAQ;EACR,MAAM;EACN,EAAE;AACH,QAAO,WAAW,OAAO,EAAE,OAAO;EACjC,oBAAoB;EACpB,wBAAwB,WAAW,WAAW;EAC9C,yBAAyB,WAAW,WAAW;EAC/C,0BAA0B,WAAW,WAAW;EAChD,EAAE,EAAE,EAAE,OAAO,UAAU,MAAM,CAAC,WAAW,EAAE,sCAAsC,EAAE,EAAE,MAAM,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { PANELS } from \\"./test\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.active ? \\"yes\\" : \\"no\\";;\nconst _hf0_str = 'p0.active ? \\"yes\\" : \\"no\\"';\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst panelStore = useStore(() => ({\n\t\tactive: \\"Input\\",\n\t\tlist: PANELS\n\t}));\n\treturn _jsxSorted(\\"div\\", { class: {\n\t\t\\"too-long-to-wrap\\": true,\n\t\t\\"examples-panel-input\\": panelStore.active === \\"Input\\",\n\t\t\\"examples-panel-output\\": panelStore.active === \\"Output\\",\n\t\t\\"examples-panel-console\\": panelStore.active === \\"Console\\"\n\t} }, { stuff: _fnSignal(_hf0, [panelStore], _hf0_str) }, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,SAAS,gBAAgB;AACzB,MAAM,QAAO,OAAM,GAAG,SAAS,QAAQ;AAAK;AAC5C,MAAM,WAAW;AACjB,OAAO,MAAM,mCAAmC;CAC/C,MAAM,aAAa,gBAAgB;EAClC,QAAQ;EACR,MAAM;EACN,EAAE;AACH,QAAO,WAAW,OAAO,EAAE,OAAO;EACjC,oBAAoB;EACpB,wBAAwB,WAAW,WAAW;EAC9C,yBAAyB,WAAW,WAAW;EAC/C,0BAA0B,WAAW,WAAW;EAChD,EAAE,EAAE,EAAE,OAAO,UAAU,MAAM,CAAC,WAAW,EAAE,SAAS,EAAE,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -79,6 +80,7 @@ import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.active ? "yes" : "no";
+const _hf0_str = "p0.active ? \"yes\" : \"no\"";
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
@@ -89,7 +91,7 @@ export const PANELS: ActivePanel[] = [
 	"Console"
 ];
 
-Some("{\"version\":3,\"names\":[\"ort \",\"ort { component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst panelStore = useStore(() => ({\n\t\t\t\tactive: 'Input',\n\t\t\t\tlist: PANELS,\n\t\t\t}));\n\n\t\t\treturn (\n\t\t\t\t<div\n\t\t\t\t\tstuff={panelStore.active ? 'yes' : 'no'}\n\t\t\t\t\tclass={{\n\t\t\t\t\t\t'too-long-to-wrap': true,\n\t\t\t\t\t\t'examples-panel-input': panelStore.active === 'Input',\n\t\t\t\t\t\t'examples-panel-output': panelStore.active === 'Output',\n\t\t\t\t\t\t'examples-panel-console': panelStore.active === 'Console',\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t);\n\t\t});\n\t\texport const PANELS: ActivePanel[] = ['Examples', 'Input', 'Output', 'Console'];\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,mBAAkB,QAAQ;AADtC,MACKC,+BAA6C,0BAEhD,OAAO,0CACM,6BACX;AAFF,eAAeC,0CAiBb;AACF,OAAO,MAAM,QAAQ,gBAAgB;CAAC;CAAY;CAAS;CAAU;CAAU\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort { co\",\"ort { component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst panelStore = useStore(() => ({\n\t\t\t\tactive: 'Input',\n\t\t\t\tlist: PANELS,\n\t\t\t}));\n\n\t\t\treturn (\n\t\t\t\t<div\n\t\t\t\t\tstuff={panelStore.active ? 'yes' : 'no'}\n\t\t\t\t\tclass={{\n\t\t\t\t\t\t'too-long-to-wrap': true,\n\t\t\t\t\t\t'examples-panel-input': panelStore.active === 'Input',\n\t\t\t\t\t\t'examples-panel-output': panelStore.active === 'Output',\n\t\t\t\t\t\t'examples-panel-console': panelStore.active === 'Console',\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t);\n\t\t});\n\t\texport const PANELS: ActivePanel[] = ['Examples', 'Input', 'Output', 'Console'];\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,mBAAkB,QAAQ;AADtC,MACKC,WAAW;AADhB,MACKC,+BAA6C,0BAEhD,OAAO,0CACM,6BACX;AAFF,eAAeC,0CAiBb;AACF,OAAO,MAAM,QAAQ,gBAAgB;CAAC;CAAY;CAAS;CAAU;CAAU\"}")
 == DIAGNOSTICS ==
 
 []

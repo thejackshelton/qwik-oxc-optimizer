@@ -44,6 +44,8 @@ export const STYLES = ".red { color: red; }";
 
 ============================= test.tsx ==
 
+import { _noopQrl } from "@qwik.dev/core";
+//
 const q_s_odz7dfdfdM = /*#__PURE__*/ _noopQrl("s_odz7dfdfdM");
 const q_s_odzdfdfdM = /*#__PURE__*/ _noopQrl("s_odzdfdfdM");
 const q_s_odz7eidI4GM = /*#__PURE__*/ _noopQrl("s_odz7eidI4GM");
@@ -52,7 +54,7 @@ const q_s_Fh88JClhbC0 = /*#__PURE__*/ _noopQrl("s_Fh88JClhbC0");
 export const App = /*#__PURE__*/ componentQrl(inlinedQrl(q_s_Fh88JClhbC0, "App_component_Fh88JClhbC0"));
 export const STYLES = ".red { color: red; }";
 
-Some("{\"version\":3,\"names\":[\"t { componentQ\",\"t { component\",\"t { componentQr\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useStore, jsxs, jsx, useLexicalScope } from '@qwik.dev/core';\n\nexport const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odz7dfdfdM\\"));\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odzdfdfdM\\"));\n\n\tconst store = useStore({\n\t\tcount: 0\n\t});\n\treturn /*#__PURE__*/ jsxs(\\"div\\", {\n\t\tchildren: [\n\t\t\t/*#__PURE__*/ jsxs(\\"p\\", {\n\t\t\t\tchildren: [\n\t\t\t\t\t\\"Count: \\",\n\t\t\t\t\tstore.count\n\t\t\t\t]\n\t\t\t}),\n\t\t\t/*#__PURE__*/ jsx(\\"p\\", {\n\t\t\t\tchildren: /*#__PURE__*/ jsx(\\"button\\", {\n\t\t\t\t\tonClick$: inlinedQrl(()=>{\n\t\t\t\t\t\tconst [store] = useLexicalScope();\n\t\t\t\t\t\treturn store.count++;\n\t\t\t\t\t}, \\"App_component_div_p_button_onClick_odz7eidI4GM\\", [\n\t\t\t\t\t\tstore\n\t\t\t\t\t]),\n\t\t\t\t\tchildren: \\"Click\\"\n\t\t\t\t})\n\t\t\t})\n\t\t]\n\t});\n}, \\"App_component_Fh88JClhbC0\\"));\n\nexport const STYLES = \\".red { color: red; }\\";\n\n\"],\"mappings\":\"AAAA,MACKA,iBAA+B,yBAAS,eAAe;AAD5D,MACKC,gBAA8B,yBAAS,cAAc;AAD1D,MACKC,kBAAgC,yBAAS,gBAAgB;AAD9D,MACKA,kBAAgC,yBAAS,gBAAgB;AAE9D,OAAO,MAAM,MAAoB,6BAAa,4BA4B3C,4BAA4B,CAAC;AAEhC,OAAO,MAAM,SAAS\"}")
+Some("{\"version\":3,\"names\":[\"t { componentQ\",\"t { component\",\"t { componentQr\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useStore, jsxs, jsx, useLexicalScope } from '@qwik.dev/core';\n\nexport const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odz7dfdfdM\\"));\n\tuseStyles$(inlinedQrl(STYLES, \\"STYLES_odzdfdfdM\\"));\n\n\tconst store = useStore({\n\t\tcount: 0\n\t});\n\treturn /*#__PURE__*/ jsxs(\\"div\\", {\n\t\tchildren: [\n\t\t\t/*#__PURE__*/ jsxs(\\"p\\", {\n\t\t\t\tchildren: [\n\t\t\t\t\t\\"Count: \\",\n\t\t\t\t\tstore.count\n\t\t\t\t]\n\t\t\t}),\n\t\t\t/*#__PURE__*/ jsx(\\"p\\", {\n\t\t\t\tchildren: /*#__PURE__*/ jsx(\\"button\\", {\n\t\t\t\t\tonClick$: inlinedQrl(()=>{\n\t\t\t\t\t\tconst [store] = useLexicalScope();\n\t\t\t\t\t\treturn store.count++;\n\t\t\t\t\t}, \\"App_component_div_p_button_onClick_odz7eidI4GM\\", [\n\t\t\t\t\t\tstore\n\t\t\t\t\t]),\n\t\t\t\t\tchildren: \\"Click\\"\n\t\t\t\t})\n\t\t\t})\n\t\t]\n\t});\n}, \\"App_component_Fh88JClhbC0\\"));\n\nexport const STYLES = \\".red { color: red; }\\";\n\n\"],\"mappings\":\"AAAA,yBACwB;AADxB,MACKA,iBAA+B,yBAAS,eAAe;AAD5D,MACKC,gBAA8B,yBAAS,cAAc;AAD1D,MACKC,kBAAgC,yBAAS,gBAAgB;AAD9D,MACKA,kBAAgC,yBAAS,gBAAgB;AAE9D,OAAO,MAAM,MAAoB,6BAAa,4BA4B3C,4BAA4B,CAAC;AAEhC,OAAO,MAAM,SAAS\"}")
 == DIAGNOSTICS ==
 
 []

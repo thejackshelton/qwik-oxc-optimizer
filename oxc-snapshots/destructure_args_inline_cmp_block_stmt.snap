@@ -64,17 +64,18 @@ import { _jsxSorted } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.selectedOutputDetail === "options";
+const _hf0_str = "p0.selectedOutputDetail === \"options\"";
 const q_test_div_q_e_click_pFqTss400MA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA", [data]);
 //
 export default (_rawProps) => {
 	const data = _rawProps.data;
 	return /*#__PURE__*/ _jsxSorted("div", { "q:p": data }, {
-		"data-is-active": _fnSignal(_hf0, [data], "p0 => p0.selectedOutputDetail === \"options\";"),
+		"data-is-active": _fnSignal(_hf0, [data], _hf0_str),
 		"q-e:click": q_test_div_q_e_click_pFqTss400MA.w([data])
 	}, null, 7, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[\"ort \",\"ort default ({ data }: { data: a\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,QAAO,mCAAkC;AAD9C,MACKC,mCACC,0BAAU,OACZ,8CAC6B,kCAAkC,MACjE,CAAC;AAJD,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort defa\",\"ort default ({ data }: { data: a\",\"\n\t\texport\",\"defa\",\" ({ \",\"a }: { d\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,QAAO,mCAAkC;AAD9C,MACKC,WAAW;AADhB,MACKC,mCACC,0BAAU,OACZ,8CAC6B,kCAAkC,MACjE,CAAC;AAJD,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAEC,SAAS\"}")
 == DIAGNOSTICS ==
 
 []

@@ -49,15 +49,16 @@ import { _wrapProp } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.nested.count;
 ;
+const _hf0_str = "p0.nested.count";
 export const Cmp_component_4ryKJTOKjWE = (props) => {
-	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted("p", null, { "data-value": _wrapProp(props, "count") }, _fnSignal(_hf0, [props], "p0 => p0.nested.count;"), 3, null), /*#__PURE__*/ _jsxSorted("p", null, null, [
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted("p", null, { "data-value": _wrapProp(props, "count") }, _fnSignal(_hf0, [props], _hf0_str), 3, null), /*#__PURE__*/ _jsxSorted("p", null, null, [
 		"Value",
 		_wrapProp(props, "count"),
 		/*#__PURE__*/ _jsxSorted("span", null, null, null, 3, null)
 	], 3, null)], 1, "u6_1");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.nested.count;;\nexport const Cmp_component_4ryKJTOKjWE = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"p\\", null, { \\"data-value\\": _wrapProp(props, \\"count\\") }, _fnSignal(_hf0, [props], \\"p0 => p0.nested.count;\\"), 3, null), _jsxSorted(\\"p\\", null, null, [\n\t\t\\"Value\\",\n\t\t_wrapProp(props, \\"count\\"),\n\t\t_jsxSorted(\\"span\\", null, null, null, 3, null)\n\t], 3, null)], 1, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,MAAM,QAAO,OAAM,GAAG,OAAO;AAAM;AACnC,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,EAAE,cAAc,UAAU,OAAO,QAAQ,EAAE,EAAE,UAAU,MAAM,CAAC,MAAM,EAAE,yBAAyB,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM;EACtM;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK;EAC7C,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.nested.count;;\nconst _hf0_str = 'p0.nested.count';\nexport const Cmp_component_4ryKJTOKjWE = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"p\\", null, { \\"data-value\\": _wrapProp(props, \\"count\\") }, _fnSignal(_hf0, [props], _hf0_str), 3, null), _jsxSorted(\\"p\\", null, null, [\n\t\t\\"Value\\",\n\t\t_wrapProp(props, \\"count\\"),\n\t\t_jsxSorted(\\"span\\", null, null, null, 3, null)\n\t], 3, null)], 1, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,MAAM,QAAO,OAAM,GAAG,OAAO;AAAM;AACnC,MAAM,WAAW;AACjB,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,MAAM,EAAE,cAAc,UAAU,OAAO,QAAQ,EAAE,EAAE,UAAU,MAAM,CAAC,MAAM,EAAE,SAAS,EAAE,GAAG,KAAK,EAAE,WAAW,KAAK,MAAM,MAAM;EACtL;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK;EAC7C,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

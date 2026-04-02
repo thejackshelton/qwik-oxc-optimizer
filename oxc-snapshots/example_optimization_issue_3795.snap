@@ -22,12 +22,13 @@ export const Issue3795 = component$(() => {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_Issue3795_component_wsE8beycatI = /*#__PURE__*/ _noopQrl("Issue3795_component_wsE8beycatI");
 //
 export const Issue3795 = /*#__PURE__*/ componentQrl(q_Issue3795_component_wsE8beycatI);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Issue3795 = component$(() => {\n\tlet base = \\"foo\\";\n\tconst firstAssignment = base;\n\tbase += \\"bar\\";\n\tconst secondAssignment = base;\n\treturn (\n\t\t<div id='issue-3795-result'>{firstAssignment} {secondAssignment}</div>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,oCAEI,yBAAS,kCACV;AADR,OAAO,MAAM,YAAYC,+CAQtB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Issue3795 = component$(() => {\n\tlet base = \\"foo\\";\n\tconst firstAssignment = base;\n\tbase += \\"bar\\";\n\tconst secondAssignment = base;\n\treturn (\n\t\t<div id='issue-3795-result'>{firstAssignment} {secondAssignment}</div>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,oCAEI,yBAAS,kCACV;AADR,OAAO,MAAM,YAAYC,+CAQtB\"}")
 == DIAGNOSTICS ==
 
 []

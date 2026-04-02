@@ -25,6 +25,7 @@ export const FOO_MAPPING = {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ _noopQrl("test_component_LUXeXe0DQrg");
 //
@@ -35,7 +36,7 @@ export const FOO_MAPPING = {
 };
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const FOO_MAPPING = {\n\tA: 1,\n\tB: 2,\n\tC: 3,\n\t};\n\n\texport default component$(() => {\n\tconst key = 'A';\n\tconst value = FOO_MAPPING[key];\n\n\treturn <>{value}</>;\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,+BAED,yBAAS,6BAEP;AAFN,OAAO,MAAM,cAAc;CAC1B,GAAG;CACH,GAAG;CACH,GAAG;CACF;AAED,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const FOO_MAPPING = {\n\tA: 1,\n\tB: 2,\n\tC: 3,\n\t};\n\n\texport default component$(() => {\n\tconst key = 'A';\n\tconst value = FOO_MAPPING[key];\n\n\treturn <>{value}</>;\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,+BAED,yBAAS,6BAEP;AAFN,OAAO,MAAM,cAAc;CAC1B,GAAG;CACH,GAAG;CACH,GAAG;CACF;AAED,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

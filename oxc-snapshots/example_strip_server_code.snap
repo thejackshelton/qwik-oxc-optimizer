@@ -292,6 +292,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_q
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_s_2ca3HLDC7yc = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_serverStuff_a_2ca3HLDC7yc"), "s_2ca3HLDC7yc");
 const q_s_v9qawr2Inkk = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_serverStuff_b_client_v9qawr2Inkk"), "s_v9qawr2Inkk");
@@ -299,7 +300,7 @@ const q_s_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_compon
 //
 export const Parent = /*#__PURE__*/ componentQrl(q_s_0TaiDayHrlo);
 
-Some("{\"version\":3,\"names\":[\"t { component$,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, serverLoader$, serverStuff$, $, client$, useStore, useTask$ } from '@qwik.dev/core';\nimport { isServer } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport { handler } from 'serverless';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tif (!isServer) return;\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text);\n\t});\n\n\tserverStuff$(async () => {\n\t\t// should be removed too\n\t\tconst a = $(() => {\n\t\t\t// from $(), should not be removed\n\t\t});\n\t\tconst b = client$(() => {\n\t\t\t// from clien$(), should not be removed\n\t\t});\n\t\treturn [a,b];\n\t})\n\n\tserverLoader$(handler);\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('parent')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kBAAgC,0BAAU,OAAO,0DAChD,gBAAgB;AAFtB,MACKA,kBAAgC,0BAAU,OAAO,iEACzC,gBAAgB;AAF7B,MACKA,kBAAgC,0BAAU,OAAO,4CAA4C,gBAC1F;AAKR,OAAO,MAAM,SAASC,6BAkCpB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, serverLoader$, serverStuff$, $, client$, useStore, useTask$ } from '@qwik.dev/core';\nimport { isServer } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport { handler } from 'serverless';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tif (!isServer) return;\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text);\n\t});\n\n\tserverStuff$(async () => {\n\t\t// should be removed too\n\t\tconst a = $(() => {\n\t\t\t// from $(), should not be removed\n\t\t});\n\t\tconst b = client$(() => {\n\t\t\t// from clien$(), should not be removed\n\t\t});\n\t\treturn [a,b];\n\t})\n\n\tserverLoader$(handler);\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('parent')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,yBACwB;AADxB,MACKA,kBAAgC,0BAAU,OAAO,0DAChD,gBAAgB;AAFtB,MACKA,kBAAgC,0BAAU,OAAO,iEACzC,gBAAgB;AAF7B,MACKA,kBAAgC,0BAAU,OAAO,4CAA4C,gBAC1F;AAKR,OAAO,MAAM,SAASC,6BAkCpB\"}")
 == DIAGNOSTICS ==
 
 []

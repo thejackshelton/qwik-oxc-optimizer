@@ -22,6 +22,7 @@ expression: output
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_test_component_useComputed_PYU291PvidQ = /*#__PURE__*/ _noopQrl("test_component_useComputed_PYU291PvidQ");
 const q_test_component_useTask_jewzFYh3XmQ = /*#__PURE__*/ _noopQrl("test_component_useTask_jewzFYh3XmQ");
@@ -29,7 +30,7 @@ const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ _noopQrl("test_component_LUXe
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, useTask$\",\"ort { component$, useComputed$, useT\",\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,2CAAyD,yBAE9D,yCAAyC;AAHzC,MACKC,uCAAqD,yBAAS,qCAElC;AAHjC,MACKC,+BAA6C,yBAAS,6BAE1C;AAAf,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, useTask$\",\"ort { component$, useComputed$, useT\",\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,2CAAyD,yBAE9D,yCAAyC;AAHzC,MACKC,uCAAqD,yBAAS,qCAElC;AAHjC,MACKC,+BAA6C,yBAAS,6BAE1C;AAAf,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

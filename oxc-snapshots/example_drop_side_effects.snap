@@ -131,6 +131,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrlDEV } from "@qwik.dev/core";
+import { _noopQrlDEV } from "@qwik.dev/core";
 const q_api_server_JonPp043gH0 = /*#__PURE__*/ _noopQrlDEV("api_server_JonPp043gH0", [], {
 	file: "test.tsx",
 	lo: 432,
@@ -161,7 +162,7 @@ sideEffect();
 export const api = serverQrl(q_api_server_JonPp043gH0);
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@\",\"t { component$ } from '@qwik\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,2BACJ,4BAAY,0BAA0B,EAAE,EAAE;OACnC;KAAiB;KAAU;cACxB;CACV,CAAC;AALF,MACKC,+BACA,6BAAa,OAAO,0CACF,8BACb,EAAE,EAAE;OAAS;KAChB;KAAU;cAChB;CAA2B,CAAC;AAH7B,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMC,mCAEjB;AAEF,eAAeC,0CAIZ\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@\",\"t { component$ } from '@qwik\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,4BAC2B;AAD3B,MACKA,2BACJ,4BAAY,0BAA0B,EAAE,EAAE;OACnC;KAAiB;KAAU;cACxB;CACV,CAAC;AALF,MACKC,+BACA,6BAAa,OAAO,0CACF,8BACb,EAAE,EAAE;OAAS;KAChB;KAAU;cAChB;CAA2B,CAAC;AAH7B,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMC,mCAEjB;AAEF,eAAeC,0CAIZ\"}")
 == DIAGNOSTICS ==
 
 []

@@ -31,6 +31,7 @@ import { useSignal } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.value ? true : undefined;
 ;
+const _hf0_str = "p0.value ? true : undefined";
 const q_Cmp_component_handleClick_WawHV3HwS1A = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_handleClick_WawHV3HwS1A"), "Cmp_component_handleClick_WawHV3HwS1A", [toggleSig]);
 //
 export const Cmp_component_4ryKJTOKjWE = () => {
@@ -38,11 +39,11 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 	const handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));
 	return /*#__PURE__*/ _jsxSorted("button", { "q:p": handleClick$ }, {
 		"q-e:click": handleClick$,
-		"data-open": _fnSignal(_hf0, [toggleSig], "p0 => p0.value ? true : undefined;")
+		"data-open": _fnSignal(_hf0, [toggleSig], _hf0_str)
 	}, "Removing data-open re-renders", 7, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.value ? true : undefined;;\nconst q_Cmp_component_handleClick_WawHV3HwS1A = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Cmp_component_handleClick_WawHV3HwS1A\\"), \\"Cmp_component_handleClick_WawHV3HwS1A\\", [toggleSig]);\nexport const Cmp_component_4ryKJTOKjWE = () => {\n\tconst toggleSig = useSignal(false);\n\tconst handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": handleClick$ }, {\n\t\t\\"q-e:click\\": handleClick$,\n\t\t\\"data-open\\": _fnSignal(_hf0, [toggleSig], \\"p0 => p0.value ? true : undefined;\\")\n\t}, \\"Removing data-open re-renders\\", 7, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,MAAM,QAAO,OAAM,GAAG,QAAQ,OAAO;AAAU;AAC/C,MAAM,0CAAwD,0BAAU,OAAO,qDAAqD,yCAAyC,CAAC,UAAU,CAAC;AACzL,OAAO,MAAM,kCAAkC;CAC9C,MAAM,YAAY,UAAU,MAAM;CAClC,MAAM,eAAe,IAAI,wCAAwC,EAAE,CAAC,UAAU,CAAC,CAAC;AAChF,QAAO,WAAW,UAAU,EAAE,OAAO,cAAc,EAAE;EACpD,aAAa;EACb,aAAa,UAAU,MAAM,CAAC,UAAU,EAAE,qCAAqC;EAC/E,EAAE,iCAAiC,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.value ? true : undefined;;\nconst _hf0_str = 'p0.value ? true : undefined';\nconst q_Cmp_component_handleClick_WawHV3HwS1A = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Cmp_component_handleClick_WawHV3HwS1A\\"), \\"Cmp_component_handleClick_WawHV3HwS1A\\", [toggleSig]);\nexport const Cmp_component_4ryKJTOKjWE = () => {\n\tconst toggleSig = useSignal(false);\n\tconst handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": handleClick$ }, {\n\t\t\\"q-e:click\\": handleClick$,\n\t\t\\"data-open\\": _fnSignal(_hf0, [toggleSig], _hf0_str)\n\t}, \\"Removing data-open re-renders\\", 7, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,MAAM,QAAO,OAAM,GAAG,QAAQ,OAAO;AAAU;AAC/C,MAAM,WAAW;AACjB,MAAM,0CAAwD,0BAAU,OAAO,qDAAqD,yCAAyC,CAAC,UAAU,CAAC;AACzL,OAAO,MAAM,kCAAkC;CAC9C,MAAM,YAAY,UAAU,MAAM;CAClC,MAAM,eAAe,IAAI,wCAAwC,EAAE,CAAC,UAAU,CAAC,CAAC;AAChF,QAAO,WAAW,UAAU,EAAE,OAAO,cAAc,EAAE;EACpD,aAAa;EACb,aAAa,UAAU,MAAM,CAAC,UAAU,EAAE,SAAS;EACnD,EAAE,iCAAiC,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

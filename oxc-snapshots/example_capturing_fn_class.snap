@@ -111,7 +111,7 @@ Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"
     "category": "error",
     "code": "C02",
     "file": "test.tsx",
-    "message": "Reference to identifier 'hola' can not be used inside a Qrl($) scope because it's a function",
+    "message": "Reference to identifier 'Thing' can not be used inside a Qrl($) scope because it's a function",
     "highlights": null,
     "suggestions": null,
     "scope": "optimizer"
@@ -120,7 +120,7 @@ Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"
     "category": "error",
     "code": "C02",
     "file": "test.tsx",
-    "message": "Reference to identifier 'Thing' can not be used inside a Qrl($) scope because it's a function",
+    "message": "Reference to identifier 'hola' can not be used inside a Qrl($) scope because it's a function",
     "highlights": null,
     "suggestions": null,
     "scope": "optimizer"

@@ -25,6 +25,7 @@ export const AtomStatus = component$(({ctx,atom})=>{
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_AtomStatus_component_span_q_e_click_0yqKAycyBF0 = /*#__PURE__*/ _noopQrl("AtomStatus_component_span_q_e_click_0yqKAycyBF0");
 const _hf0 = (p0, p1, p2) => [
@@ -36,7 +37,7 @@ const q_AtomStatus_component_hdwpoUtydSA = /*#__PURE__*/ _noopQrl("AtomStatus_co
 //
 export const AtomStatus = /*#__PURE__*/ componentQrl(q_AtomStatus_component_hdwpoUtydSA);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,oDAEoB,yBAAS,kDAE9B;AALJ,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,qCAEK,yBAAS,mCAClB;AADD,OAAO,MAAM,aAAaC,gDAWxB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,oDAEoB,yBAAS,kDAE9B;AALJ,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,qCAEK,yBAAS,mCAClB;AADD,OAAO,MAAM,aAAaC,gDAWxB\"}")
 == DIAGNOSTICS ==
 
 []

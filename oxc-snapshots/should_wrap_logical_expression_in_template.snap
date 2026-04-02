@@ -27,13 +27,14 @@ import { useSignal } from "@qwik.dev/core";
 //
 const _hf0 = (p0, p1) => (p0 || p1).value;
 ;
+const _hf0_str = "(p0 || p1).value";
 export const test_component_LUXeXe0DQrg = () => {
 	const count = useSignal(0);
 	const count2 = useSignal(0);
-	return /*#__PURE__*/ _jsxSorted("div", null, null, _fnSignal(_hf0, [count, count2], "(p0, p1) => (p0 || p1).value;"), 3, "u6_0");
+	return /*#__PURE__*/ _jsxSorted("div", null, null, _fnSignal(_hf0, [count, count2], _hf0_str), 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst _hf0 = (p0, p1) => (p0 || p1).value;;\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst count = useSignal(0);\n\tconst count2 = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, _fnSignal(_hf0, [count, count2], \\"(p0, p1) => (p0 || p1).value;\\"), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,MAAM,QAAQ,IAAI,QAAQ,MAAM,IAAI;AAAM;AAC1C,OAAO,MAAM,mCAAmC;CAC/C,MAAM,QAAQ,UAAU,EAAE;CAC1B,MAAM,SAAS,UAAU,EAAE;AAC3B,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,MAAM,CAAC,OAAO,OAAO,EAAE,gCAAgC,EAAE,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst _hf0 = (p0, p1) => (p0 || p1).value;;\nconst _hf0_str = '(p0 || p1).value';\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst count = useSignal(0);\n\tconst count2 = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, _fnSignal(_hf0, [count, count2], _hf0_str), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,MAAM,QAAQ,IAAI,QAAQ,MAAM,IAAI;AAAM;AAC1C,MAAM,WAAW;AACjB,OAAO,MAAM,mCAAmC;CAC/C,MAAM,QAAQ,UAAU,EAAE;CAC1B,MAAM,SAAS,UAAU,EAAE;AAC3B,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,MAAM,CAAC,OAAO,OAAO,EAAE,SAAS,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

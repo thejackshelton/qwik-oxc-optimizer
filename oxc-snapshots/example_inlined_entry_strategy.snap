@@ -34,6 +34,7 @@ export const Child = component$(() => {
 
 import "./sibling";
 import { componentQrl } from "@qwik.dev/core";
+import { _noopQrl } from "@qwik.dev/core";
 //
 const q_Child_component_useStyles_qBZTuFM0160 = /*#__PURE__*/ _noopQrl("Child_component_useStyles_qBZTuFM0160");
 const q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA = /*#__PURE__*/ _noopQrl("Child_component_useBrowserVisibleTask_0IGFPOyJmQA");
@@ -42,7 +43,7 @@ const q_Child_component_9GyF01GDKqw = /*#__PURE__*/ _noopQrl("Child_component_9G
 //
 export const Child = /*#__PURE__*/ componentQrl(q_Child_component_9GyF01GDKqw);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useBrowserVisibleTask$,\",\"t { component$, useBrowserVisibleTask$, useStore, u\",\"t { component$, useBrowserVisibleTask$, use\",\"t { component$, useBrowserVis\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport { thing } from './sibling';\nimport mongodb from 'mongodb';\n\nexport const Child = component$(() => {\n\n\tuseStyles$('somestring');\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tstate.count = thing.doStuff() + import(\\"./sibling\\");\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,OACM;AADN,6BAC4B;AAD5B,MACKA,0CAAwD,yBAAS,wCACnD;AAFnB,MACKC,sDAAoE,yBAAS,oDAE1E;AAHR,MACKC,8CAA4D,yBAAS,4CAC/C;AAF3B,MACKC,gCAA8C,yBAAS,8BAA8B;AAI1F,OAAO,MAAM,QAAQC,2CAgBnB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useBrowserVisibleTask$,\",\"t { component$, useBrowserVisibleTask$, useStore, u\",\"t { component$, useBrowserVisibleTask$, use\",\"t { component$, useBrowserVis\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport { thing } from './sibling';\nimport mongodb from 'mongodb';\n\nexport const Child = component$(() => {\n\n\tuseStyles$('somestring');\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tstate.count = thing.doStuff() + import(\\"./sibling\\");\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,OACM;AADN,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,0CAAwD,yBAAS,wCACnD;AAFnB,MACKC,sDAAoE,yBAAS,oDAE1E;AAHR,MACKC,8CAA4D,yBAAS,4CAC/C;AAF3B,MACKC,gCAA8C,yBAAS,8BAA8B;AAI1F,OAAO,MAAM,QAAQC,2CAgBnB\"}")
 == DIAGNOSTICS ==
 
 []

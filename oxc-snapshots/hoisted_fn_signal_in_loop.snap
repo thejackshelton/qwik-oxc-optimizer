@@ -39,8 +39,10 @@ import { _jsxSorted } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.value.id;
 ;
+const _hf0_str = "p0.value.id";
 const _hf1 = (p0) => p0.value.selected.value ? "danger" : "";
 ;
+const _hf1_str = "p0.value.selected.value ? \"danger\" : \"\"";
 export const App_component_ckEPmXZlub0 = () => {
 	const data = { value: [
 		{ value: {
@@ -58,13 +60,13 @@ export const App_component_ckEPmXZlub0 = () => {
 	] };
 	return /*#__PURE__*/ _jsxSorted("table", null, null, data.value.map((row) => {
 		return /*#__PURE__*/ _jsxSorted("tr", null, {
-			key: _fnSignal(_hf0, [row], "p0 => p0.value.id;"),
-			class: _fnSignal(_hf1, [row], "p0 => p0.value.selected.value ? \"danger\" : \"\";")
-		}, /*#__PURE__*/ _jsxSorted("td", null, null, _fnSignal(_hf0, [row], "p0 => p0.value.id;"), 3, null), 3, null);
+			key: _fnSignal(_hf0, [row], _hf0_str),
+			class: _fnSignal(_hf1, [row], _hf1_str)
+		}, /*#__PURE__*/ _jsxSorted("td", null, null, _fnSignal(_hf0, [row], _hf0_str), 3, null), 3, null);
 	}), 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.value.id;;\nconst _hf1 = p0 => p0.value.selected.value ? \\"danger\\" : \\"\\";;\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst data = { value: [\n\t\t{ value: {\n\t\t\tid: 1,\n\t\t\tselected: { value: true }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 2,\n\t\t\tselected: { value: false }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 3,\n\t\t\tselected: { value: true }\n\t\t} }\n\t] };\n\treturn _jsxSorted(\\"table\\", null, null, data.value.map((row) => {\n\t\treturn _jsxSorted(\\"tr\\", null, {\n\t\t\tkey: _fnSignal(_hf0, [row], \\"p0 => p0.value.id;\\"),\n\t\t\tclass: _fnSignal(_hf1, [row], \\"p0 => p0.value.selected.value ? \\\\"danger\\\\" : \\\\"\\\\";\\")\n\t\t}, _jsxSorted(\\"td\\", null, null, _fnSignal(_hf0, [row], \\"p0 => p0.value.id;\\"), 3, null), 3, null);\n\t}), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,MAAM,QAAO,OAAM,GAAG,MAAM;AAAG;AAC/B,MAAM,QAAO,OAAM,GAAG,MAAM,SAAS,QAAQ,WAAW;AAAG;AAC3D,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,EAAE,OAAO;EACrB,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,OAAO;GAC1B,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE;AACH,QAAO,WAAW,SAAS,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ;AAC9D,SAAO,WAAW,MAAM,MAAM;GAC7B,KAAK,UAAU,MAAM,CAAC,IAAI,EAAE,qBAAqB;GACjD,OAAO,UAAU,MAAM,CAAC,IAAI,EAAE,qDAAqD;GACnF,EAAE,WAAW,MAAM,MAAM,MAAM,UAAU,MAAM,CAAC,IAAI,EAAE,qBAAqB,EAAE,GAAG,KAAK,EAAE,GAAG,KAAK;GAC/F,EAAE,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.value.id;;\nconst _hf0_str = 'p0.value.id';\nconst _hf1 = p0 => p0.value.selected.value ? \\"danger\\" : \\"\\";;\nconst _hf1_str = 'p0.value.selected.value ? \\"danger\\" : \\"\\"';\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst data = { value: [\n\t\t{ value: {\n\t\t\tid: 1,\n\t\t\tselected: { value: true }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 2,\n\t\t\tselected: { value: false }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 3,\n\t\t\tselected: { value: true }\n\t\t} }\n\t] };\n\treturn _jsxSorted(\\"table\\", null, null, data.value.map((row) => {\n\t\treturn _jsxSorted(\\"tr\\", null, {\n\t\t\tkey: _fnSignal(_hf0, [row], _hf0_str),\n\t\t\tclass: _fnSignal(_hf1, [row], _hf1_str)\n\t\t}, _jsxSorted(\\"td\\", null, null, _fnSignal(_hf0, [row], _hf0_str), 3, null), 3, null);\n\t}), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,MAAM,QAAO,OAAM,GAAG,MAAM;AAAG;AAC/B,MAAM,WAAW;AACjB,MAAM,QAAO,OAAM,GAAG,MAAM,SAAS,QAAQ,WAAW;AAAG;AAC3D,MAAM,WAAW;AACjB,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,EAAE,OAAO;EACrB,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,OAAO;GAC1B,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE;AACH,QAAO,WAAW,SAAS,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ;AAC9D,SAAO,WAAW,MAAM,MAAM;GAC7B,KAAK,UAAU,MAAM,CAAC,IAAI,EAAE,SAAS;GACrC,OAAO,UAAU,MAAM,CAAC,IAAI,EAAE,SAAS;GACvC,EAAE,WAAW,MAAM,MAAM,MAAM,UAAU,MAAM,CAAC,IAAI,EAAE,SAAS,EAAE,GAAG,KAAK,EAAE,GAAG,KAAK;GACnF,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

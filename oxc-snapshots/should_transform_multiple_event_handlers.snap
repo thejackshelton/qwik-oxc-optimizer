@@ -23,20 +23,15 @@ const Foo = component$(function() {
 
 import { Signal } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
-const q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk = qrl(() => import("./test.tsx_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk"), "Foo_component_div_div_p_q_e_click_PjMbeUzoAMk", [row]);
-const q_Foo_component_div_div_q_e_click_vKrX4PmH2aM = qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM"), "Foo_component_div_div_q_e_click_vKrX4PmH2aM", [row]);
-const q_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY = qrl(() => import("./test.tsx_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY"), "Foo_component_div_div_q_e_mouse_over_HUfZejavRTY", [row]);
 export const Foo_component_HTDRsvUbLiE = function() {
-	const data = useSignal < Signal < any > [] > [];
-	return _jsxSorted("div", null, null, data.value.map((row) => _jsxSorted("div", { "q:p": row }, {
-		"q-e:click": q_Foo_component_div_div_q_e_click_vKrX4PmH2aM.w([row]),
-		"q-e:mouse-over": q_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY.w([row])
-	}, _jsxSorted("p", { "q:p": row }, { "q-e:click": q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk.w([row]) }, item.value.id, 7, null), 7, null)), 3, "u6_0");
-};
-;
+	const data = useSignal<Signal<any>[]>([]);
+	return <div>
+	{data.value.map((row) => <div>
+		<p>{item.value.id}</p>
+	  </div>)}
+  </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk = qrl(() => import(\\"./test.tsx_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk\\"), \\"Foo_component_div_div_p_q_e_click_PjMbeUzoAMk\\", [row]);\nconst q_Foo_component_div_div_q_e_click_vKrX4PmH2aM = qrl(() => import(\\"./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM\\"), \\"Foo_component_div_div_q_e_click_vKrX4PmH2aM\\", [row]);\nconst q_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY = qrl(() => import(\\"./test.tsx_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY\\"), \\"Foo_component_div_div_q_e_mouse_over_HUfZejavRTY\\", [row]);\nexport const Foo_component_HTDRsvUbLiE = function() {\n\tconst data = useSignal<Signal<any>[]>([]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((row) => _jsxSorted(\\"div\\", { \\"q:p\\": row }, {\n\t\t\\"q-e:click\\": q_Foo_component_div_div_q_e_click_vKrX4PmH2aM.w([row]),\n\t\t\\"q-e:mouse-over\\": q_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY.w([row])\n\t}, _jsxSorted(\\"p\\", { \\"q:p\\": row }, { \\"q-e:click\\": q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk.w([row]) }, item.value.id, 7, null), 7, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,kDAAkD,UAAU,OAAO,6DAA6D,iDAAiD,CAAC,IAAI,CAAC;AAC7L,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,+CAA+C,CAAC,IAAI,CAAC;AACvL,MAAM,qDAAqD,UAAU,OAAO,gEAAgE,oDAAoD,CAAC,IAAI,CAAC;AACtM,OAAO,MAAM,4BAA4B,WAAW;CACnD,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;AACxC,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE;EAC9F,aAAa,8CAA8C,EAAE,CAAC,IAAI,CAAC;EACnE,kBAAkB,mDAAmD,EAAE,CAAC,IAAI,CAAC;EAC7E,EAAE,WAAW,KAAK,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,gDAAgD,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,KAAK,MAAM,IAAI,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC3J\"}")
 /*
 {
   "origin": "test.tsx",
@@ -180,13 +175,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_div_
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_div_div_q_e_click_vKrX4PmH2aM = qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM"), "Foo_component_div_div_q_e_click_vKrX4PmH2aM", [row]);
+const q_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY = qrl(() => import("./test.tsx_Foo_component_div_div_q_e_mouse_over_HUfZejavRTY"), "Foo_component_div_div_q_e_mouse_over_HUfZejavRTY", [row]);
+const q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk = qrl(() => import("./test.tsx_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk"), "Foo_component_div_div_p_q_e_click_PjMbeUzoAMk", [row]);
 const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 import { component$, useSignal, Signal } from "@qwik.dev/core";
 const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal, \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(function() {\n  const data = useSignal<Signal<any>[]>([]);\n  return <div>\n\t{data.value.map(row => (\n\t  <div onClick$={() => console.log(row.value.id)} onMouseOver$={() => console.log('over' + row.value.id)}>\n\t\t<p onClick$={() => console.log('inner' + row.value.id)}>{item.value.id}</p>\n\t  </div>\n\t))}\n  </div>;\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCACvB,4BACR;AAFrB,SAAS,YAAY,WAAW,cAAc;AAC9C,MAAM,MAAMC,yCASV\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal, Signal } from '@qw\",\"t { component$, useSignal, Signal } from '@qwik.de\",\"t { component$, useSignal, Signal } from '@qwik\",\"t { component$, useSignal, \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal, Signal } from '@qwik.dev/core';\nconst Foo = component$(function() {\n  const data = useSignal<Signal<any>[]>([]);\n  return <div>\n\t{data.value.map(row => (\n\t  <div onClick$={() => console.log(row.value.id)} onMouseOver$={() => console.log('over' + row.value.id)}>\n\t\t<p onClick$={() => console.log('inner' + row.value.id)}>{item.value.id}</p>\n\t  </div>\n\t))}\n  </div>;\n})\n\"],\"mappings\":\"AAAA,MACKA,0DAA0D,OACzD,2DACuB,+CAEb,KAAK,CAAC;AALtB,MACKC,+DACD,OAAO,gEAC4B,oDAGlC,KAAK,CAAC;AANX,MACKC,4DACJ,OAAO,6DACyB,iDAEX,KACrB,CAAC;AANF,MACKC,wCAAwC,OAAO,yCACvB,4BACR;AAFrB,SAAS,YAAY,WAAW,cAAc;AAC9C,MAAM,MAAMC,yCASV\"}")
 == DIAGNOSTICS ==
 
 []

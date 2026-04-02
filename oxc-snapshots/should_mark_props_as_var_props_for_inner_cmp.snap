@@ -46,12 +46,11 @@ export const ModelImg = component$<ModelProps>((props) => {
 ============================= test.tsx_Image_component_CS20HgBlRYI.js (ENTRY POINT)==
 
 export const Image_component_CS20HgBlRYI = (props) => {
-	return _jsxSorted(_Fragment, null, null, _jsxSorted("img", { src: `${props.src}` }, null, null, 3, null), 1, "u6_0");
-};
-;
+	return <>
+      <img src={`${props.src}`} />
+    </>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Image_component_CS20HgBlRYI\"],\"sourcesContent\":[\"export const Image_component_CS20HgBlRYI = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"img\\", { src: `${props.src}` }, null, null, 3, null), 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,+BAA+B,UAAU;AACrD,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,KAAK,GAAG,MAAM,OAAO,EAAE,MAAM,MAAM,GAAG,KAAK,EAAE,GAAG,OAAO;;AACnH\"}")
 /*
 {
   "origin": "test.tsx",
@@ -82,15 +81,13 @@ import { Image } from "./test";
 import { Resource } from "@qwik.dev/core";
 export const ModelImg_component_iJe6ICWVnyA = (props) => {
 	const imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));
-	return _jsxSorted(_Fragment, null, null, _jsxSorted(Resource, { value: imgLoc }, {
-		onRejected: () => _jsxSorted("p", null, null, "error ...", 3, null),
-		onResolved: (res) => res && _jsxSorted(_Fragment, null, null, _jsxSorted(Image, { src: res }, null, null, 3, "u6_1"), 1, null)
-	}, null, 3, "u6_3"), 1, "u6_2");
-};
-;
+	return <>
+      <Resource value={imgLoc} onRejected={() => <p>error ...</p>} onResolved={(res) => res && <>
+              <Image src={res} />
+            </>} />
+    </>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_iJe6ICWVnyA\"],\"sourcesContent\":[\"import { Image } from \\"./test\\";\nimport { Resource } from \\"@qwik.dev/core\\";\nexport const ModelImg_component_iJe6ICWVnyA = (props) => {\n\tconst imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(Resource, { value: imgLoc }, {\n\t\tonRejected: () => _jsxSorted(\\"p\\", null, null, \\"error ...\\", 3, null),\n\t\tonResolved: (res) => res && _jsxSorted(_Fragment, null, null, _jsxSorted(Image, { src: res }, null, null, 3, \\"u6_1\\"), 1, null)\n\t}, null, 3, \\"u6_3\\"), 1, \\"u6_2\\");\n};;\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,SAAS,gBAAgB;AACzB,OAAO,MAAM,kCAAkC,UAAU;CACxD,MAAM,SAAS,eAAe,oDAAoD,EAAE,CAAC,MAAM,CAAC,CAAC;AAC7F,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,UAAU,EAAE,OAAO,QAAQ,EAAE;EAChF,kBAAkB,WAAW,KAAK,MAAM,MAAM,aAAa,GAAG,KAAK;EACnE,aAAa,QAAQ,OAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,KAAK,KAAK,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,KAAK;EAC9H,EAAE,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC9B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -160,8 +157,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_Image_component_CS20HgBlRYI = qrl(() => import("./test.tsx_Image_component_CS20HgBlRYI"), "Image_component_CS20HgBlRYI");
 const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
 const q_ModelImg_component_iJe6ICWVnyA = qrl(() => import("./test.tsx_ModelImg_component_iJe6ICWVnyA"), "ModelImg_component_iJe6ICWVnyA");
@@ -172,7 +167,7 @@ export const Image = componentQrl(q_Image_component_CS20HgBlRYI);
 export const ModelImg = componentQrl<ModelProps>(q_ModelImg_component_iJe6ICWVnyA);
 
 
-Some("{\"version\":3,\"names\":[\" useResou\",\"t { component$, useResource$,\",\"t { component$, useResource$, Resource } from \\"@qwi\",\"t { component$, useResource$, Re\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$, Resource } from \\"@qwik.dev/core\\";\nimport { type ModelProps } from \\"./modelMenu\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\n\nexport const Image = component$((props) => {\n  return (\n    <>\n      <img src={`${props.src}`} />\n    </>\n  );\n});\n\nexport const ModelImg = component$<ModelProps>((props) => {\n  const imgLoc = useResource$(async ({ track }) => {\n    track(() => props.store.model);\n    return await serverImg('some.png');\n  });\n  return (\n    <>\n      <Resource\n        value={imgLoc}\n        onRejected={() => <p>error ...</p>}\n        onResolved={(res) =>\n          res && (\n            <>\n              <Image\n                src={res}\n              />\n            </>\n          )\n        }\n      />\n    </>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,0CAA0C,OAAO,2CAC1B,8BACjB;AAHX,MACKC,gEACL,OAAO,iEACkB,qDAET,OAAO,CAAC;AALxB,MACKC,6CAA6C,OAAO,8CACvB,iCACd;AAFpB,SAAS,YAAY,cAAc,gBAAgB;AACnD,cAAc,kBAAkB;AAChC,SAAS,iBAAiB;AAE1B,OAAO,MAAM,QAAQC,2CAMnB;AAEF,OAAO,MAAM,WAAWA,aAAW,6CAsBjC\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useResource$,\",\"t { component$, useResource$, Resource } from \\"@qwi\",\"t { component$, useResource$, Re\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$, Resource } from \\"@qwik.dev/core\\";\nimport { type ModelProps } from \\"./modelMenu\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\n\nexport const Image = component$((props) => {\n  return (\n    <>\n      <img src={`${props.src}`} />\n    </>\n  );\n});\n\nexport const ModelImg = component$<ModelProps>((props) => {\n  const imgLoc = useResource$(async ({ track }) => {\n    track(() => props.store.model);\n    return await serverImg('some.png');\n  });\n  return (\n    <>\n      <Resource\n        value={imgLoc}\n        onRejected={() => <p>error ...</p>}\n        onResolved={(res) =>\n          res && (\n            <>\n              <Image\n                src={res}\n              />\n            </>\n          )\n        }\n      />\n    </>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CAC1B,8BACjB;AAHX,MACKC,gEACL,OAAO,iEACkB,qDAET,OAAO,CAAC;AALxB,MACKC,6CAA6C,OAAO,8CACvB,iCACd;AAFpB,SAAS,YAAY,cAAc,gBAAgB;AACnD,cAAc,kBAAkB;AAChC,SAAS,iBAAiB;AAE1B,OAAO,MAAM,QAAQC,2CAMnB;AAEF,OAAO,MAAM,WAAWA,aAAW,6CAsBjC\"}")
 == DIAGNOSTICS ==
 
 []

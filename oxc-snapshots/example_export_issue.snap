@@ -30,12 +30,9 @@ export default App;
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 export const App_component_ckEPmXZlub0 = () => {
-	return _jsxSorted("div", null, null, "hola", 3, "u6_0");
-};
-;
+	return <div>hola</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"hola\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -61,7 +58,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 
 import { App } from "./test";
 export const Root_component_royhjYaCbYE = (props: Stuff) => {
-	return _jsxSorted(App, null, null, null, 3, "u6_1");
+	return <App />;
 };;
 
 /*
@@ -90,7 +87,6 @@ export const Root_component_royhjYaCbYE = (props: Stuff) => {
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 const q_Root_component_royhjYaCbYE = qrl(() => import("./test.tsx_Root_component_royhjYaCbYE"), "Root_component_royhjYaCbYE");
 import { component$ } from "@qwik.dev/core";
@@ -101,7 +97,7 @@ export { Other as App };
 export default App;
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCAEA,4BAKA;AAVN,MACKC,yCAEL,OAAO,0CAEC,6BAKC;AATT,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,0CAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,MACKA,wCACL,OACM,yCAEA,4BAKA;AAVN,MACKC,yCAEL,OAAO,0CAEC,6BAKC;AATT,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,0CAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
 == DIAGNOSTICS ==
 
 []

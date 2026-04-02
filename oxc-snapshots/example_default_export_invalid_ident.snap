@@ -47,14 +47,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx__404_component_div_q_e_
 
 ============================= src/components/mongo/404.tsx__404_component_zRvoWc98eqo.tsx (ENTRY POINT)==
 
-const q__404_component_div_q_e_click_aMLnLWtkRhc = qrl(() => import("./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc"), "_404_component_div_q_e_click_aMLnLWtkRhc");
 export const _404_component_zRvoWc98eqo = () => {
-	return _jsxSorted("div", null, { "q-e:click": q__404_component_div_q_e_click_aMLnLWtkRhc }, null, 3, "0B_0");
-};
-;
+	return <div>
+		</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx__404_component_zRvoWc98eqo\"],\"sourcesContent\":[\"const q__404_component_div_q_e_click_aMLnLWtkRhc = qrl(() => import(\\"./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc\\"), \\"_404_component_div_q_e_click_aMLnLWtkRhc\\");\nexport const _404_component_zRvoWc98eqo = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q__404_component_div_q_e_click_aMLnLWtkRhc }, null, 3, \\"0B_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,uDAAuD,2CAA2C;AACtK,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,4CAA4C,EAAE,MAAM,GAAG,OAAO;;AAC3G\"}")
 /*
 {
   "origin": "src/components/mongo/404.tsx",
@@ -78,13 +75,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx__404_component_zRvoWc98
 
 ============================= src/components/mongo/404.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q__404_component_div_q_e_click_aMLnLWtkRhc = qrl(() => import("./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc"), "_404_component_div_q_e_click_aMLnLWtkRhc");
 const q__404_component_zRvoWc98eqo = qrl(() => import("./404.tsx__404_component_zRvoWc98eqo"), "_404_component_zRvoWc98eqo");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q__404_component_zRvoWc98eqo);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/components/mongo/404.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAEL,OAAO,yCAEH,6BAA6B;AAJjC,SAAS,kBAAkB;AAE3B,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\ne\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/components/mongo/404.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,MACKA,uDAES,OAAO,uDAEW;AALhC,MACKC,yCAEL,OAAO,yCAEH,6BAA6B;AAJjC,SAAS,kBAAkB;AAE3B,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

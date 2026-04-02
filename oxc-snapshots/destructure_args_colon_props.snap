@@ -21,12 +21,11 @@ expression: output
 
 export const test_component_LUXeXe0DQrg = (props) => {
 	const { "bind:value": bindValue } = props;
-	return _jsxSorted(_Fragment, null, null, bindValue, 3, "u6_0");
-};
-;
+	return <>
+				{bindValue}
+				</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = (props) => {\n\tconst { \\"bind:value\\": bindValue } = props;\n\treturn _jsxSorted(_Fragment, null, null, bindValue, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,EAAE,cAAc,cAAc;AACpC,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,GAAG,OAAO;;AAC7D\"}")
 /*
 {
   "origin": "test.tsx",
@@ -53,14 +52,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"$ } from \",\"ort { component$ } from \\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { 'bind:value': bindValue } = props;\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{bindValue}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,yCAAyC,OACxC,0CACC,6BAA6B;AAFlC,SAAS,kBAAkB;AAC3B,eAAeC,0CAOb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\texport default component$((props) => {\n\t\t\tconst { 'bind:value': bindValue } = props;\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t{bindValue}\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OACxC,0CACC,6BAA6B;AAFlC,SAAS,kBAAkB;AAC3B,eAAeC,0CAOb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -63,16 +63,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [item]);
-const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
 export const test_component_LUXeXe0DQrg = () => {
 	const loop: string[] = ["abcd", "xyz"];
-	return _jsxSorted("div", null, null, loop.map((item, index) => {
-		return _jsxSorted("div", { "q:ps": [index, item] }, {
-			"q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([item]),
-			"q-e:hover": q_test_component_div_div_q_e_hover_2iHUE4xtgo8.w([index])
-		}, item, 7, null);
-	}), 3, "u6_0");
+	return <div>
+      {loop.map((item, index) => {
+		return <div>{item}</div>;
+	})}
+    </div>;
 };;
 
 /*
@@ -139,13 +136,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [item]);
+const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAEL,OAAO,0CACQ,6BACb;AAJF,SAAS,kBAAkB;AAE3B,eAAeC,0CASb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexpor\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,2DAEa,OAAO,4DAEhB,gDAGR,MAAM,CAAC;AARR,MACKA,2DAEa,OAAO,4DAEhB,gDAGR,OAAO,CAAC;AART,MACKC,yCAEL,OAAO,0CACQ,6BACb;AAJF,SAAS,kBAAkB;AAE3B,eAAeC,0CASb\"}")
 == DIAGNOSTICS ==
 
 []

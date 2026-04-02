@@ -192,56 +192,38 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI
 
 import { useSignal } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
-const q_App_component_div_button_q_e_click_UB6Fs5a3bd8 = qrl(() => import("./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8"), "App_component_div_button_q_e_click_UB6Fs5a3bd8", [cart, item]);
-const q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = qrl(() => import("./test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0"), "App_component_loopArrowFn_span_q_e_click_Wau7C836nf0", [cart, item]);
-const q_App_component_loopForI_span_q_e_click_PbCYbPM6etI = qrl(() => import("./test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI"), "App_component_loopForI_span_q_e_click_PbCYbPM6etI", [
-	cart,
-	i,
-	results
-]);
-const q_App_component_loopForIn_span_q_e_click_adzBGickx1U = qrl(() => import("./test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U"), "App_component_loopForIn_span_q_e_click_adzBGickx1U", [
-	cart,
-	key,
-	results
-]);
-const q_App_component_loopForOf_span_q_e_click_zlNGHYu926I = qrl(() => import("./test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I"), "App_component_loopForOf_span_q_e_click_zlNGHYu926I", [cart, item]);
-const q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = qrl(() => import("./test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E"), "App_component_loopWhile_span_q_e_click_05kCMrZVn5E", [
-	cart,
-	i,
-	results
-]);
 export const App_component_ckEPmXZlub0 = () => {
 	const cart = useStore<string[]>([]);
 	const results = useSignal(["foo"]);
 	function loopArrowFn(results: string[]) {
-		return results.map((item) => _jsxSorted("span", { "q:ps": [cart, item] }, { "q-e:click": q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0.w([cart, item]) }, item, 7, "u6_0"));
+		return results.map((item) => <span>
+            {item}
+          </span>);
 	}
 	function loopForI(results: string[]) {
 		const items = [];
 		for (let i = 0; i < results.length; i++) {
-			items.push(_jsxSorted("span", null, { "q-e:click": q_App_component_loopForI_span_q_e_click_PbCYbPM6etI.w([
-				cart,
-				i,
-				results
-			]) }, results[i], 3, "u6_1"));
+			items.push(<span>
+              {results[i]}
+            </span>);
 		}
 		return items;
 	}
 	function loopForOf(results: string[]) {
 		const items = [];
 		for (const item of results) {
-			items.push(_jsxSorted("span", { "q:p": item }, { "q-e:click": q_App_component_loopForOf_span_q_e_click_zlNGHYu926I.w([cart, item]) }, item, 7, "u6_2"));
+			items.push(<span>
+              {item}
+            </span>);
 		}
 		return items;
 	}
 	function loopForIn(results: string[]) {
 		const items = [];
 		for (const key in results) {
-			items.push(_jsxSorted("span", { "q:p": key }, { "q-e:click": q_App_component_loopForIn_span_q_e_click_adzBGickx1U.w([
-				cart,
-				key,
-				results
-			]) }, results[key], 7, "u6_3"));
+			items.push(<span>
+              {results[key]}
+            </span>);
 		}
 		return items;
 	}
@@ -249,26 +231,23 @@ export const App_component_ckEPmXZlub0 = () => {
 		const items = [];
 		let i = 0;
 		while (i < results.length) {
-			items.push(_jsxSorted("span", null, { "q-e:click": q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E.w([
-				cart,
-				i,
-				results
-			]) }, results[i], 3, "u6_4"));
+			items.push(<span>
+              {results[i]}
+            </span>);
 			i++;
 		}
 		return items;
 	}
-	return _jsxSorted("div", null, null, [
-		results.value.map((item) => _jsxSorted("button", { "q:ps": [cart, item] }, {
-			id: "second",
-			"q-e:click": q_App_component_div_button_q_e_click_UB6Fs5a3bd8.w([cart, item])
-		}, item, 7, null)),
-		loopArrowFn(results.value),
-		loopForI(results.value),
-		loopForOf(results.value),
-		loopForIn(results.value),
-		loopWhile(results.value)
-	], 3, "u6_5");
+	return <div>
+          {results.value.map((item) => <button>
+              {item}
+            </button>)}
+          {loopArrowFn(results.value)}
+          {loopForI(results.value)}
+          {loopForOf(results.value)}
+          {loopForIn(results.value)}
+          {loopWhile(results.value)}
+        </div>;
 };;
 
 /*
@@ -461,49 +440,30 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForO
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = qrl(() => import("./test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0"), "App_component_loopArrowFn_span_q_e_click_Wau7C836nf0", [cart, item]);
+const q_App_component_loopForI_span_q_e_click_PbCYbPM6etI = qrl(() => import("./test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI"), "App_component_loopForI_span_q_e_click_PbCYbPM6etI", [
+	cart,
+	i,
+	results
+]);
+const q_App_component_loopForOf_span_q_e_click_zlNGHYu926I = qrl(() => import("./test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I"), "App_component_loopForOf_span_q_e_click_zlNGHYu926I", [cart, item]);
+const q_App_component_loopForIn_span_q_e_click_adzBGickx1U = qrl(() => import("./test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U"), "App_component_loopForIn_span_q_e_click_adzBGickx1U", [
+	cart,
+	key,
+	results
+]);
+const q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = qrl(() => import("./test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E"), "App_component_loopWhile_span_q_e_click_05kCMrZVn5E", [
+	cart,
+	i,
+	results
+]);
+const q_App_component_div_button_q_e_click_UB6Fs5a3bd8 = qrl(() => import("./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8"), "App_component_div_button_q_e_click_UB6Fs5a3bd8", [cart, item]);
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 import { $, component$, useStore, useSignal } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport const App = component$(() => {\n      const cart = useStore<string[]>([]);\n      const results = useSignal(['foo']);\n      function loopArrowFn(results: string[]) {\n        return results.map((item) => (\n          <span\n            onClick$={() => {\n              cart.push(item);\n            }}\n          >\n            {item}\n          </span>\n        ));\n      }\n      function loopForI(results: string[]) {\n        const items = [];\n        for (let i = 0; i < results.length; i++) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForOf(results: string[]) {\n        const items = [];\n        for (const item of results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForIn(results: string[]) {\n        const items = [];\n        for (const key in results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[key]);\n              }}\n            >\n              {results[key]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopWhile(results: string[]) {\n        const items = [];\n        let i = 0;\n        while (i < results.length) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n          i++;\n        }\n        return items;\n      }\n      return (\n        <div>\n          {results.value.map((item) => (\n            <button\n              id=\\"second\\"\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          {loopArrowFn(results.value)}\n          {loopForI(results.value)}\n          {loopForOf(results.value)}\n          {loopForIn(results.value)}\n          {loopWhile(results.value)}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAC5B,4BACV;AAFd,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,OAAO,MAAM,MAAMC,yCA+Fb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore, useSignal } from '@qwik.d\",\"t { $, component$, useStore, useSignal } from '@qwi\",\"t { $, component$, useStore, useSignal } from '@qwik\",\"t { $, component$, useStore, useSignal } from '@\",\"t { $, component$, useStore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport const App = component$(() => {\n      const cart = useStore<string[]>([]);\n      const results = useSignal(['foo']);\n      function loopArrowFn(results: string[]) {\n        return results.map((item) => (\n          <span\n            onClick$={() => {\n              cart.push(item);\n            }}\n          >\n            {item}\n          </span>\n        ));\n      }\n      function loopForI(results: string[]) {\n        const items = [];\n        for (let i = 0; i < results.length; i++) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForOf(results: string[]) {\n        const items = [];\n        for (const item of results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForIn(results: string[]) {\n        const items = [];\n        for (const key in results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[key]);\n              }}\n            >\n              {results[key]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopWhile(results: string[]) {\n        const items = [];\n        let i = 0;\n        while (i < results.length) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n          i++;\n        }\n        return items;\n      }\n      return (\n        <div>\n          {results.value.map((item) => (\n            <button\n              id=\\"second\\"\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          {loopArrowFn(results.value)}\n          {loopForI(results.value)}\n          {loopForOf(results.value)}\n          {loopForIn(results.value)}\n          {loopWhile(results.value)}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,MACKA,mEACF,OAAO,oEAC8B,wDAE7B,YAAY,CAAC;AALxB,MACKC,gEACL,OAAO,iEAC2B,qDAEhC;;;;CAAuB,CAAC;AAL1B,MACKC,iEACJ,OAAO,kEAC4B,sDAE/B,YAAY,CAAC;AALlB,MACKA,iEACJ,OAAO,kEAC4B,sDAE/B;;;;CAAyB,CAAC;AAL/B,MACKA,iEACJ,OAAO,kEAC4B,sDAE/B;;;;CAAuB,CAAC;AAL7B,MACKC,6DAA6D,OAC9D,8DACwB,kDACO,YAC9B,CAAC;AALN,MACKC,wCAAwC,OAAO,yCAC5B,4BACV;AAFd,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,OAAO,MAAM,MAAMC,yCA+Fb\"}")
 == DIAGNOSTICS ==
 
-[
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C02",
-    "file": "test.tsx",
-    "message": "Reference to identifier 'loopArrowFn' can not be used inside a Qrl($) scope because it's a function"
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C02",
-    "file": "test.tsx",
-    "message": "Reference to identifier 'loopForI' can not be used inside a Qrl($) scope because it's a function"
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C02",
-    "file": "test.tsx",
-    "message": "Reference to identifier 'loopForOf' can not be used inside a Qrl($) scope because it's a function"
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C02",
-    "file": "test.tsx",
-    "message": "Reference to identifier 'loopForIn' can not be used inside a Qrl($) scope because it's a function"
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C02",
-    "file": "test.tsx",
-    "message": "Reference to identifier 'loopWhile' can not be used inside a Qrl($) scope because it's a function"
-  }
-]
+[]

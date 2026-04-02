@@ -63,9 +63,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_Heade
 import { Header } from "./test";
 import { bar as bbar } from "../state";
 import { * as dep2 } from "dep2";
-const q_Header_component_Header_onClick_KjD9TCNkNxY = qrl(() => import("./test.tsx_Header_component_Header_onClick_KjD9TCNkNxY"), "Header_component_Header_onClick_KjD9TCNkNxY");
 export const Header_component_UVBJuFYfvDo = () => {
-	return _jsxSorted(Header, { onClick: Qrl(q_Header_component_Header_onClick_KjD9TCNkNxY) }, null, [dep2.stuff(), bbar()], 3, "cA_0");
+	return <Header>
+			{dep2.stuff()}{bbar()}
+		</Header>;
 };;
 
 /*
@@ -94,12 +95,9 @@ export const Header_component_UVBJuFYfvDo = () => {
 import { Header } from "./test";
 import { foo } from "../state";
 export const App_component_wGkRHWXaqjs = () => {
-	return _jsxSorted(Header, null, null, foo(), 3, "cA_1");
-};
-;
+	return <Header>{foo()}</Header>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_wGkRHWXaqjs\"],\"sourcesContent\":[\"import { Header } from \\"./test\\";\nimport { foo } from \\"../state\\";\nexport const App_component_wGkRHWXaqjs = () => {\n\treturn _jsxSorted(Header, null, null, foo(), 3, \\"cA_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,WAAW;AACpB,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,QAAQ,MAAM,MAAM,KAAK,EAAE,GAAG,OAAO;;AACtD\"}")
 /*
 {
   "origin": "project/test.tsx",
@@ -123,7 +121,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_wGkRHWXa
 
 ============================= project/test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Header_component_Header_onClick_KjD9TCNkNxY = qrl(() => import("./test.tsx_Header_component_Header_onClick_KjD9TCNkNxY"), "Header_component_Header_onClick_KjD9TCNkNxY");
 const q_Header_component_UVBJuFYfvDo = qrl(() => import("./test.tsx_Header_component_UVBJuFYfvDo"), "Header_component_UVBJuFYfvDo");
 const q_App_component_wGkRHWXaqjs = qrl(() => import("./test.tsx_App_component_wGkRHWXaqjs"), "App_component_wGkRHWXaqjs");
 import { $, component$ } from "@qwik.dev/core";
@@ -134,7 +132,7 @@ export const Header = componentQrl(q_Header_component_UVBJuFYfvDo);
 export const App = componentQrl(q_App_component_wGkRHWXaqjs);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"t { $, component$ } from '@\",\"component$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport {foo, bar as bbar} from \\"../state\\";\nimport * as dep2 from \\"dep2\\";\nimport dep3 from \\"dep3/something\\";\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<Header onClick={$((ev) => dep3(ev))}>\n\t\t\t{dep2.stuff()}{bbar()}\n\t\t</Header>\n\t);\n});\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Header>{foo()}</Header>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,2CACL,OAAO,4CACC,+BACC;AAJT,MACKC,wCAAwC,OACzC,yCACF,4BACF;AAHA,SAAS,GAAG,kBAAkB;AAC9B,SAAQ,KAAK,OAAO,YAAW;AAC/B,YAAY,UAAU;AACtB,OAAO,UAAU;AAEjB,OAAO,MAAM,SAASC,4CAMpB;AAEF,OAAO,MAAM,MAAMA,yCAIjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.dev/core';\nim\",\"t { $, component$ } from '@qwi\",\"t { $, component$ } from '@\",\"component$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport {foo, bar as bbar} from \\"../state\\";\nimport * as dep2 from \\"dep2\\";\nimport dep3 from \\"dep3/something\\";\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<Header onClick={$((ev) => dep3(ev))}>\n\t\t\t{dep2.stuff()}{bbar()}\n\t\t</Header>\n\t);\n});\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Header>{foo()}</Header>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,0DACU,OAAO,2DAEd,8CAEU;AANlB,MACKC,2CACL,OAAO,4CACC,+BACC;AAJT,MACKC,wCAAwC,OACzC,yCACF,4BACF;AAHA,SAAS,GAAG,kBAAkB;AAC9B,SAAQ,KAAK,OAAO,YAAW;AAC/B,YAAY,UAAU;AACtB,OAAO,UAAU;AAEjB,OAAO,MAAM,SAASC,4CAMpB;AAEF,OAAO,MAAM,MAAMA,yCAIjB\"}")
 == DIAGNOSTICS ==
 
 []

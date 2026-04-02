@@ -26,12 +26,9 @@ export default component$(()=> {
 ============================= test.tsx_test_component_LUXeXe0DQrg.tsx (ENTRY POINT)==
 
 export const test_component_LUXeXe0DQrg = () => {
-	return _jsxSorted("div", null, null, "cmp", 3, "u6_0");
-};
-;
+	return <div>cmp</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -55,7 +52,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 import mongodb from "mongodb";
@@ -65,7 +61,7 @@ export const onGet = () => {
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCACJ,OAAO,0CAEU,6BACA;AAJlB,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAEb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,MACKA,yCACJ,OAAO,0CAEU,6BACA;AAJlB,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAEb\"}")
 == DIAGNOSTICS ==
 
 []

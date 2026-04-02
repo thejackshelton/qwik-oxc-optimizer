@@ -23,12 +23,12 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 export const test_component_LUXeXe0DQrg = () => {
-	return _jsxSorted(Hola, null, null, [_jsxSorted("div", null, null, "1", 3, null), _jsxSorted("div", null, null, "2", 3, null)], 3, "u6_1");
-};
-;
+	return <Hola>
+			<div>1</div>
+			<div>2</div>
+		</Hola>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(Hola, null, null, [_jsxSorted(\\"div\\", null, null, \\"1\\", 3, null), _jsxSorted(\\"div\\", null, null, \\"2\\", 3, null)], 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,MAAM,MAAM,MAAM,CAAC,WAAW,OAAO,MAAM,MAAM,KAAK,GAAG,KAAK,EAAE,WAAW,OAAO,MAAM,MAAM,KAAK,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACzI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -52,7 +52,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
 import { _jsxSplit } from "@qwik.dev/core";
@@ -65,7 +64,7 @@ export default componentQrl(q_test_component_LUXeXe0DQrg);
 export { Hola as _auto_Hola };
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tfunction Hola(props: any) {\n\t\t\treturn <div {...props}></div>;\n\t\t}\n\n\t\texport default component$(() => {\n\t\treturn <Hola>\n\t\t\t<div>1</div>\n\t\t\t<div>2</div>\n\t\t</Hola>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,yCAAyC,OAEzC,0CACY,6BAGV;AANL,SAAS,kBAAkB;AAE3B,SAAS,KAAK,YAAY;AACzB,2CAAgB;;AAGjB,eAAeC,0CAKb;AAZJ\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tfunction Hola(props: any) {\n\t\t\treturn <div {...props}></div>;\n\t\t}\n\n\t\texport default component$(() => {\n\t\treturn <Hola>\n\t\t\t<div>1</div>\n\t\t\t<div>2</div>\n\t\t</Hola>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,yCAAyC,OAEzC,0CACY,6BAGV;AANL,SAAS,kBAAkB;AAE3B,SAAS,KAAK,YAAY;AACzB,2CAAgB;;AAGjB,eAAeC,0CAKb;AAZJ\"}")
 == DIAGNOSTICS ==
 
 []

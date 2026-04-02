@@ -21,7 +21,6 @@ const STYLES = '.class {}';
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Works_component_useStyle_i40UL9JyQpg = _noopQrl("Works_component_useStyle_i40UL9JyQpg");
 const q_Works_component_div_onClick_server_OsNoEFc5SM4 = _noopQrl("Works_component_div_onClick_server_OsNoEFc5SM4");
 const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
@@ -31,7 +30,7 @@ const STYLES = ".class {}";
 q_Works_component_useStyle_i40UL9JyQpg.s(STYLES);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, server$, useStyle$ \",\"t { $, component$, server$, useStyle$ } from '@q\",\"t { $, component$, server$, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$ } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,kDAAkD,uCAE9B;AAHzB,MACKC,4DAA4D,iDAGjE;AAJA,MACKC,yCAAyC,8BAEvC;AAFP,SAAS,GAAG,YAAY,SAAS,iBAAiB;AAElD,OAAO,MAAM,QAAQC,2CAMnB;AAEF,MAAM,SAAS;gDAVgC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, server$, useStyle$ \",\"t { $, component$, server$, useStyle$ } from '@q\",\"t { $, component$, server$, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$ } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AAAA,MACKA,kDAAkD,uCAE9B;AAHzB,MACKC,4DAA4D,iDAGjE;AAJA,MACKC,yCAAyC,8BAEvC;AAFP,SAAS,GAAG,YAAY,SAAS,iBAAiB;AAElD,OAAO,MAAM,QAAQC,2CAMnB;AAEF,MAAM,SAAS;gDAVgC\"}")
 == DIAGNOSTICS ==
 
 []

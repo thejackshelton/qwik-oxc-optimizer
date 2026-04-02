@@ -63,9 +63,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
 ============================= test.tsx_Test_component_qJXYteHpGTQ.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_Test_component_button_q_e_click_SvzH9HBZLMQ = qrl(() => import("./test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ"), "Test_component_button_q_e_click_SvzH9HBZLMQ", [sig]);
-const q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = qrl(() => import("./test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y"), "Test_component_button_q_e_dbl_click_V6SfNCrWp5Y", [foo, sig]);
-const q_Test_component_button_q_e_hover_IVVGOMV4FJ4 = qrl(() => import("./test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4"), "Test_component_button_q_e_hover_IVVGOMV4FJ4", [bar, sig]);
 export const Test_component_qJXYteHpGTQ = () => {
 	const sig = useSignal(0);
 	const _ref = {};
@@ -74,20 +71,9 @@ export const Test_component_qJXYteHpGTQ = () => {
 	const _ref = {};
 	_ref.bar = useSignal("_ref.bar");
 	const { bar } = _ref;
-	return _jsxSorted("button", { "q:ps": [
-		bar,
-		foo,
-		sig
-	] }, {
-		"q-e:click": q_Test_component_button_q_e_click_SvzH9HBZLMQ.w([sig]),
-		"q-e:dbl-click": q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y.w([foo, sig]),
-		"q-e:hover": q_Test_component_button_q_e_hover_IVVGOMV4FJ4.w([bar, sig])
-	}, sig, 7, "u6_0");
-};
-;
+	return <button>{sig}</button>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_qJXYteHpGTQ\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_Test_component_button_q_e_click_SvzH9HBZLMQ = qrl(() => import(\\"./test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ\\"), \\"Test_component_button_q_e_click_SvzH9HBZLMQ\\", [sig]);\nconst q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = qrl(() => import(\\"./test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y\\"), \\"Test_component_button_q_e_dbl_click_V6SfNCrWp5Y\\", [foo, sig]);\nconst q_Test_component_button_q_e_hover_IVVGOMV4FJ4 = qrl(() => import(\\"./test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4\\"), \\"Test_component_button_q_e_hover_IVVGOMV4FJ4\\", [bar, sig]);\nexport const Test_component_qJXYteHpGTQ = () => {\n\tconst sig = useSignal(0);\n\tconst _ref = {};\n\t_ref.foo = useSignal(\\"_ref.foo\\");\n\tconst { foo } = _ref;\n\tconst _ref = {};\n\t_ref.bar = useSignal(\\"_ref.bar\\");\n\tconst { bar } = _ref;\n\treturn _jsxSorted(\\"button\\", { \\"q:ps\\": [\n\t\tbar,\n\t\tfoo,\n\t\tsig\n\t] }, {\n\t\t\\"q-e:click\\": q_Test_component_button_q_e_click_SvzH9HBZLMQ.w([sig]),\n\t\t\\"q-e:dbl-click\\": q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y.w([foo, sig]),\n\t\t\\"q-e:hover\\": q_Test_component_button_q_e_hover_IVVGOMV4FJ4.w([bar, sig])\n\t}, sig, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,+CAA+C,CAAC,IAAI,CAAC;AACvL,MAAM,oDAAoD,UAAU,OAAO,+DAA+D,mDAAmD,CAAC,KAAK,IAAI,CAAC;AACxM,MAAM,gDAAgD,UAAU,OAAO,2DAA2D,+CAA+C,CAAC,KAAK,IAAI,CAAC;AAC5L,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,EAAE;CACxB,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,WAAW;CAChC,MAAM,EAAE,QAAQ;CAChB,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,WAAW;CAChC,MAAM,EAAE,QAAQ;AAChB,QAAO,WAAW,UAAU,EAAE,QAAQ;EACrC;EACA;EACA;EACA,EAAE,EAAE;EACJ,aAAa,8CAA8C,EAAE,CAAC,IAAI,CAAC;EACnE,iBAAiB,kDAAkD,EAAE,CAAC,KAAK,IAAI,CAAC;EAChF,aAAa,8CAA8C,EAAE,CAAC,KAAK,IAAI,CAAC;EACxE,EAAE,KAAK,GAAG,OAAO;;AACjB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -197,13 +183,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Test_component_button_q_e_click_SvzH9HBZLMQ = qrl(() => import("./test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ"), "Test_component_button_q_e_click_SvzH9HBZLMQ", [sig]);
+const q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = qrl(() => import("./test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y"), "Test_component_button_q_e_dbl_click_V6SfNCrWp5Y", [foo, sig]);
+const q_Test_component_button_q_e_hover_IVVGOMV4FJ4 = qrl(() => import("./test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4"), "Test_component_button_q_e_hover_IVVGOMV4FJ4", [bar, sig]);
 const q_Test_component_qJXYteHpGTQ = qrl(() => import("./test.tsx_Test_component_qJXYteHpGTQ"), "Test_component_qJXYteHpGTQ");
 import { component$, useSignal, $ } from "@qwik.dev/core";
 export const Test = componentQrl(q_Test_component_qJXYteHpGTQ);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const Test = component$(() => {\n\t\t\tconst sig = useSignal(0);\n\t\t\tconst foo = useSignal('foo');\n\t\t\tconst bar = useSignal('bar');\n\t\t\treturn <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAEpB,6BACZ;AAHnB,SAAS,YAAY,WAAW,SAAS;AAEzC,OAAO,MAAM,OAAOC,0CAKlB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal, $ } from \\"@qwik.\",\"ort { component$, useSignal, $ } from \\"@qwik.dev/\",\"ort { component$, useSignal,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const Test = component$(() => {\n\t\t\tconst sig = useSignal(0);\n\t\t\tconst foo = useSignal('foo');\n\t\t\tconst bar = useSignal('bar');\n\t\t\treturn <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,0DAEJ,OAAO,2DACkB,+CAEf,KAAK,CAAC;AANjB,MACKC,8DAEA,OAAO,+DAEP,mDACkB,UACvB,CAAC;AAPD,MACKD,0DAEJ,OAAO,2DACkB,+CAEf,UAAU,CAAC;AANtB,MACKE,yCAAyC,OAAO,0CAEpB,6BACZ;AAHnB,SAAS,YAAY,WAAW,SAAS;AAEzC,OAAO,MAAM,OAAOC,0CAKlB\"}")
 == DIAGNOSTICS ==
 
 []

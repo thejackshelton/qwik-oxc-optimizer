@@ -23,12 +23,11 @@ expression: output
 import { useSignal } from "@qwik.dev/core";
 export const test_component_LUXeXe0DQrg = () => {
 	const count = useSignal(0);
-	return _jsxSorted("div", null, null, (count as any).value, 3, "u6_0");
-};
-;
+	return <div>
+					{(count as any).value}
+				</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst count = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, (count as any).value, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mCAAmC;CAC/C,MAAM,QAAQ,UAAU,EAAE;AAC1B,QAAO,WAAW,OAAO,MAAM,OAAO,cAAc,OAAO,GAAG,OAAO;;AACpE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -52,13 +51,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t{(count as any).value}\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGrD,6BAA6B;AAH3B,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAOb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t{(count as any).value}\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGrD,6BAA6B;AAH3B,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAOb\"}")
 == DIAGNOSTICS ==
 
 []

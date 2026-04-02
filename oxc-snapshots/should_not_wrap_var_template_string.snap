@@ -31,15 +31,9 @@ const q_test_component_productTitle_useComputed_ZVQVUkxqtiQ = qrl(() => import("
 export const test_component_LUXeXe0DQrg = () => {
 	const t = inlineTranslate();
 	const productTitle = useComputedQrl(q_test_component_productTitle_useComputed_ZVQVUkxqtiQ);
-	return _jsxSorted("img", {
-		alt: `${t("home.imageAlt.founded-product:")} ${productTitle.value}`,
-		attr: t("home.imageAlt.founded-product:")
-	}, null, null, 3, "u6_0");
-};
-;
+	return <img />;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { inlineTranslate } from \\"translate-lib\\";\nconst q_test_component_productTitle_useComputed_ZVQVUkxqtiQ = qrl(() => import(\\"./test.tsx_test_component_productTitle_useComputed_ZVQVUkxqtiQ\\"), \\"test_component_productTitle_useComputed_ZVQVUkxqtiQ\\");\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst t = inlineTranslate();\n\tconst productTitle = useComputedQrl(q_test_component_productTitle_useComputed_ZVQVUkxqtiQ);\n\treturn _jsxSorted(\\"img\\", {\n\t\talt: `${t(\\"home.imageAlt.founded-product:\\")} ${productTitle.value}`,\n\t\tattr: t(\\"home.imageAlt.founded-product:\\")\n\t}, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,uBAAuB;AAChC,MAAM,wDAAwD,UAAU,OAAO,mEAAmE,sDAAsD;AACxM,OAAO,MAAM,mCAAmC;CAC/C,MAAM,IAAI,iBAAiB;CAC3B,MAAM,eAAe,eAAe,sDAAsD;AAC1F,QAAO,WAAW,OAAO;EACxB,KAAK,GAAG,EAAE,iCAAiC,CAAC,GAAG,aAAa;EAC5D,MAAM,EAAE,iCAAiC;EACzC,EAAE,MAAM,MAAM,GAAG,OAAO;;AACxB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -93,14 +87,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_product
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useComputed$ } from "@qwik.dev/core";
 import { inlineTranslate } from "translate-lib";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$ } from '@qwik.dev/core';\n\t\timport { inlineTranslate } from 'translate-lib';\n\n\t\texport default component$(() => {\n\t\t\tconst t = inlineTranslate();\n\n\t\t\tconst productTitle = useComputed$(() => {\n\t\t\t\treturn 'Test title';\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<img \n\t\t\t\t\tattr={t('home.imageAlt.founded-product:')}\n\t\t\t\t\talt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CACnB,6BAEvB;AAHT,SAAS,YAAY,oBAAoB;AACzC,SAAS,uBAAuB;AAEhC,eAAeC,0CAYb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$ } from '@qwik.dev/core';\n\t\timport { inlineTranslate } from 'translate-lib';\n\n\t\texport default component$(() => {\n\t\t\tconst t = inlineTranslate();\n\n\t\t\tconst productTitle = useComputed$(() => {\n\t\t\t\treturn 'Test title';\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<img \n\t\t\t\t\tattr={t('home.imageAlt.founded-product:')}\n\t\t\t\t\talt={`${t('home.imageAlt.founded-product:')} ${productTitle.value}`} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CACnB,6BAEvB;AAHT,SAAS,YAAY,oBAAoB;AACzC,SAAS,uBAAuB;AAEhC,eAAeC,0CAYb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -19,12 +19,9 @@ expression: output
 ============================= test.tsx_TestGetsHmr_component_jBUoou0sxX4.js (ENTRY POINT)==
 
 export const TestGetsHmr_component_jBUoou0sxX4 = () => {
-	return _jsxSorted("div", null, null, "Test", 3, "u6_0");
-};
-;
+	return <div>Test</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestGetsHmr_component_jBUoou0sxX4\"],\"sourcesContent\":[\"export const TestGetsHmr_component_jBUoou0sxX4 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,0CAA0C;AACtD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -49,12 +46,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestGetsHmr_component_
 ============================= test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs.js (ENTRY POINT)==
 
 export const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {
-	return _jsxSorted("div", null, null, "Test", 3, "u6_1");
-};
-;
+	return <div>Test</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs\"],\"sourcesContent\":[\"export const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C;AACvD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO;;AACtD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -78,7 +72,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_TestGetsHmr_component_jBUoou0sxX4 = qrlDEV(() => import("./test.tsx_TestGetsHmr_component_jBUoou0sxX4"), "TestGetsHmr_component_jBUoou0sxX4", [], {
 	file: "test.tsx",
 	lo: 104,
@@ -96,7 +89,7 @@ export const TestGetsHmr = componentQrl(q_TestGetsHmr_component_jBUoou0sxX4);
 export const TestNoHmr = componentQrl(Qrl(q_TestNoHmr_componentQrl_Uqk3jGTNmYs));
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, component$, $ } f\",\"ort { component$, component$, $ } fr\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, component$, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const TestGetsHmr = component$(() => {\n\t\t\treturn <div>Test</div>;\n\t\t});\n\t\texport const TestNoHmr = componentQrl($(() => {\n\t\t\treturn <div>Test</div>;\n\t\t}));\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,mDAAmD,OAExD,iDACC,qCAEI,EAAE,EAAE;OAAS;KAAiB;KAAU;cAC/B;;AAPd,MACKC,oDAAoD,OAExD,kDACE,sCAEK,EAAE,EAAE;OAAS;KAAiB;KAAU;cAC/B;;AANf,SAAS,YAAY,YAAY,SAAS;AAE1C,OAAO,MAAM,cAAcC,iDAEzB;AACF,OAAO,MAAM,YAAY,aAAaC,yCAEpC,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, component$, $ } f\",\"ort { component$, component$, $ } fr\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, component$, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const TestGetsHmr = component$(() => {\n\t\t\treturn <div>Test</div>;\n\t\t});\n\t\texport const TestNoHmr = componentQrl($(() => {\n\t\t\treturn <div>Test</div>;\n\t\t}));\n\t\t\"],\"mappings\":\"AAAA,MACKA,mDAAmD,OAExD,iDACC,qCAEI,EAAE,EAAE;OAAS;KAAiB;KAAU;cAC/B;;AAPd,MACKC,oDAAoD,OAExD,kDACE,sCAEK,EAAE,EAAE;OAAS;KAAiB;KAAU;cAC/B;;AANf,SAAS,YAAY,YAAY,SAAS;AAE1C,OAAO,MAAM,cAAcC,iDAEzB;AACF,OAAO,MAAM,YAAY,aAAaC,yCAEpC,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

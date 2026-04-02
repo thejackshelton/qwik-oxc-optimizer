@@ -126,12 +126,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_AkbU84a8z
 
 import { state } from "./sibling";
 export const Local_component_jJ0v28bs0p8 = () => {
-	return _jsxSorted("div", null, null, state, 3, "zp_0");
-};
-;
+	return <div>{state}</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"main.tsx_Local_component_jJ0v28bs0p8\"],\"sourcesContent\":[\"import { state } from \\"./sibling\\";\nexport const Local_component_jJ0v28bs0p8 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, state, 3, \\"zp_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,OAAO,MAAM,oCAAoC;AAChD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "components/main.tsx",
@@ -155,14 +152,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"main.tsx_Local_component_jJ0v28
 
 ============================= components/main.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Local_component_jJ0v28bs0p8 = qrl(() => import("./main.tsx_Local_component_jJ0v28bs0p8.tsx"), "Local_component_jJ0v28bs0p8");
 import { component$, $ } from "@qwik.dev/core";
 import { state } from "./sibling";
 export const Local = componentQrl(q_Local_component_jJ0v28bs0p8);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qw\",\"component$\"],\"sources\":[\"components/main.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { state } from './sibling';\n\nexport const Local = component$(() => {\n\treturn (\n\t\t<div>{state}</div>\n\t)\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OACzC,+CAEW,8BACV;AAJP,SAAS,YAAY,SAAS;AAC9B,SAAS,aAAa;AAEtB,OAAO,MAAM,QAAQC,2CAInB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qw\",\"component$\"],\"sources\":[\"components/main.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { state } from './sibling';\n\nexport const Local = component$(() => {\n\treturn (\n\t\t<div>{state}</div>\n\t)\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OACzC,+CAEW,8BACV;AAJP,SAAS,YAAY,SAAS;AAC9B,SAAS,aAAa;AAEtB,OAAO,MAAM,QAAQC,2CAInB\"}")
 
 ============================= ../../node_modules/dep/dist/lib.js ==
 

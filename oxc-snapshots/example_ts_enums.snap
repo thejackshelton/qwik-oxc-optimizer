@@ -27,12 +27,11 @@ export const App = component$(() => {
 
 export const App_component_ckEPmXZlub0 = () => {
 	console.log(Thing.A);
-	return _jsxSorted(_Fragment, null, null, _jsxSorted("p", null, { class: "stuff" }, "Hello Qwik", 3, null), 3, "u6_0");
-};
-;
+	return <>
+			<p class="stuff">Hello Qwik</p>
+		</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\tconsole.log(Thing.A);\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"p\\", null, { class: \\"stuff\\" }, \\"Hello Qwik\\", 3, null), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,SAAQ,IAAI,MAAM,EAAE;AACpB,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,KAAK,MAAM,EAAE,OAAO,SAAS,EAAE,cAAc,GAAG,KAAK,EAAE,GAAG,OAAO;;AACpH\"}")
 /*
 {
   "origin": "test.tsx",
@@ -56,8 +55,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 import { component$, useStore } from "@qwik.dev/core";
 export enum Thing {
@@ -67,7 +64,7 @@ export enum Thing {
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\" useStore\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport enum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,wCAAwC,OAAO,yCAO7C,4BAA4B;AAPnC,SAAS,YAAY,gBAAgB;AAErC,YAAY,MAAM;CACjB;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport enum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,wCAAwC,OAAO,yCAO7C,4BAA4B;AAPnC,SAAS,YAAY,gBAAgB;AAErC,YAAY,MAAM;CACjB;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
 == DIAGNOSTICS ==
 
 []

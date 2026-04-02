@@ -20,14 +20,11 @@ export default component$(() => {
 
 ============================= src/routes/_repl/[id]/[[...slug]].tsx_slug_component_0AM8HPnkNs4.js ==
 
-const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import("./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx"), "slug_component_div_q_e_click_bCwVPYSTQ0w");
 export const slug_component_0AM8HPnkNs4 = () => {
-	return _jsxSorted("div", null, { "q-e:click": q_slug_component_div_q_e_click_bCwVPYSTQ0w }, null, 3, "W4_0");
-};
-;
+	return <div>
+		</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_0AM8HPnkNs4\"],\"sourcesContent\":[\"const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import(\\"./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx\\"), \\"slug_component_div_q_e_click_bCwVPYSTQ0w\\");\nexport const slug_component_0AM8HPnkNs4 = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_slug_component_div_q_e_click_bCwVPYSTQ0w }, null, 3, \\"W4_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,mEAAmE,2CAA2C;AAClL,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,4CAA4C,EAAE,MAAM,GAAG,OAAO;;AAC3G\"}")
 /*
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
@@ -80,14 +77,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_
 
 ============================= src/routes/_repl/[id]/[[...slug]].js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import("./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx"), "slug_component_div_q_e_click_bCwVPYSTQ0w");
 const q_slug_component_0AM8HPnkNs4 = qrl(() => import("./[[...slug]].tsx_slug_component_0AM8HPnkNs4.tsx"), "slug_component_0AM8HPnkNs4");
 import { component$ } from "@qwik.dev/core";
 import { sibling } from "./sibling";
 export default componentQrl(q_slug_component_0AM8HPnkNs4);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCACJ,OAAO,qDAEe,6BAEf;AALR,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\nim\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,MACKA,uDACU,OAAO,mEAIf,2CAA2C;AANlD,MACKC,yCACJ,OAAO,qDAEe,6BAEf;AALR,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

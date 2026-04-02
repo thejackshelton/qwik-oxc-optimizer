@@ -33,19 +33,14 @@ export const FieldInput = component$((props) => {
 import { useSignal } from "@qwik.dev/core";
 export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const input = useSignal(true);
-	return _jsxSorted(_Fragment, null, null, [_jsxSplit("input", {
-		"bind:checked": input,
-		..._getVarProps(props)
-	}, { ..._getConstProps(props) }, null, 0, null), _jsxSplit("input", {
-		..._getVarProps(props),
-		..._getConstProps(props),
-		"bind:checked": input
-	}, null, null, 0, null)], 1, "u6_0");
-};
-;
+	return <>
+			{}
+			<input bind:checked={input} {...props} />
+			{}
+			<input {...props} bind:checked={input} />
+		</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_V4XAtJSTRKg = (props) => {\n\tconst input = useSignal(true);\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSplit(\\"input\\", {\n\t\t\\"bind:checked\\": input,\n\t\t..._getVarProps(props)\n\t}, { ..._getConstProps(props) }, null, 0, null), _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(props),\n\t\t..._getConstProps(props),\n\t\t\\"bind:checked\\": input\n\t}, null, null, 0, null)], 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC,UAAU;CAC1D,MAAM,QAAQ,UAAU,KAAK;AAC7B,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,UAAU,SAAS;EAC5D,gBAAgB;EAChB,GAAG,aAAa,MAAM;EACtB,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,UAAU,SAAS;EACnE,GAAG,aAAa,MAAM;EACtB,GAAG,eAAe,MAAM;EACxB,gBAAgB;EAChB,EAAE,MAAM,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACnC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -72,17 +67,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
-import { _jsxSplit } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 import { $, component$, useSignal } from "@qwik.dev/core";
 export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
 
-Some("{\"version\":3,\"names\":[\"t$, useSi\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(true);\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:checked={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:checked={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,qBACoBA,iBAAiB;AADrC,MACKC,+CAA+C,OACpD,gDAC+C,mCAE/C;AAJA,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAiBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(true);\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:checked={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:checked={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,+CAA+C,OACpD,gDAC+C,mCAE/C;AAJA,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAiBxB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -74,21 +74,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 ============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_FieldInput_component_input_onInput_zBzGtdHkCmE = qrl(() => import("./test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE"), "FieldInput_component_input_onInput_zBzGtdHkCmE", [input]);
-const q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI"), "FieldInput_component_input_q_e_focus_Sgf3MDWzexI", [enabled]);
 export const FieldInput_component_V4XAtJSTRKg = () => {
 	const enabled = useSignal(false);
 	const input = useSignal("");
-	return _jsxSorted("input", { "q:ps": [enabled, input] }, {
-		id: "input",
-		"q-e:input": enabled.value ? Qrl(q_FieldInput_component_input_onInput_zBzGtdHkCmE.w([input])) : undefined,
-		"q-e:focus": q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI.w([enabled])
-	}, null, 7, "u6_0");
-};
-;
+	return <input />;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_FieldInput_component_input_onInput_zBzGtdHkCmE = qrl(() => import(\\"./test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE\\"), \\"FieldInput_component_input_onInput_zBzGtdHkCmE\\", [input]);\nconst q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI = qrl(() => import(\\"./test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI\\"), \\"FieldInput_component_input_q_e_focus_Sgf3MDWzexI\\", [enabled]);\nexport const FieldInput_component_V4XAtJSTRKg = () => {\n\tconst enabled = useSignal(false);\n\tconst input = useSignal(\\"\\");\n\treturn _jsxSorted(\\"input\\", { \\"q:ps\\": [enabled, input] }, {\n\t\tid: \\"input\\",\n\t\t\\"q-e:input\\": enabled.value ? Qrl(q_FieldInput_component_input_onInput_zBzGtdHkCmE.w([input])) : undefined,\n\t\t\\"q-e:focus\\": q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI.w([enabled])\n\t}, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,mDAAmD,UAAU,OAAO,8DAA8D,kDAAkD,CAAC,MAAM,CAAC;AAClM,MAAM,qDAAqD,UAAU,OAAO,gEAAgE,oDAAoD,CAAC,QAAQ,CAAC;AAC1M,OAAO,MAAM,yCAAyC;CACrD,MAAM,UAAU,UAAU,MAAM;CAChC,MAAM,QAAQ,UAAU,GAAG;AAC3B,QAAO,WAAW,SAAS,EAAE,QAAQ,CAAC,SAAS,MAAM,EAAE,EAAE;EACxD,IAAI;EACJ,aAAa,QAAQ,QAAQ,IAAI,iDAAiD,EAAE,CAAC,MAAM,CAAC,CAAC,GAAG;EAChG,aAAa,mDAAmD,EAAE,CAAC,QAAQ,CAAC;EAC5E,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -151,13 +142,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_FieldInput_component_input_onInput_zBzGtdHkCmE = qrl(() => import("./test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE"), "FieldInput_component_input_onInput_zBzGtdHkCmE", [input]);
+const q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI"), "FieldInput_component_input_q_e_focus_Sgf3MDWzexI", [enabled]);
 const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 import { $, component$, useSignal } from "@qwik.dev/core";
 export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n\tconst enabled = useSignal(false);\n\tconst input = useSignal(\\"\\");\n\n  return (\n     <input\n\t\tid=\\"input\\"\n\t\tonInput$={\n\t\tenabled.value\n\t\t\t? $((ev, el) => {\n\t\t\t\tinput.value = el.value;\n\t\t\t})\n\t\t\t: undefined\n\t\t}\n\t\tonFocus$={() => {\n\t\t\tenabled.value = true;\n\t\t}}\n\t/>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,+CAA+C,OACpD,gDAEE,mCACA;AAJF,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAmBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/c\",\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n\tconst enabled = useSignal(false);\n\tconst input = useSignal(\\"\\");\n\n  return (\n     <input\n\t\tid=\\"input\\"\n\t\tonInput$={\n\t\tenabled.value\n\t\t\t? $((ev, el) => {\n\t\t\t\tinput.value = el.value;\n\t\t\t})\n\t\t\t: undefined\n\t\t}\n\t\tonFocus$={() => {\n\t\t\tenabled.value = true;\n\t\t}}\n\t/>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,6DAEC,OAAO,8DACiB,kDAI3B,OAAO,CAAC;AARX,MACKC,+DAEG,OAAO,gEACmB,oDAIzB,SACH,CAAC;AATP,MACKC,+CAA+C,OACpD,gDAEE,mCACA;AAJF,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAmBxB\"}")
 == DIAGNOSTICS ==
 
 []

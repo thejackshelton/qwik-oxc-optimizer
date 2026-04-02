@@ -166,35 +166,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_handler_
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
-const q_Foo_component_div_q_e_cLick_tDI1jka1bq0 = qrl(() => import("./test.tsx_Foo_component_div_q_e_cLick_tDI1jka1bq0"), "Foo_component_div_q_e_cLick_tDI1jka1bq0");
-const q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import("./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg"), "Foo_component_div_q_e_click_YEa2A5ADUOg");
-const q_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ"), "Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ");
-const q_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U"), "Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U");
-const q_Foo_component_div_q_e_document_scroll_1_wphyTkeintI = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scroll_1_wphyTkeintI"), "Foo_component_div_q_e_document_scroll_1_wphyTkeintI");
-const q_Foo_component_div_q_e_document_scroll_6qyBttefepU = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scroll_6qyBttefepU"), "Foo_component_div_q_e_document_scroll_6qyBttefepU");
 const q_Foo_component_handler_H10xZtD0e7w = qrl(() => import("./test.tsx_Foo_component_handler_H10xZtD0e7w"), "Foo_component_handler_H10xZtD0e7w");
 export const Foo_component_HTDRsvUbLiE = () => {
 	const handler = Qrl(q_Foo_component_handler_H10xZtD0e7w);
-	return _jsxSorted("div", { "q:p": handler }, {
-		"q-e:click": q_Foo_component_div_q_e_click_YEa2A5ADUOg,
-		"q-e:document-scroll": q_Foo_component_div_q_e_document_scroll_6qyBttefepU,
-		"q-e:document-scroll": q_Foo_component_div_q_e_document_scroll_1_wphyTkeintI,
-		"q-e:cLick": q_Foo_component_div_q_e_cLick_tDI1jka1bq0,
-		"q-e:document-s-croll": q_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ,
-		"q-e:document-scro-l-l": q_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U,
-		"host:onClick$": () => console.log("host:onClick$"),
-		"host:onDocumentScroll$": () => console.log("host:onDocument:scroll"),
-		"host:onDocumentScroll$": () => console.log("host:onWindow:scroll"),
-		"q-e:keyup": handler,
-		"q-e:document:keyup": handler,
-		"q-e:window:keyup": handler,
-		custom$: () => console.log("custom")
-	}, null, 7, "u6_0");
-};
-;
+	return <div />;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"const q_Foo_component_div_q_e_cLick_tDI1jka1bq0 = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_cLick_tDI1jka1bq0\\"), \\"Foo_component_div_q_e_cLick_tDI1jka1bq0\\");\nconst q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\\"), \\"Foo_component_div_q_e_click_YEa2A5ADUOg\\");\nconst q_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ\\"), \\"Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ\\");\nconst q_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U\\"), \\"Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U\\");\nconst q_Foo_component_div_q_e_document_scroll_1_wphyTkeintI = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_document_scroll_1_wphyTkeintI\\"), \\"Foo_component_div_q_e_document_scroll_1_wphyTkeintI\\");\nconst q_Foo_component_div_q_e_document_scroll_6qyBttefepU = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_document_scroll_6qyBttefepU\\"), \\"Foo_component_div_q_e_document_scroll_6qyBttefepU\\");\nconst q_Foo_component_handler_H10xZtD0e7w = qrl(() => import(\\"./test.tsx_Foo_component_handler_H10xZtD0e7w\\"), \\"Foo_component_handler_H10xZtD0e7w\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tconst handler = Qrl(q_Foo_component_handler_H10xZtD0e7w);\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": handler }, {\n\t\t\\"q-e:click\\": q_Foo_component_div_q_e_click_YEa2A5ADUOg,\n\t\t\\"q-e:document-scroll\\": q_Foo_component_div_q_e_document_scroll_6qyBttefepU,\n\t\t\\"q-e:document-scroll\\": q_Foo_component_div_q_e_document_scroll_1_wphyTkeintI,\n\t\t\\"q-e:cLick\\": q_Foo_component_div_q_e_cLick_tDI1jka1bq0,\n\t\t\\"q-e:document-s-croll\\": q_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ,\n\t\t\\"q-e:document-scro-l-l\\": q_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U,\n\t\t\\"host:onClick$\\": () => console.log(\\"host:onClick$\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onDocument:scroll\\"),\n\t\t\\"host:onDocumentScroll$\\": () => console.log(\\"host:onWindow:scroll\\"),\n\t\t\\"q-e:keyup\\": handler,\n\t\t\\"q-e:document:keyup\\": handler,\n\t\t\\"q-e:window:keyup\\": handler,\n\t\tcustom$: () => console.log(\\"custom\\")\n\t}, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,0CAA0C;AACpK,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,0CAA0C;AACpK,MAAM,uDAAuD,UAAU,OAAO,kEAAkE,qDAAqD;AACrM,MAAM,wDAAwD,UAAU,OAAO,mEAAmE,sDAAsD;AACxM,MAAM,wDAAwD,UAAU,OAAO,mEAAmE,sDAAsD;AACxM,MAAM,sDAAsD,UAAU,OAAO,iEAAiE,oDAAoD;AAClM,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,oCAAoC;AAClJ,OAAO,MAAM,kCAAkC;CAC9C,MAAM,UAAU,IAAI,oCAAoC;AACxD,QAAO,WAAW,OAAO,EAAE,OAAO,SAAS,EAAE;EAC5C,aAAa;EACb,uBAAuB;EACvB,uBAAuB;EACvB,aAAa;EACb,wBAAwB;EACxB,yBAAyB;EACzB,uBAAuB,QAAQ,IAAI,gBAAgB;EACnD,gCAAgC,QAAQ,IAAI,yBAAyB;EACrE,gCAAgC,QAAQ,IAAI,uBAAuB;EACnE,aAAa;EACb,sBAAsB;EACtB,oBAAoB;EACpB,eAAe,QAAQ,IAAI,SAAS;EACpC,EAAE,MAAM,GAAG,OAAO;;AAClB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -350,13 +327,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import("./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg"), "Foo_component_div_q_e_click_YEa2A5ADUOg");
+const q_Foo_component_div_q_e_document_scroll_6qyBttefepU = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scroll_6qyBttefepU"), "Foo_component_div_q_e_document_scroll_6qyBttefepU");
+const q_Foo_component_div_q_e_document_scroll_1_wphyTkeintI = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scroll_1_wphyTkeintI"), "Foo_component_div_q_e_document_scroll_1_wphyTkeintI");
+const q_Foo_component_div_q_e_cLick_tDI1jka1bq0 = qrl(() => import("./test.tsx_Foo_component_div_q_e_cLick_tDI1jka1bq0"), "Foo_component_div_q_e_cLick_tDI1jka1bq0");
+const q_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ"), "Foo_component_div_q_e_document_s_croll_h00QxQFWZfQ");
+const q_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U = qrl(() => import("./test.tsx_Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U"), "Foo_component_div_q_e_document_scro_l_l_XOPCF83gd0U");
 const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
 import { $, component$ } from "@qwik.dev/core";
 export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\n\treturn $(() => {\n\t\tconst handler = $(() => console.log('reused'));\n\t\treturn (\n\t\t\t<div\n\t\t\t\tonClick$={()=>console.log('onClick$')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onDocumentScroll')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onWindowScroll')}\n\n\t\t\t\ton-cLick$={()=>console.log('on-cLick$')}\n\t\t\t\tonDocument-sCroll$={()=>console.log('onDocument-sCroll')}\n\t\t\t\tonDocument-scroLL$={()=>console.log('onDocument-scroLL')}\n\n\t\t\t\thost:onClick$={()=>console.log('host:onClick$')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onDocument:scroll')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onWindow:scroll')}\n\n\t\t\t\tonKeyup$={handler}\n\t\t\t\tonDocument:keyup$={handler}\n\t\t\t\tonWindow:keyup$={handler}\n\n\t\t\t\tcustom$={()=>console.log('custom')}\n\t\t\t/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAE1C,2CAEI,8BACY;AALrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CA0BhB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.dev/core'\",\"t { $, component$ } from '@qwik.dev/core';\n\nexport \",\"t { $, component$ } from '@qwik.dev/core';\n\nexport co\",\"t { $, component$ } from '@qwik.dev/core';\n\nexport c\",\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\n\treturn $(() => {\n\t\tconst handler = $(() => console.log('reused'));\n\t\treturn (\n\t\t\t<div\n\t\t\t\tonClick$={()=>console.log('onClick$')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onDocumentScroll')}\n\t\t\t\tonDocumentScroll$={()=>console.log('onWindowScroll')}\n\n\t\t\t\ton-cLick$={()=>console.log('on-cLick$')}\n\t\t\t\tonDocument-sCroll$={()=>console.log('onDocument-sCroll')}\n\t\t\t\tonDocument-scroLL$={()=>console.log('onDocument-scroLL')}\n\n\t\t\t\thost:onClick$={()=>console.log('host:onClick$')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onDocument:scroll')}\n\t\t\t\thost:onDocumentScroll$={()=>console.log('host:onWindow:scroll')}\n\n\t\t\t\tonKeyup$={handler}\n\t\t\t\tonDocument:keyup$={handler}\n\t\t\t\tonWindow:keyup$={handler}\n\n\t\t\t\tcustom$={()=>console.log('custom')}\n\t\t\t/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,MACKA,sDAEK,OAAO,uDAGF,0CACR;AAPP,MACKC,gEAEe,OAAO,iEAGQ,oDAGjB;AATlB,MACKC,kEAEiB,OAAO,mEAGU,sDAGf;AATxB,MACKF,sDAEK,OAAO,uDAGF,0CACR;AAPP,MACKG,iEAEgB,OAAO,kEAGS,qDAGhB;AATrB,MACKD,kEAEiB,OAAO,mEAGU,sDAGf;AATxB,MACKE,0CAA0C,OAE1C,2CAEI,8BACY;AALrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CA0BhB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

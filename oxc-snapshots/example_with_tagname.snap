@@ -54,12 +54,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6Fi
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
 export const Foo_component_HTDRsvUbLiE = () => {
-	return _jsxSorted("div", null, null, null, 3, "u6_0");
-};
-;
+	return <div>
+			</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"export const Foo_component_HTDRsvUbLiE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;;AACpD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -83,13 +81,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
 import { $, component$ } from "@qwik.dev/core";
 export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAE1C,2CACK,8BAGR;AANF,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CAOhB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAE1C,2CACK,8BAGR;AANF,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CAOhB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

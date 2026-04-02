@@ -34,8 +34,6 @@ export const App = component$(() => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
-const _hf0 = (p0) => p0.value.id;
-const _hf1 = (p0) => p0.value.selected.value ? "danger" : "";
 export const App_component_ckEPmXZlub0 = () => {
 	const data = { value: [
 		{ value: {
@@ -51,17 +49,15 @@ export const App_component_ckEPmXZlub0 = () => {
 			selected: { value: true }
 		} }
 	] };
-	return _jsxSorted("table", null, null, data.value.map((row) => {
-		return _jsxSorted("tr", null, {
-			key: _fnSignal(_hf0, [row], "p0 => p0.value.id;"),
-			class: _fnSignal(_hf1, [row], "p0 => p0.value.selected.value ? \"danger\" : \"\";")
-		}, _jsxSorted("td", null, null, _fnSignal(_hf0, [row], "p0 => p0.value.id;"), 3, null), 3, null);
-	}), 3, "u6_0");
-};
-;
+	return <table>
+      {data.value.map((row) => {
+		return <tr>
+            <td>{row.value.id}</td>
+          </tr>;
+	})}
+    </table>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"const _hf0 = (p0) => p0.value.id;\nconst _hf1 = (p0) => p0.value.selected.value ? \\"danger\\" : \\"\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst data = { value: [\n\t\t{ value: {\n\t\t\tid: 1,\n\t\t\tselected: { value: true }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 2,\n\t\t\tselected: { value: false }\n\t\t} },\n\t\t{ value: {\n\t\t\tid: 3,\n\t\t\tselected: { value: true }\n\t\t} }\n\t] };\n\treturn _jsxSorted(\\"table\\", null, null, data.value.map((row) => {\n\t\treturn _jsxSorted(\\"tr\\", null, {\n\t\t\tkey: _fnSignal(_hf0, [row], \\"p0 => p0.value.id;\\"),\n\t\t\tclass: _fnSignal(_hf1, [row], \\"p0 => p0.value.selected.value ? \\\\"danger\\\\" : \\\\"\\\\";\\")\n\t\t}, _jsxSorted(\\"td\\", null, null, _fnSignal(_hf0, [row], \\"p0 => p0.value.id;\\"), 3, null), 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,QAAQ,OAAO,GAAG,MAAM;AAC9B,MAAM,QAAQ,OAAO,GAAG,MAAM,SAAS,QAAQ,WAAW;AAC1D,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,EAAE,OAAO;EACrB,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,OAAO;GAC1B,EAAE;EACH,EAAE,OAAO;GACR,IAAI;GACJ,UAAU,EAAE,OAAO,MAAM;GACzB,EAAE;EACH,EAAE;AACH,QAAO,WAAW,SAAS,MAAM,MAAM,KAAK,MAAM,KAAK,QAAQ;AAC9D,SAAO,WAAW,MAAM,MAAM;GAC7B,KAAK,UAAU,MAAM,CAAC,IAAI,EAAE,qBAAqB;GACjD,OAAO,UAAU,MAAM,CAAC,IAAI,EAAE,qDAAqD;GACnF,EAAE,WAAW,MAAM,MAAM,MAAM,UAAU,MAAM,CAAC,IAAI,EAAE,qBAAqB,EAAE,GAAG,KAAK,EAAE,GAAG,KAAK;GAC/F,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
@@ -86,13 +82,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 ============================= test.js ==
 
 import { _fnSignal } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
+const _hf0 = (p0) => p0.value.id;
+const _hf1 = (p0) => p0.value.selected.value ? "danger" : "";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 import { component$ } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n  const data = { value: [\n    { value: { id: 1, selected: { value: true } } },\n    { value: { id: 2, selected: { value: false } } },\n    { value: { id: 3, selected: { value: true } } }\n  ]};\n  \n  return (\n    <table>\n      {data.value.map((row) => {\n        return (\n          <tr\n            key={row.value.id}\n            class={row.value.selected.value ? \\"danger\\" : \\"\\"}\n          >\n            <td>{row.value.id}</td>\n          </tr>\n        );\n      })}\n    </table>\n  );\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCACG,4BACE;AAJX,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAqBjB\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n  const data = { value: [\n    { value: { id: 1, selected: { value: true } } },\n    { value: { id: 2, selected: { value: false } } },\n    { value: { id: 3, selected: { value: true } } }\n  ]};\n  \n  return (\n    <table>\n      {data.value.map((row) => {\n        return (\n          <tr\n            key={row.value.id}\n            class={row.value.selected.value ? \\"danger\\" : \\"\\"}\n          >\n            <td>{row.value.id}</td>\n          </tr>\n        );\n      })}\n    </table>\n  );\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,QAAO;AADZ,MACKA,QAAO,iCAAgC,WAEnC;AAHT,MACKC,wCACL,OACM,yCACG,4BACE;AAJX,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAqBjB\"}")
 == DIAGNOSTICS ==
 
 []

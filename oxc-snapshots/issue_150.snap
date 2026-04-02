@@ -62,19 +62,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_1_kr
 ============================= test.tsx_Greeter_component_n7HuG2hhU0Q.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
-import { hola } from "sdfds";
 export const Greeter_component_n7HuG2hhU0Q = () => {
-	const stuff = _captures[0];
-	return _jsxSorted("div", { class: {
-		"foo": true,
-		"bar": stuff.condition,
-		"baz": hola ? "true" : "false"
-	} }, null, null, 3, "u6_0");
-};
-;
+	return <div />;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7HuG2hhU0Q\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { hola } from \\"sdfds\\";\nexport const Greeter_component_n7HuG2hhU0Q = () => { const stuff = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", { class: {\n\t\t\\"foo\\": true,\n\t\t\\"bar\\": stuff.condition,\n\t\t\\"baz\\": hola ? \\"true\\" : \\"false\\"\n\t} }, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,YAAY;AACrB,OAAO,MAAM,sCAAsC;CAAE,MAAM,QAAQ,UAAU;AAE5E,QAAO,WAAW,OAAO,EAAE,OAAO;EACjC,OAAO;EACP,OAAO,MAAM;EACb,OAAO,OAAO,SAAS;EACvB,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO;;AAC1B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -129,7 +120,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_d_wKNFJEIQVUA\"],\"sou
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Greeter_component_1_krCndSwhX4U = qrl(() => import("./test.tsx_Greeter_component_1_krCndSwhX4U"), "Greeter_component_1_krCndSwhX4U");
 const q_d_wKNFJEIQVUA = qrl(() => import("./test.tsx_d_wKNFJEIQVUA"), "d_wKNFJEIQVUA");
 import { component$, $ } from "@qwik.dev/core";
@@ -138,7 +128,7 @@ export const Greeter = componentQrl(q_Greeter_component_1_krCndSwhX4U);
 const d = Qrl(q_d_wKNFJEIQVUA);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$,\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,8CACF,OAAO,+CAEgB,kCACR;AALlB,MACKC,4BAA4B,OAAO,6BACnB,gBAEf;AAHN,SAAS,YAAY,SAAS;AAC9B,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,oBAA2B\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$,\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,MACKA,8CACF,OAAO,+CAEgB,kCACR;AALlB,MACKC,4BAA4B,OAAO,6BACnB,gBAEf;AAHN,SAAS,YAAY,SAAS;AAC9B,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,oBAA2B\"}")
 == DIAGNOSTICS ==
 
 []

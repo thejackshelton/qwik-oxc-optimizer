@@ -58,12 +58,9 @@ export const Header_component_J4uyIhaBNR4 = (hola) => {
 	const hola = this;
 	const { something, styff } = hola;
 	const hello = hola.nothere.stuff[global];
-	return _jsxSorted(Header, null, null, null, 3, "u6_0");
-};
-;
+	return <Header />;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"import { Header } from \\"./test\\";\nexport const Header_component_J4uyIhaBNR4 = (hola) => {\n\tconst hola = this;\n\tconst { something, styff } = hola;\n\tconst hello = hola.nothere.stuff[global];\n\treturn _jsxSorted(Header, null, null, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,OAAO,MAAM,gCAAgC,SAAS;CACrD,MAAM,OAAO;CACb,MAAM,EAAE,WAAW,UAAU;CAC7B,MAAM,QAAQ,KAAK,QAAQ,MAAM;AACjC,QAAO,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -90,13 +87,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyI
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Header_component_1_2B8d0oH9ZWc = qrl(() => import("./test.tsx_Header_component_1_2B8d0oH9ZWc"), "Header_component_1_2B8d0oH9ZWc");
 import { $, component$ } from "@qwik.dev/core";
 export const Header = componentQrl(q_Header_component_1_2B8d0oH9ZWc);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\treturn $((hola) => {\n\t\tconst hola = this;\n\t\tconst {something, styff} = hola;\n\t\tconst hello = hola.nothere.stuff[global];\n\t\treturn (\n\t\t\t<Header/>\n\t\t);\n\t});\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,6CAEJ,OAAO,8CACK,iCAEV;AALH,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,8CASpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Header = component$(() => {\n\treturn $((hola) => {\n\t\tconst hola = this;\n\t\tconst {something, styff} = hola;\n\t\tconst hello = hola.nothere.stuff[global];\n\t\treturn (\n\t\t\t<Header/>\n\t\t);\n\t});\n});\n\"],\"mappings\":\"AAAA,MACKA,6CAEJ,OAAO,8CACK,iCAEV;AALH,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,SAASC,8CASpB\"}")
 == DIAGNOSTICS ==
 
 []

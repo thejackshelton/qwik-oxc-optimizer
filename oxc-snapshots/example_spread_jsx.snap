@@ -46,36 +46,21 @@ import { useLocation } from "@qwik.dev/router";
 export const RouterHead_component_DPA76mgIou0 = () => {
 	const head = useDocumentHead();
 	const loc = useLocation();
-	return _jsxSorted(_Fragment, null, null, [
-		_jsxSorted("title", null, null, _wrapProp(head, "title"), 3, null),
-		_jsxSorted("link", null, {
-			rel: "canonical",
-			href: _wrapProp(loc, "href")
-		}, null, 3, null),
-		_jsxSorted("meta", null, {
-			name: "viewport",
-			content: "width=device-width, initial-scale=1.0"
-		}, null, 3, null),
-		_jsxSorted("link", null, {
-			rel: "icon",
-			type: "image/svg+xml",
-			href: "/favicon.svg"
-		}, null, 3, null),
-		head.meta.map((m) => _jsxSplit("meta", { ..._getVarProps(m) }, { ..._getConstProps(m) }, null, 0, null)),
-		head.links.map((l) => _jsxSplit("link", {
-			..._getVarProps(l),
-			..._getConstProps(l)
-		}, { key: _wrapProp(l, "key") }, null, 0, null)),
-		head.styles.map((s) => _jsxSplit("style", { ...s.props }, {
-			dangerouslySetInnerHTML: _wrapProp(s, "style"),
-			key: _wrapProp(s, "key")
-		}, null, 0, null))
-	], 1, "u6_0");
-};
-;
+	return <>
+		<title>{head.title}</title>
 
+		<link rel="canonical" href={loc.href} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RouterHead_component_DPA76mgIou0\"],\"sourcesContent\":[\"import { useDocumentHead } from \\"@qwik.dev/router\\";\nimport { useLocation } from \\"@qwik.dev/router\\";\nexport const RouterHead_component_DPA76mgIou0 = () => {\n\tconst head = useDocumentHead();\n\tconst loc = useLocation();\n\treturn _jsxSorted(_Fragment, null, null, [\n\t\t_jsxSorted(\\"title\\", null, null, _wrapProp(head, \\"title\\"), 3, null),\n\t\t_jsxSorted(\\"link\\", null, {\n\t\t\trel: \\"canonical\\",\n\t\t\thref: _wrapProp(loc, \\"href\\")\n\t\t}, null, 3, null),\n\t\t_jsxSorted(\\"meta\\", null, {\n\t\t\tname: \\"viewport\\",\n\t\t\tcontent: \\"width=device-width, initial-scale=1.0\\"\n\t\t}, null, 3, null),\n\t\t_jsxSorted(\\"link\\", null, {\n\t\t\trel: \\"icon\\",\n\t\t\ttype: \\"image/svg+xml\\",\n\t\t\thref: \\"/favicon.svg\\"\n\t\t}, null, 3, null),\n\t\thead.meta.map((m) => _jsxSplit(\\"meta\\", { ..._getVarProps(m) }, { ..._getConstProps(m) }, null, 0, null)),\n\t\thead.links.map((l) => _jsxSplit(\\"link\\", {\n\t\t\t..._getVarProps(l),\n\t\t\t..._getConstProps(l)\n\t\t}, { key: _wrapProp(l, \\"key\\") }, null, 0, null)),\n\t\thead.styles.map((s) => _jsxSplit(\\"style\\", { ...s.props }, {\n\t\t\tdangerouslySetInnerHTML: _wrapProp(s, \\"style\\"),\n\t\t\tkey: _wrapProp(s, \\"key\\")\n\t\t}, null, 0, null))\n\t], 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,uBAAuB;AAChC,SAAS,mBAAmB;AAC5B,OAAO,MAAM,yCAAyC;CACrD,MAAM,OAAO,iBAAiB;CAC9B,MAAM,MAAM,aAAa;AACzB,QAAO,WAAW,WAAW,MAAM,MAAM;EACxC,WAAW,SAAS,MAAM,MAAM,UAAU,MAAM,QAAQ,EAAE,GAAG,KAAK;EAClE,WAAW,QAAQ,MAAM;GACxB,KAAK;GACL,MAAM,UAAU,KAAK,OAAO;GAC5B,EAAE,MAAM,GAAG,KAAK;EACjB,WAAW,QAAQ,MAAM;GACxB,MAAM;GACN,SAAS;GACT,EAAE,MAAM,GAAG,KAAK;EACjB,WAAW,QAAQ,MAAM;GACxB,KAAK;GACL,MAAM;GACN,MAAM;GACN,EAAE,MAAM,GAAG,KAAK;EACjB,KAAK,KAAK,KAAK,MAAM,UAAU,QAAQ,EAAE,GAAG,aAAa,EAAE,EAAE,EAAE,EAAE,GAAG,eAAe,EAAE,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC;EACxG,KAAK,MAAM,KAAK,MAAM,UAAU,QAAQ;GACvC,GAAG,aAAa,EAAE;GAClB,GAAG,eAAe,EAAE;GACpB,EAAE,EAAE,KAAK,UAAU,GAAG,MAAM,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC;EAChD,KAAK,OAAO,KAAK,MAAM,UAAU,SAAS,EAAE,GAAG,EAAE,OAAO,EAAE;GACzD,yBAAyB,UAAU,GAAG,QAAQ;GAC9C,KAAK,UAAU,GAAG,MAAM;GACxB,EAAE,MAAM,GAAG,KAAK,CAAC;EAClB,EAAE,GAAG,OAAO;;AACZ\"}")
+		{head.meta.map((m) => <meta />)}
+
+		{head.links.map((l) => <link />)}
+
+		{head.styles.map((s) => <style />)}
+	</>;
+};;
+
 /*
 {
   "origin": "test.tsx",
@@ -100,11 +85,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RouterHead_component_D
 ============================= test.js ==
 
 import { _wrapProp } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-import { _jsxSplit } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_RouterHead_component_DPA76mgIou0 = qrl(() => import("./test.tsx_RouterHead_component_DPA76mgIou0"), "RouterHead_component_DPA76mgIou0");
 import { component$ } from "@qwik.dev/core";
 import { useDocumentHead, useLocation } from "@qwik.dev/router";
@@ -114,7 +96,7 @@ import { useDocumentHead, useLocation } from "@qwik.dev/router";
 export const RouterHead = componentQrl(q_RouterHead_component_DPA76mgIou0);
 
 
-Some("{\"version\":3,\"names\":[\"} from '@\",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { useDocumentHead, useLocation } from '@qwik.dev/router';\n\n/**\n * The RouterHead component is placed inside of the document `<head>` element.\n */\nexport const RouterHead = component$(() => {\n\tconst head = useDocumentHead();\n\tconst loc = useLocation();\n\n\treturn (\n\t<>\n\t\t<title>{head.title}</title>\n\n\t\t<link rel=\\"canonical\\" href={loc.href} />\n\t\t<meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />\n\t\t<link rel=\\"icon\\" type=\\"image/svg+xml\\" href=\\"/favicon.svg\\" />\n\n\t\t{head.meta.map((m) => (\n\t\t\t<meta {...m} />\n\t\t))}\n\n\t\t{head.links.map((l) => (\n\t\t\t<link {...l} key={l.key} />\n\t\t))}\n\n\t\t{head.styles.map((s) => (\n\t\t\t<style {...s.props} dangerouslySetInnerHTML={s.style} key={s.key} />\n\t\t))}\n\t</>\n\t);\n});\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,qBACoBA,iBAAiB;AADrC,MACKC,+CACE,OAAO,gDAAgD,mCAGnC;AAJ3B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB,mBAAmB;;;;AAK7C,OAAO,MAAM,aAAaC,gDAyBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { useDocumentHead, useLocation } from '@qwik.dev/router';\n\n/**\n * The RouterHead component is placed inside of the document `<head>` element.\n */\nexport const RouterHead = component$(() => {\n\tconst head = useDocumentHead();\n\tconst loc = useLocation();\n\n\treturn (\n\t<>\n\t\t<title>{head.title}</title>\n\n\t\t<link rel=\\"canonical\\" href={loc.href} />\n\t\t<meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />\n\t\t<link rel=\\"icon\\" type=\\"image/svg+xml\\" href=\\"/favicon.svg\\" />\n\n\t\t{head.meta.map((m) => (\n\t\t\t<meta {...m} />\n\t\t))}\n\n\t\t{head.links.map((l) => (\n\t\t\t<link {...l} key={l.key} />\n\t\t))}\n\n\t\t{head.styles.map((s) => (\n\t\t\t<style {...s.props} dangerouslySetInnerHTML={s.style} key={s.key} />\n\t\t))}\n\t</>\n\t);\n});\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,+CACE,OAAO,gDAAgD,mCAGnC;AAJ3B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB,mBAAmB;;;;AAK7C,OAAO,MAAM,aAAaC,gDAyBxB\"}")
 == DIAGNOSTICS ==
 
 []

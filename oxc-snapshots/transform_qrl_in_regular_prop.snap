@@ -14,12 +14,8 @@ expression: output
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.ts (ENTRY POINT)==
 
 import { Cmp } from "./test";
-const q_Cmp_component_Cmp_foo_iPpdemxi0uE = qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
-export const Cmp_component_4ryKJTOKjWE = () => _jsxSorted(Cmp, { foo: Qrl(q_Cmp_component_Cmp_foo_iPpdemxi0uE) }, null, "Hello Qwik", 3, "u6_0");
-;
+export const Cmp_component_4ryKJTOKjWE = () => <Cmp>Hello Qwik</Cmp>;;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { Cmp } from \\"./test\\";\nconst q_Cmp_component_Cmp_foo_iPpdemxi0uE = qrl(() => import(\\"./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE\\"), \\"Cmp_component_Cmp_foo_iPpdemxi0uE\\");\nexport const Cmp_component_4ryKJTOKjWE = () => _jsxSorted(Cmp, { foo: Qrl(q_Cmp_component_Cmp_foo_iPpdemxi0uE) }, null, \\"Hello Qwik\\", 3, \\"u6_0\\");;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,sCAAsC,UAAU,OAAO,iDAAiD,oCAAoC;AAClJ,OAAO,MAAM,kCAAkC,WAAW,KAAK,EAAE,KAAK,IAAI,oCAAoC,EAAE,EAAE,MAAM,cAAc,GAAG,OAAO;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -71,13 +67,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_
 
 ============================= test.ts ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Cmp_component_Cmp_foo_iPpdemxi0uE = qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
 const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 import { component$, $ } from "@qwik.dev/core";
 export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAC3C,yCACG,4BAA4B;AAF/B,SAAS,YAAY,SAAS;AAC9B,OAAO,MAAM,MAAMC,yCAC2C\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, $ } from '@qwik.d\",\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,MACKA,gDACF,OAAO,iDACW,oCAAoC;AAHzD,MACKC,wCAAwC,OAC3C,yCACG,4BAA4B;AAF/B,SAAS,YAAY,SAAS;AAC9B,OAAO,MAAM,MAAMC,yCAC2C\"}")
 == DIAGNOSTICS ==
 
 []

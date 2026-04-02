@@ -33,12 +33,9 @@ export const Other = component$(() => {
 ============================= test.tsx_Other_component_C1my3EIdP1k.tsx (ENTRY POINT)==
 
 export const Other_component_C1my3EIdP1k = () => {
-	return _jsxSorted("div", null, null, _wrapProp(SHARED_CONFIG), 3, "u6_1");
-};
-;
+	return <div>{SHARED_CONFIG.value}</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3EIdP1k\"],\"sourcesContent\":[\"export const Other_component_C1my3EIdP1k = () => {\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(SHARED_CONFIG), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC;AAChD,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,cAAc,EAAE,GAAG,OAAO;;AACxE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -64,12 +61,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3E
 
 export const App_component_ckEPmXZlub0 = () => {
 	const result = helperFn("hello");
-	return _jsxSorted("div", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, "u6_0");
-};
-;
+	return <div>{result} {SHARED_CONFIG.value}</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\tconst result = helperFn(\\"hello\\");\n\treturn _jsxSorted(\\"div\\", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;CAC9C,MAAM,SAAS,SAAS,QAAQ;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,QAAQ,UAAU,cAAc,CAAC,EAAE,GAAG,OAAO;;AAClF\"}")
 /*
 {
   "origin": "test.tsx",
@@ -93,8 +87,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 
 ============================= test.tsx ==
 
-import { _wrapProp } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 const q_Other_component_C1my3EIdP1k = qrl(() => import("./test.tsx_Other_component_C1my3EIdP1k"), "Other_component_C1my3EIdP1k");
 import { component$ } from "@qwik.dev/core";
@@ -113,7 +105,7 @@ export { SHARED_CONFIG as _auto_SHARED_CONFIG };
 export { helperFn as _auto_helperFn };
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// This helper is only used by App component, so it should be migrated to its segment\nconst helperFn = (msg) => {\n\tconsole.log('Helper: ' + msg);\n\treturn msg.toUpperCase();\n};\n\n// This shared variable is used by multiple segments, so it should stay at root\nconst SHARED_CONFIG = { value: 42 };\n\n// This is an export, so it must stay at root\nexport const publicHelper = () => console.log('public');\n\nexport const App = component$(() => {\n\tconst result = helperFn('hello');\n\treturn <div>{result} {SHARED_CONFIG.value}</div>;\n});\n\nexport const Other = component$(() => {\n\treturn <div>{SHARED_CONFIG.value}</div>;\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCAAyC,4BAA4B;AAH3E,MACKC,0CAEJ,OAAO,2CAA2C,8BAA8B;AAFjF,SAAS,kBAAkB;;AAG3B,MAAM,YAAY,QAAQ;AACzB,SAAQ,IAAI,aAAa,IAAI;AAC7B,QAAO,IAAI,aAAa;;;AAIzB,MAAM,gBAAgB,EAAE,OAAO,IAAI;;AAGnC,OAAO,MAAM,qBAAqB,QAAQ,IAAI,SAAS;AAEvD,OAAO,MAAM,MAAMC,yCAGjB;AAEF,OAAO,MAAM,QAAQA,2CAEnB;AAtBF\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// This helper is only used by App component, so it should be migrated to its segment\nconst helperFn = (msg) => {\n\tconsole.log('Helper: ' + msg);\n\treturn msg.toUpperCase();\n};\n\n// This shared variable is used by multiple segments, so it should stay at root\nconst SHARED_CONFIG = { value: 42 };\n\n// This is an export, so it must stay at root\nexport const publicHelper = () => console.log('public');\n\nexport const App = component$(() => {\n\tconst result = helperFn('hello');\n\treturn <div>{result} {SHARED_CONFIG.value}</div>;\n});\n\nexport const Other = component$(() => {\n\treturn <div>{SHARED_CONFIG.value}</div>;\n});\n\"],\"mappings\":\"AAAA,MACKA,wCACL,OACM,yCAAyC,4BAA4B;AAH3E,MACKC,0CAEJ,OAAO,2CAA2C,8BAA8B;AAFjF,SAAS,kBAAkB;;AAG3B,MAAM,YAAY,QAAQ;AACzB,SAAQ,IAAI,aAAa,IAAI;AAC7B,QAAO,IAAI,aAAa;;;AAIzB,MAAM,gBAAgB,EAAE,OAAO,IAAI;;AAGnC,OAAO,MAAM,qBAAqB,QAAQ,IAAI,SAAS;AAEvD,OAAO,MAAM,MAAMC,yCAGjB;AAEF,OAAO,MAAM,QAAQA,2CAEnB;AAtBF\"}")
 == DIAGNOSTICS ==
 
 []

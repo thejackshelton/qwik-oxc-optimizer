@@ -32,30 +32,22 @@ expression: output
 
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.js (ENTRY POINT)==
 
-const q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = qrl(() => import("./test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8"), "Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8", [htmlSignal]);
 export const Cmp_component_4ryKJTOKjWE = () => {
 	const htmlSignal = useSignal("<h2><span>I'm a signal value!</span></h2>");
-	return _jsxSorted("div", null, null, [
-		_jsxSorted("div", null, null, _jsxSorted("span", null, {
-			id: "first",
-			dangerouslySetInnerHTML: "vanilla HTML here"
-		}, null, 3, null), 3, null),
-		_jsxSorted("div", null, null, _jsxSorted("span", null, {
-			id: "second",
-			dangerouslySetInnerHTML: "<h1>I'm an h1!</h1>",
-			class: "after"
-		}, null, 3, null), 3, null),
-		_jsxSorted("div", null, null, [_jsxSorted("span", null, {
-			id: "third",
-			dangerouslySetInnerHTML: _wrapProp(htmlSignal),
-			class: "after"
-		}, null, 3, null), _jsxSorted("button", { "q:p": htmlSignal }, { "q-e:click": q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8.w([htmlSignal]) }, null, 7, null)], 3, null)
-	], 3, "u6_0");
-};
-;
+	return <div>
+					<div>
+						<span />
+					</div>
+					<div>
+						<span />
+					</div>
+					<div>
+						<span />
+						<button></button>
+					</div>
+				</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"const q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = qrl(() => import(\\"./test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8\\"), \\"Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8\\", [htmlSignal]);\nexport const Cmp_component_4ryKJTOKjWE = () => {\n\tconst htmlSignal = useSignal(\\"<h2><span>I'm a signal value!</span></h2>\\");\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"div\\", null, null, _jsxSorted(\\"span\\", null, {\n\t\t\tid: \\"first\\",\n\t\t\tdangerouslySetInnerHTML: \\"vanilla HTML here\\"\n\t\t}, null, 3, null), 3, null),\n\t\t_jsxSorted(\\"div\\", null, null, _jsxSorted(\\"span\\", null, {\n\t\t\tid: \\"second\\",\n\t\t\tdangerouslySetInnerHTML: \\"<h1>I'm an h1!</h1>\\",\n\t\t\tclass: \\"after\\"\n\t\t}, null, 3, null), 3, null),\n\t\t_jsxSorted(\\"div\\", null, null, [_jsxSorted(\\"span\\", null, {\n\t\t\tid: \\"third\\",\n\t\t\tdangerouslySetInnerHTML: _wrapProp(htmlSignal),\n\t\t\tclass: \\"after\\"\n\t\t}, null, 3, null), _jsxSorted(\\"button\\", { \\"q:p\\": htmlSignal }, { \\"q-e:click\\": q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8.w([htmlSignal]) }, null, 7, null)], 3, null)\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,uDAAuD,UAAU,OAAO,kEAAkE,sDAAsD,CAAC,WAAW,CAAC;AACnN,OAAO,MAAM,kCAAkC;CAC9C,MAAM,aAAa,UAAU,4CAA4C;AACzE,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,OAAO,MAAM,MAAM,WAAW,QAAQ,MAAM;GACtD,IAAI;GACJ,yBAAyB;GACzB,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK;EAC3B,WAAW,OAAO,MAAM,MAAM,WAAW,QAAQ,MAAM;GACtD,IAAI;GACJ,yBAAyB;GACzB,OAAO;GACP,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK;EAC3B,WAAW,OAAO,MAAM,MAAM,CAAC,WAAW,QAAQ,MAAM;GACvD,IAAI;GACJ,yBAAyB,UAAU,WAAW;GAC9C,OAAO;GACP,EAAE,MAAM,GAAG,KAAK,EAAE,WAAW,UAAU,EAAE,OAAO,YAAY,EAAE,EAAE,aAAa,qDAAqD,EAAE,CAAC,WAAW,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;EAC/K,EAAE,GAAG,OAAO;;AACZ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -120,13 +112,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_div_div_
 ============================= test.js ==
 
 import { _wrapProp } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = qrl(() => import("./test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8"), "Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8", [htmlSignal]);
 const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 import { component$ } from "@qwik.dev/core";
 const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@q\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cmp = component$(() => {\n\t\t\tconst htmlSignal = useSignal(\\"<h2><span>I'm a signal value!</span></h2>\\");\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"first\\" dangerouslySetInnerHTML=\\"vanilla HTML here\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"second\\" dangerouslySetInnerHTML=\\"<h1>I'm an h1!</h1>\\" class=\\"after\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"third\\" dangerouslySetInnerHTML={htmlSignal.value} class=\\"after\\" />\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tonClick$={() =>\n\t\t\t\t\t\t\t\t(htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\")\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCAAwC,OACxC,yCACQ,4BAA4B;AAFvC,SAAS,kBAAkB;AAC3B,MAAM,MAAMC,yCAoBV\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cm\",\"ort { component$ } from \\"@q\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cmp = component$(() => {\n\t\t\tconst htmlSignal = useSignal(\\"<h2><span>I'm a signal value!</span></h2>\\");\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"first\\" dangerouslySetInnerHTML=\\"vanilla HTML here\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"second\\" dangerouslySetInnerHTML=\\"<h1>I'm an h1!</h1>\\" class=\\"after\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"third\\" dangerouslySetInnerHTML={htmlSignal.value} class=\\"after\\" />\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tonClick$={() =>\n\t\t\t\t\t\t\t\t(htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\")\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,iEACkB,OAAO,kEACiC,sDAIzD,YAAY,CAAC;AAPnB,MACKC,wCAAwC,OACxC,yCACQ,4BAA4B;AAFvC,SAAS,kBAAkB;AAC3B,MAAM,MAAMC,yCAoBV\"}")
 == DIAGNOSTICS ==
 
 []

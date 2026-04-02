@@ -25,20 +25,15 @@ expression: output
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.ts (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const _hf0 = (p0) => p0.value ? true : undefined;
 const q_Cmp_component_handleClick_WawHV3HwS1A = qrl(() => import("./test.tsx_Cmp_component_handleClick_WawHV3HwS1A"), "Cmp_component_handleClick_WawHV3HwS1A", [toggleSig]);
 export const Cmp_component_4ryKJTOKjWE = () => {
 	const toggleSig = useSignal(false);
 	const handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));
-	return _jsxSorted("button", { "q:p": handleClick$ }, {
-		"q-e:click": handleClick$,
-		"data-open": _fnSignal(_hf0, [toggleSig], "p0 => p0.value ? true : undefined;")
-	}, "Removing data-open re-renders", 7, "u6_0");
-};
-;
+	return <button>
+					Removing data-open re-renders
+				</button>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst _hf0 = (p0) => p0.value ? true : undefined;\nconst q_Cmp_component_handleClick_WawHV3HwS1A = qrl(() => import(\\"./test.tsx_Cmp_component_handleClick_WawHV3HwS1A\\"), \\"Cmp_component_handleClick_WawHV3HwS1A\\", [toggleSig]);\nexport const Cmp_component_4ryKJTOKjWE = () => {\n\tconst toggleSig = useSignal(false);\n\tconst handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": handleClick$ }, {\n\t\t\\"q-e:click\\": handleClick$,\n\t\t\\"data-open\\": _fnSignal(_hf0, [toggleSig], \\"p0 => p0.value ? true : undefined;\\")\n\t}, \\"Removing data-open re-renders\\", 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,QAAQ,OAAO,GAAG,QAAQ,OAAO;AACvC,MAAM,0CAA0C,UAAU,OAAO,qDAAqD,yCAAyC,CAAC,UAAU,CAAC;AAC3K,OAAO,MAAM,kCAAkC;CAC9C,MAAM,YAAY,UAAU,MAAM;CAClC,MAAM,eAAe,IAAI,wCAAwC,EAAE,CAAC,UAAU,CAAC,CAAC;AAChF,QAAO,WAAW,UAAU,EAAE,OAAO,cAAc,EAAE;EACpD,aAAa;EACb,aAAa,UAAU,MAAM,CAAC,UAAU,EAAE,qCAAqC;EAC/E,EAAE,iCAAiC,GAAG,OAAO;;AAC7C\"}")
 /*
 {
   "origin": "test.tsx",
@@ -98,13 +93,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleCl
 ============================= test.ts ==
 
 import { _fnSignal } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
+const _hf0 = (p0) => p0.value ? true : undefined;
 const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 import { component$, $, useSignal } from "@qwik.dev/core";
 export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$, $, useSig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCACpB,4BACZ;AAFlB,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort { component$, $, useSig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,QAAO,kBAAiB;AAD7B,MACKC,wCAAwC,OAAO,yCACpB,4BACZ;AAFlB,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
 == DIAGNOSTICS ==
 
 []

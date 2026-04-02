@@ -62,12 +62,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useReso
 const q_test_component_useResource_4a8wVY7wh38 = qrl(() => import("./test.tsx_test_component_useResource_4a8wVY7wh38"), "test_component_useResource_4a8wVY7wh38");
 export const test_component_LUXeXe0DQrg = () => {
 	useResourceQrl(q_test_component_useResource_4a8wVY7wh38);
-	return _jsxSorted("div", null, null, "cmp", 3, "u6_0");
-};
-;
+	return <div>cmp</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"const q_test_component_useResource_4a8wVY7wh38 = qrl(() => import(\\"./test.tsx_test_component_useResource_4a8wVY7wh38\\"), \\"test_component_useResource_4a8wVY7wh38\\");\nexport const test_component_LUXeXe0DQrg = () => {\n\tuseResourceQrl(q_test_component_useResource_4a8wVY7wh38);\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,2CAA2C,UAAU,OAAO,sDAAsD,yCAAyC;AACjK,OAAO,MAAM,mCAAmC;AAC/C,gBAAe,yCAAyC;AACxD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;;AACrD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -91,7 +88,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useResource$ } from "@qwik.dev/core";
 import mongodb from "mongodb";
@@ -101,7 +97,7 @@ export const onGet = () => {
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BACA;AAJJ,SAAS,YAAY,oBAAoB;AACzC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGjD,6BACA;AAJJ,SAAS,YAAY,oBAAoB;AACzC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -56,23 +56,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_div_
 ============================= test.tsx_Greeter_component_n7HuG2hhU0Q.tsx (ENTRY POINT)==
 
 import { default as mongo } from "mongodb";
-const q_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo"), "Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo");
-const q_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E"), "Greeter_component_div_div_q_e_click_2_B9tqzgApK9E");
-const q_Greeter_component_div_div_q_e_click_wYSPnQEGCbA = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_wYSPnQEGCbA"), "Greeter_component_div_div_q_e_click_wYSPnQEGCbA");
 export const Greeter_component_n7HuG2hhU0Q = () => {
 	useTask$(async () => {
 		await mongo.users();
 	});
-	return _jsxSorted("div", null, null, [
-		_jsxSorted("div", null, { "q-e:click": q_Greeter_component_div_div_q_e_click_wYSPnQEGCbA }, null, 3, null),
-		_jsxSorted("div", null, { "q-e:click": q_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo }, null, 3, null),
-		_jsxSorted("div", null, { "q-e:click": q_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E }, null, 3, null)
-	], 3, "u6_0");
-};
-;
+	return <div>
+			<div />
+			<div />
+			<div />
+		</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7HuG2hhU0Q\"],\"sourcesContent\":[\"import { default as mongo } from \\"mongodb\\";\nconst q_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo = qrl(() => import(\\"./test.tsx_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo\\"), \\"Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo\\");\nconst q_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E = qrl(() => import(\\"./test.tsx_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E\\"), \\"Greeter_component_div_div_q_e_click_2_B9tqzgApK9E\\");\nconst q_Greeter_component_div_div_q_e_click_wYSPnQEGCbA = qrl(() => import(\\"./test.tsx_Greeter_component_div_div_q_e_click_wYSPnQEGCbA\\"), \\"Greeter_component_div_div_q_e_click_wYSPnQEGCbA\\");\nexport const Greeter_component_n7HuG2hhU0Q = () => {\n\tuseTask$(async () => {\n\t\tawait mongo.users();\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Greeter_component_div_div_q_e_click_wYSPnQEGCbA }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E }, null, 3, null)\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW,aAAa;AACjC,MAAM,sDAAsD,UAAU,OAAO,iEAAiE,oDAAoD;AAClM,MAAM,sDAAsD,UAAU,OAAO,iEAAiE,oDAAoD;AAClM,MAAM,oDAAoD,UAAU,OAAO,+DAA+D,kDAAkD;AAC5L,OAAO,MAAM,sCAAsC;AAClD,UAAS,YAAY;AACpB,QAAM,MAAM,OAAO;GAClB;AACF,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,OAAO,MAAM,EAAE,aAAa,mDAAmD,EAAE,MAAM,GAAG,KAAK;EAC1G,WAAW,OAAO,MAAM,EAAE,aAAa,qDAAqD,EAAE,MAAM,GAAG,KAAK;EAC5G,WAAW,OAAO,MAAM,EAAE,aAAa,qDAAqD,EAAE,MAAM,GAAG,KAAK;EAC5G,EAAE,GAAG,OAAO;;AACZ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -152,14 +146,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_div_
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_Greeter_component_div_div_q_e_click_wYSPnQEGCbA = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_wYSPnQEGCbA"), "Greeter_component_div_div_q_e_click_wYSPnQEGCbA");
+const q_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo"), "Greeter_component_div_div_q_e_click_1_s7p0zjWZpqo");
+const q_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E = qrl(() => import("./test.tsx_Greeter_component_div_div_q_e_click_2_B9tqzgApK9E"), "Greeter_component_div_div_q_e_click_2_B9tqzgApK9E");
 const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
 import { component$, $ } from "@qwik.dev/core";
 import mongo from "mongodb";
 export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\n\nexport const Greeter = component$(() => {\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tawait mongo.users();\n\t});\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,4CACJ,OAAO,6CAEe,gCACV;AAJb,SAAS,YAAY,SAAS;AAC9B,OAAO,WAAW;AAElB,OAAO,MAAM,UAAUC,6CAYrB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.dev/core';\nimport\",\"t { component$, $ } from '@qwik.dev/core';\nimport m\",\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\n\nexport const Greeter = component$(() => {\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tawait mongo.users();\n\t});\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t\t<div onClick$={() => {}}/>\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,MACKA,8DACc,OAAO,+DAGT,kDAEG;AAPpB,MACKC,gEACgB,OAAO,iEAGP,oDAGlB;AARH,MACKA,gEACgB,OAAO,iEAGP,oDAGlB;AARH,MACKC,4CACJ,OAAO,6CAEe,gCACV;AAJb,SAAS,YAAY,SAAS;AAC9B,OAAO,WAAW;AAElB,OAAO,MAAM,UAAUC,6CAYrB\"}")
 == DIAGNOSTICS ==
 
 []

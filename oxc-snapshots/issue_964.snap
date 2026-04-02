@@ -23,7 +23,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	console.log(function* (lo: any, t: any) {
 		console.log(yield (yield lo)(t.href).then((r) => r.json()));
 	});
-	return _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
+	return <p>Hello Qwik</p>;
 };;
 
 /*
@@ -49,13 +49,12 @@ export const App_component_ckEPmXZlub0 = () => {
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 import { component$ } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconsole.log(function*(lo: any, t: any) {\n\tconsole.log(yield (yield lo)(t.href).then((r) => r.json()));\n\t});\n\n\treturn <p>Hello Qwik</p>;\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCACG,4BAA4B;AAHrC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconsole.log(function*(lo: any, t: any) {\n\tconsole.log(yield (yield lo)(t.href).then((r) => r.json()));\n\t});\n\n\treturn <p>Hello Qwik</p>;\n});\n\"],\"mappings\":\"AAAA,MACKA,wCACL,OACM,yCACG,4BAA4B;AAHrC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAMjB\"}")
 == DIAGNOSTICS ==
 
 []

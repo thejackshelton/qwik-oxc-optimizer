@@ -25,19 +25,17 @@ export default component$(() => {
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [index, value]);
 export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
-	return _jsxSorted("div", null, null, arr.value.map((val, i) => {
+	return <div>
+      {arr.value.map((val, i) => {
 		const index = i + 1;
 		const value = val.toUpperCase();
-		return _jsxSorted("div", { "q:ps": [index, value] }, { "q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([index, value]) }, val, 7, null);
-	}), 3, "u6_0");
-};
-;
+		return <div>{val}</div>;
+	})}
+    </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import(\\"./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\\"), \\"test_component_div_div_q_e_click_Mc600uqO6ps\\", [index, value]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\tconst value = val.toUpperCase();\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [index, value] }, { \\"q-e:click\\": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([index, value]) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,iDAAiD,UAAU,OAAO,4DAA4D,gDAAgD,CAAC,OAAO,MAAM,CAAC;AACnM,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;EAClB,MAAM,QAAQ,IAAI,aAAa;AAC/B,SAAO,WAAW,OAAO,EAAE,QAAQ,CAAC,OAAO,MAAM,EAAE,EAAE,EAAE,aAAa,+CAA+C,EAAE,CAAC,OAAO,MAAM,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK;GACpJ,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
@@ -104,13 +102,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [index, value]);
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n\t\tconst value = val.toUpperCase();\n        return <div onClick$={() => console.log(value, index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n\t\tconst value = val.toUpperCase();\n        return <div onClick$={() => console.log(value, index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,2DAEE,OAAO,4DAEV,gDAE2B,cACrB,CAAC;AARX,MACKC,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
 == DIAGNOSTICS ==
 
 []

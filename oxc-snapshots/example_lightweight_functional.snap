@@ -80,12 +80,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Button_button_q_e_clic
 import { Button } from "./test";
 import { ButtonArrow } from "./test";
 export const Foo_component_HTDRsvUbLiE = (props) => {
-	return _jsxSorted("div", null, null, [_jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_1"), _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_2")], 3, "u6_0");
-};
-;
+	return <div>
+			<Button />
+			<ButtonArrow />
+		</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { Button } from \\"./test\\";\nimport { ButtonArrow } from \\"./test\\";\nexport const Foo_component_HTDRsvUbLiE = (props) => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_1\\"), _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_2\\")], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,SAAS,mBAAmB;AAC5B,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,UAAU,QAAQ,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,EAAE,UAAU,aAAa,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO;;AACjP\"}")
 /*
 {
   "origin": "test.tsx",
@@ -158,7 +158,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ButtonArrow_button_q_e
 import { _jsxSorted } from "@qwik.dev/core";
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-import { _jsxSplit } from "@qwik.dev/core";
 const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 const q_Button_button_q_e_click_6YaNiKLqRnQ = qrl(() => import("./test.tsx_Button_button_q_e_click_6YaNiKLqRnQ"), "Button_button_q_e_click_6YaNiKLqRnQ", [color, text]);
 const q_ButtonArrow_button_q_e_click_rEE0GCaea7M = qrl(() => import("./test.tsx_ButtonArrow_button_q_e_click_rEE0GCaea7M"), "ButtonArrow_button_q_e_click_rEE0GCaea7M", [color, text]);
@@ -180,7 +179,7 @@ export const ButtonArrow = (_rawProps) => {
 };
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@\",\"t { $, component$ } from '@qwik.dev/c\",\"t { $, component$ } from '@qwik.dev/core';\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t<Button {...props} />\n\t\t\t<ButtonArrow {...props} />\n\t\t</div>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport function Button({text, color}) {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\nexport const ButtonArrow = ({text, color}) => {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,MACKA,wCAAwC,OAE1C,yCACF,4BAEU;AANX,MACKC,kDAEC,OAAO,mDAGV,uCACc,aACjB,CAAC;AARD,MACKC,uDAEM,OAAO,wDAGL,4CAEX,aAEA,CAAC;AATH,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,0CAOhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,SAAS,OAAO,EAAC,MAAM,SAAQ;AACrC;eACmB;;IAAgD;;AAIpE,OAAO,MAAM,6BAAiC;;;AAC7C;eACmB;;IAAgD\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@\",\"t { $, component$ } from '@qwik.dev/c\",\"t { $, component$ } from '@qwik.dev/core';\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t<Button {...props} />\n\t\t\t<ButtonArrow {...props} />\n\t\t</div>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport function Button({text, color}) {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\nexport const ButtonArrow = ({text, color}) => {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,wCAAwC,OAE1C,yCACF,4BAEU;AANX,MACKC,kDAEC,OAAO,mDAGV,uCACc,aACjB,CAAC;AARD,MACKC,uDAEM,OAAO,wDAGL,4CAEX,aAEA,CAAC;AATH,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,0CAOhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,SAAS,OAAO,EAAC,MAAM,SAAQ;AACrC;eACmB;;IAAgD;;AAIpE,OAAO,MAAM,6BAAiC;;;AAC7C;eACmB;;IAAgD\"}")
 == DIAGNOSTICS ==
 
 []

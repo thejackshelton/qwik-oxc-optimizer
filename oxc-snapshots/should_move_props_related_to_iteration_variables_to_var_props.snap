@@ -42,17 +42,13 @@ export const Child_component_9GyF01GDKqw = () => {
 	const propCounterWithNested = useSignal(() => {
 		return { data: [{ attributeInArray: { counter: globalThis.propsCounter++ } }, { attributeInArray: { counter: globalThis.propsCounter } }] };
 	});
-	return _jsxSorted("div", null, null, propCounterWithNested.value.data.map((item, index) => {
-		return _jsxSorted(TestComponent, {
-			counter: item.attributeInArray.counter,
-			key: index
-		}, { logString: "Nested read through array" }, null, 3, "u6_0");
-	}), 3, "u6_1");
-};
-;
+	return <div>
+        {propCounterWithNested.value.data.map((item, index) => {
+		return <TestComponent />;
+	})}
+    </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_9GyF01GDKqw\"],\"sourcesContent\":[\"import { TestComponent } from \\"./testComponent\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const Child_component_9GyF01GDKqw = () => {\n\tconst propCounterWithNested = useSignal(() => {\n\t\treturn { data: [{ attributeInArray: { counter: globalThis.propsCounter++ } }, { attributeInArray: { counter: globalThis.propsCounter } }] };\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, propCounterWithNested.value.data.map((item, index) => {\n\t\treturn _jsxSorted(TestComponent, {\n\t\t\tcounter: item.attributeInArray.counter,\n\t\t\tkey: index\n\t\t}, { logString: \\"Nested read through array\\" }, null, 3, \\"u6_0\\");\n\t}), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,qBAAqB;AAC9B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC;CAChD,MAAM,wBAAwB,gBAAgB;AAC7C,SAAO,EAAE,MAAM,CAAC,EAAE,kBAAkB,EAAE,SAAS,WAAW,gBAAgB,EAAE,EAAE,EAAE,kBAAkB,EAAE,SAAS,WAAW,cAAc,EAAE,CAAC,EAAE;GAC1I;AACF,QAAO,WAAW,OAAO,MAAM,MAAM,sBAAsB,MAAM,KAAK,KAAK,MAAM,UAAU;AAC1F,SAAO,WAAW,eAAe;GAChC,SAAS,KAAK,iBAAiB;GAC/B,KAAK;GACL,EAAE,EAAE,WAAW,6BAA6B,EAAE,MAAM,GAAG,OAAO;GAC9D,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
@@ -76,14 +72,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_9GyF01
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Child_component_9GyF01GDKqw = qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
 import { component$, useSignal } from "@qwik.dev/core";
 import { TestComponent } from "./testComponent";
 export const Child = componentQrl(q_Child_component_9GyF01GDKqw);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { TestComponent } from \\"./testComponent\\";\n\nexport const Child = component$(() => {\n  const propCounterWithNested = useSignal(() => {\n  return {\n      data: [\n        { attributeInArray: { counter: globalThis.propsCounter++ } },\n        { attributeInArray: { counter: globalThis.propsCounter } },\n      ],\n    };\n  })\n  return (\n    <div>\n        {propCounterWithNested.value.data.map((item, index) => {\n          return (\n            <TestComponent\n              counter={item.attributeInArray.counter}\n              logString=\\"Nested read through array\\"\n              key={index}\n            />\n          );\n        })}\n    </div>\n  );\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,2CACb,8BAEpB;AAHrB,SAAS,YAAY,iBAAiB;AACtC,SAAS,qBAAqB;AAE9B,OAAO,MAAM,QAAQC,2CAsBnB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { TestComponent } from \\"./testComponent\\";\n\nexport const Child = component$(() => {\n  const propCounterWithNested = useSignal(() => {\n  return {\n      data: [\n        { attributeInArray: { counter: globalThis.propsCounter++ } },\n        { attributeInArray: { counter: globalThis.propsCounter } },\n      ],\n    };\n  })\n  return (\n    <div>\n        {propCounterWithNested.value.data.map((item, index) => {\n          return (\n            <TestComponent\n              counter={item.attributeInArray.counter}\n              logString=\\"Nested read through array\\"\n              key={index}\n            />\n          );\n        })}\n    </div>\n  );\n})\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CACb,8BAEpB;AAHrB,SAAS,YAAY,iBAAiB;AACtC,SAAS,qBAAqB;AAE9B,OAAO,MAAM,QAAQC,2CAsBnB\"}")
 == DIAGNOSTICS ==
 
 []

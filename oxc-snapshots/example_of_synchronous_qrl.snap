@@ -27,20 +27,17 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 export const test_component_LUXeXe0DQrg = () => {
-	return _jsxSorted(_Fragment, null, null, [
-		_jsxSorted("input", null, { "q-e:click": syncQrl(function(event, target) {
-			event.preventDefault();
-		}) }, null, 3, null),
-		_jsxSorted("input", null, { "q-e:click": syncQrl((event, target) => {
-			event.preventDefault();
-		}) }, null, 3, null),
-		_jsxSorted("input", null, { "q-e:click": syncQrl((event, target) => event.preventDefault()) }, null, 3, null)
-	], 3, "u6_0");
-};
-;
+	return <>
+				<input onClick$={syncQrl(function(event, target) {
+		event.preventDefault();
+	})} />
+				<input onClick$={syncQrl((event, target) => {
+		event.preventDefault();
+	})} />
+				<input onClick$={syncQrl((event, target) => event.preventDefault())} />
+			</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"export const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(_Fragment, null, null, [\n\t\t_jsxSorted(\\"input\\", null, { \\"q-e:click\\": syncQrl(function(event, target) {\n\t\t\tevent.preventDefault();\n\t\t}) }, null, 3, null),\n\t\t_jsxSorted(\\"input\\", null, { \\"q-e:click\\": syncQrl((event, target) => {\n\t\t\tevent.preventDefault();\n\t\t}) }, null, 3, null),\n\t\t_jsxSorted(\\"input\\", null, { \\"q-e:click\\": syncQrl((event, target) => event.preventDefault()) }, null, 3, null)\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,WAAW,MAAM,MAAM;EACxC,WAAW,SAAS,MAAM,EAAE,aAAa,QAAQ,SAAS,OAAO,QAAQ;AACxE,SAAM,gBAAgB;IACrB,EAAE,EAAE,MAAM,GAAG,KAAK;EACpB,WAAW,SAAS,MAAM,EAAE,aAAa,SAAS,OAAO,WAAW;AACnE,SAAM,gBAAgB;IACrB,EAAE,EAAE,MAAM,GAAG,KAAK;EACpB,WAAW,SAAS,MAAM,EAAE,aAAa,SAAS,OAAO,WAAW,MAAM,gBAAgB,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK;EAC7G,EAAE,GAAG,OAAO;;AACZ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -64,14 +61,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { sync$, component$ } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"mponent$ \",\"ort { sync$, component$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,yCAAyC,OAAO,0CAGjD,6BAEY;AALd,SAAS,OAAO,kBAAkB;AAElC,eAAeC,0CAab\"}")
+Some("{\"version\":3,\"names\":[\"ort { sync$, component$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGjD,6BAEY;AALd,SAAS,OAAO,kBAAkB;AAElC,eAAeC,0CAab\"}")
 == DIAGNOSTICS ==
 
 []

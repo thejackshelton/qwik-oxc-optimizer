@@ -18,11 +18,8 @@ export const App = component$((props) => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
-export const App_component_ckEPmXZlub0 = () => _jsxSorted("div", null, null, null, 3, "u6_0");
-;
+export const App_component_ckEPmXZlub0 = () => <div></div>;;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -110,13 +107,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU.tsx"), "App_component_1_w0t0o3QMovU");
 import { component$, $, useStyles$ } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, $, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $, useStyles$ } from '@qwik.dev/core';\n\nexport const App = component$((props) => {\n\tuseStyles$('hola');\n\treturn $(() => (\n\t\t<div></div>\n\t));\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAAO,+CAEd,8BAElC;AAJN,SAAS,YAAY,GAAG,kBAAkB;AAE1C,OAAO,MAAM,MAAMC,2CAKjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $, useStyles$ } from '@qwik.dev/core';\n\nexport const App = component$((props) => {\n\tuseStyles$('hola');\n\treturn $(() => (\n\t\t<div></div>\n\t));\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,+CAEd,8BAElC;AAJN,SAAS,YAAY,GAAG,kBAAkB;AAE1C,OAAO,MAAM,MAAMC,2CAKjB\"}")
 == DIAGNOSTICS ==
 
 []

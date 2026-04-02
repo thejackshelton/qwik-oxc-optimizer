@@ -118,25 +118,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6Fi
 
 import { _captures } from "@qwik.dev/core";
 export const Foo_component_HTDRsvUbLiE = () => {
-	const _rawProps = _captures[0];
-	const arg0 = _captures[1];
-	const foo = _captures[2];
 	const fn = (_rawProps) => {
 		const _ref = {};
 		_ref.aaa = _rawProps._ref.aaa;
 		const { aaa } = _ref;
 		return aaa;
 	};
-	return _jsxSorted("div", null, null, [
-		foo,
-		fn(),
-		arg0
-	], 3, "u6_0");
-};
-;
+	return <div>
+				{foo}{fn()}{arg0}
+			</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const _rawProps = _captures[0];\nconst arg0 = _captures[1];\nconst foo = _captures[2];\n\n\tconst fn = (_rawProps) => {\n\t\tconst _ref = {};\n\t\t_ref.aaa = _rawProps._ref.aaa;\n\t\tconst { aaa } = _ref;\n\t\treturn aaa;\n\t};\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\tfoo,\n\t\tfn(),\n\t\targ0\n\t], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAAE,MAAM,YAAY,UAAU;CAC7E,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;CAErB,MAAM,MAAM,cAAc;EACzB,MAAM,OAAO,EAAE;AACf,OAAK,MAAM,UAAU,KAAK;EAC1B,MAAM,EAAE,QAAQ;AAChB,SAAO;;AAER,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,IAAI;EACJ;EACA,EAAE,GAAG,OAAO;;AACZ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -167,13 +159,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
 
 import { _captures } from "@qwik.dev/core";
 export const Bar_component_L80pS8Hxf1Y = () => {
-	const bar = _captures[0];
-	return _jsxSorted("div", null, null, bar, 3, "u6_1");
-};
-;
+	return <div>
+				{bar}
+			</div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_component_L80pS8Hxf1Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Bar_component_L80pS8Hxf1Y = () => { const bar = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, bar, 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAAE,MAAM,MAAM,UAAU;AAEtE,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,GAAG,OAAO;;AACnD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -200,7 +190,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_component_L80pS8Hx
 
 ============================= test.jsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
 const q_Bar_component_1_0xSyNSnVu3k = qrl(() => import("./test.tsx_Bar_component_1_0xSyNSnVu3k"), "Bar_component_1_0xSyNSnVu3k");
 import { $, component$ } from "@qwik.dev/core";
@@ -208,7 +197,7 @@ export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY);
 export const Bar = componentQrl(q_Bar_component_1_0xSyNSnVu3k);
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(({foo}) => {\n\tconst arg0 = 20;\n\treturn $(() => {\n\t\tconst fn = ({aaa}) => aaa;\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{foo}{fn()}{arg0}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\nexport const Bar = component$(({bar}) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{bar}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,0CAA0C,OAE1C,2CACA,8BACY;AALjB,MACKA,0CAA0C,OAE1C,2CACA,8BACY;AAJjB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAUjB;AAEF,OAAO,MAAM,MAAMA,2CAQjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(({foo}) => {\n\tconst arg0 = 20;\n\treturn $(() => {\n\t\tconst fn = ({aaa}) => aaa;\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{foo}{fn()}{arg0}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\nexport const Bar = component$(({bar}) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t{bar}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAE1C,2CACA,8BACY;AALjB,MACKA,0CAA0C,OAE1C,2CACA,8BACY;AAJjB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAUjB;AAEF,OAAO,MAAM,MAAMA,2CAQjB\"}")
 == DIAGNOSTICS ==
 
 []

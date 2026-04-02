@@ -52,12 +52,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_o
 
 const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
 export const Header_component_J4uyIhaBNR4 = () => {
-	return _jsxSorted(_Fragment, null, null, [_jsxSorted("div", null, { onClick: (ctx) => console.log("1") }, null, 3, null), _jsxSorted("div", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, null)], 1, "u6_0");
-};
-;
+	return <>
+			<div onClick={(ctx) => console.log("1")} />
+			<div onClick={Qrl(q_Header_component_div_onClick_i7ekvWH3674)} />
+		</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import(\\"./test.tsx_Header_component_div_onClick_i7ekvWH3674\\"), \\"Header_component_div_onClick_i7ekvWH3674\\");\nexport const Header_component_J4uyIhaBNR4 = () => {\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(\\"div\\", null, { onClick: (ctx) => console.log(\\"1\\") }, null, 3, null), _jsxSorted(\\"div\\", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, null)], 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,6CAA6C,UAAU,OAAO,wDAAwD,2CAA2C;AACvK,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,OAAO,MAAM,EAAE,UAAU,QAAQ,QAAQ,IAAI,IAAI,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,WAAW,OAAO,EAAE,SAAS,IAAI,2CAA2C,EAAE,EAAE,MAAM,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AAC1O\"}")
 /*
 {
   "origin": "test.tsx",
@@ -81,14 +81,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyI
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
 import { $, component$ } from "@qwik.dev/core";
 export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
 
 
-Some("{\"version\":3,\"names\":[\"t$ } from\",\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\treturn (\n\t\t<>\n\t\t\t<div onClick={(ctx) => console.log(\\"1\\")}/>\n\t\t\t<div onClick={$((ctx) => console.log(\\"2\\"))}/>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,2CACL,OAAO,4CAEP,+BAC0B;AAJ1B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAOpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\treturn (\n\t\t<>\n\t\t\t<div onClick={(ctx) => console.log(\\"1\\")}/>\n\t\t\t<div onClick={$((ctx) => console.log(\\"2\\"))}/>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,2CACL,OAAO,4CAEP,+BAC0B;AAJ1B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAOpB\"}")
 == DIAGNOSTICS ==
 
 []

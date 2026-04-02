@@ -32,18 +32,20 @@ export default component$(() => {
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_test_component_div_div_span_button_q_e_click_oBFNw2cK30o = qrl(() => import("./test.tsx_test_component_div_div_span_button_q_e_click_oBFNw2cK30o"), "test_component_div_div_span_button_q_e_click_oBFNw2cK30o", [cellKey]);
 export const test_component_LUXeXe0DQrg = () => {
 	const matrix = useSignal([["a", "b"], ["c", "d"]]);
-	return _jsxSorted("div", null, null, matrix.value.map((row, i) => _jsxSorted("div", { key: i }, null, row.map((cell, j) => {
+	return <div>
+      {matrix.value.map((row, i) => <div>
+          {row.map((cell, j) => {
 		const cellKey = cell + "-" + j;
-		return _jsxSorted("span", { key: j }, null, _jsxSorted("button", { "q:p": cellKey }, { "q-e:click": q_test_component_div_div_span_button_q_e_click_oBFNw2cK30o.w([cellKey]) }, cell, 7, null), 3, null);
-	}), 3, null)), 3, "u6_0");
-};
-;
+		return <span>
+                <button>{cell}</button>
+              </span>;
+	})}
+        </div>)}
+    </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_span_button_q_e_click_oBFNw2cK30o = qrl(() => import(\\"./test.tsx_test_component_div_div_span_button_q_e_click_oBFNw2cK30o\\"), \\"test_component_div_div_span_button_q_e_click_oBFNw2cK30o\\", [cellKey]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst matrix = useSignal([[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]]);\n\treturn _jsxSorted(\\"div\\", null, null, matrix.value.map((row, i) => _jsxSorted(\\"div\\", { key: i }, null, row.map((cell, j) => {\n\t\tconst cellKey = cell + \\"-\\" + j;\n\t\treturn _jsxSorted(\\"span\\", { key: j }, null, _jsxSorted(\\"button\\", { \\"q:p\\": cellKey }, { \\"q-e:click\\": q_test_component_div_div_span_button_q_e_click_oBFNw2cK30o.w([cellKey]) }, cell, 7, null), 3, null);\n\t}), 3, null)), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,6DAA6D,UAAU,OAAO,wEAAwE,4DAA4D,CAAC,QAAQ,CAAC;AAClO,OAAO,MAAM,mCAAmC;CAC/C,MAAM,SAAS,UAAU,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC;AAClD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,MAAM,KAAK,KAAK,MAAM,WAAW,OAAO,EAAE,KAAK,GAAG,EAAE,MAAM,IAAI,KAAK,MAAM,MAAM;EAC1H,MAAM,UAAU,OAAO,MAAM;AAC7B,SAAO,WAAW,QAAQ,EAAE,KAAK,GAAG,EAAE,MAAM,WAAW,UAAU,EAAE,OAAO,SAAS,EAAE,EAAE,aAAa,2DAA2D,EAAE,CAAC,QAAQ,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK;GACtM,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO;;AACxB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -107,13 +109,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_test_component_div_div_span_button_q_e_click_oBFNw2cK30o = qrl(() => import("./test.tsx_test_component_div_div_span_button_q_e_click_oBFNw2cK30o"), "test_component_div_div_span_button_q_e_click_oBFNw2cK30o", [cellKey]);
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const matrix = useSignal([['a', 'b'], ['c', 'd']]);\n  return (\n    <div>\n      {matrix.value.map((row, i) => (\n        <div key={i}>\n          {row.map((cell, j) => {\n            const cellKey = cell + '-' + j;\n            return (\n              <span key={j}>\n                <button onClick$={() => console.log(cellKey)}>{cell}</button>\n              </span>\n            );\n          })}\n        </div>\n      ))}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAkBb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\nexport\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const matrix = useSignal([['a', 'b'], ['c', 'd']]);\n  return (\n    <div>\n      {matrix.value.map((row, i) => (\n        <div key={i}>\n          {row.map((cell, j) => {\n            const cellKey = cell + '-' + j;\n            return (\n              <span key={j}>\n                <button onClick$={() => console.log(cellKey)}>{cell}</button>\n              </span>\n            );\n          })}\n        </div>\n      ))}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,uEAEc,OAAO,wEAEhB,4DAGC,SAAS,CAAC;AARrB,MACKC,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAkBb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -47,14 +47,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_mongo_component_div_q
 
 ============================= src/components/mongo/index.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_mongo_component_div_q_e_click_jncbxvZVtWY = qrl(() => import("./index.tsx_mongo_component_div_q_e_click_jncbxvZVtWY"), "mongo_component_div_q_e_click_jncbxvZVtWY");
 const q_mongo_component_ouWLj4jA2oI = _noopQrl("mongo_component_ouWLj4jA2oI");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_mongo_component_ouWLj4jA2oI);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nex\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wDAEU,OAAO,0DAEc;AALpC,MACKC,yCAEL,8BAA8B;AAF9B,SAAS,kBAAkB;AAE3B,eAAeC,2CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nex\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,MACKA,wDAEU,OAAO,0DAEc;AALpC,MACKC,yCAEL,8BAA8B;AAF9B,SAAS,kBAAkB;AAE3B,eAAeC,2CAKb\"}")
 == DIAGNOSTICS ==
 
 []

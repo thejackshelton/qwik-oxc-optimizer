@@ -20,15 +20,13 @@ export default component$((props) => {
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-const _hf0 = (p0) => p0.myobj.id + "test";
 export const test_component_LUXeXe0DQrg = (props) => {
 	const item = props.something.count;
-	return _jsxSorted(_Fragment, null, null, _jsxSorted("div", { "data-no-wrap": item ? item * 2 : null }, { "data-wrap": _fnSignal(_hf0, [props], "p0 => p0.myobj.id + \"test\";") }, null, 3, null), 1, "u6_0");
-};
-;
+	return <>
+			<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + "test"}></div>
+		</>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"const _hf0 = (p0) => p0.myobj.id + \\"test\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\tconst item = props.something.count;\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"div\\", { \\"data-no-wrap\\": item ? item * 2 : null }, { \\"data-wrap\\": _fnSignal(_hf0, [props], \\"p0 => p0.myobj.id + \\\\"test\\\\";\\") }, null, 3, null), 1, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,QAAQ,OAAO,GAAG,MAAM,KAAK;AACnC,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,OAAO,MAAM,UAAU;AAC7B,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,gBAAgB,OAAO,OAAO,IAAI,MAAM,EAAE,EAAE,aAAa,UAAU,MAAM,CAAC,MAAM,EAAE,gCAAgC,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,OAAO;;AAC5M\"}")
 /*
 {
   "origin": "test.tsx",
@@ -55,15 +53,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _fnSignal } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$ } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"} from '@\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,yCACJ,OAAO,0CACG,6BAA6B;AAFxC,SAAS,kBAAkB;AAC3B,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,yCACJ,OAAO,0CACG,6BAA6B;AAFxC,SAAS,kBAAkB;AAC3B,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -79,21 +79,22 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
-const q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = qrl(() => import("./test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo"), "test_component_div_div_div_button_q_e_click_7fyCCEiYKFo", [planeId]);
 export const test_component_LUXeXe0DQrg = () => {
 	const data = useSignal([[["a", "b"], ["c", "d"]], [["e", "f"], ["g", "h"]]]);
-	return _jsxSorted("div", null, null, data.value.map((plane, pi) => {
+	return <div>
+      {data.value.map((plane, pi) => {
 		const planeId = "p" + pi;
-		return _jsxSorted("div", { key: pi }, null, plane.map((row, ri) => _jsxSorted("div", { key: ri }, null, row.map((cell, ci) => _jsxSorted("button", {
-			key: ci,
-			"q:p": planeId
-		}, { "q-e:click": q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo.w([planeId]) }, cell, 7, null)), 3, null)), 3, null);
-	}), 3, "u6_0");
-};
-;
+		return <div>
+            {plane.map((row, ri) => <div>
+                {row.map((cell, ci) => <button>
+                    {cell}
+                  </button>)}
+              </div>)}
+          </div>;
+	})}
+    </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = qrl(() => import(\\"./test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo\\"), \\"test_component_div_div_div_button_q_e_click_7fyCCEiYKFo\\", [planeId]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst data = useSignal([[[\\"a\\", \\"b\\"], [\\"c\\", \\"d\\"]], [[\\"e\\", \\"f\\"], [\\"g\\", \\"h\\"]]]);\n\treturn _jsxSorted(\\"div\\", null, null, data.value.map((plane, pi) => {\n\t\tconst planeId = \\"p\\" + pi;\n\t\treturn _jsxSorted(\\"div\\", { key: pi }, null, plane.map((row, ri) => _jsxSorted(\\"div\\", { key: ri }, null, row.map((cell, ci) => _jsxSorted(\\"button\\", {\n\t\t\tkey: ci,\n\t\t\t\\"q:p\\": planeId\n\t\t}, { \\"q-e:click\\": q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo.w([planeId]) }, cell, 7, null)), 3, null)), 3, null);\n\t}), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,MAAM,4DAA4D,UAAU,OAAO,uEAAuE,2DAA2D,CAAC,QAAQ,CAAC;AAC/N,OAAO,MAAM,mCAAmC;CAC/C,MAAM,OAAO,UAAU,CAAC,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,EAAE,CAAC,CAAC,KAAK,IAAI,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC,CAAC;AAC5E,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,MAAM,KAAK,OAAO,OAAO;EAClE,MAAM,UAAU,MAAM;AACtB,SAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,MAAM,KAAK,KAAK,OAAO,WAAW,OAAO,EAAE,KAAK,IAAI,EAAE,MAAM,IAAI,KAAK,MAAM,OAAO,WAAW,UAAU;GAClJ,KAAK;GACL,OAAO;GACP,EAAE,EAAE,aAAa,0DAA0D,EAAE,CAAC,QAAQ,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;GAC/H,EAAE,GAAG,OAAO;;AACb\"}")
 /*
 {
   "origin": "test.tsx",
@@ -117,13 +118,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
+const q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = qrl(() => import("./test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo"), "test_component_div_div_div_button_q_e_click_7fyCCEiYKFo", [planeId]);
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const data = useSignal([\n    [['a', 'b'], ['c', 'd']],\n    [['e', 'f'], ['g', 'h']],\n  ]);\n  return (\n    <div>\n      {data.value.map((plane, pi) => {\n        const planeId = 'p' + pi;\n        return (\n          <div key={pi}>\n            {plane.map((row, ri) => (\n              <div key={ri}>\n                {row.map((cell, ci) => (\n                  <button key={ci} onClick$={() => console.log(planeId)}>\n                    {cell}\n                  </button>\n                ))}\n              </div>\n            ))}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BACE;AAJN,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAyBb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\nexpor\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const data = useSignal([\n    [['a', 'b'], ['c', 'd']],\n    [['e', 'f'], ['g', 'h']],\n  ]);\n  return (\n    <div>\n      {data.value.map((plane, pi) => {\n        const planeId = 'p' + pi;\n        return (\n          <div key={pi}>\n            {plane.map((row, ri) => (\n              <div key={ri}>\n                {row.map((cell, ci) => (\n                  <button key={ci} onClick$={() => console.log(planeId)}>\n                    {cell}\n                  </button>\n                ))}\n              </div>\n            ))}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,sEAEa,OAAO,uEAGpB,2DAIE,SAAS,CAAC;AAVjB,MACKC,yCAAyC,OAAO,0CAGjD,6BACE;AAJN,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAyBb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -15,13 +15,12 @@ export const App = component$(() => {
 
 ============================= test.tsx ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
 import { component$ } from "@qwik.dev/core";
 export const App = componentQrl(q_App_component_ckEPmXZlub0);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn <div>Hello</div>;\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,uCAAuC,4BAElB;AAF1B,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAEjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn <div>Hello</div>;\n});\n\"],\"mappings\":\"AAAA,MACKA,uCAAuC,4BAElB;AAF1B,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAEjB\"}")
 == DIAGNOSTICS ==
 
 []

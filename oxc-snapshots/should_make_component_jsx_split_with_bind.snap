@@ -25,12 +25,11 @@ import { useSignal } from "@qwik.dev/core";
 export const test_component_LUXeXe0DQrg = () => {
 	const Cmp = Math.random() >= .5 ? "button" : "input";
 	const sig = useSignal(0);
-	return _jsxSorted("div", null, null, _jsxSorted(Cmp, { "bind:value": sig }, null, null, 3, "u6_1"), 3, "u6_0");
-};
-;
+	return <div>
+      <Cmp />
+    </div>;
+};;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst Cmp = Math.random() >= .5 ? \\"button\\" : \\"input\\";\n\tconst sig = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Cmp, { \\"bind:value\\": sig }, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,KAAK,QAAQ,IAAI,KAAK,WAAW;CAC7C,MAAM,MAAM,UAAU,EAAE;AACxB,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,KAAK,EAAE,cAAc,KAAK,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC7G\"}")
 /*
 {
   "origin": "test.tsx",
@@ -54,13 +53,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 
 ============================= test.js ==
 
-import { _jsxSorted } from "@qwik.dev/core";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { component$, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'\n  const sig = useSignal(0)\n  return (\n    <div>\n      <Cmp bind:value={sig} />\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'\n  const sig = useSignal(0)\n  return (\n    <div>\n      <Cmp bind:value={sig} />\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

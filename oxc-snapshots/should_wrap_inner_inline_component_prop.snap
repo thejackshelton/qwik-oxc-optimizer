@@ -36,9 +36,12 @@ export const test_component_LUXeXe0DQrg = (props: {
 	renders.count++;
 	const rerenders = renders.count + 0;
 	const _ref = {};
-	_ref.Id = (props: any) => _jsxSorted("div", null, null, ["_ref.Id:", _wrapProp(props, "id")], 3, "u6_0");
+	_ref.Id = (props: any) => <div>_ref.Id: {props.id}</div>;
 	const { Id } = _ref;
-	return _jsxSorted(_Fragment, null, null, [_jsxSorted(Id, { id: props.id }, null, null, 3, "u6_2"), rerenders], 1, "u6_1");
+	return <>
+          <Id id={props.id} />
+          {rerenders}
+        </>;
 };;
 
 /*
@@ -67,15 +70,12 @@ export const test_component_LUXeXe0DQrg = (props: {
 
 ============================= test.js ==
 
-import { _wrapProp } from "@qwik.dev/core";
-import { _jsxSorted } from "@qwik.dev/core";
-import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 import { $, component$, useStore, useSignal } from "@qwik.dev/core";
 export default componentQrl(q_test_component_LUXeXe0DQrg);
 
 
-Some("{\"version\":3,\"names\":[\"t$, useSt\",\"t { $, component$, useStore,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport default component$((props: { id: number }) => {\n      const renders = useStore(\n        {\n          count: 0,\n        },\n        { reactive: false }\n      );\n      renders.count++;\n      const rerenders = renders.count + 0;\n      const Id = (props: any) => <div>Id: {props.id}</div>;\n      return (\n        <>\n          <Id id={props.id} />\n          {rerenders}\n        </>\n      );\n    });\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,qBACoBA,iBAAiB;AADrC,MACKC,yCAAyC,OAAO,0CAC3B,6BAC1B;AAFA,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,eAAeC,0CAgBT\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport default component$((props: { id: number }) => {\n      const renders = useStore(\n        {\n          count: 0,\n        },\n        { reactive: false }\n      );\n      renders.count++;\n      const rerenders = renders.count + 0;\n      const Id = (props: any) => <div>Id: {props.id}</div>;\n      return (\n        <>\n          <Id id={props.id} />\n          {rerenders}\n        </>\n      );\n    });\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAC3B,6BAC1B;AAFA,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,eAAeC,0CAgBT\"}")
 == DIAGNOSTICS ==
 
 []

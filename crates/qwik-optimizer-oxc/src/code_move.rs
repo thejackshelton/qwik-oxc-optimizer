@@ -967,6 +967,58 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     // Step 4: fix self-referential variables
     let final_expr = fix_self_referential_vars(&expr_after_hoist);
 
+    // Step 4b (Phase 28-01): Add JSX runtime imports for segment modules.
+    // When JSX is transformed to _jsxSorted/_jsxSplit calls inside segment closures,
+    // the segment module needs to import these identifiers.
+    // Scan both the expression body and hoisted pairs for JSX runtime references.
+    {
+        let all_code: String = {
+            let mut parts = vec![final_expr.clone()];
+            for (_, code) in &hoisted_pairs {
+                parts.push(code.clone());
+            }
+            // Also scan the original expression for references
+            parts.push(ctx.expr.to_string());
+            parts.join("\n")
+        };
+
+        // Signal wrapping imports (must come before JSX imports to match SWC order)
+        if all_code.contains("_wrapProp") {
+            header_items.push(format!(r#"import {{ _wrapProp }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_fnSignal") {
+            header_items.push(format!(r#"import {{ _fnSignal }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_val") {
+            header_items.push(format!(r#"import {{ _val }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_chk") {
+            header_items.push(format!(r#"import {{ _chk }} from "{}";"#, ctx.core_module));
+        }
+
+        // Fragment import must come from jsx-runtime subpath
+        if all_code.contains("_Fragment") {
+            header_items.push(format!(
+                r#"import {{ Fragment as _Fragment }} from "{}/jsx-runtime";"#,
+                ctx.core_module
+            ));
+        }
+
+        // JSX function imports
+        if all_code.contains("_jsxSorted") {
+            header_items.push(format!(r#"import {{ _jsxSorted }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_getVarProps") {
+            header_items.push(format!(r#"import {{ _getVarProps }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_getConstProps") {
+            header_items.push(format!(r#"import {{ _getConstProps }} from "{}";"#, ctx.core_module));
+        }
+        if all_code.contains("_jsxSplit") {
+            header_items.push(format!(r#"import {{ _jsxSplit }} from "{}";"#, ctx.core_module));
+        }
+    }
+
     // Step 5: collect needed extra_top_items (seed = local_idents + scoped_idents + expr idents)
     let mut seed: HashSet<String> = HashSet::new();
     for ident in ctx.local_idents {

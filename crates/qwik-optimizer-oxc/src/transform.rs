@@ -373,13 +373,16 @@ fn property_key_to_str(key: &PropertyKey<'_>) -> String {
 // can_capture_scope
 // ---------------------------------------------------------------------------
 
-/// Returns `true` when `expr` is a function or arrow function — i.e., when
-/// it is capable of closing over outer variables. Identifiers and other
-/// non-function expressions cannot capture scope, so C03 applies.
+/// Returns `true` when `expr` is a function, arrow function, or identifier reference —
+/// i.e., when C03 should NOT fire. SWC also skips C03 for identifier arguments
+/// (e.g., `$(render)`, `useStyles$(style)`) because the callee is already a valid
+/// function reference; C03 only fires for non-function literals with captures.
 fn can_capture_scope(expr: &Expression<'_>) -> bool {
     matches!(
         expr,
-        Expression::FunctionExpression(_) | Expression::ArrowFunctionExpression(_)
+        Expression::FunctionExpression(_)
+            | Expression::ArrowFunctionExpression(_)
+            | Expression::Identifier(_)
     )
 }
 
@@ -3619,6 +3622,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     // No first arg — nothing to extract. Just rename callee + check C05.
                     if let Expression::Identifier(id) = &mut call.callee {
                         let callee_name = id.name.as_str().to_string();
+                        // Capture callee identifier span before any mutation.
+                        let callee_span = id.span;
                         if self.marker_functions.contains_key(&callee_name) || callee_name == "$" {
                             // C05: locally-exported $-function missing Qrl counterpart.
                             if let Some(specifier) = self.marker_functions.get(&callee_name).cloned() {
@@ -3627,7 +3632,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                                 if is_local_export {
                                     let qrl_name = words::dollar_to_qrl_name(&specifier);
                                     if !collect.has_export_symbol(&qrl_name) {
-                                        let loc = self.span_to_source_location(call.span.start, call.span.end);
+                                        // Use callee identifier span (just the name chars, not full call expr).
+                                        let loc = self.span_to_source_location(callee_span.start, callee_span.end);
                                         self.diagnostics.push(Diagnostic {
                                             scope: "optimizer".to_string(),
                                             category: DiagnosticCategory::Error,
@@ -3688,6 +3694,37 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
             // --- Check if we should emit ---
             let should_emit = self.should_emit_segment(ctx_name, ctx_kind.clone());
+
+            // --- C02: check if any descendent ident is a Fn/Class in decl_stack ---
+            // This covers the main marker $() path. The JSX native-prop path (C02 in
+            // create_synthetic_qqsegment) handles its own case separately.
+            if !matches!(self.mode, EmitMode::Lib) {
+                let mut invalid_decl_names: HashSet<String> = HashSet::new();
+                for (name, id_type) in &all_decl {
+                    match id_type {
+                        IdentType::Fn | IdentType::Class => {
+                            invalid_decl_names.insert(name.clone());
+                        }
+                        _ => {}
+                    }
+                }
+                for ident in &pending.descendent_idents {
+                    if invalid_decl_names.contains(ident) {
+                        self.diagnostics.push(Diagnostic {
+                            scope: "optimizer".to_string(),
+                            category: DiagnosticCategory::Error,
+                            code: Some("C02".to_string()),
+                            file: self.file_name.clone(),
+                            message: format!(
+                                "Reference to identifier '{}' can not be used inside a Qrl($) scope because it's a function",
+                                ident
+                            ),
+                            highlights: None,
+                            suggestions: None,
+                        });
+                    }
+                }
+            }
 
             // --- can_capture check ---
             let (mut scoped_idents, _is_const_cap) =
@@ -3831,6 +3868,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // SPECIFIER (component$) not the local alias (c$) for the QRL name.
         if let Expression::Identifier(id) = &mut call.callee {
             let callee_name = id.name.as_str().to_string();
+            // Capture callee identifier span before any mutation (for C05 highlight).
+            let callee_span = id.span;
             let is_bare_dollar = self
                 .qsegment_fn
                 .as_deref()
@@ -3848,7 +3887,8 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     if is_local_export {
                         let qrl_name = words::dollar_to_qrl_name(&specifier);
                         if !collect.has_export_symbol(&qrl_name) {
-                            let loc = self.span_to_source_location(call.span.start, call.span.end);
+                            // Use callee identifier span (just the function name chars, not full call expr).
+                            let loc = self.span_to_source_location(callee_span.start, callee_span.end);
                             self.diagnostics.push(Diagnostic {
                                 scope: "optimizer".to_string(),
                                 category: DiagnosticCategory::Error,

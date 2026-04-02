@@ -248,6 +248,7 @@ fn transform_code(
         explicit_extensions: config.explicit_extensions,
         is_server: config.is_server,
         source_text: source_in_arena,
+        transpile_jsx: config.transpile_jsx,
     });
     let _scoping = traverse_mut(&mut xfrm, &allocator, &mut program, scoping, ());
 

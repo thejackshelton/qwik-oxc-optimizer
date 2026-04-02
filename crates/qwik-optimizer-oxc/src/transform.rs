@@ -451,6 +451,9 @@ pub(crate) struct QwikTransformOptions<'b> {
     pub is_server: bool,
     /// Source text for diagnostic span computation (byte-offset to line/col).
     pub source_text: &'b str,
+    /// Whether JSX should be transpiled to _jsxSorted/_jsxSplit calls.
+    /// When false, JSX syntax is preserved in the output (both parent and segment modules).
+    pub transpile_jsx: bool,
 }
 
 // ---------------------------------------------------------------------------
@@ -2924,13 +2927,20 @@ impl QwikTransform {
     /// Per SPEC §hoist_fn_signal_call (lines 2554–2594).
     pub(crate) fn hoist_fn_signal_call(
         &mut self,
-        fn_signal_code: String,
+        mut fn_signal_code: String,
         arrow_code: String,
     ) -> String {
         // Look up arrow_code in the dedup map.
         if let Some((existing_name, _counter)) = self.hoisted_fn_signals.get(&arrow_code).cloned() {
             // Already hoisted — replace the arrow in the call string with _hf<N> ident.
-            let result = replace_fn_signal_arrow(&fn_signal_code, &arrow_code, &existing_name);
+            let mut result = replace_fn_signal_arrow(&fn_signal_code, &arrow_code, &existing_name);
+            // Also replace the third arg string with the hoisted _str constant.
+            if self.is_server {
+                if extract_fn_signal_third_arg(&result).is_some() {
+                    let str_name = format!("{existing_name}_str");
+                    result = replace_fn_signal_third_arg(&result, "", &str_name);
+                }
+            }
             return result;
         }
 
@@ -2946,17 +2956,28 @@ impl QwikTransform {
             rhs_code: arrow_code.clone(),
         });
 
-        // If server mode and there is a third arg (string literal), hoist the string too.
+        // If server mode and there is a third arg (string literal), hoist the string too
+        // and replace the inline string in the call with the _hf<N>_str reference.
+        // SWC hoists just the arrow body (without params/=>) as the _str constant.
         if self.is_server {
-            // The third arg of _fnSignal is the server-mode source string.
-            // Extract it from fn_signal_code: it's the last argument (after the captures array).
-            if let Some(server_str) = extract_fn_signal_third_arg(&fn_signal_code) {
+            if let Some(_server_str) = extract_fn_signal_third_arg(&fn_signal_code) {
+                // Build the body-only string for _hf_str (strip params and `=>` from arrow_code)
+                let body_str = if let Some(arrow_pos) = arrow_code.find("=>") {
+                    arrow_code[arrow_pos + 2..].trim().trim_end_matches(';').to_string()
+                } else {
+                    arrow_code.clone()
+                };
+                // SWC format: single-quoted string with inner quotes escaped
+                let escaped_body = body_str.replace('\\', "\\\\").replace('\'', "\\'");
+                let str_rhs = format!("'{}'", escaped_body);
                 let str_name = format!("{hf_name}_str");
                 self.extra_top_items.push(HoistedConst {
                     name: str_name.clone(),
                     symbol_name: str_name.clone(),
-                    rhs_code: server_str,
+                    rhs_code: str_rhs,
                 });
+                // Replace the inline string in the call with the _hf<N>_str ident.
+                fn_signal_code = replace_fn_signal_third_arg(&fn_signal_code, "", &str_name);
             }
         }
 
@@ -4910,6 +4931,24 @@ fn extract_fn_signal_third_arg(fn_signal_code: &str) -> Option<String> {
     }
 }
 
+/// Replace the third argument (server-mode source string) in a `_fnSignal` call
+/// with a reference to the hoisted `_hf<N>_str` constant.
+///
+/// Finds the last `, "..."` or `, '...'` pattern before the closing `)` and replaces
+/// the string literal with the constant name.
+fn replace_fn_signal_third_arg(fn_signal_code: &str, _old_str: &str, new_ident: &str) -> String {
+    let trimmed = fn_signal_code.trim_end_matches(')');
+    // Find the position of the third arg string (last `, "` or `, '`)
+    if let Some(pos) = trimmed.rfind(", \"") {
+        // Replace from `, "..."` to `, _hfN_str`
+        format!("{}, {})", &fn_signal_code[..pos], new_ident)
+    } else if let Some(pos) = trimmed.rfind(", '") {
+        format!("{}, {})", &fn_signal_code[..pos], new_ident)
+    } else {
+        fn_signal_code.to_string()
+    }
+}
+
 // ---------------------------------------------------------------------------
 // parse_single_expression — parse a source string into a single Expression<'a>
 // ---------------------------------------------------------------------------
@@ -5430,6 +5469,7 @@ mod tests {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         }
     }
 
@@ -5461,6 +5501,7 @@ mod tests {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -5926,6 +5967,7 @@ mod tests {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         QwikTransform::new(opts)
     }
@@ -6196,6 +6238,7 @@ export const Cmp = component$(() => <div class="hello">world</div>);
             explicit_extensions: true,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts2);
         let mut names_map = std::collections::HashMap::new();
@@ -6350,6 +6393,7 @@ export const Cmp = component$(() => <div class="hello">world</div>);
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -6399,6 +6443,7 @@ export const Cmp = component$(() => <div class="hello">world</div>);
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -6436,6 +6481,7 @@ export const Cmp = component$(() => <div class="hello">world</div>);
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -6491,6 +6537,7 @@ const Cmp = component$(() => {});"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         // Override to Segment-like: use Prod mode (non-Lib) with Segment strategy
@@ -6521,6 +6568,7 @@ const Cmp = component$(() => {});"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm2 = QwikTransform::new(opts2);
         let semantic2 = SemanticBuilder::new().build(&program2);
@@ -6656,6 +6704,7 @@ const Cmp = component$(() => {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -6741,6 +6790,7 @@ const Cmp = component$(() => {});"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let ast = AstBuilder::new(&allocator);
@@ -7075,6 +7125,7 @@ export const A = component$(() => {});"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let k0 = xfrm.gen_jsx_key();
@@ -7114,6 +7165,7 @@ export const A = component$(() => {});"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let xfrm = QwikTransform::new(opts);
         assert_eq!(xfrm.jsx_key_counter, 0, "jsx_key_counter should start at 0");
@@ -7324,6 +7376,7 @@ export const App = () => {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         // Push the variable into decl_stack root frame.
@@ -7429,6 +7482,7 @@ export const App = () => {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let arrow = "p0 => p0.color";
@@ -7480,6 +7534,7 @@ export const App = () => {
             explicit_extensions: false,
             is_server: true,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let arrow = "p0 => p0.color";
@@ -7524,6 +7579,7 @@ export const App = () => {
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -7676,6 +7732,7 @@ const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);
@@ -7845,6 +7902,7 @@ const x = inlinedQrl(() => {}, "Works_component_t45qL4vNGv0");"#;
             explicit_extensions: false,
             is_server: false,
             source_text: "",
+            transpile_jsx: true,
         };
         let mut xfrm = QwikTransform::new(opts);
         let semantic = SemanticBuilder::new().build(&program);

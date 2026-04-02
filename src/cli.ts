@@ -6,7 +6,7 @@
  *   --category <name>         Filter failures by FailureCategory value (validated).
  *   --json                    Emit JSON matching HarnessOutput schema instead of human summary.
  *   --swc-snapshots <dir>     Directory of SWC golden .snap files (required).
- *   --oxc-snapshots <dir>     Directory of OXC candidate .snap files (optional). When provided, real comparison is performed.
+ *   --oxc-snapshots <dir>     Directory of OXC candidate .snap files (required).
  *
  * Exit codes:
  *   0 — all fixtures pass
@@ -78,12 +78,19 @@ async function main() {
   if (!args.swcSnapshots) {
     console.error(
       "Error: --swc-snapshots <dir> is required.\n" +
-      "Usage: harness --swc-snapshots <dir> [--oxc-snapshots <dir>] [--fixture <glob>] [--category <name>] [--json]"
+      "Usage: harness --swc-snapshots <dir> --oxc-snapshots <dir> [--fixture <glob>] [--category <name>] [--json]"
+    );
+    process.exit(2);
+  }
+  if (!args.oxcSnapshots) {
+    console.error(
+      "Error: --oxc-snapshots <dir> is required.\n" +
+      "Usage: harness --swc-snapshots <dir> --oxc-snapshots <dir> [--fixture <glob>] [--category <name>] [--json]"
     );
     process.exit(2);
   }
   const SNAP_DIR = path.resolve(args.swcSnapshots);
-  const OXC_DIR = args.oxcSnapshots ? path.resolve(args.oxcSnapshots) : null;
+  const OXC_DIR = path.resolve(args.oxcSnapshots);
 
   // Validate --category if provided
   if (args.category !== null) {
@@ -118,8 +125,7 @@ async function main() {
   }
 
   // Fail fast if oxfmt version doesn't match frozen contract
-  // Only needed when OXC snapshots are provided AND there are fixtures to compare
-  if (OXC_DIR !== null && snapFiles.length > 0) {
+  if (snapFiles.length > 0) {
     try {
       assertOxfmtVersion();
     } catch (err) {
@@ -135,30 +141,20 @@ async function main() {
     try {
       const swcParsed = parseSnapFile(swcPath);
 
-      if (OXC_DIR !== null) {
-        // Real comparison: parse OXC snapshot and run compareFixture
-        const oxcPath = path.join(OXC_DIR, file);
-        let oxcParsed;
-        try {
-          oxcParsed = parseSnapFile(oxcPath);
-        } catch (err) {
-          console.error(`Harness error: failed to parse OXC snapshot ${file}:`, err);
-          process.exit(2);
-        }
-        const failures = compareFixture(swcParsed, oxcParsed);
-        fixtures.push({
-          name: swcParsed.fixtureName,
-          pass: failures.length === 0,
-          failures,
-        });
-      } else {
-        // No OXC snapshots provided — stub: all pass
-        fixtures.push({
-          name: swcParsed.fixtureName,
-          pass: true,
-          failures: [],
-        });
+      const oxcPath = path.join(OXC_DIR, file);
+      let oxcParsed;
+      try {
+        oxcParsed = parseSnapFile(oxcPath);
+      } catch (err) {
+        console.error(`Harness error: failed to parse OXC snapshot ${file}:`, err);
+        process.exit(2);
       }
+      const failures = compareFixture(swcParsed, oxcParsed);
+      fixtures.push({
+        name: swcParsed.fixtureName,
+        pass: failures.length === 0,
+        failures,
+      });
     } catch (err) {
       console.error(`Harness error: failed to parse ${file}:`, err);
       process.exit(2);
@@ -207,7 +203,7 @@ async function main() {
   } else {
     // Build step-trace annotations for derived-field failure explanations (REPT-05)
     const stepTraces: StepTraceEntry[] = [];
-    if (OXC_DIR !== null) {
+    {
       // Load fixtures.json for scope/relPath data needed by step-trace
       const fixturesJsonPath = path.resolve(path.dirname(SNAP_DIR), "fixtures.json");
       let fixtureConfigs: Record<string, { scope?: string | null; inputs?: Array<{ path: string }> }> = {};

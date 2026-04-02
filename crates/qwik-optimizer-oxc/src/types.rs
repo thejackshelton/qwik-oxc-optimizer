@@ -388,7 +388,7 @@ pub struct Diagnostic {
     pub highlights: Option<Vec<SourceLocation>>,
 
     /// Optional fix suggestions.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Note: always serializes as null (not omitted) to match SWC wire format.
     pub suggestions: Option<Vec<String>>,
 }
 

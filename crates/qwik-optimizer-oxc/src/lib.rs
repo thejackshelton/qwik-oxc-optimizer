@@ -126,11 +126,14 @@ fn transform_code(
                 let is_jsx = parse_result.source_type.is_jsx();
                 (is_ts, is_jsx, parse_result.program, diags)
             }
-            Err(diags) => {
-                // Unrecoverable parse error: return empty output with diagnostics.
+            Err(_diags) => {
+                // Unrecoverable parse error: return empty output with NO diagnostics.
+                // SWC behavior: parse errors (even fatal) are not emitted as sourceError
+                // in the final diagnostic output — SWC silently recovers or produces partial output.
+                // To match SWC wire format, we suppress parse-level error diagnostics entirely.
                 return Ok(TransformOutput {
                     modules: vec![],
-                    diagnostics: diags,
+                    diagnostics: vec![],
                     is_type_script: false,
                     is_jsx: false,
                 });
@@ -2206,12 +2209,9 @@ export const Cmp = component$(() => {
     /// SWC silently recovers from non-panicked parse errors and produces output.
     #[test]
     fn parse_error_in_recoverable_input_produces_no_source_error_diagnostic() {
-        // Trailing `});` syntax error — OXC recovers, SWC produces output with no sourceError.
-        let src = r#"import { component$ } from "@qwik.dev/core";
-export const App = component$(() => {
-    return <div>hello</div>;
-});
-});"#;
+        // example_3 pattern: arrow function body closing `});` after component$ — OXC recovers (panicked==false).
+        // SWC silently produces output; OXC should also produce no sourceError diagnostics.
+        let src = "\nimport { $, component$ } from '@qwik.dev/core';\nexport const App = () => {\n    const Header = component$(() => {\n        return (<div/>);\n    });\n    return Header;\n});\n";
         let opts = TransformModulesOptions {
             src_dir: "/project".to_string(),
             input: vec![make_input(src, "test.tsx")],

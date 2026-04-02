@@ -204,12 +204,11 @@ pub(crate) fn parse_module<'a>(
         return Err(diagnostics);
     }
 
-    // Collect any non-fatal parse errors as diagnostics
-    let parse_diagnostics: Vec<Diagnostic> = ret
-        .errors
-        .iter()
-        .map(|err| errors::create_source_error(&err.to_string(), filename))
-        .collect();
+    // SWC behavior: recoverable (non-panicked) parse errors are silently ignored.
+    // OXC guarantees a structurally valid partial AST when panicked == false, so
+    // transformation proceeds normally. We do NOT collect these as diagnostics
+    // to match SWC wire format (no sourceError entries for recoverable failures).
+    let parse_diagnostics: Vec<Diagnostic> = vec![];
 
     let program = ret.program;
 
@@ -315,10 +314,12 @@ export const App = component$(() => {
 
         let result = parse_module(&allocator, source, "bad.tsx");
         // Should succeed with partial AST (recoverable error)
-        // OR fail with panicked (unrecoverable) -- depends on OXC
+        // OR fail with panicked (unrecoverable) -- depends on OXC.
+        // Recoverable errors produce empty diagnostics Vec (SWC behavior: silent recovery).
         match result {
             Ok((parsed, diags)) => {
-                assert!(!diags.is_empty(), "Expected parse diagnostics");
+                // After Fix 4: non-fatal parse errors produce no diagnostics (SWC behavior).
+                assert!(diags.is_empty(), "Recoverable parse errors must produce empty diagnostics (SWC behavior), got: {:?}", diags);
                 assert!(!parsed.program.body.is_empty(), "Expected partial AST");
             }
             Err(diags) => {

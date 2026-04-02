@@ -274,34 +274,98 @@ pub(crate) fn get_function_params(expr: &Expression<'_>) -> HashSet<String> {
 /// Extract parameter names in order from a function or arrow function expression.
 ///
 /// Returns `None` if the expression has no parameters or is not a function.
-/// Returns `Some(names)` with the binding names in parameter order.
+/// Returns `Some(names)` with each parameter serialized in SWC param_names format:
+/// - `BindingIdentifier` → `"name"`
+/// - `ObjectPattern` → `"{...}"` (full pattern shape)
+/// - `ArrayPattern` → `"[...]"` (full pattern shape)
+/// - `AssignmentPattern` → delegate to left side
+/// - Rest parameter (`...args`) → `"...args"`
 pub(crate) fn extract_ordered_param_names(expr: &Expression<'_>) -> Option<Vec<String>> {
-    let params: Option<&[FormalParameter<'_>]> = match expr {
-        Expression::ArrowFunctionExpression(arrow) => Some(&arrow.params.items),
-        Expression::FunctionExpression(func) => Some(&func.params.items),
-        _ => None,
+    let formal_params = match expr {
+        Expression::ArrowFunctionExpression(arrow) => &*arrow.params,
+        Expression::FunctionExpression(func) => &*func.params,
+        _ => return None,
     };
-    let items = params?;
-    if items.is_empty() {
+    let items = &formal_params.items;
+    let rest = &formal_params.rest;
+    if items.is_empty() && rest.is_none() {
         return None;
     }
-    let mut names = Vec::with_capacity(items.len());
+    let mut names = Vec::with_capacity(items.len() + if rest.is_some() { 1 } else { 0 });
     for param in items {
-        // Collect the top-level binding name from the pattern.
-        // For BindingIdentifier: use its name directly.
-        // For destructured patterns: collect_binding_names would give all nested
-        // names, but we want the top-level parameter name.
-        // Props destructuring rewrites to `_rawProps`, so we simply take the
-        // first (and only) identifier name from collect_binding_names.
-        let mut collected: Vec<String> = Vec::new();
-        collect_binding_names(&param.pattern, &mut |name| {
-            collected.push(name.to_string());
-        });
-        if let Some(first) = collected.into_iter().next() {
-            names.push(first);
-        }
+        names.push(binding_pattern_to_str(&param.pattern));
+    }
+    if let Some(rest_param) = rest {
+        let inner = binding_pattern_to_str(&rest_param.rest.argument);
+        names.push(format!("...{inner}"));
     }
     if names.is_empty() { None } else { Some(names) }
+}
+
+/// Serialize a `BindingPattern` to its SWC param_names string representation.
+///
+/// - `BindingIdentifier(id)` → `"id.name"`
+/// - `ObjectPattern(obj)` → `"{prop1, key2: val2, ...rest}"`
+/// - `ArrayPattern(arr)` → `"[el1, el2, ...rest]"`
+/// - `AssignmentPattern(assign)` → delegates to left side (ignores default value)
+fn binding_pattern_to_str(pattern: &BindingPattern<'_>) -> String {
+    match pattern {
+        BindingPattern::BindingIdentifier(id) => id.name.to_string(),
+        BindingPattern::ObjectPattern(obj) => {
+            let mut parts: Vec<String> = Vec::new();
+            for prop in &obj.properties {
+                if prop.shorthand {
+                    // shorthand: `{x}` — just use the binding name
+                    parts.push(binding_pattern_to_str(&prop.value));
+                } else {
+                    // non-shorthand: `{key: pattern}` — serialize key: pattern
+                    let key_str = property_key_to_str(&prop.key);
+                    let val_str = binding_pattern_to_str(&prop.value);
+                    parts.push(format!("{key_str}: {val_str}"));
+                }
+            }
+            if let Some(rest) = &obj.rest {
+                let rest_str = binding_pattern_to_str(&rest.argument);
+                parts.push(format!("...{rest_str}"));
+            }
+            format!("{{{}}}", parts.join(", "))
+        }
+        BindingPattern::ArrayPattern(arr) => {
+            let mut parts: Vec<String> = Vec::new();
+            for element in &arr.elements {
+                match element {
+                    Some(pat) => parts.push(binding_pattern_to_str(pat)),
+                    None => parts.push(String::new()), // hole: `[, x]`
+                }
+            }
+            if let Some(rest) = &arr.rest {
+                let rest_str = binding_pattern_to_str(&rest.argument);
+                parts.push(format!("...{rest_str}"));
+            }
+            format!("[{}]", parts.join(", "))
+        }
+        BindingPattern::AssignmentPattern(assign) => {
+            binding_pattern_to_str(&assign.left)
+        }
+    }
+}
+
+/// Serialize a `PropertyKey` for use in object pattern serialization.
+fn property_key_to_str(key: &PropertyKey<'_>) -> String {
+    match key {
+        PropertyKey::StaticIdentifier(id) => id.name.to_string(),
+        PropertyKey::PrivateIdentifier(id) => format!("#{}", id.name),
+        PropertyKey::StringLiteral(s) => format!("\"{}\"", s.value),
+        PropertyKey::NumericLiteral(n) => {
+            if n.value.fract() == 0.0 {
+                format!("{}", n.value as i64)
+            } else {
+                format!("{}", n.value)
+            }
+        }
+        // Computed keys: use a generic representation
+        _ => "[computed]".to_string(),
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -4984,6 +5048,88 @@ mod tests {
         let params = get_function_params(expr);
         assert!(params.contains("x"), "destructured x should be included");
         assert!(params.contains("y"), "destructured y should be included");
+    }
+
+    // -----------------------------------------------------------------------
+    // extract_ordered_param_names — TDD tests (Phase 22-02)
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn extract_param_names_simple_identifier() {
+        let (_alloc, program) = parse_expr_program("(input) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["input".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_no_params() {
+        let (_alloc, program) = parse_expr_program("() => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, None);
+    }
+
+    #[test]
+    fn extract_param_names_multiple_identifiers() {
+        let (_alloc, program) = parse_expr_program("(decl1, decl2, decl3) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["decl1".to_string(), "decl2".to_string(), "decl3".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_object_destructured() {
+        let (_alloc, program) = parse_expr_program("({track}) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["{track}".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_array_destructured() {
+        let (_alloc, program) = parse_expr_program("([item]) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["[item]".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_mixed_destructured() {
+        let (_alloc, program) = parse_expr_program("(decl1, {decl2}, [decl3]) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec![
+            "decl1".to_string(),
+            "{decl2}".to_string(),
+            "[decl3]".to_string(),
+        ]));
+    }
+
+    #[test]
+    fn extract_param_names_rest_param() {
+        let (_alloc, program) = parse_expr_program("(...args) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["...args".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_nested_object_pattern() {
+        // Complex nested pattern: whole object pattern is serialized as one param
+        let (_alloc, program) = parse_expr_program("({count, rest}) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["{count, rest}".to_string()]));
+    }
+
+    #[test]
+    fn extract_param_names_assignment_default() {
+        // Assignment pattern (default value) — should use left side
+        let (_alloc, program) = parse_expr_program("(x = 1) => {}");
+        let expr = first_init(&program);
+        let result = extract_ordered_param_names(expr);
+        assert_eq!(result, Some(vec!["x".to_string()]));
     }
 
     // -----------------------------------------------------------------------

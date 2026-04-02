@@ -563,6 +563,10 @@ pub(crate) struct QwikTransform {
     /// Cached result of `entry_strategy::is_inline()` for the given strategy.
     pub(crate) is_inline_strategy: bool,
 
+    /// True when `@jsxImportSource` pragma specifies a non-Qwik source.
+    /// When set, JSX event handler extraction is skipped (the JSX is not Qwik JSX).
+    pub(crate) has_foreign_jsx_import_source: bool,
+
     // ---- Config (owned copies for Phase 12+) ------------------------------
     /// Owned copy of the emit mode.
     pub(crate) mode: EmitMode,
@@ -788,6 +792,22 @@ impl QwikTransform {
         let is_inline_strategy = entry_strategy::is_inline(options.entry_strategy);
         let entry_policy = entry_strategy::parse_entry_strategy(options.entry_strategy);
 
+        // Detect @jsxImportSource pragma in source text.
+        // If it specifies a non-Qwik source, JSX event handler extraction is skipped.
+        let has_foreign_jsx_import_source = {
+            let src = options.source_text;
+            if let Some(idx) = src.find("@jsxImportSource") {
+                // Extract the source name after the pragma
+                let after = src[idx + "@jsxImportSource".len()..].trim_start();
+                let source_name = after.split_whitespace().next().unwrap_or("");
+                // Strip trailing */ if present
+                let source_name = source_name.trim_end_matches("*/").trim();
+                !source_name.is_empty() && !source_name.contains("qwik")
+            } else {
+                false
+            }
+        };
+
         // --- JSX file hash prefix (first 2 chars of file hash) ---
         let jsx_file_hash_prefix = {
             let h = hash::compute_segment_hash(options.scope, options.rel_path, "");
@@ -835,6 +855,7 @@ impl QwikTransform {
             const_initializers: HashMap::new(),
             entry_policy,
             is_inline_strategy,
+            has_foreign_jsx_import_source,
             mode: options.mode.clone(),
             scope: options.scope.map(|s| s.to_string()),
             rel_path: options.rel_path.to_string(),
@@ -1250,13 +1271,19 @@ impl QwikTransform {
         let allocator: &'a Allocator = ctx.ast.allocator;
         let ast = AstBuilder::new(allocator);
 
-        // Phase 25-02: When inside a segment closure, preserve the JSX fragment.
-        // Fragments have no attributes to process, so just rebuild as-is.
+        // Phase 25-02 + Phase 27: When inside a segment closure, preserve the JSX fragment
+        // structure BUT still process children for side effects (onClick$ extraction, etc.).
+        // Previously this returned early without calling build_children, which caused
+        // event handlers in child elements (e.g. <button onClick$={...}>) to be skipped.
         if self.suppress_jsx_conversion {
+            let mut children_vec = frag.children;
+            // build_children in suppress mode processes children for side effects
+            // and puts the modified children back into children_vec.
+            let _children_opt = self.build_children(&mut children_vec, false, ctx);
             return ast.expression_jsx_fragment(
                 frag.span,
                 frag.opening_fragment,
-                frag.children,
+                children_vec,
                 frag.closing_fragment,
             );
         }
@@ -1603,7 +1630,8 @@ impl QwikTransform {
                     // to normal classification below.
 
                     // ---- Event handler renaming (native elements only) ----
-                    if !is_fn {
+                    // Skip event handler extraction when @jsxImportSource is non-Qwik.
+                    if !is_fn && !self.has_foreign_jsx_import_source {
                         if let Some(html_attr) = QwikTransform::jsx_event_to_html_attribute(&key) {
                             // q:p / q:ps injection (once per element, before first handler)
                             if !element_lifted_params.is_empty() && !moved_captures {
@@ -1698,18 +1726,32 @@ impl QwikTransform {
                                     }
                                     Some(params)
                                 };
-                                // Extract segment
-                                let qrl_expr = self.create_segment(
-                                    value_expr,
-                                    &names,
-                                    scoped_idents,
-                                    local_idents,
-                                    &ctx_name_for_seg,
-                                    ctx_kind,
-                                    fn_span_tuple,
-                                    jsx_param_names,
-                                    allocator,
-                                );
+                                // Route to create_inline_qrl (Inline/Hoist without stripping)
+                                // or create_segment (Segment mode, or when strip_event_handlers is set).
+                                // When strip_event_handlers=true, SWC still creates separate segment
+                                // files (with null bodies) even in Inline mode.
+                                let qrl_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                                    self.create_inline_qrl(
+                                        value_expr,
+                                        &names.symbol_name,
+                                        &scoped_idents,
+                                        fn_span_tuple,
+                                        &names.display_name,
+                                        allocator,
+                                    )
+                                } else {
+                                    self.create_segment(
+                                        value_expr,
+                                        &names,
+                                        scoped_idents,
+                                        local_idents,
+                                        &ctx_name_for_seg,
+                                        ctx_kind,
+                                        fn_span_tuple,
+                                        jsx_param_names,
+                                        allocator,
+                                    )
+                                };
                                 // Hoist qrl to module scope
                                 self.hoist_qrl_to_module_scope(qrl_expr, &scoped_for_hoist, &sym_for_hoist, allocator)
                             } else {
@@ -1727,6 +1769,188 @@ impl QwikTransform {
                             }
                             continue;
                         }
+                    }
+
+                    // ---- Component event handler $-prop extraction (Phase 27) ----
+                    // For component elements, only event handler $-suffixed props (on*$) with
+                    // function values create QRL segments (matching SWC behavior).
+                    // E.g. <CustomComponent onClick$={() => {}} /> → extracts onClick segment.
+                    // Non-event $-props (render$, custom$) are NOT extracted from components.
+                    // When strip_event_handlers=true, no extraction happens.
+                    if is_fn
+                        && !self.strip_event_handlers
+                        && !self.has_foreign_jsx_import_source
+                        && key.ends_with('$')
+                        && QwikTransform::jsx_event_to_html_attribute(&key).is_some()
+                        && matches!(
+                            &value_expr,
+                            Expression::ArrowFunctionExpression(_) | Expression::FunctionExpression(_)
+                        )
+                    {
+                        let ctx_kind = crate::types::CtxKind::EventHandler;
+                        let ctx_name_for_seg = key.clone();
+                        // Prop name without $ for the display_name context
+                        let prop_name_no_dollar = key.trim_end_matches('$').to_string();
+
+                        let descendent_idents = IdentCollector::collect(&value_expr);
+                        let all_decl: Vec<IdPlusType> = self
+                            .decl_stack
+                            .iter()
+                            .flat_map(|frame| frame.iter().cloned())
+                            .collect();
+                        let (mut scoped_idents, _) = compute_scoped_idents(&descendent_idents, &all_decl);
+                        let fn_params = get_function_params(&value_expr);
+                        scoped_idents.retain(|id| !fn_params.contains(id));
+                        let collect = unsafe { &*self.global_collect };
+                        scoped_idents.retain(|id| !collect.is_global(id));
+                        let scoped_for_hoist = scoped_idents.clone();
+
+                        // Push prop name to stack_ctxt for naming
+                        self.stack_ctxt.push(prop_name_no_dollar.clone());
+                        self.raw_stack_ctxt.push(prop_name_no_dollar.clone());
+                        let names = hash::register_context_name(
+                            &self.stack_ctxt,
+                            &mut self.segment_names,
+                            self.scope.as_deref(),
+                            &self.rel_path,
+                            &self.file_name,
+                            &self.mode,
+                            None,
+                            None,
+                            None,
+                        );
+                        self.stack_ctxt.pop();
+                        self.raw_stack_ctxt.pop();
+                        let sym_for_hoist = names.symbol_name.clone();
+
+                        let fn_span = value_expr.span();
+                        self.segment_span_to_symbol
+                            .insert(fn_span.start, names.symbol_name.clone());
+                        let fn_span_tuple = (fn_span.start, fn_span.end);
+                        let local_idents = self.get_local_idents(&value_expr);
+                        for ident in &local_idents {
+                            self.ensure_export(ident);
+                        }
+
+                        let handler_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                            self.create_inline_qrl(
+                                value_expr,
+                                &names.symbol_name,
+                                &scoped_idents,
+                                fn_span_tuple,
+                                &names.display_name,
+                                allocator,
+                            )
+                        } else {
+                            self.create_segment(
+                                value_expr,
+                                &names,
+                                scoped_idents,
+                                local_idents,
+                                &ctx_name_for_seg,
+                                ctx_kind,
+                                fn_span_tuple,
+                                None,
+                                allocator,
+                            )
+                        };
+                        let handler_expr = self.hoist_qrl_to_module_scope(handler_expr, &scoped_for_hoist, &sym_for_hoist, allocator);
+
+                        // Add to var_props (component props are always variable)
+                        let prop = build_object_prop(&key, handler_expr, &ast, allocator);
+                        var_props.push(prop);
+                        static_listeners = false;
+                        continue;
+                    }
+
+                    // ---- Non-event $-suffixed prop extraction (native elements) ----
+                    // Props like `shouldRemove$`, `transparent$`, `custom$` on native elements
+                    // create QRL segments (matching SWC behavior). These are NOT event handlers
+                    // (they don't start with `on`) but still end with `$`.
+                    if !is_fn
+                        && !self.has_foreign_jsx_import_source
+                        && key.ends_with('$')
+                        && QwikTransform::jsx_event_to_html_attribute(&key).is_none()
+                        && matches!(
+                            &value_expr,
+                            Expression::ArrowFunctionExpression(_) | Expression::FunctionExpression(_)
+                        )
+                    {
+                        let ctx_kind = crate::types::CtxKind::Function;
+                        let ctx_name_for_seg = key.clone();
+                        let prop_name_no_dollar = key.trim_end_matches('$').to_string();
+
+                        let descendent_idents = IdentCollector::collect(&value_expr);
+                        let all_decl: Vec<IdPlusType> = self
+                            .decl_stack
+                            .iter()
+                            .flat_map(|frame| frame.iter().cloned())
+                            .collect();
+                        let (mut scoped_idents, _) = compute_scoped_idents(&descendent_idents, &all_decl);
+                        let fn_params = get_function_params(&value_expr);
+                        scoped_idents.retain(|id| !fn_params.contains(id));
+                        let collect = unsafe { &*self.global_collect };
+                        scoped_idents.retain(|id| !collect.is_global(id));
+                        let scoped_for_hoist = scoped_idents.clone();
+
+                        self.stack_ctxt.push(prop_name_no_dollar.clone());
+                        self.raw_stack_ctxt.push(prop_name_no_dollar.clone());
+                        let names = hash::register_context_name(
+                            &self.stack_ctxt,
+                            &mut self.segment_names,
+                            self.scope.as_deref(),
+                            &self.rel_path,
+                            &self.file_name,
+                            &self.mode,
+                            None,
+                            None,
+                            None,
+                        );
+                        self.stack_ctxt.pop();
+                        self.raw_stack_ctxt.pop();
+                        let sym_for_hoist = names.symbol_name.clone();
+
+                        let fn_span = value_expr.span();
+                        self.segment_span_to_symbol
+                            .insert(fn_span.start, names.symbol_name.clone());
+                        let fn_span_tuple = (fn_span.start, fn_span.end);
+                        let local_idents = self.get_local_idents(&value_expr);
+                        for ident in &local_idents {
+                            self.ensure_export(ident);
+                        }
+
+                        let handler_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                            self.create_inline_qrl(
+                                value_expr,
+                                &names.symbol_name,
+                                &scoped_idents,
+                                fn_span_tuple,
+                                &names.display_name,
+                                allocator,
+                            )
+                        } else {
+                            self.create_segment(
+                                value_expr,
+                                &names,
+                                scoped_idents,
+                                local_idents,
+                                &ctx_name_for_seg,
+                                ctx_kind,
+                                fn_span_tuple,
+                                None,
+                                allocator,
+                            )
+                        };
+                        let handler_expr = self.hoist_qrl_to_module_scope(handler_expr, &scoped_for_hoist, &sym_for_hoist, allocator);
+
+                        let is_target_const = remaining_spreads == 0;
+                        let prop = build_object_prop(&key, handler_expr, &ast, allocator);
+                        if is_target_const {
+                            const_props.push(prop);
+                        } else {
+                            var_props.push(prop);
+                        }
+                        continue;
                     }
 
                     // ---- Regular attribute classification -----------------
@@ -3766,9 +3990,103 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
 
             let mut first_arg_mut = first_arg;
 
+            // --- C05: locally-exported $-function without Qrl counterpart ---
+            // SWC emits C05 diagnostic and does NOT extract a segment.
+            // Skip extraction: rename callee to *Qrl and put the argument back.
+            {
+                let collect_c05 = unsafe { &*self.global_collect };
+                let is_local_export = ctx_name == &pending.ctx_name
+                    && pending.ctx_name == *ctx_name
+                    && collect_c05.export_local_ids().contains(ctx_name)
+                    && !collect_c05.imports.contains_key(ctx_name);
+                if is_local_export {
+                    let qrl_name = words::dollar_to_qrl_name(ctx_name);
+                    if !collect_c05.has_export_symbol(&qrl_name) {
+                        // Emit C05 diagnostic
+                        if let Expression::Identifier(id) = &call.callee {
+                            let callee_span = id.span;
+                            let loc = self.span_to_source_location(callee_span.start, callee_span.end);
+                            self.diagnostics.push(Diagnostic {
+                                scope: "optimizer".to_string(),
+                                category: DiagnosticCategory::Error,
+                                code: Some("C05".to_string()),
+                                file: self.file_name.clone(),
+                                message: format!(
+                                    "Found '{}' but did not find the corresponding '{}' exported in the same file. Please check that it is exported and spelled correctly",
+                                    ctx_name, qrl_name
+                                ),
+                                highlights: Some(vec![loc]),
+                                suggestions: None,
+                            });
+                        }
+                        // Put the argument back and skip extraction
+                        call.arguments[0] = Argument::from(first_arg_mut);
+                        // Pop marker context (it was pushed in enter_call_expression)
+                        if self.marker_ctxt_pushed_spans.remove(&call.span.start) {
+                            self.stack_ctxt.pop();
+                            self.raw_stack_ctxt.pop();
+                        }
+                        if ctx_name.starts_with("component") {
+                            self.component_depths.pop();
+                        }
+                        return;
+                    }
+                }
+            }
+
             // --- Output routing: should_emit check applies in ALL modes ---
             // Priority 0: strip_ctx_name / strip_event_handlers → _noopQrl (any mode).
+            // SWC still creates a SegmentRecord with null expr for stripped segments,
+            // so the segment appears in the output as `export const ... = null;`.
             let hoisted_l1: Expression<'a> = if !should_emit {
+                // Push a noop SegmentRecord (expr: None) to match SWC behavior.
+                // This ensures stripped segments still appear in the output as separate files.
+                let pending_parent_span = self.segment_span_stack.last().copied();
+                let noop_segment_data = crate::types::SegmentData {
+                    display_name: names.display_name.clone(),
+                    hash: names.hash.clone(),
+                    name: names.symbol_name.clone(),
+                    ctx_name: ctx_name.to_string(),
+                    ctx_kind: ctx_kind.clone(),
+                    origin: self.rel_path.clone(),
+                    extension: self.extension.clone(),
+                    span,
+                    parent: None,
+                    scoped_idents: Vec::new(),
+                    captures: false,
+                    capture_names: Vec::new(),
+                    needed_imports: Vec::new(),
+                    segment_qrl_names: Vec::new(),
+                    body_span: span,
+                    param_names: Vec::new(),
+                    body_code: String::new(),
+                    child_lazy_imports: Vec::new(),
+                    needs_qrl_import: false,
+                };
+                let entry = self.entry_policy.get_entry_for_sym(&self.raw_stack_ctxt, &noop_segment_data);
+                self.segments.push(SegmentRecord {
+                    name: names.symbol_name.clone(),
+                    display_name: names.display_name.clone(),
+                    canonical_filename: names.canonical_filename.clone(),
+                    entry,
+                    expr: None, // noop: null body
+                    scoped_idents: Vec::new(),
+                    local_idents: Vec::new(),
+                    ctx_name: ctx_name.to_string(),
+                    ctx_kind: ctx_kind.clone(),
+                    origin: self.rel_path.to_string(),
+                    span,
+                    hash: names.hash.clone(),
+                    is_inline: false,
+                    migrated_root_vars: Vec::new(),
+                    parent: None,
+                    pending_parent_span,
+                    param_names: None,
+                });
+                // Store span → symbol for parent resolution
+                self.segment_span_to_symbol
+                    .insert(call.span.start, names.symbol_name.clone());
+
                 let qrl_expr = self.create_noop_qrl(
                     &names.symbol_name,
                     &scoped_idents,

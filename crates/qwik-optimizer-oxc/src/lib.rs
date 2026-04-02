@@ -356,11 +356,57 @@ fn transform_code(
         if record.is_inline {
             continue;
         }
-        // Skip noop segments (no expression to emit)
-        let expr_code = match &record.expr {
-            Some(e) => e.as_str(),
-            None => continue,
-        };
+
+        // Noop segments (strip_ctx_name / strip_event_handlers) get a null export.
+        // SWC emits `export const SymbolName = null;` for stripped segments.
+        if record.expr.is_none() {
+            let null_code = format!("export const {} = null;", record.name);
+            let segment_path = if path_data.rel_dir == std::path::PathBuf::new() {
+                format!("{}.{}", record.canonical_filename, record_extension)
+            } else {
+                format!(
+                    "{}/{}.{}",
+                    path_data.rel_dir.to_slash_lossy(),
+                    record.canonical_filename,
+                    record_extension
+                )
+            };
+            let seg_path_str = path_data.rel_dir.to_slash_lossy().to_string();
+            let is_entry = record.entry.is_none();
+            let order = u64::from_str_radix(
+                &record.hash[..std::cmp::min(8, record.hash.len())],
+                36,
+            ).unwrap_or(0);
+            let segment_analysis = SegmentAnalysis {
+                origin: record.origin.clone(),
+                name: record.name.clone(),
+                entry: record.entry.clone(),
+                display_name: record.display_name.clone(),
+                hash: record.hash.clone(),
+                canonical_filename: record.canonical_filename.clone(),
+                path: seg_path_str,
+                extension: record_extension.to_string(),
+                parent: record.parent.clone(),
+                ctx_kind: record.ctx_kind.clone(),
+                ctx_name: record.ctx_name.clone(),
+                captures: false,
+                loc: (record.span.0 + 1, record.span.1 + 1),
+                param_names: None,
+                capture_names: None,
+            };
+            segment_modules.push(TransformModule {
+                path: segment_path,
+                is_entry,
+                code: null_code,
+                map: None,
+                segment: Some(segment_analysis),
+                orig_path: None,
+                order,
+            });
+            continue;
+        }
+
+        let expr_code = record.expr.as_ref().unwrap().as_str();
 
         // Build segment module code via new_module
         let module_code = code_move::new_module(code_move::NewModuleCtx {

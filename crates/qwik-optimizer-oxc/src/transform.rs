@@ -4785,6 +4785,84 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         }
 
+        // Phase 28-01: Strip imports whose local bindings are not referenced in the
+        // remaining non-import body code. SWC removes all imports that were only used
+        // inside extracted segment closures.
+        {
+            use oxc::codegen::Codegen;
+            // Step 1: serialize non-import statements to text
+            let mut body_text = String::new();
+            for stmt in &new_body {
+                if !matches!(stmt, Statement::ImportDeclaration(_)) {
+                    // Mini-serialize: wrap in a program, codegen, collect text.
+                    let directives: ArenaVec<Directive<'a>> = ArenaVec::new_in(allocator);
+                    let comments: ArenaVec<Comment> = ArenaVec::new_in(allocator);
+                    let mut temp_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+                    // Clone the statement for serialization.
+                    use oxc::allocator::CloneIn;
+                    temp_body.push(stmt.clone_in(allocator));
+                    let temp_prog = ctx.ast.program(
+                        SPAN, SourceType::mjs(), "", comments, None, directives, temp_body,
+                    );
+                    let code = Codegen::new().build(&temp_prog).code;
+                    body_text.push_str(&code);
+                    body_text.push('\n');
+                }
+            }
+
+            // Step 2: extract word-like identifiers from body text.
+            // Use a simple regex-like scan: sequences of [a-zA-Z_$][a-zA-Z0-9_$]*
+            let mut used_idents: HashSet<String> = HashSet::new();
+            let mut chars = body_text.chars().peekable();
+            while let Some(&c) = chars.peek() {
+                if c.is_ascii_alphabetic() || c == '_' || c == '$' {
+                    let mut ident = String::new();
+                    while let Some(&ch) = chars.peek() {
+                        if ch.is_ascii_alphanumeric() || ch == '_' || ch == '$' {
+                            ident.push(ch);
+                            chars.next();
+                        } else {
+                            break;
+                        }
+                    }
+                    used_idents.insert(ident);
+                } else {
+                    chars.next();
+                }
+            }
+
+            // Step 3: filter new_body — keep imports only if their local binding is used.
+            let mut filtered_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
+            for stmt in new_body {
+                if let Statement::ImportDeclaration(ref import_decl) = stmt {
+                    if let Some(specs) = &import_decl.specifiers {
+                        // Check if ANY specifier's local name is used in the body.
+                        let any_used = specs.iter().any(|spec| {
+                            let local_name = match spec {
+                                ImportDeclarationSpecifier::ImportSpecifier(s) => {
+                                    s.local.name.as_str()
+                                }
+                                ImportDeclarationSpecifier::ImportDefaultSpecifier(s) => {
+                                    s.local.name.as_str()
+                                }
+                                ImportDeclarationSpecifier::ImportNamespaceSpecifier(s) => {
+                                    s.local.name.as_str()
+                                }
+                            };
+                            used_idents.contains(local_name)
+                        });
+                        if !any_used && !specs.is_empty() {
+                            // No specifier is used — skip this import.
+                            continue;
+                        }
+                    }
+                    // Side-effect imports (no specifiers) are always kept.
+                }
+                filtered_body.push(stmt);
+            }
+            new_body = filtered_body;
+        }
+
         program.body = new_body;
     }
 }

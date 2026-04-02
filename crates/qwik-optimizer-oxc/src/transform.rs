@@ -1604,6 +1604,22 @@ impl QwikTransform {
                                 for ident in &local_idents {
                                     self.ensure_export(ident);
                                 }
+                                // Build synthetic JSX handler param_names: ["_", "_1", ...moved_caps]
+                                // JSX event handlers always receive (event, element, ...movedCaptures).
+                                // The "_" and "_1" are positional placeholders for event+element args.
+                                // For each entry in element_lifted_params: use the var name if this
+                                // handler references it, otherwise use "_N" placeholder (N = index + 2).
+                                let jsx_param_names: Vec<String> = {
+                                    let mut params = vec!["_".to_string(), "_1".to_string()];
+                                    for (i, cap_name) in element_lifted_params.iter().enumerate() {
+                                        if descendent_idents.contains(cap_name) {
+                                            params.push(cap_name.clone());
+                                        } else {
+                                            params.push(format!("_{}", i + 2));
+                                        }
+                                    }
+                                    params
+                                };
                                 // Extract segment
                                 let qrl_expr = self.create_segment(
                                     value_expr,
@@ -1613,6 +1629,7 @@ impl QwikTransform {
                                     &ctx_name_for_seg,
                                     ctx_kind,
                                     fn_span_tuple,
+                                    Some(jsx_param_names),
                                     allocator,
                                 );
                                 // Hoist qrl to module scope
@@ -2098,13 +2115,20 @@ impl QwikTransform {
         ctx_name: &str,
         ctx_kind: crate::types::CtxKind,
         span: (u32, u32),
+        override_param_names: Option<Vec<String>>,
         allocator: &'a Allocator,
     ) -> Expression<'a> {
         let ast = AstBuilder::new(allocator);
         let is_dev = matches!(self.mode, EmitMode::Dev | EmitMode::Hmr);
 
         // Extract param_names BEFORE folded_expr is consumed for codegen.
-        let param_names = extract_ordered_param_names(&folded_expr);
+        // If override_param_names is provided (e.g. for JSX event handlers with synthetic params),
+        // use it directly; otherwise extract from the function expression.
+        let param_names = match override_param_names {
+            Some(names) if !names.is_empty() => Some(names),
+            Some(_) => None, // empty override vec → treat as no params
+            None => extract_ordered_param_names(&folded_expr),
+        };
 
         // Capture parent span_start from segment_span_stack (the enclosing segment's call span).
         // The actual symbol_name will be resolved in `patch_segment_parents` after all
@@ -3073,6 +3097,7 @@ impl QwikTransform {
                 ctx_name,
                 ctx_kind,
                 span,
+                None, // param_names: extract from function expression
                 allocator,
             );
             self.hoist_qrl_to_module_scope(qrl_expr, &scoped_idents, &new_symbol_name, allocator)
@@ -3575,6 +3600,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                     ctx_name,
                     ctx_kind,
                     span,
+                    None, // param_names: extract from function expression
                     allocator,
                 );
                 self.hoist_qrl_to_module_scope(
@@ -5352,6 +5378,7 @@ mod tests {
             "component$",
             crate::types::CtxKind::Function,
             (0, 50),
+            None, // param_names: extract from function expression
             &allocator,
         );
         let code = emit_expr(&allocator, expr);
@@ -5433,6 +5460,7 @@ mod tests {
             "component$",
             crate::types::CtxKind::Function,
             (0, 50),
+            None, // param_names: extract from function expression
             &allocator,
         );
         let code = emit_expr(&allocator, expr);
@@ -5478,6 +5506,7 @@ mod tests {
             "component$",
             crate::types::CtxKind::Function,
             (0, 50),
+            None, // param_names: extract from function expression
             &allocator,
         );
         let code = emit_expr(&allocator, expr);
@@ -5522,6 +5551,7 @@ mod tests {
             "component$",
             crate::types::CtxKind::Function,
             (0, 50),
+            None, // param_names: extract from function expression
             &allocator,
         );
         let code = emit_expr(&allocator, expr);
@@ -7088,6 +7118,80 @@ export default component$(() => {
             !seg.scoped_idents.contains(&"processItem".to_string()),
             "module-level `processItem` should NOT be in scoped_idents, got: {:?}",
             seg.scoped_idents
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // JSX event handler param_names — TDD tests (Phase 22-02)
+    // -----------------------------------------------------------------------
+
+    /// Test: JSX onClick$ with no loop var captures → param_names = ["_", "_1"]
+    #[test]
+    fn jsx_handler_param_names_no_captures() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(() => {
+    return <button onClick$={() => console.log("click")}>click</button>;
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        let onclick_seg = xfrm.segments.iter().find(|s| s.ctx_name == "onClick$");
+        let seg = onclick_seg.expect("expected an onClick$ segment");
+        assert_eq!(
+            seg.param_names,
+            Some(vec!["_".to_string(), "_1".to_string()]),
+            "onClick$ with no loop captures should have param_names [_, _1], got: {:?}",
+            seg.param_names
+        );
+    }
+
+    /// Test: JSX onClick$ inside a loop with a captured var → param_names = ["_", "_1", "row"]
+    #[test]
+    fn jsx_handler_param_names_single_loop_capture() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(() => {
+    const rows = [1, 2, 3];
+    return (
+        <div>
+            {rows.map((row) => (
+                <button onClick$={() => console.log(row)}>{row}</button>
+            ))}
+        </div>
+    );
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        let onclick_seg = xfrm.segments.iter().find(|s| s.ctx_name == "onClick$");
+        let seg = onclick_seg.expect("expected an onClick$ segment");
+        assert_eq!(
+            seg.param_names,
+            Some(vec!["_".to_string(), "_1".to_string(), "row".to_string()]),
+            "onClick$ with loop capture `row` should have param_names [_, _1, row], got: {:?}",
+            seg.param_names
+        );
+    }
+
+    /// Test: Regular component$ segment → param_names from source code params (NOT synthetic)
+    /// A component$ with ({track}) => body should have param_names [{track}], not [_, _1]
+    #[test]
+    fn component_segment_param_names_from_source() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(({track}) => {
+    return <div />;
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        let comp_seg = xfrm.segments.iter().find(|s| s.ctx_name == "component$");
+        let seg = comp_seg.expect("expected a component$ segment");
+        // Should use source params, not synthetic JSX params
+        // After props-destructuring rewrite, param becomes _rawProps — that's the expected behavior
+        assert!(
+            seg.param_names.is_some(),
+            "component$ should have param_names from source, got: {:?}",
+            seg.param_names
+        );
+        // Should NOT be the synthetic JSX handler prefix
+        let names = seg.param_names.as_ref().unwrap();
+        assert!(
+            !(names.len() >= 2 && names[0] == "_" && names[1] == "_1"),
+            "component$ should NOT have synthetic JSX param_names [_, _1, ...], got: {:?}",
+            seg.param_names
         );
     }
 

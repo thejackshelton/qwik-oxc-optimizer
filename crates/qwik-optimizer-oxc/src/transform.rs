@@ -4732,30 +4732,12 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // (we've already emitted `import { componentQrl }` and `import { qrl }` above).
             if let Statement::ImportDeclaration(import_decl) = &stmt {
                 if import_decl.source.value.as_str() == core_module {
-                    if let Some(specs) = &import_decl.specifiers {
-                        // Check if ALL specifiers are marker functions — if so, skip the import.
-                        let all_markers = specs.iter().all(|spec| {
-                            if let ImportDeclarationSpecifier::ImportSpecifier(s) = spec {
-                                let imported = match &s.imported {
-                                    ModuleExportName::IdentifierName(id) => id.name.as_str(),
-                                    ModuleExportName::IdentifierReference(id) => id.name.as_str(),
-                                    ModuleExportName::StringLiteral(sl) => sl.value.as_str(),
-                                };
-                                // A specifier is a marker if it ends with '$' or equals "$"
-                                imported.ends_with('$')
-                            } else {
-                                false
-                            }
-                        });
-                        if all_markers && !specs.is_empty() {
-                            // All specifiers are marker functions — skip this import entirely.
-                            continue;
-                        }
-                        // Some specifiers are non-markers; they should stay (but we'd need to
-                        // rebuild the import without marker specs). For now, keep as-is —
-                        // they would need the marker specs removed. Accept partial mismatch
-                        // until a more targeted fix is needed.
-                    }
+                    // Phase 28-01: Strip ALL original core_module imports from the parent module.
+                    // SWC behavior: original imports (both $-suffixed markers and non-markers like
+                    // useSignal) are removed entirely from the parent. The parent gets fresh
+                    // imports emitted at the top: componentQrl, qrl, etc. Non-marker imports
+                    // that were only used in segment closures are handled by segment module imports.
+                    continue;
                 }
             }
 

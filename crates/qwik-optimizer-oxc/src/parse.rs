@@ -244,7 +244,155 @@ fn try_recover_source(
         }
     }
 
+    // Strategy 3: JSX expression container fixup.
+    // Some fixtures (e.g. example_immutable_analysis) contain bare expressions
+    // like `[].map(() => (...));` as direct JSX Fragment children without `{}`
+    // wrapping. This is invalid JSX — children that are expressions must be
+    // wrapped in expression containers `{expr}`. SWC recovers from this; OXC
+    // panics. We scan for lines that look like bare expressions between JSX
+    // elements and wrap them in `{...}`.
+    if let Some(fixed) = try_jsx_expression_container_fixup(source) {
+        let test_src: &str = allocator.alloc_str(&fixed);
+        let ret = oxc::parser::Parser::new(allocator, test_src, *source_type).parse();
+        if !ret.program.body.is_empty() && !ret.panicked {
+            return Some(fixed);
+        }
+    }
+
     None
+}
+
+/// Try to fix bare expressions used as JSX children by wrapping them in `{}`.
+///
+/// Scans the source for lines between JSX closing tags (`</...>` or `/>`) and
+/// JSX opening tags (`<...`) that look like expressions (starting with `[`,
+/// `(`, or identifiers followed by `.` or `(`). These are invalid JSX that
+/// should be in expression containers.
+fn try_jsx_expression_container_fixup(source: &str) -> Option<String> {
+    let lines: Vec<&str> = source.lines().collect();
+    let mut result_lines: Vec<String> = lines.iter().map(|l| l.to_string()).collect();
+    let mut modified = false;
+
+    // Find regions of bare expressions between JSX elements.
+    // A bare expression region starts after a JSX closing tag line (</X> or />)
+    // or after a JSX self-closing line, and contains lines that look like
+    // expression code (not JSX tags, not `{` expression containers).
+    let mut i = 0;
+    while i < lines.len() {
+        let trimmed = lines[i].trim();
+
+        // Check if this line starts a bare expression that's inside JSX context.
+        // We detect this by looking for lines that:
+        // 1. Start with `[`, or an identifier/expression pattern
+        // 2. Are preceded by a JSX closing tag (</...> or />)
+        // 3. Are NOT already inside `{...}`
+        if is_bare_expression_start(trimmed) && is_in_jsx_context(&lines, i) {
+            // Find the end of this bare expression (line ending with `;`)
+            let start = i;
+            let mut end = i;
+            for j in i..lines.len() {
+                let t = lines[j].trim();
+                if t.ends_with(';') {
+                    end = j;
+                    break;
+                }
+                // If we hit a JSX opening tag, stop before it
+                if t.starts_with('<') && !t.starts_with("</") && !t.starts_with("<!") {
+                    // The expression likely contains JSX, find the actual end
+                    // by looking for the semicolon after the JSX closes
+                    continue;
+                }
+                end = j;
+            }
+
+            // Wrap the bare expression in { ... }
+            // Get the indentation of the first line
+            let indent = &lines[start][..lines[start].len() - lines[start].trim_start().len()];
+
+            // Remove the trailing semicolon from the last line if present
+            let last_trimmed = result_lines[end].trim().to_string();
+            let last_without_semi = if last_trimmed.ends_with(';') {
+                last_trimmed[..last_trimmed.len() - 1].to_string()
+            } else {
+                last_trimmed
+            };
+
+            // Reconstruct: {original_expression}
+            // Wrap by prepending `{` to first line and appending `}` after last line
+            result_lines[start] = format!("{}{{{}", indent, lines[start].trim());
+            let last_indent = &lines[end][..lines[end].len() - lines[end].trim_start().len()];
+            result_lines[end] = format!("{}{}}}", last_indent, last_without_semi);
+
+            modified = true;
+            i = end + 1;
+        } else {
+            i += 1;
+        }
+    }
+
+    if modified {
+        Some(result_lines.join("\n"))
+    } else {
+        None
+    }
+}
+
+/// Check if a trimmed line looks like the start of a bare expression
+/// (not a JSX tag, not empty, not a comment).
+fn is_bare_expression_start(trimmed: &str) -> bool {
+    if trimmed.is_empty() {
+        return false;
+    }
+    // Bare expressions typically start with `[`, `(`, or an identifier
+    // They should NOT start with `<` (JSX), `{` (already in container),
+    // `}`, `//`, `/*`, or be a closing fragment `</>`
+    let first_char = trimmed.chars().next().unwrap();
+    matches!(first_char, '[' | '(')
+        || (first_char.is_alphabetic() && !trimmed.starts_with("return")
+            && !trimmed.starts_with("const") && !trimmed.starts_with("let")
+            && !trimmed.starts_with("var") && !trimmed.starts_with("import")
+            && !trimmed.starts_with("export") && !trimmed.starts_with("if")
+            && !trimmed.starts_with("for") && !trimmed.starts_with("while"))
+}
+
+/// Check if line at index `i` is inside a JSX context by looking at surrounding lines.
+fn is_in_jsx_context(lines: &[&str], i: usize) -> bool {
+    // Look backwards for a JSX closing tag or self-closing tag
+    for j in (0..i).rev() {
+        let trimmed = lines[j].trim();
+        if trimmed.is_empty() {
+            continue;
+        }
+        // JSX closing element: </Div>, </>, or self-closing: />
+        // Also: line ending with > that contains a JSX element
+        if trimmed.ends_with('>') && (trimmed.starts_with("</") || trimmed.ends_with("/>")
+            || trimmed.contains("</"))
+        {
+            return true;
+        }
+        // If we see a non-JSX line, we're not in JSX context
+        if !trimmed.starts_with('<') && !trimmed.starts_with('{')
+            && !trimmed.starts_with('}') && !trimmed.starts_with("//")
+        {
+            return false;
+        }
+        // Keep looking if we see JSX-like content
+        break;
+    }
+
+    // Also look forward for JSX opening
+    for j in (i + 1)..lines.len() {
+        let trimmed = lines[j].trim();
+        if trimmed.is_empty() {
+            continue;
+        }
+        if trimmed.starts_with('<') && !trimmed.starts_with("</") {
+            return true;
+        }
+        break;
+    }
+
+    false
 }
 
 /// Parse a single source file into an OXC Program AST with semantic scoping.

@@ -52,6 +52,7 @@ pub(crate) type IdPlusType = (String, IdentType);
 
 /// An owned record for a `const q_name = <rhs>` declaration to be prepended
 /// to the module body by the `exit_program` drain.
+#[derive(Clone)]
 pub(crate) struct HoistedConst {
     /// The const binding name, e.g. `"q_renderHeader1_jMxQsjbyDss"`.
     pub name: String,
@@ -2280,6 +2281,7 @@ impl QwikTransform {
             let prog = ast.program(SPAN, SourceType::tsx(), "", comments, None, directives, body);
             let raw = Codegen::new().build(&prog).code;
             raw.trim_start_matches("const _x = ")
+                .trim()
                 .trim_end_matches(';')
                 .trim()
                 .to_string()
@@ -2465,6 +2467,7 @@ impl QwikTransform {
         let prog = ast.program(SPAN, SourceType::tsx(), "", comments, None, directives, body);
         let raw = Codegen::new().build(&prog).code;
         raw.trim_start_matches("const _x = ")
+            .trim()
             .trim_end_matches(';')
             .trim()
             .to_string()
@@ -4273,7 +4276,9 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         // --- Step 1: Prepend extra_top_items ---
         // Phase 25-03: determine if any hoisted consts use qrl() calls so we can
         // emit `import { qrl }` before them and add `/*#__PURE__*/` annotations.
-        let top_items = std::mem::take(&mut self.extra_top_items);
+        // NOTE: Clone here so that extra_top_items remains populated for segment module
+        // generation in lib.rs (new_module needs it to emit `import { qrl }` in segments).
+        let top_items: Vec<HoistedConst> = self.extra_top_items.clone();
         let has_qrl_hoisted = top_items.iter().any(|h| {
             h.rhs_code.starts_with("qrl(")
                 || h.rhs_code.starts_with("inlinedQrl(")

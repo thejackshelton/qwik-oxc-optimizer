@@ -379,8 +379,6 @@ fn transform_code(
             &record.canonical_filename,
             config.source_maps,
         );
-        // Phase 25-03: post-process segment code.
-        // Replace OXC's /* @__PURE__ */ with /*#__PURE__*/ and inject // separators.
         let final_code = post_process_module_code(&raw_code);
 
         // Build segment path: {rel_dir}/{canonical_filename}.{ext}
@@ -2073,7 +2071,6 @@ export const Header = component$(() => {
         );
     }
 
-    /// Test: segment module that hoists qrl() consts emits `import {{ qrl }}`.
     #[test]
     fn segment_module_with_hoisted_qrl_emits_qrl_import() {
         let src = r#"import { component$, useTask$ } from "@qwik.dev/core";

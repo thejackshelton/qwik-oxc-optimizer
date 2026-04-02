@@ -989,17 +989,23 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     let needed_extras = collect_needed_extra_top_items(ctx.extra_top_items, &seed);
 
     // Step 6: build combined_local_idents
-    let mut combined_local_idents: Vec<String> = ctx.local_idents.to_vec();
-    // Add idents from hoisted pairs
-    for (sym, _code) in &hoisted_pairs {
-        if !combined_local_idents.contains(sym) {
-            combined_local_idents.push(sym.clone());
-        }
-    }
-    // Add idents referenced in extra_top_items rhs
+    // Exclude idents that will be defined locally by hoisted_pairs or extra_top_items
+    // (they should NOT be imported from the parent module).
+    let locally_defined: HashSet<String> = hoisted_pairs
+        .iter()
+        .map(|(sym, _)| sym.clone())
+        .chain(needed_extras.iter().map(|item| item.name.clone()))
+        .collect();
+    let mut combined_local_idents: Vec<String> = ctx
+        .local_idents
+        .iter()
+        .filter(|ident| !locally_defined.contains(*ident))
+        .cloned()
+        .collect();
+    // Add idents referenced in extra_top_items rhs (they need imports from outside)
     for item in &needed_extras {
         for ident in word_idents_in(&item.rhs_code) {
-            if !combined_local_idents.contains(&ident) {
+            if !combined_local_idents.contains(&ident) && !locally_defined.contains(&ident) {
                 combined_local_idents.push(ident);
             }
         }
@@ -1046,15 +1052,33 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
         if rhs.starts_with("import ") || rhs.starts_with("import{") {
             extra_imports.push(rhs.to_string());
         } else {
-            extra_non_imports.push((item.name.clone(), format!("const {} = {};", item.name, rhs)));
+            // Phase 25-03: add /*#__PURE__*/ to qrl() calls in extra_non_imports.
+            let is_qrl_call = rhs.starts_with("qrl(")
+                || rhs.starts_with("inlinedQrl(")
+                || rhs.starts_with("_noopQrl(")
+                || rhs.starts_with("qrlDEV(")
+                || rhs.starts_with("inlinedQrlDEV(")
+                || rhs.starts_with("_noopQrlDEV(");
+            let code_str = if is_qrl_call {
+                format!("const {} = /*#__PURE__*/ {};", item.name, rhs)
+            } else {
+                format!("const {} = {};", item.name, rhs)
+            };
+            extra_non_imports.push((item.name.clone(), code_str));
         }
     }
 
-    // Phase 25-03: if hoisted_pairs is non-empty, add `import { qrl }` (or `qrlDEV`) to
-    // header_items so segment modules that hoist QRL consts have the identifier available.
-    if !hoisted_pairs.is_empty() {
+    // Phase 25-03: if hoisted_pairs OR extra_non_imports (from parent's hoisted consts) contain
+    // qrl() calls, add `import { qrl }` (or `qrlDEV`) so the segment module has the identifier.
+    let has_qrl_from_hoisted = !hoisted_pairs.is_empty() || extra_non_imports.iter().any(|(_, code)| {
+        code.contains("qrl(") || code.contains("qrlDEV(")
+            || code.contains("inlinedQrl(") || code.contains("inlinedQrlDEV(")
+    });
+    if has_qrl_from_hoisted {
         let has_qrl_dev = hoisted_pairs.iter().any(|(_, code)| {
             code.starts_with("qrlDEV(") || code.starts_with("inlinedQrlDEV(")
+        }) || extra_non_imports.iter().any(|(_, code)| {
+            code.contains("qrlDEV(") || code.contains("inlinedQrlDEV(")
         });
         let qrl_import_name = if has_qrl_dev { "qrlDEV" } else { "qrl" };
         let qrl_import = format!(r#"import {{ {} }} from "{}";"#, qrl_import_name, ctx.core_module);
@@ -1095,12 +1119,29 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     // Step 13: append migrated root var declarations (before named export)
     // These are complete statement strings (e.g. "const THRESHOLD = 100;") that
     // were moved out of the root module and belong to this segment only.
+    //
+    // Build a set of symbols already defined by deduped items so we can skip
+    // migrated vars that are already covered by extra_non_imports (which carries
+    // the correct /*#__PURE__*/ annotation). This prevents duplicates when
+    // apply_variable_migration migrates the same q_ const that extra_top_items
+    // also provides.
     let mut result_parts = deduped;
+    let already_defined: HashSet<String> = result_parts
+        .iter()
+        .filter_map(|s| extract_defined_sym(s))
+        .collect();
     for migrated_stmt in ctx.migrated_root_vars {
         let stmt = migrated_stmt.trim().to_string();
-        if !stmt.is_empty() {
-            result_parts.push(stmt);
+        if stmt.is_empty() {
+            continue;
         }
+        // Skip if this variable is already defined in result_parts (from extra_non_imports).
+        if let Some(sym) = extract_defined_sym(&stmt) {
+            if already_defined.contains(&sym) {
+                continue;
+            }
+        }
+        result_parts.push(stmt);
     }
 
     // Step 14 (was 13): append named export

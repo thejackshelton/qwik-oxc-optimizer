@@ -3695,15 +3695,22 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // --- Check if we should emit ---
             let should_emit = self.should_emit_segment(ctx_name, ctx_kind.clone());
 
-            // --- C02: check if any descendent ident is a Fn/Class in decl_stack ---
-            // This covers the main marker $() path. The JSX native-prop path (C02 in
-            // create_synthetic_qqsegment) handles its own case separately.
+            // --- C02: check if any descendent ident is a locally-scoped Fn/Class ---
+            // This covers the main marker $() path. Only fires for non-module-scope
+            // (non-global) Fn/Class declarations — module-scope functions/classes are
+            // accessible as imports in the segment file (via local_idents), so C02 does not apply.
+            // The JSX native-prop path (C02 in create_synthetic_qqsegment) handles its own case.
             if !matches!(self.mode, EmitMode::Lib) {
+                let collect_for_c02 = unsafe { &*self.global_collect };
                 let mut invalid_decl_names: HashSet<String> = HashSet::new();
                 for (name, id_type) in &all_decl {
                     match id_type {
                         IdentType::Fn | IdentType::Class => {
-                            invalid_decl_names.insert(name.clone());
+                            // Only flag non-global (locally-scoped) fn/class declarations.
+                            // Module-scope fn/class are accessible via imports and should not trigger C02.
+                            if !collect_for_c02.is_global(name) {
+                                invalid_decl_names.insert(name.clone());
+                            }
                         }
                         _ => {}
                     }
@@ -3711,7 +3718,6 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 for ident in &pending.descendent_idents {
                     if invalid_decl_names.contains(ident) {
                         self.diagnostics.push(Diagnostic {
-                            scope: "optimizer".to_string(),
                             category: DiagnosticCategory::Error,
                             code: Some("C02".to_string()),
                             file: self.file_name.clone(),
@@ -3721,6 +3727,7 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                             ),
                             highlights: None,
                             suggestions: None,
+                            scope: "optimizer".to_string(),
                         });
                     }
                 }

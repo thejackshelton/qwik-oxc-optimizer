@@ -103,4 +103,23 @@ export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAEH,0BAAU,OAAO,2CAEd,8BAEI;AAJT,OAAO,MAAM,MAAMC,2CAcjB\"}")
 == DIAGNOSTICS ==
 
-[]
+[
+  {
+    "category": "error",
+    "code": "C02",
+    "file": "test.tsx",
+    "message": "Reference to identifier 'hola' can not be used inside a Qrl($) scope because it's a function",
+    "highlights": null,
+    "suggestions": null,
+    "scope": "optimizer"
+  },
+  {
+    "category": "error",
+    "code": "C02",
+    "file": "test.tsx",
+    "message": "Reference to identifier 'Thing' can not be used inside a Qrl($) scope because it's a function",
+    "highlights": null,
+    "suggestions": null,
+    "scope": "optimizer"
+  }
+]

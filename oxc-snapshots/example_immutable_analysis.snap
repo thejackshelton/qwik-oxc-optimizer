@@ -58,12 +58,4 @@ export const App = component$((props) => {
 
 == DIAGNOSTICS ==
 
-[
-  {
-    "scope": "optimizer",
-    "category": "sourceError",
-    "code": null,
-    "file": "test.tsx",
-    "message": "Unexpected token. Did you mean `{'>'}` or `&gt;`?"
-  }
-]
+[]

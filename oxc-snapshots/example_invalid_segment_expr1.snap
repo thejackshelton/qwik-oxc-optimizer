@@ -24,10 +24,11 @@ export const App = component$(() => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { _captures } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = render;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = render;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = render;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4BAA4B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -41,7 +42,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
   "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "$",
-  "captures": false,
+  "captures": true,
+  "captureNames": [
+    "render"
+  ],
   "loc": [
     287,
     293
@@ -51,10 +55,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 
 ============================= test.tsx_App_component_useStyles_t35nSa5UV7U.js (ENTRY POINT)==
 
+import { _captures } from "@qwik.dev/core";
+//
 export const App_component_useStyles_t35nSa5UV7U = style;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_t35nSa5UV7U\"],\"sourcesContent\":[\"export const App_component_useStyles_t35nSa5UV7U = style;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_t35nSa5UV7U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_useStyles_t35nSa5UV7U = style;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sCAAsC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -68,7 +73,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyle
   "parent": "App_component_1_w0t0o3QMovU",
   "ctxKind": "function",
   "ctxName": "useStyles$",
-  "captures": false,
+  "captures": true,
+  "captureNames": [
+    "style"
+  ],
   "loc": [
     211,
     216
@@ -81,16 +89,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyle
 import { qrl } from "@qwik.dev/core";
 import { default as css1 } from "./global.css";
 //
-const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-const q_App_component_useStyles_t35nSa5UV7U = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_useStyles_t35nSa5UV7U"), "App_component_useStyles_t35nSa5UV7U");
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0", [render]);
+const q_App_component_useStyles_t35nSa5UV7U = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_useStyles_t35nSa5UV7U"), "App_component_useStyles_t35nSa5UV7U", [style]);
 //
 export const App_component_1_w0t0o3QMovU = () => {
 	const style = `${css1}${css2}`;
-	useStylesQrl(q_App_component_useStyles_t35nSa5UV7U);
+	useStylesQrl(q_App_component_useStyles_t35nSa5UV7U.w([style]));
 	const render = () => {
 		return <div></div>;
 	};
-	return Qrl(q_App_component_ckEPmXZlub0);
+	return Qrl(q_App_component_ckEPmXZlub0.w([render]));
 };
 
 /*
@@ -129,39 +137,4 @@ export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 Some("{\"version\":3,\"names\":[\"t { $, component$, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\n\nexport const App = component$(() => {\n\tconst style = `${css1}${css2}`;\n\tuseStyles$(style);\n\tconst render = () => {\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t};\n\treturn $(render);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAClD,OAAO,2CACU,8BAEH;AAHf,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,2CASjB\"}")
 == DIAGNOSTICS ==
 
-[
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C03",
-    "file": "test.tsx",
-    "message": "Qrl($) scope is not a function, but it's capturing local identifiers: style",
-    "highlights": [
-      {
-        "lo": 210,
-        "hi": 215,
-        "startLine": 8,
-        "startCol": 12,
-        "endLine": 8,
-        "endCol": 17
-      }
-    ]
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C03",
-    "file": "test.tsx",
-    "message": "Qrl($) scope is not a function, but it's capturing local identifiers: render",
-    "highlights": [
-      {
-        "lo": 286,
-        "hi": 292,
-        "startLine": 14,
-        "startCol": 10,
-        "endLine": 14,
-        "endCol": 16
-      }
-    ]
-  }
-]
+[]

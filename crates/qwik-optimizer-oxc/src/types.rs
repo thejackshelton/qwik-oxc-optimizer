@@ -365,12 +365,10 @@ pub enum CtxKind {
 /// A diagnostic message from the transformation process.
 ///
 /// SWC equivalent: Diagnostic in types.ts
+/// Field ORDER matches SWC wire format: category, code, file, message, highlights, suggestions, scope.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Diagnostic {
-    /// Scope identifier matching SWC wire format (always "optimizer").
-    pub scope: String,
-
     /// The diagnostic category.
     pub category: DiagnosticCategory,
 
@@ -384,12 +382,15 @@ pub struct Diagnostic {
     pub message: String,
 
     /// Optional source code highlights.
-    #[serde(skip_serializing_if = "Option::is_none")]
+    /// Note: always serializes as null (not omitted) to match SWC wire format.
     pub highlights: Option<Vec<SourceLocation>>,
 
     /// Optional fix suggestions.
     /// Note: always serializes as null (not omitted) to match SWC wire format.
     pub suggestions: Option<Vec<String>>,
+
+    /// Scope identifier matching SWC wire format (always "optimizer").
+    pub scope: String,
 }
 
 /// Severity level of a diagnostic.

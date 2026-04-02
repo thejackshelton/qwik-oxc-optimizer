@@ -81,7 +81,6 @@ Some("{\"version\":3,\"names\":[\"t { component$ as Component, $ as o\",\"\nimpo
 
 [
   {
-    "scope": "optimizer",
     "category": "error",
     "code": "C05",
     "file": "test.tsx",
@@ -89,12 +88,14 @@ Some("{\"version\":3,\"names\":[\"t { component$ as Component, $ as o\",\"\nimpo
     "highlights": [
       {
         "lo": 240,
-        "hi": 288,
+        "hi": 248,
         "startLine": 11,
         "startCol": 1,
-        "endLine": 13,
-        "endCol": 3
+        "endLine": 11,
+        "endCol": 9
       }
-    ]
+    ],
+    "suggestions": null,
+    "scope": "optimizer"
   }
 ]

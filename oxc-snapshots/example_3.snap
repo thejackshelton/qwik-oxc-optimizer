@@ -19,12 +19,4 @@ export const App = () => {
 
 == DIAGNOSTICS ==
 
-[
-  {
-    "scope": "optimizer",
-    "category": "sourceError",
-    "code": null,
-    "file": "test.tsx",
-    "message": "Expected a semicolon or an implicit semicolon after a statement, but found none"
-  }
-]
+[]

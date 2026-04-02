@@ -422,6 +422,87 @@ export const App = component$((props) => {
     }
 
     #[test]
+    fn test_parse_jsx_expression_container_recovery() {
+        // The ACTUAL full example_immutable_analysis.tsx source contains bare
+        // `[].map(() => (...));` as a direct JSX Fragment child without `{}`
+        // wrapping. OXC's parser cannot handle this invalid JSX. We need a
+        // recovery strategy that wraps such bare expressions in `{}`.
+        let allocator = Allocator::default();
+        let source = r#"
+import { component$, useStore, $ } from '@qwik.dev/core';
+import importedValue from 'v';
+import styles from './styles.module.css';
+
+export const App = component$((props) => {
+	const {Model} = props;
+	const state = useStore({count: 0});
+	const remove = $((id: number) => {
+		const d = state.data;
+		d.splice(
+			d.findIndex((d) => d.id === id),
+			1
+		)
+		});
+	return (
+		<>
+			<p class="stuff" onClick$={props.onClick$}>Hello Qwik</p>
+			<Div
+				class={styles.foo}
+				document={window.document}
+				onClick$={props.onClick$}
+				onEvent$={() => console.log('stuff')}
+				transparent$={() => {console.log('stuff')}}
+				immutable1="stuff"
+				immutable2={{
+					foo: 'bar',
+					baz: importedValue ? true : false,
+				}}
+				immutable3={2}
+				immutable4$={(ev) => console.log(state.count)}
+				immutable5={[1, 2, importedValue, null, {}]}
+			>
+				<p>Hello Qwik</p>
+			</Div>
+			[].map(() => (
+				<Model
+					class={state}
+					remove$={remove}
+					mutable1={{
+						foo: 'bar',
+						baz: state.count ? true : false,
+					}}
+					mutable2={(() => console.log(state.count))()}
+					mutable3={[1, 2, state, null, {}]}
+				/>
+			));
+		</>
+	);
+});"#;
+
+        let result = parse_module(&allocator, source, "test.tsx");
+        assert!(result.is_ok(), "Expected JSX expression container recovery to succeed");
+        let (parsed, _diags) = result.unwrap();
+        assert!(!parsed.program.body.is_empty(), "Expected non-empty body");
+        assert!(parsed.program.body.len() >= 2, "Expected at least 2 body statements (import + export), got {}", parsed.program.body.len());
+        eprintln!("JSX expression container recovery: body.len={}", parsed.program.body.len());
+    }
+
+    #[test]
+    fn test_parse_jsx_no_false_positive_recovery() {
+        // A simple valid JSX file should NOT be modified by recovery
+        let allocator = Allocator::default();
+        let source = r#"import { component$ } from '@qwik.dev/core';
+export const App = component$(() => {
+    return <div>{[1,2].map(x => <span>{x}</span>)}</div>;
+});"#;
+
+        let result = parse_module(&allocator, source, "test.tsx");
+        assert!(result.is_ok(), "Valid JSX should parse without recovery");
+        let (parsed, _diags) = result.unwrap();
+        assert!(!parsed.program.body.is_empty());
+    }
+
+    #[test]
     fn test_parse_js_source() {
         let allocator = Allocator::default();
         let source = r#"export const x = 1;"#;

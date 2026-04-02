@@ -745,7 +745,8 @@ fn post_process_module_code(code: &str) -> String {
 }
 
 /// Add `/*#__PURE__*/ ` before a `target` call pattern when not already annotated.
-/// Skips occurrences inside import statements (lines starting with "import").
+/// Skips occurrences inside import statements (lines starting with "import")
+/// and inside string literals (to avoid corrupting hoisted _hf_str values).
 fn add_pure_annotation(code: &str, target: &str) -> String {
     let pure_prefix = "/*#__PURE__*/ ";
     let mut result = String::with_capacity(code.len() + 64);
@@ -759,8 +760,11 @@ fn add_pure_annotation(code: &str, target: &str) -> String {
         let line_start = code[..abs_idx].rfind('\n').map_or(0, |n| n + 1);
         let line_prefix = code[line_start..abs_idx].trim_start();
         let is_import = line_prefix.starts_with("import ");
+        // Check if inside a string literal by counting unescaped quotes on this line
+        let line_before = &code[line_start..abs_idx];
+        let in_string = is_inside_string(line_before);
         result.push_str(&code[pos..abs_idx]);
-        if !already && !is_import {
+        if !already && !is_import && !in_string {
             result.push_str(pure_prefix);
         }
         result.push_str(target);
@@ -768,6 +772,27 @@ fn add_pure_annotation(code: &str, target: &str) -> String {
     }
     result.push_str(&code[pos..]);
     result
+}
+
+/// Check if a position is inside a string literal by counting unescaped quotes.
+/// Returns true if we're inside a single-quoted or double-quoted string.
+fn is_inside_string(text: &str) -> bool {
+    let mut in_single = false;
+    let mut in_double = false;
+    let mut prev_backslash = false;
+    for ch in text.chars() {
+        if prev_backslash {
+            prev_backslash = false;
+            continue;
+        }
+        match ch {
+            '\\' => prev_backslash = true,
+            '\'' if !in_double => in_single = !in_single,
+            '"' if !in_single => in_double = !in_double,
+            _ => {}
+        }
+    }
+    in_single || in_double
 }
 
 /// Inject standalone `//` separator lines in emitted module code to match SWC output.

@@ -1757,11 +1757,11 @@ impl QwikTransform {
                                     }
                                     Some(params)
                                 };
-                                // Route to create_inline_qrl (Inline/Hoist without stripping)
-                                // or create_segment (Segment mode, or when strip_event_handlers is set).
-                                // When strip_event_handlers=true, SWC still creates separate segment
-                                // files (with null bodies) even in Inline mode.
-                                let qrl_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                                // Route based on entry strategy and strip flags.
+                                // When strip_event_handlers=true, SWC creates noop segment files
+                                // (null bodies) — must check should_emit_segment like the main path.
+                                let should_emit = self.should_emit_segment(&ctx_name_for_seg, ctx_kind.clone());
+                                let qrl_expr = if self.is_inline_strategy && should_emit {
                                     self.create_inline_qrl(
                                         value_expr,
                                         &names.symbol_name,
@@ -1770,16 +1770,67 @@ impl QwikTransform {
                                         &names.display_name,
                                         allocator,
                                     )
-                                } else {
+                                } else if should_emit {
                                     self.create_segment(
                                         value_expr,
                                         &names,
                                         scoped_idents,
                                         local_idents,
                                         &ctx_name_for_seg,
-                                        ctx_kind,
+                                        ctx_kind.clone(),
                                         fn_span_tuple,
                                         jsx_param_names,
+                                        allocator,
+                                    )
+                                } else {
+                                    // Noop segment: stripped handler, push null-body record
+                                    let pending_parent_span = self.segment_span_stack.last().copied();
+                                    let noop_segment_data = crate::types::SegmentData {
+                                        display_name: names.display_name.clone(),
+                                        hash: names.hash.clone(),
+                                        name: names.symbol_name.clone(),
+                                        ctx_name: ctx_name_for_seg.clone(),
+                                        ctx_kind: ctx_kind.clone(),
+                                        origin: self.rel_path.clone(),
+                                        extension: self.extension.clone(),
+                                        span: fn_span_tuple,
+                                        parent: None,
+                                        scoped_idents: Vec::new(),
+                                        captures: false,
+                                        capture_names: Vec::new(),
+                                        needed_imports: Vec::new(),
+                                        segment_qrl_names: Vec::new(),
+                                        body_span: fn_span_tuple,
+                                        param_names: Vec::new(),
+                                        body_code: String::new(),
+                                        child_lazy_imports: Vec::new(),
+                                        needs_qrl_import: false,
+                                    };
+                                    let entry = self.entry_policy.get_entry_for_sym(&self.raw_stack_ctxt, &noop_segment_data);
+                                    self.segments.push(SegmentRecord {
+                                        name: names.symbol_name.clone(),
+                                        display_name: names.display_name.clone(),
+                                        canonical_filename: names.canonical_filename.clone(),
+                                        entry,
+                                        expr: None,
+                                        scoped_idents: Vec::new(),
+                                        local_idents: Vec::new(),
+                                        ctx_name: ctx_name_for_seg.clone(),
+                                        ctx_kind: ctx_kind.clone(),
+                                        origin: self.rel_path.to_string(),
+                                        span: fn_span_tuple,
+                                        hash: names.hash.clone(),
+                                        is_inline: false,
+                                        migrated_root_vars: Vec::new(),
+                                        parent: None,
+                                        pending_parent_span,
+                                        param_names: None,
+                                    });
+                                    self.create_noop_qrl(
+                                        &names.symbol_name,
+                                        &scoped_idents,
+                                        fn_span_tuple,
+                                        &names.display_name,
                                         allocator,
                                     )
                                 };
@@ -1868,7 +1919,8 @@ impl QwikTransform {
                             self.ensure_export(ident);
                         }
 
-                        let handler_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                        let should_emit = self.should_emit_segment(&ctx_name_for_seg, ctx_kind.clone());
+                        let handler_expr = if self.is_inline_strategy && should_emit {
                             self.create_inline_qrl(
                                 value_expr,
                                 &names.symbol_name,
@@ -1877,16 +1929,67 @@ impl QwikTransform {
                                 &names.display_name,
                                 allocator,
                             )
-                        } else {
+                        } else if should_emit {
                             self.create_segment(
                                 value_expr,
                                 &names,
                                 scoped_idents,
                                 local_idents,
                                 &ctx_name_for_seg,
-                                ctx_kind,
+                                ctx_kind.clone(),
                                 fn_span_tuple,
                                 None,
+                                allocator,
+                            )
+                        } else {
+                            // Noop segment for stripped component $-props
+                            let pending_parent_span = self.segment_span_stack.last().copied();
+                            let noop_segment_data = crate::types::SegmentData {
+                                display_name: names.display_name.clone(),
+                                hash: names.hash.clone(),
+                                name: names.symbol_name.clone(),
+                                ctx_name: ctx_name_for_seg.clone(),
+                                ctx_kind: ctx_kind.clone(),
+                                origin: self.rel_path.clone(),
+                                extension: self.extension.clone(),
+                                span: fn_span_tuple,
+                                parent: None,
+                                scoped_idents: Vec::new(),
+                                captures: false,
+                                capture_names: Vec::new(),
+                                needed_imports: Vec::new(),
+                                segment_qrl_names: Vec::new(),
+                                body_span: fn_span_tuple,
+                                param_names: Vec::new(),
+                                body_code: String::new(),
+                                child_lazy_imports: Vec::new(),
+                                needs_qrl_import: false,
+                            };
+                            let entry = self.entry_policy.get_entry_for_sym(&self.raw_stack_ctxt, &noop_segment_data);
+                            self.segments.push(SegmentRecord {
+                                name: names.symbol_name.clone(),
+                                display_name: names.display_name.clone(),
+                                canonical_filename: names.canonical_filename.clone(),
+                                entry,
+                                expr: None,
+                                scoped_idents: Vec::new(),
+                                local_idents: Vec::new(),
+                                ctx_name: ctx_name_for_seg.clone(),
+                                ctx_kind: ctx_kind.clone(),
+                                origin: self.rel_path.to_string(),
+                                span: fn_span_tuple,
+                                hash: names.hash.clone(),
+                                is_inline: false,
+                                migrated_root_vars: Vec::new(),
+                                parent: None,
+                                pending_parent_span,
+                                param_names: None,
+                            });
+                            self.create_noop_qrl(
+                                &names.symbol_name,
+                                &scoped_idents,
+                                fn_span_tuple,
+                                &names.display_name,
                                 allocator,
                             )
                         };
@@ -1955,7 +2058,8 @@ impl QwikTransform {
                             self.ensure_export(ident);
                         }
 
-                        let handler_expr = if self.is_inline_strategy && !self.strip_event_handlers {
+                        let should_emit = self.should_emit_segment(&ctx_name_for_seg, ctx_kind.clone());
+                        let handler_expr = if self.is_inline_strategy && should_emit {
                             self.create_inline_qrl(
                                 value_expr,
                                 &names.symbol_name,
@@ -1964,16 +2068,67 @@ impl QwikTransform {
                                 &names.display_name,
                                 allocator,
                             )
-                        } else {
+                        } else if should_emit {
                             self.create_segment(
                                 value_expr,
                                 &names,
                                 scoped_idents,
                                 local_idents,
                                 &ctx_name_for_seg,
-                                ctx_kind,
+                                ctx_kind.clone(),
                                 fn_span_tuple,
                                 None,
+                                allocator,
+                            )
+                        } else {
+                            // Noop segment for stripped non-event $-props
+                            let pending_parent_span = self.segment_span_stack.last().copied();
+                            let noop_segment_data = crate::types::SegmentData {
+                                display_name: names.display_name.clone(),
+                                hash: names.hash.clone(),
+                                name: names.symbol_name.clone(),
+                                ctx_name: ctx_name_for_seg.clone(),
+                                ctx_kind: ctx_kind.clone(),
+                                origin: self.rel_path.clone(),
+                                extension: self.extension.clone(),
+                                span: fn_span_tuple,
+                                parent: None,
+                                scoped_idents: Vec::new(),
+                                captures: false,
+                                capture_names: Vec::new(),
+                                needed_imports: Vec::new(),
+                                segment_qrl_names: Vec::new(),
+                                body_span: fn_span_tuple,
+                                param_names: Vec::new(),
+                                body_code: String::new(),
+                                child_lazy_imports: Vec::new(),
+                                needs_qrl_import: false,
+                            };
+                            let entry = self.entry_policy.get_entry_for_sym(&self.raw_stack_ctxt, &noop_segment_data);
+                            self.segments.push(SegmentRecord {
+                                name: names.symbol_name.clone(),
+                                display_name: names.display_name.clone(),
+                                canonical_filename: names.canonical_filename.clone(),
+                                entry,
+                                expr: None,
+                                scoped_idents: Vec::new(),
+                                local_idents: Vec::new(),
+                                ctx_name: ctx_name_for_seg.clone(),
+                                ctx_kind: ctx_kind.clone(),
+                                origin: self.rel_path.to_string(),
+                                span: fn_span_tuple,
+                                hash: names.hash.clone(),
+                                is_inline: false,
+                                migrated_root_vars: Vec::new(),
+                                parent: None,
+                                pending_parent_span,
+                                param_names: None,
+                            });
+                            self.create_noop_qrl(
+                                &names.symbol_name,
+                                &scoped_idents,
+                                fn_span_tuple,
+                                &names.display_name,
                                 allocator,
                             )
                         };

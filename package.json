@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "bun test",
-    "harness": "bun src/cli.ts --swc-snapshots swc-snapshots/",
+    "harness": "bun src/cli.ts --swc-snapshots swc-snapshots/ --oxc-snapshots oxc-snapshots/",
     "fmt:snapshot-blocks": "bun scripts/format-snapshot-code-blocks.mjs",
     "fmt:snapshot-blocks:check": "bun scripts/format-snapshot-code-blocks.mjs --check",
     "oxfmt:version": "oxfmt --version",

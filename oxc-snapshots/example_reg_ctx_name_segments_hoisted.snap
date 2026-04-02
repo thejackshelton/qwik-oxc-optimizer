@@ -22,9 +22,6 @@ const STYLES = '.class {}';
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { serverQrl } from "@qwik.dev/core";
-import { useStyleQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
 //
 const q_Works_component_useStyle_i40UL9JyQpg = /*#__PURE__*/ _noopQrl("Works_component_useStyle_i40UL9JyQpg");
 const q_Works_component_div_onClick_server_OsNoEFc5SM4 = /*#__PURE__*/ _noopQrl("Works_component_div_onClick_server_OsNoEFc5SM4");
@@ -34,7 +31,7 @@ export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);
 const STYLES = ".class {}";
 q_Works_component_useStyle_i40UL9JyQpg.s(STYLES);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, server$, useStyle$ \",\"t { $, component$, server$, useStyle$ } from '@q\",\"t { $, component$, server$, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$ } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,0BACyB;AADzB,4BAC2B;AAD3B,oBACmB;AADnB,MACKA,yCAAuD,yBAE5D,uCAAuC;AAHvC,MACKC,mDAEJ,yBAAS,iDACI;AAJd,MACKC,gCAA8C,yBAAS,8BAEvC;AAArB,OAAO,MAAM,QAAQC,2CAMnB;AAEF,MAAM,SAAS;gDAVgC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, server$, useStyle$ \",\"t { $, component$, server$, useStyle$ } from '@q\",\"t { $, component$, server$, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$ } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,yCAAuD,yBAE5D,uCAAuC;AAHvC,MACKC,mDAEJ,yBAAS,iDACI;AAJd,MACKC,gCAA8C,yBAAS,8BAEvC;AAArB,OAAO,MAAM,QAAQC,2CAMnB;AAEF,MAAM,SAAS;gDAVgC\"}")
 == DIAGNOSTICS ==
 
 []

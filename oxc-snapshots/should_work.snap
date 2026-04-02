@@ -21,13 +21,16 @@ expression: output
 
 ============================= test.tsx_SecretForm_component_1noi8FsTz7c.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { useSecretAction } from "./test";
 //
 export const SecretForm_component_1noi8FsTz7c = () => {
 	const action = useSecretAction();
-	return <div>{action.value}</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, _wrapProp(action), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1noi8FsTz7c\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { useSecretAction } from \\"./test\\";\nexport const SecretForm_component_1noi8FsTz7c = () => {\n\tconst action = useSecretAction();\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(action), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,uBAAuB;AAChC,OAAO,MAAM,yCAAyC;CACrD,MAAM,SAAS,iBAAiB;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,OAAO,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -83,15 +86,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_global
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+//
 const q_useSecretAction_globalAction_Cbn41AEUQ0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q"), "useSecretAction_globalAction_Cbn41AEUQ0Q");
 const q_SecretForm_component_1noi8FsTz7c = /*#__PURE__*/ qrl(() => import("./test.tsx_SecretForm_component_1noi8FsTz7c"), "SecretForm_component_1noi8FsTz7c");
-//
-import { globalAction$ } from "@qwik.dev/router";
 //
 export const useSecretAction = globalActionQrl(q_useSecretAction_globalAction_Cbn41AEUQ0Q);
 export const SecretForm = /*#__PURE__*/ componentQrl(q_SecretForm_component_1noi8FsTz7c);
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACY,0BAAU,OAAO,wDAEG,2CACL;AALhC,MACKC,qCACI,0BAAU,OAAO,gDAEL,mCACb;AAHN,SAAS,qBAAqB;AAE9B,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,gDAGxB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACY,0BAAU,OAAO,wDAEG,2CACL;AALhC,MACKC,qCACI,0BAAU,OAAO,gDAEL,mCACb;AADN,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,gDAGxB\"}")
 == DIAGNOSTICS ==
 
 []

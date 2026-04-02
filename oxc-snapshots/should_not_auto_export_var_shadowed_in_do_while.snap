@@ -59,13 +59,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV
 ============================= test.js ==
 
 import { qrl } from "@qwik.dev/core";
-const q_action_formAction_dIQV5vh1He4 = /*#__PURE__*/ qrl(() => import("./test.tsx_action_formAction_dIQV5vh1He4"), "action_formAction_dIQV5vh1He4");
 //
-import { formAction$ } from "forms";
+const q_action_formAction_dIQV5vh1He4 = /*#__PURE__*/ qrl(() => import("./test.tsx_action_formAction_dIQV5vh1He4"), "action_formAction_dIQV5vh1He4");
 //
 export const action = formActionQrl(q_action_formAction_dIQV5vh1He4);
 
-Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  let i = 0;\n  do {\n    const x = 'shadowed';\n    i++;\n  } while (i < 3);\n  return {};\n});\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kCACW,0BAChB,OAAO,6CACD,gCAEY;AALlB,SAAS,mBAAmB;AAE5B,OAAO,MAAM,SAASC,8CAOpB\"}")
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nconst x = 'module-level';\nexport const action = formAction$((data) => {\n  let i = 0;\n  do {\n    const x = 'shadowed';\n    i++;\n  } while (i < 3);\n  return {};\n});\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kCACW,0BAChB,OAAO,6CACD,gCAEY;AAHlB,OAAO,MAAM,SAASC,8CAOpB\"}")
 == DIAGNOSTICS ==
 
 []

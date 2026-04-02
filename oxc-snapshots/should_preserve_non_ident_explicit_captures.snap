@@ -62,6 +62,7 @@ const right = _captures[2];
 ============================= test.tsx ==
 
 import { qrlDEV } from "@qwik.dev/core";
+//
 const q_task = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_task_task"), "task", [
 //
 	left,
@@ -73,8 +74,6 @@ const q_task = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_task_task"), "task"
 	hi: 250,
 	displayName: "test.tsx_task"
 });
-import { _captures, inlinedQrl } from "@qwik.dev/core";
-//
 const left = 1;
 const right = 2;
 export const task = q_task.w([
@@ -85,7 +84,7 @@ export const task = q_task.w([
 export { left as _auto_left };
 export { right as _auto_right };
 
-Some("{\"version\":3,\"names\":[\"t { _c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { _captures, inlinedQrl } from '@qwik.dev/core';\n\nconst left = 1;\nconst right = 2;\n\nexport const task = inlinedQrl(() => {\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n}, 'task', [left, true, right]);\n\"],\"mappings\":\"AAAA,uBACsB;AADtB,MACKA,SAAuB,6BAAa,OAAO,yBAGhD,QAAQ;;CAER;;CAAc,EAAE;OAAS;KACtB;KAAU;cACT;CAAiB,CAAC;AAPtB,SAAS,WAAW,kBAAkB;AAEtC,MAAM,OAAO;AACb,MAAM,QAAQ;AAEd,OAAO,MAAM;;;;;AANb\"}")
+Some("{\"version\":3,\"names\":[\"t { _c\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { _captures, inlinedQrl } from '@qwik.dev/core';\n\nconst left = 1;\nconst right = 2;\n\nexport const task = inlinedQrl(() => {\n\tconst left = _captures[0];\n\tconst middle = _captures[1];\n\tconst right = _captures[2];\n\treturn middle ? left : right;\n}, 'task', [left, true, right]);\n\"],\"mappings\":\"AAAA,uBACsB;AADtB,MACKA,SAAuB,6BAAa,OAAO,yBAGhD,QAAQ;;CAER;;CAAc,EAAE;OAAS;KACtB;KAAU;cACT;CAAiB,CAAC;AALtB,MAAM,OAAO;AACb,MAAM,QAAQ;AAEd,OAAO,MAAM;;;;;AANb\"}")
 == DIAGNOSTICS ==
 
 []

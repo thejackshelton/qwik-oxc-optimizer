@@ -18,15 +18,13 @@ export const Works = component$((props) => {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { serverQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
 //
 const q_Works_component_div_onClick_server_OsNoEFc5SM4 = /*#__PURE__*/ _noopQrl("Works_component_div_onClick_server_OsNoEFc5SM4");
 const q_Works_component_t45qL4vNGv0 = /*#__PURE__*/ _noopQrl("Works_component_t45qL4vNGv0");
 //
 export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, server$ } from '@qwik.dev/cor\",\"t { $, component$, server$ } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$ } from '@qwik.dev/core';\nexport const Works = component$((props) => {\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,0BACyB;AADzB,oBACmB;AADnB,MACKA,mDACQ,yBAAS,iDAElB;AAJJ,MACKC,gCAA8C,yBAChD,8BAA8B;AAAjC,OAAO,MAAM,QAAQC,2CAKnB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, server$ } from '@qwik.dev/cor\",\"t { $, component$, server$ } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$ } from '@qwik.dev/core';\nexport const Works = component$((props) => {\n\tconst text = 'hola';\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,mDACQ,yBAAS,iDAElB;AAJJ,MACKC,gCAA8C,yBAChD,8BAA8B;AAAjC,OAAO,MAAM,QAAQC,2CAKnB\"}")
 == DIAGNOSTICS ==
 
 []

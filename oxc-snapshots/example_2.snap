@@ -47,11 +47,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_o
 
 ============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_component_div_onClick_i7ekvWH3674 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
+//
 export const Header_component_J4uyIhaBNR4 = () => {
 	console.log("mount");
-	return <div />;
+	return /*#__PURE__*/ _jsxSorted("div", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_Header_component_div_onClick_i7ekvWH3674 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Header_component_div_onClick_i7ekvWH3674\\"), \\"Header_component_div_onClick_i7ekvWH3674\\");\nexport const Header_component_J4uyIhaBNR4 = () => {\n\tconsole.log(\\"mount\\");\n\treturn _jsxSorted(\\"div\\", { onClick: Qrl(q_Header_component_div_onClick_i7ekvWH3674) }, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,6CAA2D,0BAAU,OAAO,wDAAwD,2CAA2C;AACrL,OAAO,MAAM,qCAAqC;AACjD,SAAQ,IAAI,QAAQ;AACpB,QAAO,WAAW,OAAO,EAAE,SAAS,IAAI,2CAA2C,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -78,12 +84,11 @@ export const Header_component_J4uyIhaBNR4 = () => {
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_Header_component_div_onClick_i7ekvWH3674 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
 const q_Header_component_J4uyIhaBNR4 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
 //
 export const Header = /*#__PURE__*/ componentQrl(q_Header_component_J4uyIhaBNR4);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.dev/core';\",\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACW,0BAAU,OAAO,wDAGlB;AALf,MACKC,iCACD,0BAAU,OAAO,4CAEpB,+BACqB;AAHtB,OAAO,MAAM,SAASC,4CAKpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCACD,0BAAU,OAAO,4CAEpB,+BACqB;AAHtB,OAAO,MAAM,SAASC,4CAKpB\"}")
 == DIAGNOSTICS ==
 
 []

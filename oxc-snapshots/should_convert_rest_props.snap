@@ -92,14 +92,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0
 ============================= test.js ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { useTaskQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default componentQrl<any>(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useTask$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$<any>(({ ...props }) => {\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,+BAA6C,0BAE/C,OAAO,0CAA0C,6BAE3C;AAFP,eAAeC,+CAMb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useTask$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$<any>(({ ...props }) => {\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAE/C,OAAO,0CAA0C,6BAE3C;AAFP,eAAeC,+CAMb\"}")
 == DIAGNOSTICS ==
 
 []

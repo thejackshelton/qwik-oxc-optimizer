@@ -12,8 +12,11 @@ export const Greeter = component$(() => <div/>)
 
 ============================= components/apps/apps.tsx_Greeter_component_0jjOvx068y0.ts (ENTRY POINT)==
 
-export const Greeter_component_0jjOvx068y0 = () => <div />;
+import { _jsxSorted } from "@qwik.dev/core";
+//
+export const Greeter_component_0jjOvx068y0 = () => /*#__PURE__*/ _jsxSorted("div", null, null, null, 3, "KD_0");
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"apps.tsx_Greeter_component_0jjOvx068y0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Greeter_component_0jjOvx068y0 = () => _jsxSorted(\\"div\\", null, null, null, 3, \\"KD_0\\");\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,sCAAsC,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "components/apps/apps.tsx",

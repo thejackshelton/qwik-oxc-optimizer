@@ -33,6 +33,7 @@ export const Footer = component$();
 
 ============================= project/test.tsx_Header_component_UVBJuFYfvDo.jsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { Footer } from "./test";
 import { a } from "./test";
 import { b } from "./test";
@@ -44,11 +45,26 @@ import { exp1 } from "./test";
 import { f } from "./test";
 import { foo } from "./test";
 //
-export const Header_component_UVBJuFYfvDo = () => <Footer>
-			<div>{a}{b}{c}{d}{e}{f}{exp1}{internal}{foo}{bar}{DefaultFn}</div>
-			<div>{v1}{v2}{v3}{obj}</div>
-		</Footer>;
+export const Header_component_UVBJuFYfvDo = () => /*#__PURE__*/ _jsxSorted(Footer, null, null, [/*#__PURE__*/ _jsxSorted("div", null, null, [
+	a,
+	b,
+	c,
+	d,
+	e,
+	f,
+	exp1,
+	internal,
+	foo,
+	bar,
+	DefaultFn
+], 3, null), /*#__PURE__*/ _jsxSorted("div", null, null, [
+	v1,
+	v2,
+	v3,
+	obj
+], 3, null)], 3, "cA_0");
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_UVBJuFYfvDo\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { Footer } from \\"./test\\";\nimport { a } from \\"./test\\";\nimport { b } from \\"./test\\";\nimport { bar } from \\"./test\\";\nimport { c } from \\"./test\\";\nimport { d } from \\"./test\\";\nimport { e } from \\"./test\\";\nimport { exp1 } from \\"./test\\";\nimport { f } from \\"./test\\";\nimport { foo } from \\"./test\\";\nexport const Header_component_UVBJuFYfvDo = () => _jsxSorted(Footer, null, null, [_jsxSorted(\\"div\\", null, null, [\n\ta,\n\tb,\n\tc,\n\td,\n\te,\n\tf,\n\texp1,\n\tinternal,\n\tfoo,\n\tbar,\n\tDefaultFn\n], 3, null), _jsxSorted(\\"div\\", null, null, [\n\tv1,\n\tv2,\n\tv3,\n\tobj\n], 3, null)], 3, \\"cA_0\\");\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,WAAW;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,YAAY;AACrB,SAAS,SAAS;AAClB,SAAS,WAAW;AACpB,OAAO,MAAM,qCAAqC,WAAW,QAAQ,MAAM,MAAM,CAAC,WAAW,OAAO,MAAM,MAAM;CAC/G;CACA;CACA;CACA;CACA;CACA;CACA;CACA;CACA;CACA;CACA;CACA,EAAE,GAAG,KAAK,EAAE,WAAW,OAAO,MAAM,MAAM;CAC1C;CACA;CACA;CACA;CACA,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "project/test.tsx",
@@ -124,4 +140,32 @@ export { internal as _auto_internal };
 Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const [a, {b, v1: [c], d=v2, ...e}, f=v3, ...g] = obj;\n\nconst exp1 = 1;\nconst internal = 2;\nexport {exp1, internal as expr2};\n\nexport function foo() { }\nexport class bar {}\n\nexport default function DefaultFn() {}\n\nexport const Header = component$(() => {\n\treturn $(() => (\n\t\t<Footer>\n\t\t\t<div>{a}{b}{c}{d}{e}{f}{exp1}{internal}{foo}{bar}{DefaultFn}</div>\n\t\t\t<div>{v1}{v2}{v3}{obj}</div>\n\t\t</Footer>\n\t))\n});\n\nexport const Footer = component$();\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,mCAEA,0BAAU,OAAO,8CAEjB,iCAEH;AAJF,OAAO,MAAM,CAAC,GAAG,EAAC,GAAG,IAAI,CAAC,IAAI,IAAE,IAAI,GAAG,KAAI,IAAE,IAAI,GAAG,KAAK;AAEzD,MAAM,OAAO;AACb,MAAM,WAAW;AACjB,SAAQ,MAAM,YAAY;AAE1B,OAAO,SAAS,MAAM;AACtB,OAAO,MAAM,IAAI;AAEjB,eAAe,SAAS,YAAY;AAEpC,OAAO,MAAM,SAASC,8CAOpB;AAEF,OAAO,MAAM,SAASA,cAAY;AAvBlC\"}")
 == DIAGNOSTICS ==
 
-[]
+[
+  {
+    "category": "error",
+    "code": "C02",
+    "file": "test.tsx",
+    "message": "Reference to identifier 'foo' can not be used inside a Qrl($) scope because it's a function",
+    "highlights": null,
+    "suggestions": null,
+    "scope": "optimizer"
+  },
+  {
+    "category": "error",
+    "code": "C02",
+    "file": "test.tsx",
+    "message": "Reference to identifier 'bar' can not be used inside a Qrl($) scope because it's a function",
+    "highlights": null,
+    "suggestions": null,
+    "scope": "optimizer"
+  },
+  {
+    "category": "error",
+    "code": "C02",
+    "file": "test.tsx",
+    "message": "Reference to identifier 'DefaultFn' can not be used inside a Qrl($) scope because it's a function",
+    "highlights": null,
+    "suggestions": null,
+    "scope": "optimizer"
+  }
+]

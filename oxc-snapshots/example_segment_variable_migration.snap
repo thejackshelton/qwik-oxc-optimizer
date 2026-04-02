@@ -32,10 +32,14 @@ export const Other = component$(() => {
 
 ============================= test.tsx_Other_component_C1my3EIdP1k.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
+//
 export const Other_component_C1my3EIdP1k = () => {
-	return <div>{SHARED_CONFIG.value}</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, _wrapProp(SHARED_CONFIG), 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3EIdP1k\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nexport const Other_component_C1my3EIdP1k = () => {\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(SHARED_CONFIG), 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC;AAChD,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,cAAc,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -59,11 +63,15 @@ export const Other_component_C1my3EIdP1k = () => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	const result = helperFn("hello");
-	return <div>{result} {SHARED_CONFIG.value}</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst result = helperFn(\\"hello\\");\n\treturn _jsxSorted(\\"div\\", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC9C,MAAM,SAAS,SAAS,QAAQ;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,QAAQ,UAAU,cAAc,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

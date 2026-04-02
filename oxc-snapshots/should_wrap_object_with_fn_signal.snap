@@ -20,13 +20,18 @@ export default component$((props) => {
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _fnSignal } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+//
+const _hf0 = (p0) => p0.myobj.id + "test";
+;
 export const test_component_LUXeXe0DQrg = (props) => {
 	const item = props.something.count;
-	return <>
-			<div></div>
-		</>;
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, /*#__PURE__*/ _jsxSorted("div", { "data-no-wrap": item ? item * 2 : null }, { "data-wrap": _fnSignal(_hf0, [props], "p0 => p0.myobj.id + \"test\";") }, null, 3, null), 1, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _fnSignal } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nconst _hf0 = p0 => p0.myobj.id + \\"test\\";;\nexport const test_component_LUXeXe0DQrg = (props) => {\n\tconst item = props.something.count;\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"div\\", { \\"data-no-wrap\\": item ? item * 2 : null }, { \\"data-wrap\\": _fnSignal(_hf0, [props], \\"p0 => p0.myobj.id + \\\\"test\\\\";\\") }, null, 3, null), 1, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,MAAM,QAAO,OAAM,GAAG,MAAM,KAAK;AAAO;AACxC,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,OAAO,MAAM,UAAU;AAC7B,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,OAAO,EAAE,gBAAgB,OAAO,OAAO,IAAI,MAAM,EAAE,EAAE,aAAa,UAAU,MAAM,CAAC,MAAM,EAAE,gCAAgC,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -53,16 +58,14 @@ export const test_component_LUXeXe0DQrg = (props) => {
 
 ============================= test.js ==
 
-import { _fnSignal } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const _hf0 = (p0) => p0.myobj.id + "test";
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { \",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,qBAAoB;AADhC,MACKC,+BACA,0BAAU,OAAO,0CACG,6BACd;AAFX,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport default component$((props) => {\n\t// not destructure it so it is a var prop\n\tconst item = props.something.count;\n\treturn (\n\t\t<>\n\t\t\t<div data-no-wrap={item ? item * 2 : null} data-wrap={props.myobj.id + \\"test\\"}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BACA,0BAAU,OAAO,0CACG,6BACd;AAFX,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

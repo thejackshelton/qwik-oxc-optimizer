@@ -86,13 +86,12 @@ const q_featureAction_formAction_valiForm_3yxd03SSzJ8 = /*#__PURE__*/ qrl(() => 
 const q_featureAction_formAction_cZgh2PzV1cc = /*#__PURE__*/ qrl(() => import("./test.tsx_featureAction_formAction_cZgh2PzV1cc"), "featureAction_formAction_cZgh2PzV1cc");
 //
 import { wrapperFn, getEnv } from "utils";
-import { formAction$, valiForm$ } from "forms";
 //
 const flagEnabled = getEnv().PUBLIC_FEATURE;
 export const FeatureSchema = wrapperFn(flagEnabled);
 export const featureAction = formActionQrl(q_featureAction_formAction_cZgh2PzV1cc, valiFormQrl(q_featureAction_formAction_valiForm_3yxd03SSzJ8));
 
-Some("{\"version\":3,\"names\":[\"ort { wrapperFn, getEnv } from 'utils';\n\t\timpor\",\"ort { wrapperFn, getEnv } from 'utils'\",\"formAction$\",\"valiForm$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { wrapperFn, getEnv } from 'utils';\n\t\timport { formAction$, valiForm$ } from 'forms';\n\n\t\tconst flagEnabled = getEnv().PUBLIC_FEATURE;\n\t\texport const FeatureSchema = wrapperFn(flagEnabled);\n\n\t\texport const featureAction = formAction$(async (requestEvent) => {\n\t\t\treturn {\n\t\t\t\tstatus: 'success',\n\t\t\t};\n\t\t}, valiForm$(FeatureSchema));\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kDACmB,0BAAU,OAAO,6DAGrC,gDAAgD;AALpD,MACKC,yCACU,0BAAU,OAAO,oDAEC,uCACR;AAJvB,SAAS,WAAW,cAAc;AAClC,SAAS,aAAa,iBAAiB;AAEvC,MAAM,cAAc,QAAQ,CAAC;AAC7B,OAAO,MAAM,gBAAgB,UAAU,YAAY;AAEnD,OAAO,MAAM,gBAAgBC,sDAI1BC,4DAAwB,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"ort { wrapperFn, getEnv } from 'utils';\n\t\timpor\",\"ort { wrapperFn, getEnv } from 'utils'\",\"formAction$\",\"valiForm$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { wrapperFn, getEnv } from 'utils';\n\t\timport { formAction$, valiForm$ } from 'forms';\n\n\t\tconst flagEnabled = getEnv().PUBLIC_FEATURE;\n\t\texport const FeatureSchema = wrapperFn(flagEnabled);\n\n\t\texport const featureAction = formAction$(async (requestEvent) => {\n\t\t\treturn {\n\t\t\t\tstatus: 'success',\n\t\t\t};\n\t\t}, valiForm$(FeatureSchema));\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kDACmB,0BAAU,OAAO,6DAGrC,gDAAgD;AALpD,MACKC,yCACU,0BAAU,OAAO,oDAEC,uCACR;AAJvB,SAAS,WAAW,cAAc;AAGlC,MAAM,cAAc,QAAQ,CAAC;AAC7B,OAAO,MAAM,gBAAgB,UAAU,YAAY;AAEnD,OAAO,MAAM,gBAAgBC,sDAI1BC,4DAAwB,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

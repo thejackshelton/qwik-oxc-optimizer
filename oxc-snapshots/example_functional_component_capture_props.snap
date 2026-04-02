@@ -26,15 +26,43 @@ export const App = component$(({count, rest: [I2, {I3, v1: [I4], I5=v2, ...I6}, 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_App_component_div_q_e_click_mi4E1piTWe8 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_div_q_e_click_mi4E1piTWe8"), "App_component_div_q_e_click_mi4E1piTWe8", [count, state]);
 //
 export const App_component_ckEPmXZlub0 = () => {
-	return <div>
-				{I2}{I3}{I4}{I5}{I6}{I7}{I8}
-				{C2}{C3}{C4}{C5}{C6}{C7}{C8}
-				{v1}{v2}{v3}
-			</div>;
+	const I2 = _captures[0];
+	const I3 = _captures[1];
+	const I4 = _captures[2];
+	const I5 = _captures[3];
+	const I6 = _captures[4];
+	const I7 = _captures[5];
+	const I8 = _captures[6];
+	const count = _captures[7];
+	const state = _captures[8];
+	return /*#__PURE__*/ _jsxSorted("div", { "q:ps": [count, state] }, { "q-e:click": q_App_component_div_q_e_click_mi4E1piTWe8.w([count, state]) }, [
+		I2,
+		I3,
+		I4,
+		I5,
+		I6,
+		I7,
+		I8,
+		C2,
+		C3,
+		C4,
+		C5,
+		C6,
+		C7,
+		C8,
+		v1,
+		v2,
+		v3
+	], 7, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_App_component_div_q_e_click_mi4E1piTWe8 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_div_q_e_click_mi4E1piTWe8\\"), \\"App_component_div_q_e_click_mi4E1piTWe8\\", [count, state]);\nexport const App_component_ckEPmXZlub0 = () => { const I2 = _captures[0];\nconst I3 = _captures[1];\nconst I4 = _captures[2];\nconst I5 = _captures[3];\nconst I6 = _captures[4];\nconst I7 = _captures[5];\nconst I8 = _captures[6];\nconst count = _captures[7];\nconst state = _captures[8];\n\n\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [count, state] }, { \\"q-e:click\\": q_App_component_div_q_e_click_mi4E1piTWe8.w([count, state]) }, [\n\t\tI2,\n\t\tI3,\n\t\tI4,\n\t\tI5,\n\t\tI6,\n\t\tI7,\n\t\tI8,\n\t\tC2,\n\t\tC3,\n\t\tC4,\n\t\tC5,\n\t\tC6,\n\t\tC7,\n\t\tC8,\n\t\tv1,\n\t\tv2,\n\t\tv3\n\t], 7, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,4CAA0D,0BAAU,OAAO,uDAAuD,2CAA2C,CAAC,OAAO,MAAM,CAAC;AAClM,OAAO,MAAM,kCAAkC;CAAE,MAAM,KAAK,UAAU;CACtE,MAAM,KAAK,UAAU;CACrB,MAAM,KAAK,UAAU;CACrB,MAAM,KAAK,UAAU;CACrB,MAAM,KAAK,UAAU;CACrB,MAAM,KAAK,UAAU;CACrB,MAAM,KAAK,UAAU;CACrB,MAAM,QAAQ,UAAU;CACxB,MAAM,QAAQ,UAAU;AAEvB,QAAO,WAAW,OAAO,EAAE,QAAQ,CAAC,OAAO,MAAM,EAAE,EAAE,EAAE,aAAa,0CAA0C,EAAE,CAAC,OAAO,MAAM,CAAC,EAAE,EAAE;EAClI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -171,14 +199,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_App_component_div_q_e_click_mi4E1piTWe8 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_div_q_e_click_mi4E1piTWe8"), "App_component_div_q_e_click_mi4E1piTWe8", [count, state]);
-const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
 //
-import { $, component$, useStore } from "@qwik.dev/core";
+const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStore } from '@qwik\",\"t { $, component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(({count, rest: [I2, {I3, v1: [I4], I5=v2, ...I6}, I7=v3, ...I8]}) => {\n\tconst state = useStore({count: 0});\n\tconst {rest: [C2, {C3, v1: [C4], C5=v2, ...C6}, C7=v3, ...C8]} = foo();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div onClick$={() => state.count += count + total }>\n\t\t\t\t{I2}{I3}{I4}{I5}{I6}{I7}{I8}\n\t\t\t\t{C2}{C3}{C4}{C5}{C6}{C7}{C8}\n\t\t\t\t{v1}{v2}{v3}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,4CAED,0BAAU,OAAO,uDAAuD,2CAC1D,cAAc,CAAC;AAJjC,MACKC,gCAA8C,0BAEjD,OAAO,2CAA2C,8BAA8B;AAFlF,SAAS,GAAG,YAAY,gBAAgB;AAExC,OAAO,MAAM,MAAMC,2CAYjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(({count, rest: [I2, {I3, v1: [I4], I5=v2, ...I6}, I7=v3, ...I8]}) => {\n\tconst state = useStore({count: 0});\n\tconst {rest: [C2, {C3, v1: [C4], C5=v2, ...C6}, C7=v3, ...C8]} = foo();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div onClick$={() => state.count += count + total }>\n\t\t\t\t{I2}{I3}{I4}{I5}{I6}{I7}{I8}\n\t\t\t\t{C2}{C3}{C4}{C5}{C6}{C7}{C8}\n\t\t\t\t{v1}{v2}{v3}\n\t\t\t</div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAEjD,OAAO,2CAA2C,8BAA8B;AAAlF,OAAO,MAAM,MAAMC,2CAYjB\"}")
 == DIAGNOSTICS ==
 
 []

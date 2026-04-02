@@ -26,10 +26,13 @@ export const App = component$(({count}) => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
-	return <I10></I10>;
+	return /*#__PURE__*/ _jsxSorted(I10, null, null, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\treturn _jsxSorted(I10, null, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,KAAK,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

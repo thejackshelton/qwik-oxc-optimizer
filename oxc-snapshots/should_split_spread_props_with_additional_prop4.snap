@@ -15,8 +15,18 @@ expression: output
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [props]);
+//
 export const test_component_LUXeXe0DQrg = (props: any) => {
-	return <button></button>;
+	return /*#__PURE__*/ _jsxSplit("button", { ..._getVarProps(props) }, {
+		..._getConstProps(props),
+		"q-e:click": q_test_component_button_q_e_click_qwSL5gM03T4.w([props])
+	}, null, 0, "u6_0");
 };
 
 /*
@@ -79,17 +89,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_
 
 ============================= test.js ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [props]);
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\n\t\t\",\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gDAEc,0BAAU,OAAO,2DACa,+CAEjC;AANhB,MACKC,+BAEH,0BAAU,OAAO,0CACJ,6BAA6B;AAD1C,eAAeC,0CAEb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAEH,0BAAU,OAAO,0CACJ,6BAA6B;AAD1C,eAAeC,0CAEb\"}")
 == DIAGNOSTICS ==
 
 []

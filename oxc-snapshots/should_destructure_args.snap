@@ -28,6 +28,10 @@ expression: output
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
 import { _restProps } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = (_rawProps) => {
@@ -48,12 +52,7 @@ export const test_component_LUXeXe0DQrg = (_rawProps) => {
 	const { renders } = _ref;
 	renders.renders++;
 	const rerenders = renders.renders + 0;
-	return <div>
-					<span>
-					{message} {c}
-					</span>
-					<div>{rerenders}</div>
-				</div>;
+	return /*#__PURE__*/ _jsxSorted("div", { id }, null, [/*#__PURE__*/ _jsxSplit("span", { ..._getVarProps(rest) }, { ..._getConstProps(rest) }, [message, c], 0, null), /*#__PURE__*/ _jsxSorted("div", null, { class: "renders" }, rerenders, 3, null)], 3, "u6_0");
 };
 
 /*
@@ -82,8 +81,6 @@ export const test_component_LUXeXe0DQrg = (_rawProps) => {
 
 ============================= test.js ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
@@ -93,7 +90,7 @@ const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_
 // would be nice to consider it a prop too
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\n\t\t// the count results in _fnSignal because of the rename\n\t\t// would be nice to consider it a prop too\n\t\texport default component$(({ message, id, count: c, ...rest }: Record<string, any>) => {\n\t\t\tconst renders = useStore({ renders: 0 }, { reactive: false });\n\t\t\trenders.renders++;\n\t\t\tconst rerenders = renders.renders + 0;\n\t\t\treturn (\n\t\t\t\t<div id={id}>\n\t\t\t\t\t<span {...rest}>\n\t\t\t\t\t{message} {c}\n\t\t\t\t\t</span>\n\t\t\t\t\t<div class=\\"renders\\">{rerenders}</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t}\n\t\t);\n\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAEH,0BAAU,OAAO,0CAChB,6BAA6B;;;AAC9B,eAAeC,0CAad\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\n\t\t// the count results in _fnSignal because of the rename\n\t\t// would be nice to consider it a prop too\n\t\texport default component$(({ message, id, count: c, ...rest }: Record<string, any>) => {\n\t\t\tconst renders = useStore({ renders: 0 }, { reactive: false });\n\t\t\trenders.renders++;\n\t\t\tconst rerenders = renders.renders + 0;\n\t\t\treturn (\n\t\t\t\t<div id={id}>\n\t\t\t\t\t<span {...rest}>\n\t\t\t\t\t{message} {c}\n\t\t\t\t\t</span>\n\t\t\t\t\t<div class=\\"renders\\">{rerenders}</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t}\n\t\t);\n\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAEH,0BAAU,OAAO,0CAChB,6BAA6B;;;AAC9B,eAAeC,0CAad\"}")
 == DIAGNOSTICS ==
 
 []

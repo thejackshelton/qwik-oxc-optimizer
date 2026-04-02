@@ -59,7 +59,7 @@ export default (props: {
 	data: any;
 }) => {
 	const { data } = props;
-	return _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": q_test_div_q_e_click_pFqTss400MA }, null, 3, "u6_0");
+	return /*#__PURE__*/ _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": q_test_div_q_e_click_pFqTss400MA }, null, 3, "u6_0");
 };
 
 Some("{\"version\":3,\"names\":[\"ort default (props: { data: any \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,mCACI,0BAAU,OAAO,8CAGlB,iCAAiC;AAJvC,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB\"}")

@@ -29,7 +29,7 @@ import { _jsxSorted } from "@qwik.dev/core";
 import { Counter } from "./counter.tsx";
 //
 export const Root = () => {
-	return _jsxSorted("html", null, null, [_jsxSorted("head", null, null, [_jsxSorted("meta", null, { charset: "utf-8" }, null, 3, null), _jsxSorted("title", null, null, "Qwik Blank App", 3, null)], 3, null), _jsxSorted("body", null, null, _jsxSorted(Counter, null, { initial: 3 }, null, 3, "u6_1"), 3, null)], 3, "u6_0");
+	return /*#__PURE__*/ _jsxSorted("html", null, null, [/*#__PURE__*/ _jsxSorted("head", null, null, [/*#__PURE__*/ _jsxSorted("meta", null, { charset: "utf-8" }, null, 3, null), /*#__PURE__*/ _jsxSorted("title", null, null, "Qwik Blank App", 3, null)], 3, null), /*#__PURE__*/ _jsxSorted("body", null, null, /*#__PURE__*/ _jsxSorted(Counter, null, { initial: 3 }, null, 3, "u6_1"), 3, null)], 3, "u6_0");
 };
 
 Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { Counter } from \\"./counter.tsx\\";\n\nexport const Root = () => {\n\treturn (\n\t\t<html>\n\t\t\t<head>\n\t\t\t\t<meta charset=\\"utf-8\\" />\n\t\t\t\t<title>Qwik Blank App</title>\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<Counter initial={3} />\n\t\t\t</body>\n\t\t</html>\n\t);\n};\n\"],\"mappings\":\"AAAA,2BAC0B;AAA1B,SAAS,eAAe;AAExB,OAAO,MAAM,aAAa;AACzB,kRAOqB\"}")

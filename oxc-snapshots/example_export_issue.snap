@@ -29,10 +29,13 @@ export default App;
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
-	return <div>hola</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, "hola", 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"hola\\", 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -56,10 +59,11 @@ export const App_component_ckEPmXZlub0 = () => {
 
 ============================= test.tsx_Root_component_royhjYaCbYE.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { App } from "./test";
 //
 export const Root_component_royhjYaCbYE = (props: Stuff) => {
-	return <App />;
+	return /*#__PURE__*/ _jsxSorted(App, null, null, null, 3, "u6_1");
 };
 
 /*

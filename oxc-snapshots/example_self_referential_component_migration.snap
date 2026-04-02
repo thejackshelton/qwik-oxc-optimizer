@@ -56,13 +56,13 @@ export const MutualExample = component$(() => {
 
 ============================= test.tsx_ComponentA_component_100sEyGkGuA.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const ComponentA_component_100sEyGkGuA = () => {
-	return <div>
-			A
-			<ComponentB />
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, ["A", /*#__PURE__*/ _jsxSorted(ComponentB, null, null, null, 3, "u6_6")], 3, "u6_5");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentA_component_100sEyGkGuA\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const ComponentA_component_100sEyGkGuA = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [\\"A\\", _jsxSorted(ComponentB, null, null, null, 3, \\"u6_6\\")], 3, \\"u6_5\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,yCAAyC;AACrD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,KAAK,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -86,14 +86,14 @@ export const ComponentA_component_100sEyGkGuA = () => {
 
 ============================= test.tsx_Nested_component_8cqIQQSPqhE.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { Nested } from "./test";
 //
 export const Nested_component_8cqIQQSPqhE = () => {
-	return <div>
-			<Nested />
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, /*#__PURE__*/ _jsxSorted(Nested, null, null, null, 3, "u6_1"), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQQSPqhE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { Nested } from \\"./test\\";\nexport const Nested_component_8cqIQQSPqhE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Nested, null, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -117,16 +117,20 @@ export const Nested_component_8cqIQQSPqhE = () => {
 
 ============================= test.tsx_RecursiveList_component_ignTe6QguYQ.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { RecursiveList } from "./test";
 //
 export const RecursiveList_component_ignTe6QguYQ = (props) => {
-	if (props.depth === 0) return <div>End</div>;
-	return <div>
-			Level {props.depth}
-			<RecursiveList />
-		</div>;
+	if (props.depth === 0) return /*#__PURE__*/ _jsxSorted("div", null, null, "End", 3, "u6_2");
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [
+		"Level",
+		_wrapProp(props, "depth"),
+		/*#__PURE__*/ _jsxSorted(RecursiveList, { depth: props.depth - 1 }, null, null, 3, "u6_4")
+	], 3, "u6_3");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_component_ignTe6QguYQ\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { RecursiveList } from \\"./test\\";\nexport const RecursiveList_component_ignTe6QguYQ = (props) => {\n\tif (props.depth === 0) return _jsxSorted(\\"div\\", null, null, \\"End\\", 3, \\"u6_2\\");\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t\\"Level\\",\n\t\t_wrapProp(props, \\"depth\\"),\n\t\t_jsxSorted(RecursiveList, { depth: props.depth - 1 }, null, null, 3, \\"u6_4\\")\n\t], 3, \\"u6_3\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,qBAAqB;AAC9B,OAAO,MAAM,uCAAuC,UAAU;AAC7D,KAAI,MAAM,UAAU,EAAG,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;AAC7E,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,eAAe,EAAE,OAAO,MAAM,QAAQ,GAAG,EAAE,MAAM,MAAM,GAAG,OAAO;EAC5E,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -153,10 +157,13 @@ export const RecursiveList_component_ignTe6QguYQ = (props) => {
 
 ============================= test.tsx_MutualExample_component_LXt10RL0k44.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const MutualExample_component_LXt10RL0k44 = () => {
-	return <ComponentA />;
+	return /*#__PURE__*/ _jsxSorted(ComponentA, null, null, null, 3, "u6_9");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_component_LXt10RL0k44\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const MutualExample_component_LXt10RL0k44 = () => {\n\treturn _jsxSorted(ComponentA, null, null, null, 3, \\"u6_9\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,4CAA4C;AACxD,QAAO,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -180,13 +187,13 @@ export const MutualExample_component_LXt10RL0k44 = () => {
 
 ============================= test.tsx_ComponentB_component_WfCOFVxlmq4.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const ComponentB_component_WfCOFVxlmq4 = () => {
-	return <div>
-			B
-			<ComponentA />
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, ["B", /*#__PURE__*/ _jsxSorted(ComponentA, null, null, null, 3, "u6_8")], 3, "u6_7");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_WfCOFVxlmq4\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const ComponentB_component_WfCOFVxlmq4 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [\\"B\\", _jsxSorted(ComponentA, null, null, null, 3, \\"u6_8\\")], 3, \\"u6_7\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,yCAAyC;AACrD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,KAAK,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

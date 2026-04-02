@@ -63,10 +63,21 @@ export const api_server_JonPp043gH0 = null;
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrlDEV } from "@qwik.dev/core";
+//
+const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [], {
+//
+	file: "test.tsx",
+	lo: 540,
+	hi: 557,
+	displayName: "test.tsx_test_component_button_q_e_click"
+});
 export const test_component_LUXeXe0DQrg = () => {
-	return <button></button>;
+	return /*#__PURE__*/ _jsxSorted("button", null, { "q-e:click": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrlDEV } from \\"@qwik.dev/core\\";\nconst q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrlDEV(() => import(\\"./test.tsx_test_component_button_q_e_click_qwSL5gM03T4\\"), \\"test_component_button_q_e_click_qwSL5gM03T4\\", [], {\n\tfile: \\"test.tsx\\",\n\tlo: 540,\n\thi: 557,\n\tdisplayName: \\"test.tsx_test_component_button_q_e_click\\"\n});\nexport const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(\\"button\\", null, { \\"q-e:click\\": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,MAAM,gDAA8D,6BAAa,OAAO,2DAA2D,+CAA+C,EAAE,EAAE;CACrM,MAAM;CACN,IAAI;CACJ,IAAI;CACJ,aAAa;CACb,CAAC;AACF,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,UAAU,MAAM,EAAE,aAAa,+CAA+C,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -126,12 +137,6 @@ const q_api_server_JonPp043gH0 = /*#__PURE__*/ _noopQrlDEV("api_server_JonPp043g
 	hi: 472,
 	displayName: "test.tsx_api_server"
 });
-const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [], {
-	file: "test.tsx",
-	lo: 540,
-	hi: 557,
-	displayName: "test.tsx_test_component_button_q_e_click"
-});
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg", [], {
 //
 	file: "test.tsx",
@@ -139,7 +144,6 @@ const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrlDEV(() => import("./test.t
 	hi: 574,
 	displayName: "test.tsx_test_component"
 });
-import { server$ } from "@qwik.dev/router";
 import { clientSupabase } from "supabase";
 import { Client } from "openai";
 import { secret } from "./secret";
@@ -157,7 +161,7 @@ sideEffect();
 export const api = serverQrl(q_api_server_JonPp043gH0);
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@\",\"t { component$ } from '@qwik.dev/core';\nimpor\",\"t { component$ } from '@qwik\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,2BACJ,4BAAY,0BAA0B,EAAE,EAAE;OACnC;KAAiB;KAAU;cACxB;CACV,CAAC;AALF,MACKC,gDACiB,6BAAa,OAAO,2DAE5B,+CACc,EAAE,EAAE;OAC1B;KAAiB;KAAU;cAErB;CACS,CAAC;AATtB,MACKC,+BACA,6BAAa,OAAO,0CACF,8BACb,EAAE,EAAE;OAAS;KAChB;KAAU;cAChB;CAA2B,CAAC;AAJ7B,SAAS,eAAe;AACxB,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMC,mCAEjB;AAEF,eAAeC,0CAIZ\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@\",\"t { component$ } from '@qwik\",\"server$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { server$ } from '@qwik.dev/router';\nimport { clientSupabase } from 'supabase';\nimport { Client } from 'openai';\nimport { secret } from './secret';\nimport { sideEffect } from './secret';\n\nconst supabase = clientSupabase();\nconst dfd = new Client(secret);\n\n(function() {\n\tconsole.log('run');\n\t})();\n\t(() => {\n\tconsole.log('run');\n\t})();\n\nsideEffect();\n\nexport const api = server$(() => {\n\tsupabase.from('ffg').do(dfd);\n});\n\nexport default component$(() => {\n\treturn (\n\t\t<button onClick$={() => await api()}></button>\n\t)\n\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,2BACJ,4BAAY,0BAA0B,EAAE,EAAE;OACnC;KAAiB;KAAU;cACxB;CACV,CAAC;AALF,MACKC,+BACA,6BAAa,OAAO,0CACF,8BACb,EAAE,EAAE;OAAS;KAChB;KAAU;cAChB;CAA2B,CAAC;AAH7B,SAAS,sBAAsB;AAC/B,SAAS,cAAc;AACvB,SAAS,cAAc;AACvB,SAAS,kBAAkB;AAE3B,MAAM,WAAW,gBAAgB;AACjC,MAAM,MAAM,IAAI,OAAO,OAAO;CAE7B,WAAW;AACX,SAAQ,IAAI,MAAM;IACd;OACG;AACP,SAAQ,IAAI,MAAM;IACd;AAEL,YAAY;AAEZ,OAAO,MAAM,MAAMC,mCAEjB;AAEF,eAAeC,0CAIZ\"}")
 == DIAGNOSTICS ==
 
 []

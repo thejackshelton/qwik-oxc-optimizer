@@ -30,18 +30,26 @@ export const FieldInput = component$((props) => {
 
 ============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 //
 export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const input = useSignal("");
-	return <>
-			{}
-			<input />
-			{}
-			<input />
-		</>;
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSplit("input", {
+		"bind:value": input,
+		..._getVarProps(props)
+	}, { ..._getConstProps(props) }, null, 0, null), /*#__PURE__*/ _jsxSplit("input", {
+		..._getVarProps(props),
+		..._getConstProps(props),
+		"bind:value": input
+	}, null, null, 0, null)], 1, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_V4XAtJSTRKg = (props) => {\n\tconst input = useSignal(\\"\\");\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSplit(\\"input\\", {\n\t\t\\"bind:value\\": input,\n\t\t..._getVarProps(props)\n\t}, { ..._getConstProps(props) }, null, 0, null), _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(props),\n\t\t..._getConstProps(props),\n\t\t\\"bind:value\\": input\n\t}, null, null, 0, null)], 1, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC,UAAU;CAC1D,MAAM,QAAQ,UAAU,GAAG;AAC3B,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,UAAU,SAAS;EAC5D,cAAc;EACd,GAAG,aAAa,MAAM;EACtB,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,KAAK,EAAE,UAAU,SAAS;EACnE,GAAG,aAAa,MAAM;EACtB,GAAG,eAAe,MAAM;EACxB,cAAc;EACd,EAAE,MAAM,MAAM,GAAG,KAAK,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -68,17 +76,14 @@ export const FieldInput_component_V4XAtJSTRKg = (props) => {
 
 ============================= test.js ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 //
-import { $, component$, useSignal } from "@qwik.dev/core";
+const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 //
 export const FieldInput = /*#__PURE__*/ componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(\\"\\");\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:value={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:value={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qCAAmD,0BAElD,OAAO,gDACF,mCAGP;AANJ,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAiBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(\\"\\");\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:value={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:value={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qCAAmD,0BAElD,OAAO,gDACF,mCAGP;AAJJ,OAAO,MAAM,aAAaC,gDAiBxB\"}")
 == DIAGNOSTICS ==
 
 []

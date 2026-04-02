@@ -51,10 +51,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_componen
 
 ============================= test.tsx_renderHeader1_jMxQsjbyDss.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_renderHeader1_div_onClick_USi8k1jUb40 = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader1_div_onClick_USi8k1jUb40"), "renderHeader1_div_onClick_USi8k1jUb40");
+//
 export const renderHeader1_jMxQsjbyDss = () => {
-	return <div />;
+	return /*#__PURE__*/ _jsxSorted("div", { onClick: Qrl(q_renderHeader1_div_onClick_USi8k1jUb40) }, null, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_jMxQsjbyDss\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_renderHeader1_div_onClick_USi8k1jUb40 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_renderHeader1_div_onClick_USi8k1jUb40\\"), \\"renderHeader1_div_onClick_USi8k1jUb40\\");\nexport const renderHeader1_jMxQsjbyDss = () => {\n\treturn _jsxSorted(\\"div\\", { onClick: Qrl(q_renderHeader1_div_onClick_USi8k1jUb40) }, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,0CAAwD,0BAAU,OAAO,qDAAqD,wCAAwC;AAC5K,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,OAAO,EAAE,SAAS,IAAI,wCAAwC,EAAE,EAAE,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -109,16 +115,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onCl
 ============================= test.tsx ==
 
 import { qrl } from "@qwik.dev/core";
-const q_renderHeader1_div_onClick_USi8k1jUb40 = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader1_div_onClick_USi8k1jUb40"), "renderHeader1_div_onClick_USi8k1jUb40");
+//
 const q_renderHeader1_jMxQsjbyDss = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader1_jMxQsjbyDss"), "renderHeader1_jMxQsjbyDss");
 const q_renderHeader2_component_Ay6ibkfFYsw = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader2_component_Ay6ibkfFYsw"), "renderHeader2_component_Ay6ibkfFYsw");
-//
-import { $, component, onRender } from "@qwik.dev/core";
 //
 export const renderHeader1 = Qrl(q_renderHeader1_jMxQsjbyDss);
 const renderHeader2 = component(Qrl(q_renderHeader2_component_Ay6ibkfFYsw));
 
-Some("{\"version\":3,\"names\":[\"t { $, component, onRender } from '@qwi\",\"t { $, component, onRender \",\"t { $, component, onRender } from '@q\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,0CAEF,0BAAU,OAAO,qDAEI,wCAGhB;AARR,MACKC,8BAA4C,0BAEhD,OAAO,yCAER,4BAA4B;AAL5B,MACKC,wCAEJ,0BAAU,OAAO,mDAEE,sCAGlB;AAPF,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component, onRender \",\"t { $, component, onRender } from '@q\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,8BAA4C,0BAEhD,OAAO,yCAER,4BAA4B;AAL5B,MACKC,wCAEJ,0BAAU,OAAO,mDAEE,sCAGlB;AALF,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

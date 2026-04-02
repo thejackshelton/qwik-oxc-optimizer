@@ -23,6 +23,7 @@ export const Foo = component$(({foo}) => {
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { deps } from "deps";
 //
 export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
@@ -34,9 +35,10 @@ export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 			deps();
 		}
 	});
-	return <div />;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { deps } from \\"deps\\";\nexport const Foo_component_HTDRsvUbLiE = (_rawProps) => {\n\tconst _ref = {};\n\t_ref.foo = _rawProps._ref.foo;\n\tconst { foo } = _ref;\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,YAAY;AACrB,OAAO,MAAM,6BAA6B,cAAc;CACvD,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAU,KAAK;CAC1B,MAAM,EAAE,QAAQ;AAChB,iBAAgB;AACf,MAAI,OAAO;AACV,SAAM;;GAEN;AACF,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -65,13 +67,12 @@ export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 //
-import { deps } from "deps";
+const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 //
 export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_HTDRsvUbLiE);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { deps } from 'deps';\n\nexport const Foo = component$(({foo}) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn (\n\t\t<div />\n\t);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BACD,0BAAU,OAAO,yCAEW,4BACf;AAHjB,SAAS,YAAY;AAErB,OAAO,MAAM,MAAMC,yCASjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { deps } from 'deps';\n\nexport const Foo = component$(({foo}) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn (\n\t\t<div />\n\t);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BACD,0BAAU,OAAO,yCAEW,4BACf;AADjB,OAAO,MAAM,MAAMC,yCASjB\"}")
 == DIAGNOSTICS ==
 
 []

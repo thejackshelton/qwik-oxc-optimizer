@@ -23,18 +23,21 @@ export default component$(() => {
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
+//
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [index]);
 //
 export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
-	return <div>
-      {arr.value.map((val, i) => {
+	return /*#__PURE__*/ _jsxSorted("div", null, null, arr.value.map((val, i) => {
 		const index = i + 1;
-		return <div>{val}</div>;
-	})}
-    </div>;
+		return /*#__PURE__*/ _jsxSorted("div", { "q:p": index }, { "q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([index]) }, val, 7, null);
+	}), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\\"), \\"test_component_div_div_q_e_click_Mc600uqO6ps\\", [index]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst arr = useSignal([\\"a\\", \\"b\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, arr.value.map((val, i) => {\n\t\tconst index = i + 1;\n\t\treturn _jsxSorted(\\"div\\", { \\"q:p\\": index }, { \\"q-e:click\\": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([index]) }, val, 7, null);\n\t}), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,MAAM,iDAA+D,0BAAU,OAAO,4DAA4D,gDAAgD,CAAC,MAAM,CAAC;AAC1M,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,UAAU,CAAC,KAAK,IAAI,CAAC;AACjC,QAAO,WAAW,OAAO,MAAM,MAAM,IAAI,MAAM,KAAK,KAAK,MAAM;EAC9D,MAAM,QAAQ,IAAI;AAClB,SAAO,WAAW,OAAO,EAAE,OAAO,OAAO,EAAE,EAAE,aAAa,+CAA+C,EAAE,CAAC,MAAM,CAAC,EAAE,EAAE,KAAK,GAAG,KAAK;GACnI,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -99,14 +102,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [index]);
-const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
-import { component$, useSignal } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n        return <div onClick$={() => console.log(index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iDAEM,0BAAU,OAAO,4DAGrB,gDAEG,OAAO,CAAC;AARlB,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BAElB;AALA,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n        return <div onClick$={() => console.log(index)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAE/C,OAAO,0CACQ,6BAElB;AAHA,eAAeC,0CAUb\"}")
 == DIAGNOSTICS ==
 
 []

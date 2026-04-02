@@ -131,18 +131,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_serverAuth_qVqpX2a0p9Y
 ============================= test.js ==
 
 import { qrl } from "@qwik.dev/core";
+//
 const q_serverAuth_qVqpX2a0p9Y = /*#__PURE__*/ qrl(() => import("./test.tsx_serverAuth_qVqpX2a0p9Y"), "serverAuth_qVqpX2a0p9Y");
 const q_auth_GU0aY5QCETY = /*#__PURE__*/ qrl(() => import("./test.tsx_auth_GU0aY5QCETY"), "auth_GU0aY5QCETY");
-//
-import GitHub from "@auth/core/providers/github";
-import Facebook from "next-auth/providers/facebook";
-import Google from "next-auth/providers/google";
-import { serverAuth$, auth$ } from "@auth/qwik";
 //
 export const { onRequest, logout, getSession, signup } = serverAuthQrl(q_serverAuth_qVqpX2a0p9Y);
 export const { onRequest, logout, getSession, signup } = authQrl(q_auth_GU0aY5QCETY);
 
-Some("{\"version\":3,\"names\":[\"t GitHub from '@auth/cor\",\"t GitHub from '@au\",\"serverAuth$\",\"auth$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport GitHub from '@auth/core/providers/github'\nimport Facebook from 'next-auth/providers/facebook'\nimport Google from 'next-auth/providers/google'\nimport {serverAuth$, auth$} from '@auth/qwik';\n\nexport const { onRequest, logout, getSession, signup } = serverAuth$({\n\tproviders: [\n\tGitHub({\n\t\tclientId: process.env.GITHUB_ID,\n\t\tclientSecret: process.env.GITHUB_SECRET\n\t}),\n\tFacebook({\n\t\tclientId: import.meta.env.FACEBOOK_ID,\n\t\tclientSecret: import.meta.env.FACEBOOK_SECRET\n\t}),\n\tGoogle({\n\t\tclientId: process.env.GOOGLE_ID,\n\t\tclientSecret: process.env.GOOGLE_SECRET\n\t})\n\t]\n});\n\nexport const { onRequest, logout, getSession, signup } = auth$({\n\tproviders: [\n\tGitHub({\n\t\tclientId: process.env.GITHUB_ID,\n\t\tclientSecret: process.env.GITHUB_SECRET\n\t}),\n\tFacebook({\n\t\tclientId: process.env.FACEBOOK_ID,\n\t\tclientSecret: process.env.FACEBOOK_SECRET\n\t}),\n\tGoogle({\n\t\tclientId: process.env.GOOGLE_ID,\n\t\tclientSecret: process.env.GOOGLE_SECRET\n\t})\n\t]\n});\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,2BAAyC,0BACvC,OAAO,sCACd,yBAAyB;AAHzB,MACKC,qBAAmC,0BACvC,OAAO,gCAAgC,mBACjC;AAFP,OAAO,YAAY;AACnB,OAAO,cAAc;AACrB,OAAO,YAAY;AACnB,SAAQ,aAAa,aAAY;AAEjC,OAAO,MAAM,EAAE,WAAW,QAAQ,YAAY,WAAWC,uCAevD;AAEF,OAAO,MAAM,EAAE,WAAW,QAAQ,YAAY,WAAWC,2BAevD\"}")
+Some("{\"version\":3,\"names\":[\"t GitHub from '@auth/cor\",\"t GitHub from '@au\",\"serverAuth$\",\"auth$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport GitHub from '@auth/core/providers/github'\nimport Facebook from 'next-auth/providers/facebook'\nimport Google from 'next-auth/providers/google'\nimport {serverAuth$, auth$} from '@auth/qwik';\n\nexport const { onRequest, logout, getSession, signup } = serverAuth$({\n\tproviders: [\n\tGitHub({\n\t\tclientId: process.env.GITHUB_ID,\n\t\tclientSecret: process.env.GITHUB_SECRET\n\t}),\n\tFacebook({\n\t\tclientId: import.meta.env.FACEBOOK_ID,\n\t\tclientSecret: import.meta.env.FACEBOOK_SECRET\n\t}),\n\tGoogle({\n\t\tclientId: process.env.GOOGLE_ID,\n\t\tclientSecret: process.env.GOOGLE_SECRET\n\t})\n\t]\n});\n\nexport const { onRequest, logout, getSession, signup } = auth$({\n\tproviders: [\n\tGitHub({\n\t\tclientId: process.env.GITHUB_ID,\n\t\tclientSecret: process.env.GITHUB_SECRET\n\t}),\n\tFacebook({\n\t\tclientId: process.env.FACEBOOK_ID,\n\t\tclientSecret: process.env.FACEBOOK_SECRET\n\t}),\n\tGoogle({\n\t\tclientId: process.env.GOOGLE_ID,\n\t\tclientSecret: process.env.GOOGLE_SECRET\n\t})\n\t]\n});\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,2BAAyC,0BACvC,OAAO,sCACd,yBAAyB;AAHzB,MACKC,qBAAmC,0BACvC,OAAO,gCAAgC,mBACjC;AAGP,OAAO,MAAM,EAAE,WAAW,QAAQ,YAAY,WAAWC,uCAevD;AAEF,OAAO,MAAM,EAAE,WAAW,QAAQ,YAAY,WAAWC,2BAevD\"}")
 == DIAGNOSTICS ==
 
 []

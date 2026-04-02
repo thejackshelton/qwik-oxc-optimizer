@@ -39,26 +39,31 @@ expression: output
 
 ============================= test.tsx_Parent_component_0TaiDayHrlo.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
 //
+const q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM"), "Parent_component_div_button_q_e_click_1_rAeuW6OvuXM", [results]);
+const q_Parent_component_div_button_q_e_click_5khsVRINUws = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws"), "Parent_component_div_button_q_e_click_5khsVRINUws", [cart, item]);
+//
 export const Parent_component_0TaiDayHrlo = () => {
-	const cart = useStore<Cart>([]);
+	const cart = useStore < Cart > [];
 	const results = useSignal(["foo", "bar"]);
-	return <div>
-          <button></button>
-
-          {results.value.map((item, key) => <button>
-              {item}
-            </button>)}
-          <ul>
-            {cart.map((item) => <li>
-                <span>{item}</span>
-              </li>)}
-          </ul>
-        </div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [
+		/*#__PURE__*/ _jsxSorted("button", { "q:p": results }, {
+			id: "first",
+			"q-e:click": q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM.w([results])
+		}, null, 7, null),
+		results.value.map((item, key) => /*#__PURE__*/ _jsxSorted("button", {
+			id: "second-" + key,
+			"q:ps": [cart, item]
+		}, { "q-e:click": q_Parent_component_div_button_q_e_click_5khsVRINUws.w([cart, item]) }, item, 7, null)),
+		/*#__PURE__*/ _jsxSorted("ul", null, null, cart.map((item) => /*#__PURE__*/ _jsxSorted("li", null, null, /*#__PURE__*/ _jsxSorted("span", null, null, item, 3, null), 3, null)), 3, null)
+	], 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_0TaiDayHrlo\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM\\"), \\"Parent_component_div_button_q_e_click_1_rAeuW6OvuXM\\", [results]);\nconst q_Parent_component_div_button_q_e_click_5khsVRINUws = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws\\"), \\"Parent_component_div_button_q_e_click_5khsVRINUws\\", [cart, item]);\nexport const Parent_component_0TaiDayHrlo = () => {\n\tconst cart = useStore<Cart>([]);\n\tconst results = useSignal([\\"foo\\", \\"bar\\"]);\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"button\\", { \\"q:p\\": results }, {\n\t\t\tid: \\"first\\",\n\t\t\t\\"q-e:click\\": q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM.w([results])\n\t\t}, null, 7, null),\n\t\tresults.value.map((item, key) => _jsxSorted(\\"button\\", {\n\t\t\tid: \\"second-\\" + key,\n\t\t\t\\"q:ps\\": [cart, item]\n\t\t}, { \\"q-e:click\\": q_Parent_component_div_button_q_e_click_5khsVRINUws.w([cart, item]) }, item, 7, null)),\n\t\t_jsxSorted(\\"ul\\", null, null, cart.map((item) => _jsxSorted(\\"li\\", null, null, _jsxSorted(\\"span\\", null, null, item, 3, null), 3, null)), 3, null)\n\t], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,MAAM,wDAAsE,0BAAU,OAAO,mEAAmE,uDAAuD,CAAC,QAAQ,CAAC;AACjO,MAAM,sDAAoE,0BAAU,OAAO,iEAAiE,qDAAqD,CAAC,MAAM,KAAK,CAAC;AAC9N,OAAO,MAAM,qCAAqC;CACjD,MAAM,OAAO,WAAS,OAAM,EAAE;CAC9B,MAAM,UAAU,UAAU,CAAC,OAAO,MAAM,CAAC;AACzC,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,UAAU,EAAE,OAAO,SAAS,EAAE;GACxC,IAAI;GACJ,aAAa,sDAAsD,EAAE,CAAC,QAAQ,CAAC;GAC/E,EAAE,MAAM,GAAG,KAAK;EACjB,QAAQ,MAAM,KAAK,MAAM,QAAQ,WAAW,UAAU;GACrD,IAAI,YAAY;GAChB,QAAQ,CAAC,MAAM,KAAK;GACpB,EAAE,EAAE,aAAa,oDAAoD,EAAE,CAAC,MAAM,KAAK,CAAC,EAAE,EAAE,MAAM,GAAG,KAAK,CAAC;EACxG,WAAW,MAAM,MAAM,MAAM,KAAK,KAAK,SAAS,WAAW,MAAM,MAAM,MAAM,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,KAAK,EAAE,GAAG,KAAK,CAAC,EAAE,GAAG,KAAK;EAC/I,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -165,15 +170,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_b
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Parent_component_div_button_q_e_click_5khsVRINUws = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws"), "Parent_component_div_button_q_e_click_5khsVRINUws", [cart, item]);
-const q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM"), "Parent_component_div_button_q_e_click_1_rAeuW6OvuXM", [results]);
-const q_Parent_component_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
 //
-import { component$, useStore, useSignal } from "@qwik.dev/core";
+const q_Parent_component_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
 //
 const Parent = /*#__PURE__*/ componentQrl(q_Parent_component_0TaiDayHrlo);
 
-Some("{\"version\":3,\"names\":[\"port { component$, useStore, useSignal } from '@qwi\",\"port { component$, useStore, useSignal } from '@qwik.\",\"port { component$, useStore, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t  import { component$, useStore, useSignal } from '@qwik.dev/core';\n      const Parent = component$(() => {\n      const cart = useStore<Cart>([]);\n      const results = useSignal(['foo', 'bar']);\n\n      return (\n        <div>\n          <button id=\\"first\\" onClick$={() => (results.value = ['item1', 'item2'])}></button>\n\n          {results.value.map((item, key) => (\n            <button\n              id={'second-' + key}\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          <ul>\n            {cart.map((item) => (\n              <li>\n                <span>{item}</span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,sDACD,0BAAU,OAAO,iEAEd,qDAEG,YACH,CAAC;AAPR,MACKC,wDACC,0BAAU,OAAO,mEAEZ,uDAGV,SAAS,CAAC;AAPX,MACKC,iCAA+C,0BAAU,OAC9D,4CACI,+BAA+B;AAFhC,SAAS,YAAY,UAAU,iBAAiB;AAC7C,MAAM,SAASC,4CA2Bf\"}")
+Some("{\"version\":3,\"names\":[\"port { component$, useStore, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t  import { component$, useStore, useSignal } from '@qwik.dev/core';\n      const Parent = component$(() => {\n      const cart = useStore<Cart>([]);\n      const results = useSignal(['foo', 'bar']);\n\n      return (\n        <div>\n          <button id=\\"first\\" onClick$={() => (results.value = ['item1', 'item2'])}></button>\n\n          {results.value.map((item, key) => (\n            <button\n              id={'second-' + key}\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          <ul>\n            {cart.map((item) => (\n              <li>\n                <span>{item}</span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCAA+C,0BAAU,OAC9D,4CACI,+BAA+B;AAD7B,MAAM,SAASC,4CA2Bf\"}")
 == DIAGNOSTICS ==
 
 []

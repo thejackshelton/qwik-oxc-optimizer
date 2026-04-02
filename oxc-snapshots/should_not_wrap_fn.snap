@@ -67,8 +67,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_button_q
 
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.js (ENTRY POINT)==
 
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { A } from "./componentA";
 import { useSignal } from "@qwik.dev/core";
+//
+const q_Cmp_component_button_q_e_click_0O0tA6ahzDQ = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ"), "Cmp_component_button_q_e_click_0O0tA6ahzDQ", [currentType]);
 //
 export const Cmp_component_4ryKJTOKjWE = () => {
 	const currentStep = useSignal("STEP_1");
@@ -76,10 +81,7 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 	const getStep = (step: string, type: "NEXT" | "PREVIOUS") => {
 		return step === "STEP_1" ? "STEP_2" : "STEP_1";
 	};
-	return <>
-			<button>CLICK</button>
-			<A />
-		</>;
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted("button", { "q:p": currentType }, { "q-e:click": q_Cmp_component_button_q_e_click_0O0tA6ahzDQ.w([currentType]) }, "CLICK", 7, null), /*#__PURE__*/ _jsxSorted(A, { href: getStep(currentStep.value, currentType.value) }, null, null, 3, "u6_1")], 1, "u6_0");
 };
 
 /*
@@ -107,15 +109,12 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Cmp_component_button_q_e_click_0O0tA6ahzDQ = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ"), "Cmp_component_button_q_e_click_0O0tA6ahzDQ", [currentType]);
-const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 //
-import { component$, useSignal } from "@qwik.dev/core";
-import { A } from "./componentA";
+const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 //
 export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from \\"@qwik.dev/\",\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+CACK,0BAAU,OAAO,0DAGf,8CACI,aAAa,CAAC;AAN9B,MACKC,8BAA4C,0BAC9C,OAAO,yCAEM,4BACV;AAJN,SAAS,YAAY,iBAAiB;AACtC,SAAS,SAAS;AAElB,OAAO,MAAM,MAAMC,yCAcjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAC9C,OAAO,yCAEM,4BACV;AADN,OAAO,MAAM,MAAMC,yCAcjB\"}")
 == DIAGNOSTICS ==
 
 []

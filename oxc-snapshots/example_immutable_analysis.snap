@@ -59,24 +59,68 @@ export const App = component$((props) => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _jsxSorted } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+import { default as importedValue } from "v";
 import { useStore } from "@qwik.dev/core";
 //
+const q_App_component_Div_immutable4_xx8KFkEiLgs = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_immutable4_xx8KFkEiLgs"), "App_component_Div_immutable4_xx8KFkEiLgs", [state]);
+const q_App_component_Div_onEvent_k0f2KI1nrzk = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_onEvent_k0f2KI1nrzk"), "App_component_Div_onEvent_k0f2KI1nrzk");
+const q_App_component_Div_transparent_kdBU90z0piU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_transparent_kdBU90z0piU"), "App_component_Div_transparent_kdBU90z0piU");
 const q_App_component_remove_pU6yOC5P6sY = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_remove_pU6yOC5P6sY"), "App_component_remove_pU6yOC5P6sY", [state]);
 //
 export const App_component_ckEPmXZlub0 = (props) => {
 	const { Model } = props;
 	const state = useStore({ count: 0 });
 	const remove = Qrl(q_App_component_remove_pU6yOC5P6sY.w([state]));
-	return <>
-			<p>Hello Qwik</p>
-			<Div>
-				<p>Hello Qwik</p>
-			</Div>
-			{[].map(() => <Model />)}
-		</>;
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [
+		/*#__PURE__*/ _jsxSorted("p", { "q:p": props }, {
+			class: "stuff",
+			"q-e:click": props.onClick$
+		}, "Hello Qwik", 7, null),
+		/*#__PURE__*/ _jsxSorted(Div, {
+			class: styles.foo,
+			document: window.document,
+			immutable4$: q_App_component_Div_immutable4_xx8KFkEiLgs.w([state]),
+			immutable5: [
+				1,
+				2,
+				importedValue,
+				null,
+				{}
+			],
+			onClick$: props.onClick$,
+			onEvent$: q_App_component_Div_onEvent_k0f2KI1nrzk,
+			transparent$: q_App_component_Div_transparent_kdBU90z0piU
+		}, {
+			immutable1: "stuff",
+			immutable2: {
+				foo: "bar",
+				baz: importedValue ? true : false
+			},
+			immutable3: 2
+		}, /*#__PURE__*/ _jsxSorted("p", null, null, "Hello Qwik", 3, null), 2, "u6_2"),
+		[].map(() => /*#__PURE__*/ _jsxSorted(Model, {
+			class: state,
+			mutable1: {
+				foo: "bar",
+				baz: state.count ? true : false
+			},
+			mutable2: (() => console.log(state.count))(),
+			mutable3: [
+				1,
+				2,
+				state,
+				null,
+				{}
+			],
+			remove$: remove
+		}, null, null, 3, "u6_0"))
+	], 1, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { default as importedValue } from \\"v\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_App_component_Div_immutable4_xx8KFkEiLgs = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_Div_immutable4_xx8KFkEiLgs\\"), \\"App_component_Div_immutable4_xx8KFkEiLgs\\", [state]);\nconst q_App_component_Div_onEvent_k0f2KI1nrzk = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_Div_onEvent_k0f2KI1nrzk\\"), \\"App_component_Div_onEvent_k0f2KI1nrzk\\");\nconst q_App_component_Div_transparent_kdBU90z0piU = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_Div_transparent_kdBU90z0piU\\"), \\"App_component_Div_transparent_kdBU90z0piU\\");\nconst q_App_component_remove_pU6yOC5P6sY = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_remove_pU6yOC5P6sY\\"), \\"App_component_remove_pU6yOC5P6sY\\", [state]);\nexport const App_component_ckEPmXZlub0 = (props) => {\n\tconst { Model } = props;\n\tconst state = useStore({ count: 0 });\n\tconst remove = Qrl(q_App_component_remove_pU6yOC5P6sY.w([state]));\n\treturn _jsxSorted(_Fragment, null, null, [\n\t\t_jsxSorted(\\"p\\", { \\"q:p\\": props }, {\n\t\t\tclass: \\"stuff\\",\n\t\t\t\\"q-e:click\\": props.onClick$\n\t\t}, \\"Hello Qwik\\", 7, null),\n\t\t_jsxSorted(Div, {\n\t\t\tclass: styles.foo,\n\t\t\tdocument: window.document,\n\t\t\timmutable4$: q_App_component_Div_immutable4_xx8KFkEiLgs.w([state]),\n\t\t\timmutable5: [\n\t\t\t\t1,\n\t\t\t\t2,\n\t\t\t\timportedValue,\n\t\t\t\tnull,\n\t\t\t\t{}\n\t\t\t],\n\t\t\tonClick$: props.onClick$,\n\t\t\tonEvent$: q_App_component_Div_onEvent_k0f2KI1nrzk,\n\t\t\ttransparent$: q_App_component_Div_transparent_kdBU90z0piU\n\t\t}, {\n\t\t\timmutable1: \\"stuff\\",\n\t\t\timmutable2: {\n\t\t\t\tfoo: \\"bar\\",\n\t\t\t\tbaz: importedValue ? true : false\n\t\t\t},\n\t\t\timmutable3: 2\n\t\t}, _jsxSorted(\\"p\\", null, null, \\"Hello Qwik\\", 3, null), 2, \\"u6_2\\"),\n\t\t[].map(() => _jsxSorted(Model, {\n\t\t\tclass: state,\n\t\t\tmutable1: {\n\t\t\t\tfoo: \\"bar\\",\n\t\t\t\tbaz: state.count ? true : false\n\t\t\t},\n\t\t\tmutable2: (() => console.log(state.count))(),\n\t\t\tmutable3: [\n\t\t\t\t1,\n\t\t\t\t2,\n\t\t\t\tstate,\n\t\t\t\tnull,\n\t\t\t\t{}\n\t\t\t],\n\t\t\tremove$: remove\n\t\t}, null, null, 3, \\"u6_0\\"))\n\t], 1, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,WAAW,qBAAqB;AACzC,SAAS,gBAAgB;AACzB,MAAM,6CAA2D,0BAAU,OAAO,wDAAwD,4CAA4C,CAAC,MAAM,CAAC;AAC9L,MAAM,0CAAwD,0BAAU,OAAO,qDAAqD,wCAAwC;AAC5K,MAAM,8CAA4D,0BAAU,OAAO,yDAAyD,4CAA4C;AACxL,MAAM,qCAAmD,0BAAU,OAAO,gDAAgD,oCAAoC,CAAC,MAAM,CAAC;AACtK,OAAO,MAAM,6BAA6B,UAAU;CACnD,MAAM,EAAE,UAAU;CAClB,MAAM,QAAQ,SAAS,EAAE,OAAO,GAAG,CAAC;CACpC,MAAM,SAAS,IAAI,mCAAmC,EAAE,CAAC,MAAM,CAAC,CAAC;AACjE,QAAO,WAAW,WAAW,MAAM,MAAM;EACxC,WAAW,KAAK,EAAE,OAAO,OAAO,EAAE;GACjC,OAAO;GACP,aAAa,MAAM;GACnB,EAAE,cAAc,GAAG,KAAK;EACzB,WAAW,KAAK;GACf,OAAO,OAAO;GACd,UAAU,OAAO;GACjB,aAAa,2CAA2C,EAAE,CAAC,MAAM,CAAC;GAClE,YAAY;IACX;IACA;IACA;IACA;IACA,EAAE;IACF;GACD,UAAU,MAAM;GAChB,UAAU;GACV,cAAc;GACd,EAAE;GACF,YAAY;GACZ,YAAY;IACX,KAAK;IACL,KAAK,gBAAgB,OAAO;IAC5B;GACD,YAAY;GACZ,EAAE,WAAW,KAAK,MAAM,MAAM,cAAc,GAAG,KAAK,EAAE,GAAG,OAAO;EACjE,EAAE,CAAC,UAAU,WAAW,OAAO;GAC9B,OAAO;GACP,UAAU;IACT,KAAK;IACL,KAAK,MAAM,QAAQ,OAAO;IAC1B;GACD,iBAAiB,QAAQ,IAAI,MAAM,MAAM,GAAG;GAC5C,UAAU;IACT;IACA;IACA;IACA;IACA,EAAE;IACF;GACD,SAAS;GACT,EAAE,MAAM,MAAM,GAAG,OAAO,CAAC;EAC1B,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -234,18 +278,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_Div_immu
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_App_component_Div_onEvent_k0f2KI1nrzk = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_onEvent_k0f2KI1nrzk"), "App_component_Div_onEvent_k0f2KI1nrzk");
-const q_App_component_Div_transparent_kdBU90z0piU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_transparent_kdBU90z0piU"), "App_component_Div_transparent_kdBU90z0piU");
-const q_App_component_Div_immutable4_xx8KFkEiLgs = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_immutable4_xx8KFkEiLgs"), "App_component_Div_immutable4_xx8KFkEiLgs", [state]);
-const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
-import { component$, useStore, $ } from "@qwik.dev/core";
-import importedValue from "v";
-import styles from "./styles.module.css";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore, $ } from '@qw\",\"t { component$, useStore, $ } from '@qwik.d\",\"t { component$, useStore, $ } from '@qwik.\",\"t { component$, useStore, $\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, $ } from '@qwik.dev/core';\nimport importedValue from 'v';\nimport styles from './styles.module.css';\n\nexport const App = component$((props) => {\n\tconst {Model} = props;\n\tconst state = useStore({count: 0});\n\tconst remove = $((id: number) => {\n\t\tconst d = state.data;\n\t\td.splice(\n\t\t\td.findIndex((d) => d.id === id),\n\t\t\t1\n\t\t)\n\t\t});\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\" onClick$={props.onClick$}>Hello Qwik</p>\n\t\t\t<Div\n\t\t\t\tclass={styles.foo}\n\t\t\t\tdocument={window.document}\n\t\t\t\tonClick$={props.onClick$}\n\t\t\t\tonEvent$={() => console.log('stuff')}\n\t\t\t\ttransparent$={() => {console.log('stuff')}}\n\t\t\t\timmutable1=\\"stuff\\"\n\t\t\t\timmutable2={{\n\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\tbaz: importedValue ? true : false,\n\t\t\t\t}}\n\t\t\t\timmutable3={2}\n\t\t\t\timmutable4$={(ev) => console.log(state.count)}\n\t\t\t\timmutable5={[1, 2, importedValue, null, {}]}\n\t\t\t>\n\t\t\t\t<p>Hello Qwik</p>\n\t\t\t</Div>\n\t\t\t{[].map(() => (\n\t\t\t\t<Model\n\t\t\t\t\tclass={state}\n\t\t\t\t\tremove$={remove}\n\t\t\t\t\tmutable1={{\n\t\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\t\tbaz: state.count ? true : false,\n\t\t\t\t\t}}\n\t\t\t\t\tmutable2={(() => console.log(state.count))()}\n\t\t\t\t\tmutable3={[1, 2, state, null, {}]}\n\t\t\t\t/>\n\t\t\t))}\n\t\t</>\n\t);\n});\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,0CACF,0BAAU,OAAO,qDAEpB,wCACuC;AALvC,MACKC,8CACE,0BAAU,OAAO,yDAGjB,4CACC;AANR,MACKC,6CACC,0BAAU,OAAO,wDAGlB,4CACC,OAAO,CAAC;AANd,MACKC,8BAA4C,0BAChD,OAAO,yCACU,4BAEf;AAJH,SAAS,YAAY,UAAU,SAAS;AACxC,OAAO,mBAAmB;AAC1B,OAAO,YAAY;AAEnB,OAAO,MAAM,MAAMC,yCA4CjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore, $\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, $ } from '@qwik.dev/core';\nimport importedValue from 'v';\nimport styles from './styles.module.css';\n\nexport const App = component$((props) => {\n\tconst {Model} = props;\n\tconst state = useStore({count: 0});\n\tconst remove = $((id: number) => {\n\t\tconst d = state.data;\n\t\td.splice(\n\t\t\td.findIndex((d) => d.id === id),\n\t\t\t1\n\t\t)\n\t\t});\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\" onClick$={props.onClick$}>Hello Qwik</p>\n\t\t\t<Div\n\t\t\t\tclass={styles.foo}\n\t\t\t\tdocument={window.document}\n\t\t\t\tonClick$={props.onClick$}\n\t\t\t\tonEvent$={() => console.log('stuff')}\n\t\t\t\ttransparent$={() => {console.log('stuff')}}\n\t\t\t\timmutable1=\\"stuff\\"\n\t\t\t\timmutable2={{\n\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\tbaz: importedValue ? true : false,\n\t\t\t\t}}\n\t\t\t\timmutable3={2}\n\t\t\t\timmutable4$={(ev) => console.log(state.count)}\n\t\t\t\timmutable5={[1, 2, importedValue, null, {}]}\n\t\t\t>\n\t\t\t\t<p>Hello Qwik</p>\n\t\t\t</Div>\n\t\t\t{[].map(() => (\n\t\t\t\t<Model\n\t\t\t\t\tclass={state}\n\t\t\t\t\tremove$={remove}\n\t\t\t\t\tmutable1={{\n\t\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\t\tbaz: state.count ? true : false,\n\t\t\t\t\t}}\n\t\t\t\t\tmutable2={(() => console.log(state.count))()}\n\t\t\t\t\tmutable3={[1, 2, state, null, {}]}\n\t\t\t\t/>\n\t\t\t))}\n\t\t</>\n\t);\n});\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAChD,OAAO,yCACU,4BAEf;AAAH,OAAO,MAAM,MAAMC,yCA4CjB\"}")
 == DIAGNOSTICS ==
 
 []

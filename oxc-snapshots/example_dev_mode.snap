@@ -19,12 +19,24 @@ export const App = component$(() => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrlDEV } from "@qwik.dev/core";
+//
+const q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4 = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4"), "App_component_Cmp_p_q_e_click_Yl4ybrJWrt4", [], {
+//
+	file: "test.tsx",
+	lo: 143,
+	hi: 168,
+	displayName: "test.tsx_App_component_Cmp_p_q_e_click"
+});
 export const App_component_ckEPmXZlub0 = () => {
-	return <Cmp>
-			<p>Hello Qwik</p>
-		</Cmp>;
+	return /*#__PURE__*/ _jsxSorted(Cmp, null, null, /*#__PURE__*/ _jsxSorted("p", null, {
+		class: "stuff",
+		"q-e:click": q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4
+	}, "Hello Qwik", 3, null), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrlDEV } from \\"@qwik.dev/core\\";\nconst q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4 = /*#__PURE__*/ qrlDEV(() => import(\\"./test.tsx_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4\\"), \\"App_component_Cmp_p_q_e_click_Yl4ybrJWrt4\\", [], {\n\tfile: \\"test.tsx\\",\n\tlo: 143,\n\thi: 168,\n\tdisplayName: \\"test.tsx_App_component_Cmp_p_q_e_click\\"\n});\nexport const App_component_ckEPmXZlub0 = () => {\n\treturn _jsxSorted(Cmp, null, null, _jsxSorted(\\"p\\", null, {\n\t\tclass: \\"stuff\\",\n\t\t\\"q-e:click\\": q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4\n\t}, \\"Hello Qwik\\", 3, null), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,cAAc;AACvB,MAAM,8CAA4D,6BAAa,OAAO,yDAAyD,6CAA6C,EAAE,EAAE;CAC/L,MAAM;CACN,IAAI;CACJ,IAAI;CACJ,aAAa;CACb,CAAC;AACF,OAAO,MAAM,kCAAkC;AAC9C,QAAO,WAAW,KAAK,MAAM,MAAM,WAAW,KAAK,MAAM;EACxD,OAAO;EACP,aAAa;EACb,EAAE,cAAc,GAAG,KAAK,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -77,12 +89,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_Cmp_p_q_
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrlDEV } from "@qwik.dev/core";
-const q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4 = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4"), "App_component_Cmp_p_q_e_click_Yl4ybrJWrt4", [], {
-	file: "test.tsx",
-	lo: 143,
-	hi: 168,
-	displayName: "test.tsx_App_component_Cmp_p_q_e_click"
-});
+//
 const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrlDEV(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0", [], {
 //
 	file: "test.tsx",
@@ -90,11 +97,9 @@ const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrlDEV(() => import("./test.ts
 	hi: 199,
 	displayName: "test.tsx_App_component"
 });
-import { component$, useStore } from "@qwik.dev/core";
-//
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } from '@qwik.dev/\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,8CAEI,6BAAa,OAAO,yDAGC,6CAC3B,EAAE,EAAE;OAEJ;KACa;KAAU;cAAmB;;AAV7C,MACKC,8BAA4C,6BAE3C,OAAO,yCAEP,6BACqB,EAAE,EAAE;OAAS;KAAiB;KAAS;cAGlE;;AARA,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,8BAA4C,6BAE3C,OAAO,yCAEP,6BACqB,EAAE,EAAE;OAAS;KAAiB;KAAS;cAGlE;;AANA,OAAO,MAAM,MAAMC,yCAMjB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -19,11 +19,13 @@ export const App = component$(() => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	console.log(function* (lo: any, t: any) {
 		console.log(yield (yield lo)(t.href).then((r) => r.json()));
 	});
-	return <p>Hello Qwik</p>;
+	return /*#__PURE__*/ _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
 };
 
 /*

@@ -58,14 +58,25 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 
 ============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { destructureBindings } from "./destructure-bindings";
+//
+const q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60"), "FieldInput_component_input_q_e_click_fZgZHYZXt60");
 //
 export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const initialValues = { value: undefined as string | undefined };
 	const rest = destructureBindings(props, initialValues);
-	return <input />;
+	return /*#__PURE__*/ _jsxSplit("input", {
+		..._getVarProps(rest),
+		..._getConstProps(rest),
+		"bind:value": finalValue
+	}, { "q-e:click": q_FieldInput_component_input_q_e_click_fZgZHYZXt60 }, null, 0, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_V4XAtJSTRKg\"],\"sourcesContent\":[\"import { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\nconst q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60\\"), \\"FieldInput_component_input_q_e_click_fZgZHYZXt60\\");\nexport const FieldInput_component_V4XAtJSTRKg = (props) => {\n\tconst initialValues = { value: undefined as string | undefined };\n\tconst rest = destructureBindings(props, initialValues);\n\treturn _jsxSplit(\\"input\\", {\n\t\t..._getVarProps(rest),\n\t\t..._getConstProps(rest),\n\t\t\\"bind:value\\": finalValue\n\t}, { \\"q-e:click\\": q_FieldInput_component_input_q_e_click_fZgZHYZXt60 }, null, 0, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,SAAS,2BAA2B;AACpC,MAAM,qDAAmE,0BAAU,OAAO,gEAAgE,mDAAmD;AAC7M,OAAO,MAAM,oCAAoC,UAAU;CAC1D,MAAM,gBAAgB,EAAE,OAAO,iCAAiC;CAChE,MAAM,OAAO,oBAAoB,OAAO,cAAc;AACtD,QAAO,UAAU,SAAS;EACzB,GAAG,aAAa,KAAK;EACrB,GAAG,eAAe,KAAK;EACvB,cAAc;EACd,EAAE,EAAE,aAAa,oDAAoD,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -92,19 +103,14 @@ export const FieldInput_component_V4XAtJSTRKg = (props) => {
 
 ============================= test.js ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60"), "FieldInput_component_input_q_e_click_fZgZHYZXt60");
-const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 //
-import { $, component$, useSignal } from "@qwik.dev/core";
-import { destructureBindings } from "./destructure-bindings";
+const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
 //
 export const FieldInput = /*#__PURE__*/ componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qDACQ,0BAAU,OAAO,gEAEC,mDAEF;AAN7B,MACKC,qCAAmD,0BACjD,OAAO,gDACd,mCACkC;AAHlC,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,gDAezB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qCAAmD,0BACjD,OAAO,gDACd,mCACkC;AAAlC,OAAO,MAAM,aAAaC,gDAezB\"}")
 == DIAGNOSTICS ==
 
 []

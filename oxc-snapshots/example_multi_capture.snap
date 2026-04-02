@@ -119,19 +119,26 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6Fi
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.jsx (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
 //
 export const Foo_component_HTDRsvUbLiE = () => {
+	const _rawProps = _captures[0];
+	const arg0 = _captures[1];
+	const foo = _captures[2];
 	const fn = (_rawProps) => {
 		const _ref = {};
 		_ref.aaa = _rawProps._ref.aaa;
 		const { aaa } = _ref;
 		return aaa;
 	};
-	return <div>
-				{foo}{fn()}{arg0}
-			</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [
+		foo,
+		fn(),
+		arg0
+	], 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const _rawProps = _captures[0];\nconst arg0 = _captures[1];\nconst foo = _captures[2];\n\n\tconst fn = (_rawProps) => {\n\t\tconst _ref = {};\n\t\t_ref.aaa = _rawProps._ref.aaa;\n\t\tconst { aaa } = _ref;\n\t\treturn aaa;\n\t};\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\tfoo,\n\t\tfn(),\n\t\targ0\n\t], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;CAAE,MAAM,YAAY,UAAU;CAC7E,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;CAErB,MAAM,MAAM,cAAc;EACzB,MAAM,OAAO,EAAE;AACf,OAAK,MAAM,UAAU,KAAK;EAC1B,MAAM,EAAE,QAAQ;AAChB,SAAO;;AAER,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,IAAI;EACJ;EACA,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -161,13 +168,14 @@ export const Foo_component_HTDRsvUbLiE = () => {
 ============================= test.tsx_Bar_component_L80pS8Hxf1Y.jsx (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
 //
 export const Bar_component_L80pS8Hxf1Y = () => {
-	return <div>
-				{bar}
-			</div>;
+	const bar = _captures[0];
+	return /*#__PURE__*/ _jsxSorted("div", null, null, bar, 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_component_L80pS8Hxf1Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Bar_component_L80pS8Hxf1Y = () => { const bar = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, bar, 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;CAAE,MAAM,MAAM,UAAU;AAEtE,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

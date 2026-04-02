@@ -46,11 +46,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx__404_component_div_q_e_
 
 ============================= src/components/mongo/404.tsx__404_component_zRvoWc98eqo.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q__404_component_div_q_e_click_aMLnLWtkRhc = /*#__PURE__*/ qrl(() => import("./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc"), "_404_component_div_q_e_click_aMLnLWtkRhc");
+//
 export const _404_component_zRvoWc98eqo = () => {
-	return <div>
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q__404_component_div_q_e_click_aMLnLWtkRhc }, null, 3, "0B_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"404.tsx__404_component_zRvoWc98eqo\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q__404_component_div_q_e_click_aMLnLWtkRhc = /*#__PURE__*/ qrl(() => import(\\"./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc\\"), \\"_404_component_div_q_e_click_aMLnLWtkRhc\\");\nexport const _404_component_zRvoWc98eqo = () => {\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q__404_component_div_q_e_click_aMLnLWtkRhc }, null, 3, \\"0B_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,6CAA2D,0BAAU,OAAO,uDAAuD,2CAA2C;AACpL,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,4CAA4C,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "src/components/mongo/404.tsx",
@@ -77,12 +82,11 @@ export const _404_component_zRvoWc98eqo = () => {
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q__404_component_div_q_e_click_aMLnLWtkRhc = /*#__PURE__*/ qrl(() => import("./404.tsx__404_component_div_q_e_click_aMLnLWtkRhc"), "_404_component_div_q_e_click_aMLnLWtkRhc");
 const q__404_component_zRvoWc98eqo = /*#__PURE__*/ qrl(() => import("./404.tsx__404_component_zRvoWc98eqo"), "_404_component_zRvoWc98eqo");
 //
 export default /*#__PURE__*/ componentQrl(q__404_component_zRvoWc98eqo);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\ne\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/components/mongo/404.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CAEa,0BAAU,OAC3B,uDAED;AANA,MACKC,+BAED,0BAAU,OAAO,yCAEH,6BACjB;AAHD,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/components/mongo/404.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAED,0BAAU,OAAO,yCAEH,6BACjB;AAHD,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

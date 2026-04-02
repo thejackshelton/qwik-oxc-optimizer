@@ -21,8 +21,11 @@ export const App2 = qwikify$(() => (
 
 ============================= test.tsx_App2_qwikify_RKJW7oCMdS4.js (ENTRY POINT)==
 
-export const App2_qwikify_RKJW7oCMdS4 = () => <div></div>;
+import { _jsxSorted } from "@qwik.dev/core";
+//
+export const App2_qwikify_RKJW7oCMdS4 = () => /*#__PURE__*/ _jsxSorted("div", null, { onClick$: () => console.log("App2") }, null, 3, "u6_1");
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App2_qwikify_RKJW7oCMdS4\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const App2_qwikify_RKJW7oCMdS4 = () => _jsxSorted(\\"div\\", null, { onClick$: () => console.log(\\"App2\\") }, null, 3, \\"u6_1\\");\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,iCAAiC,WAAW,OAAO,MAAM,EAAE,gBAAgB,QAAQ,IAAI,OAAO,EAAE,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -48,15 +51,13 @@ export const App2_qwikify_RKJW7oCMdS4 = () => <div></div>;
 
 import { _jsxSorted } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+//
 const q_App2_qwikify_RKJW7oCMdS4 = /*#__PURE__*/ qrl(() => import("./test.tsx_App2_qwikify_RKJW7oCMdS4.tsx"), "App2_qwikify_RKJW7oCMdS4");
 //
-/* @jsxImportSource react */
-import { qwikify$ } from "./qwikfy";
-//
-export const App = () => _jsxSorted("div", null, { onClick$: () => console.log("App") }, null, 3, "u6_0");
+export const App = () => /*#__PURE__*/ _jsxSorted("div", null, { onClick$: () => console.log("App") }, null, 3, "u6_0");
 export const App2 = qwikifyQrl(q_App2_qwikify_RKJW7oCMdS4);
 
-Some("{\"version\":3,\"names\":[\"sxImportSource react */\n\ni\",\"qwikify$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n/* @jsxImportSource react */\n\nimport { qwikify$ } from './qwikfy';\n\nexport const App = () => (\n\t<div onClick$={()=>console.log('App')}></div>\n);\n\nexport const App2 = qwikify$(() => (\n\t<div onClick$={()=>console.log('App2')}></div>\n));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,6BAEa,0BAAU,OAAO,4CAGrB,2BAA2B;;AAHzC,SAAS,gBAAgB;AAEzB,OAAO,MAAM,sDACO,QAAQ,IAAI,MAAM;AAGtC,OAAO,MAAM,OAAOC,sCAElB\"}")
+Some("{\"version\":3,\"names\":[\"sxImportSource react */\n\ni\",\"qwikify$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n/* @jsxImportSource react */\n\nimport { qwikify$ } from './qwikfy';\n\nexport const App = () => (\n\t<div onClick$={()=>console.log('App')}></div>\n);\n\nexport const App2 = qwikify$(() => (\n\t<div onClick$={()=>console.log('App2')}></div>\n));\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,6BAEa,0BAAU,OAAO,4CAGrB,2BAA2B;AADzC,OAAO,MAAM,sDACO,QAAQ,IAAI,MAAM;AAGtC,OAAO,MAAM,OAAOC,sCAElB\"}")
 == DIAGNOSTICS ==
 
 []

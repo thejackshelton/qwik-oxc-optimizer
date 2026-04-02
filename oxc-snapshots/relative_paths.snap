@@ -124,12 +124,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"lib.mjs_App_component_AkbU84a8z
 
 ============================= components/main.tsx_Local_component_jJ0v28bs0p8.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { state } from "./sibling";
 //
 export const Local_component_jJ0v28bs0p8 = () => {
-	return <div>{state}</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, state, 3, "zp_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"main.tsx_Local_component_jJ0v28bs0p8\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { state } from \\"./sibling\\";\nexport const Local_component_jJ0v28bs0p8 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, state, 3, \\"zp_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,aAAa;AACtB,OAAO,MAAM,oCAAoC;AAChD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO\"}")
 /*
 {
   "origin": "components/main.tsx",
@@ -155,22 +157,18 @@ export const Local_component_jJ0v28bs0p8 = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Local_component_jJ0v28bs0p8 = /*#__PURE__*/ qrl(() => import("./main.tsx_Local_component_jJ0v28bs0p8.tsx"), "Local_component_jJ0v28bs0p8");
 //
-import { state } from "./sibling";
+const q_Local_component_jJ0v28bs0p8 = /*#__PURE__*/ qrl(() => import("./main.tsx_Local_component_jJ0v28bs0p8.tsx"), "Local_component_jJ0v28bs0p8");
 //
 export const Local = /*#__PURE__*/ componentQrl(q_Local_component_jJ0v28bs0p8);
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qw\",\"component$\"],\"sources\":[\"components/main.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { state } from './sibling';\n\nexport const Local = component$(() => {\n\treturn (\n\t\t<div>{state}</div>\n\t)\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCACF,0BAAU,OAAO,+CAEW,8BAEpB;AAJX,SAAS,aAAa;AAEtB,OAAO,MAAM,QAAQC,2CAInB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qw\",\"component$\"],\"sources\":[\"components/main.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { state } from './sibling';\n\nexport const Local = component$(() => {\n\treturn (\n\t\t<div>{state}</div>\n\t)\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCACF,0BAAU,OAAO,+CAEW,8BAEpB;AAFX,OAAO,MAAM,QAAQC,2CAInB\"}")
 
 ============================= ../../node_modules/dep/dist/lib.js ==
 
 import { qrl } from "@qwik.dev/core";
-const q_App_component_AkbU84a8zes = /*#__PURE__*/ qrl(() => import("./lib.mjs_App_component_AkbU84a8zes.mjs"), "App_component_AkbU84a8zes", [useData]);
 //
-import { componentQrl, inlinedQrl, useStore, useLexicalScope } from "@qwik.dev/core";
-import { jsx, jsxs } from "@qwik.dev/core/jsx-runtime";
-import { state } from "./sibling";
+const q_App_component_AkbU84a8zes = /*#__PURE__*/ qrl(() => import("./lib.mjs_App_component_AkbU84a8zes.mjs"), "App_component_AkbU84a8zes", [useData]);
 //
 const useData = () => {
 	return useStore({ count: 0 });
@@ -178,7 +176,7 @@ const useData = () => {
 export const App = /*#__PURE__*/ componentQrl(q_App_component_AkbU84a8zes.w([useData]));
 export { useData as _auto_useData };
 
-Some("{\"version\":3,\"names\":[\"t { componentQrl, inlinedQr\"],\"sources\":[\"../../node_modules/dep/dist/lib.mjs\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useStore, useLexicalScope } from \\"@qwik.dev/core\\";\nimport { jsx, jsxs } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { state } from './sibling';\n\nconst useData = () => {\n\treturn useStore({\n\t\tcount: 0\n\t});\n}\n\nexport const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{\n\tconst store = useData();\n\treturn /*#__PURE__*/ jsxs(\\"div\\", {\n\t\tchildren: [\n\t\t\t/*#__PURE__*/ jsxs(\\"p\\", {\n\t\t\t\tchildren: [\n\t\t\t\t\t\\"Count: \\",\n\t\t\t\t\tstore.count\n\t\t\t\t]\n\t\t\t}),\n\t\t\t/*#__PURE__*/ jsx(\\"p\\", {\n\t\t\t\tchildren: /*#__PURE__*/ jsx(\\"button\\", {\n\t\t\t\t\tonClick$: inlinedQrl(()=>{\n\t\t\t\t\t\tconst [store] = useLexicalScope();\n\t\t\t\t\t\treturn store.count++;\n\t\t\t\t\t}, \\"App_component_div_p_button_onClick_8dWUa0cJAr4\\", [\n\t\t\t\t\t\tstore\n\t\t\t\t\t]),\n\t\t\t\t\tchildren: \\"Click\\"\n\t\t\t\t})\n\t\t\t})\n\t\t]\n\t});\n}, \\"App_component_AkbU84a8zes\\"));\n\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,8BAA4C,0BAAU,OAAO,4CAC1C,6BAA6B,SAC/C,CAAC;AAFP,SAAS,cAAc,YAAY,UAAU,uBAAuB;AACpE,SAAS,KAAK,YAAY;AAC1B,SAAS,aAAa;AAEtB,MAAM,gBAAgB;AACrB,QAAO,SAAS,EACf,OAAO,GACP,CAAC;;AAGH,OAAO,MAAM,MAAoB,sEAuBD;AAlChC\"}")
+Some("{\"version\":3,\"names\":[\"t { componentQrl, inlinedQr\"],\"sources\":[\"../../node_modules/dep/dist/lib.mjs\"],\"sourcesContent\":[\"\nimport { componentQrl, inlinedQrl, useStore, useLexicalScope } from \\"@qwik.dev/core\\";\nimport { jsx, jsxs } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { state } from './sibling';\n\nconst useData = () => {\n\treturn useStore({\n\t\tcount: 0\n\t});\n}\n\nexport const App = /*#__PURE__*/ componentQrl(inlinedQrl(()=>{\n\tconst store = useData();\n\treturn /*#__PURE__*/ jsxs(\\"div\\", {\n\t\tchildren: [\n\t\t\t/*#__PURE__*/ jsxs(\\"p\\", {\n\t\t\t\tchildren: [\n\t\t\t\t\t\\"Count: \\",\n\t\t\t\t\tstore.count\n\t\t\t\t]\n\t\t\t}),\n\t\t\t/*#__PURE__*/ jsx(\\"p\\", {\n\t\t\t\tchildren: /*#__PURE__*/ jsx(\\"button\\", {\n\t\t\t\t\tonClick$: inlinedQrl(()=>{\n\t\t\t\t\t\tconst [store] = useLexicalScope();\n\t\t\t\t\t\treturn store.count++;\n\t\t\t\t\t}, \\"App_component_div_p_button_onClick_8dWUa0cJAr4\\", [\n\t\t\t\t\t\tstore\n\t\t\t\t\t]),\n\t\t\t\t\tchildren: \\"Click\\"\n\t\t\t\t})\n\t\t\t})\n\t\t]\n\t});\n}, \\"App_component_AkbU84a8zes\\"));\n\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,8BAA4C,0BAAU,OAAO,4CAC1C,6BAA6B,SAC/C,CAAC;AAEP,MAAM,gBAAgB;AACrB,QAAO,SAAS,EACf,OAAO,GACP,CAAC;;AAGH,OAAO,MAAM,MAAoB,sEAuBD;AAlChC\"}")
 == DIAGNOSTICS ==
 
 []

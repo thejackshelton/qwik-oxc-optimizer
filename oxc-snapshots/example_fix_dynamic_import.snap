@@ -25,15 +25,14 @@ export const Header = component$(() => {
 
 ============================= project/folder/test.tsx_Header_component_RGgm7Ks9QWI.tsx ==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { default as thing } from "../state";
 //
 export const Header_component_RGgm7Ks9QWI = () => {
-	return <div>
-			{import("../folder/state3")}
-			{thing}
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [import("../folder/state3"), thing], 3, "R9_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_RGgm7Ks9QWI\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { default as thing } from \\"../state\\";\nexport const Header_component_RGgm7Ks9QWI = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [import(\\"../folder/state3\\"), thing], 3, \\"R9_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW,aAAa;AACjC,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,OAAO,qBAAqB,MAAM,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "project/folder/test.tsx",
@@ -59,16 +58,15 @@ export const Header_component_RGgm7Ks9QWI = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Header_component_RGgm7Ks9QWI = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_RGgm7Ks9QWI"), "Header_component_RGgm7Ks9QWI");
 //
-import thing from "../state";
+const q_Header_component_RGgm7Ks9QWI = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_RGgm7Ks9QWI"), "Header_component_RGgm7Ks9QWI");
 //
 export function foo() {
 	return import("../foo/state2");
 }
 export const Header = /*#__PURE__*/ componentQrl(q_Header_component_RGgm7Ks9QWI);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCACD,0BAAU,OAAO,4CAGX,+BAGJ;AANN,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCACD,0BAAU,OAAO,4CAGX,+BAGJ;AAJN,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
 == DIAGNOSTICS ==
 
 []

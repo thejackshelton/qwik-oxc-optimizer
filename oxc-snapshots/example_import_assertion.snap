@@ -48,13 +48,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_n7Hu
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
 //
-import json from "./foo.json" assert { type: "json" };
+const q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
 //
 export const Greeter = /*#__PURE__*/ componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport json from \\"./foo.json\\" assert { type: \\"json\\" };\n\nexport const Greeter = component$(() => {\n\treturn json;\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kCACA,0BAAU,OAAO,6CAEX,gCACV;AAHD,OAAO,UAAU,aAAoB,eAAQ;AAE7C,OAAO,MAAM,UAAUC,6CAErB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport json from \\"./foo.json\\" assert { type: \\"json\\" };\n\nexport const Greeter = component$(() => {\n\treturn json;\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kCACA,0BAAU,OAAO,6CAEX,gCACV;AADD,OAAO,MAAM,UAAUC,6CAErB\"}")
 == DIAGNOSTICS ==
 
 []

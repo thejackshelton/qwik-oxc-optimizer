@@ -25,13 +25,15 @@ export const App = component$(() => {
 
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	console.log(Thing.A);
-	return <>
-			<p>Hello Qwik</p>
-		</>;
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, /*#__PURE__*/ _jsxSorted("p", null, { class: "stuff" }, "Hello Qwik", 3, null), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tconsole.log(Thing.A);\n\treturn _jsxSorted(_Fragment, null, null, _jsxSorted(\\"p\\", null, { class: \\"stuff\\" }, \\"Hello Qwik\\", 3, null), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;AAC9C,SAAQ,IAAI,MAAM,EAAE;AACpB,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,KAAK,MAAM,EAAE,OAAO,SAAS,EAAE,cAAc,GAAG,KAAK,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -57,9 +59,8 @@ export const App_component_ckEPmXZlub0 = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
-import { component$, useStore } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
 enum Thing {
 	A,
@@ -67,7 +68,7 @@ enum Thing {
 }
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nenum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,yCAKkB,4BACV;AARlB,SAAS,YAAY,gBAAgB;KAEhC,MAAM;CACV;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nenum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,yCAKkB,4BACV;KANb,MAAM;CACV;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
 == DIAGNOSTICS ==
 
 []

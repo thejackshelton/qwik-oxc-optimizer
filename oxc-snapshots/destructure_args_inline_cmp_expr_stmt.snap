@@ -65,7 +65,7 @@ const q_test_div_q_e_click_pFqTss400MA = /*#__PURE__*/ qrl(() => import("./test.
 //
 export default (_rawProps) => {
 	const data = _rawProps.data;
-	return _jsxSorted("div", { "q:p": data }, {
+	return /*#__PURE__*/ _jsxSorted("div", { "q:p": data }, {
 		"data-is-active": _fnSignal(_hf0, [data], "p0 => p0.selectedOutputDetail === \"options\";"),
 		"q-e:click": q_test_div_q_e_click_pFqTss400MA.w([data])
 	}, null, 7, "u6_0");

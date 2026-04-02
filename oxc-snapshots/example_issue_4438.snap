@@ -21,17 +21,15 @@ export const App = component$(() => {
 
 ============================= test.tsx ==
 
-import { _fnSignal } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
-const _hf0 = (p0) => p0.value ? $localize`singular` : "plural";
-const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
 //
-import { component$, useSignal } from "@qwik.dev/core";
+const _hf0 = (p0) => p0.value ? $localize`singular` : "plural";
+const _hf1 = (p0) => p0.value ? $localize`singular` : $localize`plural`;
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { \",\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst toggle = useSignal(false);\n\treturn (\n\t\t<>\n\t\t\t<div data-nu={toggle.value ? $localize`singular` : 'plural'}></div>\n\t\t\t<div>{toggle.value ? $localize`singular` : $localize`plural`}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,kBAAiB,SAAS,aAAa;AADnD,MACKC,8BAA4C,yBAEhD,4BAA4B;AAF7B,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,MAAMC,yCAQjB\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst toggle = useSignal(false);\n\treturn (\n\t\t<>\n\t\t\t<div data-nu={toggle.value ? $localize`singular` : 'plural'}></div>\n\t\t\t<div>{toggle.value ? $localize`singular` : $localize`plural`}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,QAAO,kBAAiB,SAAS,aAAa;AADnD,MACKA,QAAO,kBAAiB,SAAS,aAAa,SAEhD;AAHH,MACKC,8BAA4C,yBAEhD,4BAA4B;AAA7B,OAAO,MAAM,MAAMC,yCAQjB\"}")
 == DIAGNOSTICS ==
 
 []

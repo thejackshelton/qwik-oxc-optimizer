@@ -58,15 +58,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useReso
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const q_test_component_useResource_4a8wVY7wh38 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_useResource_4a8wVY7wh38"), "test_component_useResource_4a8wVY7wh38");
 //
 export const test_component_LUXeXe0DQrg = () => {
 	useResourceQrl(q_test_component_useResource_4a8wVY7wh38);
-	return <div>cmp</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, "cmp", 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_test_component_useResource_4a8wVY7wh38 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_useResource_4a8wVY7wh38\\"), \\"test_component_useResource_4a8wVY7wh38\\");\nexport const test_component_LUXeXe0DQrg = () => {\n\tuseResourceQrl(q_test_component_useResource_4a8wVY7wh38);\n\treturn _jsxSorted(\\"div\\", null, null, \\"cmp\\", 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,2CAAyD,0BAAU,OAAO,sDAAsD,yCAAyC;AAC/K,OAAO,MAAM,mCAAmC;AAC/C,gBAAe,yCAAyC;AACxD,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -91,18 +93,16 @@ export const test_component_LUXeXe0DQrg = () => {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { useResourceQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
-import mongodb from "mongodb";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export const onGet = () => {
 	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
 };
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,oBACmB;AADnB,MACKA,+BAA6C,0BACjD,OAAO,0CAEU,6BACA;AAHlB,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BACjD,OAAO,0CAEU,6BACA;AADlB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

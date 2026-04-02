@@ -76,16 +76,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Button_button_q_e_clic
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
 import { Button } from "./test";
 import { ButtonArrow } from "./test";
 //
 export const Foo_component_HTDRsvUbLiE = (props) => {
-	return <div>
-			<Button />
-			<ButtonArrow />
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [/*#__PURE__*/ _jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_1"), /*#__PURE__*/ _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_2")], 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { Button } from \\"./test\\";\nimport { ButtonArrow } from \\"./test\\";\nexport const Foo_component_HTDRsvUbLiE = (props) => {\n\treturn _jsxSorted(\\"div\\", null, null, [_jsxSplit(Button, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_1\\"), _jsxSplit(ButtonArrow, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_2\\")], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,cAAc;AACvB,SAAS,mBAAmB;AAC5B,OAAO,MAAM,6BAA6B,UAAU;AACnD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,UAAU,QAAQ,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,EAAE,UAAU,aAAa,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -155,8 +157,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ButtonArrow_button_q_e
 ============================= test.tsx ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
@@ -166,7 +166,7 @@ const q_ButtonArrow_button_q_e_click_rEE0GCaea7M = /*#__PURE__*/ qrl(() => impor
 //
 export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_HTDRsvUbLiE, { tagName: "my-foo" });
 export function Button({ text, color }) {
-	return _jsxSorted("button", { "q:ps": [color, text] }, {
+	return /*#__PURE__*/ _jsxSorted("button", { "q:ps": [color, text] }, {
 		"q-e:color": color,
 		"q-e:click": q_Button_button_q_e_click_6YaNiKLqRnQ.w([color, text])
 	}, text, 7, "u6_3");
@@ -174,13 +174,13 @@ export function Button({ text, color }) {
 export const ButtonArrow = (_rawProps) => {
 	const text = _rawProps.text;
 	const color = _rawProps.color;
-	return _jsxSorted("button", { "q:ps": [color, text] }, {
+	return /*#__PURE__*/ _jsxSorted("button", { "q:ps": [color, text] }, {
 		"q-e:color": color,
 		"q-e:click": q_ButtonArrow_button_q_e_click_rEE0GCaea7M.w([color, text])
 	}, text, 7, "u6_4");
 };
 
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@\",\"t { $, component$ } from '@qwik.dev/c\",\"t { $, component$ } from '@qwik.dev/core';\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t<Button {...props} />\n\t\t\t<ButtonArrow {...props} />\n\t\t</div>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport function Button({text, color}) {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\nexport const ButtonArrow = ({text, color}) => {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAEL,0BAAU,OAAO,yCAEZ,4BAEL;AAPA,MACKC,wCAEK,0BAAU,OAAO,mDAGV,uCAEhB,aAEA,CAAC;AAVF,MACKC,6CAEU,0BAAU,OAAO,wDAI9B,4CAGC,aACQ,CAAC;AARZ,OAAO,MAAM,MAAMC,0CAOhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,SAAS,OAAO,EAAC,MAAM,SAAQ;AACrC;eACmB;;IAAgD;;AAIpE,OAAO,MAAM,6BAAiC;;;AAC7C;eACmB;;IAAgD\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@\",\"t { $, component$ } from '@qwik.dev/c\",\"t { $, component$ } from '@qwik.dev/core';\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t<Button {...props} />\n\t\t\t<ButtonArrow {...props} />\n\t\t</div>\n\t);\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport function Button({text, color}) {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\nexport const ButtonArrow = ({text, color}) => {\n\treturn (\n\t\t<button onColor$={color} onClick$={()=>console.log(text, color)}>{text}</button>\n\t);\n}\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAEL,0BAAU,OAAO,yCAEZ,4BAEL;AAPA,MACKC,wCAEK,0BAAU,OAAO,mDAGV,uCAEhB,aAEA,CAAC;AAVF,MACKC,6CAEU,0BAAU,OAAO,wDAI9B,4CAGC,aACQ,CAAC;AARZ,OAAO,MAAM,MAAMC,0CAOhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,SAAS,OAAO,EAAC,MAAM,SAAQ;AACrC;eACmB;;IAAgD;;AAIpE,OAAO,MAAM,6BAAiC;;;AAC7C;eACmB;;IAAgD\"}")
 == DIAGNOSTICS ==
 
 []

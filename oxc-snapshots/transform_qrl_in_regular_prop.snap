@@ -13,10 +13,15 @@ expression: output
 
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.ts (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 import { Cmp } from "./test";
 //
-export const Cmp_component_4ryKJTOKjWE = () => <Cmp>Hello Qwik</Cmp>;
+const q_Cmp_component_Cmp_foo_iPpdemxi0uE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
+//
+export const Cmp_component_4ryKJTOKjWE = () => /*#__PURE__*/ _jsxSorted(Cmp, { foo: Qrl(q_Cmp_component_Cmp_foo_iPpdemxi0uE) }, null, "Hello Qwik", 3, "u6_0");
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_4ryKJTOKjWE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { Cmp } from \\"./test\\";\nconst q_Cmp_component_Cmp_foo_iPpdemxi0uE = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE\\"), \\"Cmp_component_Cmp_foo_iPpdemxi0uE\\");\nexport const Cmp_component_4ryKJTOKjWE = () => _jsxSorted(Cmp, { foo: Qrl(q_Cmp_component_Cmp_foo_iPpdemxi0uE) }, null, \\"Hello Qwik\\", 3, \\"u6_0\\");\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,WAAW;AACpB,MAAM,sCAAoD,0BAAU,OAAO,iDAAiD,oCAAoC;AAChK,OAAO,MAAM,kCAAkC,WAAW,KAAK,EAAE,KAAK,IAAI,oCAAoC,EAAE,EAAE,MAAM,cAAc,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -70,12 +75,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_Cmp_component_Cmp_foo_iPpdemxi0uE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
 const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 //
 export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-Some("{\"version\":3,\"names\":[\"ort { component$, $ } from '@qwik.d\",\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,sCACE,0BAAU,OAAO,iDACW;AAHnC,MACKC,8BAA4C,0BACxC,OAAO,yCACG,4BAA4B;AAD7C,OAAO,MAAM,MAAMC,yCAC2C\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BACxC,OAAO,yCACG,4BAA4B;AAD7C,OAAO,MAAM,MAAMC,yCAC2C\"}")
 == DIAGNOSTICS ==
 
 []

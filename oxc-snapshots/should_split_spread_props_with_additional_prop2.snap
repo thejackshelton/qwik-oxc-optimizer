@@ -17,10 +17,18 @@ expression: output
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = (props) => {
-	return <div></div>;
+	return /*#__PURE__*/ _jsxSplit("div", {
+		test: "test",
+		..._getVarProps(props)
+	}, { ..._getConstProps(props) }, null, 0, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSplit(\\"div\\", {\n\t\ttest: \\"test\\",\n\t\t..._getVarProps(props)\n\t}, { ..._getConstProps(props) }, null, 0, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,UAAU,OAAO;EACvB,MAAM;EACN,GAAG,aAAa,MAAM;EACtB,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -47,8 +55,6 @@ export const test_component_LUXeXe0DQrg = (props) => {
 
 ============================= test.js ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
@@ -56,7 +62,7 @@ const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<div test=\\"test\\" {...props}></div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAEH,0BAAU,OAAO,0CAEX,6BAA6B;AAFnC,eAAeC,0CAIb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<div test=\\"test\\" {...props}></div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAEH,0BAAU,OAAO,0CAEX,6BAA6B;AAFnC,eAAeC,0CAIb\"}")
 == DIAGNOSTICS ==
 
 []

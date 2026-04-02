@@ -122,6 +122,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_us
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const q_Foo_component_other_useAsync_fsHooibmyyE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_other_useAsync_fsHooibmyyE"), "Foo_component_other_useAsync_fsHooibmyyE", [other]);
@@ -134,11 +136,10 @@ export const Foo_component_HTDRsvUbLiE = (props) => {
 	const _ref = {};
 	_ref.other = useAsyncQrl(q_Foo_component_other_useAsync_fsHooibmyyE.w([_ref.other]));
 	const { other } = _ref;
-	return <div>
-			{other.value}
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, _wrapProp(other), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_Foo_component_other_useAsync_fsHooibmyyE = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_other_useAsync_fsHooibmyyE\\"), \\"Foo_component_other_useAsync_fsHooibmyyE\\", [other]);\nconst q_Foo_component_sig_useAsync_f0BGwWm4eeY = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\\"), \\"Foo_component_sig_useAsync_f0BGwWm4eeY\\", [sig]);\nexport const Foo_component_HTDRsvUbLiE = (props) => {\n\tconst _ref = {};\n\t_ref.sig = useAsyncQrl(q_Foo_component_sig_useAsync_f0BGwWm4eeY.w([_ref.sig]));\n\tconst { sig } = _ref;\n\tconst _ref = {};\n\t_ref.other = useAsyncQrl(q_Foo_component_other_useAsync_fsHooibmyyE.w([_ref.other]));\n\tconst { other } = _ref;\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(other), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,MAAM,6CAA2D,0BAAU,OAAO,wDAAwD,4CAA4C,CAAC,MAAM,CAAC;AAC9L,MAAM,2CAAyD,0BAAU,OAAO,sDAAsD,0CAA0C,CAAC,IAAI,CAAC;AACtL,OAAO,MAAM,6BAA6B,UAAU;CACnD,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,YAAY,yCAAyC,EAAE,CAAC,KAAK,IAAI,CAAC,CAAC;CAC9E,MAAM,EAAE,QAAQ;CAChB,MAAM,OAAO,EAAE;AACf,MAAK,QAAQ,YAAY,2CAA2C,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC;CACpF,MAAM,EAAE,UAAU;AAClB,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,MAAM,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -166,7 +167,6 @@ export const Foo_component_HTDRsvUbLiE = (props) => {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { useAsyncQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
 const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
@@ -174,7 +174,7 @@ const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_F
 // Component-level self-referential component
 export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_HTDRsvUbLiE);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useAsync$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useAsync$ } from '@qwik.dev/core';\n\t\t\n// Component-level self-referential component\nexport const Foo = component$((props) => {\n\tconst sig = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tsig.value++;\n\t\t}, 1000);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\tconst other = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tother.value++;\n\t\t}, 900);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\treturn (\n\t\t<div>\n\t\t\t{other.value}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,4BAC2B;AAD3B,oBACmB;AADnB,MACKA,8BAA4C,0BAEjD,OAAO,yCACL,4BAA4B;;AAA9B,OAAO,MAAM,MAAMC,yCAoBjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useAsync$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useAsync$ } from '@qwik.dev/core';\n\t\t\n// Component-level self-referential component\nexport const Foo = component$((props) => {\n\tconst sig = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tsig.value++;\n\t\t}, 1000);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\tconst other = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tother.value++;\n\t\t}, 900);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\treturn (\n\t\t<div>\n\t\t\t{other.value}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAEjD,OAAO,yCACL,4BAA4B;;AAA9B,OAAO,MAAM,MAAMC,yCAoBjB\"}")
 == DIAGNOSTICS ==
 
 []

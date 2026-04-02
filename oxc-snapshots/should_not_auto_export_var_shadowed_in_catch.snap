@@ -66,14 +66,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_action_formAction_dIQV
 import { qrl } from "@qwik.dev/core";
 const q_action_formAction_dIQV5vh1He4 = /*#__PURE__*/ qrl(() => import("./test.tsx_action_formAction_dIQV5vh1He4"), "action_formAction_dIQV5vh1He4");
 //
-import { formAction$ } from "forms";
 import { translate } from "i18n";
 //
 const t = translate();
 export const action = formActionQrl(q_action_formAction_dIQV5vh1He4);
 export { t as _auto_t };
 
-Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nimport { translate } from 'i18n';\n\nconst t = translate();\nexport const action = formAction$((data) => {\n  try {\n    return { status: 'success' };\n  } catch (err) {\n    const t = translate();\n    return { status: 'error', message: t('error-key') };\n  }\n});\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kCACW,0BAAU,OAAO,6CAGb,gCACd;AALN,SAAS,mBAAmB;AAC5B,SAAS,iBAAiB;AAE1B,MAAM,IAAI,WAAW;AACrB,OAAO,MAAM,SAASC,8CAOpB;AAZF\"}")
+Some("{\"version\":3,\"names\":[\"t { formAction$ } from 'forms';\",\"formAction$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { formAction$ } from 'forms';\nimport { translate } from 'i18n';\n\nconst t = translate();\nexport const action = formAction$((data) => {\n  try {\n    return { status: 'success' };\n  } catch (err) {\n    const t = translate();\n    return { status: 'error', message: t('error-key') };\n  }\n});\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,kCACW,0BAAU,OAAO,6CAGb,gCACd;AAJN,SAAS,iBAAiB;AAE1B,MAAM,IAAI,WAAW;AACrB,OAAO,MAAM,SAASC,8CAOpB;AAZF\"}")
 == DIAGNOSTICS ==
 
 []

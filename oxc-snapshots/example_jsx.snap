@@ -85,29 +85,32 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6Fi
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
+import { _getConstProps } from "@qwik.dev/core";
+import { _getVarProps } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { _jsxSplit } from "@qwik.dev/core";
 import { Lightweight } from "./test";
 //
 export const Foo_component_HTDRsvUbLiE = () => {
-	return <div>
-				<>
-					<div />
-					<div></div>
-					<div>12</div>
-				</>
-				<div>
-					<Lightweight />
-				</div>
-				<div>
-					<div />
-					<div />
-					<div />
-				</div>
-				<div>
-					{children}
-				</div>
-			</div>;
+	const props = _captures[0];
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [
+		/*#__PURE__*/ _jsxSorted(_Fragment, null, null, [
+			/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, null, 3, null),
+			/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, null, 3, null),
+			/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, "12", 3, null)
+		], 3, null),
+		/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, /*#__PURE__*/ _jsxSplit(Lightweight, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, "u6_2"), 3, null),
+		/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, [
+			/*#__PURE__*/ _jsxSorted("div", null, null, null, 3, null),
+			/*#__PURE__*/ _jsxSorted("div", null, null, null, 3, null),
+			/*#__PURE__*/ _jsxSorted("div", null, null, null, 3, null)
+		], 3, null),
+		/*#__PURE__*/ _jsxSorted("div", null, { class: "class" }, children, 3, null)
+	], 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { Lightweight } from \\"./test\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const props = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(_Fragment, null, null, [\n\t\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, null, 3, null),\n\t\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, null, 3, null),\n\t\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, \\"12\\", 3, null)\n\t\t], 3, null),\n\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, _jsxSplit(Lightweight, { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, \\"u6_2\\"), 3, null),\n\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, [\n\t\t\t_jsxSorted(\\"div\\", null, null, null, 3, null),\n\t\t\t_jsxSorted(\\"div\\", null, null, null, 3, null),\n\t\t\t_jsxSorted(\\"div\\", null, null, null, 3, null)\n\t\t], 3, null),\n\t\t_jsxSorted(\\"div\\", null, { class: \\"class\\" }, children, 3, null)\n\t], 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,YAAY,iBAAiB;AACtC,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,mBAAmB;AAC5B,OAAO,MAAM,kCAAkC;CAAE,MAAM,QAAQ,UAAU;AAExE,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,WAAW,MAAM,MAAM;GACjC,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,MAAM,GAAG,KAAK;GAC1D,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,MAAM,GAAG,KAAK;GAC1D,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,MAAM,GAAG,KAAK;GAC1D,EAAE,GAAG,KAAK;EACX,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,UAAU,aAAa,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE,EAAE,GAAG,eAAe,MAAM,EAAE,EAAE,MAAM,GAAG,OAAO,EAAE,GAAG,KAAK;EACvJ,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE;GAC3C,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,KAAK;GAC5C,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,KAAK;GAC5C,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,KAAK;GAC5C,EAAE,GAAG,KAAK;EACX,WAAW,OAAO,MAAM,EAAE,OAAO,SAAS,EAAE,UAAU,GAAG,KAAK;EAC9D,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -141,16 +144,15 @@ import { _jsxSplit } from "@qwik.dev/core";
 import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+//
 const q_Foo_component_1_DvU6FitWglY = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
 //
-import { $, component$, h, Fragment } from "@qwik.dev/core";
-//
 export const Lightweight = (props) => {
-	return _jsxSorted("div", null, null, _jsxSorted(_Fragment, null, null, [_jsxSorted("div", null, null, null, 3, null), _jsxSplit("button", { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, null)], 1, null), 3, "u6_0");
+	return /*#__PURE__*/ _jsxSorted("div", null, null, /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted("div", null, null, null, 3, null), /*#__PURE__*/ _jsxSplit("button", { ..._getVarProps(props) }, { ..._getConstProps(props) }, null, 0, null)], 1, null), 3, "u6_0");
 };
 export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
 
-Some("{\"version\":3,\"names\":[\"t$, h, Fr\",\"t { $, component$, h, Fragmen\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, h, Fragment } from '@qwik.dev/core';\n\nexport const Lightweight = (props) => {\n\treturn (\n\t\t<div>\n\t\t\t<>\n\t\t\t\t<div/>\n\t\t\t\t<button {...props}/>\n\t\t\t</>\n\t\t</div>\n\t)\n};\n\nexport const Foo = component$((props) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t<>\n\t\t\t\t\t<div class=\\"class\\"/>\n\t\t\t\t\t<div class=\\"class\\"></div>\n\t\t\t\t\t<div class=\\"class\\">12</div>\n\t\t\t\t</>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t<Lightweight {...props}/>\n\t\t\t\t</div>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t<div/>\n\t\t\t\t\t<div/>\n\t\t\t\t\t<div/>\n\t\t\t\t</div>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t{children}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,qBACoBA,iBAAiB;AADrC,6BAC4B;AAD5B,oBACmB;AADnB,MACKC,gCAA8C,0BACnD,OACM,2CACG,8BAIL;AAPJ,SAAS,GAAG,YAAY,GAAG,gBAAgB;AAE3C,OAAO,MAAM,eAAe,UAAU;AACrC,6JAIe;;AAMhB,OAAO,MAAM,MAAMC,4CAuBhB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t$, h, Fr\",\"t { $, component$, h, Fragmen\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, h, Fragment } from '@qwik.dev/core';\n\nexport const Lightweight = (props) => {\n\treturn (\n\t\t<div>\n\t\t\t<>\n\t\t\t\t<div/>\n\t\t\t\t<button {...props}/>\n\t\t\t</>\n\t\t</div>\n\t)\n};\n\nexport const Foo = component$((props) => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t<>\n\t\t\t\t\t<div class=\\"class\\"/>\n\t\t\t\t\t<div class=\\"class\\"></div>\n\t\t\t\t\t<div class=\\"class\\">12</div>\n\t\t\t\t</>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t<Lightweight {...props}/>\n\t\t\t\t</div>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t<div/>\n\t\t\t\t\t<div/>\n\t\t\t\t\t<div/>\n\t\t\t\t</div>\n\t\t\t\t<div class=\\"class\\">\n\t\t\t\t\t{children}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,6BAC4B;AAD5B,+BAC8B;AAD9B,0BACyB;AADzB,qBACoBA,iBAAiB;AADrC,6BAC4B;AAD5B,oBACmB;AADnB,MACKC,gCAA8C,0BACnD,OACM,2CACG,8BAIL;AALJ,OAAO,MAAM,eAAe,UAAU;AACrC,6JAIe;;AAMhB,OAAO,MAAM,MAAMC,4CAuBhB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

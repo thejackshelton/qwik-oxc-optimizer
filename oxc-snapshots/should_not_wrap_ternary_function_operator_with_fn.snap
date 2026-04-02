@@ -27,12 +27,13 @@ expression: output
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = () => {
 	const toggle = useSignal(true);
 	const t = (key: string) => key;
-	return <button></button>;
+	return /*#__PURE__*/ _jsxSorted("button", { title: toggle.value !== "" ? t("app.message.exists@@there is a message for you") : t("app.message.not_exists@@click to get a message!") }, { type: "button" }, null, 3, "u6_0");
 };
 
 /*
@@ -60,13 +61,12 @@ export const test_component_LUXeXe0DQrg = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
-import { component$, useSignal } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\n\t\texport default component$(() => {\n\t\tconst toggle = useSignal(true);\n\t\tconst t = (key: string) => key;\n\t\treturn (\n\t\t\t<button\n\t\t\t\ttype=\\"button\\"\n\t\t\t\ttitle={\n\t\t\t\ttoggle.value !== ''\n\t\t\t\t\t? t('app.message.exists@@there is a message for you')\n\t\t\t\t\t: t('app.message.not_exists@@click to get a message!')\n\t\t\t\t}\n\t\t\t></button>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAGlD,OAAO,0CACM,6BACL;AALN,SAAS,YAAY,iBAAiB;AAGtC,eAAeC,0CAab\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\n\t\texport default component$(() => {\n\t\tconst toggle = useSignal(true);\n\t\tconst t = (key: string) => key;\n\t\treturn (\n\t\t\t<button\n\t\t\t\ttype=\\"button\\"\n\t\t\t\ttitle={\n\t\t\t\ttoggle.value !== ''\n\t\t\t\t\t? t('app.message.exists@@there is a message for you')\n\t\t\t\t\t: t('app.message.not_exists@@click to get a message!')\n\t\t\t\t}\n\t\t\t></button>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAGlD,OAAO,0CACM,6BACL;AAFN,eAAeC,0CAab\"}")
 == DIAGNOSTICS ==
 
 []

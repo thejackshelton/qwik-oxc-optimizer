@@ -62,13 +62,20 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [item]);
+const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const loop: string[] = ["abcd", "xyz"];
-	return <div>
-      {loop.map((item, index) => {
-		return <div>{item}</div>;
-	})}
-    </div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, loop.map((item, index) => {
+		return /*#__PURE__*/ _jsxSorted("div", { "q:ps": [index, item] }, {
+			"q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([item]),
+			"q-e:hover": q_test_component_div_div_q_e_hover_2iHUE4xtgo8.w([index])
+		}, item, 7, null);
+	}), 3, "u6_0");
 };
 
 /*
@@ -137,13 +144,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [item]);
-const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexpor\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iDAEiB,0BAAU,OAC3B,4DAGH,gDACa,MAAM,CAAC;AARtB,MACKA,iDAEiB,0BAAU,OAC3B,4DAGH,gDACa,OAAO,CAAC;AARvB,MACKC,+BAED,0BAAU,OAAO,0CACQ,6BAExB;AAHL,eAAeC,0CASb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item)} onHover$={() => console.log(index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAED,0BAAU,OAAO,0CACQ,6BAExB;AAHL,eAAeC,0CASb\"}")
 == DIAGNOSTICS ==
 
 []

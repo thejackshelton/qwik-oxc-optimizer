@@ -48,19 +48,21 @@ export const Child = component$(() => {
 
 ============================= test.tsx_Parent_component_0TaiDayHrlo.js ==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
 //
+const q_Parent_component_div_q_e_click_zM9okM0TYrA = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_q_e_click_zM9okM0TYrA"), "Parent_component_div_q_e_click_zM9okM0TYrA");
 const q_Parent_component_useTask_gDH1EtUWqBU = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_useTask_gDH1EtUWqBU"), "Parent_component_useTask_gDH1EtUWqBU", [state]);
 //
 export const Parent_component_0TaiDayHrlo = () => {
 	const state = useStore({ text: "" });
 	useTaskQrl(q_Parent_component_useTask_gDH1EtUWqBU.w([state]));
-	return <div>
-			{state.text}
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q_Parent_component_div_q_e_click_zM9okM0TYrA }, _wrapProp(state, "text"), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_0TaiDayHrlo\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_Parent_component_div_q_e_click_zM9okM0TYrA = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Parent_component_div_q_e_click_zM9okM0TYrA\\"), \\"Parent_component_div_q_e_click_zM9okM0TYrA\\");\nconst q_Parent_component_useTask_gDH1EtUWqBU = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Parent_component_useTask_gDH1EtUWqBU\\"), \\"Parent_component_useTask_gDH1EtUWqBU\\", [state]);\nexport const Parent_component_0TaiDayHrlo = () => {\n\tconst state = useStore({ text: \\"\\" });\n\tuseTaskQrl(q_Parent_component_useTask_gDH1EtUWqBU.w([state]));\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Parent_component_div_q_e_click_zM9okM0TYrA }, _wrapProp(state, \\"text\\"), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,SAAS,gBAAgB;AACzB,MAAM,+CAA6D,0BAAU,OAAO,0DAA0D,6CAA6C;AAC3L,MAAM,yCAAuD,0BAAU,OAAO,oDAAoD,wCAAwC,CAAC,MAAM,CAAC;AAClL,OAAO,MAAM,qCAAqC;CACjD,MAAM,QAAQ,SAAS,EAAE,MAAM,IAAI,CAAC;AACpC,YAAW,uCAAuC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC7D,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,8CAA8C,EAAE,UAAU,OAAO,OAAO,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -84,19 +86,21 @@ export const Parent_component_0TaiDayHrlo = () => {
 
 ============================= test.tsx_Child_component_9GyF01GDKqw.js ==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
 //
+const q_Child_component_div_q_e_click_cROa4sult1s = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_div_q_e_click_cROa4sult1s"), "Child_component_div_q_e_click_cROa4sult1s");
 const q_Child_component_useTask_Oh4n7ZeqJkU = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_useTask_Oh4n7ZeqJkU"), "Child_component_useTask_Oh4n7ZeqJkU", [state]);
 //
 export const Child_component_9GyF01GDKqw = () => {
 	const state = useStore({ text: "" });
 	useTaskQrl(q_Child_component_useTask_Oh4n7ZeqJkU.w([state]));
-	return <div>
-			{state.text}
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q_Child_component_div_q_e_click_cROa4sult1s }, _wrapProp(state, "text"), 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_9GyF01GDKqw\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_Child_component_div_q_e_click_cROa4sult1s = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Child_component_div_q_e_click_cROa4sult1s\\"), \\"Child_component_div_q_e_click_cROa4sult1s\\");\nconst q_Child_component_useTask_Oh4n7ZeqJkU = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Child_component_useTask_Oh4n7ZeqJkU\\"), \\"Child_component_useTask_Oh4n7ZeqJkU\\", [state]);\nexport const Child_component_9GyF01GDKqw = () => {\n\tconst state = useStore({ text: \\"\\" });\n\tuseTaskQrl(q_Child_component_useTask_Oh4n7ZeqJkU.w([state]));\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Child_component_div_q_e_click_cROa4sult1s }, _wrapProp(state, \\"text\\"), 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,SAAS,gBAAgB;AACzB,MAAM,8CAA4D,0BAAU,OAAO,yDAAyD,4CAA4C;AACxL,MAAM,wCAAsD,0BAAU,OAAO,mDAAmD,uCAAuC,CAAC,MAAM,CAAC;AAC/K,OAAO,MAAM,oCAAoC;CAChD,MAAM,QAAQ,SAAS,EAAE,MAAM,IAAI,CAAC;AACpC,YAAW,sCAAsC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC5D,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,6CAA6C,EAAE,UAAU,OAAO,OAAO,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -246,21 +250,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_q
 ============================= test.js ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { useTaskQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Parent_component_div_q_e_click_zM9okM0TYrA = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_q_e_click_zM9okM0TYrA"), "Parent_component_div_q_e_click_zM9okM0TYrA");
-const q_Parent_component_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
-const q_Child_component_div_q_e_click_cROa4sult1s = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_div_q_e_click_cROa4sult1s"), "Child_component_div_q_e_click_cROa4sult1s");
-const q_Child_component_9GyF01GDKqw = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
 //
-import { component$, useTask$, useStore, useStyles$ } from "@qwik.dev/core";
-import mongo from "mongodb";
-import redis from "redis";
+const q_Parent_component_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
+const q_Child_component_9GyF01GDKqw = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
 //
 export const Parent = /*#__PURE__*/ componentQrl(q_Parent_component_0TaiDayHrlo);
 export const Child = /*#__PURE__*/ componentQrl(q_Child_component_9GyF01GDKqw);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useTask$, useStore, useStyle\",\"t { component$, useTask$, useS\",\"t { component$, useTask$, useStore, useStyl\",\"t { component$, useTask$, use\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text);\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('parent')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\nexport const Child = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('child')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,+CAA6D,0BAAU,OACtE,0DAGC,6CACI;AANX,MACKC,iCAA+C,0BAAU,OAAO,4CAE9D,+BAEG;AALV,MACKC,8CAA4D,0BAAU,OACtE,yDAGA,4CACG;AANR,MACKC,gCAA8C,0BAAU,OAAO,2CAE/D,8BAEE;AAJP,SAAS,YAAY,UAAU,UAAU,kBAAkB;AAC3D,OAAO,WAAW;AAClB,OAAO,WAAW;AAElB,OAAO,MAAM,SAASC,4CAgBpB;AAEF,OAAO,MAAM,QAAQA,2CAenB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useTask$, useS\",\"t { component$, useTask$, use\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useTask$, useStore, useStyles$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text);\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('parent')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\nexport const Child = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseTask$(async () => {\n\t\tstate.text = await mongo.users();\n\t});\n\n\treturn (\n\t\t<div onClick$={() => console.log('child')}>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCAA+C,0BAAU,OAAO,4CAE9D,+BAEG;AALV,MACKC,gCAA8C,0BAAU,OAAO,2CAE/D,8BAEE;AAAP,OAAO,MAAM,SAASC,4CAgBpB;AAEF,OAAO,MAAM,QAAQA,2CAenB\"}")
 == DIAGNOSTICS ==
 
 []

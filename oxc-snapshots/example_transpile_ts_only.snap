@@ -20,15 +20,13 @@ export const App = component$((props: Stuff) => {
 ============================= test.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { qrl } from "@qwik.dev/core";
+//
 const q_App_component_Cmp_p_q_e_click_Yl4ybrJWrt4 = /*#__PURE__*/ _noopQrl("App_component_Cmp_p_q_e_click_Yl4ybrJWrt4");
 const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
 //
-import { component$, useStore } from "@qwik.dev/core";
-//
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } from '@qwik.dev/\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8CAEI,yBAAS,4CAEhB;AALF,MACKC,8BAA4C,yBAE/C,4BAA4B;AAF9B,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } from '@qwik.dev/\",\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<Cmp>\n\t\t\t<p class=\\"stuff\\" onClick$={() => console.log('warn')}>Hello Qwik</p>\n\t\t</Cmp>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,8CAEI,yBAAS,4CAEhB;AALF,MACKC,8BAA4C,yBAE/C,4BAA4B;AAA9B,OAAO,MAAM,MAAMC,yCAMjB\"}")
 == DIAGNOSTICS ==
 
 []

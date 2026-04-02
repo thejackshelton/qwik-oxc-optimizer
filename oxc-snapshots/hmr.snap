@@ -18,10 +18,13 @@ expression: output
 
 ============================= test.tsx_TestGetsHmr_component_jBUoou0sxX4.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const TestGetsHmr_component_jBUoou0sxX4 = () => {
-	return <div>Test</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, "Test", 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestGetsHmr_component_jBUoou0sxX4\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const TestGetsHmr_component_jBUoou0sxX4 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,0CAA0C;AACtD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -45,10 +48,13 @@ export const TestGetsHmr_component_jBUoou0sxX4 = () => {
 
 ============================= test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+//
 export const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {
-	return <div>Test</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, "Test", 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_TestNoHmr_componentQrl_Uqk3jGTNmYs\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const TestNoHmr_componentQrl_Uqk3jGTNmYs = () => {\n\treturn _jsxSorted(\\"div\\", null, null, \\"Test\\", 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,2CAA2C;AACvD,QAAO,WAAW,OAAO,MAAM,MAAM,QAAQ,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

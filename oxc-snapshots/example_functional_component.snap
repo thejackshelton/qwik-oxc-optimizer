@@ -19,14 +19,16 @@ const Header = component$(() => {
 
 ============================= test.tsx_Header_component_J4uyIhaBNR4.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
 //
 export const Header_component_J4uyIhaBNR4 = () => {
 	const thing = useStore();
 	const { foo, bar } = foo();
-	return <div>{thing}</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, thing, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_J4uyIhaBNR4\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nexport const Header_component_J4uyIhaBNR4 = () => {\n\tconst thing = useStore();\n\tconst { foo, bar } = foo();\n\treturn _jsxSorted(\\"div\\", null, null, thing, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,gBAAgB;AACzB,OAAO,MAAM,qCAAqC;CACjD,MAAM,QAAQ,UAAU;CACxB,MAAM,EAAE,KAAK,QAAQ,KAAK;AAC1B,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -52,13 +54,12 @@ export const Header_component_J4uyIhaBNR4 = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_Header_component_J4uyIhaBNR4 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
 //
-import { $, component$, useStore } from "@qwik.dev/core";
+const q_Header_component_J4uyIhaBNR4 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
 //
 const Header = /*#__PURE__*/ componentQrl(q_Header_component_J4uyIhaBNR4);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore } from '@qwik.dev/core';\nconst Header = component$(() => {\n\tconst thing = useStore();\n\tconst {foo, bar} = foo();\n\n\treturn (\n\t\t<div>{thing}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCAA+C,0BAChD,OAAO,4CACU,+BACI;AAHzB,SAAS,GAAG,YAAY,gBAAgB;AACxC,MAAM,SAASC,4CAOb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore } from '@qwik.dev/core';\nconst Header = component$(() => {\n\tconst thing = useStore();\n\tconst {foo, bar} = foo();\n\n\treturn (\n\t\t<div>{thing}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCAA+C,0BAChD,OAAO,4CACU,+BACI;AAFzB,MAAM,SAASC,4CAOb\"}")
 == DIAGNOSTICS ==
 
 []

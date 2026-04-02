@@ -21,14 +21,22 @@ export const Foo = component$(() => {
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_s_VSoqbTjzr4w = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w"), "s_VSoqbTjzr4w");
+const q_s_n19LdlqL6To = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To"), "s_n19LdlqL6To");
+const q_s_vKrX4PmH2aM = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM"), "s_vKrX4PmH2aM");
+//
 export const s_HTDRsvUbLiE = () => {
-	return <div>
-			<div />
-			<div />
-			<div />
-		</div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, [
+		/*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q_s_vKrX4PmH2aM }, null, 3, null),
+		/*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q_s_VSoqbTjzr4w }, null, 3, null),
+		/*#__PURE__*/ _jsxSorted("div", null, { "q-e:click": q_s_n19LdlqL6To }, null, 3, null)
+	], 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_s_VSoqbTjzr4w = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w\\"), \\"s_VSoqbTjzr4w\\");\nconst q_s_n19LdlqL6To = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To\\"), \\"s_n19LdlqL6To\\");\nconst q_s_vKrX4PmH2aM = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM\\"), \\"s_vKrX4PmH2aM\\");\nexport const s_HTDRsvUbLiE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_s_vKrX4PmH2aM }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_s_VSoqbTjzr4w }, null, 3, null),\n\t\t_jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_s_n19LdlqL6To }, null, 3, null)\n\t], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,kBAAgC,0BAAU,OAAO,6DAA6D,gBAAgB;AACpI,MAAM,kBAAgC,0BAAU,OAAO,6DAA6D,gBAAgB;AACpI,MAAM,kBAAgC,0BAAU,OAAO,2DAA2D,gBAAgB;AAClI,OAAO,MAAM,sBAAsB;AAClC,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,WAAW,OAAO,MAAM,EAAE,aAAa,iBAAiB,EAAE,MAAM,GAAG,KAAK;EACxE,WAAW,OAAO,MAAM,EAAE,aAAa,iBAAiB,EAAE,MAAM,GAAG,KAAK;EACxE,WAAW,OAAO,MAAM,EAAE,aAAa,iBAAiB,EAAE,MAAM,GAAG,KAAK;EACxE,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -136,14 +144,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_div_
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_s_vKrX4PmH2aM = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM"), "s_vKrX4PmH2aM");
-const q_s_VSoqbTjzr4w = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_1_VSoqbTjzr4w"), "s_VSoqbTjzr4w");
-const q_s_n19LdlqL6To = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_2_n19LdlqL6To"), "s_n19LdlqL6To");
 const q_s_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "s_HTDRsvUbLiE");
 //
 export const Foo = /*#__PURE__*/ componentQrl(q_s_HTDRsvUbLiE);
 
-Some("{\"version\":3,\"names\":[\"t { component$ \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => console.log('first')}/>\n\t\t\t<div onClick$={() => console.log('second')}/>\n\t\t\t<div onClick$={() => console.log('third')}/>\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kBAAgC,0BAEpC,OAAO,2DAGG,gBAAgB;AAN3B,MACKA,kBAAgC,0BAEpC,OAAO,6DAGK,gBAAgB;AAN7B,MACKA,kBAAgC,0BAEpC,OAAO,6DAGK,gBAAgB;AAN7B,MACKA,kBAAgC,0BAEpC,OAAO,yCAEP,gBACQ;AAHT,OAAO,MAAM,MAAMC,6BAQjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<div onClick$={() => console.log('first')}/>\n\t\t\t<div onClick$={() => console.log('second')}/>\n\t\t\t<div onClick$={() => console.log('third')}/>\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kBAAgC,0BAEpC,OAAO,yCAEP,gBACQ;AAHT,OAAO,MAAM,MAAMC,6BAQjB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -49,10 +49,26 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_c
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSplit } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_p_q_e_const_e6TYnIxnPLY = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY"), "test_component_p_q_e_const_e6TYnIxnPLY");
+const q_test_component_p_q_e_hi_ttOKZbY46GA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA"), "test_component_p_q_e_hi_ttOKZbY46GA");
+//
 export const test_component_LUXeXe0DQrg = (props) => {
-	return <p />;
+	return /*#__PURE__*/ _jsxSplit("p", {
+		"q-e:hi": q_test_component_p_q_e_hi_ttOKZbY46GA,
+		...props.foo,
+		"q-e:hello": props.helloHandler$,
+		...props.rest
+	}, {
+		"q-e:var": props.onVarHandler$,
+		"q-e:const": q_test_component_p_q_e_const_e6TYnIxnPLY,
+		asd: "1"
+	}, null, 0, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_test_component_p_q_e_const_e6TYnIxnPLY = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY\\"), \\"test_component_p_q_e_const_e6TYnIxnPLY\\");\nconst q_test_component_p_q_e_hi_ttOKZbY46GA = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA\\"), \\"test_component_p_q_e_hi_ttOKZbY46GA\\");\nexport const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSplit(\\"p\\", {\n\t\t\\"q-e:hi\\": q_test_component_p_q_e_hi_ttOKZbY46GA,\n\t\t...props.foo,\n\t\t\\"q-e:hello\\": props.helloHandler$,\n\t\t...props.rest\n\t}, {\n\t\t\\"q-e:var\\": props.onVarHandler$,\n\t\t\\"q-e:const\\": q_test_component_p_q_e_const_e6TYnIxnPLY,\n\t\tasd: \\"1\\"\n\t}, null, 0, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,MAAM,2CAAyD,0BAAU,OAAO,sDAAsD,yCAAyC;AAC/K,MAAM,wCAAsD,0BAAU,OAAO,mDAAmD,sCAAsC;AACtK,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,UAAU,KAAK;EACrB,UAAU;EACV,GAAG,MAAM;EACT,aAAa,MAAM;EACnB,GAAG,MAAM;EACT,EAAE;EACF,WAAW,MAAM;EACjB,aAAa;EACb,KAAK;EACL,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -109,13 +125,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_h
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_test_component_p_q_e_hi_ttOKZbY46GA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA"), "test_component_p_q_e_hi_ttOKZbY46GA");
-const q_test_component_p_q_e_const_e6TYnIxnPLY = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY"), "test_component_p_q_e_const_e6TYnIxnPLY");
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@builder.io/qw\",\"t { component$ } from '@builder.io/qwik'\",\"t { component$ } from '@buil\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,wCACO,0BAAU,OAAO,mDAGxB,sCACoB;AANzB,MACKC,2CACU,0BAAU,OAAO,sDAGrB,yCAEX;AAPA,MACKC,+BACF,0BAAU,OAAO,0CAEX,6BACO;AAHhB,eAAeC,0CAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@buil\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BACF,0BAAU,OAAO,0CAEX,6BACO;AAHhB,eAAeC,0CAUb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -20,9 +20,15 @@ export const App = Component((props) => {
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+import { _jsxSorted } from "@qwik.dev/core";
+import { _wrapProp } from "@qwik.dev/core";
 //
-export const App_component_ckEPmXZlub0 = () => <div>{state.thing}</div>;
+export const App_component_ckEPmXZlub0 = () => {
+	const state = _captures[0];
+	return /*#__PURE__*/ _jsxSorted("div", null, null, _wrapProp(state, "thing"), 3, "u6_0");
+};
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\nconst state = _captures[0];\nreturn _jsxSorted(\\"div\\", null, null, _wrapProp(state, \\"thing\\"), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAC/C,MAAM,QAAQ,UAAU;AACxB,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,OAAO,QAAQ,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -89,13 +95,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
 //
-import { component$ as Component, $ as onRender, useStore } from "@qwik.dev/core";
+const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 
-Some("{\"version\":3,\"names\":[\"t { component$ as Component, \",\"Component\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore } from '@qwik.dev/core';\n\nexport const App = Component((props) => {\n\tconst state = useStore({thing: 0});\n\n\treturn onRender(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAAU,OAAO,2CAEzC,8BACZ;AAHf,SAAS,cAAc,WAAW,KAAK,UAAU,gBAAgB;AAEjE,OAAO,MAAM,MAAMC,2CAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ as Component, \",\"Component\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore } from '@qwik.dev/core';\n\nexport const App = Component((props) => {\n\tconst state = useStore({thing: 0});\n\n\treturn onRender(() => (\n\t\t<div>{state.thing}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAAU,OAAO,2CAEzC,8BACZ;AADf,OAAO,MAAM,MAAMC,2CAMjB\"}")
 == DIAGNOSTICS ==
 
 []

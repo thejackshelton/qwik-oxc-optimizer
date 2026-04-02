@@ -110,17 +110,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyle
 ============================= test.js ==
 
 import { componentQrl } from "@qwik.dev/core";
-import { useStylesQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
-import css1 from "./global.css";
-import css2 from "./style.css";
-import css3 from "./style.css";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStyles$ \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\nimport css3 from './style.css';\n\nexport const App = component$(() => {\n\tuseStyles$(`${css1}${css2}`);\n\tuseStyles$(css3);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAC/C,OAAO,yCACQ,4BACJ;AAFb,OAAO,UAAU;AACjB,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,yCAGjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStyles$ \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\nimport css3 from './style.css';\n\nexport const App = component$(() => {\n\tuseStyles$(`${css1}${css2}`);\n\tuseStyles$(css3);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAC/C,OAAO,yCACQ,4BACJ;AAEb,OAAO,MAAM,MAAMC,yCAGjB\"}")
 == DIAGNOSTICS ==
 
 []

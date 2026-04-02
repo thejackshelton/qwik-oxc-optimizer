@@ -23,10 +23,7 @@ export const Tree = component$((props) => {
 
 ============================= ./node_modules/qwik-tree/index.qwik.jsx ==
 
-import { _getVarProps } from "@qwik.dev/core";
-import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
-import { qrlDEV } from "@qwik.dev/core";
 //
 const q_Tree_component_XMEiO6Rrd3Y = /*#__PURE__*/ _noopQrlDEV("Tree_component_XMEiO6Rrd3Y", [], {
 //
@@ -40,7 +37,7 @@ const q_Tree_component_XMEiO6Rrd3Y = /*#__PURE__*/ _noopQrlDEV("Tree_component_X
 // or should use two-phase emission to avoid forward reference
 export const Tree = /*#__PURE__*/ componentQrl(q_Tree_component_XMEiO6Rrd3Y);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"./node_modules/qwik-tree/index.qwik.jsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Root-level self-referential component\n// The QRL should NOT be hoisted before the component function is defined\n// or should use two-phase emission to avoid forward reference\nexport const Tree = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t{props.label}\n\t\t\t{props.children && props.children.map((child) => <Tree {...child} />)}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,+BAED,4BAAY,8BACX,EAAE,EAAE;OAAS;KAAuB;KAAQ;cAAiB;CAC5C,CAAC;;;;AACvB,OAAO,MAAM,OAAOC,0CAOlB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"./node_modules/qwik-tree/index.qwik.jsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Root-level self-referential component\n// The QRL should NOT be hoisted before the component function is defined\n// or should use two-phase emission to avoid forward reference\nexport const Tree = component$((props) => {\n\treturn (\n\t\t<div>\n\t\t\t{props.label}\n\t\t\t{props.children && props.children.map((child) => <Tree {...child} />)}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,MACKA,+BAED,4BAAY,8BACX,EAAE,EAAE;OAAS;KAAuB;KAAQ;cAAiB;CAC5C,CAAC;;;;AACvB,OAAO,MAAM,OAAOC,0CAOlB\"}")
 == DIAGNOSTICS ==
 
 []

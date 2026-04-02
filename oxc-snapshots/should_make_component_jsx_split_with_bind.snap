@@ -21,16 +21,16 @@ export default component$(() => {
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
+import { _jsxSorted } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = () => {
 	const Cmp = Math.random() >= .5 ? "button" : "input";
 	const sig = useSignal(0);
-	return <div>
-      <Cmp />
-    </div>;
+	return /*#__PURE__*/ _jsxSorted("div", null, null, /*#__PURE__*/ _jsxSorted(Cmp, { "bind:value": sig }, null, null, 3, "u6_1"), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst Cmp = Math.random() >= .5 ? \\"button\\" : \\"input\\";\n\tconst sig = useSignal(0);\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Cmp, { \\"bind:value\\": sig }, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mCAAmC;CAC/C,MAAM,MAAM,KAAK,QAAQ,IAAI,KAAK,WAAW;CAC7C,MAAM,MAAM,UAAU,EAAE;AACxB,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,KAAK,EAAE,cAAc,KAAK,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -56,13 +56,12 @@ export const test_component_LUXeXe0DQrg = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
-const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
-import { component$, useSignal } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'\n  const sig = useSignal(0)\n  return (\n    <div>\n      <Cmp bind:value={sig} />\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAE/C,OAAO,0CACQ,6BAA6B;AAH/C,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const Cmp = Math.random() >= 0.5 ? 'button' : 'input'\n  const sig = useSignal(0)\n  return (\n    <div>\n      <Cmp bind:value={sig} />\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAE/C,OAAO,0CACQ,6BAA6B;AAD/C,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

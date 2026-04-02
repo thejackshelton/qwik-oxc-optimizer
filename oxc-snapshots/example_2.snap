@@ -18,10 +18,9 @@ export const Header = component$(() => {
 ============================= test.tsx_Header_component_div_onClick_i7ekvWH3674.tsx (ENTRY POINT)==
 
 export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(ctx);
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_onClick_i7ekvWH3674\"],\"sourcesContent\":[\"export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(ctx);;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_onClick_i7ekvWH3674\"],\"sourcesContent\":[\"export const Header_component_div_onClick_i7ekvWH3674 = (ctx) => console.log(ctx);\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C,QAAQ,QAAQ,IAAI,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -51,7 +50,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_div_o
 export const Header_component_J4uyIhaBNR4 = () => {
 	console.log("mount");
 	return <div />;
-};;
+};
 
 /*
 {
@@ -76,13 +75,15 @@ export const Header_component_J4uyIhaBNR4 = () => {
 
 ============================= test.tsx ==
 
-const q_Header_component_div_onClick_i7ekvWH3674 = qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
-const q_Header_component_J4uyIhaBNR4 = qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
-import { $, component$ } from "@qwik.dev/core";
-export const Header = componentQrl(q_Header_component_J4uyIhaBNR4);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_component_div_onClick_i7ekvWH3674 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_div_onClick_i7ekvWH3674"), "Header_component_div_onClick_i7ekvWH3674");
+const q_Header_component_J4uyIhaBNR4 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_J4uyIhaBNR4"), "Header_component_J4uyIhaBNR4");
+//
+export const Header = /*#__PURE__*/ componentQrl(q_Header_component_J4uyIhaBNR4);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.dev/core';\",\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,uDACO,OAAO,wDAGlB,2CAA2C;AAL5C,MACKC,2CACL,OAAO,4CACG,+BAEF;AAJR,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,SAASC,4CAKpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.dev/core';\",\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const Header = component$(() => {\n\tconsole.log(\\"mount\\");\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACW,0BAAU,OAAO,wDAGlB;AALf,MACKC,iCACD,0BAAU,OAAO,4CAEpB,+BACqB;AAHtB,OAAO,MAAM,SAASC,4CAKpB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -25,15 +25,14 @@ export const AtomStatus = component$(({ctx,atom})=>{
 ============================= test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0.jsx ==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const AtomStatus_component_span_q_e_click_0yqKAycyBF0 = (ev) => {
 	const atom = _captures[0];
 	const ctx = _captures[1];
 	return atomStatusClick(ctx, ev, [atom]);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const AtomStatus_component_span_q_e_click_0yqKAycyBF0 = (ev) => {\nconst atom = _captures[0];\nconst ctx = _captures[1];\nreturn atomStatusClick(ctx, ev, [atom]);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mDAAmD,OAAO;CACvE,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;AACtB,QAAO,gBAAgB,KAAK,IAAI,CAAC,KAAK,CAAC;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const AtomStatus_component_span_q_e_click_0yqKAycyBF0 = (ev) => {\nconst atom = _captures[0];\nconst ctx = _captures[1];\nreturn atomStatusClick(ctx, ev, [atom]);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mDAAmD,OAAO;CACvE,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;AACtB,QAAO,gBAAgB,KAAK,IAAI,CAAC,KAAK,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -69,18 +68,20 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_AtomStatus_component_s
 
 import { _wrapProp } from "@qwik.dev/core";
 import { _fnSignal } from "@qwik.dev/core";
-const q_AtomStatus_component_span_q_e_click_0yqKAycyBF0 = qrl(() => import("./test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0"), "AtomStatus_component_span_q_e_click_0yqKAycyBF0", [atom, ctx]);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_AtomStatus_component_span_q_e_click_0yqKAycyBF0 = /*#__PURE__*/ qrl(() => import("./test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0"), "AtomStatus_component_span_q_e_click_0yqKAycyBF0", [atom, ctx]);
 const _hf0 = (p0, p1, p2) => [
 	"p0",
 	p2,
 	p1.store[p0.ID] ? "selected" : null
 ];
-const q_AtomStatus_component_hdwpoUtydSA = _noopQrl("AtomStatus_component_hdwpoUtydSA");
-import { component$ } from "@qwik.dev/core";
-export const AtomStatus = componentQrl(q_AtomStatus_component_hdwpoUtydSA);
+const q_AtomStatus_component_hdwpoUtydSA = /*#__PURE__*/ _noopQrl("AtomStatus_component_hdwpoUtydSA");
+//
+export const AtomStatus = /*#__PURE__*/ componentQrl(q_AtomStatus_component_hdwpoUtydSA);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,MACKA,8DAEgB,OAAO,+DAEjB,mDAEU,WAAW,CAAC;AAPjC,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,8CAEA,mCAAmC;AAFxC,SAAS,kBAAkB;AAE3B,OAAO,MAAM,aAAaC,gDAWxB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,oDAEoB,0BAAU,OAAO,+DAGnC,mDAC4B,WAAW,CAAC;AAP/C,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,qCAEK,yBAAS,mCAClB;AADD,OAAO,MAAM,aAAaC,gDAWxB\"}")
 == DIAGNOSTICS ==
 
 []

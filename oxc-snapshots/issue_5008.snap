@@ -27,6 +27,7 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useStore } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const store = useStore([{ value: 0 }]);
 	return <>
@@ -36,7 +37,7 @@ export const test_component_LUXeXe0DQrg = () => {
 	})}
 			{store.map((v, idx) => <div>Arrow: {v.value}</div>)}
 			</>;
-};;
+};
 
 /*
 {
@@ -61,12 +62,15 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.js ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useStore } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\tconst store = useStore([{ value: 0 }]);\n\t\treturn (\n\t\t\t<>\n\t\t\t<button onClick$={() => store[0].value++}>+1</button>\n\t\t\t{store.map(function (v, idx) {\n\t\t\t\treturn <div key={\\"fn_\\" + idx}>Function: {v.value}</div>;\n\t\t\t})}\n\t\t\t{store.map((v, idx) => (\n\t\t\t\t<div key={\\"arrow_\\" + idx}>Arrow: {v.value}</div>\n\t\t\t))}\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGpD,6BAA6B;AAH5B,SAAS,YAAY,gBAAgB;AAErC,eAAeC,0CAab\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useStore }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useStore } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\tconst store = useStore([{ value: 0 }]);\n\t\treturn (\n\t\t\t<>\n\t\t\t<button onClick$={() => store[0].value++}>+1</button>\n\t\t\t{store.map(function (v, idx) {\n\t\t\t\treturn <div key={\\"fn_\\" + idx}>Function: {v.value}</div>;\n\t\t\t})}\n\t\t\t{store.map((v, idx) => (\n\t\t\t\t<div key={\\"arrow_\\" + idx}>Arrow: {v.value}</div>\n\t\t\t))}\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAEhD,OAAO,0CACM,6BACb;AAJA,SAAS,YAAY,gBAAgB;AAErC,eAAeC,0CAab\"}")
 == DIAGNOSTICS ==
 
 []

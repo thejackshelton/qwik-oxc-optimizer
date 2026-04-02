@@ -12,7 +12,7 @@ export const Greeter = component$(() => <div/>)
 
 ============================= components/apps/apps.tsx_Greeter_component_0jjOvx068y0.ts (ENTRY POINT)==
 
-export const Greeter_component_0jjOvx068y0 = () => <div />;;
+export const Greeter_component_0jjOvx068y0 = () => <div />;
 
 /*
 {
@@ -37,12 +37,14 @@ export const Greeter_component_0jjOvx068y0 = () => <div />;;
 
 ============================= components/apps/apps.ts ==
 
-const q_Greeter_component_0jjOvx068y0 = qrl(() => import("./apps.tsx_Greeter_component_0jjOvx068y0"), "Greeter_component_0jjOvx068y0");
-import { component$ } from "@qwik.dev/core";
-export const Greeter = componentQrl(q_Greeter_component_0jjOvx068y0);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Greeter_component_0jjOvx068y0 = /*#__PURE__*/ qrl(() => import("./apps.tsx_Greeter_component_0jjOvx068y0"), "Greeter_component_0jjOvx068y0");
+//
+export const Greeter = /*#__PURE__*/ componentQrl(q_Greeter_component_0jjOvx068y0);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.de\",\"component$\"],\"sources\":[\"components\\apps\\apps.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport const Greeter = component$(() => <div/>)\n\"],\"mappings\":\"AAAA,MACKA,4CACD,OAAO,6CACH;AAFR,SAAS,kBAAkB;AAC3B,OAAO,MAAM,UAAUC,6CAAwB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.de\",\"component$\"],\"sources\":[\"components\\apps\\apps.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nexport const Greeter = component$(() => <div/>)\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kCACG,0BAAU,OAAO,6CACH;AADtB,OAAO,MAAM,UAAUC,6CAAwB\"}")
 == DIAGNOSTICS ==
 
 []

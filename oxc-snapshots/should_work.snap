@@ -22,10 +22,11 @@ expression: output
 ============================= test.tsx_SecretForm_component_1noi8FsTz7c.js (ENTRY POINT)==
 
 import { useSecretAction } from "./test";
+//
 export const SecretForm_component_1noi8FsTz7c = () => {
 	const action = useSecretAction();
 	return <div>{action.value}</div>;
-};;
+};
 
 /*
 {
@@ -51,10 +52,9 @@ export const SecretForm_component_1noi8FsTz7c = () => {
 ============================= test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q.js (ENTRY POINT)==
 
 export const useSecretAction_globalAction_Cbn41AEUQ0Q = async (payload) => console.log(payload) || "hi";
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q\"],\"sourcesContent\":[\"export const useSecretAction_globalAction_Cbn41AEUQ0Q = async (payload) => console.log(payload) || \\"hi\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C,OAAO,YAAY,QAAQ,IAAI,QAAQ,IAAI;AAAK\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q\"],\"sourcesContent\":[\"export const useSecretAction_globalAction_Cbn41AEUQ0Q = async (payload) => console.log(payload) || \\"hi\\";\"],\"mappings\":\"AAAA,OAAO,MAAM,2CAA2C,OAAO,YAAY,QAAQ,IAAI,QAAQ,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -81,15 +81,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_global
 
 ============================= test.js ==
 
-const q_useSecretAction_globalAction_Cbn41AEUQ0Q = qrl(() => import("./test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q"), "useSecretAction_globalAction_Cbn41AEUQ0Q");
-const q_SecretForm_component_1noi8FsTz7c = qrl(() => import("./test.tsx_SecretForm_component_1noi8FsTz7c"), "SecretForm_component_1noi8FsTz7c");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_useSecretAction_globalAction_Cbn41AEUQ0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q"), "useSecretAction_globalAction_Cbn41AEUQ0Q");
+const q_SecretForm_component_1noi8FsTz7c = /*#__PURE__*/ qrl(() => import("./test.tsx_SecretForm_component_1noi8FsTz7c"), "SecretForm_component_1noi8FsTz7c");
+//
 import { globalAction$ } from "@qwik.dev/router";
+//
 export const useSecretAction = globalActionQrl(q_useSecretAction_globalAction_Cbn41AEUQ0Q);
-export const SecretForm = componentQrl(q_SecretForm_component_1noi8FsTz7c);
+export const SecretForm = /*#__PURE__*/ componentQrl(q_SecretForm_component_1noi8FsTz7c);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,uDACQ,OAAO,wDAEG,2CACL;AALlB,MACKC,+CACA,OAAO,gDAEL,mCAAmC;AAHxC,SAAS,kBAAkB;AAC3B,SAAS,qBAAqB;AAE9B,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,gDAGxB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACY,0BAAU,OAAO,wDAEG,2CACL;AALhC,MACKC,qCACI,0BAAU,OAAO,gDAEL,mCACb;AAHN,SAAS,qBAAqB;AAE9B,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,gDAGxB\"}")
 == DIAGNOSTICS ==
 
 []

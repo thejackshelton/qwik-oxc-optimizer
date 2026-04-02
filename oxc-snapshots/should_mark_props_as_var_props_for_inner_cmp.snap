@@ -49,7 +49,7 @@ export const Image_component_CS20HgBlRYI = (props) => {
 	return <>
       <img src={`${props.src}`} />
     </>;
-};;
+};
 
 /*
 {
@@ -77,8 +77,12 @@ export const Image_component_CS20HgBlRYI = (props) => {
 
 ============================= test.tsx_ModelImg_component_iJe6ICWVnyA.js (ENTRY POINT)==
 
+import { qrl } from "@qwik.dev/core";
 import { Image } from "./test";
 import { Resource } from "@qwik.dev/core";
+//
+const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = /*#__PURE__*/ qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
+//
 export const ModelImg_component_iJe6ICWVnyA = (props) => {
 	const imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));
 	return <>
@@ -86,7 +90,7 @@ export const ModelImg_component_iJe6ICWVnyA = (props) => {
               <Image src={res} />
             </>} />
     </>;
-};;
+};
 
 /*
 {
@@ -116,6 +120,7 @@ export const ModelImg_component_iJe6ICWVnyA = (props) => {
 
 import { _captures } from "@qwik.dev/core";
 import { serverImg } from "~/routes/(authenticated)/layout";
+//
 export const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => {
 	const props = _captures[0];
 	const _ref = {};
@@ -124,10 +129,8 @@ export const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProp
 	track(() => props.store.model);
 	return await serverImg("some.png");
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\nexport const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => { const props = _captures[0];\n\n\tconst _ref = {};\n\t_ref.track = _rawProps._ref.track;\n\tconst { track } = _ref;\n\ttrack(() => props.store.model);\n\treturn await serverImg(\\"some.png\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAE/G,MAAM,OAAO,EAAE;AACf,MAAK,QAAQ,UAAU,KAAK;CAC5B,MAAM,EAAE,UAAU;AAClB,aAAY,MAAM,MAAM,MAAM;AAC9B,QAAO,MAAM,UAAU,WAAW;;AACjC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\nexport const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => { const props = _captures[0];\n\n\tconst _ref = {};\n\t_ref.track = _rawProps._ref.track;\n\tconst { track } = _ref;\n\ttrack(() => props.store.model);\n\treturn await serverImg(\\"some.png\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAE/G,MAAM,OAAO,EAAE;AACf,MAAK,QAAQ,UAAU,KAAK;CAC5B,MAAM,EAAE,UAAU;AAClB,aAAY,MAAM,MAAM,MAAM;AAC9B,QAAO,MAAM,UAAU,WAAW\"}")
 /*
 {
   "origin": "test.tsx",
@@ -157,17 +160,21 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_img
 
 ============================= test.js ==
 
-const q_Image_component_CS20HgBlRYI = qrl(() => import("./test.tsx_Image_component_CS20HgBlRYI"), "Image_component_CS20HgBlRYI");
-const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
-const q_ModelImg_component_iJe6ICWVnyA = qrl(() => import("./test.tsx_ModelImg_component_iJe6ICWVnyA"), "ModelImg_component_iJe6ICWVnyA");
+import { componentQrl } from "@qwik.dev/core";
+import { useResourceQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Image_component_CS20HgBlRYI = /*#__PURE__*/ qrl(() => import("./test.tsx_Image_component_CS20HgBlRYI"), "Image_component_CS20HgBlRYI");
+const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = /*#__PURE__*/ qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
+const q_ModelImg_component_iJe6ICWVnyA = /*#__PURE__*/ qrl(() => import("./test.tsx_ModelImg_component_iJe6ICWVnyA"), "ModelImg_component_iJe6ICWVnyA");
+//
 import { component$, useResource$, Resource } from "@qwik.dev/core";
 import { type ModelProps } from "./modelMenu";
 import { serverImg } from "~/routes/(authenticated)/layout";
-export const Image = componentQrl(q_Image_component_CS20HgBlRYI);
+//
+export const Image = /*#__PURE__*/ componentQrl(q_Image_component_CS20HgBlRYI);
 export const ModelImg = componentQrl<ModelProps>(q_ModelImg_component_iJe6ICWVnyA);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useResource$,\",\"t { component$, useResource$, Resource } from \\"@qwi\",\"t { component$, useResource$, Re\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$, Resource } from \\"@qwik.dev/core\\";\nimport { type ModelProps } from \\"./modelMenu\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\n\nexport const Image = component$((props) => {\n  return (\n    <>\n      <img src={`${props.src}`} />\n    </>\n  );\n});\n\nexport const ModelImg = component$<ModelProps>((props) => {\n  const imgLoc = useResource$(async ({ track }) => {\n    track(() => props.store.model);\n    return await serverImg('some.png');\n  });\n  return (\n    <>\n      <Resource\n        value={imgLoc}\n        onRejected={() => <p>error ...</p>}\n        onResolved={(res) =>\n          res && (\n            <>\n              <Image\n                src={res}\n              />\n            </>\n          )\n        }\n      />\n    </>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CAC1B,8BACjB;AAHX,MACKC,gEACL,OAAO,iEACkB,qDAET,OAAO,CAAC;AALxB,MACKC,6CAA6C,OAAO,8CACvB,iCACd;AAFpB,SAAS,YAAY,cAAc,gBAAgB;AACnD,cAAc,kBAAkB;AAChC,SAAS,iBAAiB;AAE1B,OAAO,MAAM,QAAQC,2CAMnB;AAEF,OAAO,MAAM,WAAWA,aAAW,6CAsBjC\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useResource$,\",\"t { component$, useResource$, Resource } from \\"@qwi\",\"t { component$, useResource$, Re\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$, Resource } from \\"@qwik.dev/core\\";\nimport { type ModelProps } from \\"./modelMenu\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\n\nexport const Image = component$((props) => {\n  return (\n    <>\n      <img src={`${props.src}`} />\n    </>\n  );\n});\n\nexport const ModelImg = component$<ModelProps>((props) => {\n  const imgLoc = useResource$(async ({ track }) => {\n    track(() => props.store.model);\n    return await serverImg('some.png');\n  });\n  return (\n    <>\n      <Resource\n        value={imgLoc}\n        onRejected={() => <p>error ...</p>}\n        onResolved={(res) =>\n          res && (\n            <>\n              <Image\n                src={res}\n              />\n            </>\n          )\n        }\n      />\n    </>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,oBACmB;AADnB,MACKA,gCAA8C,0BAAU,OAAO,2CAC1B,8BACjB;AAHzB,MACKC,sDACD,0BAAU,OAAO,iEACkB,qDAET,OAAO,CAAC;AALtC,MACKC,mCAAiD,0BAAU,OAC9D,8CACD,iCAAiC;AAFlC,SAAS,YAAY,cAAc,gBAAgB;AACnD,cAAc,kBAAkB;AAChC,SAAS,iBAAiB;AAE1B,OAAO,MAAM,QAAQC,2CAMnB;AAEF,OAAO,MAAM,WAAWA,aAAW,6CAsBjC\"}")
 == DIAGNOSTICS ==
 
 []

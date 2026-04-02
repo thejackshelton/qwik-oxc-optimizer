@@ -15,12 +15,14 @@ export const App = component$(() => {
 
 ============================= test.tsx ==
 
-const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
-import { component$ } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn <div>Hello</div>;\n});\n\"],\"mappings\":\"AAAA,MACKA,uCAAuC,4BAElB;AAF1B,SAAS,kBAAkB;AAE3B,OAAO,MAAM,MAAMC,yCAEjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\treturn <div>Hello</div>;\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAEF,yBAAS,4BACV;AADF,OAAO,MAAM,MAAMC,yCAEjB\"}")
 == DIAGNOSTICS ==
 
 []

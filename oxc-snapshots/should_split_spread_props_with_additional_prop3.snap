@@ -19,9 +19,10 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { Foo } from "./foo";
+//
 export const test_component_LUXeXe0DQrg = (props) => {
 	return <Foo />;
-};;
+};
 
 /*
 {
@@ -51,13 +52,15 @@ export const test_component_LUXeXe0DQrg = (props) => {
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { Foo } from "./foo";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,yCAAyC,OACxC,0CAEU,6BACZ;AAJF,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AAEpB,eAAeC,0CAIb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\timport { Foo } from './foo';\n\n\t\texport default component$((props) => {\n\t\t\treturn (\n\t\t\t\t<Foo s={Math.random()} {...props} hello {...globalThis.nothing} />\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BACF,0BAAU,OAAO,0CAEU,6BAExB;AAJJ,SAAS,WAAW;AAEpB,eAAeC,0CAIb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -26,15 +26,14 @@ export default component$(() => {
 ============================= test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {
 	const bar = _captures[0];
 	const index = _captures[1];
 	return console.log(bar.value, index);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {\nconst bar = _captures[0];\nconst index = _captures[1];\nreturn console.log(bar.value, index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,IAAI,OAAO,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_hover_2iHUE4xtgo8 = () => {\nconst bar = _captures[0];\nconst index = _captures[1];\nreturn console.log(bar.value, index);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,IAAI,OAAO,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -71,6 +70,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const foo = useSignal("hi");
 	const bar = useSignal("ho");
@@ -80,7 +80,7 @@ export const test_component_LUXeXe0DQrg = () => {
 		return <div>{item}</div>;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -106,15 +106,14 @@ export const test_component_LUXeXe0DQrg = () => {
 ============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
 	const foo = _captures[0];
 	const item = _captures[1];
 	return console.log(item, foo.value);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst foo = _captures[0];\nconst item = _captures[1];\nreturn console.log(item, foo.value);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,MAAM,IAAI,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst foo = _captures[0];\nconst item = _captures[1];\nreturn console.log(item, foo.value);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO,UAAU;AACvB,QAAO,QAAQ,IAAI,MAAM,IAAI,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -150,14 +149,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [foo, item]);
-const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [bar, index]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [foo, item]);
+const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [bar, index]);
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const foo = useSignal('hi');\n  const bar = useSignal('ho');\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item, foo.value)} onHover$={() => console.log(bar.value, index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\n\"],\"mappings\":\"AAAA,MACKA,2DAEE,OAAO,4DAEL,gDACiB,WAAW,CAAC;AANtC,MACKA,2DAEE,OAAO,4DAEL,gDACiB,YAAY,CAAC;AANvC,MACKC,yCAAyC,OAAO,0CAGjD,6BACF;AAJF,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const foo = useSignal('hi');\n  const bar = useSignal('ho');\n  const loop: string[] = ['abcd', 'xyz'];\n  return (\n    <div>\n      {loop.map((item, index) => {\n        return <div onClick$={() => console.log(item, foo.value)} onHover$={() => console.log(bar.value, index)}>{item}</div>\n      })}\n    </div>\n  );\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iDAEM,0BAAU,OAAO,4DAEL,gDACiB,WAC/B,CAAC;AAPV,MACKA,iDAEM,0BAAU,OAAO,4DAEL,gDACiB,YAC9B,CACV;AARA,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BACF;AAJhB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
 == DIAGNOSTICS ==
 
 []

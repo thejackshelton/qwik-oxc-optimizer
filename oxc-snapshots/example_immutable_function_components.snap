@@ -19,12 +19,15 @@ export const App = component$((props: Stuff) => {
 
 ============================= test.tsx ==
 
-const q_App_component_ckEPmXZlub0 = _noopQrl("App_component_ckEPmXZlub0");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
+//
 import { component$, useStore, Slot } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useStore, S\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, Slot } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<div>\n\t\t\t<Slot/>\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,uCAAuC,4BAElC;AAFV,SAAS,YAAY,UAAU,YAAY;AAE3C,OAAO,MAAM,MAAMC,yCAMjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore, S\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, Slot } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<div>\n\t\t\t<Slot/>\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,yBAAS,4BAElC;AAFxB,SAAS,YAAY,UAAU,YAAY;AAE3C,OAAO,MAAM,MAAMC,yCAMjB\"}")
 == DIAGNOSTICS ==
 
 []

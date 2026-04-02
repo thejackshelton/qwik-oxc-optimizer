@@ -14,7 +14,8 @@ expression: output
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.ts (ENTRY POINT)==
 
 import { Cmp } from "./test";
-export const Cmp_component_4ryKJTOKjWE = () => <Cmp>Hello Qwik</Cmp>;;
+//
+export const Cmp_component_4ryKJTOKjWE = () => <Cmp>Hello Qwik</Cmp>;
 
 /*
 {
@@ -40,10 +41,9 @@ export const Cmp_component_4ryKJTOKjWE = () => <Cmp>Hello Qwik</Cmp>;;
 ============================= test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE.ts (ENTRY POINT)==
 
 export const Cmp_component_Cmp_foo_iPpdemxi0uE = () => console.log("hi there");
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE\"],\"sourcesContent\":[\"export const Cmp_component_Cmp_foo_iPpdemxi0uE = () => console.log(\\"hi there\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,0CAA0C,QAAQ,IAAI,WAAW;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE\"],\"sourcesContent\":[\"export const Cmp_component_Cmp_foo_iPpdemxi0uE = () => console.log(\\"hi there\\");\"],\"mappings\":\"AAAA,OAAO,MAAM,0CAA0C,QAAQ,IAAI,WAAW\"}")
 /*
 {
   "origin": "test.tsx",
@@ -67,13 +67,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_Cmp_foo_
 
 ============================= test.ts ==
 
-const q_Cmp_component_Cmp_foo_iPpdemxi0uE = qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
-const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
-import { component$, $ } from "@qwik.dev/core";
-export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Cmp_component_Cmp_foo_iPpdemxi0uE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_Cmp_foo_iPpdemxi0uE"), "Cmp_component_Cmp_foo_iPpdemxi0uE");
+const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+//
+export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, $ } from '@qwik.d\",\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,MACKA,gDACF,OAAO,iDACW,oCAAoC;AAHzD,MACKC,wCAAwC,OAC3C,yCACG,4BAA4B;AAF/B,SAAS,YAAY,SAAS;AAC9B,OAAO,MAAM,MAAMC,yCAC2C\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, $ } from '@qwik.d\",\"ort { component$, $ } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $ } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() =>\n\t\t\t<Cmp foo={$(() => console.log('hi there'))}>Hello Qwik</Cmp>);\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,sCACE,0BAAU,OAAO,iDACW;AAHnC,MACKC,8BAA4C,0BACxC,OAAO,yCACG,4BAA4B;AAD7C,OAAO,MAAM,MAAMC,yCAC2C\"}")
 == DIAGNOSTICS ==
 
 []

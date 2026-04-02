@@ -17,7 +17,7 @@ expression: output
 
 export const test_component_LUXeXe0DQrg = (props: any) => {
 	return <button></button>;
-};;
+};
 
 /*
 {
@@ -46,14 +46,13 @@ export const test_component_LUXeXe0DQrg = (props: any) => {
 ============================= test.tsx_test_component_button_q_e_click_qwSL5gM03T4.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_button_q_e_click_qwSL5gM03T4 = () => {
 	const props = _captures[0];
 	return props.onClick$();
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_q_e_click_qwSL5gM03T4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_button_q_e_click_qwSL5gM03T4 = () => {\nconst props = _captures[0];\nreturn props.onClick$();;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM,UAAU;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_q_e_click_qwSL5gM03T4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_button_q_e_click_qwSL5gM03T4 = () => {\nconst props = _captures[0];\nreturn props.onClick$();\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM,UAAU\"}")
 /*
 {
   "origin": "test.tsx",
@@ -82,13 +81,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-const q_test_component_button_q_e_click_qwSL5gM03T4 = qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [props]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [props]);
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\n\t\t\",\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,0DAEU,OAAO,2DACa,+CAEjC;AANF,MACKC,yCAAyC,OAEzC,0CACJ,6BAA6B;AAH5B,SAAS,kBAAkB;AAE3B,eAAeC,0CAEb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\n\t\t\",\"ort { component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\texport default component$((props: any) => {\n\t\t\treturn <button {...props} onClick$={() => props.onClick$()}></button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gDAEc,0BAAU,OAAO,2DACa,+CAEjC;AANhB,MACKC,+BAEH,0BAAU,OAAO,0CACJ,6BAA6B;AAD1C,eAAeC,0CAEb\"}")
 == DIAGNOSTICS ==
 
 []

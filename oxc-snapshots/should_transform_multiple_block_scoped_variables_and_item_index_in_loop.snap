@@ -25,6 +25,7 @@ export default component$(() => {
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
 	return <div>
@@ -34,7 +35,7 @@ export const test_component_LUXeXe0DQrg = () => {
 		return <div>{val}</div>;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -60,17 +61,16 @@ export const test_component_LUXeXe0DQrg = () => {
 ============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
 	const i = _captures[0];
 	const index = _captures[1];
 	const val = _captures[2];
 	const value = _captures[3];
 	return console.log(value, index, val, i);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst i = _captures[0];\nconst index = _captures[1];\nconst val = _captures[2];\nconst value = _captures[3];\nreturn console.log(value, index, val, i);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,IAAI,UAAU;CACpB,MAAM,QAAQ,UAAU;CACxB,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,OAAO,OAAO,KAAK,EAAE;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst i = _captures[0];\nconst index = _captures[1];\nconst val = _captures[2];\nconst value = _captures[3];\nreturn console.log(value, index, val, i);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,IAAI,UAAU;CACpB,MAAM,QAAQ,UAAU;CACxB,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,OAAO,OAAO,KAAK,EAAE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -108,18 +108,21 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [
 	i,
 	index,
 	val,
 	value
 ]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n\t\tconst value = val.toUpperCase();\n        return <div onClick$={() => console.log(value, index, val, i)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,2DAEE,OAAO,4DAEV,gDAE2B;;;;;CACP,CAAC;AARzB,MACKC,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i+1;\n\t\tconst value = val.toUpperCase();\n        return <div onClick$={() => console.log(value, index, val, i)}>{val}</div>\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iDAEM,0BAAU,OAAO,4DAGrB,gDAEG;;;;;CACC,CAAC;AATZ,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BAElB;AALA,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAWb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -26,10 +26,9 @@ export const handler = $(() => {
 export const handler_T7IDIUVU4lI = () => {
 	console.log("qrl", a);
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"export const handler_T7IDIUVU4lI = () => {\n\tconsole.log(\\"qrl\\", a);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AACxC,SAAQ,IAAI,OAAO,EAAE;;AACpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"export const handler_T7IDIUVU4lI = () => {\n\tconsole.log(\\"qrl\\", a);\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AACxC,SAAQ,IAAI,OAAO,EAAE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -53,8 +52,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"]
 
 ============================= test.js ==
 
-const q_handler_T7IDIUVU4lI = qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI");
-import { $ } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_handler_T7IDIUVU4lI = /*#__PURE__*/ qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI");
+//
 const { a, b } = {
 	a: 1,
 	b: 2
@@ -63,8 +64,7 @@ console.log("root", b);
 export const handler = Qrl(q_handler_T7IDIUVU4lI);
 export { a as _auto_a };
 
-
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst { a, b } = {\n  a: 1,\n  b: 2,\n};\n\nconsole.log('root', b);\n\nexport const handler = $(() => {\n  console.log('qrl', a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAKJ,sBAEH;AATF,SAAS,SAAS;AAElB,MAAM,EAAE,GAAG,MAAM;CACf,GAAG;CACH,GAAG;CACJ;AAED,QAAQ,IAAI,QAAQ,EAAE;AAEtB,OAAO,MAAM,UAAUC,0BAErB;AAZF\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst { a, b } = {\n  a: 1,\n  b: 2,\n};\n\nconsole.log('root', b);\n\nexport const handler = $(() => {\n  console.log('qrl', a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,wBAEC,0BAAU,OACZ,mCAIe,sBAEH;AAPhB,MAAM,EAAE,GAAG,MAAM;CACf,GAAG;CACH,GAAG;CACJ;AAED,QAAQ,IAAI,QAAQ,EAAE;AAEtB,OAAO,MAAM,UAAUC,0BAErB;AAZF\"}")
 == DIAGNOSTICS ==
 
 []

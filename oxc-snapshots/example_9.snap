@@ -33,10 +33,9 @@ export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {
 	try {} catch (decl18) {}
 	try {} catch ({ decl19 }) {}
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],\"sourcesContent\":[\"export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {\n\tconst { decl4, key: decl5 } = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, { decl12 }, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, { decl16 }, [decl17]) {}\n\t}\n\ttry {} catch (decl18) {}\n\ttry {} catch ({ decl19 }) {}\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,MAAM,EAAE,OAAO,KAAK,UAAU;CAC9B,IAAI,CAAC,OAAO,GAAG,SAAS;CACxB,MAAM,QAAQ,GAAG;CACjB,SAAS,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;CAC9C,MAAM,OAAO;EACZ,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;;AAEtC,KAAI,UAAU,QAAQ;AACtB,KAAI,UAAU,EAAE,UAAU;;AACzB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],\"sourcesContent\":[\"export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {\n\tconst { decl4, key: decl5 } = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, { decl12 }, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, { decl16 }, [decl17]) {}\n\t}\n\ttry {} catch (decl18) {}\n\ttry {} catch ({ decl19 }) {}\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,MAAM,EAAE,OAAO,KAAK,UAAU;CAC9B,IAAI,CAAC,OAAO,GAAG,SAAS;CACxB,MAAM,QAAQ,GAAG;CACjB,SAAS,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;CAC9C,MAAM,OAAO;EACZ,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;;AAEtC,KAAI,UAAU,QAAQ;AACtB,KAAI,UAAU,EAAE,UAAU\"}")
 /*
 {
   "origin": "test.tsx",
@@ -65,12 +64,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],
 
 ============================= test.tsx ==
 
-const q_Header_WjUaUQN7Oxg = qrl(() => import("./test.tsx_Header_WjUaUQN7Oxg"), "Header_WjUaUQN7Oxg");
-import { $, component$ } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_WjUaUQN7Oxg = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_WjUaUQN7Oxg"), "Header_WjUaUQN7Oxg");
+//
 const Header = Qrl(q_Header_WjUaUQN7Oxg);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\tconst {decl4, key: decl5} = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, {decl12}, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, {decl16}, [decl17]) {}\n\t}\n\ttry{}catch(decl18){}\n\ttry{}catch({decl19}){}\n});\n\"],\"mappings\":\"AAAA,MACKA,iCAAiC,OAAO,kCACd,qBAC3B;AAFJ,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\tconst {decl4, key: decl5} = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, {decl12}, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, {decl16}, [decl17]) {}\n\t}\n\ttry{}catch(decl18){}\n\ttry{}catch({decl19}){}\n});\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,uBAAqC,0BACtC,OAAO,kCAAkC,qBAC3B;AADlB,MAAM,SAASC,yBAUb\"}")
 == DIAGNOSTICS ==
 
 [

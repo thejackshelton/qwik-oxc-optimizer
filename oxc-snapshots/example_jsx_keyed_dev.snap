@@ -31,7 +31,7 @@ export const App_component_KGLYFBhvJc0 = (props: Stuff) => {
 			<Cmp prop="23" key={props.stuff}></Cmp>
 			<p key={props.stuff}>Hello Qwik</p>
 		</>;
-};;
+};
 
 /*
 {
@@ -59,17 +59,20 @@ export const App_component_KGLYFBhvJc0 = (props: Stuff) => {
 
 ============================= project/index.js ==
 
-const q_App_component_KGLYFBhvJc0 = qrlDEV(() => import("./index.tsx_App_component_KGLYFBhvJc0.tsx"), "App_component_KGLYFBhvJc0", [], {
+import { componentQrl } from "@qwik.dev/core";
+import { qrlDEV } from "@qwik.dev/core";
+const q_App_component_KGLYFBhvJc0 = /*#__PURE__*/ qrlDEV(() => import("./index.tsx_App_component_KGLYFBhvJc0.tsx"), "App_component_KGLYFBhvJc0", [], {
+//
 	file: "index.tsx",
 	lo: 87,
 	hi: 282,
 	displayName: "index.tsx_App_component"
 });
 import { component$, useStore } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_KGLYFBhvJc0);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_KGLYFBhvJc0);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"project/index.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,2CAA2C,OAChD,8CAC6C,6BAGpC,EAAE,EAAE;OAAS;KACT;KACN;cACN;CAA2B,CAAC;AAR7B,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"project/index.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,uBACsB;AADtB,MACKA,8BAA4C,6BAE3C,OAAO,8CACJ,6BAEc,EAAE,EACzB;OAAS;KACG;KAAS;cACN;CAA2B,CAC1C;AATA,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
 == DIAGNOSTICS ==
 
 []

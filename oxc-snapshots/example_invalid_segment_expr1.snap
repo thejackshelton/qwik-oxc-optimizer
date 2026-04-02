@@ -25,10 +25,9 @@ export const App = component$(() => {
 ============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
 
 export const App_component_ckEPmXZlub0 = render;
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = render;;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = render;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -53,10 +52,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 ============================= test.tsx_App_component_useStyles_t35nSa5UV7U.js (ENTRY POINT)==
 
 export const App_component_useStyles_t35nSa5UV7U = style;
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_t35nSa5UV7U\"],\"sourcesContent\":[\"export const App_component_useStyles_t35nSa5UV7U = style;;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC;AAAM\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyles_t35nSa5UV7U\"],\"sourcesContent\":[\"export const App_component_useStyles_t35nSa5UV7U = style;\"],\"mappings\":\"AAAA,OAAO,MAAM,sCAAsC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -80,9 +78,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useStyle
 
 ============================= test.tsx_App_component_1_w0t0o3QMovU.js (ENTRY POINT)==
 
+import { qrl } from "@qwik.dev/core";
 import { default as css1 } from "./global.css";
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-const q_App_component_useStyles_t35nSa5UV7U = qrl(() => import("./test.tsx_App_component_useStyles_t35nSa5UV7U"), "App_component_useStyles_t35nSa5UV7U");
+//
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_App_component_useStyles_t35nSa5UV7U = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_useStyles_t35nSa5UV7U"), "App_component_useStyles_t35nSa5UV7U");
+//
 export const App_component_1_w0t0o3QMovU = () => {
 	const style = `${css1}${css2}`;
 	useStylesQrl(q_App_component_useStyles_t35nSa5UV7U);
@@ -90,7 +91,7 @@ export const App_component_1_w0t0o3QMovU = () => {
 		return <div></div>;
 	};
 	return Qrl(q_App_component_ckEPmXZlub0);
-};;
+};
 
 /*
 {
@@ -115,14 +116,17 @@ export const App_component_1_w0t0o3QMovU = () => {
 
 ============================= test.js ==
 
-const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
-import { $, component$, useStyles$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { useStylesQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
+//
 import css1 from "./global.css";
 import css2 from "./style.css";
-export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\n\nexport const App = component$(() => {\n\tconst style = `${css1}${css2}`;\n\tuseStyles$(style);\n\tconst render = () => {\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t};\n\treturn $(render);\n})\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CAElD,8BAEH;AAJD,SAAS,GAAG,YAAY,kBAAkB;AAC1C,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,2CASjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStyles$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles$ } from '@qwik.dev/core';\nimport css1 from './global.css';\nimport css2 from './style.css';\n\nexport const App = component$(() => {\n\tconst style = `${css1}${css2}`;\n\tuseStyles$(style);\n\tconst render = () => {\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t};\n\treturn $(render);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAClD,OAAO,2CACU,8BAEH;AAHf,OAAO,UAAU;AACjB,OAAO,UAAU;AAEjB,OAAO,MAAM,MAAMC,2CASjB\"}")
 == DIAGNOSTICS ==
 
 [

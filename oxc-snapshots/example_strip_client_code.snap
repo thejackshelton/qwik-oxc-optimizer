@@ -48,14 +48,13 @@ export const Parent = component$(() => {
 
 import { _captures } from "@qwik.dev/core";
 import { default as threejs } from "threejs";
+//
 export const Parent_component_div_q_e_click_oqNnfO6ubjU = () => {
 	const state = _captures[0];
 	return console.log("parent", state, threejs);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { default as threejs } from \\"threejs\\";\nexport const Parent_component_div_q_e_click_oqNnfO6ubjU = () => {\nconst state = _captures[0];\nreturn console.log(\\"parent\\", state, threejs);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW,eAAe;AACnC,OAAO,MAAM,mDAAmD;CAChE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,UAAU,OAAO,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { default as threejs } from \\"threejs\\";\nexport const Parent_component_div_q_e_click_oqNnfO6ubjU = () => {\nconst state = _captures[0];\nreturn console.log(\\"parent\\", state, threejs);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW,eAAe;AACnC,OAAO,MAAM,mDAAmD;CAChE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,UAAU,OAAO,QAAQ\"}")
 /*
 {
   "origin": "components/component.tsx",
@@ -87,10 +86,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_
 
 ============================= components/component.js ==
 
-const q_Parent_component_useClientMount_Yn2kIDABoYw = _noopQrl("Parent_component_useClientMount_Yn2kIDABoYw", [state]);
-const q_Parent_component_useTask_ngmvcygWux8 = _noopQrl("Parent_component_useTask_ngmvcygWux8");
-const q_Parent_component_div_q_e_click_oqNnfO6ubjU = qrl(() => import("./component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU"), "Parent_component_div_q_e_click_oqNnfO6ubjU", [state]);
-const q_Parent_component_t6Wy3C0Q0XM = _noopQrl("Parent_component_t6Wy3C0Q0XM");
+import { componentQrl } from "@qwik.dev/core";
+import { useClientMountQrl } from "@qwik.dev/core";
+import { useTaskQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Parent_component_useClientMount_Yn2kIDABoYw = /*#__PURE__*/ _noopQrl("Parent_component_useClientMount_Yn2kIDABoYw", [state]);
+const q_Parent_component_useTask_ngmvcygWux8 = /*#__PURE__*/ _noopQrl("Parent_component_useTask_ngmvcygWux8");
+const q_Parent_component_div_q_e_click_oqNnfO6ubjU = /*#__PURE__*/ qrl(() => import("./component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU"), "Parent_component_div_q_e_click_oqNnfO6ubjU", [state]);
+const q_Parent_component_t6Wy3C0Q0XM = /*#__PURE__*/ _noopQrl("Parent_component_t6Wy3C0Q0XM");
+//
 import { component$, useClientMount$, useStore, useTask$ } from "@qwik.dev/core";
 import mongo from "mongodb";
 import redis from "redis";
@@ -98,10 +102,10 @@ import threejs from "threejs";
 import { a } from "./keep";
 import { b } from "../keep2";
 import { c } from "../../remove";
-export const Parent = componentQrl(q_Parent_component_t6Wy3C0Q0XM);
+//
+export const Parent = /*#__PURE__*/ componentQrl(q_Parent_component_t6Wy3C0Q0XM);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useClientMount$, useStore, us\",\"t { component$, useClientMount$, useSt\",\"t { component$, useClientMount$, useStore, u\",\"t { component$, useClientMount\",\"component$\"],\"sources\":[\"components/component.tsx\"],\"sourcesContent\":[\"\nimport { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport threejs from 'threejs';\nimport { a } from './keep';\nimport { b } from '../keep2';\nimport { c } from '../../remove';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseClientMount$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text, a, b, c);\n\t});\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div\n\t\t\tshouldRemove$={() => state.text}\n\t\t\tonClick$={() => console.log('parent', state, threejs)}\n\t\t>\n\t\t\t<Div\n\t\t\t\tonClick$={() => console.log('keep')}\n\t\t\t\trender$={() => state.text}\n\t\t\t/>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,yDAAyD,+CACnC,OACtB,CAAC;AAHN,MACKC,kDAAkD,uCAC3C;AAFZ,MACKC,yDAAyD,OAAO,+DAEhD,8CAEZ,OAAO,CAAC;AALjB,MACKC,0CAA0C,+BAA+B;AAA9E,SAAS,YAAY,iBAAiB,UAAU,gBAAgB;AAChE,OAAO,WAAW;AAClB,OAAO,WAAW;AAClB,OAAO,aAAa;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAElB,OAAO,MAAM,SAASC,4CA2BpB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useClientMount$, useStore, us\",\"t { component$, useClientMount$, useSt\",\"t { component$, useClientMount$, useStore, u\",\"t { component$, useClientMount\",\"component$\"],\"sources\":[\"components/component.tsx\"],\"sourcesContent\":[\"\nimport { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport threejs from 'threejs';\nimport { a } from './keep';\nimport { b } from '../keep2';\nimport { c } from '../../remove';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseClientMount$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text, a, b, c);\n\t});\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div\n\t\t\tshouldRemove$={() => state.text}\n\t\t\tonClick$={() => console.log('parent', state, threejs)}\n\t\t>\n\t\t\t<Div\n\t\t\t\tonClick$={() => console.log('keep')}\n\t\t\t\trender$={() => state.text}\n\t\t\t/>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,kCACiC;AADjC,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,gDAA8D,yBAAS,+CAEhE,OAAO,CAAC;AAHpB,MACKC,yCAAuD,yBAAS,uCAC3C;AAF1B,MACKC,+CAA6D,0BAAU,OAC3E,+DAEO,8CACe,OACrB,CAAC;AANH,MACKC,iCAA+C,yBAAS,+BACnD;AADV,SAAS,YAAY,iBAAiB,UAAU,gBAAgB;AAChE,OAAO,WAAW;AAClB,OAAO,WAAW;AAClB,OAAO,aAAa;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAElB,OAAO,MAAM,SAASC,4CA2BpB\"}")
 == DIAGNOSTICS ==
 
 []

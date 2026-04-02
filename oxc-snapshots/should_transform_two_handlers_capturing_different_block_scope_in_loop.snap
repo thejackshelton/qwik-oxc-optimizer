@@ -30,14 +30,13 @@ export default component$(() => {
 ============================= test.tsx_test_component_div_div_button_q_e_click_hCFE1Zqizzw.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_button_q_e_click_hCFE1Zqizzw = () => {
 	const index = _captures[0];
 	return console.log(index);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_button_q_e_click_hCFE1Zqizzw\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_button_q_e_click_hCFE1Zqizzw = () => {\nconst index = _captures[0];\nreturn console.log(index);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4DAA4D;CACzE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_button_q_e_click_hCFE1Zqizzw\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_button_q_e_click_hCFE1Zqizzw = () => {\nconst index = _captures[0];\nreturn console.log(index);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4DAA4D;CACzE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -70,6 +69,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
 	return <div>
@@ -82,7 +82,7 @@ export const test_component_LUXeXe0DQrg = () => {
           </div>;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -108,14 +108,13 @@ export const test_component_LUXeXe0DQrg = () => {
 ============================= test.tsx_test_component_div_div_span_q_e_key_down_OeXStqS2URc.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_span_q_e_key_down_OeXStqS2URc = () => {
 	const label = _captures[0];
 	return console.log(label);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_span_q_e_key_down_OeXStqS2URc\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_span_q_e_key_down_OeXStqS2URc = () => {\nconst label = _captures[0];\nreturn console.log(label);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_span_q_e_key_down_OeXStqS2URc\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_span_q_e_key_down_OeXStqS2URc = () => {\nconst label = _captures[0];\nreturn console.log(label);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -147,14 +146,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-const q_test_component_div_div_button_q_e_click_hCFE1Zqizzw = qrl(() => import("./test.tsx_test_component_div_div_button_q_e_click_hCFE1Zqizzw"), "test_component_div_div_button_q_e_click_hCFE1Zqizzw", [index]);
-const q_test_component_div_div_span_q_e_key_down_OeXStqS2URc = qrl(() => import("./test.tsx_test_component_div_div_span_q_e_key_down_OeXStqS2URc"), "test_component_div_div_span_q_e_key_down_OeXStqS2URc", [label]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_div_div_button_q_e_click_hCFE1Zqizzw = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_button_q_e_click_hCFE1Zqizzw"), "test_component_div_div_button_q_e_click_hCFE1Zqizzw", [index]);
+const q_test_component_div_div_span_q_e_key_down_OeXStqS2URc = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_span_q_e_key_down_OeXStqS2URc"), "test_component_div_div_span_q_e_key_down_OeXStqS2URc", [label]);
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\ne\",\"t { component$, useSignal } from '@qwik.dev/core';\n\nex\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i + 1;\n        const label = val.toUpperCase();\n        return (\n          <div>\n            <button onClick$={() => console.log(index)}>{val}</button>\n            <span onKeyDown$={() => console.log(label)}>{label}</span>\n          </div>\n        )\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,kEAES,OAAO,mEAGd,uDAEU,OAAO,CAAC;AARzB,MACKC,mEAEU,OAAO,oEAGb,wDAEW,OAAO,CAAC;AAR5B,MACKC,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAgBb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\ne\",\"t { component$, useSignal } from '@qwik.dev/core';\n\nex\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b'])\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const index = i + 1;\n        const label = val.toUpperCase();\n        return (\n          <div>\n            <button onClick$={() => console.log(index)}>{val}</button>\n            <span onKeyDown$={() => console.log(label)}>{label}</span>\n          </div>\n        )\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,wDAEa,0BAAU,OAC3B,mEAGU,uDAET,OAAO,CAAC;AATV,MACKC,yDAEc,0BAAU,OAC3B,oEAGW,wDAER,OAAO,CAAC;AATb,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BAElB;AALA,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAgBb\"}")
 == DIAGNOSTICS ==
 
 []

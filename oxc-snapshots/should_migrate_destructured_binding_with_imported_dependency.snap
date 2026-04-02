@@ -22,10 +22,9 @@ export const handler = $(() => {
 export const handler_T7IDIUVU4lI = () => {
 	console.log(a);
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"export const handler_T7IDIUVU4lI = () => {\n\tconsole.log(a);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AACxC,SAAQ,IAAI,EAAE;;AACb\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"export const handler_T7IDIUVU4lI = () => {\n\tconsole.log(a);\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AACxC,SAAQ,IAAI,EAAE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -49,15 +48,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"]
 
 ============================= test.js ==
 
-const q_handler_T7IDIUVU4lI = qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI");
-import { $ } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_handler_T7IDIUVU4lI = /*#__PURE__*/ qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI");
+//
 import { source } from "lib";
+//
 const { a } = source;
 export const handler = Qrl(q_handler_T7IDIUVU4lI);
 export { a as _auto_a };
 
-
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\nimport { source } from 'lib';\n\nconst { a } = source;\n\nexport const handler = $(() => {\n  console.log(a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCACF,OAAO,mCAEI,sBAED;AALb,SAAS,SAAS;AAClB,SAAS,cAAc;AAEvB,MAAM,EAAE,MAAM;AAEd,OAAO,MAAM,UAAUC,0BAErB;AARF\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\nimport { source } from 'lib';\n\nconst { a } = source;\n\nexport const handler = $(() => {\n  console.log(a);\n});\n\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,wBACE,0BAAU,OAAO,mCAInB,sBAAsB;AAJ3B,SAAS,cAAc;AAEvB,MAAM,EAAE,MAAM;AAEd,OAAO,MAAM,UAAUC,0BAErB;AARF\"}")
 == DIAGNOSTICS ==
 
 []

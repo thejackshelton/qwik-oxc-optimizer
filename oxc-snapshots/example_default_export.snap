@@ -23,7 +23,7 @@ export default component$(() => {
 export const slug_component_0AM8HPnkNs4 = () => {
 	return <div>
 		</div>;
-};;
+};
 
 /*
 {
@@ -49,11 +49,10 @@ export const slug_component_0AM8HPnkNs4 = () => {
 ============================= src/routes/_repl/[id]/[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.js (ENTRY POINT)==
 
 import { sibling } from "./sibling";
+//
 export const slug_component_div_q_e_click_bCwVPYSTQ0w = () => console.log(mongodb, sibling);
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const slug_component_div_q_e_click_bCwVPYSTQ0w = () => console.log(mongodb, sibling);;\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,iDAAiD,QAAQ,IAAI,SAAS,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w\"],\"sourcesContent\":[\"import { sibling } from \\"./sibling\\";\nexport const slug_component_div_q_e_click_bCwVPYSTQ0w = () => console.log(mongodb, sibling);\"],\"mappings\":\"AAAA,SAAS,eAAe;AACxB,OAAO,MAAM,iDAAiD,QAAQ,IAAI,SAAS,QAAQ\"}")
 /*
 {
   "origin": "src/routes/_repl/[id]/[[...slug]].tsx",
@@ -77,14 +76,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"[[...slug]].tsx_slug_component_
 
 ============================= src/routes/_repl/[id]/[[...slug]].js ==
 
-const q_slug_component_div_q_e_click_bCwVPYSTQ0w = qrl(() => import("./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx"), "slug_component_div_q_e_click_bCwVPYSTQ0w");
-const q_slug_component_0AM8HPnkNs4 = qrl(() => import("./[[...slug]].tsx_slug_component_0AM8HPnkNs4.tsx"), "slug_component_0AM8HPnkNs4");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_slug_component_div_q_e_click_bCwVPYSTQ0w = /*#__PURE__*/ qrl(() => import("./[[...slug]].tsx_slug_component_div_q_e_click_bCwVPYSTQ0w.tsx"), "slug_component_div_q_e_click_bCwVPYSTQ0w");
+const q_slug_component_0AM8HPnkNs4 = /*#__PURE__*/ qrl(() => import("./[[...slug]].tsx_slug_component_0AM8HPnkNs4.tsx"), "slug_component_0AM8HPnkNs4");
+//
 import { sibling } from "./sibling";
-export default componentQrl(q_slug_component_0AM8HPnkNs4);
+//
+export default /*#__PURE__*/ componentQrl(q_slug_component_0AM8HPnkNs4);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\nim\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,MACKA,uDACU,OAAO,mEAIf,2CAA2C;AANlD,MACKC,yCACJ,OAAO,qDAEe,6BAEf;AALR,SAAS,kBAAkB;AAC3B,SAAS,eAAe;AAExB,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\nim\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"src/routes/_repl/[id]/[[...slug]].tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { sibling } from './sibling';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb, sibling)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,6CACc,0BAAU,OAAO,mEAIf,2CAErB;AARA,MACKC,+BACA,0BAAU,OAAO,qDAGnB,6BACmB;AAJtB,SAAS,eAAe;AAExB,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -108,16 +108,15 @@ export const App = component$(() => {
 ============================= test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_loopWhile_span_q_e_click_05kCMrZVn5E = () => {
 	const cart = _captures[0];
 	const i = _captures[1];
 	const results = _captures[2];
 	cart.push(results[i]);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopWhile_span_q_e_click_05kCMrZVn5E = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG;;AACpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopWhile_span_q_e_click_05kCMrZVn5E = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG\"}")
 /*
 {
   "origin": "test.tsx",
@@ -147,16 +146,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopWhil
 ============================= test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_loopForIn_span_q_e_click_adzBGickx1U = () => {
 	const cart = _captures[0];
 	const key = _captures[1];
 	const results = _captures[2];
 	cart.push(results[key]);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForIn_span_q_e_click_adzBGickx1U = () => { const cart = _captures[0];\nconst key = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[key]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,MAAM,UAAU;CACtB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,KAAK;;AACtB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForIn_span_q_e_click_adzBGickx1U = () => { const cart = _captures[0];\nconst key = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[key]);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,MAAM,UAAU;CACtB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,KAAK\"}")
 /*
 {
   "origin": "test.tsx",
@@ -192,6 +190,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI
 
 import { useSignal } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	const cart = useStore<string[]>([]);
 	const results = useSignal(["foo"]);
@@ -248,7 +247,7 @@ export const App_component_ckEPmXZlub0 = () => {
           {loopForIn(results.value)}
           {loopWhile(results.value)}
         </div>;
-};;
+};
 
 /*
 {
@@ -274,16 +273,15 @@ export const App_component_ckEPmXZlub0 = () => {
 ============================= test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_loopForI_span_q_e_click_PbCYbPM6etI = () => {
 	const cart = _captures[0];
 	const i = _captures[1];
 	const results = _captures[2];
 	cart.push(results[i]);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForI_span_q_e_click_PbCYbPM6etI = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG;;AACpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForI_span_q_e_click_PbCYbPM6etI = () => { const cart = _captures[0];\nconst i = _captures[1];\nconst results = _captures[2];\n\n\tcart.push(results[i]);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,IAAI,UAAU;CACpB,MAAM,UAAU,UAAU;AAEzB,MAAK,KAAK,QAAQ,GAAG\"}")
 /*
 {
   "origin": "test.tsx",
@@ -313,15 +311,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI
 ============================= test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_div_button_q_e_click_UB6Fs5a3bd8 = () => {
 	const cart = _captures[0];
 	const item = _captures[1];
 	cart.push(item);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_button_q_e_click_UB6Fs5a3bd8 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,uDAAuD;CAAE,MAAM,OAAO,UAAU;CAC7F,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_button_q_e_click_UB6Fs5a3bd8 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,uDAAuD;CAAE,MAAM,OAAO,UAAU;CAC7F,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK\"}")
 /*
 {
   "origin": "test.tsx",
@@ -356,15 +353,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_butt
 ============================= test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = () => {
 	const cart = _captures[0];
 	const item = _captures[1];
 	cart.push(item);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAAE,MAAM,OAAO,UAAU;CACnG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAAE,MAAM,OAAO,UAAU;CACnG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK\"}")
 /*
 {
   "origin": "test.tsx",
@@ -399,15 +395,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopArro
 ============================= test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_loopForOf_span_q_e_click_zlNGHYu926I = () => {
 	const cart = _captures[0];
 	const item = _captures[1];
 	cart.push(item);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForOf_span_q_e_click_zlNGHYu926I = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_loopForOf_span_q_e_click_zlNGHYu926I = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CAAE,MAAM,OAAO,UAAU;CACjG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK\"}")
 /*
 {
   "origin": "test.tsx",
@@ -440,30 +435,33 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForO
 
 ============================= test.js ==
 
-const q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = qrl(() => import("./test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0"), "App_component_loopArrowFn_span_q_e_click_Wau7C836nf0", [cart, item]);
-const q_App_component_loopForI_span_q_e_click_PbCYbPM6etI = qrl(() => import("./test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI"), "App_component_loopForI_span_q_e_click_PbCYbPM6etI", [
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0"), "App_component_loopArrowFn_span_q_e_click_Wau7C836nf0", [cart, item]);
+const q_App_component_loopForI_span_q_e_click_PbCYbPM6etI = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI"), "App_component_loopForI_span_q_e_click_PbCYbPM6etI", [
 	cart,
 	i,
 	results
 ]);
-const q_App_component_loopForOf_span_q_e_click_zlNGHYu926I = qrl(() => import("./test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I"), "App_component_loopForOf_span_q_e_click_zlNGHYu926I", [cart, item]);
-const q_App_component_loopForIn_span_q_e_click_adzBGickx1U = qrl(() => import("./test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U"), "App_component_loopForIn_span_q_e_click_adzBGickx1U", [
+const q_App_component_loopForOf_span_q_e_click_zlNGHYu926I = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I"), "App_component_loopForOf_span_q_e_click_zlNGHYu926I", [cart, item]);
+const q_App_component_loopForIn_span_q_e_click_adzBGickx1U = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U"), "App_component_loopForIn_span_q_e_click_adzBGickx1U", [
 	cart,
 	key,
 	results
 ]);
-const q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = qrl(() => import("./test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E"), "App_component_loopWhile_span_q_e_click_05kCMrZVn5E", [
+const q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E"), "App_component_loopWhile_span_q_e_click_05kCMrZVn5E", [
 	cart,
 	i,
 	results
 ]);
-const q_App_component_div_button_q_e_click_UB6Fs5a3bd8 = qrl(() => import("./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8"), "App_component_div_button_q_e_click_UB6Fs5a3bd8", [cart, item]);
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_App_component_div_button_q_e_click_UB6Fs5a3bd8 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8"), "App_component_div_button_q_e_click_UB6Fs5a3bd8", [cart, item]);
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
 import { $, component$, useStore, useSignal } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStore, useSignal } from '@qwik.d\",\"t { $, component$, useStore, useSignal } from '@qwi\",\"t { $, component$, useStore, useSignal } from '@qwik\",\"t { $, component$, useStore, useSignal } from '@\",\"t { $, component$, useStore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport const App = component$(() => {\n      const cart = useStore<string[]>([]);\n      const results = useSignal(['foo']);\n      function loopArrowFn(results: string[]) {\n        return results.map((item) => (\n          <span\n            onClick$={() => {\n              cart.push(item);\n            }}\n          >\n            {item}\n          </span>\n        ));\n      }\n      function loopForI(results: string[]) {\n        const items = [];\n        for (let i = 0; i < results.length; i++) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForOf(results: string[]) {\n        const items = [];\n        for (const item of results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForIn(results: string[]) {\n        const items = [];\n        for (const key in results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[key]);\n              }}\n            >\n              {results[key]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopWhile(results: string[]) {\n        const items = [];\n        let i = 0;\n        while (i < results.length) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n          i++;\n        }\n        return items;\n      }\n      return (\n        <div>\n          {results.value.map((item) => (\n            <button\n              id=\\"second\\"\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          {loopArrowFn(results.value)}\n          {loopForI(results.value)}\n          {loopForOf(results.value)}\n          {loopForIn(results.value)}\n          {loopWhile(results.value)}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,MACKA,mEACF,OAAO,oEAC8B,wDAE7B,YAAY,CAAC;AALxB,MACKC,gEACL,OAAO,iEAC2B,qDAEhC;;;;CAAuB,CAAC;AAL1B,MACKC,iEACJ,OAAO,kEAC4B,sDAE/B,YAAY,CAAC;AALlB,MACKA,iEACJ,OAAO,kEAC4B,sDAE/B;;;;CAAyB,CAAC;AAL/B,MACKA,iEACJ,OAAO,kEAC4B,sDAE/B;;;;CAAuB,CAAC;AAL7B,MACKC,6DAA6D,OAC9D,8DACwB,kDACO,YAC9B,CAAC;AALN,MACKC,wCAAwC,OAAO,yCAC5B,4BACV;AAFd,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,OAAO,MAAM,MAAMC,yCA+Fb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore, useSignal } from '@qwik.d\",\"t { $, component$, useStore, useSignal } from '@qwi\",\"t { $, component$, useStore, useSignal } from '@qwik\",\"t { $, component$, useStore, useSignal } from '@\",\"t { $, component$, useStore\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport const App = component$(() => {\n      const cart = useStore<string[]>([]);\n      const results = useSignal(['foo']);\n      function loopArrowFn(results: string[]) {\n        return results.map((item) => (\n          <span\n            onClick$={() => {\n              cart.push(item);\n            }}\n          >\n            {item}\n          </span>\n        ));\n      }\n      function loopForI(results: string[]) {\n        const items = [];\n        for (let i = 0; i < results.length; i++) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForOf(results: string[]) {\n        const items = [];\n        for (const item of results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopForIn(results: string[]) {\n        const items = [];\n        for (const key in results) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[key]);\n              }}\n            >\n              {results[key]}\n            </span>\n          );\n        }\n        return items;\n      }\n      function loopWhile(results: string[]) {\n        const items = [];\n        let i = 0;\n        while (i < results.length) {\n          items.push(\n            <span\n              onClick$={() => {\n                cart.push(results[i]);\n              }}\n            >\n              {results[i]}\n            </span>\n          );\n          i++;\n        }\n        return items;\n      }\n      return (\n        <div>\n          {results.value.map((item) => (\n            <button\n              id=\\"second\\"\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          {loopArrowFn(results.value)}\n          {loopForI(results.value)}\n          {loopForOf(results.value)}\n          {loopForIn(results.value)}\n          {loopWhile(results.value)}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,yDACE,0BAAU,OAAO,oEAEb,wDACc,YAAY,CAAC;AALtC,MACKC,sDACD,0BAAU,OAAO,iEAEhB,qDACW;;;;CAAuB,CAAC;AALxC,MACKC,uDACA,0BAAU,OAAO,kEAEf,sDACY,YAAY,CAAC;AALhC,MACKA,uDACA,0BAAU,OAAO,kEAEf,sDACY;;;;CAAyB,CAAC;AAL7C,MACKA,uDACA,0BAAU,OAAO,kEAEf,sDACY;;;;CAAuB,CAAC;AAL3C,MACKC,mDACJ,0BAAU,OAAO,8DACwB,kDAEnC,YAAY,CAAC;AALpB,MACKC,8BAA4C,0BAAU,OAAO,yCAElE,4BAA4B;AAF5B,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,OAAO,MAAM,MAAMC,yCA+Fb\"}")
 == DIAGNOSTICS ==
 
 []

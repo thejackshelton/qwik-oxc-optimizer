@@ -41,6 +41,7 @@ expression: output
 
 import { useSignal } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
+//
 export const Parent_component_0TaiDayHrlo = () => {
 	const cart = useStore<Cart>([]);
 	const results = useSignal(["foo", "bar"]);
@@ -56,7 +57,7 @@ export const Parent_component_0TaiDayHrlo = () => {
               </li>)}
           </ul>
         </div>;
-};;
+};
 
 /*
 {
@@ -82,15 +83,14 @@ export const Parent_component_0TaiDayHrlo = () => {
 ============================= test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Parent_component_div_button_q_e_click_5khsVRINUws = () => {
 	const cart = _captures[0];
 	const item = _captures[1];
 	cart.push(item);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Parent_component_div_button_q_e_click_5khsVRINUws = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK;;AACd\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Parent_component_div_button_q_e_click_5khsVRINUws = () => { const cart = _captures[0];\nconst item = _captures[1];\n\n\tcart.push(item);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,OAAO,UAAU;AAEtB,MAAK,KAAK,KAAK\"}")
 /*
 {
   "origin": "test.tsx",
@@ -125,14 +125,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_b
 ============================= test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = () => {
 	const results = _captures[0];
 	return results.value = ["item1", "item2"];
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = () => {\nconst results = _captures[0];\nreturn results.value = [\\"item1\\", \\"item2\\"];;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4DAA4D;CACzE,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,QAAQ,CAAC,SAAS,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = () => {\nconst results = _captures[0];\nreturn results.value = [\\"item1\\", \\"item2\\"];\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4DAA4D;CACzE,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,QAAQ,CAAC,SAAS,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -164,14 +163,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_b
 
 ============================= test.js ==
 
-const q_Parent_component_div_button_q_e_click_5khsVRINUws = qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws"), "Parent_component_div_button_q_e_click_5khsVRINUws", [cart, item]);
-const q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM"), "Parent_component_div_button_q_e_click_1_rAeuW6OvuXM", [results]);
-const q_Parent_component_0TaiDayHrlo = qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Parent_component_div_button_q_e_click_5khsVRINUws = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_5khsVRINUws"), "Parent_component_div_button_q_e_click_5khsVRINUws", [cart, item]);
+const q_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_div_button_q_e_click_1_rAeuW6OvuXM"), "Parent_component_div_button_q_e_click_1_rAeuW6OvuXM", [results]);
+const q_Parent_component_0TaiDayHrlo = /*#__PURE__*/ qrl(() => import("./test.tsx_Parent_component_0TaiDayHrlo"), "Parent_component_0TaiDayHrlo");
+//
 import { component$, useStore, useSignal } from "@qwik.dev/core";
-const Parent = componentQrl(q_Parent_component_0TaiDayHrlo);
+//
+const Parent = /*#__PURE__*/ componentQrl(q_Parent_component_0TaiDayHrlo);
 
-
-Some("{\"version\":3,\"names\":[\"port { component$, useStore, useSignal } from '@qwi\",\"port { component$, useStore, useSignal } from '@qwik.\",\"port { component$, useStore, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t  import { component$, useStore, useSignal } from '@qwik.dev/core';\n      const Parent = component$(() => {\n      const cart = useStore<Cart>([]);\n      const results = useSignal(['foo', 'bar']);\n\n      return (\n        <div>\n          <button id=\\"first\\" onClick$={() => (results.value = ['item1', 'item2'])}></button>\n\n          {results.value.map((item, key) => (\n            <button\n              id={'second-' + key}\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          <ul>\n            {cart.map((item) => (\n              <li>\n                <span>{item}</span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,MACKA,gEACL,OAAO,iEACyB,qDACc,YAEtC,CAAC;AANT,MACKC,kEACH,OAAO,mEAC2B,uDAGlC,SAAS,CAAC;AANZ,MACKC,2CAA2C,OAAO,4CACzB,+BACT;AAFlB,SAAS,YAAY,UAAU,iBAAiB;AAC7C,MAAM,SAASC,4CA2Bf\"}")
+Some("{\"version\":3,\"names\":[\"port { component$, useStore, useSignal } from '@qwi\",\"port { component$, useStore, useSignal } from '@qwik.\",\"port { component$, useStore, u\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t  import { component$, useStore, useSignal } from '@qwik.dev/core';\n      const Parent = component$(() => {\n      const cart = useStore<Cart>([]);\n      const results = useSignal(['foo', 'bar']);\n\n      return (\n        <div>\n          <button id=\\"first\\" onClick$={() => (results.value = ['item1', 'item2'])}></button>\n\n          {results.value.map((item, key) => (\n            <button\n              id={'second-' + key}\n              onClick$={() => {\n                cart.push(item);\n              }}\n            >\n              {item}\n            </button>\n          ))}\n          <ul>\n            {cart.map((item) => (\n              <li>\n                <span>{item}</span>\n              </li>\n            ))}\n          </ul>\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,sDACD,0BAAU,OAAO,iEAEd,qDAEG,YACH,CAAC;AAPR,MACKC,wDACC,0BAAU,OAAO,mEAEZ,uDAGV,SAAS,CAAC;AAPX,MACKC,iCAA+C,0BAAU,OAC9D,4CACI,+BAA+B;AAFhC,SAAS,YAAY,UAAU,iBAAiB;AAC7C,MAAM,SAASC,4CA2Bf\"}")
 == DIAGNOSTICS ==
 
 []

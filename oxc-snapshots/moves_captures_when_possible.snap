@@ -19,15 +19,14 @@ expression: output
 ============================= test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Test_component_button_q_e_hover_IVVGOMV4FJ4 = () => {
 	const bar = _captures[0];
 	const sig = _captures[1];
 	return sig.value += bar.value;
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_hover_IVVGOMV4FJ4 = () => {\nconst bar = _captures[0];\nconst sig = _captures[1];\nreturn sig.value += bar.value;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI,SAAS,IAAI;AAAM\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_hover_IVVGOMV4FJ4 = () => {\nconst bar = _captures[0];\nconst sig = _captures[1];\nreturn sig.value += bar.value;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI,SAAS,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -63,6 +62,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
 ============================= test.tsx_Test_component_qJXYteHpGTQ.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const Test_component_qJXYteHpGTQ = () => {
 	const sig = useSignal(0);
 	const _ref = {};
@@ -72,7 +72,7 @@ export const Test_component_qJXYteHpGTQ = () => {
 	_ref.bar = useSignal("_ref.bar");
 	const { bar } = _ref;
 	return <button>{sig}</button>;
-};;
+};
 
 /*
 {
@@ -98,14 +98,13 @@ export const Test_component_qJXYteHpGTQ = () => {
 ============================= test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Test_component_button_q_e_click_SvzH9HBZLMQ = () => {
 	const sig = _captures[0];
 	return sig.value++;
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_click_SvzH9HBZLMQ = () => {\nconst sig = _captures[0];\nreturn sig.value++;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI;AAAQ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_click_SvzH9HBZLMQ = () => {\nconst sig = _captures[0];\nreturn sig.value++;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -140,15 +139,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
 ============================= test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = () => {
 	const foo = _captures[0];
 	const sig = _captures[1];
 	return foo.value += sig.value;
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = () => {\nconst foo = _captures[0];\nconst sig = _captures[1];\nreturn foo.value += sig.value;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CACrE,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI,SAAS,IAAI;AAAM\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = () => {\nconst foo = _captures[0];\nconst sig = _captures[1];\nreturn foo.value += sig.value;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CACrE,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI,SAAS,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -183,15 +181,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
 
 ============================= test.js ==
 
-const q_Test_component_button_q_e_click_SvzH9HBZLMQ = qrl(() => import("./test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ"), "Test_component_button_q_e_click_SvzH9HBZLMQ", [sig]);
-const q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = qrl(() => import("./test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y"), "Test_component_button_q_e_dbl_click_V6SfNCrWp5Y", [foo, sig]);
-const q_Test_component_button_q_e_hover_IVVGOMV4FJ4 = qrl(() => import("./test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4"), "Test_component_button_q_e_hover_IVVGOMV4FJ4", [bar, sig]);
-const q_Test_component_qJXYteHpGTQ = qrl(() => import("./test.tsx_Test_component_qJXYteHpGTQ"), "Test_component_qJXYteHpGTQ");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Test_component_button_q_e_click_SvzH9HBZLMQ = /*#__PURE__*/ qrl(() => import("./test.tsx_Test_component_button_q_e_click_SvzH9HBZLMQ"), "Test_component_button_q_e_click_SvzH9HBZLMQ", [sig]);
+const q_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y = /*#__PURE__*/ qrl(() => import("./test.tsx_Test_component_button_q_e_dbl_click_V6SfNCrWp5Y"), "Test_component_button_q_e_dbl_click_V6SfNCrWp5Y", [foo, sig]);
+const q_Test_component_button_q_e_hover_IVVGOMV4FJ4 = /*#__PURE__*/ qrl(() => import("./test.tsx_Test_component_button_q_e_hover_IVVGOMV4FJ4"), "Test_component_button_q_e_hover_IVVGOMV4FJ4", [bar, sig]);
+const q_Test_component_qJXYteHpGTQ = /*#__PURE__*/ qrl(() => import("./test.tsx_Test_component_qJXYteHpGTQ"), "Test_component_qJXYteHpGTQ");
+//
 import { component$, useSignal, $ } from "@qwik.dev/core";
-export const Test = componentQrl(q_Test_component_qJXYteHpGTQ);
+//
+export const Test = /*#__PURE__*/ componentQrl(q_Test_component_qJXYteHpGTQ);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal, $ } from \\"@qwik.\",\"ort { component$, useSignal, $ } from \\"@qwik.dev/\",\"ort { component$, useSignal,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const Test = component$(() => {\n\t\t\tconst sig = useSignal(0);\n\t\t\tconst foo = useSignal('foo');\n\t\t\tconst bar = useSignal('bar');\n\t\t\treturn <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,0DAEJ,OAAO,2DACkB,+CAEf,KAAK,CAAC;AANjB,MACKC,8DAEA,OAAO,+DAEP,mDACkB,UACvB,CAAC;AAPD,MACKD,0DAEJ,OAAO,2DACkB,+CAEf,UAAU,CAAC;AANtB,MACKE,yCAAyC,OAAO,0CAEpB,6BACZ;AAHnB,SAAS,YAAY,WAAW,SAAS;AAEzC,OAAO,MAAM,OAAOC,0CAKlB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal, $ } from \\"@qwik.\",\"ort { component$, useSignal, $ } from \\"@qwik.dev/\",\"ort { component$, useSignal,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal, $ } from \\"@qwik.dev/core\\";\n\n\t\texport const Test = component$(() => {\n\t\t\tconst sig = useSignal(0);\n\t\t\tconst foo = useSignal('foo');\n\t\t\tconst bar = useSignal('bar');\n\t\t\treturn <button onClick$={() => sig.value++} onDblClick$={() => foo.value+=sig.value} onHover$={() => sig.value+=bar.value}>{sig}</button>;\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gDAEA,0BAAU,OAAO,2DAEX,+CACc,KAAK,CAAC;AAN/B,MACKC,oDAEI,0BAAU,OAAO,+DAEP,mDAEf,UAAU,CAAC;AAPf,MACKD,gDAEA,0BAAU,OAAO,2DAEX,+CACc,UACvB,CAAC;AAPH,MACKE,+BAA6C,0BAAU,OAEvD,0CACC,6BACA;AAJJ,SAAS,YAAY,WAAW,SAAS;AAEzC,OAAO,MAAM,OAAOC,0CAKlB\"}")
 == DIAGNOSTICS ==
 
 []

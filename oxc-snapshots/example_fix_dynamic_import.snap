@@ -26,12 +26,13 @@ export const Header = component$(() => {
 ============================= project/folder/test.tsx_Header_component_RGgm7Ks9QWI.tsx ==
 
 import { default as thing } from "../state";
+//
 export const Header_component_RGgm7Ks9QWI = () => {
 	return <div>
 			{import("../folder/state3")}
 			{thing}
 		</div>;
-};;
+};
 
 /*
 {
@@ -56,16 +57,18 @@ export const Header_component_RGgm7Ks9QWI = () => {
 
 ============================= project/folder/test.tsx ==
 
-const q_Header_component_RGgm7Ks9QWI = qrl(() => import("./test.tsx_Header_component_RGgm7Ks9QWI"), "Header_component_RGgm7Ks9QWI");
-import { $, component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Header_component_RGgm7Ks9QWI = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_RGgm7Ks9QWI"), "Header_component_RGgm7Ks9QWI");
+//
 import thing from "../state";
+//
 export function foo() {
 	return import("../foo/state2");
 }
-export const Header = componentQrl(q_Header_component_RGgm7Ks9QWI);
+export const Header = /*#__PURE__*/ componentQrl(q_Header_component_RGgm7Ks9QWI);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,2CACL,OAAO,4CAEa,+BACO;AAJ3B,SAAS,GAAG,kBAAkB;AAC9B,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwi\",\"component$\"],\"sources\":[\"project/folder/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nimport thing from \\"../state\\";\n\nexport function foo() {\n\treturn import(\\"../foo/state2\\")\n}\n\nexport const Header = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t{import(\\"../folder/state3\\")}\n\t\t\t{thing}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCACD,0BAAU,OAAO,4CAGX,+BAGJ;AANN,OAAO,WAAW;AAElB,OAAO,SAAS,MAAM;AACrB,QAAO,OAAO;;AAGf,OAAO,MAAM,SAASC,4CAOpB\"}")
 == DIAGNOSTICS ==
 
 []

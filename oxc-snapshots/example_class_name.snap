@@ -43,7 +43,7 @@ export const App2_component_3yveMqbQ3Fs = () => {
 			<Foo className={signal}></Foo>
 			<Foo className={computed}></Foo>
 		</>;
-};;
+};
 
 /*
 {
@@ -68,12 +68,14 @@ export const App2_component_3yveMqbQ3Fs = () => {
 
 ============================= test.js ==
 
-const q_App2_component_3yveMqbQ3Fs = qrl(() => import("./test.tsx_App2_component_3yveMqbQ3Fs.tsx"), "App2_component_3yveMqbQ3Fs");
-import { component$ } from "@qwik.dev/core";
-export const App2 = componentQrl(q_App2_component_3yveMqbQ3Fs);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_App2_component_3yveMqbQ3Fs = /*#__PURE__*/ qrl(() => import("./test.tsx_App2_component_3yveMqbQ3Fs.tsx"), "App2_component_3yveMqbQ3Fs");
+//
+export const App2 = /*#__PURE__*/ componentQrl(q_App2_component_3yveMqbQ3Fs);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App2 = component$(() => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + 'foo';\n\treturn (\n\t\t<>\n\t\t\t<div className=\\"hola\\"></div>\n\t\t\t<div className={signal.value}></div>\n\t\t\t<div className={signal}></div>\n\t\t\t<div className={computed}></div>\n\n\t\t\t<Foo className=\\"hola\\"></Foo>\n\t\t\t<Foo className={signal.value}></Foo>\n\t\t\t<Foo className={signal}></Foo>\n\t\t\t<Foo className={computed}></Foo>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,yCAEL,OAAO,8CACO,6BACA;AAJd,SAAS,kBAAkB;AAE3B,OAAO,MAAM,OAAOC,0CAgBlB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App2 = component$(() => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + 'foo';\n\treturn (\n\t\t<>\n\t\t\t<div className=\\"hola\\"></div>\n\t\t\t<div className={signal.value}></div>\n\t\t\t<div className={signal}></div>\n\t\t\t<div className={computed}></div>\n\n\t\t\t<Foo className=\\"hola\\"></Foo>\n\t\t\t<Foo className={signal.value}></Foo>\n\t\t\t<Foo className={signal}></Foo>\n\t\t\t<Foo className={computed}></Foo>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAED,0BAAU,OAAO,8CACO,6BACA;AAF5B,OAAO,MAAM,OAAOC,0CAgBlB\"}")
 == DIAGNOSTICS ==
 
 []

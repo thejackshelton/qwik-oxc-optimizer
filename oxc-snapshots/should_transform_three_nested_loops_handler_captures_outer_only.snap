@@ -39,14 +39,13 @@ export default component$(() => {
 ============================= test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = () => {
 	const planeId = _captures[0];
 	return console.log(planeId);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = () => {\nconst planeId = _captures[0];\nreturn console.log(planeId);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gEAAgE;CAC7E,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = () => {\nconst planeId = _captures[0];\nreturn console.log(planeId);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,gEAAgE;CAC7E,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -79,6 +78,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const data = useSignal([[["a", "b"], ["c", "d"]], [["e", "f"], ["g", "h"]]]);
 	return <div>
@@ -93,7 +93,7 @@ export const test_component_LUXeXe0DQrg = () => {
           </div>;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -118,13 +118,16 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.js ==
 
-const q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = qrl(() => import("./test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo"), "test_component_div_div_div_button_q_e_click_7fyCCEiYKFo", [planeId]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_div_button_q_e_click_7fyCCEiYKFo"), "test_component_div_div_div_button_q_e_click_7fyCCEiYKFo", [planeId]);
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\nexpor\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const data = useSignal([\n    [['a', 'b'], ['c', 'd']],\n    [['e', 'f'], ['g', 'h']],\n  ]);\n  return (\n    <div>\n      {data.value.map((plane, pi) => {\n        const planeId = 'p' + pi;\n        return (\n          <div key={pi}>\n            {plane.map((row, ri) => (\n              <div key={ri}>\n                {row.map((cell, ci) => (\n                  <button key={ci} onClick$={() => console.log(planeId)}>\n                    {cell}\n                  </button>\n                ))}\n              </div>\n            ))}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,sEAEa,OAAO,uEAGpB,2DAIE,SAAS,CAAC;AAVjB,MACKC,yCAAyC,OAAO,0CAGjD,6BACE;AAJN,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAyBb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/core';\n\nexpor\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const data = useSignal([\n    [['a', 'b'], ['c', 'd']],\n    [['e', 'f'], ['g', 'h']],\n  ]);\n  return (\n    <div>\n      {data.value.map((plane, pi) => {\n        const planeId = 'p' + pi;\n        return (\n          <div key={pi}>\n            {plane.map((row, ri) => (\n              <div key={ri}>\n                {row.map((cell, ci) => (\n                  <button key={ci} onClick$={() => console.log(planeId)}>\n                    {cell}\n                  </button>\n                ))}\n              </div>\n            ))}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,4DAEiB,0BAAU,OAC3B,uEAEc,2DAIE,SAAS,CAAC;AAV/B,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BACE;AAJpB,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAyBb\"}")
 == DIAGNOSTICS ==
 
 []

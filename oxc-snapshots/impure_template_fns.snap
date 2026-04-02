@@ -31,6 +31,7 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.ts (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const count = useSignal(0);
 	const foo = useFoo(count);
@@ -39,7 +40,7 @@ export const test_component_LUXeXe0DQrg = () => {
 					<p>{foo`test`}</p>
 					<button onClick$={() => count.value++}>Count up</button>
 				</>;
-};;
+};
 
 /*
 {
@@ -64,8 +65,12 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.ts ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
+//
 const useFoo = (count) => {
 	const tag = (s) => {
 		const value = typeof s === "string" ? s : s[0];
@@ -73,11 +78,10 @@ const useFoo = (count) => {
 	};
 	return tag;
 };
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 export { useFoo as _auto_useFoo };
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\t\tconst useFoo = (count) => {\n\t\t\tconst tag = (s) => {\n\t\t\t\tconst value = typeof s === \\"string\\" ? s : s[0];\n\t\t\t\treturn `${value}-${count.value}`;\n\t\t\t}\n\t\t\treturn tag;\n\t\t}\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\tconst foo = useFoo(count);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t\t<p>{foo(\\"test\\")}</p>\n\t\t\t\t\t<p>{foo`test`}</p>\n\t\t\t\t\t<button onClick$={() => count.value++}>Count up</button>\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAE9C,6BACK;AAHV,SAAS,YAAY,iBAAiB;AACtC,MAAM,UAAU,UAAU;CACzB,MAAM,OAAO,MAAM;EAClB,MAAM,QAAQ,OAAO,MAAM,WAAW,IAAI,EAAE;AAC5C,SAAO,GAAG,MAAM,GAAG,MAAM;;AAE1B,QAAO;;AAGR,eAAeC,0CAUb;AApBJ\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\t\tconst useFoo = (count) => {\n\t\t\tconst tag = (s) => {\n\t\t\t\tconst value = typeof s === \\"string\\" ? s : s[0];\n\t\t\t\treturn `${value}-${count.value}`;\n\t\t\t}\n\t\t\treturn tag;\n\t\t}\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\tconst foo = useFoo(count);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t\t<p>{foo(\\"test\\")}</p>\n\t\t\t\t\t<p>{foo`test`}</p>\n\t\t\t\t\t<button onClick$={() => count.value++}>Count up</button>\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAChD,OAAO,0CACY,6BACK;AAHxB,SAAS,YAAY,iBAAiB;AACtC,MAAM,UAAU,UAAU;CACzB,MAAM,OAAO,MAAM;EAClB,MAAM,QAAQ,OAAO,MAAM,WAAW,IAAI,EAAE;AAC5C,SAAO,GAAG,MAAM,GAAG,MAAM;;AAE1B,QAAO;;AAGR,eAAeC,0CAUb;AApBJ\"}")
 == DIAGNOSTICS ==
 
 []

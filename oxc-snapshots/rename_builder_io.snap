@@ -31,10 +31,9 @@ expression: output
 ============================= test.tsx_Foo_qwikify_0Yoy9qA0SC0.ts (ENTRY POINT)==
 
 export const Foo_qwikify_0Yoy9qA0SC0 = MyReactComponent;
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_qwikify_0Yoy9qA0SC0\"],\"sourcesContent\":[\"export const Foo_qwikify_0Yoy9qA0SC0 = MyReactComponent;;\"],\"mappings\":\"AAAA,OAAO,MAAM,0BAA0B;AAAiB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_qwikify_0Yoy9qA0SC0\"],\"sourcesContent\":[\"export const Foo_qwikify_0Yoy9qA0SC0 = MyReactComponent;\"],\"mappings\":\"AAAA,OAAO,MAAM,0BAA0B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -62,6 +61,7 @@ import { isDev } from "@qwik.dev/core/build";
 import { moreStuff } from "@qwik.dev/router/more/here";
 import { default as sdk } from "@builder.io/sdk";
 import { stuff } from "@qwik.dev/router";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	sdk.hello();
 	if (isDev) {
@@ -71,10 +71,8 @@ export const App_component_ckEPmXZlub0 = () => {
 	}
 	return "hi";
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { isDev } from \\"@qwik.dev/core/build\\";\nimport { moreStuff } from \\"@qwik.dev/router/more/here\\";\nimport { default as sdk } from \\"@builder.io/sdk\\";\nimport { stuff } from \\"@qwik.dev/router\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tsdk.hello();\n\tif (isDev) {\n\t\tstuff();\n\t} else {\n\t\tmoreStuff();\n\t}\n\treturn \\"hi\\";\n};;\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,SAAS,iBAAiB;AAC1B,SAAS,WAAW,WAAW;AAC/B,SAAS,aAAa;AACtB,OAAO,MAAM,kCAAkC;AAC9C,KAAI,OAAO;AACX,KAAI,OAAO;AACV,SAAO;QACD;AACN,aAAW;;AAEZ,QAAO;;AACN\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { isDev } from \\"@qwik.dev/core/build\\";\nimport { moreStuff } from \\"@qwik.dev/router/more/here\\";\nimport { default as sdk } from \\"@builder.io/sdk\\";\nimport { stuff } from \\"@qwik.dev/router\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tsdk.hello();\n\tif (isDev) {\n\t\tstuff();\n\t} else {\n\t\tmoreStuff();\n\t}\n\treturn \\"hi\\";\n};\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,SAAS,iBAAiB;AAC1B,SAAS,WAAW,WAAW;AAC/B,SAAS,aAAa;AACtB,OAAO,MAAM,kCAAkC;AAC9C,KAAI,OAAO;AACX,KAAI,OAAO;AACV,SAAO;QACD;AACN,aAAW;;AAEZ,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -99,10 +97,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 ============================= test.tsx_Bar_GXXnVUtURSw.ts (ENTRY POINT)==
 
 export const Bar_GXXnVUtURSw = "a thing";
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_GXXnVUtURSw\"],\"sourcesContent\":[\"export const Bar_GXXnVUtURSw = \\"a thing\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,kBAAkB;AAAU\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_GXXnVUtURSw\"],\"sourcesContent\":[\"export const Bar_GXXnVUtURSw = \\"a thing\\";\"],\"mappings\":\"AAAA,OAAO,MAAM,kBAAkB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -126,21 +123,23 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_GXXnVUtURSw\"],\"s
 
 ============================= test.ts ==
 
-const q_Foo_qwikify_0Yoy9qA0SC0 = qrl(() => import("./test.tsx_Foo_qwikify_0Yoy9qA0SC0"), "Foo_qwikify_0Yoy9qA0SC0");
-const q_Bar_GXXnVUtURSw = qrl(() => import("./test.tsx_Bar_GXXnVUtURSw"), "Bar_GXXnVUtURSw");
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-import { $, component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Foo_qwikify_0Yoy9qA0SC0 = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_qwikify_0Yoy9qA0SC0"), "Foo_qwikify_0Yoy9qA0SC0");
+const q_Bar_GXXnVUtURSw = /*#__PURE__*/ qrl(() => import("./test.tsx_Bar_GXXnVUtURSw"), "Bar_GXXnVUtURSw");
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
 import { isDev } from "@qwik.dev/core/build";
 import { stuff } from "@qwik.dev/router";
 import { moreStuff } from "@qwik.dev/router/more/here";
 import { qwikify$ } from "@qwik.dev/react";
 import sdk from "@builder.io/sdk";
+//
 export const Foo = qwikifyQrl(q_Foo_qwikify_0Yoy9qA0SC0);
 export const Bar = Qrl(q_Bar_GXXnVUtURSw);
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"ort { $, component$ } fro\",\"ort { $, componen\",\"ort { $, component$ } from \",\"qwikify$\",\"$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { $, component$ } from \\"@builder.io/qwik\\";\n\t\timport { isDev } from \\"@builder.io/qwik/build\\";\n\t\timport { stuff } from \\"@builder.io/qwik-city\\";\n\t\timport { moreStuff } from \\"@builder.io/qwik-city/more/here\\";\n\t\timport { qwikify$ } from \\"@builder.io/qwik-react\\";\n\t\timport sdk from \\"@builder.io/sdk\\";\n\n\t\texport const Foo = qwikify$(MyReactComponent);\n\n\t\texport const Bar = $(\\"a thing\\");\n\n\t\texport const App = component$(() => {\n\t\t\tsdk.hello();\n\t\t\tif (isDev) {\n\t\t\t\tstuff()\n\t\t\t} else {\n\t\t\t\tmoreStuff()\n\t\t\t}\n\t\t\treturn \\"hi\\";\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,sCAAsC,OAAO,uCACb,0BACxB;AAHb,MACKC,8BAA8B,OAAO,+BACrB,kBAAkB;AAFvC,MACKC,wCAAwC,OAC7C,yCAAyC,4BACtB;AAFjB,SAAS,GAAG,kBAAkB;AAC9B,SAAS,aAAa;AACtB,SAAS,aAAa;AACtB,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,OAAO,SAAS;AAEhB,OAAO,MAAM,MAAMC,qCAA0B;AAE7C,OAAO,MAAM,MAAMC,sBAAY;AAE/B,OAAO,MAAM,MAAMC,yCAQjB\"}")
+Some("{\"version\":3,\"names\":[\"ort { $, component$ } fro\",\"ort { $, componen\",\"ort { $, component$ } from \",\"qwikify$\",\"$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { $, component$ } from \\"@builder.io/qwik\\";\n\t\timport { isDev } from \\"@builder.io/qwik/build\\";\n\t\timport { stuff } from \\"@builder.io/qwik-city\\";\n\t\timport { moreStuff } from \\"@builder.io/qwik-city/more/here\\";\n\t\timport { qwikify$ } from \\"@builder.io/qwik-react\\";\n\t\timport sdk from \\"@builder.io/sdk\\";\n\n\t\texport const Foo = qwikify$(MyReactComponent);\n\n\t\texport const Bar = $(\\"a thing\\");\n\n\t\texport const App = component$(() => {\n\t\t\tsdk.hello();\n\t\t\tif (isDev) {\n\t\t\t\tstuff()\n\t\t\t} else {\n\t\t\t\tmoreStuff()\n\t\t\t}\n\t\t\treturn \\"hi\\";\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,4BAA0C,0BAC1C,OAAO,uCACX,0BAA0B;AAH3B,MACKC,oBAAkC,0BAAU,OAC7C,+BAA+B,kBAChC;AAHH,MACKC,8BAA4C,0BAC1C,OAAO,yCACT,4BAA4B;AAD/B,SAAS,aAAa;AACtB,SAAS,aAAa;AACtB,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,OAAO,SAAS;AAEhB,OAAO,MAAM,MAAMC,qCAA0B;AAE7C,OAAO,MAAM,MAAMC,sBAAY;AAE/B,OAAO,MAAM,MAAMC,yCAQjB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -47,7 +47,7 @@ export const Cmp_component_4ryKJTOKjWE = (props) => {
 			<p data-value={props.count}>{props.nested.count}</p>
 			<p>Value {props.count}<span></span></p>
 		</>;
-};;
+};
 
 /*
 {
@@ -77,6 +77,7 @@ export const Cmp_component_4ryKJTOKjWE = (props) => {
 
 import { Cmp } from "./test";
 import { useStore } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	const store = useStore({
 		count: 0,
@@ -86,7 +87,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	const signal = useSignal(0);
 	return <Cmp>
 		</Cmp>;
-};;
+};
 
 /*
 {
@@ -111,14 +112,17 @@ export const App_component_ckEPmXZlub0 = () => {
 
 ============================= test.js ==
 
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+//
 import { component$, useStore } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
-export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
+export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: {\n\t\t\tcount: 0\n\t\t}\n\t});\n\tconst signal = useSignal(0);\n\treturn (\n\t\t<Cmp\n\t\t\tprop={'true' + 1 ? 'true' : ''}\n\t\t\tcount={store.count}\n\t\t\tnested={store.nested.count}\n\t\t\tsignal={signal}\n\t\t\tstore={store.stuff + 12}\n\t\t\tvalue={signal.formData?.get('username')}\n\t\t>\n\t\t</Cmp>\n\t);\n});\n\nexport const Cmp = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<p data-value={props.count}>{props.nested.count}</p>\n\t\t\t<p>Value {props.count}<span></span></p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,wCAAwC,OAAO,yCAEf,4BAEpC;AALD,MACKA,wCAAwC,OAAO,yCAEf,4BAEpC;AAJD,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAoBjB;AAEF,OAAO,MAAM,MAAMA,yCAOjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tconst store = useStore({\n\t\tcount: 0,\n\t\tstuff: 0,\n\t\tnested: {\n\t\t\tcount: 0\n\t\t}\n\t});\n\tconst signal = useSignal(0);\n\treturn (\n\t\t<Cmp\n\t\t\tprop={'true' + 1 ? 'true' : ''}\n\t\t\tcount={store.count}\n\t\t\tnested={store.nested.count}\n\t\t\tsignal={signal}\n\t\t\tstore={store.stuff + 12}\n\t\t\tvalue={signal.formData?.get('username')}\n\t\t>\n\t\t</Cmp>\n\t);\n});\n\nexport const Cmp = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<p data-value={props.count}>{props.nested.count}</p>\n\t\t\t<p>Value {props.count}<span></span></p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,yCACG,4BAEV;AANH,MACKA,8BAA4C,0BAE9C,OAAO,yCACG,4BAEV;AALH,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAoBjB;AAEF,OAAO,MAAM,MAAMA,yCAOjB\"}")
 == DIAGNOSTICS ==
 
 []

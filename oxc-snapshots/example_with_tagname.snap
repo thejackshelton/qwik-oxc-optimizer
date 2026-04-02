@@ -22,14 +22,15 @@ export const Foo = component$(() => {
 
 ============================= test.tsx_Foo_component_1_DvU6FitWglY.tsx (ENTRY POINT)==
 
-const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+import { qrl } from "@qwik.dev/core";
+//
+const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+//
 export const Foo_component_1_DvU6FitWglY = () => {
 	return Qrl(q_Foo_component_HTDRsvUbLiE);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"const q_Foo_component_HTDRsvUbLiE = qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\");\nexport const Foo_component_1_DvU6FitWglY = () => {\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE);\n};;\"],\"mappings\":\"AAAA,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,OAAO,MAAM,oCAAoC;AAChD,QAAO,IAAI,4BAA4B;;AACtC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\");\nexport const Foo_component_1_DvU6FitWglY = () => {\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE);\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,4BAA4B;AACxI,OAAO,MAAM,oCAAoC;AAChD,QAAO,IAAI,4BAA4B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -56,7 +57,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6Fi
 export const Foo_component_HTDRsvUbLiE = () => {
 	return <div>
 			</div>;
-};;
+};
 
 /*
 {
@@ -81,12 +82,14 @@ export const Foo_component_HTDRsvUbLiE = () => {
 
 ============================= test.tsx ==
 
-const q_Foo_component_1_DvU6FitWglY = qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
-import { $, component$ } from "@qwik.dev/core";
-export const Foo = componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Foo_component_1_DvU6FitWglY = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_1_DvU6FitWglY"), "Foo_component_1_DvU6FitWglY");
+//
+export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_1_DvU6FitWglY, { tagName: "my-foo" });
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAE1C,2CACK,8BAGR;AANF,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,4CAOhB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const Foo = component$(() => {\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div>\n\t\t\t</div>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAEH,0BAAU,OAAO,2CAEb,8BAIJ;AANF,OAAO,MAAM,MAAMC,4CAOhB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

@@ -27,14 +27,13 @@ export const App = component$((props) => {
 ============================= test.tsx_App_component_useMemo_6Sc9KVki3Y0.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_useMemo_6Sc9KVki3Y0 = () => {
 	const state = _captures[0];
 	console.log(state.count);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_6Sc9KVki3Y0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_useMemo_6Sc9KVki3Y0 = () => { const state = _captures[0];\n\n\tconsole.log(state.count);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0CAA0C;CAAE,MAAM,QAAQ,UAAU;AAEhF,SAAQ,IAAI,MAAM,MAAM;;AACvB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_6Sc9KVki3Y0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_useMemo_6Sc9KVki3Y0 = () => { const state = _captures[0];\n\n\tconsole.log(state.count);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0CAA0C;CAAE,MAAM,QAAQ,UAAU;AAEhF,SAAQ,IAAI,MAAM,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -63,8 +62,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_useMemo_
 
 import { _wrapProp } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-const q_App_component_useMemo_6Sc9KVki3Y0 = qrl(() => import("./test.tsx_App_component_useMemo_6Sc9KVki3Y0"), "App_component_useMemo_6Sc9KVki3Y0", [state]);
+import { qrl } from "@qwik.dev/core";
+const q_App_component_useMemo_6Sc9KVki3Y0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_useMemo_6Sc9KVki3Y0"), "App_component_useMemo_6Sc9KVki3Y0", [state]);
+//
 import { component$ as Component, $ as onRender, useStore, wrap, useEffect } from "@qwik.dev/core";
+//
 export const useMemo$ = (qrt) => {
 	useEffect(qrt);
 };
@@ -74,8 +76,7 @@ export const App = component$((props) => {
 	return $(() => _jsxSorted("div", null, null, _wrapProp(state, "count"), 3, "u6_0"));
 });
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ as Component, $ as o\",\"\nimport {\",\"compo\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore, wrap, useEffect } from '@qwik.dev/core';\n\n\nexport const useMemo$ = (qrt) => {\n\tuseEffect(qrt);\n};\n\nexport const App = component$((props) => {\n\tconst state = useStore({count: 0});\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n\treturn $(() => (\n\t\t<div>{state.count}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,gDAAgD,OAAO,iDAGrD,qCACE,OAAO,CAChB;AALA,SAAS,cAAc,WAAW,KAAK,UAAU,UAAU,MAAM,iBAAiB;AAGlF,OAAO,MAAM,YAAY,QAAQ;AAChC,WAAU,IAAI;;AAGf,OAAO,MAAM,MAAM,YAAY,UAAU;CACxC,MAAM,QAAQ,SAAS,EAAC,OAAO,GAAE,CAAC;AAClC,2DAEE;AACF,QAAO,sCAbRC,UACSC,OAAO,QAAQ,aAcrB;EACD\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ as Component, $ as o\",\"\nimport {\",\"compo\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ as Component, $ as onRender, useStore, wrap, useEffect } from '@qwik.dev/core';\n\n\nexport const useMemo$ = (qrt) => {\n\tuseEffect(qrt);\n};\n\nexport const App = component$((props) => {\n\tconst state = useStore({count: 0});\n\tuseMemo$(() => {\n\t\tconsole.log(state.count);\n\t});\n\treturn $(() => (\n\t\t<div>{state.count}</div>\n\t));\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,sCAAoD,0BAAU,OAAO,iDAGrD,qCAInB,OAAO,CAAC;AAPV,SAAS,cAAc,WAAW,KAAK,UAAU,UAAU,MAAM,iBAAiB;AAGlF,OAAO,MAAM,YAAY,QAAQ;AAChC,WAAU,IAAI;;AAGf,OAAO,MAAM,MAAM,YAAY,UAAU;CACxC,MAAM,QAAQ,SAAS,EAAC,OAAO,GAAE,CAAC;AAClC,2DAEE;AACF,QAAO,sCAbRC,UACSC,OAAO,QAAQ,aAcrB;EACD\"}")
 == DIAGNOSTICS ==
 
 [

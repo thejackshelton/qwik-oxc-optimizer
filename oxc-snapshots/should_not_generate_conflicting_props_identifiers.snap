@@ -21,14 +21,18 @@ expression: output
 
 ============================= test.tsx ==
 
-const q_test_component_useComputed_PYU291PvidQ = _noopQrl("test_component_useComputed_PYU291PvidQ");
-const q_test_component_useTask_jewzFYh3XmQ = _noopQrl("test_component_useTask_jewzFYh3XmQ");
-const q_test_component_LUXeXe0DQrg = _noopQrl("test_component_LUXeXe0DQrg");
-import { component$, useComputed$, useTask$ } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+import { componentQrl } from "@qwik.dev/core";
+import { useComputedQrl } from "@qwik.dev/core";
+import { useTaskQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_useComputed_PYU291PvidQ = /*#__PURE__*/ _noopQrl("test_component_useComputed_PYU291PvidQ");
+const q_test_component_useTask_jewzFYh3XmQ = /*#__PURE__*/ _noopQrl("test_component_useTask_jewzFYh3XmQ");
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ _noopQrl("test_component_LUXeXe0DQrg");
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, useTask$\",\"ort { component$, useComputed$, useT\",\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,MACKA,oDAAoD,yCAE9B;AAH3B,MACKC,gDAAgD,qCAElC;AAHnB,MACKC,wCAAwC,6BAE1C;AAFD,SAAS,YAAY,cAAc,gBAAgB;AAEnD,eAAeC,0CAQb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useComputed$, useTask$\",\"ort { component$, useComputed$, useT\",\"ort { component$, useCompute\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useComputed$, useTask$ } from '@qwik.dev/core'\n\n\t\texport default component$(({ color, ...props }) => {\n\t\tuseComputed$(() => color)\n\n\t\tuseTask$(() => {\n\t\t\tprops.checked\n\t\t})\n\n\t\treturn 'hi'\n\t\t})\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,2CAAyD,yBAE9D,yCAAyC;AAHzC,MACKC,uCAAqD,yBAAS,qCAElC;AAHjC,MACKC,+BAA6C,yBAAS,6BAE1C;AAAf,eAAeC,0CAQb\"}")
 == DIAGNOSTICS ==
 
 []

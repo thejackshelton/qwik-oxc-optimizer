@@ -43,10 +43,11 @@ import { e } from "./test";
 import { exp1 } from "./test";
 import { f } from "./test";
 import { foo } from "./test";
+//
 export const Header_component_UVBJuFYfvDo = () => <Footer>
 			<div>{a}{b}{c}{d}{e}{f}{exp1}{internal}{foo}{bar}{DefaultFn}</div>
 			<div>{v1}{v2}{v3}{obj}</div>
-		</Footer>;;
+		</Footer>;
 
 /*
 {
@@ -71,14 +72,15 @@ export const Header_component_UVBJuFYfvDo = () => <Footer>
 
 ============================= project/test.tsx_Header_component_1_uWM1kg0IGO0.jsx (ENTRY POINT)==
 
-const q_Header_component_UVBJuFYfvDo = qrl(() => import("./test.tsx_Header_component_UVBJuFYfvDo"), "Header_component_UVBJuFYfvDo");
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_component_UVBJuFYfvDo = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_UVBJuFYfvDo"), "Header_component_UVBJuFYfvDo");
+//
 export const Header_component_1_uWM1kg0IGO0 = () => {
 	return Qrl(q_Header_component_UVBJuFYfvDo);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_uWM1kg0IGO0\"],\"sourcesContent\":[\"const q_Header_component_UVBJuFYfvDo = qrl(() => import(\\"./test.tsx_Header_component_UVBJuFYfvDo\\"), \\"Header_component_UVBJuFYfvDo\\");\nexport const Header_component_1_uWM1kg0IGO0 = () => {\n\treturn Qrl(q_Header_component_UVBJuFYfvDo);\n};;\"],\"mappings\":\"AAAA,MAAM,iCAAiC,UAAU,OAAO,4CAA4C,+BAA+B;AACnI,OAAO,MAAM,uCAAuC;AACnD,QAAO,IAAI,+BAA+B;;AACzC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_uWM1kg0IGO0\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Header_component_UVBJuFYfvDo = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Header_component_UVBJuFYfvDo\\"), \\"Header_component_UVBJuFYfvDo\\");\nexport const Header_component_1_uWM1kg0IGO0 = () => {\n\treturn Qrl(q_Header_component_UVBJuFYfvDo);\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,iCAA+C,0BAAU,OAAO,4CAA4C,+BAA+B;AACjJ,OAAO,MAAM,uCAAuC;AACnD,QAAO,IAAI,+BAA+B\"}")
 /*
 {
   "origin": "project/test.tsx",
@@ -102,8 +104,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_component_1_uWM
 
 ============================= project/test.jsx ==
 
-const q_Header_component_1_uWM1kg0IGO0 = qrl(() => import("./test.tsx_Header_component_1_uWM1kg0IGO0"), "Header_component_1_uWM1kg0IGO0");
-import { $, component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_component_1_uWM1kg0IGO0 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_component_1_uWM1kg0IGO0"), "Header_component_1_uWM1kg0IGO0");
+//
 export const [a, { b, v1: [c], d = v2, ...e }, f = v3, ...g] = obj;
 const exp1 = 1;
 const internal = 2;
@@ -111,13 +116,12 @@ export { exp1, internal as expr2 };
 export function foo() {}
 export class bar {}
 export default function DefaultFn() {}
-export const Header = componentQrl(q_Header_component_1_uWM1kg0IGO0);
-export const Footer = componentQrl();
+export const Header = /*#__PURE__*/ componentQrl(q_Header_component_1_uWM1kg0IGO0);
+export const Footer = /*#__PURE__*/ componentQrl();
 export { DefaultFn as _auto_DefaultFn };
 export { internal as _auto_internal };
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const [a, {b, v1: [c], d=v2, ...e}, f=v3, ...g] = obj;\n\nconst exp1 = 1;\nconst internal = 2;\nexport {exp1, internal as expr2};\n\nexport function foo() { }\nexport class bar {}\n\nexport default function DefaultFn() {}\n\nexport const Header = component$(() => {\n\treturn $(() => (\n\t\t<Footer>\n\t\t\t<div>{a}{b}{c}{d}{e}{f}{exp1}{internal}{foo}{bar}{DefaultFn}</div>\n\t\t\t<div>{v1}{v2}{v3}{obj}</div>\n\t\t</Footer>\n\t))\n});\n\nexport const Footer = component$();\n\"],\"mappings\":\"AAAA,MACKA,6CAEJ,OAAO,8CAA8C,iCAG9C;AALR,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,CAAC,GAAG,EAAC,GAAG,IAAI,CAAC,IAAI,IAAE,IAAI,GAAG,KAAI,IAAE,IAAI,GAAG,KAAK;AAEzD,MAAM,OAAO;AACb,MAAM,WAAW;AACjB,SAAQ,MAAM,YAAY;AAE1B,OAAO,SAAS,MAAM;AACtB,OAAO,MAAM,IAAI;AAEjB,eAAe,SAAS,YAAY;AAEpC,OAAO,MAAM,SAASC,8CAOpB;AAEF,OAAO,MAAM,SAASA,cAAY;AAvBlC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qwik.\",\"component$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const [a, {b, v1: [c], d=v2, ...e}, f=v3, ...g] = obj;\n\nconst exp1 = 1;\nconst internal = 2;\nexport {exp1, internal as expr2};\n\nexport function foo() { }\nexport class bar {}\n\nexport default function DefaultFn() {}\n\nexport const Header = component$(() => {\n\treturn $(() => (\n\t\t<Footer>\n\t\t\t<div>{a}{b}{c}{d}{e}{f}{exp1}{internal}{foo}{bar}{DefaultFn}</div>\n\t\t\t<div>{v1}{v2}{v3}{obj}</div>\n\t\t</Footer>\n\t))\n});\n\nexport const Footer = component$();\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,mCAEA,0BAAU,OAAO,8CAEjB,iCAEH;AAJF,OAAO,MAAM,CAAC,GAAG,EAAC,GAAG,IAAI,CAAC,IAAI,IAAE,IAAI,GAAG,KAAI,IAAE,IAAI,GAAG,KAAK;AAEzD,MAAM,OAAO;AACb,MAAM,WAAW;AACjB,SAAQ,MAAM,YAAY;AAE1B,OAAO,SAAS,MAAM;AACtB,OAAO,MAAM,IAAI;AAEjB,eAAe,SAAS,YAAY;AAEpC,OAAO,MAAM,SAASC,8CAOpB;AAEF,OAAO,MAAM,SAASA,cAAY;AAvBlC\"}")
 == DIAGNOSTICS ==
 
 []

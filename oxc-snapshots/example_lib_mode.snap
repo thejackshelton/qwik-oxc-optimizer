@@ -26,7 +26,8 @@ const STYLES = '.class {}';
 ============================= test.tsx ==
 
 import { $, component$, server$, useStyle$, useTask$, useSignal } from "@qwik.dev/core";
-export const Works = componentQrl(inlinedQrl((props) => {
+//
+export const Works = /*#__PURE__*/ componentQrl(inlinedQrl((props) => {
 	useStyleQrl(inlinedQrl(STYLES, "Works_component_useStyle_i40UL9JyQpg"));
 	const text = "hola";
 	const sig = useSignal("hola");
@@ -38,7 +39,6 @@ export const Works = componentQrl(inlinedQrl((props) => {
 	return <div></div>;
 }, "Works_component_t45qL4vNGv0"));
 const STYLES = ".class {}";
-
 
 Some("{\"version\":3,\"names\":[\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$, useStyle$, useTask$, useSignal } from '@qwik.dev/core';\n\nexport const Works = component$((props) => {\n\tuseStyle$(STYLES);\n\tconst text = 'hola';\n\tconst sig = useSignal('hola');\n\tuseTask$(() => {\n\t\tconsole.log(sig.value, text);\n\t});\n\treturn (\n\t\t<div onClick$={server$(() => console.log('in server', sig.value, text))}></div>\n\t);\n});\n\nconst STYLES = '.class {}';\n\"],\"mappings\":\"AACA,SAAS,GAAG,YAAY,SAAS,WAAW,UAAU,iBAAiB;AAEvE,OAAO,MAAM,QAAQA,yBAAY,UAAU;AAC1C,wBAAU,gDAAO;CACjB,MAAM,OAAO;CACb,MAAM,MAAM,UAAU,OAAO;AAC7B;;;AACC,UAAQ,IAAI,IAAI,OAAO,KAAK;wDAC3B;AACF,SACE,IAAwE,EAAE;kCAE3E;AAEF,MAAM,SAAS\"}")
 == DIAGNOSTICS ==

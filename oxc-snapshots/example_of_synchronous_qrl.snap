@@ -36,7 +36,7 @@ export const test_component_LUXeXe0DQrg = () => {
 	})} />
 				<input onClick$={syncQrl((event, target) => event.preventDefault())} />
 			</>;
-};;
+};
 
 /*
 {
@@ -61,12 +61,15 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.js ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { sync$, component$ } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+import { componentQrl } from "@qwik.dev/core";
+import { syncQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { sync$, component$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGjD,6BAEY;AALd,SAAS,OAAO,kBAAkB;AAElC,eAAeC,0CAab\"}")
+Some("{\"version\":3,\"names\":[\"ort { sync$, component$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { sync$, component$ } from \\"@qwik.dev/core\\";\n\n\t\texport default component$(() => {\n\t\treturn (\n\t\t\t<>\n\t\t\t\t<input onClick$={sync$(function(event, target) {\n\t\t\t\t\t// comment should be removed\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t})}/>\n\t\t\t\t<input onClick$={sync$((event, target) => event.preventDefault())}/>\n\t\t\t</>\n\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,wBACuB;AADvB,oBACmB;AADnB,MACKA,+BAA6C,0BAE7C,OAAO,0CAGX,6BAA6B;AAH5B,eAAeC,0CAab\"}")
 == DIAGNOSTICS ==
 
 []

@@ -21,14 +21,13 @@ expression: output
 ============================= test.tsx_test_div_q_e_click_pFqTss400MA.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_div_q_e_click_pFqTss400MA = () => {
 	const data = _captures[0];
 	data.selectedOutputDetail = "options";
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFqTss400MA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_div_q_e_click_pFqTss400MA = () => { const data = _captures[0];\n\n\tdata.selectedOutputDetail = \\"options\\";\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,uCAAuC;CAAE,MAAM,OAAO,UAAU;AAE5E,MAAK,uBAAuB;;AAC3B\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFqTss400MA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_div_q_e_click_pFqTss400MA = () => { const data = _captures[0];\n\n\tdata.selectedOutputDetail = \\"options\\";\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,uCAAuC;CAAE,MAAM,OAAO,UAAU;AAE5E,MAAK,uBAAuB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -62,8 +61,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFq
 
 import { _fnSignal } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
 const _hf0 = (p0) => p0.selectedOutputDetail === "options";
-const q_test_div_q_e_click_pFqTss400MA = qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA", [data]);
+const q_test_div_q_e_click_pFqTss400MA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA", [data]);
+//
 export default (_rawProps) => {
 	const data = _rawProps.data;
 	return _jsxSorted("div", { "q:p": data }, {
@@ -72,8 +74,7 @@ export default (_rawProps) => {
 	}, null, 7, "u6_0");
 };
 
-
-Some("{\"version\":3,\"names\":[\"ort \",\"ort default ({ data }: { data: a\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,QAAO,mCAAkC;AAD9C,MACKC,6CACH,OAAO,8CAEU,kCAAkC,MAAM,CAAC;AAH1D,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort default ({ data }: { data: a\",\"\n\t\texport\",\"defa\",\" ({ \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default ({ data }: { data: any }) => {\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,QAAO,mCAAkC;AAD9C,MACKC,mCACC,0BAAU,OACZ,8CAC6B,kCAAkC,MACjE,CAAC;AAJD,8BAA4C;;AACpC;oBAFVC,UACSC,MAAM,CAACC,KAAK,EAAE,iDAElB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -29,15 +29,16 @@ const d = $(()=>console.log('thing'));
 
 ============================= test.tsx_Greeter_component_1_krCndSwhX4U.js (ENTRY POINT)==
 
-const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q", [stuff]);
+import { qrl } from "@qwik.dev/core";
+//
+const q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q", [stuff]);
+//
 export const Greeter_component_1_krCndSwhX4U = () => {
 	const stuff = useStore();
 	return Qrl(q_Greeter_component_n7HuG2hhU0Q.w([stuff]));
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_1_krCndSwhX4U\"],\"sourcesContent\":[\"const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import(\\"./test.tsx_Greeter_component_n7HuG2hhU0Q\\"), \\"Greeter_component_n7HuG2hhU0Q\\", [stuff]);\nexport const Greeter_component_1_krCndSwhX4U = () => {\n\tconst stuff = useStore();\n\treturn Qrl(q_Greeter_component_n7HuG2hhU0Q.w([stuff]));\n};;\"],\"mappings\":\"AAAA,MAAM,kCAAkC,UAAU,OAAO,6CAA6C,iCAAiC,CAAC,MAAM,CAAC;AAC/I,OAAO,MAAM,wCAAwC;CACpD,MAAM,QAAQ,UAAU;AACxB,QAAO,IAAI,gCAAgC,EAAE,CAAC,MAAM,CAAC,CAAC;;AACrD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_1_krCndSwhX4U\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Greeter_component_n7HuG2hhU0Q\\"), \\"Greeter_component_n7HuG2hhU0Q\\", [stuff]);\nexport const Greeter_component_1_krCndSwhX4U = () => {\n\tconst stuff = useStore();\n\treturn Qrl(q_Greeter_component_n7HuG2hhU0Q.w([stuff]));\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,kCAAgD,0BAAU,OAAO,6CAA6C,iCAAiC,CAAC,MAAM,CAAC;AAC7J,OAAO,MAAM,wCAAwC;CACpD,MAAM,QAAQ,UAAU;AACxB,QAAO,IAAI,gCAAgC,EAAE,CAAC,MAAM,CAAC,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -62,9 +63,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_1_kr
 ============================= test.tsx_Greeter_component_n7HuG2hhU0Q.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Greeter_component_n7HuG2hhU0Q = () => {
 	return <div />;
-};;
+};
 
 /*
 {
@@ -93,10 +95,9 @@ export const Greeter_component_n7HuG2hhU0Q = () => {
 ============================= test.tsx_d_wKNFJEIQVUA.js (ENTRY POINT)==
 
 export const d_wKNFJEIQVUA = () => console.log("thing");
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_d_wKNFJEIQVUA\"],\"sourcesContent\":[\"export const d_wKNFJEIQVUA = () => console.log(\\"thing\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,QAAQ,IAAI,QAAQ;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_d_wKNFJEIQVUA\"],\"sourcesContent\":[\"export const d_wKNFJEIQVUA = () => console.log(\\"thing\\");\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,QAAQ,IAAI,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -120,15 +121,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_d_wKNFJEIQVUA\"],\"sou
 
 ============================= test.js ==
 
-const q_Greeter_component_1_krCndSwhX4U = qrl(() => import("./test.tsx_Greeter_component_1_krCndSwhX4U"), "Greeter_component_1_krCndSwhX4U");
-const q_d_wKNFJEIQVUA = qrl(() => import("./test.tsx_d_wKNFJEIQVUA"), "d_wKNFJEIQVUA");
-import { component$, $ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Greeter_component_1_krCndSwhX4U = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_1_krCndSwhX4U"), "Greeter_component_1_krCndSwhX4U");
+const q_d_wKNFJEIQVUA = /*#__PURE__*/ qrl(() => import("./test.tsx_d_wKNFJEIQVUA"), "d_wKNFJEIQVUA");
+//
 import { hola } from "sdfds";
-export const Greeter = componentQrl(q_Greeter_component_1_krCndSwhX4U);
+//
+export const Greeter = /*#__PURE__*/ componentQrl(q_Greeter_component_1_krCndSwhX4U);
 const d = Qrl(q_d_wKNFJEIQVUA);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$,\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,MACKA,8CACF,OAAO,+CAEgB,kCACR;AALlB,MACKC,4BAA4B,OAAO,6BACnB,gBAEf;AAHN,SAAS,YAAY,SAAS;AAC9B,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,oBAA2B\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.d\",\"t { component$,\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { hola } from 'sdfds';\n\nexport const Greeter = component$(() => {\n\tconst stuff = useStore();\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tclass={{\n\t\t\t\t\t'foo': true,\n\t\t\t\t\t'bar': stuff.condition,\n\t\t\t\t\t'baz': hola ? 'true' : 'false',\n\t\t\t\t}}\n\t\t\t/>\n\t\t)\n\t});\n});\n\nconst d = $(()=>console.log('thing'));\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,oCACE,0BAAU,OAAO,+CAEgB,kCAEnC;AANL,MACKC,kBAAgC,0BAAU,OACzC,6BAEF,gBAAgB;AAFpB,SAAS,YAAY;AAErB,OAAO,MAAM,UAAUC,+CAarB;AAEF,MAAM,IAAIC,oBAA2B\"}")
 == DIAGNOSTICS ==
 
 []

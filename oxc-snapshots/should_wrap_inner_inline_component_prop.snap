@@ -29,6 +29,7 @@ export default component$((props: { id: number }) => {
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useStore } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = (props: {
 	id: number;
 }) => {
@@ -42,7 +43,7 @@ export const test_component_LUXeXe0DQrg = (props: {
           <Id id={props.id} />
           {rerenders}
         </>;
-};;
+};
 
 /*
 {
@@ -70,12 +71,15 @@ export const test_component_LUXeXe0DQrg = (props: {
 
 ============================= test.js ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { $, component$, useStore, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStore,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport default component$((props: { id: number }) => {\n      const renders = useStore(\n        {\n          count: 0,\n        },\n        { reactive: false }\n      );\n      renders.count++;\n      const rerenders = renders.count + 0;\n      const Id = (props: any) => <div>Id: {props.id}</div>;\n      return (\n        <>\n          <Id id={props.id} />\n          {rerenders}\n        </>\n      );\n    });\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAC3B,6BAC1B;AAFA,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,eAAeC,0CAgBT\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStore,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStore, useSignal } from '@qwik.dev/core';\nexport default component$((props: { id: number }) => {\n      const renders = useStore(\n        {\n          count: 0,\n        },\n        { reactive: false }\n      );\n      renders.count++;\n      const rerenders = renders.count + 0;\n      const Id = (props: any) => <div>Id: {props.id}</div>;\n      return (\n        <>\n          <Id id={props.id} />\n          {rerenders}\n        </>\n      );\n    });\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAAU,OAAO,0CAC3B,6BAC1B;AAFd,SAAS,GAAG,YAAY,UAAU,iBAAiB;AACnD,eAAeC,0CAgBT\"}")
 == DIAGNOSTICS ==
 
 []

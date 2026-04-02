@@ -29,13 +29,12 @@ export default component$(()=> {
 ============================= test.tsx_test_component_useResource_4a8wVY7wh38.tsx (ENTRY POINT)==
 
 import { onGet } from "./test";
+//
 export const test_component_useResource_4a8wVY7wh38 = () => {
 	return onGet();
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useResource_4a8wVY7wh38\"],\"sourcesContent\":[\"import { onGet } from \\"./test\\";\nexport const test_component_useResource_4a8wVY7wh38 = () => {\n\treturn onGet();\n};;\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,OAAO,MAAM,+CAA+C;AAC3D,QAAO,OAAO;;AACb\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useResource_4a8wVY7wh38\"],\"sourcesContent\":[\"import { onGet } from \\"./test\\";\nexport const test_component_useResource_4a8wVY7wh38 = () => {\n\treturn onGet();\n};\"],\"mappings\":\"AAAA,SAAS,aAAa;AACtB,OAAO,MAAM,+CAA+C;AAC3D,QAAO,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -59,11 +58,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useReso
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.tsx (ENTRY POINT)==
 
-const q_test_component_useResource_4a8wVY7wh38 = qrl(() => import("./test.tsx_test_component_useResource_4a8wVY7wh38"), "test_component_useResource_4a8wVY7wh38");
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_useResource_4a8wVY7wh38 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_useResource_4a8wVY7wh38"), "test_component_useResource_4a8wVY7wh38");
+//
 export const test_component_LUXeXe0DQrg = () => {
 	useResourceQrl(q_test_component_useResource_4a8wVY7wh38);
 	return <div>cmp</div>;
-};;
+};
 
 /*
 {
@@ -88,16 +90,19 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.tsx ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { component$, useResource$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { useResourceQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import mongodb from "mongodb";
+//
 export const onGet = () => {
 	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
 };
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGjD,6BACA;AAJJ,SAAS,YAAY,oBAAoB;AACzC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useResource$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useResource$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\tuseResource$(() => {\n\t\treturn onGet();\n\t})\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,oBACmB;AADnB,MACKA,+BAA6C,0BACjD,OAAO,0CAEU,6BACA;AAHlB,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAKb\"}")
 == DIAGNOSTICS ==
 
 []

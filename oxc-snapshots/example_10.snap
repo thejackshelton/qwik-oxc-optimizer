@@ -42,7 +42,7 @@ export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {
 		}
 	}
 	return <div />;
-};;
+};
 
 /*
 {
@@ -72,12 +72,13 @@ export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {
 
 ============================= project/test.tsx ==
 
-const q_Header_WlR3xnI6u38 = qrl(() => import("./test.tsx_Header_WlR3xnI6u38"), "Header_WlR3xnI6u38");
-import { $, component$ } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Header_WlR3xnI6u38 = /*#__PURE__*/ qrl(() => import("./test.tsx_Header_WlR3xnI6u38"), "Header_WlR3xnI6u38");
+//
 const Header = Qrl(q_Header_WlR3xnI6u38);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], {ident7}, {key: ident8});\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\n\treturn (\n\t\t<div onClick={(ident11) => ident11 + ident12} required={false}/>\n\t)\n});\n\"],\"mappings\":\"AAAA,MACKA,iCAAiC,OAAO,kCACd,qBAE5B;AAHH,SAAS,GAAG,kBAAkB;AAC9B,MAAM,SAASC,yBAiBb\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } \",\"$\"],\"sources\":[\"project/test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nconst Header = $((decl1, {decl2}, [decl3]) => {\n\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], {ident7}, {key: ident8});\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\n\treturn (\n\t\t<div onClick={(ident11) => ident11 + ident12} required={false}/>\n\t)\n});\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,uBAAqC,0BACtC,OAAO,kCAAkC,qBAE5B;AAFjB,MAAM,SAASC,yBAiBb\"}")
 == DIAGNOSTICS ==
 
 []

@@ -35,6 +35,7 @@ export const Foo = component$((props) => {
 ============================= test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY.tsx (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => {
 	const sig = _captures[0];
 	const _ref = {};
@@ -46,10 +47,8 @@ export const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => {
 	cleanup(() => clearInterval(timer));
 	return 0;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => { const sig = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tsig.value++;\n\t}, 1e3);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC,OAAO,cAAc;CAAE,MAAM,MAAM,UAAU;CAElG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,MAAI;IACF,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO;;AACN\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => { const sig = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tsig.value++;\n\t}, 1e3);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC,OAAO,cAAc;CAAE,MAAM,MAAM,UAAU;CAElG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,MAAI;IACF,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -80,6 +79,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useA
 ============================= test.tsx_Foo_component_other_useAsync_fsHooibmyyE.tsx (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => {
 	const other = _captures[0];
 	const _ref = {};
@@ -91,10 +91,8 @@ export const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => {
 	cleanup(() => clearInterval(timer));
 	return 0;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_useAsync_fsHooibmyyE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => { const other = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tother.value++;\n\t}, 900);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2CAA2C,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAEtG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO;;AACN\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_useAsync_fsHooibmyyE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => { const other = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tother.value++;\n\t}, 900);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2CAA2C,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAEtG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -124,8 +122,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_us
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
-const q_Foo_component_other_useAsync_fsHooibmyyE = qrl(() => import("./test.tsx_Foo_component_other_useAsync_fsHooibmyyE"), "Foo_component_other_useAsync_fsHooibmyyE", [other]);
-const q_Foo_component_sig_useAsync_f0BGwWm4eeY = qrl(() => import("./test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY"), "Foo_component_sig_useAsync_f0BGwWm4eeY", [sig]);
+import { qrl } from "@qwik.dev/core";
+//
+const q_Foo_component_other_useAsync_fsHooibmyyE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_other_useAsync_fsHooibmyyE"), "Foo_component_other_useAsync_fsHooibmyyE", [other]);
+const q_Foo_component_sig_useAsync_f0BGwWm4eeY = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY"), "Foo_component_sig_useAsync_f0BGwWm4eeY", [sig]);
+//
 export const Foo_component_HTDRsvUbLiE = (props) => {
 	const _ref = {};
 	_ref.sig = useAsyncQrl(q_Foo_component_sig_useAsync_f0BGwWm4eeY.w([_ref.sig]));
@@ -136,7 +137,7 @@ export const Foo_component_HTDRsvUbLiE = (props) => {
 	return <div>
 			{other.value}
 		</div>;
-};;
+};
 
 /*
 {
@@ -164,13 +165,16 @@ export const Foo_component_HTDRsvUbLiE = (props) => {
 
 ============================= test.tsx ==
 
-const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
-import { component$, useAsync$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { useAsyncQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+//
 // Component-level self-referential component
-export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
+export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_HTDRsvUbLiE);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useAsync$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useAsync$ } from '@qwik.dev/core';\n\t\t\n// Component-level self-referential component\nexport const Foo = component$((props) => {\n\tconst sig = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tsig.value++;\n\t\t}, 1000);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\tconst other = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tother.value++;\n\t\t}, 900);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\treturn (\n\t\t<div>\n\t\t\t{other.value}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,wCAAwC,OAAO,yCAElB,4BAClB;AAHhB,SAAS,YAAY,iBAAiB;;AAGtC,OAAO,MAAM,MAAMC,yCAoBjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useAsync$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useAsync$ } from '@qwik.dev/core';\n\t\t\n// Component-level self-referential component\nexport const Foo = component$((props) => {\n\tconst sig = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tsig.value++;\n\t\t}, 1000);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\tconst other = useAsync$(async ({cleanup}) => {\n\t\tconst timer = setInterval(() => {\n\t\t\tother.value++;\n\t\t}, 900);\n\t\tcleanup(() => clearInterval(timer));\n\t\treturn 0;\n\t});\n\treturn (\n\t\t<div>\n\t\t\t{other.value}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,4BAC2B;AAD3B,oBACmB;AADnB,MACKA,8BAA4C,0BAEjD,OAAO,yCACL,4BAA4B;;AAA9B,OAAO,MAAM,MAAMC,yCAoBjB\"}")
 == DIAGNOSTICS ==
 
 []

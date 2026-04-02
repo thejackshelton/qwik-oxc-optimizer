@@ -31,7 +31,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	hola();
 	new Thing();
 	return <div></div>;
-};;
+};
 
 /*
 {
@@ -56,7 +56,10 @@ export const App_component_ckEPmXZlub0 = () => {
 
 ============================= test.tsx_App_component_1_w0t0o3QMovU.js (ENTRY POINT)==
 
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+import { qrl } from "@qwik.dev/core";
+//
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
 export const App_component_1_w0t0o3QMovU = () => {
 	function hola() {
 		console.log("hola");
@@ -65,10 +68,8 @@ export const App_component_1_w0t0o3QMovU = () => {
 	class Other {}
 	return Qrl(q_App_component_ckEPmXZlub0);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3QMovU\"],\"sourcesContent\":[\"const q_App_component_ckEPmXZlub0 = qrl(() => import(\\"./test.tsx_App_component_ckEPmXZlub0\\"), \\"App_component_ckEPmXZlub0\\");\nexport const App_component_1_w0t0o3QMovU = () => {\n\tfunction hola() {\n\t\tconsole.log(\\"hola\\");\n\t}\n\tclass Thing {}\n\tclass Other {}\n\treturn Qrl(q_App_component_ckEPmXZlub0);\n};;\"],\"mappings\":\"AAAA,MAAM,8BAA8B,UAAU,OAAO,yCAAyC,4BAA4B;AAC1H,OAAO,MAAM,oCAAoC;CAChD,SAAS,OAAO;AACf,UAAQ,IAAI,OAAO;;CAEpB,MAAM,MAAM;CACZ,MAAM,MAAM;AACZ,QAAO,IAAI,4BAA4B;;AACtC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3QMovU\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_ckEPmXZlub0\\"), \\"App_component_ckEPmXZlub0\\");\nexport const App_component_1_w0t0o3QMovU = () => {\n\tfunction hola() {\n\t\tconsole.log(\\"hola\\");\n\t}\n\tclass Thing {}\n\tclass Other {}\n\treturn Qrl(q_App_component_ckEPmXZlub0);\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,4BAA4B;AACxI,OAAO,MAAM,oCAAoC;CAChD,SAAS,OAAO;AACf,UAAQ,IAAI,OAAO;;CAEpB,MAAM,MAAM;CACZ,MAAM,MAAM;AACZ,QAAO,IAAI,4BAA4B\"}")
 /*
 {
   "origin": "test.tsx",
@@ -92,12 +93,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_1_w0t0o3
 
 ============================= test.js ==
 
-const q_App_component_1_w0t0o3QMovU = qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
-import { $, component$ } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_1_w0t0o3QMovU);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_App_component_1_w0t0o3QMovU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_1_w0t0o3QMovU"), "App_component_1_w0t0o3QMovU");
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_1_w0t0o3QMovU);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAE1C,2CACK,8BACW;AAJrB,SAAS,GAAG,kBAAkB;AAE9B,OAAO,MAAM,MAAMC,2CAcjB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ } from '@qw\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\n\nexport const App = component$(() => {\n\tfunction hola() {\n\t\tconsole.log('hola');\n\t}\n\tclass Thing {}\n\tclass Other {}\n\n\treturn $(() => {\n\t\thola();\n\t\tnew Thing();\n\t\treturn (\n\t\t\t<div></div>\n\t\t)\n\t});\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAEH,0BAAU,OAAO,2CAEd,8BAEI;AAJT,OAAO,MAAM,MAAMC,2CAcjB\"}")
 == DIAGNOSTICS ==
 
 []

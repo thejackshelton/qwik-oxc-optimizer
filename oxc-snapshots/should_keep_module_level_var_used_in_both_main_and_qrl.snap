@@ -37,10 +37,9 @@ export const useHook_fn_kScGJcREaTg = () => {
 	state.counter++;
 	console.log(state.id);
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg\"],\"sourcesContent\":[\"export const useHook_fn_kScGJcREaTg = () => {\n\tstate.counter++;\n\tconsole.log(state.id);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,+BAA+B;AAC3C,OAAM;AACN,SAAQ,IAAI,MAAM,GAAG;;AACpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg\"],\"sourcesContent\":[\"export const useHook_fn_kScGJcREaTg = () => {\n\tstate.counter++;\n\tconsole.log(state.id);\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,+BAA+B;AAC3C,OAAM;AACN,SAAQ,IAAI,MAAM,GAAG\"}")
 /*
 {
   "origin": "test.tsx",
@@ -64,8 +63,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useHook_fn_kScGJcREaTg
 
 ============================= test.js ==
 
-const q_useHook_fn_kScGJcREaTg = qrl(() => import("./test.tsx_useHook_fn_kScGJcREaTg"), "useHook_fn_kScGJcREaTg");
+import { qrl } from "@qwik.dev/core";
+const q_useHook_fn_kScGJcREaTg = /*#__PURE__*/ qrl(() => import("./test.tsx_useHook_fn_kScGJcREaTg"), "useHook_fn_kScGJcREaTg");
+//
 import { $, isServer } from "@qwik.dev/core";
+//
 const state = {
 	counter: 0,
 	id: Math.random().toString(36).slice(2, 8)
@@ -82,8 +84,7 @@ export function useHook() {
 }
 export { state as _auto_state };
 
-
-Some("{\"version\":3,\"names\":[\"t { $, isServer } from '\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, isServer } from '@qwik.dev/core';\n\nconst state = {\n  counter: 0,\n  id: Math.random().toString(36).slice(2, 8),\n};\n\nconsole.log('Module init, id:', state.id);\n\nexport function doSomething() {\n  if (!isServer) {\n    state.counter++;\n  }\n}\n\nexport function useHook() {\n  const fn = $(() => {\n    state.counter++;\n    console.log(state.id);\n  });\n  return fn;\n}\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,qCAAqC,OAExC,sCAEQ,yBAAyB;AAJnC,SAAS,GAAG,gBAAgB;AAE5B,MAAM,QAAQ;CACZ,SAAS;CACT,IAAI,KAAK,QAAQ,CAAC,SAAS,GAAG,CAAC,MAAM,GAAG,EAAE;CAC3C;AAED,QAAQ,IAAI,oBAAoB,MAAM,GAAG;AAEzC,OAAO,SAAS,cAAc;AAC5B,KAAI,CAAC,UAAU;AACb,QAAM;;;AAIV,OAAO,SAAS,UAAU;CACxB,MAAM,KAAKC,6BAGT;AACF,QAAO;;AArBT\"}")
+Some("{\"version\":3,\"names\":[\"t { $, isServer } from '\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, isServer } from '@qwik.dev/core';\n\nconst state = {\n  counter: 0,\n  id: Math.random().toString(36).slice(2, 8),\n};\n\nconsole.log('Module init, id:', state.id);\n\nexport function doSomething() {\n  if (!isServer) {\n    state.counter++;\n  }\n}\n\nexport function useHook() {\n  const fn = $(() => {\n    state.counter++;\n    console.log(state.id);\n  });\n  return fn;\n}\n\n\t\t\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,2BACL,0BACS,OACT,sCACwB,yBAExB;AANA,SAAS,GAAG,gBAAgB;AAE5B,MAAM,QAAQ;CACZ,SAAS;CACT,IAAI,KAAK,QAAQ,CAAC,SAAS,GAAG,CAAC,MAAM,GAAG,EAAE;CAC3C;AAED,QAAQ,IAAI,oBAAoB,MAAM,GAAG;AAEzC,OAAO,SAAS,cAAc;AAC5B,KAAI,CAAC,UAAU;AACb,QAAM;;;AAIV,OAAO,SAAS,UAAU;CACxB,MAAM,KAAKC,6BAGT;AACF,QAAO;;AArBT\"}")
 == DIAGNOSTICS ==
 
 []

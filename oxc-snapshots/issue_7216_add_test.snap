@@ -23,10 +23,9 @@ export default component$((props) => {
 ============================= test.tsx_test_component_p_q_e_const_e6TYnIxnPLY.js (ENTRY POINT)==
 
 export const test_component_p_q_e_const_e6TYnIxnPLY = () => "const";
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_const_e6TYnIxnPLY\"],\"sourcesContent\":[\"export const test_component_p_q_e_const_e6TYnIxnPLY = () => \\"const\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,+CAA+C;AAAQ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_const_e6TYnIxnPLY\"],\"sourcesContent\":[\"export const test_component_p_q_e_const_e6TYnIxnPLY = () => \\"const\\";\"],\"mappings\":\"AAAA,OAAO,MAAM,+CAA+C\"}")
 /*
 {
   "origin": "test.tsx",
@@ -52,7 +51,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_c
 
 export const test_component_LUXeXe0DQrg = (props) => {
 	return <p />;
-};;
+};
 
 /*
 {
@@ -81,10 +80,9 @@ export const test_component_LUXeXe0DQrg = (props) => {
 ============================= test.tsx_test_component_p_q_e_hi_ttOKZbY46GA.js (ENTRY POINT)==
 
 export const test_component_p_q_e_hi_ttOKZbY46GA = () => "hi";
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_hi_ttOKZbY46GA\"],\"sourcesContent\":[\"export const test_component_p_q_e_hi_ttOKZbY46GA = () => \\"hi\\";;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AAAK\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_hi_ttOKZbY46GA\"],\"sourcesContent\":[\"export const test_component_p_q_e_hi_ttOKZbY46GA = () => \\"hi\\";\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C\"}")
 /*
 {
   "origin": "test.tsx",
@@ -108,14 +106,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_p_q_e_h
 
 ============================= test.js ==
 
-const q_test_component_p_q_e_hi_ttOKZbY46GA = qrl(() => import("./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA"), "test_component_p_q_e_hi_ttOKZbY46GA");
-const q_test_component_p_q_e_const_e6TYnIxnPLY = qrl(() => import("./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY"), "test_component_p_q_e_const_e6TYnIxnPLY");
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { component$ } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_component_p_q_e_hi_ttOKZbY46GA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_hi_ttOKZbY46GA"), "test_component_p_q_e_hi_ttOKZbY46GA");
+const q_test_component_p_q_e_const_e6TYnIxnPLY = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_p_q_e_const_e6TYnIxnPLY"), "test_component_p_q_e_const_e6TYnIxnPLY");
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@builder.io/qw\",\"t { component$ } from '@builder.io/qwik'\",\"t { component$ } from '@buil\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,MACKA,kDACG,OAAO,mDAEF,sCAEF;AANX,MACKC,qDACM,OAAO,sDAEC,yCAEC;AANpB,MACKC,yCAAyC,OACxC,0CACG,6BAEP;AAJF,SAAS,kBAAkB;AAC3B,eAAeC,0CAUb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@builder.io/qw\",\"t { component$ } from '@builder.io/qwik'\",\"t { component$ } from '@buil\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@builder.io/qwik';\nexport default component$((props) => {\n  return (<p \n\t\tonHi$={() => 'hi'} \n\t\t{...props.foo} \n\t\tonHello$={props.helloHandler$} \n\t\t{...props.rest} \n\t\tonVar$={props.onVarHandler$} \n\t\tonConst$={() => 'const'} \n\t\tasd={\\"1\\"}\n\t/>);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,wCACO,0BAAU,OAAO,mDAGxB,sCACoB;AANzB,MACKC,2CACU,0BAAU,OAAO,sDAGrB,yCAEX;AAPA,MACKC,+BACF,0BAAU,OAAO,0CAEX,6BACO;AAHhB,eAAeC,0CAUb\"}")
 == DIAGNOSTICS ==
 
 []

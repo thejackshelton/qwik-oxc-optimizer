@@ -32,10 +32,9 @@ export const FieldInput = component$(
 export const FieldInput_component_input_q_e_click_fZgZHYZXt60 = () => {
 	console.log("clicked");
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60\"],\"sourcesContent\":[\"export const FieldInput_component_input_q_e_click_fZgZHYZXt60 = () => {\n\tconsole.log(\\"clicked\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yDAAyD;AACrE,SAAQ,IAAI,UAAU;;AACrB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60\"],\"sourcesContent\":[\"export const FieldInput_component_input_q_e_click_fZgZHYZXt60 = () => {\n\tconsole.log(\\"clicked\\");\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,yDAAyD;AACrE,SAAQ,IAAI,UAAU\"}")
 /*
 {
   "origin": "test.tsx",
@@ -60,11 +59,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 ============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
 import { destructureBindings } from "./destructure-bindings";
+//
 export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const initialValues = { value: undefined as string | undefined };
 	const rest = destructureBindings(props, initialValues);
 	return <input />;
-};;
+};
 
 /*
 {
@@ -94,14 +94,17 @@ export const FieldInput_component_V4XAtJSTRKg = (props) => {
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-const q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60"), "FieldInput_component_input_q_e_click_fZgZHYZXt60");
-const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_FieldInput_component_input_q_e_click_fZgZHYZXt60 = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_input_q_e_click_fZgZHYZXt60"), "FieldInput_component_input_q_e_click_fZgZHYZXt60");
+const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
+//
 import { $, component$, useSignal } from "@qwik.dev/core";
 import { destructureBindings } from "./destructure-bindings";
-export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
+//
+export const FieldInput = /*#__PURE__*/ componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,+DACI,OAAO,gEAEC,mDAEF;AANf,MACKC,+CAA+C,OACpD,gDAAgD,mCAE5B;AAHpB,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,gDAezB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\nimport { destructureBindings } from \\"./destructure-bindings\\";\n\nexport const FieldInput = component$(\n  (props) => {\n    const initialValues = { value: undefined as string | undefined };\n    const rest = destructureBindings(props, initialValues);\n\n    return (\n      <input\n        {...rest}\n        bind:value={finalValue}\n\t\tonClick$={() => {\n\t\t\tconsole.log('clicked');\n\t\t}}\n      />\n    );\n  }\n);\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qDACQ,0BAAU,OAAO,gEAEC,mDAEF;AAN7B,MACKC,qCAAmD,0BACjD,OAAO,gDACd,mCACkC;AAHlC,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,2BAA2B;AAEpC,OAAO,MAAM,aAAaC,gDAezB\"}")
 == DIAGNOSTICS ==
 
 []

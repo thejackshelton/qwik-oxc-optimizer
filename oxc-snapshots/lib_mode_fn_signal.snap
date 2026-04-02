@@ -24,14 +24,13 @@ expression: output
 ============================= test.tsx_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI.ts (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI = () => {
 	const count = _captures[0];
 	return count.value++;
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI = () => {\nconst count = _captures[0];\nreturn count.value++;;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM;AAAQ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI = () => {\nconst count = _captures[0];\nreturn count.value++;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -71,7 +70,7 @@ export const Counter_component_zTmRHlL09Gg = () => {
 						<button>Increment</button>
 					</p>
 				</div>;
-};;
+};
 
 /*
 {
@@ -96,13 +95,15 @@ export const Counter_component_zTmRHlL09Gg = () => {
 
 ============================= test.ts ==
 
-const q_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI = qrl(() => import("./test.tsx_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI"), "Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI", [count]);
-const q_Counter_component_zTmRHlL09Gg = qrl(() => import("./test.tsx_Counter_component_zTmRHlL09Gg"), "Counter_component_zTmRHlL09Gg");
-import { component$ } from "@qwik.dev/core";
-export const Counter = componentQrl(q_Counter_component_zTmRHlL09Gg);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI = /*#__PURE__*/ qrl(() => import("./test.tsx_Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI"), "Counter_component_div_p_button_q_e_click_Pq1pmfmJWUI", [count]);
+const q_Counter_component_zTmRHlL09Gg = /*#__PURE__*/ qrl(() => import("./test.tsx_Counter_component_zTmRHlL09Gg"), "Counter_component_zTmRHlL09Gg");
+//
+export const Counter = /*#__PURE__*/ componentQrl(q_Counter_component_zTmRHlL09Gg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\t\texport con\",\"ort { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\texport const Counter = component$(() => {\n\t\t\tconst count = useSignal(0);\n\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<p>Count: {count.value}</p>\n\t\t\t\t\t<p>\n\t\t\t\t\t\t<button onClick$={() => count.value++}>Increment</button>\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\"],\"mappings\":\"AAAA,MACKA,mEACoB,OAAO,oEAK9B,wDAEc,OAAO,CAAC;AATxB,MACKC,4CACH,OAAO,6CACC,gCAEA;AAJR,SAAS,kBAAkB;AAC3B,OAAO,MAAM,UAAUC,6CAWrB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\t\texport con\",\"ort { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\t\texport const Counter = component$(() => {\n\t\t\tconst count = useSignal(0);\n\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<p>Count: {count.value}</p>\n\t\t\t\t\t<p>\n\t\t\t\t\t\t<button onClick$={() => count.value++}>Increment</button>\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,yDACwB,0BAAU,OACrC,oEAIc,wDAEc,OAAO,CAAC;AATtC,MACKC,kCACC,0BAAU,OAAO,6CACC,gCAItB;AALA,OAAO,MAAM,UAAUC,6CAWrB\"}")
 == DIAGNOSTICS ==
 
 []

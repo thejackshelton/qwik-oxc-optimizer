@@ -57,16 +57,15 @@ export const App = component$(() => {
 ============================= test.tsx_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48 = () => {
 	const data = _captures[0];
 	const row = _captures[1];
 	const dataValue = untrack(() => data.value);
 	data.value = dataValue.toSpliced(dataValue.findIndex((d) => d.value.id === row.value.id), 1);
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48 = () => { const data = _captures[0];\nconst row = _captures[1];\n\n\tconst dataValue = untrack(() => data.value);\n\tdata.value = dataValue.toSpliced(dataValue.findIndex((d) => d.value.id === row.value.id), 1);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,MAAM,UAAU;CAErB,MAAM,YAAY,cAAc,KAAK,MAAM;AAC3C,MAAK,QAAQ,UAAU,UAAU,UAAU,WAAW,MAAM,EAAE,MAAM,OAAO,IAAI,MAAM,GAAG,EAAE,EAAE;;AAC3F\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48 = () => { const data = _captures[0];\nconst row = _captures[1];\n\n\tconst dataValue = untrack(() => data.value);\n\tdata.value = dataValue.toSpliced(dataValue.findIndex((d) => d.value.id === row.value.id), 1);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,OAAO,UAAU;CAChG,MAAM,MAAM,UAAU;CAErB,MAAM,YAAY,cAAc,KAAK,MAAM;AAC3C,MAAK,QAAQ,UAAU,UAAU,UAAU,WAAW,MAAM,EAAE,MAAM,OAAO,IAAI,MAAM,GAAG,EAAE,EAAE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -102,6 +101,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
 
 import { Signal } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
+//
 export const App_component_ckEPmXZlub0 = () => {
 	const data = useSignal<Signal<any>[]>([]);
 	const selectedItem = useSignal<any | null>(null);
@@ -122,7 +122,7 @@ export const App_component_ckEPmXZlub0 = () => {
                 <td />
               </tr>)}
         </div>;
-};;
+};
 
 /*
 {
@@ -148,6 +148,7 @@ export const App_component_ckEPmXZlub0 = () => {
 ============================= test.tsx_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = () => {
 	const clickedIndex = _captures[0];
 	const idx = _captures[1];
@@ -160,10 +161,8 @@ export const App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = () => {
 	row.value.selected.value = true;
 	clickedIndex.value = idx;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = () => { const clickedIndex = _captures[0];\nconst idx = _captures[1];\nconst row = _captures[2];\nconst selectedItem = _captures[3];\n\n\tif (selectedItem.value) {\n\t\tselectedItem.value.selected.value = false;\n\t}\n\tselectedItem.value = row.value;\n\trow.value.selected.value = true;\n\tclickedIndex.value = idx;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CAAE,MAAM,eAAe,UAAU;CACtG,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;CACtB,MAAM,eAAe,UAAU;AAE9B,KAAI,aAAa,OAAO;AACvB,eAAa,MAAM,SAAS,QAAQ;;AAErC,cAAa,QAAQ,IAAI;AACzB,KAAI,MAAM,SAAS,QAAQ;AAC3B,cAAa,QAAQ;;AACpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = () => { const clickedIndex = _captures[0];\nconst idx = _captures[1];\nconst row = _captures[2];\nconst selectedItem = _captures[3];\n\n\tif (selectedItem.value) {\n\t\tselectedItem.value.selected.value = false;\n\t}\n\tselectedItem.value = row.value;\n\trow.value.selected.value = true;\n\tclickedIndex.value = idx;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CAAE,MAAM,eAAe,UAAU;CACtG,MAAM,MAAM,UAAU;CACtB,MAAM,MAAM,UAAU;CACtB,MAAM,eAAe,UAAU;AAE9B,KAAI,aAAa,OAAO;AACvB,eAAa,MAAM,SAAS,QAAQ;;AAErC,cAAa,QAAQ,IAAI;AACzB,KAAI,MAAM,SAAS,QAAQ;AAC3B,cAAa,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -202,20 +201,23 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
 ============================= test.js ==
 
 import { _fnSignal } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 const _hf0 = (p0) => p0.value.selected.value ? "danger" : "";
-const q_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = qrl(() => import("./test.tsx_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg"), "App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg", [
+const q_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg"), "App_component_div_tr_td_a_q_e_click_lgbZkJXyLtg", [
 	clickedIndex,
 	idx,
 	row,
 	selectedItem
 ]);
-const q_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48 = qrl(() => import("./test.tsx_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48"), "App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48", [data, row]);
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48"), "App_component_div_tr_td_a_q_e_click_1_40fnSAlYI48", [data, row]);
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
 import { $, component$, useSignal, Signal } from "@qwik.dev/core";
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"t { \",\"t { $, component$, useSignal, Signal } from '@qwi\",\"t { $, component$, useSignal, Signal } from '@qwik.\",\"t { $, component$, useSigna\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nexport const App = component$(() => {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst selectedItem = useSignal<any | null>(null);\n\tconst clickedIndex = useSignal<number | null>(null);\n    return (\n        <div>\n          {data.value.map((row, idx) => (\n              <tr\n                key={untrack(() => row.value.id)}\n                class={row.value.selected.value ? \\"danger\\" : \\"\\"}\n              >\n                <td class=\\"col-md-1\\">{row.value.id}</td>\n                <td class=\\"col-md-4\\">\n                  <a\n                    onClick$={() => {\n                      if (selectedItem.value) {\n                        selectedItem.value.selected.value = false;\n                      }\n                      selectedItem.value = row.value;\n                      row.value.selected.value = true;\n\t\t\t\t\t  clickedIndex.value = idx;\n                    }}\n                  >\n                    {row.value.label.value}\n                  </a>\n                </td>\n                <td class=\\"col-md-1\\">\n                  <a\n                    onClick$={() => {\n                      const dataValue = untrack(() => data.value);\n                      data.value = dataValue.toSpliced(\n                        dataValue.findIndex((d) => d.value.id === row.value.id),\n                        1,\n                      );\n                    }}\n                  >\n                    <span aria-hidden=\\"true\\">x</span>\n                  </a>\n                </td>\n                <td class=\\"col-md-6\\" />\n              </tr>\n          ))}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,QAAO,iCAAgC,WAAW;AADvD,MACKC,8DACL,OAAO,+DACyB,mDACO;;;;;CACP,CAAC;AALjC,MACKC,gEACH,OAAO,iEAC2B,qDACS,WACxC,CAAC;AALN,MACKC,wCAAwC,OAAO,yCAC1B,4BACV;AAFhB,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,OAAO,MAAM,MAAMC,yCA4Cb\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { $, component$, useSignal, Signal } from '@qwi\",\"t { $, component$, useSignal, Signal } from '@qwik.\",\"t { $, component$, useSigna\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal, Signal } from '@qwik.dev/core';\nexport const App = component$(() => {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst selectedItem = useSignal<any | null>(null);\n\tconst clickedIndex = useSignal<number | null>(null);\n    return (\n        <div>\n          {data.value.map((row, idx) => (\n              <tr\n                key={untrack(() => row.value.id)}\n                class={row.value.selected.value ? \\"danger\\" : \\"\\"}\n              >\n                <td class=\\"col-md-1\\">{row.value.id}</td>\n                <td class=\\"col-md-4\\">\n                  <a\n                    onClick$={() => {\n                      if (selectedItem.value) {\n                        selectedItem.value.selected.value = false;\n                      }\n                      selectedItem.value = row.value;\n                      row.value.selected.value = true;\n\t\t\t\t\t  clickedIndex.value = idx;\n                    }}\n                  >\n                    {row.value.label.value}\n                  </a>\n                </td>\n                <td class=\\"col-md-1\\">\n                  <a\n                    onClick$={() => {\n                      const dataValue = untrack(() => data.value);\n                      data.value = dataValue.toSpliced(\n                        dataValue.findIndex((d) => d.value.id === row.value.id),\n                        1,\n                      );\n                    }}\n                  >\n                    <span aria-hidden=\\"true\\">x</span>\n                  </a>\n                </td>\n                <td class=\\"col-md-6\\" />\n              </tr>\n          ))}\n        </div>\n      );\n    });\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,iCAAgC,WAAW;AADvD,MACKC,oDACD,0BAAU,OAAO,+DAEnB,mDACA;;;;;CAA4C,CAAC;AAL/C,MACKC,sDACC,0BAAU,OAAO,iEAEjB,qDACE,WAAW,CAAC;AALpB,MACKC,8BAA4C,0BAAU,OAAO,yCAEhE,4BAA4B;AAF9B,SAAS,GAAG,YAAY,WAAW,cAAc;AACjD,OAAO,MAAM,MAAMC,yCA4Cb\"}")
 == DIAGNOSTICS ==
 
 []

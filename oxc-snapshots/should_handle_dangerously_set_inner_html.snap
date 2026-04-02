@@ -46,7 +46,7 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 						<button></button>
 					</div>
 				</div>;
-};;
+};
 
 /*
 {
@@ -72,14 +72,13 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 ============================= test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = () => {
 	const htmlSignal = _captures[0];
 	return htmlSignal.value = "<h2><span>I'm a updated signal value!</span></h2>";
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = () => {\nconst htmlSignal = _captures[0];\nreturn htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\";;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CACxE,MAAM,aAAa,UAAU;AAC7B,QAAO,WAAW,QAAQ;AAAoD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = () => {\nconst htmlSignal = _captures[0];\nreturn htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\";\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2DAA2D;CACxE,MAAM,aAAa,UAAU;AAC7B,QAAO,WAAW,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -112,13 +111,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_div_div_
 ============================= test.js ==
 
 import { _wrapProp } from "@qwik.dev/core";
-const q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = qrl(() => import("./test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8"), "Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8", [htmlSignal]);
-const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
-import { component$ } from "@qwik.dev/core";
-const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8 = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8"), "Cmp_component_div_div_button_q_e_click_kOQ2BgBVVS8", [htmlSignal]);
+const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+//
+const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cm\",\"ort { component$ } from \\"@q\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cmp = component$(() => {\n\t\t\tconst htmlSignal = useSignal(\\"<h2><span>I'm a signal value!</span></h2>\\");\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"first\\" dangerouslySetInnerHTML=\\"vanilla HTML here\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"second\\" dangerouslySetInnerHTML=\\"<h1>I'm an h1!</h1>\\" class=\\"after\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"third\\" dangerouslySetInnerHTML={htmlSignal.value} class=\\"after\\" />\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tonClick$={() =>\n\t\t\t\t\t\t\t\t(htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\")\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,iEACkB,OAAO,kEACiC,sDAIzD,YAAY,CAAC;AAPnB,MACKC,wCAAwC,OACxC,yCACQ,4BAA4B;AAFvC,SAAS,kBAAkB;AAC3B,MAAM,MAAMC,yCAoBV\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cm\",\"ort { component$ } from \\"@q\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\tconst Cmp = component$(() => {\n\t\t\tconst htmlSignal = useSignal(\\"<h2><span>I'm a signal value!</span></h2>\\");\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"first\\" dangerouslySetInnerHTML=\\"vanilla HTML here\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"second\\" dangerouslySetInnerHTML=\\"<h1>I'm an h1!</h1>\\" class=\\"after\\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span id=\\"third\\" dangerouslySetInnerHTML={htmlSignal.value} class=\\"after\\" />\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tonClick$={() =>\n\t\t\t\t\t\t\t\t(htmlSignal.value = \\"<h2><span>I'm a updated signal value!</span></h2>\\")\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t></button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,uDACsB,0BACvB,OAAO,kEAAkE,sDAIzD,YAAY,CAAC;AAPjC,MACKC,8BACH,0BAAU,OAAO,yCACQ,4BAA4B;AADrD,MAAM,MAAMC,yCAoBV\"}")
 == DIAGNOSTICS ==
 
 []

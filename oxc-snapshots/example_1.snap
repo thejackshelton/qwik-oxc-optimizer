@@ -25,10 +25,9 @@ export const renderHeader2_component_Ay6ibkfFYsw = () => {
 	console.log("mount");
 	return render;
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_component_Ay6ibkfFYsw\"],\"sourcesContent\":[\"export const renderHeader2_component_Ay6ibkfFYsw = () => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,SAAQ,IAAI,QAAQ;AACpB,QAAO;;AACN\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_component_Ay6ibkfFYsw\"],\"sourcesContent\":[\"export const renderHeader2_component_Ay6ibkfFYsw = () => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,SAAQ,IAAI,QAAQ;AACpB,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -54,7 +53,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader2_componen
 
 export const renderHeader1_jMxQsjbyDss = () => {
 	return <div />;
-};;
+};
 
 /*
 {
@@ -80,10 +79,9 @@ export const renderHeader1_jMxQsjbyDss = () => {
 ============================= test.tsx_renderHeader1_div_onClick_USi8k1jUb40.tsx (ENTRY POINT)==
 
 export const renderHeader1_div_onClick_USi8k1jUb40 = (ctx) => console.log(ctx);
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onClick_USi8k1jUb40\"],\"sourcesContent\":[\"export const renderHeader1_div_onClick_USi8k1jUb40 = (ctx) => console.log(ctx);;\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onClick_USi8k1jUb40\"],\"sourcesContent\":[\"export const renderHeader1_div_onClick_USi8k1jUb40 = (ctx) => console.log(ctx);\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC,QAAQ,QAAQ,IAAI,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -110,15 +108,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_renderHeader1_div_onCl
 
 ============================= test.tsx ==
 
-const q_renderHeader1_div_onClick_USi8k1jUb40 = qrl(() => import("./test.tsx_renderHeader1_div_onClick_USi8k1jUb40"), "renderHeader1_div_onClick_USi8k1jUb40");
-const q_renderHeader1_jMxQsjbyDss = qrl(() => import("./test.tsx_renderHeader1_jMxQsjbyDss"), "renderHeader1_jMxQsjbyDss");
-const q_renderHeader2_component_Ay6ibkfFYsw = qrl(() => import("./test.tsx_renderHeader2_component_Ay6ibkfFYsw"), "renderHeader2_component_Ay6ibkfFYsw");
+import { qrl } from "@qwik.dev/core";
+const q_renderHeader1_div_onClick_USi8k1jUb40 = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader1_div_onClick_USi8k1jUb40"), "renderHeader1_div_onClick_USi8k1jUb40");
+const q_renderHeader1_jMxQsjbyDss = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader1_jMxQsjbyDss"), "renderHeader1_jMxQsjbyDss");
+const q_renderHeader2_component_Ay6ibkfFYsw = /*#__PURE__*/ qrl(() => import("./test.tsx_renderHeader2_component_Ay6ibkfFYsw"), "renderHeader2_component_Ay6ibkfFYsw");
+//
 import { $, component, onRender } from "@qwik.dev/core";
+//
 export const renderHeader1 = Qrl(q_renderHeader1_jMxQsjbyDss);
 const renderHeader2 = component(Qrl(q_renderHeader2_component_Ay6ibkfFYsw));
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component, onRender } from '@qwi\",\"t { $, component, onRender \",\"t { $, component, onRender } from '@q\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,MACKA,oDACL,OACM,qDAEI,wCACR;AANF,MACKC,wCAAwC,OAAO,yCAEjB,4BAErB;AALd,MACKC,kDAAkD,OAEnD,mDAEE,sCAAsC;AAJ5C,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component, onRender } from '@qwi\",\"t { $, component, onRender \",\"t { $, component, onRender } from '@q\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component, onRender } from '@qwik.dev/core';\n\nexport const renderHeader1 = $(() => {\n\treturn (\n\t\t<div onClick={$((ctx) => console.log(ctx))}/>\n\t);\n});\nconst renderHeader2 = component($(() => {\n\tconsole.log(\\"mount\\");\n\treturn render;\n}));\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,0CAEF,0BAAU,OAAO,qDAEI,wCAGhB;AARR,MACKC,8BAA4C,0BAEhD,OAAO,yCAER,4BAA4B;AAL5B,MACKC,wCAEJ,0BAAU,OAAO,mDAEE,sCAGlB;AAPF,SAAS,GAAG,WAAW,gBAAgB;AAEvC,OAAO,MAAM,gBAAgBC,gCAI3B;AACF,MAAM,gBAAgB,UAAUA,0CAG9B,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

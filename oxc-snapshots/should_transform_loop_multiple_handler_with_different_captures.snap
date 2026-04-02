@@ -33,15 +33,14 @@ export default component$(() => {
 ============================= test.tsx_test_component_div_div_q_e_key_down_AVMRAm2LgFU.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_q_e_key_down_AVMRAm2LgFU = () => {
 	const double = _captures[0];
 	const plusTwo = _captures[1];
 	return console.log(plusTwo, double);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_key_down_AVMRAm2LgFU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_key_down_AVMRAm2LgFU = () => {\nconst double = _captures[0];\nconst plusTwo = _captures[1];\nreturn console.log(plusTwo, double);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CACrE,MAAM,SAAS,UAAU;CACzB,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,SAAS,OAAO;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_key_down_AVMRAm2LgFU\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_key_down_AVMRAm2LgFU = () => {\nconst double = _captures[0];\nconst plusTwo = _captures[1];\nreturn console.log(plusTwo, double);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,wDAAwD;CACrE,MAAM,SAAS,UAAU;CACzB,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,SAAS,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -77,6 +76,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const arr = useSignal(["a", "b"]);
 	return <div>
@@ -89,7 +89,7 @@ export const test_component_LUXeXe0DQrg = () => {
           </div>;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -115,15 +115,14 @@ export const test_component_LUXeXe0DQrg = () => {
 ============================= test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const test_component_div_div_q_e_click_Mc600uqO6ps = () => {
 	const double = _captures[0];
 	const plusOne = _captures[1];
 	return console.log(plusOne, double);
-	;
 };
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst double = _captures[0];\nconst plusOne = _captures[1];\nreturn console.log(plusOne, double);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,SAAS,UAAU;CACzB,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,SAAS,OAAO;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_div_div_q_e_click_Mc600uqO6ps = () => {\nconst double = _captures[0];\nconst plusOne = _captures[1];\nreturn console.log(plusOne, double);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,qDAAqD;CAClE,MAAM,SAAS,UAAU;CACzB,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ,IAAI,SAAS,OAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -158,14 +157,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
 
 ============================= test.js ==
 
-const q_test_component_div_div_q_e_click_Mc600uqO6ps = qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [double, plusOne]);
-const q_test_component_div_div_q_e_key_down_AVMRAm2LgFU = qrl(() => import("./test.tsx_test_component_div_div_q_e_key_down_AVMRAm2LgFU"), "test_component_div_div_q_e_key_down_AVMRAm2LgFU", [double, plusTwo]);
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps"), "test_component_div_div_q_e_click_Mc600uqO6ps", [double, plusOne]);
+const q_test_component_div_div_q_e_key_down_AVMRAm2LgFU = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_key_down_AVMRAm2LgFU"), "test_component_div_div_q_e_key_down_AVMRAm2LgFU", [double, plusTwo]);
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } from '@qwik.dev/core'\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b']);\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const plusOne = i + 1;\n        const plusTwo = i + 2;\n        const double = i * 2;\n        return (\n          <div\n            onClick$={() => console.log(plusOne, double)}\n            onKeyDown$={() => console.log(plusTwo, double)}\n          >\n            {val}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,2DAEE,OAAO,4DAEX,gDAE2B,iBAClB,CAAC;AARb,MACKC,8DAEK,OAAO,+DAER,mDAGL,iBAAiB,CAAC;AARtB,MACKC,yCAAyC,OAAO,0CAGjD,6BAA6B;AAHjC,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAmBb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from '@qwik.dev/co\",\"t { component$, useSignal } from '@qwik.dev/core'\",\"t { component$, useSignal } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport default component$(() => {\n  const arr = useSignal(['a', 'b']);\n  return (\n    <div>\n      {arr.value.map((val, i) => {\n        const plusOne = i + 1;\n        const plusTwo = i + 2;\n        const double = i * 2;\n        return (\n          <div\n            onClick$={() => console.log(plusOne, double)}\n            onKeyDown$={() => console.log(plusTwo, double)}\n          >\n            {val}\n          </div>\n        );\n      })}\n    </div>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iDAEM,0BAAU,OAAO,4DAGtB,gDAEG,iBAAiB,CAAC;AAR3B,MACKC,oDAES,0BAAU,OAAO,+DAI7B,mDACgB,iBACd,CAAC;AATL,MACKC,+BAA6C,0BAE/C,OAAO,0CACQ,6BACR;AAJV,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAmBb\"}")
 == DIAGNOSTICS ==
 
 []

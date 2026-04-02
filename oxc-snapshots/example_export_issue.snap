@@ -31,7 +31,7 @@ export default App;
 
 export const App_component_ckEPmXZlub0 = () => {
 	return <div>hola</div>;
-};;
+};
 
 /*
 {
@@ -57,9 +57,10 @@ export const App_component_ckEPmXZlub0 = () => {
 ============================= test.tsx_Root_component_royhjYaCbYE.js (ENTRY POINT)==
 
 import { App } from "./test";
+//
 export const Root_component_royhjYaCbYE = (props: Stuff) => {
 	return <App />;
-};;
+};
 
 /*
 {
@@ -87,17 +88,19 @@ export const Root_component_royhjYaCbYE = (props: Stuff) => {
 
 ============================= test.js ==
 
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
-const q_Root_component_royhjYaCbYE = qrl(() => import("./test.tsx_Root_component_royhjYaCbYE"), "Root_component_royhjYaCbYE");
-import { component$ } from "@qwik.dev/core";
-const App = componentQrl(q_App_component_ckEPmXZlub0);
-export const Root = componentQrl(q_Root_component_royhjYaCbYE);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_Root_component_royhjYaCbYE = /*#__PURE__*/ qrl(() => import("./test.tsx_Root_component_royhjYaCbYE"), "Root_component_royhjYaCbYE");
+//
+const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
+export const Root = /*#__PURE__*/ componentQrl(q_Root_component_royhjYaCbYE);
 const Other = 12;
 export { Other as App };
 export default App;
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,MACKA,wCACL,OACM,yCAEA,4BAKA;AAVN,MACKC,yCAEL,OAAO,0CAEC,6BAKC;AATT,SAAS,kBAAkB;AAE3B,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,0CAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nconst App = component$(() => {\n\treturn (\n\t\t<div>hola</div>\n\t);\n});\n\n\nexport const Root = component$((props: Stuff) => {\n\treturn (\n\t\t<App/>\n\t);\n});\n\nconst Other = 12;\nexport { Other as App };\n\nexport default App;\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAEF,0BAAU,OAAO,yCAGlB,4BAIkB;AAVpB,MACKC,+BAED,0BAAU,OAAO,0CAIrB,6BAGuB;AAPvB,MAAM,MAAMC,yCAIV;AAGF,OAAO,MAAM,OAAOA,0CAIlB;AAEF,MAAM,QAAQ;AACd,SAAS,SAAS;AAElB,eAAe\"}")
 == DIAGNOSTICS ==
 
 []

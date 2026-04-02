@@ -52,20 +52,23 @@ export const NoWorks3 = component$(({count, stuff = hola()}) => {
 
 import { _getVarProps } from "@qwik.dev/core";
 import { _getConstProps } from "@qwik.dev/core";
-const q_Works_component_useTask_pjo5U5Ikll0 = _noopQrl("Works_component_useTask_pjo5U5Ikll0");
-const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
-const q_NoWorks2_component_useTask_lXiqwbxxjq0 = _noopQrl("NoWorks2_component_useTask_lXiqwbxxjq0");
-const q_NoWorks2_component_JPD9t2HyEKg = _noopQrl("NoWorks2_component_JPD9t2HyEKg");
-const q_NoWorks3_component_useTask_3cQGU0s1VwU = _noopQrl("NoWorks3_component_useTask_3cQGU0s1VwU");
-const q_NoWorks3_component_fc13h5yYn14 = _noopQrl("NoWorks3_component_fc13h5yYn14");
-import { $, component$, useTask$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { useTaskQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Works_component_useTask_pjo5U5Ikll0 = /*#__PURE__*/ _noopQrl("Works_component_useTask_pjo5U5Ikll0");
+const q_Works_component_t45qL4vNGv0 = /*#__PURE__*/ _noopQrl("Works_component_t45qL4vNGv0");
+const q_NoWorks2_component_useTask_lXiqwbxxjq0 = /*#__PURE__*/ _noopQrl("NoWorks2_component_useTask_lXiqwbxxjq0");
+const q_NoWorks2_component_JPD9t2HyEKg = /*#__PURE__*/ _noopQrl("NoWorks2_component_JPD9t2HyEKg");
+const q_NoWorks3_component_useTask_3cQGU0s1VwU = /*#__PURE__*/ _noopQrl("NoWorks3_component_useTask_3cQGU0s1VwU");
+const q_NoWorks3_component_fc13h5yYn14 = /*#__PURE__*/ _noopQrl("NoWorks3_component_fc13h5yYn14");
+//
 import { CONST } from "const";
-export const Works = componentQrl(q_Works_component_t45qL4vNGv0);
-export const NoWorks2 = componentQrl(q_NoWorks2_component_JPD9t2HyEKg);
-export const NoWorks3 = componentQrl(q_NoWorks3_component_fc13h5yYn14);
+//
+export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);
+export const NoWorks2 = /*#__PURE__*/ componentQrl(q_NoWorks2_component_JPD9t2HyEKg);
+export const NoWorks3 = /*#__PURE__*/ componentQrl(q_NoWorks3_component_fc13h5yYn14);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useTask$ } from '@\",\"t { $, component$, useTask$ }\",\"t { $, component$, useTask$ } from '@qwi\",\"t { $, component$, useTask$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useTask$ } from '@qwik.dev/core';\nimport { CONST } from 'const';\nexport const Works = component$(({\n\tcount,\n\tsome = 1+2,\n\thello = CONST,\n\tstuff: hey,\n\tstuffDefault: hey2 = 123,\n\t...rest}) => {\n\tconsole.log(hey, some);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count, rest, hey, some, hey2);\n\t});\n\treturn (\n\t\t<div some={some} params={{ some }} class={count} {...rest} override>{count}</div>\n\t);\n});\n\nexport const NoWorks2 = component$(({count, stuff: {hey}}) => {\n\tconsole.log(hey);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count);\n\t});\n\treturn (\n\t\t<div class={count}>{count}</div>\n\t);\n});\n\nexport const NoWorks3 = component$(({count, stuff = hola()}) => {\n\tconsole.log(stuff);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count);\n\t});\n\treturn (\n\t\t<div class={count}>{count}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,MACKA,iDAAiD,sCAEnD;AAHH,MACKC,yCAAyC,8BAC5B;AAFlB,MACKC,oDAAoD,yCAEhD;AAHT,MACKC,4CAA4C,iCACzB;AAFxB,MACKD,oDAAoD,yCAEhD;AAHT,MACKC,4CAA4C,iCACzB;AADxB,SAAS,GAAG,YAAY,gBAAgB;AACxC,SAAS,aAAa;AACtB,OAAO,MAAM,QAAQC,2CAenB;AAEF,OAAO,MAAM,WAAWA,8CAStB;AAEF,OAAO,MAAM,WAAWA,8CAStB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useTask$ } from '@\",\"t { $, component$, useTask$ }\",\"t { $, component$, useTask$ } from '@qwi\",\"t { $, component$, useTask$ } fr\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useTask$ } from '@qwik.dev/core';\nimport { CONST } from 'const';\nexport const Works = component$(({\n\tcount,\n\tsome = 1+2,\n\thello = CONST,\n\tstuff: hey,\n\tstuffDefault: hey2 = 123,\n\t...rest}) => {\n\tconsole.log(hey, some);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count, rest, hey, some, hey2);\n\t});\n\treturn (\n\t\t<div some={some} params={{ some }} class={count} {...rest} override>{count}</div>\n\t);\n});\n\nexport const NoWorks2 = component$(({count, stuff: {hey}}) => {\n\tconsole.log(hey);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count);\n\t});\n\treturn (\n\t\t<div class={count}>{count}</div>\n\t);\n});\n\nexport const NoWorks3 = component$(({count, stuff = hola()}) => {\n\tconsole.log(stuff);\n\tuseTask$(({track}) => {\n\t\ttrack(() => count);\n\t\tconsole.log(count);\n\t});\n\treturn (\n\t\t<div class={count}>{count}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,wCACJ,yBAAS,sCACO;AAHjB,MACKC,gCAA8C,yBACjD,8BACD;AAHD,MACKC,2CACD,yBAAS,yCACU;AAHvB,MACKC,mCAAiD,yBACjD,iCACE;AAHP,MACKD,2CACD,yBAAS,yCACU;AAHvB,MACKC,mCAAiD,yBACjD,iCACE;AADP,SAAS,aAAa;AACtB,OAAO,MAAM,QAAQC,2CAenB;AAEF,OAAO,MAAM,WAAWA,8CAStB;AAEF,OAAO,MAAM,WAAWA,8CAStB\"}")
 == DIAGNOSTICS ==
 
 []

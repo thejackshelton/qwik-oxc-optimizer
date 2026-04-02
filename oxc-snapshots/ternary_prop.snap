@@ -24,15 +24,18 @@ expression: output
 
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.ts (ENTRY POINT)==
 
+import { qrl } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
-const q_Cmp_component_handleClick_WawHV3HwS1A = qrl(() => import("./test.tsx_Cmp_component_handleClick_WawHV3HwS1A"), "Cmp_component_handleClick_WawHV3HwS1A", [toggleSig]);
+//
+const q_Cmp_component_handleClick_WawHV3HwS1A = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_handleClick_WawHV3HwS1A"), "Cmp_component_handleClick_WawHV3HwS1A", [toggleSig]);
+//
 export const Cmp_component_4ryKJTOKjWE = () => {
 	const toggleSig = useSignal(false);
 	const handleClick$ = Qrl(q_Cmp_component_handleClick_WawHV3HwS1A.w([toggleSig]));
 	return <button>
 					Removing data-open re-renders
 				</button>;
-};;
+};
 
 /*
 {
@@ -58,14 +61,13 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 ============================= test.tsx_Cmp_component_handleClick_WawHV3HwS1A.ts (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Cmp_component_handleClick_WawHV3HwS1A = () => {
 	const toggleSig = _captures[0];
 	toggleSig.value = !toggleSig.value;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleClick_WawHV3HwS1A\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_handleClick_WawHV3HwS1A = () => { const toggleSig = _captures[0];\n\n\ttoggleSig.value = !toggleSig.value;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8CAA8C;CAAE,MAAM,YAAY,UAAU;AAExF,WAAU,QAAQ,CAAC,UAAU;;AAC5B\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleClick_WawHV3HwS1A\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_handleClick_WawHV3HwS1A = () => { const toggleSig = _captures[0];\n\n\ttoggleSig.value = !toggleSig.value;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8CAA8C;CAAE,MAAM,YAAY,UAAU;AAExF,WAAU,QAAQ,CAAC,UAAU\"}")
 /*
 {
   "origin": "test.tsx",
@@ -93,13 +95,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_handleCl
 ============================= test.ts ==
 
 import { _fnSignal } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 const _hf0 = (p0) => p0.value ? true : undefined;
-const q_Cmp_component_4ryKJTOKjWE = qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
+//
 import { component$, $, useSignal } from "@qwik.dev/core";
-export const Cmp = componentQrl(q_Cmp_component_4ryKJTOKjWE);
+//
+export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-
-Some("{\"version\":3,\"names\":[\"ort \",\"ort { component$, $, useSig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,MACKA,QAAO,kBAAiB;AAD7B,MACKC,wCAAwC,OAAO,yCACpB,4BACZ;AAFlB,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
+Some("{\"version\":3,\"names\":[\"ort \",\"ort { component$, $, useSig\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, $, useSignal } from '@qwik.dev/core';\n\t\texport const Cmp = component$(() => {\n\t\t\tconst toggleSig = useSignal(false);\n\n\t\t\tconst handleClick$ = $(() => {\n\t\t\t\ttoggleSig.value = !toggleSig.value;\n\t\t\t});\n\n\t\t\treturn (\n\t\t\t\t<button onClick$={handleClick$} data-open={toggleSig.value ? true : undefined}>\n\t\t\t\t\tRemoving data-open re-renders\n\t\t\t\t</button>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAO,kBAAiB;AAD7B,MACKC,8BAA4C,0BAAU,OACtD,yCACC,4BAA4B;AAFhC,SAAS,YAAY,GAAG,iBAAiB;AACzC,OAAO,MAAM,MAAMC,yCAYjB\"}")
 == DIAGNOSTICS ==
 
 []

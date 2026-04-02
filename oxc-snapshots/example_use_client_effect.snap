@@ -35,6 +35,7 @@ export const Child = component$(() => {
 ============================= test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const Child_component_useBrowserVisibleTask_0IGFPOyJmQA = () => {
 	const state = _captures[0];
 	const timer = setInterval(() => {
@@ -44,10 +45,8 @@ export const Child_component_useBrowserVisibleTask_0IGFPOyJmQA = () => {
 		clearInterval(timer);
 	};
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Child_component_useBrowserVisibleTask_0IGFPOyJmQA = () => { const state = _captures[0];\n\n\tconst timer = setInterval(() => {\n\t\tstate.count++;\n\t}, 1e3);\n\treturn () => {\n\t\tclearInterval(timer);\n\t};\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,QAAQ,UAAU;CAEhG,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,cAAa;AACZ,gBAAc,MAAM;;;AAEpB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Child_component_useBrowserVisibleTask_0IGFPOyJmQA = () => { const state = _captures[0];\n\n\tconst timer = setInterval(() => {\n\t\tstate.count++;\n\t}, 1e3);\n\treturn () => {\n\t\tclearInterval(timer);\n\t};\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,0DAA0D;CAAE,MAAM,QAAQ,UAAU;CAEhG,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,cAAa;AACZ,gBAAc,MAAM\"}")
 /*
 {
   "origin": "test.tsx",
@@ -74,15 +73,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Child_component_useBro
 
 ============================= test.tsx_Child_component_9GyF01GDKqw.js (ENTRY POINT)==
 
+import { qrl } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
-const q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA = qrl(() => import("./test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA"), "Child_component_useBrowserVisibleTask_0IGFPOyJmQA", [state]);
+//
+const q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_useBrowserVisibleTask_0IGFPOyJmQA"), "Child_component_useBrowserVisibleTask_0IGFPOyJmQA", [state]);
+//
 export const Child_component_9GyF01GDKqw = () => {
 	const state = useStore({ count: 0 });
 	useBrowserVisibleTaskQrl(q_Child_component_useBrowserVisibleTask_0IGFPOyJmQA.w([state]));
 	return <div>
 		{state.count}
 	</div>;
-};;
+};
 
 /*
 {
@@ -107,12 +109,16 @@ export const Child_component_9GyF01GDKqw = () => {
 
 ============================= test.js ==
 
-const q_Child_component_9GyF01GDKqw = qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
+import { componentQrl } from "@qwik.dev/core";
+import { useBrowserVisibleTaskQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Child_component_9GyF01GDKqw = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
+//
 import { component$, useBrowserVisibleTask$, useStore, useStyles$ } from "@qwik.dev/core";
-export const Child = componentQrl(q_Child_component_9GyF01GDKqw);
+//
+export const Child = /*#__PURE__*/ componentQrl(q_Child_component_9GyF01GDKqw);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useBrowserVis\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\n\nexport const Child = component$(() => {\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tconst timer = setInterval(() => {\n\t\tstate.count++;\n\t\t}, 1000);\n\t\treturn () => {\n\t\tclearInterval(timer);\n\t\t}\n\t});\n\n\treturn (\n\t\t<div>\n\t\t{state.count}\n\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CAEjD,8BAA8B;AAFnC,SAAS,YAAY,wBAAwB,UAAU,kBAAkB;AAEzE,OAAO,MAAM,QAAQC,2CAoBnB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useBrowserVis\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useBrowserVisibleTask$, useStore, useStyles$ } from '@qwik.dev/core';\n\nexport const Child = component$(() => {\n\tconst state = useStore({\n\t\tcount: 0\n\t});\n\n\t// Double count watch\n\tuseBrowserVisibleTask$(() => {\n\t\tconst timer = setInterval(() => {\n\t\tstate.count++;\n\t\t}, 1000);\n\t\treturn () => {\n\t\tclearInterval(timer);\n\t\t}\n\t});\n\n\treturn (\n\t\t<div>\n\t\t{state.count}\n\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,yCACwC;AADxC,oBACmB;AADnB,MACKA,gCAA8C,0BAAU,OAAO,2CAEjD,8BACV;AAHT,SAAS,YAAY,wBAAwB,UAAU,kBAAkB;AAEzE,OAAO,MAAM,QAAQC,2CAoBnB\"}")
 == DIAGNOSTICS ==
 
 []

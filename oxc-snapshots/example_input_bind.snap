@@ -27,12 +27,14 @@ export const Greeter = component$(() => {
 
 ============================= test.tsx ==
 
-const q_s_n7HuG2hhU0Q = _noopQrl("s_n7HuG2hhU0Q");
-import { component$, $ } from "@qwik.dev/core";
-export const Greeter = componentQrl(q_s_n7HuG2hhU0Q);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_s_n7HuG2hhU0Q = /*#__PURE__*/ _noopQrl("s_n7HuG2hhU0Q");
+//
+export const Greeter = /*#__PURE__*/ componentQrl(q_s_n7HuG2hhU0Q);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\n\nexport const Greeter = component$(() => {\n\tconst value = useSignal(0);\n\tconst checked = useSignal(false);\n\tconst stuff = useSignal();\n\treturn (\n\t\t<>\n\t\t\t<input bind:value={value} />\n\t\t\t<input bind:checked={checked} />\n\t\t\t<input bind:stuff={stuff} />\n\t\t\t<div>{value}</div>\n\t\t\t<div>{value.value}</div>\n\t\t</>\n\n\t)\n});\n\"],\"mappings\":\"AAAA,MACKA,2BAA2B,gBAChC;AADA,SAAS,YAAY,SAAS;AAE9B,OAAO,MAAM,UAAUC,6BAcrB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$,\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\n\nexport const Greeter = component$(() => {\n\tconst value = useSignal(0);\n\tconst checked = useSignal(false);\n\tconst stuff = useSignal();\n\treturn (\n\t\t<>\n\t\t\t<input bind:value={value} />\n\t\t\t<input bind:checked={checked} />\n\t\t\t<input bind:stuff={stuff} />\n\t\t\t<div>{value}</div>\n\t\t\t<div>{value.value}</div>\n\t\t</>\n\n\t)\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kBAAgC,yBAAS,gBAEjC;AAAb,OAAO,MAAM,UAAUC,6BAcrB\"}")
 == DIAGNOSTICS ==
 
 []

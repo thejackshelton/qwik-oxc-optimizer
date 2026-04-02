@@ -24,6 +24,7 @@ export const Foo = component$(({foo}) => {
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.tsx (ENTRY POINT)==
 
 import { deps } from "deps";
+//
 export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 	const _ref = {};
 	_ref.foo = _rawProps._ref.foo;
@@ -34,7 +35,7 @@ export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 		}
 	});
 	return <div />;
-};;
+};
 
 /*
 {
@@ -62,13 +63,15 @@ export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 
 ============================= test.tsx ==
 
-const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
+//
 import { deps } from "deps";
-export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE);
+//
+export const Foo = /*#__PURE__*/ componentQrl(q_Foo_component_HTDRsvUbLiE);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { deps } from 'deps';\n\nexport const Foo = component$(({foo}) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn (\n\t\t<div />\n\t);\n})\n\"],\"mappings\":\"AAAA,MACKA,wCACL,OAAO,yCAEW,4BACf;AAJH,SAAS,kBAAkB;AAC3B,SAAS,YAAY;AAErB,OAAO,MAAM,MAAMC,yCASjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport { deps } from 'deps';\n\nexport const Foo = component$(({foo}) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn (\n\t\t<div />\n\t);\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BACD,0BAAU,OAAO,yCAEW,4BACf;AAHjB,SAAS,YAAY;AAErB,OAAO,MAAM,MAAMC,yCASjB\"}")
 == DIAGNOSTICS ==
 
 []

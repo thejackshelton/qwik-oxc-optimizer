@@ -13,10 +13,9 @@ export const sym1 = $((ctx) => console.log("1"));
 ============================= test.tsx_sym1_aXUrPXX5Lak.tsx (ENTRY POINT)==
 
 export const sym1_aXUrPXX5Lak = (ctx) => console.log("1");
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_sym1_aXUrPXX5Lak\"],\"sourcesContent\":[\"export const sym1_aXUrPXX5Lak = (ctx) => console.log(\\"1\\");;\"],\"mappings\":\"AAAA,OAAO,MAAM,oBAAoB,QAAQ,QAAQ,IAAI,IAAI;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_sym1_aXUrPXX5Lak\"],\"sourcesContent\":[\"export const sym1_aXUrPXX5Lak = (ctx) => console.log(\\"1\\");\"],\"mappings\":\"AAAA,OAAO,MAAM,oBAAoB,QAAQ,QAAQ,IAAI,IAAI\"}")
 /*
 {
   "origin": "test.tsx",
@@ -43,12 +42,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_sym1_aXUrPXX5Lak\"],\"
 
 ============================= test.tsx ==
 
-const q_sym1_aXUrPXX5Lak = qrl(() => import("./test.tsx_sym1_aXUrPXX5Lak"), "sym1_aXUrPXX5Lak");
-import { $, component$ } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_sym1_aXUrPXX5Lak = /*#__PURE__*/ qrl(() => import("./test.tsx_sym1_aXUrPXX5Lak"), "sym1_aXUrPXX5Lak");
+//
 export const sym1 = Qrl(q_sym1_aXUrPXX5Lak);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$ \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const sym1 = $((ctx) => console.log(\\"1\\"));\n\"],\"mappings\":\"AAAA,MACKA,+BAA+B,OAAO,gCAChB,mBAAmB;AAD9C,SAAS,GAAG,kBAAkB;AAC9B,OAAO,MAAM,OAAOC,uBAA4B\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$ \",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$ } from '@qwik.dev/core';\nexport const sym1 = $((ctx) => console.log(\\"1\\"));\n\"],\"mappings\":\"AAAA,oBACmB;AADnB,MACKA,qBAAmC,0BACtC,OAAO,gCAAgC;AAAzC,OAAO,MAAM,OAAOC,uBAA4B\"}")
 == DIAGNOSTICS ==
 
 []

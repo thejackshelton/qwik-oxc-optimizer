@@ -34,10 +34,9 @@ expression: output
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,2EAA2E;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,2EAA2E\"}")
 /*
 {
   "origin": "test.tsx",
@@ -62,10 +61,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yEAAyE;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,yEAAyE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -90,10 +88,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -118,10 +115,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -146,10 +142,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8 = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8 = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,+EAA+E;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8 = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,+EAA+E\"}")
 /*
 {
   "origin": "test.tsx",
@@ -174,10 +169,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,sEAAsE;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,sEAAsE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -210,7 +204,7 @@ export const ManyEventsComponent_component_ndbrzxiyG3g = () => {
 						click
 					</button>
 				</div>;
-};;
+};
 
 /*
 {
@@ -236,10 +230,9 @@ export const ManyEventsComponent_component_ndbrzxiyG3g = () => {
 ============================= test.tsx_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg.js (ENTRY POINT)==
 
 export const ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg = () => {};
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg = () => {};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE;AAAG\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg\"],\"sourcesContent\":[\"export const ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,uEAAuE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -263,19 +256,21 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ManyEventsComponent_co
 
 ============================= test.js ==
 
-const q_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg"), "ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg");
-const q_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw"), "ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw");
-const q_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA"), "ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA");
-const q_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY"), "ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY");
-const q_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8 = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8"), "ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8");
-const q_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs"), "ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs");
-const q_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs = qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs"), "ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs");
-const q_ManyEventsComponent_component_ndbrzxiyG3g = qrl(() => import("./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g"), "ManyEventsComponent_component_ndbrzxiyG3g");
-import { component$ } from "@qwik.dev/core";
-const ManyEventsComponent = componentQrl(q_ManyEventsComponent_component_ndbrzxiyG3g);
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg"), "ManyEventsComponent_component_div_button_q_e_click_z0X12CPQocg");
+const q_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw"), "ManyEventsComponent_component_div_button_q_e_dbl_click_8hRvEgk4hmw");
+const q_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA"), "ManyEventsComponent_component_div_button_q_e_click_1_BOulU3QpiyA");
+const q_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY"), "ManyEventsComponent_component_div_button_q_e_blur_LVmlrV6TsTY");
+const q_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8 = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8"), "ManyEventsComponent_component_div_button_q_e_anotherCustom_JEB7JaeCeG8");
+const q_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs"), "ManyEventsComponent_component_div_button_q_d_focus_fR03UCeyKSs");
+const q_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs"), "ManyEventsComponent_component_div_button_q_w_click_DjpgJ0bcgJs");
+const q_ManyEventsComponent_component_ndbrzxiyG3g = /*#__PURE__*/ qrl(() => import("./test.tsx_ManyEventsComponent_component_ndbrzxiyG3g"), "ManyEventsComponent_component_ndbrzxiyG3g");
+//
+const ManyEventsComponent = /*#__PURE__*/ componentQrl(q_ManyEventsComponent_component_ndbrzxiyG3g);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCom\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCompone\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCompo\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCo\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent =\",\"ort { component$ } from '@qwik.dev/core';\n\n\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent = component$(() => {\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonDblClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonBlur$={() => {}}\n\t\t\t\t\t\ton-anotherCustom$={() => {}}\n\t\t\t\t\t\tdocument:onFocus$={() => {}}\n\t\t\t\t\t\twindow:onClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,6EAE6B,OAAO,8EAKhC,iEAIE;AAZX,MACKC,iFAEiC,OAAO,kFAK5B,qEAKP;AAbV,MACKC,+EAE+B,OAAO,gFAK9B,mEAKT;AAbJ,MACKC,4EAE4B,OAAO,6EAKjC,gEAIC;AAZR,MACKC,qFAEqC,OAC1C,sFAIyB,yEAKH;AAbtB,MACKJ,6EAE6B,OAAO,8EAKhC,iEAIE;AAZX,MACKA,6EAE6B,OAAO,8EAKhC,iEAIE;AAZX,MACKK,wDAEQ,OAAO,yDAGd,4CAEK;AAPT,SAAS,kBAAkB;AAE3B,MAAM,sBAAsBC,yDAoB1B\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCom\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCompone\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCompo\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsCo\",\"ort { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent =\",\"ort { component$ } from '@qwik.dev/core';\n\n\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from '@qwik.dev/core';\n\n\t\tconst ManyEventsComponent = component$(() => {\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonDblClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t\t<button\n\t\t\t\t\t\tonClick$={() => {}}\n\t\t\t\t\t\tonBlur$={() => {}}\n\t\t\t\t\t\ton-anotherCustom$={() => {}}\n\t\t\t\t\t\tdocument:onFocus$={() => {}}\n\t\t\t\t\t\twindow:onClick$={() => {}}\n\t\t\t\t\t>\n\t\t\t\t\t\tclick\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,mEAEiC,0BAAU,OAC1C,8EAIiB,iEAKX;AAbZ,MACKC,uEAEqC,0BACvC,OAAO,kFAKR,qEAIsB;AAbxB,MACKC,qEAEmC,0BACvC,OAAO,gFAImB,mEAKT;AAblB,MACKC,kEAEgC,0BAAU,OAC1C,6EAIgB,gEAKZ;AAbT,MACKC,2EAEyC,0BACvC,OACL,sFAKC,yEAIO;AAdV,MACKJ,mEAEiC,0BAAU,OAC1C,8EAIiB,iEAKX;AAbZ,MACKA,mEAEiC,0BAAU,OAC1C,8EAIiB,iEAKX;AAbZ,MACKK,8CAEY,0BAAU,OAAO,yDAI3B,4CACkB;AALvB,MAAM,sBAAsBC,yDAoB1B\"}")
 == DIAGNOSTICS ==
 
 []

@@ -33,14 +33,13 @@ export const FieldInput = component$(() => {
 ============================= test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const FieldInput_component_input_q_e_focus_Sgf3MDWzexI = () => {
 	const enabled = _captures[0];
 	enabled.value = true;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_input_q_e_focus_Sgf3MDWzexI = () => { const enabled = _captures[0];\n\n\tenabled.value = true;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yDAAyD;CAAE,MAAM,UAAU,UAAU;AAEjG,SAAQ,QAAQ;;AACf\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_input_q_e_focus_Sgf3MDWzexI = () => { const enabled = _captures[0];\n\n\tenabled.value = true;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yDAAyD;CAAE,MAAM,UAAU,UAAU;AAEjG,SAAQ,QAAQ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -74,11 +73,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 ============================= test.tsx_FieldInput_component_V4XAtJSTRKg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const FieldInput_component_V4XAtJSTRKg = () => {
 	const enabled = useSignal(false);
 	const input = useSignal("");
 	return <input />;
-};;
+};
 
 /*
 {
@@ -104,14 +104,13 @@ export const FieldInput_component_V4XAtJSTRKg = () => {
 ============================= test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE.js (ENTRY POINT)==
 
 import { _captures } from "@qwik.dev/core";
+//
 export const FieldInput_component_input_onInput_zBzGtdHkCmE = (ev, el) => {
 	const input = _captures[0];
 	input.value = el.value;
 };
-;
 
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_input_onInput_zBzGtdHkCmE = (ev, el) => { const input = _captures[0];\n\n\tinput.value = el.value;\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kDAAkD,IAAI,OAAO;CAAE,MAAM,QAAQ,UAAU;AAEnG,OAAM,QAAQ,GAAG;;AAChB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const FieldInput_component_input_onInput_zBzGtdHkCmE = (ev, el) => { const input = _captures[0];\n\n\tinput.value = el.value;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kDAAkD,IAAI,OAAO;CAAE,MAAM,QAAQ,UAAU;AAEnG,OAAM,QAAQ,GAAG\"}")
 /*
 {
   "origin": "test.tsx",
@@ -142,14 +141,17 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
 
 ============================= test.js ==
 
-const q_FieldInput_component_input_onInput_zBzGtdHkCmE = qrl(() => import("./test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE"), "FieldInput_component_input_onInput_zBzGtdHkCmE", [input]);
-const q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI = qrl(() => import("./test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI"), "FieldInput_component_input_q_e_focus_Sgf3MDWzexI", [enabled]);
-const q_FieldInput_component_V4XAtJSTRKg = qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_FieldInput_component_input_onInput_zBzGtdHkCmE = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_input_onInput_zBzGtdHkCmE"), "FieldInput_component_input_onInput_zBzGtdHkCmE", [input]);
+const q_FieldInput_component_input_q_e_focus_Sgf3MDWzexI = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_input_q_e_focus_Sgf3MDWzexI"), "FieldInput_component_input_q_e_focus_Sgf3MDWzexI", [enabled]);
+const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
+//
 import { $, component$, useSignal } from "@qwik.dev/core";
-export const FieldInput = componentQrl(q_FieldInput_component_V4XAtJSTRKg);
+//
+export const FieldInput = /*#__PURE__*/ componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/c\",\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n\tconst enabled = useSignal(false);\n\tconst input = useSignal(\\"\\");\n\n  return (\n     <input\n\t\tid=\\"input\\"\n\t\tonInput$={\n\t\tenabled.value\n\t\t\t? $((ev, el) => {\n\t\t\t\tinput.value = el.value;\n\t\t\t})\n\t\t\t: undefined\n\t\t}\n\t\tonFocus$={() => {\n\t\t\tenabled.value = true;\n\t\t}}\n\t/>\n  );\n});\n\"],\"mappings\":\"AAAA,MACKA,6DAEC,OAAO,8DACiB,kDAI3B,OAAO,CAAC;AARX,MACKC,+DAEG,OAAO,gEACmB,oDAIzB,SACH,CAAC;AATP,MACKC,+CAA+C,OACpD,gDAEE,mCACA;AAJF,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAmBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } from \\"@qwik.dev/c\",\"t { $, component$, useSignal } from \\"@qwik.dev/cor\",\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$(() => {\n\tconst enabled = useSignal(false);\n\tconst input = useSignal(\\"\\");\n\n  return (\n     <input\n\t\tid=\\"input\\"\n\t\tonInput$={\n\t\tenabled.value\n\t\t\t? $((ev, el) => {\n\t\t\t\tinput.value = el.value;\n\t\t\t})\n\t\t\t: undefined\n\t\t}\n\t\tonFocus$={() => {\n\t\t\tenabled.value = true;\n\t\t}}\n\t/>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,mDAEK,0BAAU,OAAO,8DAElB,kDAIJ,OAAO,CACZ;AAVA,MACKC,qDAEO,0BAAU,OAAO,gEAEhB,oDAIF,SACJ,CAAC;AAVR,MACKC,qCAAmD,0BAElD,OAAO,gDACG,mCACA;AAJhB,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAmBxB\"}")
 == DIAGNOSTICS ==
 
 []

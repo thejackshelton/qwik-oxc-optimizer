@@ -61,7 +61,7 @@ export const ComponentA_component_100sEyGkGuA = () => {
 			A
 			<ComponentB />
 		</div>;
-};;
+};
 
 /*
 {
@@ -87,11 +87,12 @@ export const ComponentA_component_100sEyGkGuA = () => {
 ============================= test.tsx_Nested_component_8cqIQQSPqhE.ts (ENTRY POINT)==
 
 import { Nested } from "./test";
+//
 export const Nested_component_8cqIQQSPqhE = () => {
 	return <div>
 			<Nested />
 		</div>;
-};;
+};
 
 /*
 {
@@ -117,13 +118,14 @@ export const Nested_component_8cqIQQSPqhE = () => {
 ============================= test.tsx_RecursiveList_component_ignTe6QguYQ.ts (ENTRY POINT)==
 
 import { RecursiveList } from "./test";
+//
 export const RecursiveList_component_ignTe6QguYQ = (props) => {
 	if (props.depth === 0) return <div>End</div>;
 	return <div>
 			Level {props.depth}
 			<RecursiveList />
 		</div>;
-};;
+};
 
 /*
 {
@@ -153,7 +155,7 @@ export const RecursiveList_component_ignTe6QguYQ = (props) => {
 
 export const MutualExample_component_LXt10RL0k44 = () => {
 	return <ComponentA />;
-};;
+};
 
 /*
 {
@@ -183,7 +185,7 @@ export const ComponentB_component_WfCOFVxlmq4 = () => {
 			B
 			<ComponentA />
 		</div>;
-};;
+};
 
 /*
 {
@@ -208,27 +210,29 @@ export const ComponentB_component_WfCOFVxlmq4 = () => {
 
 ============================= test.ts ==
 
-const q_Nested_component_8cqIQQSPqhE = qrl(() => import("./test.tsx_Nested_component_8cqIQQSPqhE"), "Nested_component_8cqIQQSPqhE");
-const q_RecursiveList_component_ignTe6QguYQ = qrl(() => import("./test.tsx_RecursiveList_component_ignTe6QguYQ"), "RecursiveList_component_ignTe6QguYQ");
-const q_ComponentA_component_100sEyGkGuA = qrl(() => import("./test.tsx_ComponentA_component_100sEyGkGuA"), "ComponentA_component_100sEyGkGuA");
-const q_ComponentB_component_WfCOFVxlmq4 = qrl(() => import("./test.tsx_ComponentB_component_WfCOFVxlmq4"), "ComponentB_component_WfCOFVxlmq4");
-const q_MutualExample_component_LXt10RL0k44 = qrl(() => import("./test.tsx_MutualExample_component_LXt10RL0k44"), "MutualExample_component_LXt10RL0k44");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+//
+const q_Nested_component_8cqIQQSPqhE = /*#__PURE__*/ qrl(() => import("./test.tsx_Nested_component_8cqIQQSPqhE"), "Nested_component_8cqIQQSPqhE");
+const q_RecursiveList_component_ignTe6QguYQ = /*#__PURE__*/ qrl(() => import("./test.tsx_RecursiveList_component_ignTe6QguYQ"), "RecursiveList_component_ignTe6QguYQ");
+const q_ComponentA_component_100sEyGkGuA = /*#__PURE__*/ qrl(() => import("./test.tsx_ComponentA_component_100sEyGkGuA"), "ComponentA_component_100sEyGkGuA");
+const q_ComponentB_component_WfCOFVxlmq4 = /*#__PURE__*/ qrl(() => import("./test.tsx_ComponentB_component_WfCOFVxlmq4"), "ComponentB_component_WfCOFVxlmq4");
+const q_MutualExample_component_LXt10RL0k44 = /*#__PURE__*/ qrl(() => import("./test.tsx_MutualExample_component_LXt10RL0k44"), "MutualExample_component_LXt10RL0k44");
+//
 // Self-referential component: the Nested component references itself in its JSX
 // This should be migrated to its segment using two-phase emission (let + assign)
 // to avoid Temporal Dead Zone errors
-export const Nested = componentQrl(q_Nested_component_8cqIQQSPqhE);
+export const Nested = /*#__PURE__*/ componentQrl(q_Nested_component_8cqIQQSPqhE);
 // Another self-referential component with conditional rendering
-export const RecursiveList = componentQrl(q_RecursiveList_component_ignTe6QguYQ);
+export const RecursiveList = /*#__PURE__*/ componentQrl(q_RecursiveList_component_ignTe6QguYQ);
 // Mutually recursive components: A references B, B references A
-const ComponentA = componentQrl(q_ComponentA_component_100sEyGkGuA);
-const ComponentB = componentQrl(q_ComponentB_component_WfCOFVxlmq4);
-export const MutualExample = componentQrl(q_MutualExample_component_LXt10RL0k44);
+const ComponentA = /*#__PURE__*/ componentQrl(q_ComponentA_component_100sEyGkGuA);
+const ComponentB = /*#__PURE__*/ componentQrl(q_ComponentB_component_WfCOFVxlmq4);
+export const MutualExample = /*#__PURE__*/ componentQrl(q_MutualExample_component_LXt10RL0k44);
 export { ComponentB as _auto_ComponentB };
 export { ComponentA as _auto_ComponentA };
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.d\",\"t { component$ } from '@qwik.dev/core\",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Self-referential component: the Nested component references itself in its JSX\n// This should be migrated to its segment using two-phase emission (let + assign)\n// to avoid Temporal Dead Zone errors\nexport const Nested = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<Nested />\n\t\t</div>\n\t);\n});\n\n// Another self-referential component with conditional rendering\nexport const RecursiveList = component$((props) => {\n\tif (props.depth === 0) return <div>End</div>;\n\treturn (\n\t\t<div>\n\t\t\tLevel {props.depth}\n\t\t\t<RecursiveList depth={props.depth - 1} />\n\t\t</div>\n\t);\n});\n\n// Mutually recursive components: A references B, B references A\nconst ComponentA = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tA\n\t\t\t<ComponentB />\n\t\t</div>\n\t);\n});\n\nconst ComponentB = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tB\n\t\t\t<ComponentA />\n\t\t</div>\n\t);\n});\n\nexport const MutualExample = component$(() => {\n\treturn <ComponentA />;\n});\n\"],\"mappings\":\"AAAA,MACKA,2CAEH,OAAO,4CAA4C,+BAClD;AAJH,MACKC,kDAEI,OAAO,mDAAmD,sCAC3C;AAJxB,MACKC,+CAEC,OAAO,gDAAgD,mCAC9C;AAJf,MACKA,+CAEC,OAAO,gDAAgD,mCAC9C;AAJf,MACKD,kDAEI,OAAO,mDAAmD,sCAC3C;AAHxB,SAAS,kBAAkB;;;;AAK3B,OAAO,MAAM,SAASE,4CAMpB;;AAGF,OAAO,MAAM,gBAAgBA,mDAQ3B;;AAGF,MAAM,aAAaA,gDAOjB;AAEF,MAAM,aAAaA,gDAOjB;AAEF,OAAO,MAAM,gBAAgBA,mDAE3B;AA9CF\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.d\",\"t { component$ } from '@qwik.dev/core\",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Self-referential component: the Nested component references itself in its JSX\n// This should be migrated to its segment using two-phase emission (let + assign)\n// to avoid Temporal Dead Zone errors\nexport const Nested = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<Nested />\n\t\t</div>\n\t);\n});\n\n// Another self-referential component with conditional rendering\nexport const RecursiveList = component$((props) => {\n\tif (props.depth === 0) return <div>End</div>;\n\treturn (\n\t\t<div>\n\t\t\tLevel {props.depth}\n\t\t\t<RecursiveList depth={props.depth - 1} />\n\t\t</div>\n\t);\n});\n\n// Mutually recursive components: A references B, B references A\nconst ComponentA = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tA\n\t\t\t<ComponentB />\n\t\t</div>\n\t);\n});\n\nconst ComponentB = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tB\n\t\t\t<ComponentA />\n\t\t</div>\n\t);\n});\n\nexport const MutualExample = component$(() => {\n\treturn <ComponentA />;\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,iCAEC,0BAAU,OAAO,4CAA4C,+BAClD;AAJjB,MACKC,wCAEQ,0BAAU,OAAO,mDAC9B,sCAAsC;AAJtC,MACKC,qCAEK,0BAAU,OAAO,gDAAgD,mCAC9C;AAJ7B,MACKA,qCAEK,0BAAU,OAAO,gDAAgD,mCAC9C;AAJ7B,MACKD,wCAEQ,0BAAU,OAAO,mDAC9B,sCAAsC;;;;AAEtC,OAAO,MAAM,SAASE,4CAMpB;;AAGF,OAAO,MAAM,gBAAgBA,mDAQ3B;;AAGF,MAAM,aAAaA,gDAOjB;AAEF,MAAM,aAAaA,gDAOjB;AAEF,OAAO,MAAM,gBAAgBA,mDAE3B;AA9CF\"}")
 == DIAGNOSTICS ==
 
 []

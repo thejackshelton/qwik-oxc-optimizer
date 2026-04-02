@@ -30,7 +30,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	return <>
 			<p class="stuff">Hello Qwik</p>
 		</>;
-};;
+};
 
 /*
 {
@@ -55,16 +55,19 @@ export const App_component_ckEPmXZlub0 = () => {
 
 ============================= test.tsx ==
 
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
 import { component$, useStore } from "@qwik.dev/core";
+//
 export enum Thing {
 	A,
 	B
 }
-export const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport enum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,wCAAwC,OAAO,yCAO7C,4BAA4B;AAPnC,SAAS,YAAY,gBAAgB;AAErC,YAAY,MAAM;CACjB;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport enum Thing {\n\tA,\n\tB\n}\n\nexport const App = component$(() => {\n\tconsole.log(Thing.A);\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\">Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,yCAKW,4BACV;AARX,SAAS,YAAY,gBAAgB;AAErC,YAAY,MAAM;CACjB;CACA;;AAGD,OAAO,MAAM,MAAMC,yCAOjB\"}")
 == DIAGNOSTICS ==
 
 []

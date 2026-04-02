@@ -27,12 +27,13 @@ export const Greeter = component$(() => {
 
 import { AnotherComponent } from "./another-component";
 import { CustomComponent } from "./custom-component";
+//
 export const Greeter_component_n7HuG2hhU0Q = () => {
 	return <div>
 			<CustomComponent />
 			{array.map((item) => <AnotherComponent />)}
 		</div>;
-};;
+};
 
 /*
 {
@@ -57,14 +58,16 @@ export const Greeter_component_n7HuG2hhU0Q = () => {
 
 ============================= test.tsx ==
 
-const q_Greeter_component_n7HuG2hhU0Q = qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
-import { component$, $ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
+//
 import { CustomComponent } from "./custom-component";
 import { AnotherComponent } from "./another-component";
-export const Greeter = componentQrl(q_Greeter_component_n7HuG2hhU0Q);
+//
+export const Greeter = /*#__PURE__*/ componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,MACKA,4CACJ,OAAO,6CAA6C,gCACtB;AAF/B,SAAS,YAAY,SAAS;AAC9B,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kCACA,0BAAU,OAAO,6CACT,gCAAgC;AAD7C,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -24,10 +24,9 @@ expression: output
 export const test_div_q_e_click_pFqTss400MA = () => {
 	data.selectedOutputDetail = "options";
 };
-;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFqTss400MA\"],\"sourcesContent\":[\"export const test_div_q_e_click_pFqTss400MA = () => {\n\tdata.selectedOutputDetail = \\"options\\";\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AACnD,MAAK,uBAAuB;;AAC3B\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFqTss400MA\"],\"sourcesContent\":[\"export const test_div_q_e_click_pFqTss400MA = () => {\n\tdata.selectedOutputDetail = \\"options\\";\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,uCAAuC;AACnD,MAAK,uBAAuB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -52,7 +51,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFq
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_test_div_q_e_click_pFqTss400MA = qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA");
+import { qrl } from "@qwik.dev/core";
+//
+const q_test_div_q_e_click_pFqTss400MA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA");
+//
 export default (props: {
 	data: any;
 }) => {
@@ -60,8 +62,7 @@ export default (props: {
 	return _jsxSorted("div", { "data-is-active": data.selectedOutputDetail === "options" }, { "q-e:click": q_test_div_q_e_click_pFqTss400MA }, null, 3, "u6_0");
 };
 
-
-Some("{\"version\":3,\"names\":[\"ort default (props: { data: any \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,6CACA,OAAO,8CAED,iCACgB;AAJzB,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB\"}")
+Some("{\"version\":3,\"names\":[\"ort default (props: { data: any \"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\texport default (props: { data: any }) => {\n\t\t  const { data } = props;\n          return (\n            <div\n              data-is-active={data.selectedOutputDetail === 'options'}\n              onClick$={() => {\n                data.selectedOutputDetail = 'options';\n              }}\n            />\n          );\n\t\t};\n\t\t\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,mCACI,0BAAU,OAAO,8CAGlB,iCAAiC;AAJvC,gBAAgB,OAAO;CAAE;MAAgB;CACvC,MAAM,EAAE,SAAS;AACX,8CAEoB,KAAK,yBAAyB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -24,13 +24,15 @@ export const Works = component$((props) => {
 
 ============================= test.tsx ==
 
-const q_Works_component_t45qL4vNGv0 = _noopQrl("Works_component_t45qL4vNGv0");
-import { $, component$, useTask$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Works_component_t45qL4vNGv0 = /*#__PURE__*/ _noopQrl("Works_component_t45qL4vNGv0");
+//
 import { CONST } from "const";
-export const Works = componentQrl(q_Works_component_t45qL4vNGv0);
+//
+export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);
 
-
-Some("{\"version\":3,\"names\":[\"t { $, component$, useTask$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useTask$ } from '@qwik.dev/core';\nimport { CONST } from 'const';\nexport const Works = component$((props) => {\n\tconst {countNested} = useStore({value:{count:0}}).value;\n\tconst countNested2 = countNested;\n\tconst {hello} = countNested2;\n\tconst bye = hello.bye;\n\tconst {ciao} = bye.italian;\n\n\n\treturn (\n\t\t<div ciao={ciao} >{foo}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,MACKA,yCAAyC,8BAC5B;AADlB,SAAS,GAAG,YAAY,gBAAgB;AACxC,SAAS,aAAa;AACtB,OAAO,MAAM,QAAQC,2CAWnB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useTask$ }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useTask$ } from '@qwik.dev/core';\nimport { CONST } from 'const';\nexport const Works = component$((props) => {\n\tconst {countNested} = useStore({value:{count:0}}).value;\n\tconst countNested2 = countNested;\n\tconst {hello} = countNested2;\n\tconst bye = hello.bye;\n\tconst {ciao} = bye.italian;\n\n\n\treturn (\n\t\t<div ciao={ciao} >{foo}</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,yBACjD,8BACD;AADD,SAAS,aAAa;AACtB,OAAO,MAAM,QAAQC,2CAWnB\"}")
 == DIAGNOSTICS ==
 
 []

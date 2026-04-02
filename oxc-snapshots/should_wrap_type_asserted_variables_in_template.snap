@@ -21,12 +21,13 @@ expression: output
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 import { useSignal } from "@qwik.dev/core";
+//
 export const test_component_LUXeXe0DQrg = () => {
 	const count = useSignal(0);
 	return <div>
 					{(count as any).value}
 				</div>;
-};;
+};
 
 /*
 {
@@ -51,12 +52,15 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.js ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import { component$, useSignal } from "@qwik.dev/core";
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+//
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t{(count as any).value}\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,MACKA,yCAAyC,OAAO,0CAGrD,6BAA6B;AAH3B,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAOb\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\treturn (\n\t\t\t\t<div>\n\t\t\t\t\t{(count as any).value}\n\t\t\t\t</div>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAEjD,OAAO,0CACM,6BAEd;AALE,SAAS,YAAY,iBAAiB;AAEtC,eAAeC,0CAOb\"}")
 == DIAGNOSTICS ==
 
 []

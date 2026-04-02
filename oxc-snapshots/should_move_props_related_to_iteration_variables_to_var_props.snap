@@ -38,6 +38,7 @@ export const Child = component$(() => {
 
 import { TestComponent } from "./testComponent";
 import { useSignal } from "@qwik.dev/core";
+//
 export const Child_component_9GyF01GDKqw = () => {
 	const propCounterWithNested = useSignal(() => {
 		return { data: [{ attributeInArray: { counter: globalThis.propsCounter++ } }, { attributeInArray: { counter: globalThis.propsCounter } }] };
@@ -47,7 +48,7 @@ export const Child_component_9GyF01GDKqw = () => {
 		return <TestComponent />;
 	})}
     </div>;
-};;
+};
 
 /*
 {
@@ -72,13 +73,16 @@ export const Child_component_9GyF01GDKqw = () => {
 
 ============================= test.js ==
 
-const q_Child_component_9GyF01GDKqw = qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_Child_component_9GyF01GDKqw = /*#__PURE__*/ qrl(() => import("./test.tsx_Child_component_9GyF01GDKqw"), "Child_component_9GyF01GDKqw");
+//
 import { component$, useSignal } from "@qwik.dev/core";
 import { TestComponent } from "./testComponent";
-export const Child = componentQrl(q_Child_component_9GyF01GDKqw);
+//
+export const Child = /*#__PURE__*/ componentQrl(q_Child_component_9GyF01GDKqw);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal } f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { TestComponent } from \\"./testComponent\\";\n\nexport const Child = component$(() => {\n  const propCounterWithNested = useSignal(() => {\n  return {\n      data: [\n        { attributeInArray: { counter: globalThis.propsCounter++ } },\n        { attributeInArray: { counter: globalThis.propsCounter } },\n      ],\n    };\n  })\n  return (\n    <div>\n        {propCounterWithNested.value.data.map((item, index) => {\n          return (\n            <TestComponent\n              counter={item.attributeInArray.counter}\n              logString=\\"Nested read through array\\"\n              key={index}\n            />\n          );\n        })}\n    </div>\n  );\n})\n\"],\"mappings\":\"AAAA,MACKA,0CAA0C,OAAO,2CACb,8BAEpB;AAHrB,SAAS,YAAY,iBAAiB;AACtC,SAAS,qBAAqB;AAE9B,OAAO,MAAM,QAAQC,2CAsBnB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } f\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { TestComponent } from \\"./testComponent\\";\n\nexport const Child = component$(() => {\n  const propCounterWithNested = useSignal(() => {\n  return {\n      data: [\n        { attributeInArray: { counter: globalThis.propsCounter++ } },\n        { attributeInArray: { counter: globalThis.propsCounter } },\n      ],\n    };\n  })\n  return (\n    <div>\n        {propCounterWithNested.value.data.map((item, index) => {\n          return (\n            <TestComponent\n              counter={item.attributeInArray.counter}\n              logString=\\"Nested read through array\\"\n              key={index}\n            />\n          );\n        })}\n    </div>\n  );\n})\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gCAA8C,0BAC9C,OAAO,2CAEP,8BAA8B;AAHnC,SAAS,YAAY,iBAAiB;AACtC,SAAS,qBAAqB;AAE9B,OAAO,MAAM,QAAQC,2CAsBnB\"}")
 == DIAGNOSTICS ==
 
 []

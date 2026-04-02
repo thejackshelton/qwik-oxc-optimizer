@@ -27,7 +27,7 @@ export default component$(()=> {
 
 export const test_component_LUXeXe0DQrg = () => {
 	return <div>cmp</div>;
-};;
+};
 
 /*
 {
@@ -52,16 +52,18 @@ export const test_component_LUXeXe0DQrg = () => {
 
 ============================= test.tsx ==
 
-const q_test_component_LUXeXe0DQrg = qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
-import { component$ } from "@qwik.dev/core";
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
+//
 import mongodb from "mongodb";
+//
 export const onGet = () => {
 	throw "Symbol removed by Qwik Optimizer, it can not be called from current platform";
 };
-export default componentQrl(q_test_component_LUXeXe0DQrg);
+export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 
-
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,MACKA,yCACJ,OAAO,0CAEU,6BACA;AAJlB,SAAS,kBAAkB;AAC3B,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAEb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\nimport mongodb from 'mongodb';\n\nexport const onGet = () => {\n\tconst data = mongodb.collection.whatever;\n\treturn {\n\t\tbody: {\n\t\tdata\n\t\t}\n\t}\n};\n\nexport default component$(()=> {\n\treturn <div>cmp</div>\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BACA,0BAAU,OAAO,0CAGnB,6BAA6B;AAHhC,OAAO,aAAa;AAEpB,OAAO,MAAM;;;AASb,eAAeC,0CAEb\"}")
 == DIAGNOSTICS ==
 
 []

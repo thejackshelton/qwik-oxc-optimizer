@@ -1771,23 +1771,28 @@ impl QwikTransform {
                         }
                     }
 
-                    // ---- Component event handler $-prop extraction (Phase 27) ----
-                    // For component elements, only event handler $-suffixed props (on*$) with
-                    // function values create QRL segments (matching SWC behavior).
-                    // E.g. <CustomComponent onClick$={() => {}} /> → extracts onClick segment.
-                    // Non-event $-props (render$, custom$) are NOT extracted from components.
+                    // ---- Component $-prop extraction (Phase 27) ----
+                    // For component elements, ALL $-suffixed props with function values
+                    // create QRL segments (matching SWC behavior).
+                    // E.g. <Div onClick$={() => {}} /> → extracts onClick segment (eventHandler)
+                    //      <Div transparent$={() => {}} /> → extracts transparent segment (jSXProp)
                     // When strip_event_handlers=true, no extraction happens.
                     if is_fn
                         && !self.strip_event_handlers
                         && !self.has_foreign_jsx_import_source
                         && key.ends_with('$')
-                        && QwikTransform::jsx_event_to_html_attribute(&key).is_some()
                         && matches!(
                             &value_expr,
                             Expression::ArrowFunctionExpression(_) | Expression::FunctionExpression(_)
                         )
                     {
-                        let ctx_kind = crate::types::CtxKind::EventHandler;
+                        // Event handlers (on*$) use EventHandler kind, others use JSXProp
+                        let is_event_handler = QwikTransform::jsx_event_to_html_attribute(&key).is_some();
+                        let ctx_kind = if is_event_handler {
+                            crate::types::CtxKind::EventHandler
+                        } else {
+                            crate::types::CtxKind::JSXProp
+                        };
                         let ctx_name_for_seg = key.clone();
                         // Prop name without $ for the display_name context
                         let prop_name_no_dollar = key.trim_end_matches('$').to_string();

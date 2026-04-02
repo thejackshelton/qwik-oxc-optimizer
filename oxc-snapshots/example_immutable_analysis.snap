@@ -56,6 +56,196 @@ export const App = component$((props) => {
 	);
 });
 
+
+============================= test.tsx_App_component_ckEPmXZlub0.js (ENTRY POINT)==
+
+import { qrl } from "@qwik.dev/core";
+import { useStore } from "@qwik.dev/core";
+//
+const q_App_component_remove_pU6yOC5P6sY = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_remove_pU6yOC5P6sY"), "App_component_remove_pU6yOC5P6sY", [state]);
+//
+export const App_component_ckEPmXZlub0 = (props) => {
+	const { Model } = props;
+	const state = useStore({ count: 0 });
+	const remove = Qrl(q_App_component_remove_pU6yOC5P6sY.w([state]));
+	return <>
+			<p>Hello Qwik</p>
+			<Div>
+				<p>Hello Qwik</p>
+			</Div>
+			{[].map(() => <Model />)}
+		</>;
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_ckEPmXZlub0",
+  "entry": null,
+  "displayName": "test.tsx_App_component",
+  "hash": "ckEPmXZlub0",
+  "canonicalFilename": "test.tsx_App_component_ckEPmXZlub0",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "component$",
+  "captures": false,
+  "loc": [
+    164,
+    1149
+  ],
+  "paramNames": [
+    "props"
+  ]
+}
+*/
+
+============================= test.tsx_App_component_Div_onEvent_k0f2KI1nrzk.js (ENTRY POINT)==
+
+export const App_component_Div_onEvent_k0f2KI1nrzk = () => console.log("stuff");
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_Div_onEvent_k0f2KI1nrzk\"],\"sourcesContent\":[\"export const App_component_Div_onEvent_k0f2KI1nrzk = () => console.log(\\"stuff\\");\"],\"mappings\":\"AAAA,OAAO,MAAM,8CAA8C,QAAQ,IAAI,QAAQ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Div_onEvent_k0f2KI1nrzk",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Div_onEvent",
+  "hash": "k0f2KI1nrzk",
+  "canonicalFilename": "test.tsx_App_component_Div_onEvent_k0f2KI1nrzk",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onEvent$",
+  "captures": false,
+  "loc": [
+    543,
+    569
+  ]
+}
+*/
+
+============================= test.tsx_App_component_Div_transparent_kdBU90z0piU.js (ENTRY POINT)==
+
+export const App_component_Div_transparent_kdBU90z0piU = () => {
+	console.log("stuff");
+};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_Div_transparent_kdBU90z0piU\"],\"sourcesContent\":[\"export const App_component_Div_transparent_kdBU90z0piU = () => {\n\tconsole.log(\\"stuff\\");\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,kDAAkD;AAC9D,SAAQ,IAAI,QAAQ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Div_transparent_kdBU90z0piU",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Div_transparent",
+  "hash": "kdBU90z0piU",
+  "canonicalFilename": "test.tsx_App_component_Div_transparent_kdBU90z0piU",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "jsxProp",
+  "ctxName": "transparent$",
+  "captures": false,
+  "loc": [
+    589,
+    617
+  ]
+}
+*/
+
+============================= test.tsx_App_component_remove_pU6yOC5P6sY.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+//
+export const App_component_remove_pU6yOC5P6sY = (id: number) => {
+	const d = state.data;
+	d.splice(d.findIndex((d) => d.id === id), 1);
+};
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_remove_pU6yOC5P6sY",
+  "entry": null,
+  "displayName": "test.tsx_App_component_remove",
+  "hash": "pU6yOC5P6sY",
+  "canonicalFilename": "test.tsx_App_component_remove_pU6yOC5P6sY",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "function",
+  "ctxName": "$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    256,
+    358
+  ],
+  "paramNames": [
+    "id"
+  ]
+}
+*/
+
+============================= test.tsx_App_component_Div_immutable4_xx8KFkEiLgs.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+//
+export const App_component_Div_immutable4_xx8KFkEiLgs = (ev) => {
+	const state = _captures[0];
+	return console.log(state.count);
+};
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_Div_immutable4_xx8KFkEiLgs\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_Div_immutable4_xx8KFkEiLgs = (ev) => {\nconst state = _captures[0];\nreturn console.log(state.count);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4CAA4C,OAAO;CAChE,MAAM,QAAQ,UAAU;AACxB,QAAO,QAAQ,IAAI,MAAM,MAAM\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "App_component_Div_immutable4_xx8KFkEiLgs",
+  "entry": null,
+  "displayName": "test.tsx_App_component_Div_immutable4",
+  "hash": "xx8KFkEiLgs",
+  "canonicalFilename": "test.tsx_App_component_Div_immutable4_xx8KFkEiLgs",
+  "path": "",
+  "extension": "js",
+  "parent": "App_component_ckEPmXZlub0",
+  "ctxKind": "jsxProp",
+  "ctxName": "immutable4$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    760,
+    792
+  ],
+  "paramNames": [
+    "ev"
+  ]
+}
+*/
+
+============================= test.js ==
+
+import { componentQrl } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
+const q_App_component_Div_onEvent_k0f2KI1nrzk = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_onEvent_k0f2KI1nrzk"), "App_component_Div_onEvent_k0f2KI1nrzk");
+const q_App_component_Div_transparent_kdBU90z0piU = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_transparent_kdBU90z0piU"), "App_component_Div_transparent_kdBU90z0piU");
+const q_App_component_Div_immutable4_xx8KFkEiLgs = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_Div_immutable4_xx8KFkEiLgs"), "App_component_Div_immutable4_xx8KFkEiLgs", [state]);
+const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+//
+import { component$, useStore, $ } from "@qwik.dev/core";
+import importedValue from "v";
+import styles from "./styles.module.css";
+//
+export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
+
+Some("{\"version\":3,\"names\":[\"t { component$, useStore, $ } from '@qw\",\"t { component$, useStore, $ } from '@qwik.d\",\"t { component$, useStore, $ } from '@qwik.\",\"t { component$, useStore, $\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, $ } from '@qwik.dev/core';\nimport importedValue from 'v';\nimport styles from './styles.module.css';\n\nexport const App = component$((props) => {\n\tconst {Model} = props;\n\tconst state = useStore({count: 0});\n\tconst remove = $((id: number) => {\n\t\tconst d = state.data;\n\t\td.splice(\n\t\t\td.findIndex((d) => d.id === id),\n\t\t\t1\n\t\t)\n\t\t});\n\treturn (\n\t\t<>\n\t\t\t<p class=\\"stuff\\" onClick$={props.onClick$}>Hello Qwik</p>\n\t\t\t<Div\n\t\t\t\tclass={styles.foo}\n\t\t\t\tdocument={window.document}\n\t\t\t\tonClick$={props.onClick$}\n\t\t\t\tonEvent$={() => console.log('stuff')}\n\t\t\t\ttransparent$={() => {console.log('stuff')}}\n\t\t\t\timmutable1=\\"stuff\\"\n\t\t\t\timmutable2={{\n\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\tbaz: importedValue ? true : false,\n\t\t\t\t}}\n\t\t\t\timmutable3={2}\n\t\t\t\timmutable4$={(ev) => console.log(state.count)}\n\t\t\t\timmutable5={[1, 2, importedValue, null, {}]}\n\t\t\t>\n\t\t\t\t<p>Hello Qwik</p>\n\t\t\t</Div>\n\t\t\t{[].map(() => (\n\t\t\t\t<Model\n\t\t\t\t\tclass={state}\n\t\t\t\t\tremove$={remove}\n\t\t\t\t\tmutable1={{\n\t\t\t\t\t\tfoo: 'bar',\n\t\t\t\t\t\tbaz: state.count ? true : false,\n\t\t\t\t\t}}\n\t\t\t\t\tmutable2={(() => console.log(state.count))()}\n\t\t\t\t\tmutable3={[1, 2, state, null, {}]}\n\t\t\t\t/>\n\t\t\t))}\n\t\t</>\n\t);\n});\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,0CACF,0BAAU,OAAO,qDAEpB,wCACuC;AALvC,MACKC,8CACE,0BAAU,OAAO,yDAGjB,4CACC;AANR,MACKC,6CACC,0BAAU,OAAO,wDAGlB,4CACC,OAAO,CAAC;AANd,MACKC,8BAA4C,0BAChD,OAAO,yCACU,4BAEf;AAJH,SAAS,YAAY,UAAU,SAAS;AACxC,OAAO,mBAAmB;AAC1B,OAAO,YAAY;AAEnB,OAAO,MAAM,MAAMC,yCA4CjB\"}")
 == DIAGNOSTICS ==
 
 []

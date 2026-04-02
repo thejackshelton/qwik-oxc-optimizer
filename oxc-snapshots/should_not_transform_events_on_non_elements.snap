@@ -23,6 +23,60 @@ export const Greeter = component$(() => {
 
 
 
+============================= test.tsx_Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w.tsx (ENTRY POINT)==
+
+export const Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w = () => {};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w\"],\"sourcesContent\":[\"export const Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,kEAAkE\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component_div_CustomComponent_onClick",
+  "hash": "6xTF8kMcS9w",
+  "canonicalFilename": "test.tsx_Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Greeter_component_n7HuG2hhU0Q",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    251,
+    259
+  ]
+}
+*/
+
+============================= test.tsx_Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA.tsx (ENTRY POINT)==
+
+export const Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA = () => {};
+
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA\"],\"sourcesContent\":[\"export const Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA = () => {};\"],\"mappings\":\"AAAA,OAAO,MAAM,mEAAmE\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA",
+  "entry": null,
+  "displayName": "test.tsx_Greeter_component_div_AnotherComponent_onClick",
+  "hash": "9BwXJW3s0yA",
+  "canonicalFilename": "test.tsx_Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA",
+  "path": "",
+  "extension": "tsx",
+  "parent": "Greeter_component_n7HuG2hhU0Q",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    319,
+    327
+  ]
+}
+*/
+
 ============================= test.tsx_Greeter_component_n7HuG2hhU0Q.tsx (ENTRY POINT)==
 
 import { AnotherComponent } from "./another-component";
@@ -60,6 +114,8 @@ export const Greeter_component_n7HuG2hhU0Q = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+const q_Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA"), "Greeter_component_div_AnotherComponent_onClick_9BwXJW3s0yA");
+const q_Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w"), "Greeter_component_div_CustomComponent_onClick_6xTF8kMcS9w");
 const q_Greeter_component_n7HuG2hhU0Q = /*#__PURE__*/ qrl(() => import("./test.tsx_Greeter_component_n7HuG2hhU0Q"), "Greeter_component_n7HuG2hhU0Q");
 //
 import { CustomComponent } from "./custom-component";
@@ -67,7 +123,7 @@ import { AnotherComponent } from "./another-component";
 //
 export const Greeter = /*#__PURE__*/ componentQrl(q_Greeter_component_n7HuG2hhU0Q);
 
-Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,kCACA,0BAAU,OAAO,6CACT,gCAAgC;AAD7C,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, $ } from '@qwik.dev/core';\nimport { CustomCo\",\"t { component$, $ } from '@qwik.dev/core';\nimport { CustomC\",\"t { component$, $ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, $ } from '@qwik.dev/core';\nimport { CustomComponent } from './custom-component';\nimport { AnotherComponent } from './another-component';\n\nexport const Greeter = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<CustomComponent onClick$={() => {}}/>\n\t\t\t{array.map(item => (\n\t\t\t\t<AnotherComponent onClick$={() => {}}/>\n\t\t\t))}\n\t\t</div>\n\t)\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+DAC6B,0BAAU,OAAO,0EAGrC,6DAGC;AARf,MACKC,8DAC4B,0BAAU,OAAO,yEAGtC,4DAGA;AARZ,MACKC,kCACA,0BAAU,OAAO,6CACT,gCAAgC;AAD7C,SAAS,uBAAuB;AAChC,SAAS,wBAAwB;AAEjC,OAAO,MAAM,UAAUC,6CASrB\"}")
 == DIAGNOSTICS ==
 
 []

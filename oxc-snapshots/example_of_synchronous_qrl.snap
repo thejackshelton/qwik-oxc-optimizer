@@ -28,13 +28,9 @@ expression: output
 
 export const test_component_LUXeXe0DQrg = () => {
 	return <>
-				<input onClick$={syncQrl(function(event, target) {
-		event.preventDefault();
-	})} />
-				<input onClick$={syncQrl((event, target) => {
-		event.preventDefault();
-	})} />
-				<input onClick$={syncQrl((event, target) => event.preventDefault())} />
+				<input />
+				<input />
+				<input />
 			</>;
 };
 

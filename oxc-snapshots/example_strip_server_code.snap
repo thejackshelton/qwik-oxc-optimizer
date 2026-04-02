@@ -155,6 +155,31 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_useTa
 }
 */
 
+============================= test.tsx_Parent_component_serverLoader_k1L0DiPQV1I.js (ENTRY POINT)==
+
+export const s_k1L0DiPQV1I = null;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_k1L0DiPQV1I",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_serverLoader",
+  "hash": "k1L0DiPQV1I",
+  "canonicalFilename": "test.tsx_Parent_component_serverLoader_k1L0DiPQV1I",
+  "path": "",
+  "extension": "js",
+  "parent": "s_0TaiDayHrlo",
+  "ctxKind": "function",
+  "ctxName": "serverLoader$",
+  "captures": false,
+  "loc": [
+    703,
+    710
+  ]
+}
+*/
+
 ============================= test.tsx_Parent_component_useTask_1_P8oRQhHsurk.js (ENTRY POINT)==
 
 export const s_P8oRQhHsurk = () => {};
@@ -178,6 +203,31 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_useTa
   "loc": [
     724,
     744
+  ]
+}
+*/
+
+============================= test.tsx_Parent_component_serverStuff_r1qAHX7Opp0.js (ENTRY POINT)==
+
+export const s_r1qAHX7Opp0 = null;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "s_r1qAHX7Opp0",
+  "entry": null,
+  "displayName": "test.tsx_Parent_component_serverStuff",
+  "hash": "r1qAHX7Opp0",
+  "canonicalFilename": "test.tsx_Parent_component_serverStuff_r1qAHX7Opp0",
+  "path": "",
+  "extension": "js",
+  "parent": "s_0TaiDayHrlo",
+  "ctxKind": "function",
+  "ctxName": "serverStuff$",
+  "captures": false,
+  "loc": [
+    483,
+    685
   ]
 }
 */

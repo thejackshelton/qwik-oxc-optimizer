@@ -36,6 +36,31 @@ export default component$(() => {
 	});
 
 
+============================= test.tsx_api_server_JonPp043gH0.js (ENTRY POINT)==
+
+export const api_server_JonPp043gH0 = null;
+
+/*
+{
+  "origin": "test.tsx",
+  "name": "api_server_JonPp043gH0",
+  "entry": null,
+  "displayName": "test.tsx_api_server",
+  "hash": "JonPp043gH0",
+  "canonicalFilename": "test.tsx_api_server_JonPp043gH0",
+  "path": "",
+  "extension": "js",
+  "parent": null,
+  "ctxKind": "function",
+  "ctxName": "server$",
+  "captures": false,
+  "loc": [
+    433,
+    473
+  ]
+}
+*/
+
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
 export const test_component_LUXeXe0DQrg = () => {

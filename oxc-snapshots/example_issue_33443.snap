@@ -23,59 +23,20 @@ export const Issue3742 = component$(({description = '', other}: any) => {
 	});
 	
 
-============================= test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY.js ==
-
-import { _captures } from "@qwik.dev/core";
-//
-export const Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = () => {
-	const counter = _captures[0];
-	return counter.value++;
-};
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = () => {\nconst counter = _captures[0];\nreturn counter.value++;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6DAA6D;CAC1E,MAAM,UAAU,UAAU;AAC1B,QAAO,QAAQ\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "Issue3742_component_div_button_q_e_click_95Hlm8WgsYY",
-  "entry": "entry_segments",
-  "displayName": "test.tsx_Issue3742_component_div_button_q_e_click",
-  "hash": "95Hlm8WgsYY",
-  "canonicalFilename": "test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY",
-  "path": "",
-  "extension": "js",
-  "parent": "Issue3742_component_svSy0PlWTAw",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "counter"
-  ],
-  "loc": [
-    319,
-    340
-  ],
-  "paramNames": [
-    "_",
-    "_1",
-    "counter"
-  ]
-}
-*/
-
-============================= test.js ==
+============================= test.tsx ==
 
 import { _fnSignal } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 const _hf0 = (p0, p1, p2) => p1 && "p1" in p2 ? `Hello ${p0.value}` : `Bye ${p0.value}`;
-const q_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = /*#__PURE__*/ qrl(() => import("./test.tsx_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY"), "Issue3742_component_div_button_q_e_click_95Hlm8WgsYY", [counter]);
+const q_Issue3742_component_div_button_q_e_click_95Hlm8WgsYY = /*#__PURE__*/ _noopQrl("Issue3742_component_div_button_q_e_click_95Hlm8WgsYY");
 const q_Issue3742_component_svSy0PlWTAw = /*#__PURE__*/ _noopQrl("Issue3742_component_svSy0PlWTAw");
 //
 import { component$, useSignal } from "@qwik.dev/core";
 //
 export const Issue3742 = /*#__PURE__*/ componentQrl(q_Issue3742_component_svSy0PlWTAw);
 
-Some("{\"version\":3,\"names\":[\"t { \",\"t { component$, useSignal } from '@qwik.dev/core';\n\nex\",\"t { component$, useSignal } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const Issue3742 = component$(({description = '', other}: any) => {\n\tconst counter = useSignal(0);\n\treturn (\n\t\t<div\n\t\ttitle={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}\n\t\t>\n\t\tIssue3742\n\t\t<button onClick$={() => counter.value++}>\n\t\t\tIncrement\n\t\t</button>\n\t\t</div>\n\t)\n\t});\n\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAQ,IAAI,IAAI,aAAa,aAAa,sBAEnC;AAHZ,MACKC,yDAEc,0BAAU,OAAO,oEACN,wDAGQ,SAAS,CAAC;AAPhD,MACKC,oCAAkD,yBAEhD,kCAAkC;AAFzC,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,YAAYC,+CAYtB\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { component$, useSignal } from '@qwik.dev/core';\n\nex\",\"t { component$, useSignal } from \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from '@qwik.dev/core';\n\nexport const Issue3742 = component$(({description = '', other}: any) => {\n\tconst counter = useSignal(0);\n\treturn (\n\t\t<div\n\t\ttitle={(description && 'description' in other) ? `Hello ${counter.value}` : `Bye ${counter.value}`}\n\t\t>\n\t\tIssue3742\n\t\t<button onClick$={() => counter.value++}>\n\t\t\tIncrement\n\t\t</button>\n\t\t</div>\n\t)\n\t});\n\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,QAAQ,IAAI,IAAI,aAAa,aAAa,sBAEnC;AAHZ,MACKC,yDAEc,yBAAS,uDACnB;AAJT,MACKC,oCAAkD,yBAEhD,kCAAkC;AAFzC,SAAS,YAAY,iBAAiB;AAEtC,OAAO,MAAM,YAAYC,+CAYtB\"}")
 == DIAGNOSTICS ==
 
 []

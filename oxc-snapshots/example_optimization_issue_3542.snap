@@ -22,56 +22,14 @@ export const AtomStatus = component$(({ctx,atom})=>{
 })
 
 
-============================= test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0.jsx ==
-
-import { _captures } from "@qwik.dev/core";
-//
-export const AtomStatus_component_span_q_e_click_0yqKAycyBF0 = (ev) => {
-	const atom = _captures[0];
-	const ctx = _captures[1];
-	return atomStatusClick(ctx, ev, [atom]);
-};
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const AtomStatus_component_span_q_e_click_0yqKAycyBF0 = (ev) => {\nconst atom = _captures[0];\nconst ctx = _captures[1];\nreturn atomStatusClick(ctx, ev, [atom]);\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mDAAmD,OAAO;CACvE,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;AACtB,QAAO,gBAAgB,KAAK,IAAI,CAAC,KAAK,CAAC\"}")
-/*
-{
-  "origin": "test.tsx",
-  "name": "AtomStatus_component_span_q_e_click_0yqKAycyBF0",
-  "entry": "entry_segments",
-  "displayName": "test.tsx_AtomStatus_component_span_q_e_click",
-  "hash": "0yqKAycyBF0",
-  "canonicalFilename": "test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0",
-  "path": "",
-  "extension": "jsx",
-  "parent": "AtomStatus_component_hdwpoUtydSA",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "atom",
-    "ctx"
-  ],
-  "loc": [
-    301,
-    337
-  ],
-  "paramNames": [
-    "_",
-    "_1",
-    "atom",
-    "ctx"
-  ]
-}
-*/
-
-============================= test.jsx ==
+============================= test.tsx ==
 
 import { _wrapProp } from "@qwik.dev/core";
 import { _fnSignal } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_AtomStatus_component_span_q_e_click_0yqKAycyBF0 = /*#__PURE__*/ qrl(() => import("./test.tsx_AtomStatus_component_span_q_e_click_0yqKAycyBF0"), "AtomStatus_component_span_q_e_click_0yqKAycyBF0", [atom, ctx]);
+const q_AtomStatus_component_span_q_e_click_0yqKAycyBF0 = /*#__PURE__*/ _noopQrl("AtomStatus_component_span_q_e_click_0yqKAycyBF0");
 const _hf0 = (p0, p1, p2) => [
 	"p0",
 	p2,
@@ -81,7 +39,7 @@ const q_AtomStatus_component_hdwpoUtydSA = /*#__PURE__*/ _noopQrl("AtomStatus_co
 //
 export const AtomStatus = /*#__PURE__*/ componentQrl(q_AtomStatus_component_hdwpoUtydSA);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,oDAEoB,0BAAU,OAAO,+DAGnC,mDAC4B,WAAW,CAAC;AAP/C,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,qCAEK,yBAAS,mCAClB;AADD,OAAO,MAAM,aAAaC,gDAWxB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nexport c\",\"t { \",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const AtomStatus = component$(({ctx,atom})=>{\n\tlet status = atom.status;\n\tif(!atom.real) {\n\t\tstatus=\\"WILL-VANISH\\"\n\t} else if (JSON.stringify(atom.atom)==JSON.stringify(atom.real)) {\n\t\tstatus=\\"WTFED\\"\n\t}\n\treturn (\n\t\t<span title={atom.ID} onClick$={(ev)=>atomStatusClick(ctx,ev,[atom])} class={[\\"atom\\",status,ctx.store[atom.ID]?\\"selected\\":null]}>\n\t\t</span>\n\t);\n})\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,oDAEoB,yBAAS,kDAE9B;AALJ,MACKC,QAAQ,IAAI,IAAI,OAAO;CAAG;;mBAEhB,aAAa;CAAM;AAHlC,MACKC,qCAEK,yBAAS,mCAClB;AADD,OAAO,MAAM,aAAaC,gDAWxB\"}")
 == DIAGNOSTICS ==
 
 []

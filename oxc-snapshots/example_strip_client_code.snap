@@ -44,6 +44,40 @@ export const Parent = component$(() => {
 });
 
 
+============================= components/component.tsx_Parent_component_div_shouldRemove_EBj69wTX1do.js ==
+
+import { _captures } from "@qwik.dev/core";
+//
+export const Parent_component_div_shouldRemove_EBj69wTX1do = () => {
+	const state = _captures[0];
+	return state.text;
+};
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_div_shouldRemove_EBj69wTX1do\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Parent_component_div_shouldRemove_EBj69wTX1do = () => {\nconst state = _captures[0];\nreturn state.text;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,sDAAsD;CACnE,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM\"}")
+/*
+{
+  "origin": "components/component.tsx",
+  "name": "Parent_component_div_shouldRemove_EBj69wTX1do",
+  "entry": "entry_segments",
+  "displayName": "component.tsx_Parent_component_div_shouldRemove",
+  "hash": "EBj69wTX1do",
+  "canonicalFilename": "component.tsx_Parent_component_div_shouldRemove_EBj69wTX1do",
+  "path": "components",
+  "extension": "js",
+  "parent": "Parent_component_t6Wy3C0Q0XM",
+  "ctxKind": "function",
+  "ctxName": "shouldRemove$",
+  "captures": true,
+  "captureNames": [
+    "state"
+  ],
+  "loc": [
+    547,
+    563
+  ]
+}
+*/
+
 ============================= components/component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU.js ==
 
 import { _captures } from "@qwik.dev/core";
@@ -84,6 +118,31 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_
 }
 */
 
+============================= components/component.tsx_Parent_component_useClientMount_Yn2kIDABoYw.js ==
+
+export const Parent_component_useClientMount_Yn2kIDABoYw = null;
+
+/*
+{
+  "origin": "components/component.tsx",
+  "name": "Parent_component_useClientMount_Yn2kIDABoYw",
+  "entry": "entry_segments",
+  "displayName": "component.tsx_Parent_component_useClientMount",
+  "hash": "Yn2kIDABoYw",
+  "canonicalFilename": "component.tsx_Parent_component_useClientMount_Yn2kIDABoYw",
+  "path": "components",
+  "extension": "js",
+  "parent": "Parent_component_t6Wy3C0Q0XM",
+  "ctxKind": "function",
+  "ctxName": "useClientMount$",
+  "captures": false,
+  "loc": [
+    388,
+    474
+  ]
+}
+*/
+
 ============================= components/component.js ==
 
 import { componentQrl } from "@qwik.dev/core";
@@ -92,6 +151,7 @@ import { useTaskQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 const q_Parent_component_useClientMount_Yn2kIDABoYw = /*#__PURE__*/ _noopQrl("Parent_component_useClientMount_Yn2kIDABoYw", [state]);
 const q_Parent_component_useTask_ngmvcygWux8 = /*#__PURE__*/ _noopQrl("Parent_component_useTask_ngmvcygWux8");
+const q_Parent_component_div_shouldRemove_EBj69wTX1do = /*#__PURE__*/ qrl(() => import("./component.tsx_Parent_component_div_shouldRemove_EBj69wTX1do"), "Parent_component_div_shouldRemove_EBj69wTX1do", [state]);
 const q_Parent_component_div_q_e_click_oqNnfO6ubjU = /*#__PURE__*/ qrl(() => import("./component.tsx_Parent_component_div_q_e_click_oqNnfO6ubjU"), "Parent_component_div_q_e_click_oqNnfO6ubjU", [state]);
 const q_Parent_component_t6Wy3C0Q0XM = /*#__PURE__*/ _noopQrl("Parent_component_t6Wy3C0Q0XM");
 //
@@ -105,7 +165,7 @@ import { c } from "../../remove";
 //
 export const Parent = /*#__PURE__*/ componentQrl(q_Parent_component_t6Wy3C0Q0XM);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useClientMount$, useStore, us\",\"t { component$, useClientMount$, useSt\",\"t { component$, useClientMount$, useStore, u\",\"t { component$, useClientMount\",\"component$\"],\"sources\":[\"components/component.tsx\"],\"sourcesContent\":[\"\nimport { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport threejs from 'threejs';\nimport { a } from './keep';\nimport { b } from '../keep2';\nimport { c } from '../../remove';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseClientMount$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text, a, b, c);\n\t});\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div\n\t\t\tshouldRemove$={() => state.text}\n\t\t\tonClick$={() => console.log('parent', state, threejs)}\n\t\t>\n\t\t\t<Div\n\t\t\t\tonClick$={() => console.log('keep')}\n\t\t\t\trender$={() => state.text}\n\t\t\t/>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,kCACiC;AADjC,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,gDAA8D,yBAAS,+CAEhE,OAAO,CAAC;AAHpB,MACKC,yCAAuD,yBAAS,uCAC3C;AAF1B,MACKC,+CAA6D,0BAAU,OAC3E,+DAEO,8CACe,OACrB,CAAC;AANH,MACKC,iCAA+C,yBAAS,+BACnD;AADV,SAAS,YAAY,iBAAiB,UAAU,gBAAgB;AAChE,OAAO,WAAW;AAClB,OAAO,WAAW;AAClB,OAAO,aAAa;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAElB,OAAO,MAAM,SAASC,4CA2BpB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useClientMount$, useStore, us\",\"t { component$, useClientMount$, useSt\",\"t { component$, useClientMount$, useStore, useT\",\"t { component$, useClientMount$, useStore, u\",\"t { component$, useClientMount\",\"component$\"],\"sources\":[\"components/component.tsx\"],\"sourcesContent\":[\"\nimport { component$, useClientMount$, useStore, useTask$ } from '@qwik.dev/core';\nimport mongo from 'mongodb';\nimport redis from 'redis';\nimport threejs from 'threejs';\nimport { a } from './keep';\nimport { b } from '../keep2';\nimport { c } from '../../remove';\n\nexport const Parent = component$(() => {\n\tconst state = useStore({\n\t\ttext: ''\n\t});\n\n\t// Double count watch\n\tuseClientMount$(async () => {\n\t\tstate.text = await mongo.users();\n\t\tredis.set(state.text, a, b, c);\n\t});\n\n\tuseTask$(() => {\n\t\t// Code\n\t});\n\n\treturn (\n\t\t<div\n\t\t\tshouldRemove$={() => state.text}\n\t\t\tonClick$={() => console.log('parent', state, threejs)}\n\t\t>\n\t\t\t<Div\n\t\t\t\tonClick$={() => console.log('keep')}\n\t\t\t\trender$={() => state.text}\n\t\t\t/>\n\t\t\t{state.text}\n\t\t</div>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,kCACiC;AADjC,2BAC0B;AAD1B,oBACmB;AADnB,MACKA,gDAA8D,yBAAS,+CAEhE,OAAO,CAAC;AAHpB,MACKC,yCAAuD,yBAAS,uCAC3C;AAF1B,MACKC,kDAAgE,0BAAU,OAC3E,kEAEU,iDAEV,OAAO,CAAC;AANZ,MACKC,+CAA6D,0BAAU,OAC3E,+DAEO,8CACe,OACrB,CAAC;AANH,MACKC,iCAA+C,yBAAS,+BACnD;AADV,SAAS,YAAY,iBAAiB,UAAU,gBAAgB;AAChE,OAAO,WAAW;AAClB,OAAO,WAAW;AAClB,OAAO,aAAa;AACpB,SAAS,SAAS;AAClB,SAAS,SAAS;AAClB,SAAS,SAAS;AAElB,OAAO,MAAM,SAASC,4CA2BpB\"}")
 == DIAGNOSTICS ==
 
 []

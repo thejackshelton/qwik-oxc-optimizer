@@ -47,7 +47,7 @@ export const ModelImg = component$<ModelProps>((props) => {
 
 export const Image_component_CS20HgBlRYI = (props) => {
 	return <>
-      <img src={`${props.src}`} />
+      <img />
     </>;
 };
 
@@ -78,7 +78,6 @@ export const Image_component_CS20HgBlRYI = (props) => {
 ============================= test.tsx_ModelImg_component_iJe6ICWVnyA.js (ENTRY POINT)==
 
 import { qrl } from "@qwik.dev/core";
-import { Image } from "./test";
 import { Resource } from "@qwik.dev/core";
 //
 const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = /*#__PURE__*/ qrl(() => import("./test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI"), "ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI", [props]);
@@ -86,9 +85,7 @@ const q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = /*#__PURE__*/ qrl(()
 export const ModelImg_component_iJe6ICWVnyA = (props) => {
 	const imgLoc = useResourceQrl(q_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI.w([props]));
 	return <>
-      <Resource value={imgLoc} onRejected={() => <p>error ...</p>} onResolved={(res) => res && <>
-              <Image src={res} />
-            </>} />
+      <Resource />
     </>;
 };
 

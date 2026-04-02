@@ -26,6 +26,45 @@ export const Cmp = component$(() => {
 });
 
 
+============================= test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ.js (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+//
+export const Cmp_component_button_q_e_click_0O0tA6ahzDQ = () => {
+	const currentType = _captures[0];
+	return currentType.value = "NEXT";
+};
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Cmp_component_button_q_e_click_0O0tA6ahzDQ = () => {\nconst currentType = _captures[0];\nreturn currentType.value = \\"NEXT\\";\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mDAAmD;CAChE,MAAM,cAAc,UAAU;AAC9B,QAAO,YAAY,QAAQ\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Cmp_component_button_q_e_click_0O0tA6ahzDQ",
+  "entry": null,
+  "displayName": "test.tsx_Cmp_component_button_q_e_click",
+  "hash": "0O0tA6ahzDQ",
+  "canonicalFilename": "test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ",
+  "path": "",
+  "extension": "js",
+  "parent": "Cmp_component_4ryKJTOKjWE",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "currentType"
+  ],
+  "loc": [
+    394,
+    428
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "currentType"
+  ]
+}
+*/
+
 ============================= test.tsx_Cmp_component_4ryKJTOKjWE.js (ENTRY POINT)==
 
 import { A } from "./componentA";
@@ -38,8 +77,8 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 		return step === "STEP_1" ? "STEP_2" : "STEP_1";
 	};
 	return <>
-			<button onClick$={() => currentType.value = "NEXT"}>CLICK</button>
-			<A href={getStep(currentStep.value, currentType.value)} />
+			<button>CLICK</button>
+			<A />
 		</>;
 };
 
@@ -68,6 +107,7 @@ export const Cmp_component_4ryKJTOKjWE = () => {
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+const q_Cmp_component_button_q_e_click_0O0tA6ahzDQ = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_button_q_e_click_0O0tA6ahzDQ"), "Cmp_component_button_q_e_click_0O0tA6ahzDQ", [currentType]);
 const q_Cmp_component_4ryKJTOKjWE = /*#__PURE__*/ qrl(() => import("./test.tsx_Cmp_component_4ryKJTOKjWE"), "Cmp_component_4ryKJTOKjWE");
 //
 import { component$, useSignal } from "@qwik.dev/core";
@@ -75,7 +115,7 @@ import { A } from "./componentA";
 //
 export const Cmp = /*#__PURE__*/ componentQrl(q_Cmp_component_4ryKJTOKjWE);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAC9C,OAAO,yCAEM,4BACV;AAJN,SAAS,YAAY,iBAAiB;AACtC,SAAS,SAAS;AAElB,OAAO,MAAM,MAAMC,yCAcjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useSignal } from \\"@qwik.dev/\",\"t { component$, useSignal }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useSignal } from \\"@qwik.dev/core\\";\nimport { A } from \\"./componentA\\";\n\nexport const Cmp = component$(() => {\n\tconst currentStep = useSignal('STEP_1');\n\tconst currentType = useSignal<'NEXT' | 'PREVIOUS'>('PREVIOUS');\n\n\tconst getStep = (step: string, type: 'NEXT' | 'PREVIOUS') => {\n\t\treturn step === 'STEP_1' ? 'STEP_2' : 'STEP_1';\n\t};\n\n\treturn (\n\t\t<>\n\t\t\t<button onClick$={() => (currentType.value = 'NEXT')}>CLICK</button>\n\t\t\t<A href={getStep(currentStep.value, currentType.value)} />\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+CACK,0BAAU,OAAO,0DAGf,8CACI,aAAa,CAAC;AAN9B,MACKC,8BAA4C,0BAC9C,OAAO,yCAEM,4BACV;AAJN,SAAS,YAAY,iBAAiB;AACtC,SAAS,SAAS;AAElB,OAAO,MAAM,MAAMC,yCAcjB\"}")
 == DIAGNOSTICS ==
 
 []

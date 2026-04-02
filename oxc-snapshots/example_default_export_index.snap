@@ -17,44 +17,17 @@ export default component$(() => {
 
 
 
-============================= src/components/mongo/index.tsx_mongo_component_div_q_e_click_jncbxvZVtWY.tsx ==
-
-export const mongo_component_div_q_e_click_jncbxvZVtWY = () => console.log(mongodb);
-
-
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_mongo_component_div_q_e_click_jncbxvZVtWY\"],\"sourcesContent\":[\"export const mongo_component_div_q_e_click_jncbxvZVtWY = () => console.log(mongodb);\"],\"mappings\":\"AAAA,OAAO,MAAM,kDAAkD,QAAQ,IAAI,QAAQ\"}")
-/*
-{
-  "origin": "src/components/mongo/index.tsx",
-  "name": "mongo_component_div_q_e_click_jncbxvZVtWY",
-  "entry": "entry_segments",
-  "displayName": "index.tsx_mongo_component_div_q_e_click",
-  "hash": "jncbxvZVtWY",
-  "canonicalFilename": "index.tsx_mongo_component_div_q_e_click_jncbxvZVtWY",
-  "path": "src/components/mongo",
-  "extension": "tsx",
-  "parent": "mongo_component_ouWLj4jA2oI",
-  "ctxKind": "eventHandler",
-  "ctxName": "onClick$",
-  "captures": false,
-  "loc": [
-    109,
-    135
-  ]
-}
-*/
-
 ============================= src/components/mongo/index.tsx ==
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
-const q_mongo_component_div_q_e_click_jncbxvZVtWY = /*#__PURE__*/ qrl(() => import("./index.tsx_mongo_component_div_q_e_click_jncbxvZVtWY"), "mongo_component_div_q_e_click_jncbxvZVtWY");
+const q_mongo_component_div_q_e_click_jncbxvZVtWY = /*#__PURE__*/ _noopQrl("mongo_component_div_q_e_click_jncbxvZVtWY");
 const q_mongo_component_ouWLj4jA2oI = /*#__PURE__*/ _noopQrl("mongo_component_ouWLj4jA2oI");
 //
 export default /*#__PURE__*/ componentQrl(q_mongo_component_ouWLj4jA2oI);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nex\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8CAEc,0BAAU,OAC3B,0DAEE;AANJ,MACKC,gCAEA,yBAAS,8BAEd;AAFA,eAAeC,2CAKb\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.dev/core';\n\nex\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"src/components/mongo/index.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport default component$(() => {\n\treturn (\n\t\t<div onClick$={() => console.log(mongodb)}>\n\t\t</div>\n\t);\n});\n\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8CAEc,yBAAS,4CAEA;AAL5B,MACKC,gCAEA,yBAAS,8BAEd;AAFA,eAAeC,2CAKb\"}")
 == DIAGNOSTICS ==
 
 []

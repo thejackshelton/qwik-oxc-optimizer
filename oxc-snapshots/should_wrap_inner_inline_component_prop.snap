@@ -40,7 +40,7 @@ export const test_component_LUXeXe0DQrg = (props: {
 	_ref.Id = (props: any) => <div>_ref.Id: {props.id}</div>;
 	const { Id } = _ref;
 	return <>
-          <Id id={props.id} />
+          <Id />
           {rerenders}
         </>;
 };

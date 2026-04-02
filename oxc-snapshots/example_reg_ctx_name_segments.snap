@@ -19,19 +19,48 @@ export const Works = component$((props) => {
 });
 
 
-============================= test.tsx ==
+============================= test.tsx_Works_component_div_q_e_click_XuNgFdV2Umk.js ==
+
+import { foo } from "./foo";
+//
+export const Works_component_div_q_e_click_XuNgFdV2Umk = () => foo();
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Works_component_div_q_e_click_XuNgFdV2Umk\"],\"sourcesContent\":[\"import { foo } from \\"./foo\\";\nexport const Works_component_div_q_e_click_XuNgFdV2Umk = () => foo();\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,OAAO,MAAM,kDAAkD,KAAK\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "Works_component_div_q_e_click_XuNgFdV2Umk",
+  "entry": "entry_segments",
+  "displayName": "test.tsx_Works_component_div_q_e_click",
+  "hash": "XuNgFdV2Umk",
+  "canonicalFilename": "test.tsx_Works_component_div_q_e_click_XuNgFdV2Umk",
+  "path": "",
+  "extension": "js",
+  "parent": "Works_component_t45qL4vNGv0",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": false,
+  "loc": [
+    258,
+    269
+  ]
+}
+*/
+
+============================= test.js ==
 
 import { componentQrl } from "@qwik.dev/core";
 import { serverQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 const q_Works_component_div_onClick_server_OsNoEFc5SM4 = /*#__PURE__*/ _noopQrl("Works_component_div_onClick_server_OsNoEFc5SM4");
+const q_Works_component_div_q_e_click_XuNgFdV2Umk = /*#__PURE__*/ qrl(() => import("./test.tsx_Works_component_div_q_e_click_XuNgFdV2Umk"), "Works_component_div_q_e_click_XuNgFdV2Umk");
 const q_Works_component_t45qL4vNGv0 = /*#__PURE__*/ _noopQrl("Works_component_t45qL4vNGv0");
 //
 import { foo } from "./foo";
 //
 export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, server$ } from '@qwik.dev/cor\",\"t { $, component$, server$ } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$ } from '@qwik.dev/core';\nimport { foo } from './foo';\nexport const Works = component$((props) => {\n\tconst text = 'hola';\n\treturn (\n\t\t<>\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t\t<div onClick$={() => foo()}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,0BACyB;AADzB,oBACmB;AADnB,MACKA,mDACQ,yBAAS,iDACoB;AAH1C,MACKC,gCAA8C,yBAChD,8BACC;AADJ,SAAS,WAAW;AACpB,OAAO,MAAM,QAAQC,2CAQnB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, server$ } from '@qwik.dev/cor\",\"t { $, component$, server$ } from '@qwik.de\",\"t { $, component$, server$ } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, server$ } from '@qwik.dev/core';\nimport { foo } from './foo';\nexport const Works = component$((props) => {\n\tconst text = 'hola';\n\treturn (\n\t\t<>\n\t\t<div onClick$={server$(() => console.log('in server', text))}></div>\n\t\t<div onClick$={() => foo()}></div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,0BACyB;AADzB,oBACmB;AADnB,MACKA,mDACQ,yBAAS,iDACoB;AAH1C,MACKC,8CACG,0BAAU,OAAO,yDAEjB,4CAGO;AAPf,MACKC,gCAA8C,yBAChD,8BACC;AADJ,SAAS,WAAW;AACpB,OAAO,MAAM,QAAQC,2CAQnB\"}")
 == DIAGNOSTICS ==
 
 []

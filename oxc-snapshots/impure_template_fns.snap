@@ -38,7 +38,7 @@ export const test_component_LUXeXe0DQrg = () => {
 	return <>
 					<p>{foo("test")}</p>
 					<p>{foo`test`}</p>
-					<button onClick$={() => count.value++}>Count up</button>
+					<button>Count up</button>
 				</>;
 };
 
@@ -63,10 +63,50 @@ export const test_component_LUXeXe0DQrg = () => {
 }
 */
 
+============================= test.tsx_test_component_button_q_e_click_qwSL5gM03T4.ts (ENTRY POINT)==
+
+import { _captures } from "@qwik.dev/core";
+//
+export const test_component_button_q_e_click_qwSL5gM03T4 = () => {
+	const count = _captures[0];
+	return count.value++;
+};
+
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_q_e_click_qwSL5gM03T4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const test_component_button_q_e_click_qwSL5gM03T4 = () => {\nconst count = _captures[0];\nreturn count.value++;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD;CACjE,MAAM,QAAQ,UAAU;AACxB,QAAO,MAAM\"}")
+/*
+{
+  "origin": "test.tsx",
+  "name": "test_component_button_q_e_click_qwSL5gM03T4",
+  "entry": null,
+  "displayName": "test.tsx_test_component_button_q_e_click",
+  "hash": "qwSL5gM03T4",
+  "canonicalFilename": "test.tsx_test_component_button_q_e_click_qwSL5gM03T4",
+  "path": "",
+  "extension": "ts",
+  "parent": "test_component_LUXeXe0DQrg",
+  "ctxKind": "eventHandler",
+  "ctxName": "onClick$",
+  "captures": true,
+  "captureNames": [
+    "count"
+  ],
+  "loc": [
+    418,
+    437
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "count"
+  ]
+}
+*/
+
 ============================= test.ts ==
 
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
+const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [count]);
 const q_test_component_LUXeXe0DQrg = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_LUXeXe0DQrg"), "test_component_LUXeXe0DQrg");
 //
 import { component$, useSignal } from "@qwik.dev/core";
@@ -81,7 +121,7 @@ const useFoo = (count) => {
 export default /*#__PURE__*/ componentQrl(q_test_component_LUXeXe0DQrg);
 export { useFoo as _auto_useFoo };
 
-Some("{\"version\":3,\"names\":[\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\t\tconst useFoo = (count) => {\n\t\t\tconst tag = (s) => {\n\t\t\t\tconst value = typeof s === \\"string\\" ? s : s[0];\n\t\t\t\treturn `${value}-${count.value}`;\n\t\t\t}\n\t\t\treturn tag;\n\t\t}\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\tconst foo = useFoo(count);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t\t<p>{foo(\\"test\\")}</p>\n\t\t\t\t\t<p>{foo`test`}</p>\n\t\t\t\t\t<button onClick$={() => count.value++}>Count up</button>\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAA6C,0BAChD,OAAO,0CACY,6BACK;AAHxB,SAAS,YAAY,iBAAiB;AACtC,MAAM,UAAU,UAAU;CACzB,MAAM,OAAO,MAAM;EAClB,MAAM,QAAQ,OAAO,MAAM,WAAW,IAAI,EAAE;AAC5C,SAAO,GAAG,MAAM,GAAG,MAAM;;AAE1B,QAAO;;AAGR,eAAeC,0CAUb;AApBJ\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$, useSignal } from '@qwik.dev\",\"ort { component$, useSignal \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$, useSignal } from '@qwik.dev/core';\n\t\tconst useFoo = (count) => {\n\t\t\tconst tag = (s) => {\n\t\t\t\tconst value = typeof s === \\"string\\" ? s : s[0];\n\t\t\t\treturn `${value}-${count.value}`;\n\t\t\t}\n\t\t\treturn tag;\n\t\t}\n\n\t\texport default component$(() => {\n\t\t\tconst count = useSignal(0);\n\t\t\tconst foo = useFoo(count);\n\t\t\treturn (\n\t\t\t\t<>\n\t\t\t\t\t<p>{foo(\\"test\\")}</p>\n\t\t\t\t\t<p>{foo`test`}</p>\n\t\t\t\t\t<button onClick$={() => count.value++}>Count up</button>\n\t\t\t\t</>\n\t\t\t);\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,gDACI,0BAAU,OAAO,2DAEK,+CACL,OAAO,CAAC;AALlC,MACKC,+BAA6C,0BAChD,OAAO,0CACY,6BACK;AAHxB,SAAS,YAAY,iBAAiB;AACtC,MAAM,UAAU,UAAU;CACzB,MAAM,OAAO,MAAM;EAClB,MAAM,QAAQ,OAAO,MAAM,WAAW,IAAI,EAAE;AAC5C,SAAO,GAAG,MAAM,GAAG,MAAM;;AAE1B,QAAO;;AAGR,eAAeC,0CAUb;AApBJ\"}")
 == DIAGNOSTICS ==
 
 []

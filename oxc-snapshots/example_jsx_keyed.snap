@@ -25,11 +25,11 @@ export const App = component$((props: Stuff) => {
 
 export const App_component_ckEPmXZlub0 = (props: Stuff) => {
 	return <>
-			<Cmp key="stuff"></Cmp>
 			<Cmp></Cmp>
-			<Cmp prop="23"></Cmp>
-			<Cmp prop="23" key={props.stuff}></Cmp>
-			<p key={props.stuff}>Hello Qwik</p>
+			<Cmp></Cmp>
+			<Cmp></Cmp>
+			<Cmp></Cmp>
+			<p>Hello Qwik</p>
 		</>;
 };
 
@@ -59,6 +59,7 @@ export const App_component_ckEPmXZlub0 = (props: Stuff) => {
 
 ============================= test.js ==
 
+import { _wrapProp } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ qrl(() => import("./test.tsx_App_component_ckEPmXZlub0.tsx"), "App_component_ckEPmXZlub0");
@@ -67,7 +68,7 @@ import { component$, useStore } from "@qwik.dev/core";
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,6CACL,4BAEa;AALlB,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$, useStore } \",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore } from '@qwik.dev/core';\n\nexport const App = component$((props: Stuff) => {\n\treturn (\n\t\t<>\n\t\t\t<Cmp key=\\"stuff\\"></Cmp>\n\t\t\t<Cmp></Cmp>\n\t\t\t<Cmp prop=\\"23\\"></Cmp>\n\t\t\t<Cmp prop=\\"23\\" key={props.stuff}></Cmp>\n\t\t\t<p key={props.stuff}>Hello Qwik</p>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,8BAA4C,0BAE9C,OAAO,6CACL,4BAEa;AALlB,SAAS,YAAY,gBAAgB;AAErC,OAAO,MAAM,MAAMC,yCAUjB\"}")
 == DIAGNOSTICS ==
 
 []

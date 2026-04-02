@@ -36,9 +36,9 @@ export const FieldInput_component_V4XAtJSTRKg = (props) => {
 	const input = useSignal(true);
 	return <>
 			{}
-			<input bind:checked={input} {...props} />
+			<input />
 			{}
-			<input {...props} bind:checked={input} />
+			<input />
 		</>;
 };
 
@@ -68,6 +68,8 @@ export const FieldInput_component_V4XAtJSTRKg = (props) => {
 
 ============================= test.js ==
 
+import { _getVarProps } from "@qwik.dev/core";
+import { _getConstProps } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 const q_FieldInput_component_V4XAtJSTRKg = /*#__PURE__*/ qrl(() => import("./test.tsx_FieldInput_component_V4XAtJSTRKg"), "FieldInput_component_V4XAtJSTRKg");
@@ -76,7 +78,7 @@ import { $, component$, useSignal } from "@qwik.dev/core";
 //
 export const FieldInput = /*#__PURE__*/ componentQrl(q_FieldInput_component_V4XAtJSTRKg);
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(true);\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:checked={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:checked={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qCAAmD,0BAElD,OAAO,gDACF,mCAGT;AANF,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAiBxB\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useSignal } fro\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useSignal } from \\"@qwik.dev/core\\";\n\nexport const FieldInput = component$((props) => {\n\tconst input = useSignal(true);\n\n  return (\n\t\t<>\n\t\t\t{/* var props */}\n\t\t\t<input\n\t\t\t\tbind:checked={input}\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t{/* const props */}\n\t\t\t<input\n\t\t\t\t{...props}\n\t\t\t\tbind:checked={input}\n\t\t\t/>\n\t\t</>\n  );\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,+BAC8B;AAD9B,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,qCAAmD,0BAElD,OAAO,gDACF,mCAGT;AANF,SAAS,GAAG,YAAY,iBAAiB;AAEzC,OAAO,MAAM,aAAaC,gDAiBxB\"}")
 == DIAGNOSTICS ==
 
 []

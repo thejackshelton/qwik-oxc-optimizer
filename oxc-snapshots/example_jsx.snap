@@ -90,9 +90,9 @@ import { Lightweight } from "./test";
 export const Foo_component_HTDRsvUbLiE = () => {
 	return <div>
 				<>
-					<div class="class" />
-					<div class="class"></div>
-					<div class="class">12</div>
+					<div />
+					<div></div>
+					<div>12</div>
 				</>
 				<div>
 					<Lightweight />

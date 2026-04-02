@@ -28,7 +28,7 @@ export const App = component$(() => {
 export const App_component_ckEPmXZlub0 = () => {
 	console.log(Thing.A);
 	return <>
-			<p class="stuff">Hello Qwik</p>
+			<p>Hello Qwik</p>
 		</>;
 };
 

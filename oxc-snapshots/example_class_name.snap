@@ -33,15 +33,15 @@ export const App2_component_3yveMqbQ3Fs = () => {
 	const signal = useSignal();
 	const computed = signal.value + "foo";
 	return <>
-			<div className="hola"></div>
-			<div className={signal.value}></div>
-			<div className={signal}></div>
-			<div className={computed}></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
 
-			<Foo className="hola"></Foo>
-			<Foo className={signal.value}></Foo>
-			<Foo className={signal}></Foo>
-			<Foo className={computed}></Foo>
+			<Foo></Foo>
+			<Foo></Foo>
+			<Foo></Foo>
+			<Foo></Foo>
 		</>;
 };
 
@@ -68,6 +68,7 @@ export const App2_component_3yveMqbQ3Fs = () => {
 
 ============================= test.js ==
 
+import { _wrapProp } from "@qwik.dev/core";
 import { componentQrl } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core";
 //
@@ -75,7 +76,7 @@ const q_App2_component_3yveMqbQ3Fs = /*#__PURE__*/ qrl(() => import("./test.tsx_
 //
 export const App2 = /*#__PURE__*/ componentQrl(q_App2_component_3yveMqbQ3Fs);
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App2 = component$(() => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + 'foo';\n\treturn (\n\t\t<>\n\t\t\t<div className=\\"hola\\"></div>\n\t\t\t<div className={signal.value}></div>\n\t\t\t<div className={signal}></div>\n\t\t\t<div className={computed}></div>\n\n\t\t\t<Foo className=\\"hola\\"></Foo>\n\t\t\t<Foo className={signal.value}></Foo>\n\t\t\t<Foo className={signal}></Foo>\n\t\t\t<Foo className={computed}></Foo>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAED,0BAAU,OAAO,8CACO,6BACA;AAF5B,OAAO,MAAM,OAAOC,0CAgBlB\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\nexport const App2 = component$(() => {\n\tconst signal = useSignal();\n\tconst computed = signal.value + 'foo';\n\treturn (\n\t\t<>\n\t\t\t<div className=\\"hola\\"></div>\n\t\t\t<div className={signal.value}></div>\n\t\t\t<div className={signal}></div>\n\t\t\t<div className={computed}></div>\n\n\t\t\t<Foo className=\\"hola\\"></Foo>\n\t\t\t<Foo className={signal.value}></Foo>\n\t\t\t<Foo className={signal}></Foo>\n\t\t\t<Foo className={computed}></Foo>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,6BAC4B;AAD5B,oBACmB;AADnB,MACKA,+BAED,0BAAU,OAAO,8CACO,6BACA;AAF5B,OAAO,MAAM,OAAOC,0CAgBlB\"}")
 == DIAGNOSTICS ==
 
 []

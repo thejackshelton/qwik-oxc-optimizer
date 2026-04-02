@@ -429,13 +429,7 @@ fn transform_code(
             // (not just the default "_" / "_1" / "_N" positional placeholders for
             // JSX event handlers with no captured variables).
             // Omit paramNames entirely when all entries are placeholder-only.
-            param_names: record.param_names.clone().and_then(|pn| {
-                let has_real = pn.iter().any(|p| {
-                    let s = p.as_str();
-                    s != "_" && !(s.starts_with('_') && s[1..].parse::<usize>().is_ok())
-                });
-                if has_real { Some(pn) } else { None }
-            }),
+            param_names: record.param_names.clone(),
             capture_names: if record.scoped_idents.is_empty() {
                 None
             } else {

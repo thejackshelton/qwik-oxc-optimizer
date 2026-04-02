@@ -1615,10 +1615,12 @@ impl QwikTransform {
                                 }
                                 // Build synthetic JSX handler param_names: ["_", "_1", ...moved_caps]
                                 // JSX event handlers always receive (event, element, ...movedCaptures).
-                                // The "_" and "_1" are positional placeholders for event+element args.
-                                // For each entry in element_lifted_params: use the var name if this
-                                // handler references it, otherwise use "_N" placeholder (N = index + 2).
-                                let jsx_param_names: Vec<String> = {
+                                // Only emit param_names when there are real captures to list.
+                                // When element_lifted_params is empty, param_names should be None
+                                // (not ["_", "_1"] placeholders — avoids stripping legitimate user _N params).
+                                let jsx_param_names: Option<Vec<String>> = if element_lifted_params.is_empty() {
+                                    None
+                                } else {
                                     let mut params = vec!["_".to_string(), "_1".to_string()];
                                     for (i, cap_name) in element_lifted_params.iter().enumerate() {
                                         if descendent_idents.contains(cap_name) {
@@ -1627,7 +1629,7 @@ impl QwikTransform {
                                             params.push(format!("_{}", i + 2));
                                         }
                                     }
-                                    params
+                                    Some(params)
                                 };
                                 // Extract segment
                                 let qrl_expr = self.create_segment(
@@ -1638,7 +1640,7 @@ impl QwikTransform {
                                     &ctx_name_for_seg,
                                     ctx_kind,
                                     fn_span_tuple,
-                                    Some(jsx_param_names),
+                                    jsx_param_names,
                                     allocator,
                                 );
                                 // Hoist qrl to module scope
@@ -2622,6 +2624,9 @@ impl QwikTransform {
         // Remove the handler's own parameters.
         let own_params = get_function_params(handler_expr);
         scoped.retain(|name| !own_params.contains(name));
+        // Remove module-scope globals (same filter as main capture path).
+        let collect = unsafe { &*self.global_collect };
+        scoped.retain(|id| !collect.is_global(id));
         scoped
     }
 
@@ -2999,16 +3004,34 @@ impl QwikTransform {
             hash::parse_symbol_name(&symbol_name_raw, &self.mode, &self.file_name);
 
         // Extract scoped_idents: use third arg array if present, else compute.
+        // IMPORTANT: preserve ALL elements (not just identifiers) — non-identifier
+        // elements like `true`, `false`, numeric literals are valid capture entries
+        // that affect _captures indexing.
         let scoped_idents: Vec<String> = if call.arguments.len() >= 3 {
             match &call.arguments[2] {
                 Argument::ArrayExpression(arr) => arr
                     .elements
                     .iter()
-                    .filter_map(|el| match el {
+                    .map(|el| match el {
                         ArrayExpressionElement::Identifier(id) => {
-                            Some(id.name.as_str().to_string())
+                            id.name.as_str().to_string()
                         }
-                        _ => None,
+                        ArrayExpressionElement::BooleanLiteral(b) => {
+                            b.value.to_string()
+                        }
+                        ArrayExpressionElement::NumericLiteral(n) => {
+                            n.value.to_string()
+                        }
+                        ArrayExpressionElement::StringLiteral(s) => {
+                            s.value.as_str().to_string()
+                        }
+                        ArrayExpressionElement::NullLiteral(_) => {
+                            "null".to_string()
+                        }
+                        other => {
+                            // Fallback: serialize unknown elements via codegen
+                            format!("{:?}", other)
+                        }
                     })
                     .collect(),
                 _ => vec![],
@@ -7152,7 +7175,8 @@ export default component$(() => {
     // JSX event handler param_names — TDD tests (Phase 22-02)
     // -----------------------------------------------------------------------
 
-    /// Test: JSX onClick$ with no loop var captures → param_names = ["_", "_1"]
+    /// Test: JSX onClick$ with no loop var captures → param_names = None
+    /// (no synthetic placeholders when there are no real captures to list)
     #[test]
     fn jsx_handler_param_names_no_captures() {
         let src = r#"import { component$ } from "@qwik.dev/core";
@@ -7163,9 +7187,8 @@ export default component$(() => {
         let onclick_seg = xfrm.segments.iter().find(|s| s.ctx_name == "onClick$");
         let seg = onclick_seg.expect("expected an onClick$ segment");
         assert_eq!(
-            seg.param_names,
-            Some(vec!["_".to_string(), "_1".to_string()]),
-            "onClick$ with no loop captures should have param_names [_, _1], got: {:?}",
+            seg.param_names, None,
+            "onClick$ with no loop captures should have param_names None, got: {:?}",
             seg.param_names
         );
     }

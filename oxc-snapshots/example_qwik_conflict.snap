@@ -77,19 +77,18 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_1_cBpQN
 
 import { hW } from "./test";
 import { handleWatch } from "./test";
-import { qrl } from "@qwik.dev/core/what";
 const q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import("./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg"), "Foo_component_div_q_e_click_YEa2A5ADUOg");
 export const Foo_component_HTDRsvUbLiE = () => {
 	useStyles$("thing");
 	const qwik = hW + handleWatch;
 	console.log(qwik);
 	const qrl = 23;
-	return _jsxSorted("div", { "q:p": qrl }, { "q-e:click": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 7, "u6_0");
+	return _jsxSorted("div", null, { "q-e:click": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { hW } from \\"./test\\";\nimport { handleWatch } from \\"./test\\";\nimport { qrl } from \\"@qwik.dev/core/what\\";\nconst q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\\"), \\"Foo_component_div_q_e_click_YEa2A5ADUOg\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tuseStyles$(\\"thing\\");\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": qrl }, { \\"q-e:click\\": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,UAAU;AACnB,SAAS,mBAAmB;AAC5B,SAAS,WAAW;AACpB,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,0CAA0C;AACpK,OAAO,MAAM,kCAAkC;AAC9C,YAAW,QAAQ;CACnB,MAAM,OAAO,KAAK;AAClB,SAAQ,IAAI,KAAK;CACjB,MAAM,MAAM;AACZ,QAAO,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,2CAA2C,EAAE,MAAM,GAAG,OAAO;;AACpH\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { hW } from \\"./test\\";\nimport { handleWatch } from \\"./test\\";\nconst q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\\"), \\"Foo_component_div_q_e_click_YEa2A5ADUOg\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tuseStyles$(\\"thing\\");\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn _jsxSorted(\\"div\\", null, { \\"q-e:click\\": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,UAAU;AACnB,SAAS,mBAAmB;AAC5B,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,0CAA0C;AACpK,OAAO,MAAM,kCAAkC;AAC9C,YAAW,QAAQ;CACnB,MAAM,OAAO,KAAK;AAClB,SAAQ,IAAI,KAAK;CACjB,MAAM,MAAM;AACZ,QAAO,WAAW,OAAO,MAAM,EAAE,aAAa,2CAA2C,EAAE,MAAM,GAAG,OAAO;;AAC1G\"}")
 /*
 {
   "origin": "test.tsx",
@@ -194,11 +193,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     391,
     412
-  ],
-  "paramNames": [
-    "_",
-    "_1",
-    "qrl"
   ]
 }
 */

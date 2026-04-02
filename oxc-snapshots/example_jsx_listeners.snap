@@ -63,6 +63,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     243,
     278
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */
@@ -122,6 +127,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     408,
     444
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */
@@ -230,6 +240,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     354,
     382
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */
@@ -258,6 +273,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     303,
     336
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */
@@ -286,6 +306,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     470,
     506
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */
@@ -314,6 +339,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     191,
     218
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2"
   ]
 }
 */

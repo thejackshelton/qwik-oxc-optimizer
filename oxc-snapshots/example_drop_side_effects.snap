@@ -38,7 +38,6 @@ export default component$(() => {
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-import { api } from "./test";
 const q_test_component_button_q_e_click_qwSL5gM03T4 = qrlDEV(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [], {
 	file: "test.tsx",
 	lo: 540,
@@ -46,12 +45,12 @@ const q_test_component_button_q_e_click_qwSL5gM03T4 = qrlDEV(() => import("./tes
 	displayName: "test.tsx_test_component_button_q_e_click"
 });
 export const test_component_LUXeXe0DQrg = () => {
-	return _jsxSorted("button", { "q:p": api }, { "q-e:click": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 7, "u6_0");
+	return _jsxSorted("button", null, { "q-e:click": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { api } from \\"./test\\";\nconst q_test_component_button_q_e_click_qwSL5gM03T4 = qrlDEV(() => import(\\"./test.tsx_test_component_button_q_e_click_qwSL5gM03T4\\"), \\"test_component_button_q_e_click_qwSL5gM03T4\\", [], {\n\tfile: \\"test.tsx\\",\n\tlo: 540,\n\thi: 557,\n\tdisplayName: \\"test.tsx_test_component_button_q_e_click\\"\n});\nexport const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(\\"button\\", { \\"q:p\\": api }, { \\"q-e:click\\": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,gDAAgD,aAAa,OAAO,2DAA2D,+CAA+C,EAAE,EAAE;CACvL,MAAM;CACN,IAAI;CACJ,IAAI;CACJ,aAAa;CACb,CAAC;AACF,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,UAAU,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,+CAA+C,EAAE,MAAM,GAAG,OAAO;;AAC3H\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"const q_test_component_button_q_e_click_qwSL5gM03T4 = qrlDEV(() => import(\\"./test.tsx_test_component_button_q_e_click_qwSL5gM03T4\\"), \\"test_component_button_q_e_click_qwSL5gM03T4\\", [], {\n\tfile: \\"test.tsx\\",\n\tlo: 540,\n\thi: 557,\n\tdisplayName: \\"test.tsx_test_component_button_q_e_click\\"\n});\nexport const test_component_LUXeXe0DQrg = () => {\n\treturn _jsxSorted(\\"button\\", null, { \\"q-e:click\\": q_test_component_button_q_e_click_qwSL5gM03T4 }, null, 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,MAAM,gDAAgD,aAAa,OAAO,2DAA2D,+CAA+C,EAAE,EAAE;CACvL,MAAM;CACN,IAAI;CACJ,IAAI;CACJ,aAAa;CACb,CAAC;AACF,OAAO,MAAM,mCAAmC;AAC/C,QAAO,WAAW,UAAU,MAAM,EAAE,aAAa,+CAA+C,EAAE,MAAM,GAAG,OAAO;;AACjH\"}")
 /*
 {
   "origin": "test.tsx",
@@ -98,11 +97,6 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_
   "loc": [
     541,
     558
-  ],
-  "paramNames": [
-    "_",
-    "_1",
-    "api"
   ]
 }
 */

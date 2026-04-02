@@ -154,8 +154,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
     "store"
   ],
   "loc": [
-    625,
-    1469
+    636,
+    1365
   ],
   "paramNames": [
     "track"
@@ -228,8 +228,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_qwikifyQrl_compo
     "reactCmpQrl"
   ],
   "loc": [
-    347,
-    2077
+    358,
+    2020
   ],
   "paramNames": [
     "props"

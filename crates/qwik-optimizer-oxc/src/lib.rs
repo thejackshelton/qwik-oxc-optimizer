@@ -2197,4 +2197,61 @@ export const Cmp = component$(() => {
             span_len
         );
     }
+
+    // -----------------------------------------------------------------------
+    // Task 2 tests: non-fatal parse error suppression + suggestions serialization
+    // -----------------------------------------------------------------------
+
+    /// Recoverable (non-fatal) parse errors must NOT produce sourceError diagnostics.
+    /// SWC silently recovers from non-panicked parse errors and produces output.
+    #[test]
+    fn parse_error_in_recoverable_input_produces_no_source_error_diagnostic() {
+        // Trailing `});` syntax error — OXC recovers, SWC produces output with no sourceError.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const App = component$(() => {
+    return <div>hello</div>;
+});
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules should not fail on recoverable error");
+        use crate::types::DiagnosticCategory;
+        let source_errors: Vec<_> = result
+            .diagnostics
+            .iter()
+            .filter(|d| matches!(d.category, DiagnosticCategory::SourceError))
+            .collect();
+        assert!(
+            source_errors.is_empty(),
+            "Non-fatal parse errors must NOT produce sourceError diagnostics (SWC behavior), got: {:?}",
+            source_errors
+        );
+    }
+
+    /// The suggestions field in a Diagnostic must always serialize as `null`, never omitted.
+    /// This matches the SWC wire format where `"suggestions":null` is always present.
+    #[test]
+    fn suggestions_field_always_serializes_as_null() {
+        use crate::types::{Diagnostic, DiagnosticCategory};
+        let diag = Diagnostic {
+            scope: "optimizer".to_string(),
+            category: DiagnosticCategory::Error,
+            code: Some("C02".to_string()),
+            file: "test.tsx".to_string(),
+            message: "test message".to_string(),
+            highlights: None,
+            suggestions: None,
+        };
+        let json = serde_json::to_string(&diag).expect("serialize diagnostic");
+        assert!(
+            json.contains("\"suggestions\":null"),
+            "Diagnostic JSON must contain '\"suggestions\":null' (not omitted), got: {json}"
+        );
+    }
 }

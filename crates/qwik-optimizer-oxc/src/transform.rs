@@ -3082,7 +3082,14 @@ impl QwikTransform {
             self.ensure_export(ident);
         }
 
-        let span = (call.span.start, call.span.end);
+        // SWC records the span of the first argument (the function body), not the outer
+        // inlinedQrl() call expression. Extract first_arg span here — first_arg was obtained
+        // from old_arg via argument_to_expression() which retains the original OXC span.
+        let span = {
+            use oxc::span::GetSpan;
+            let s = first_arg.span();
+            (s.start, s.end)
+        };
 
         // Route to create_inline_qrl or create_segment.
         let replacement_expr: Expression<'a> = if self.is_inline_strategy {
@@ -6874,6 +6881,68 @@ const x = inlinedQrl(() => console.log("hi"), "test_component_ABC");"#;
         assert!(
             code.contains("inlinedQrl") || code.contains("q_"),
             "Inline strategy should produce inlinedQrl or q_ hoisted const, got: {code}"
+        );
+    }
+
+    // -----------------------------------------------------------------------
+    // Task 1 TDD tests (23-01): inlinedQrl first-arg span fix
+    // -----------------------------------------------------------------------
+
+    /// Verify that handle_inlined_qsegment records the span of the FIRST ARGUMENT
+    /// (the function body), NOT the span of the outer inlinedQrl() call expression.
+    ///
+    /// SWC records first-arg span; OXC was using call.span (11 bytes off for start).
+    /// The source `inlinedQrl(() => foo(), "sym")` is carefully laid out so we can
+    /// compute expected byte offsets by hand.
+    ///
+    /// Source:
+    ///   import { inlinedQrl } from "@qwik.dev/core";\n   (48 chars including newline)
+    ///   const x = inlinedQrl(() => foo(), "sym_test_hash1");\n
+    ///             ^         ^
+    ///             col 10    col 21 (the `(` of arrow fn)
+    ///
+    /// "inlinedQrl(" is 11 chars, so:
+    ///   call starts at: 48 + 10 = 58
+    ///   first_arg starts at: 48 + 10 + 11 = 69
+    ///
+    /// The segment span.0 should equal the start of `() => foo()`, NOT the `i` of `inlinedQrl`.
+    #[test]
+    fn inlined_qsegment_uses_first_arg_span() {
+        // Source is structured so we can compute offsets precisely.
+        // Line 1: `import { inlinedQrl } from "@qwik.dev/core";\n` — 47 chars + newline = 48
+        // Line 2: `const x = inlinedQrl(() => foo(), "sym_test_hash1");`
+        //          ^0        ^10       ^21 (start of `() => foo()`)
+        let src = "import { inlinedQrl } from \"@qwik.dev/core\";\nconst x = inlinedQrl(() => foo(), \"sym_test_hash1\");";
+        let (_, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+
+        assert!(
+            !xfrm.segments.is_empty(),
+            "should produce at least one segment, got 0"
+        );
+        let seg = &xfrm.segments[0];
+
+        // Identify the byte offset of `() => foo()` inside the source.
+        let first_arg_offset = src.find("() => foo()").expect("() => foo() not found in source") as u32;
+        let first_arg_end = first_arg_offset + "() => foo()".len() as u32;
+
+        // Identify the byte offset of `inlinedQrl(` (the outer call start).
+        let call_offset = src.find("inlinedQrl(").expect("inlinedQrl( not found in source") as u32;
+
+        // The span start should be the first-arg position, NOT the call position.
+        assert_ne!(
+            seg.span.0, call_offset,
+            "span.0 must NOT be the call start (inlinedQrl position {}), got {}",
+            call_offset, seg.span.0
+        );
+        assert_eq!(
+            seg.span.0, first_arg_offset,
+            "span.0 should be first-arg start ({}), got {}",
+            first_arg_offset, seg.span.0
+        );
+        assert_eq!(
+            seg.span.1, first_arg_end,
+            "span.1 should be first-arg end ({}), got {}",
+            first_arg_end, seg.span.1
         );
     }
 

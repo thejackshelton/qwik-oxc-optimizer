@@ -656,6 +656,12 @@ pub(crate) struct QwikTransform {
     /// Whether `Fragment as _Fragment` import from "@qwik.dev/core/jsx-runtime" is needed.
     pub(crate) needs_fragment: bool,
 
+    /// Phase 25-02: When true, `transform_jsx_element` processes JSX attributes (for side
+    /// effects such as `onClick$` segment extraction) but rebuilds and returns the JSX
+    /// element instead of building a `_jsxSorted(...)` call.  Set to true when entering
+    /// a segment closure (segment_span_stack non-empty).
+    pub(crate) suppress_jsx_conversion: bool,
+
     // ---- Phase 15: Signal wrapping state ------------------------------------
 
     /// Dedup map for hoist_fn_signal_call: fn_body_str -> (const_name, counter_value).
@@ -843,6 +849,7 @@ impl QwikTransform {
             needs_get_var_props: false,
             needs_get_const_props: false,
             needs_fragment: false,
+            suppress_jsx_conversion: false,
             // Phase 15: Signal wrapping state
             hoisted_fn_signals: HashMap::new(),
             hoisted_fn_counter: 0,
@@ -1056,6 +1063,11 @@ impl QwikTransform {
 
     /// Convert a `JSXElement` node into a `_jsxSorted` or `_jsxSplit` call.
     ///
+    /// When `self.suppress_jsx_conversion` is true (inside a segment closure), this method
+    /// processes JSX attributes for side effects (segment extraction, QRL hoisting) but
+    /// rebuilds and returns the JSX element with the modified attributes instead of building
+    /// a `_jsxSorted(...)` call.  This preserves JSX syntax in segment module code.
+    ///
     /// Called from `exit_expression` after children have already been transformed
     /// (post-order traversal). `was_root` reflects whether `root_jsx_mode` was
     /// true when we first *entered* this element.
@@ -1073,6 +1085,10 @@ impl QwikTransform {
         // into the parent's static_subtree flag computation.
         let saved_jsx_mutable = self.jsx_mutable;
         self.jsx_mutable = false;
+
+        // Phase 25-02: save fields needed to rebuild JSX when suppress_jsx_conversion is set.
+        let el_span = el.span;
+        let closing_element = el.closing_element;
 
         let opening = el.opening_element.unbox();
         let mut children_vec = el.children;
@@ -1166,8 +1182,33 @@ impl QwikTransform {
             self.raw_stack_ctxt.pop();
         }
 
-        // ---- 4. Build call ----------------------------------------------------
-        // Determine callee based on whether we need runtime sort.
+        // Restore parent's jsx_mutable state — if this element was mutable,
+        // propagate up so the parent knows its subtree is not fully static.
+        let this_mutable = self.jsx_mutable;
+        self.jsx_mutable = saved_jsx_mutable || this_mutable;
+
+        // ---- 4. Build output --------------------------------------------------
+        // Phase 25-02: When inside a segment closure, rebuild and return the JSX element
+        // with modified attributes (onClick$ → onClick qrl ref, etc.) instead of
+        // converting to _jsxSorted.  This preserves JSX syntax in segment module code.
+        if self.suppress_jsx_conversion {
+            // Reconstruct JSXOpeningElement with the modified attrs.
+            let opening_el = ast.jsx_opening_element(
+                SPAN,
+                opening.name,
+                opening.type_arguments,
+                attrs,
+            );
+            let rebuilt = ast.expression_jsx_element(
+                el_span,
+                opening_el,
+                children_vec,
+                closing_element,
+            );
+            return rebuilt;
+        }
+
+        // Normal path: convert to _jsxSorted/_jsxSplit call.
         let callee_name = if should_sort {
             self.needs_jsx_split = true;
             "_jsxSplit"
@@ -1176,15 +1217,13 @@ impl QwikTransform {
             "_jsxSorted"
         };
 
-        // Restore parent's jsx_mutable state — if this element was mutable,
-        // propagate up so the parent knows its subtree is not fully static.
-        let this_mutable = self.jsx_mutable;
-        self.jsx_mutable = saved_jsx_mutable || this_mutable;
-
         build_jsx_call(callee_name, tag_expr, var_props_opt, const_props_opt, children_opt, flags, key_expr, &ast, allocator)
     }
 
     /// Convert a `JSXFragment` node into a `_jsxSorted(_Fragment, ...)` call.
+    ///
+    /// When `self.suppress_jsx_conversion` is true (inside a segment closure), this method
+    /// rebuilds and returns the JSX fragment as-is instead of converting to `_jsxSorted`.
     fn transform_jsx_fragment<'a>(
         &mut self,
         frag: JSXFragment<'a>,
@@ -1193,6 +1232,17 @@ impl QwikTransform {
     ) -> Expression<'a> {
         let allocator: &'a Allocator = ctx.ast.allocator;
         let ast = AstBuilder::new(allocator);
+
+        // Phase 25-02: When inside a segment closure, preserve the JSX fragment.
+        // Fragments have no attributes to process, so just rebuild as-is.
+        if self.suppress_jsx_conversion {
+            return ast.expression_jsx_fragment(
+                frag.span,
+                frag.opening_fragment,
+                frag.children,
+                frag.closing_fragment,
+            );
+        }
 
         self.needs_fragment = true;
         self.needs_jsx_sorted = true;
@@ -1721,7 +1771,14 @@ impl QwikTransform {
         }
 
         // ---- Process children -----------------------------------------------
-        let children_opt = self.build_children(children, is_text_only, ctx);
+        // Phase 25-02: When suppress_jsx_conversion is true (inside a segment closure), we
+        // skip build_children so that the original JSXChild nodes are preserved in `children`.
+        // The rebuild in transform_jsx_element will use those nodes to reconstruct the JSX.
+        let children_opt = if self.suppress_jsx_conversion {
+            None
+        } else {
+            self.build_children(children, is_text_only, ctx)
+        };
 
         // ---- Compute flags --------------------------------------------------
         // bit 0 = static_listeners, bit 1 = static_subtree, bit 2 = moved_captures
@@ -3208,20 +3265,39 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 // Restore root mode for the parent context.
                 self.root_jsx_mode = was_root;
 
+                // CRITICAL FIX (Phase 25-02): When inside a segment closure, process JSX
+                // attributes for side effects (e.g. onClick$ segment extraction) but preserve
+                // the JSX structure in the segment module code.  When in parent context,
+                // transform as usual to _jsxSorted.
+                let inside_segment = !self.segment_span_stack.is_empty();
+                if inside_segment {
+                    self.suppress_jsx_conversion = true;
+                }
                 let placeholder = ctx.ast.expression_null_literal(SPAN);
                 let old = std::mem::replace(expr, placeholder);
                 if let Expression::JSXElement(el) = old {
                     *expr = self.transform_jsx_element(el.unbox(), was_root, ctx);
+                }
+                if inside_segment {
+                    self.suppress_jsx_conversion = false;
                 }
             }
             Expression::JSXFragment(_) => {
                 let was_root = self.jsx_root_mode_stack.pop().unwrap_or(true);
                 self.root_jsx_mode = was_root;
 
+                // CRITICAL FIX (Phase 25-02): Same guard for JSX fragments.
+                let inside_segment = !self.segment_span_stack.is_empty();
+                if inside_segment {
+                    self.suppress_jsx_conversion = true;
+                }
                 let placeholder = ctx.ast.expression_null_literal(SPAN);
                 let old = std::mem::replace(expr, placeholder);
                 if let Expression::JSXFragment(frag) = old {
                     *expr = self.transform_jsx_fragment(frag.unbox(), was_root, ctx);
+                }
+                if inside_segment {
+                    self.suppress_jsx_conversion = false;
                 }
             }
             _ => {}
@@ -5452,6 +5528,40 @@ mod tests {
         assert_eq!(xfrm.segments.len(), 1, "Should have pushed one segment record");
         let seg = &xfrm.segments[0];
         assert!(seg.expr.is_some(), "Segment record expr field should be populated");
+    }
+
+    /// Phase 25-02: Verify JSX is preserved in segment module code (not transformed to _jsxSorted).
+    /// The parent module must NOT import _jsxSorted when all JSX is inside segment closures.
+    #[test]
+    fn jsx_preserved_in_segment_body_not_transformed() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const Cmp = component$(() => <div class="hello">world</div>);
+"#;
+        let (parent_code, xfrm) = run_transform_mode_segment(src, EmitMode::Prod);
+
+        // Segment module code must contain JSX syntax, not _jsxSorted calls
+        assert_eq!(xfrm.segments.len(), 1, "Should have one segment");
+        let seg = &xfrm.segments[0];
+        let seg_expr = seg.expr.as_ref().expect("Segment should have expr code");
+
+        assert!(
+            seg_expr.contains("<div"),
+            "Segment body must contain JSX syntax (<div), got: {seg_expr}"
+        );
+        assert!(
+            !seg_expr.contains("_jsxSorted"),
+            "Segment body must NOT contain _jsxSorted, got: {seg_expr}"
+        );
+        assert!(
+            !seg_expr.contains("_jsxSplit"),
+            "Segment body must NOT contain _jsxSplit, got: {seg_expr}"
+        );
+
+        // Parent module must NOT import _jsxSorted since JSX was not transformed in the parent
+        assert!(
+            !parent_code.contains("_jsxSorted"),
+            "Parent module must NOT reference _jsxSorted when all JSX is in segment closures, got: {parent_code}"
+        );
     }
 
     #[test]

@@ -2098,4 +2098,103 @@ export const Header = component$(() => {
             }
         }
     }
+
+    // -----------------------------------------------------------------------
+    // Task 1 tests: C02 in marker path, C03 identifier exemption, C05 callee span
+    // -----------------------------------------------------------------------
+
+    /// C02: function declared inside component$() and referenced inside inner $() fires C02.
+    /// This tests the main marker $ path (exit_call_expression has_pending branch), not the
+    /// JSX native-prop path (create_synthetic_qqsegment).
+    #[test]
+    fn diagnostic_c02_nested_fn_reference_in_marker_call() {
+        let src = r#"import { component$, $ } from "@qwik.dev/core";
+export const Cmp = component$(() => {
+    function hola() { return 1; }
+    return $(() => { hola(); });
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c02 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C02"));
+        assert!(
+            c02.is_some(),
+            "Expected C02 for nested function reference inside $() marker call, got: {:?}",
+            result.diagnostics
+        );
+        let diag = c02.unwrap();
+        assert!(
+            diag.message.contains("hola"),
+            "C02 message should reference 'hola', got: {}",
+            diag.message
+        );
+    }
+
+    /// C03: $(render) where render is a local arrow function must NOT emit C03.
+    /// An IdentifierReference first arg is treated the same as function/arrow for C03 exemption.
+    #[test]
+    fn diagnostic_c03_not_fired_for_identifier_ref() {
+        let src = r#"import { component$, $ } from "@qwik.dev/core";
+export const Cmp = component$(() => {
+    const render = () => <div>hello</div>;
+    return $(render);
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c03 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C03"));
+        assert!(
+            c03.is_none(),
+            "C03 must NOT fire when first arg is an IdentifierReference, got: {:?}",
+            result.diagnostics
+        );
+    }
+
+    /// C05: highlight span covers only the callee identifier characters, not the full call expression.
+    /// For `useMemo$(fn)`, the highlight lo/hi should span just "useMemo$", not "useMemo$(fn)".
+    #[test]
+    fn diagnostic_c05_span_covers_callee_identifier_only() {
+        // useMemo$ is a locally-exported $-function but useMemoQrl is not exported.
+        // The C05 highlight should cover only "useMemo$" (8 chars), not the full call.
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export function useMemo$(fn) { return fn; }
+export const Cmp = component$(() => {
+    return useMemo$(() => 42);
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Prod,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let c05 = result.diagnostics.iter().find(|d| d.code.as_deref() == Some("C05"));
+        assert!(c05.is_some(), "Expected C05 diagnostic, got: {:?}", result.diagnostics);
+        let diag = c05.unwrap();
+        let highlights = diag.highlights.as_ref().expect("C05 must have highlights");
+        let loc = &highlights[0];
+        // hi - lo should equal len("useMemo$") == 8
+        let span_len = (loc.hi - loc.lo) as usize;
+        assert_eq!(
+            span_len,
+            "useMemo$".len(),
+            "C05 highlight span should cover only the callee identifier 'useMemo$' ({} chars), got span_len={}",
+            "useMemo$".len(),
+            span_len
+        );
+    }
 }

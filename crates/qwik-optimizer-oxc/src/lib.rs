@@ -330,10 +330,14 @@ fn transform_code(
         hasher.finish()
     };
 
+    // Phase 25-03: post-process parent module code.
+    // Replace OXC's /* @__PURE__ */ with /*#__PURE__*/ and inject // separators.
+    let parent_code = post_process_module_code(&emit_result.code);
+
     let root_module = TransformModule {
         path: output_path,
         is_entry: false,
-        code: emit_result.code,
+        code: parent_code,
         map: emit_result.map,
         segment: None,
         orig_path: Some(input_path.to_string()),
@@ -370,11 +374,14 @@ fn transform_code(
         });
 
         // Parse + codegen for normalization (double-quote, whitespace)
-        let (final_code, map) = code_move::emit_segment(
+        let (raw_code, map) = code_move::emit_segment(
             &module_code,
             &record.canonical_filename,
             config.source_maps,
         );
+        // Phase 25-03: post-process segment code.
+        // Replace OXC's /* @__PURE__ */ with /*#__PURE__*/ and inject // separators.
+        let final_code = post_process_module_code(&raw_code);
 
         // Build segment path: {rel_dir}/{canonical_filename}.{ext}
         let segment_path = if path_data.rel_dir == std::path::PathBuf::new() {
@@ -653,6 +660,159 @@ fn apply_variable_migration<'a>(
             break;
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// Phase 25-03: post-process emitted code
+// ---------------------------------------------------------------------------
+
+/// Post-process emitted JavaScript code to match SWC output conventions.
+///
+/// Applies two transformations:
+///
+/// 1. **Pure annotation normalization**: OXC Codegen converts `/*#__PURE__*/` annotations
+///    to `/* @__PURE__ */` during parse+codegen. Replace them back to `/*#__PURE__*/`
+///    so the output matches SWC's format (SWC uses `/*#__PURE__*/` without spaces/`@`).
+///
+/// 2. **Comment separator injection**: SWC wraps hoisted `const q_*` declaration blocks
+///    with standalone `//` comment separator lines. OXC's AST has no "bare comment
+///    statement" concept, so we inject them as a post-processing step on the emitted
+///    string. If any `const q_`-prefixed declarations exist, we insert `//` before the
+///    first and after the last such declaration.
+///
+/// This function is idempotent — running it twice produces the same result.
+fn post_process_module_code(code: &str) -> String {
+    // Step 1: normalize pure annotations.
+    // OXC Codegen emits "/* @__PURE__ */ " but SWC emits "/*#__PURE__*/ ".
+    let code = code.replace("/* @__PURE__ */ ", "/*#__PURE__*/ ");
+
+    // Step 2: add /*#__PURE__*/ before componentQrl( call sites in parent modules.
+    // SWC annotates componentQrl() calls with /*#__PURE__*/ for tree-shaking.
+    // Only add if not already present.
+    let code = add_pure_to_component_qrl(&code);
+
+    // Step 3: inject "//" separators around const q_* declaration blocks.
+    inject_comment_separators(&code)
+}
+
+/// Add `/*#__PURE__*/ ` before `componentQrl(` when not already annotated.
+/// This matches SWC behavior where `componentQrl()` call sites get a pure annotation.
+fn add_pure_to_component_qrl(code: &str) -> String {
+    // Replace "componentQrl(" that is NOT already preceded by "/*#__PURE__*/ "
+    let marker = "/*#__PURE__*/ componentQrl(";
+    let target = "componentQrl(";
+    let mut result = String::with_capacity(code.len() + 32);
+    let mut pos = 0;
+    while let Some(idx) = code[pos..].find(target) {
+        let abs_idx = pos + idx;
+        // Check if already annotated
+        let already = abs_idx >= marker.len()
+            && &code[abs_idx - (marker.len() - target.len())..abs_idx] == "/*#__PURE__*/ ";
+        result.push_str(&code[pos..abs_idx]);
+        if !already {
+            result.push_str("/*#__PURE__*/ ");
+        }
+        result.push_str(target);
+        pos = abs_idx + target.len();
+    }
+    result.push_str(&code[pos..]);
+    result
+}
+
+/// Inject standalone `//` separator lines in emitted module code to match SWC output.
+///
+/// SWC inserts a `//` comment line:
+/// 1. After the last `import` statement and before the first non-import statement
+///    (e.g. `const q_` declarations or `export const ...` lines).
+/// 2. After the last `const q_` declaration block (before the `export const ...` line),
+///    when both `const q_` declarations AND a following non-q-const line exist.
+///
+/// This function handles both cases by scanning the lines and inserting `//` at the
+/// appropriate boundaries.
+///
+/// If the module has no imports or no non-import statements, returns code unchanged.
+/// If the separator already exists at that position, it is not duplicated.
+fn inject_comment_separators(code: &str) -> String {
+    let lines: Vec<&str> = code.lines().collect();
+    if lines.is_empty() {
+        return code.to_string();
+    }
+
+    let n = lines.len();
+
+    // Classify each line.
+    let is_import = |line: &str| {
+        let t = line.trim();
+        t.starts_with("import ") || t.starts_with("import{")
+    };
+    let is_q_const = |line: &str| line.trim().starts_with("const q_");
+    let is_separator = |line: &str| line.trim() == "//";
+    let is_blank = |line: &str| line.trim().is_empty();
+
+    // Find last import line index.
+    let last_import_idx = (0..n)
+        .rev()
+        .find(|&i| is_import(lines[i]));
+
+    // Find first q_const line index (must come after imports).
+    let first_q_idx = (0..n)
+        .find(|&i| is_q_const(lines[i]));
+
+    // Find last q_const line index.
+    let last_q_idx = (0..n)
+        .rev()
+        .find(|&i| is_q_const(lines[i]));
+
+    // Find first "content" line after imports (may be q_const or export or other).
+    let first_after_import = last_import_idx.and_then(|li| {
+        (li + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i]))
+    });
+
+    // Find first non-q_const non-import line after the q_const block.
+    let first_after_q = last_q_idx.and_then(|lq| {
+        (lq + 1..n).find(|&i| !is_blank(lines[i]) && !is_separator(lines[i]))
+    });
+
+    // Determine insertion points (indices in original lines before which to insert "//").
+    // Each entry is: (line_index_to_insert_before, already_has_separator_check_offset)
+    let mut insertions: Vec<usize> = Vec::new();
+
+    // Point 1: between last import and first content after imports.
+    if let (Some(li), Some(fai)) = (last_import_idx, first_after_import) {
+        // Check if there's already a "//" between li and fai.
+        let has_sep = (li + 1..fai).any(|i| is_separator(lines[i]));
+        if !has_sep {
+            insertions.push(fai);
+        }
+    }
+
+    // Point 2: after last q_const block, before first non-q_const line.
+    if let (Some(lq), Some(faq)) = (last_q_idx, first_after_q) {
+        // Only insert if there are q_consts and something comes after.
+        // Also avoid double-inserting at the same position as Point 1.
+        let has_sep = (lq + 1..faq).any(|i| is_separator(lines[i]));
+        if !has_sep && !insertions.contains(&faq) {
+            // Only add this separator if the first q_const is DIFFERENT from first_after_import.
+            // i.e. there IS a q_const block separate from the imports.
+            if first_q_idx.is_some() {
+                insertions.push(faq);
+            }
+        }
+    }
+
+    if insertions.is_empty() {
+        return code.to_string();
+    }
+
+    let mut result_lines: Vec<&str> = Vec::with_capacity(n + insertions.len());
+    for (i, &line) in lines.iter().enumerate() {
+        if insertions.contains(&i) {
+            result_lines.push("//");
+        }
+        result_lines.push(line);
+    }
+
+    result_lines.join("\n")
 }
 
 // ---------------------------------------------------------------------------
@@ -1828,6 +1988,115 @@ export const MyComp = component$(() => {
                     p, &seg.name,
                     "Segment {} has itself as parent — circular reference",
                     seg.name
+                );
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Phase 25-03: QRL import + /*#__PURE__*/ + // separator tests
+    // -----------------------------------------------------------------------
+
+    fn make_test_segment_opts(src: &str) -> TransformModulesOptions {
+        TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            source_maps: false,
+            mode: crate::types::EmitMode::Test,
+            entry_strategy: crate::types::EntryStrategy::Segment,
+            ..TransformModulesOptions::default()
+        }
+    }
+
+    /// Test: parent module with component$() emits `import { componentQrl }` and
+    /// `import { qrl }` instead of the original `component$` import.
+    #[test]
+    fn parent_module_emits_componentqrl_and_qrl_imports() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const Header = component$(() => {
+    return <div />;
+});
+"#;
+        let opts = make_test_segment_opts(src);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        // Root module (parent) is the last module sorted by order.
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        let code = &root.code;
+        assert!(
+            code.contains("import { componentQrl }"),
+            "Parent module should import componentQrl, got:\n{code}"
+        );
+        assert!(
+            code.contains("import { qrl }"),
+            "Parent module should import qrl, got:\n{code}"
+        );
+        assert!(
+            !code.contains("component$("),
+            "Parent module should not contain original component$ import, got:\n{code}"
+        );
+    }
+
+    /// Test: parent module hoisted qrl() consts have /*#__PURE__*/ annotation.
+    #[test]
+    fn parent_module_hoisted_consts_have_pure_annotation() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const Header = component$(() => {
+    return <div />;
+});
+"#;
+        let opts = make_test_segment_opts(src);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        let code = &root.code;
+        assert!(
+            code.contains("/*#__PURE__*/"),
+            "Parent module hoisted const should have /*#__PURE__*/, got:\n{code}"
+        );
+    }
+
+    /// Test: parent module has // separator around the const q_ block.
+    #[test]
+    fn parent_module_has_comment_separator_around_q_consts() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export const Header = component$(() => {
+    return <div />;
+});
+"#;
+        let opts = make_test_segment_opts(src);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        let root = result.modules.iter().find(|m| m.segment.is_none()).expect("no root module");
+        let code = &root.code;
+        // Check that // appears somewhere in the output (separator)
+        assert!(
+            code.contains("\n//\n"),
+            "Parent module should have // separator lines, got:\n{code}"
+        );
+    }
+
+    /// Test: segment module that hoists qrl() consts emits `import {{ qrl }}`.
+    #[test]
+    fn segment_module_with_hoisted_qrl_emits_qrl_import() {
+        let src = r#"import { component$, useTask$ } from "@qwik.dev/core";
+export const Header = component$(() => {
+    useTask$(() => { console.log("task"); });
+    return <div />;
+});
+"#;
+        let opts = make_test_segment_opts(src);
+        let result = transform_modules(opts).expect("transform_modules failed");
+        // Find a segment module (any one)
+        let segment_module = result.modules.iter().find(|m| m.segment.is_some());
+        if let Some(seg) = segment_module {
+            let code = &seg.code;
+            // Not all segment modules have hoisted qrl consts — those that do should have import { qrl }
+            if code.contains("const q_") {
+                assert!(
+                    code.contains("import { qrl }"),
+                    "Segment module with hoisted qrl consts should import qrl, got:\n{code}"
+                );
+                assert!(
+                    code.contains("/*#__PURE__*/"),
+                    "Segment module hoisted consts should have /*#__PURE__*/, got:\n{code}"
                 );
             }
         }

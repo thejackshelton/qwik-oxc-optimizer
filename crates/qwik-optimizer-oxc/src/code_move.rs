@@ -312,9 +312,9 @@ pub(crate) fn hoist_qrls_from_expr(expr_code: &str) -> (String, Vec<(String, Str
     let mut result = expr_code.to_string();
     let mut hoisted: Vec<(String, String)> = Vec::new();
 
-    // Process qrl( and inlinedQrl( calls.
+    // Process qrl(, inlinedQrl(, and their Dev-mode variants.
     // We do multiple passes since there may be multiple QRL calls.
-    for prefix in &["inlinedQrl(", "qrl("] {
+    for prefix in &["inlinedQrlDEV(", "qrlDEV(", "inlinedQrl(", "qrl("] {
         loop {
             let start = match result.find(prefix) {
                 Some(p) => p,
@@ -1050,10 +1050,35 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
         }
     }
 
+    // Phase 25-03: if hoisted_pairs is non-empty, add `import { qrl }` (or `qrlDEV`) to
+    // header_items so segment modules that hoist QRL consts have the identifier available.
+    if !hoisted_pairs.is_empty() {
+        let has_qrl_dev = hoisted_pairs.iter().any(|(_, code)| {
+            code.starts_with("qrlDEV(") || code.starts_with("inlinedQrlDEV(")
+        });
+        let qrl_import_name = if has_qrl_dev { "qrlDEV" } else { "qrl" };
+        let qrl_import = format!(r#"import {{ {} }} from "{}";"#, qrl_import_name, ctx.core_module);
+        header_items.push(qrl_import);
+    }
+
     // Step 11: order hoisted_pairs + extra_non_imports by dependency
+    // Phase 25-03: use `const` (not `var`) and add `/*#__PURE__*/` on qrl() calls.
     let mut items_to_sort: Vec<(String, String)> = hoisted_pairs
         .iter()
-        .map(|(sym, code)| (sym.clone(), format!("var {} = {};", sym, code)))
+        .map(|(sym, code)| {
+            let needs_pure = code.starts_with("qrl(")
+                || code.starts_with("inlinedQrl(")
+                || code.starts_with("_noopQrl(")
+                || code.starts_with("qrlDEV(")
+                || code.starts_with("inlinedQrlDEV(")
+                || code.starts_with("_noopQrlDEV(");
+            let rhs = if needs_pure {
+                format!("/*#__PURE__*/ {}", code)
+            } else {
+                code.clone()
+            };
+            (sym.clone(), format!("const {} = {};", sym, rhs))
+        })
         .collect();
     items_to_sort.extend(extra_non_imports);
 

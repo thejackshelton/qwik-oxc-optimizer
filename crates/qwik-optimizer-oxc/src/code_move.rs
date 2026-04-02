@@ -1012,11 +1012,29 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
         if all_code.contains("_jsxSplit") {
             core_jsx_imports.push("_jsxSplit".to_string());
         }
+        if all_code.contains("_noopQrl") {
+            core_jsx_imports.push("_noopQrl".to_string());
+        }
+        if all_code.contains("_qrlSync") {
+            core_jsx_imports.push("_qrlSync".to_string());
+        }
+        if all_code.contains("_restProps") {
+            core_jsx_imports.push("_restProps".to_string());
+        }
         if all_code.contains("_val") {
             core_jsx_imports.push("_val".to_string());
         }
         if all_code.contains("_wrapProp") {
             core_jsx_imports.push("_wrapProp".to_string());
+        }
+        // inlinedQrl / qrl imports for segment bodies that use them directly
+        // (not via hoisted_pairs — those are handled separately below in Step 11)
+        if all_code.contains("inlinedQrl(") && !hoisted_pairs.iter().any(|(_, c)| c.contains("inlinedQrl(")) {
+            core_jsx_imports.push("inlinedQrl".to_string());
+        }
+        if all_code.contains("qrl(") && !hoisted_pairs.iter().any(|(_, c)| c.contains("qrl(")) {
+            // Only add if not already handled by hoisted pair import logic
+            core_jsx_imports.push("qrl".to_string());
         }
         // Already sorted by the order we check them (alphabetical _chk < _fnSignal < ... < _wrapProp)
         for name in &core_jsx_imports {

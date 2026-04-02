@@ -4596,6 +4596,14 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
         program: &mut Program<'a>,
         ctx: &mut TraverseCtx<'a, ()>,
     ) {
+        // Phase 28-04: If any hoisted _hf consts exist in extra_top_items, the parent
+        // module needs `import { _fnSignal }` because the segment modules' _fnSignal
+        // calls reference these hoisted consts. SWC always emits the import when _hf
+        // consts are present, even though the parent body may not directly call _fnSignal.
+        if !self.hoisted_fn_signals.is_empty() {
+            self.needs_fn_signal = true;
+        }
+
         // Check if there's anything to do.
         let has_jsx_imports = self.needs_jsx_sorted
             || self.needs_jsx_split
@@ -4875,23 +4883,34 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
 
             // Step 3: filter new_body — keep imports only if their local binding is used.
+            // Phase 28-04: Also strip specifiers whose imported name ends with `$`
+            // (marker functions like component$, useTask$) — these are always replaced
+            // by their Qrl variants in the parent module.
             let mut filtered_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
             for stmt in new_body {
                 if let Statement::ImportDeclaration(ref import_decl) = stmt {
                     if let Some(specs) = &import_decl.specifiers {
-                        // Check if ANY specifier's local name is used in the body.
                         let any_used = specs.iter().any(|spec| {
-                            let local_name = match spec {
+                            let (local_name, imported_name) = match spec {
                                 ImportDeclarationSpecifier::ImportSpecifier(s) => {
-                                    s.local.name.as_str()
+                                    let imported = match &s.imported {
+                                        ModuleExportName::IdentifierName(id) => id.name.as_str(),
+                                        ModuleExportName::IdentifierReference(id) => id.name.as_str(),
+                                        ModuleExportName::StringLiteral(sl) => sl.value.as_str(),
+                                    };
+                                    (s.local.name.as_str(), imported)
                                 }
                                 ImportDeclarationSpecifier::ImportDefaultSpecifier(s) => {
-                                    s.local.name.as_str()
+                                    (s.local.name.as_str(), "default")
                                 }
                                 ImportDeclarationSpecifier::ImportNamespaceSpecifier(s) => {
-                                    s.local.name.as_str()
+                                    (s.local.name.as_str(), "*")
                                 }
                             };
+                            // Phase 28-04: unconditionally strip $-suffixed marker imports
+                            if imported_name.ends_with('$') {
+                                return false;
+                            }
                             used_idents.contains(local_name)
                         });
                         if !any_used && !specs.is_empty() {

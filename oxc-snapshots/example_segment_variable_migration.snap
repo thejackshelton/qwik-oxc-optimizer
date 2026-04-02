@@ -32,15 +32,13 @@ export const Other = component$(() => {
 
 ============================= test.tsx_Other_component_C1my3EIdP1k.tsx (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 export const Other_component_C1my3EIdP1k = () => {
-	const SHARED_CONFIG = _captures[0];
 	return _jsxSorted("div", null, null, _wrapProp(SHARED_CONFIG), 3, "u6_1");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3EIdP1k\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Other_component_C1my3EIdP1k = () => { const SHARED_CONFIG = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(SHARED_CONFIG), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oCAAoC;CAAE,MAAM,gBAAgB,UAAU;AAElF,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,cAAc,EAAE,GAAG,OAAO;;AACxE\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3EIdP1k\"],\"sourcesContent\":[\"export const Other_component_C1my3EIdP1k = () => {\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(SHARED_CONFIG), 3, \\"u6_1\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,oCAAoC;AAChD,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,cAAc,EAAE,GAAG,OAAO;;AACxE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -54,10 +52,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3E
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "SHARED_CONFIG"
-  ],
+  "captures": false,
   "loc": [
     608,
     659
@@ -67,17 +62,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Other_component_C1my3E
 
 ============================= test.tsx_App_component_ckEPmXZlub0.tsx (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 export const App_component_ckEPmXZlub0 = () => {
-	const SHARED_CONFIG = _captures[0];
-	const helperFn = _captures[1];
 	const result = helperFn("hello");
 	return _jsxSorted("div", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => { const SHARED_CONFIG = _captures[0];\nconst helperFn = _captures[1];\n\n\tconst result = helperFn(\\"hello\\");\n\treturn _jsxSorted(\\"div\\", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,kCAAkC;CAAE,MAAM,gBAAgB,UAAU;CACjF,MAAM,WAAW,UAAU;CAE1B,MAAM,SAAS,SAAS,QAAQ;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,QAAQ,UAAU,cAAc,CAAC,EAAE,GAAG,OAAO;;AAClF\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"export const App_component_ckEPmXZlub0 = () => {\n\tconst result = helperFn(\\"hello\\");\n\treturn _jsxSorted(\\"div\\", null, null, [result, _wrapProp(SHARED_CONFIG)], 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,kCAAkC;CAC9C,MAAM,SAAS,SAAS,QAAQ;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,QAAQ,UAAU,cAAc,CAAC,EAAE,GAAG,OAAO;;AAClF\"}")
 /*
 {
   "origin": "test.tsx",
@@ -91,11 +83,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "SHARED_CONFIG",
-    "helperFn"
-  ],
+  "captures": false,
   "loc": [
     477,
     572
@@ -107,8 +95,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 
 import { _wrapProp } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0", [SHARED_CONFIG, helperFn]);
-const q_Other_component_C1my3EIdP1k = qrl(() => import("./test.tsx_Other_component_C1my3EIdP1k"), "Other_component_C1my3EIdP1k", [SHARED_CONFIG]);
+const q_App_component_ckEPmXZlub0 = qrl(() => import("./test.tsx_App_component_ckEPmXZlub0"), "App_component_ckEPmXZlub0");
+const q_Other_component_C1my3EIdP1k = qrl(() => import("./test.tsx_Other_component_C1my3EIdP1k"), "Other_component_C1my3EIdP1k");
 import { component$ } from "@qwik.dev/core";
 // This helper is only used by App component, so it should be migrated to its segment
 const helperFn = (msg) => {
@@ -119,13 +107,13 @@ const helperFn = (msg) => {
 const SHARED_CONFIG = { value: 42 };
 // This is an export, so it must stay at root
 export const publicHelper = () => console.log("public");
-export const App = componentQrl(q_App_component_ckEPmXZlub0.w([SHARED_CONFIG, helperFn]));
-export const Other = componentQrl(q_Other_component_C1my3EIdP1k.w([SHARED_CONFIG]));
+export const App = componentQrl(q_App_component_ckEPmXZlub0);
+export const Other = componentQrl(q_Other_component_C1my3EIdP1k);
 export { SHARED_CONFIG as _auto_SHARED_CONFIG };
 export { helperFn as _auto_helperFn };
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// This helper is only used by App component, so it should be migrated to its segment\nconst helperFn = (msg) => {\n\tconsole.log('Helper: ' + msg);\n\treturn msg.toUpperCase();\n};\n\n// This shared variable is used by multiple segments, so it should stay at root\nconst SHARED_CONFIG = { value: 42 };\n\n// This is an export, so it must stay at root\nexport const publicHelper = () => console.log('public');\n\nexport const App = component$(() => {\n\tconst result = helperFn('hello');\n\treturn <div>{result} {SHARED_CONFIG.value}</div>;\n});\n\nexport const Other = component$(() => {\n\treturn <div>{SHARED_CONFIG.value}</div>;\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCAAyC,6BAA6B,yBAC7D,CAAC;AAJhB,MACKC,0CAEJ,OAAO,2CAA2C,+BAA+B,eACvE,CAAC;AAHZ,SAAS,kBAAkB;;AAG3B,MAAM,YAAY,QAAQ;AACzB,SAAQ,IAAI,aAAa,IAAI;AAC7B,QAAO,IAAI,aAAa;;;AAIzB,MAAM,gBAAgB,EAAE,OAAO,IAAI;;AAGnC,OAAO,MAAM,qBAAqB,QAAQ,IAAI,SAAS;AAEvD,OAAO,MAAM,MAAMC,sEAGjB;AAEF,OAAO,MAAM,QAAQA,8DAEnB;AAtBF\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwi\",\"t { component$ } from '@qwik.\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// This helper is only used by App component, so it should be migrated to its segment\nconst helperFn = (msg) => {\n\tconsole.log('Helper: ' + msg);\n\treturn msg.toUpperCase();\n};\n\n// This shared variable is used by multiple segments, so it should stay at root\nconst SHARED_CONFIG = { value: 42 };\n\n// This is an export, so it must stay at root\nexport const publicHelper = () => console.log('public');\n\nexport const App = component$(() => {\n\tconst result = helperFn('hello');\n\treturn <div>{result} {SHARED_CONFIG.value}</div>;\n});\n\nexport const Other = component$(() => {\n\treturn <div>{SHARED_CONFIG.value}</div>;\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,wCACL,OACM,yCAAyC,4BAA4B;AAH3E,MACKC,0CAEJ,OAAO,2CAA2C,8BAA8B;AAFjF,SAAS,kBAAkB;;AAG3B,MAAM,YAAY,QAAQ;AACzB,SAAQ,IAAI,aAAa,IAAI;AAC7B,QAAO,IAAI,aAAa;;;AAIzB,MAAM,gBAAgB,EAAE,OAAO,IAAI;;AAGnC,OAAO,MAAM,qBAAqB,QAAQ,IAAI,SAAS;AAEvD,OAAO,MAAM,MAAMC,yCAGjB;AAEF,OAAO,MAAM,QAAQA,2CAEnB;AAtBF\"}")
 == DIAGNOSTICS ==
 
 []

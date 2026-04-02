@@ -75,24 +75,21 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_1_cBpQN
 
 ============================= test.tsx_Foo_component_HTDRsvUbLiE.js (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 import { hW } from "./test";
 import { handleWatch } from "./test";
 import { qrl } from "@qwik.dev/core/what";
-const q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import("./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg"), "Foo_component_div_q_e_click_YEa2A5ADUOg", [qrl]);
+const q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import("./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg"), "Foo_component_div_q_e_click_YEa2A5ADUOg");
 export const Foo_component_HTDRsvUbLiE = () => {
-	const hW = _captures[0];
-	const handleWatch = _captures[1];
 	useStyles$("thing");
 	const qwik = hW + handleWatch;
 	console.log(qwik);
 	const qrl = 23;
-	return _jsxSorted("div", { "q:p": qrl }, { "q-e:click": q_Foo_component_div_q_e_click_YEa2A5ADUOg.w([qrl]) }, null, 7, "u6_0");
+	return _jsxSorted("div", { "q:p": qrl }, { "q-e:click": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 7, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { hW } from \\"./test\\";\nimport { handleWatch } from \\"./test\\";\nimport { qrl } from \\"@qwik.dev/core/what\\";\nconst q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\\"), \\"Foo_component_div_q_e_click_YEa2A5ADUOg\\", [qrl]);\nexport const Foo_component_HTDRsvUbLiE = () => { const hW = _captures[0];\nconst handleWatch = _captures[1];\n\n\tuseStyles$(\\"thing\\");\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": qrl }, { \\"q-e:click\\": q_Foo_component_div_q_e_click_YEa2A5ADUOg.w([qrl]) }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,UAAU;AACnB,SAAS,mBAAmB;AAC5B,SAAS,WAAW;AACpB,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,2CAA2C,CAAC,IAAI,CAAC;AAC3K,OAAO,MAAM,kCAAkC;CAAE,MAAM,KAAK,UAAU;CACtE,MAAM,cAAc,UAAU;AAE7B,YAAW,QAAQ;CACnB,MAAM,OAAO,KAAK;AAClB,SAAQ,IAAI,KAAK;CACjB,MAAM,MAAM;AACZ,QAAO,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,0CAA0C,EAAE,CAAC,IAAI,CAAC,EAAE,EAAE,MAAM,GAAG,OAAO;;AAC7H\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { hW } from \\"./test\\";\nimport { handleWatch } from \\"./test\\";\nimport { qrl } from \\"@qwik.dev/core/what\\";\nconst q_Foo_component_div_q_e_click_YEa2A5ADUOg = qrl(() => import(\\"./test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\\"), \\"Foo_component_div_q_e_click_YEa2A5ADUOg\\");\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tuseStyles$(\\"thing\\");\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn _jsxSorted(\\"div\\", { \\"q:p\\": qrl }, { \\"q-e:click\\": q_Foo_component_div_q_e_click_YEa2A5ADUOg }, null, 7, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,UAAU;AACnB,SAAS,mBAAmB;AAC5B,SAAS,WAAW;AACpB,MAAM,4CAA4C,UAAU,OAAO,uDAAuD,0CAA0C;AACpK,OAAO,MAAM,kCAAkC;AAC9C,YAAW,QAAQ;CACnB,MAAM,OAAO,KAAK;AAClB,SAAQ,IAAI,KAAK;CACjB,MAAM,MAAM;AACZ,QAAO,WAAW,OAAO,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,2CAA2C,EAAE,MAAM,GAAG,OAAO;;AACpH\"}")
 /*
 {
   "origin": "test.tsx",
@@ -106,11 +103,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUb
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "hW",
-    "handleWatch"
-  ],
+  "captures": false,
   "loc": [
     265,
     420
@@ -178,16 +171,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_useStyl
 
 ============================= test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg.js (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core/what";
-export const Foo_component_div_q_e_click_YEa2A5ADUOg = () => {
-	const qrl = _captures[0];
-	return console.log(qrl);
-	;
-};
+export const Foo_component_div_q_e_click_YEa2A5ADUOg = () => console.log(qrl);
+;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core/what\\";\nexport const Foo_component_div_q_e_click_YEa2A5ADUOg = () => {\nconst qrl = _captures[0];\nreturn console.log(qrl);;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,OAAO,MAAM,gDAAgD;CAC7D,MAAM,MAAM,UAAU;AACtB,QAAO,QAAQ,IAAI,IAAI;AAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_click_YEa2A5ADUOg\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core/what\\";\nexport const Foo_component_div_q_e_click_YEa2A5ADUOg = () => console.log(qrl);;\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,OAAO,MAAM,gDAAgD,QAAQ,IAAI,IAAI;AAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -201,10 +190,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "parent": "Foo_component_HTDRsvUbLiE",
   "ctxKind": "eventHandler",
   "ctxName": "onClick$",
-  "captures": true,
-  "captureNames": [
-    "qrl"
-  ],
+  "captures": false,
   "loc": [
     391,
     412
@@ -215,7 +201,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
 ============================= test.js ==
 
 import { _jsxSorted } from "@qwik.dev/core";
-const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE", [hW, handleWatch]);
+const q_Foo_component_HTDRsvUbLiE = qrl(() => import("./test.tsx_Foo_component_HTDRsvUbLiE"), "Foo_component_HTDRsvUbLiE");
 const q_Root_component_1_cBpQNYDUHI4 = qrl(() => import("./test.tsx_Root_component_1_cBpQNYDUHI4"), "Root_component_1_cBpQNYDUHI4");
 import { $, component$, useStyles } from "@qwik.dev/core";
 import { qrl } from "@qwik.dev/core/what";
@@ -223,11 +209,11 @@ export const hW = 12;
 export const handleWatch = 42;
 const componentQrl = () => console.log("not this", qrl());
 componentQrl();
-export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE.w([hW, handleWatch]), { tagName: "my-foo" });
+export const Foo = componentQrl(q_Foo_component_HTDRsvUbLiE, { tagName: "my-foo" });
 export const Root = componentQrl(q_Root_component_1_cBpQNYDUHI4, { tagName: "my-foo" });
 
 
-Some("{\"version\":3,\"names\":[\"t { $, component$, useStyle\",\"t { $, component$, useStyles }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles } from '@qwik.dev/core';\nimport { qrl } from '@qwik.dev/core/what';\n\nexport const hW = 12;\nexport const handleWatch = 42;\n\nconst componentQrl = () => console.log('not this', qrl());\n\ncomponentQrl();\nexport const Foo = component$(() => {\n\tuseStyles$('thing');\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn (\n\t\t<div onClick$={()=> console.log(qrl)}/>\n\t)\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport const Root = component$(() => {\n\tuseStyles($('thing'));\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAClB,6BAEf,iBACL,CAAC;AALf,MACKC,2CAA2C,OAAO,4CACf,+BAGnC;AAJL,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,WAAW;AAEpB,OAAO,MAAM,KAAK;AAClB,OAAO,MAAM,cAAc;AAE3B,MAAM,qBAAqB,QAAQ,IAAI,YAAY,KAAK,CAAC;AAEzD,cAAc;AACd,OAAO,MAAM,MAAMC,+DAQhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,MAAM,OAAOA,6CAOjB,EACF,SAAS,UACT,CAAC\"}")
+Some("{\"version\":3,\"names\":[\"t { $, component$, useStyle\",\"t { $, component$, useStyles }\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $, component$, useStyles } from '@qwik.dev/core';\nimport { qrl } from '@qwik.dev/core/what';\n\nexport const hW = 12;\nexport const handleWatch = 42;\n\nconst componentQrl = () => console.log('not this', qrl());\n\ncomponentQrl();\nexport const Foo = component$(() => {\n\tuseStyles$('thing');\n\tconst qwik = hW + handleWatch;\n\tconsole.log(qwik);\n\tconst qrl = 23;\n\treturn (\n\t\t<div onClick$={()=> console.log(qrl)}/>\n\t)\n}, {\n\ttagName: \\"my-foo\\",\n});\n\nexport const Root = component$(() => {\n\tuseStyles($('thing'));\n\treturn $(() => {\n\t\treturn (\n\t\t\t<div/>\n\t\t)\n\t});\n}, {\n\ttagName: \\"my-foo\\",\n});\n\"],\"mappings\":\"AAAA,2BAC0B;AAD1B,MACKA,wCAAwC,OAAO,yCAClB,4BAEhB;AAJlB,MACKC,2CAA2C,OAAO,4CACf,+BAGnC;AAJL,SAAS,GAAG,YAAY,iBAAiB;AACzC,SAAS,WAAW;AAEpB,OAAO,MAAM,KAAK;AAClB,OAAO,MAAM,cAAc;AAE3B,MAAM,qBAAqB,QAAQ,IAAI,YAAY,KAAK,CAAC;AAEzD,cAAc;AACd,OAAO,MAAM,MAAMC,0CAQhB,EACF,SAAS,UACT,CAAC;AAEF,OAAO,MAAM,OAAOA,6CAOjB,EACF,SAAS,UACT,CAAC\"}")
 == DIAGNOSTICS ==
 
 []

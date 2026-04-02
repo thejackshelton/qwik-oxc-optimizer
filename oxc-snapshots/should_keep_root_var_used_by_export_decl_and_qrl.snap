@@ -22,15 +22,13 @@ export const handler = $(() => {
 
 ============================= test.tsx_handler_T7IDIUVU4lI.js (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 export const handler_T7IDIUVU4lI = () => {
-	const shared = _captures[0];
 	console.log(shared.id);
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const handler_T7IDIUVU4lI = () => { const shared = _captures[0];\n\n\tconsole.log(shared.id);\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4BAA4B;CAAE,MAAM,SAAS,UAAU;AAEnE,SAAQ,IAAI,OAAO,GAAG;;AACrB\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"],\"sourcesContent\":[\"export const handler_T7IDIUVU4lI = () => {\n\tconsole.log(shared.id);\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4BAA4B;AACxC,SAAQ,IAAI,OAAO,GAAG;;AACrB\"}")
 /*
 {
   "origin": "test.tsx",
@@ -44,10 +42,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"]
   "parent": null,
   "ctxKind": "function",
   "ctxName": "$",
-  "captures": true,
-  "captureNames": [
-    "shared"
-  ],
+  "captures": false,
   "loc": [
     139,
     174
@@ -57,15 +52,15 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_handler_T7IDIUVU4lI\"]
 
 ============================= test.js ==
 
-const q_handler_T7IDIUVU4lI = qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI", [shared]);
+const q_handler_T7IDIUVU4lI = qrl(() => import("./test.tsx_handler_T7IDIUVU4lI"), "handler_T7IDIUVU4lI");
 import { $ } from "@qwik.dev/core";
 const shared = { id: "abc" };
 export const exportedValue = shared.id;
-export const handler = Qrl(q_handler_T7IDIUVU4lI.w([shared]));
+export const handler = Qrl(q_handler_T7IDIUVU4lI);
 export { shared as _auto_shared };
 
 
-Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport const exportedValue = shared.id;\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAIC,uBAAuB,QAEjC,CAAC;AARD,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,MAAM,gBAAgB,OAAO;AAEpC,OAAO,MAAM,UAAUC,sCAErB;AAXF\"}")
+Some("{\"version\":3,\"names\":[\"t { $ } from '@qwik.d\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { $ } from '@qwik.dev/core';\n\nconst shared = {\n  id: 'abc',\n};\n\nexport const exportedValue = shared.id;\n\nexport const handler = $(() => {\n  console.log(shared.id);\n});\n\n\t\t\"],\"mappings\":\"AAAA,MACKA,kCAEH,OAAO,mCAIC,sBAAsB;AANhC,SAAS,SAAS;AAElB,MAAM,SAAS,EACb,IAAI,OACL;AAED,OAAO,MAAM,gBAAgB,OAAO;AAEpC,OAAO,MAAM,UAAUC,0BAErB;AAXF\"}")
 == DIAGNOSTICS ==
 
 []

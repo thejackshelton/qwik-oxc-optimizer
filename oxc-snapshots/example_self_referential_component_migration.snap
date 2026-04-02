@@ -86,16 +86,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentA_component_1
 
 ============================= test.tsx_Nested_component_8cqIQQSPqhE.ts (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 import { Nested } from "./test";
 export const Nested_component_8cqIQQSPqhE = () => {
-	const Nested = _captures[0];
 	return _jsxSorted("div", null, null, _jsxSorted(Nested, null, null, null, 3, "u6_1"), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQQSPqhE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { Nested } from \\"./test\\";\nexport const Nested_component_8cqIQQSPqhE = () => { const Nested = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Nested, null, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,cAAc;AACvB,OAAO,MAAM,qCAAqC;CAAE,MAAM,SAAS,UAAU;AAE5E,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC/F\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQQSPqhE\"],\"sourcesContent\":[\"import { Nested } from \\"./test\\";\nexport const Nested_component_8cqIQQSPqhE = () => {\n\treturn _jsxSorted(\\"div\\", null, null, _jsxSorted(Nested, null, null, null, 3, \\"u6_1\\"), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,cAAc;AACvB,OAAO,MAAM,qCAAqC;AACjD,QAAO,WAAW,OAAO,MAAM,MAAM,WAAW,QAAQ,MAAM,MAAM,MAAM,GAAG,OAAO,EAAE,GAAG,OAAO;;AAC/F\"}")
 /*
 {
   "origin": "test.tsx",
@@ -109,10 +107,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQ
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "Nested"
-  ],
+  "captures": false,
   "loc": [
     282,
     336
@@ -122,10 +117,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Nested_component_8cqIQ
 
 ============================= test.tsx_RecursiveList_component_ignTe6QguYQ.ts (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 import { RecursiveList } from "./test";
 export const RecursiveList_component_ignTe6QguYQ = (props) => {
-	const RecursiveList = _captures[0];
 	if (props.depth === 0) return _jsxSorted("div", null, null, "End", 3, "u6_2");
 	return _jsxSorted("div", null, null, [
 		"Level",
@@ -136,7 +129,7 @@ export const RecursiveList_component_ignTe6QguYQ = (props) => {
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_component_ignTe6QguYQ\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { RecursiveList } from \\"./test\\";\nexport const RecursiveList_component_ignTe6QguYQ = (props) => { const RecursiveList = _captures[0];\n\n\tif (props.depth === 0) return _jsxSorted(\\"div\\", null, null, \\"End\\", 3, \\"u6_2\\");\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t\\"Level\\",\n\t\t_wrapProp(props, \\"depth\\"),\n\t\t_jsxSorted(RecursiveList, { depth: props.depth - 1 }, null, null, 3, \\"u6_4\\")\n\t], 3, \\"u6_3\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,qBAAqB;AAC9B,OAAO,MAAM,uCAAuC,UAAU;CAAE,MAAM,gBAAgB,UAAU;AAE/F,KAAI,MAAM,UAAU,EAAG,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;AAC7E,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,eAAe,EAAE,OAAO,MAAM,QAAQ,GAAG,EAAE,MAAM,MAAM,GAAG,OAAO;EAC5E,EAAE,GAAG,OAAO;;AACZ\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_component_ignTe6QguYQ\"],\"sourcesContent\":[\"import { RecursiveList } from \\"./test\\";\nexport const RecursiveList_component_ignTe6QguYQ = (props) => {\n\tif (props.depth === 0) return _jsxSorted(\\"div\\", null, null, \\"End\\", 3, \\"u6_2\\");\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\t\\"Level\\",\n\t\t_wrapProp(props, \\"depth\\"),\n\t\t_jsxSorted(RecursiveList, { depth: props.depth - 1 }, null, null, 3, \\"u6_4\\")\n\t], 3, \\"u6_3\\");\n};;\"],\"mappings\":\"AAAA,SAAS,qBAAqB;AAC9B,OAAO,MAAM,uCAAuC,UAAU;AAC7D,KAAI,MAAM,UAAU,EAAG,QAAO,WAAW,OAAO,MAAM,MAAM,OAAO,GAAG,OAAO;AAC7E,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,UAAU,OAAO,QAAQ;EACzB,WAAW,eAAe,EAAE,OAAO,MAAM,QAAQ,GAAG,EAAE,MAAM,MAAM,GAAG,OAAO;EAC5E,EAAE,GAAG,OAAO;;AACZ\"}")
 /*
 {
   "origin": "test.tsx",
@@ -150,10 +143,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_componen
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "RecursiveList"
-  ],
+  "captures": false,
   "loc": [
     445,
     605
@@ -166,15 +156,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_RecursiveList_componen
 
 ============================= test.tsx_MutualExample_component_LXt10RL0k44.ts (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 export const MutualExample_component_LXt10RL0k44 = () => {
-	const ComponentA = _captures[0];
 	return _jsxSorted(ComponentA, null, null, null, 3, "u6_9");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_component_LXt10RL0k44\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const MutualExample_component_LXt10RL0k44 = () => { const ComponentA = _captures[0];\n\n\treturn _jsxSorted(ComponentA, null, null, null, 3, \\"u6_9\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,4CAA4C;CAAE,MAAM,aAAa,UAAU;AAEvF,QAAO,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO;;AACzD\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_component_LXt10RL0k44\"],\"sourcesContent\":[\"export const MutualExample_component_LXt10RL0k44 = () => {\n\treturn _jsxSorted(ComponentA, null, null, null, 3, \\"u6_9\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,4CAA4C;AACxD,QAAO,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO;;AACzD\"}")
 /*
 {
   "origin": "test.tsx",
@@ -188,10 +176,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_componen
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "ComponentA"
-  ],
+  "captures": false,
   "loc": [
     908,
     941
@@ -201,15 +186,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_MutualExample_componen
 
 ============================= test.tsx_ComponentB_component_WfCOFVxlmq4.ts (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 export const ComponentB_component_WfCOFVxlmq4 = () => {
-	const ComponentA = _captures[0];
 	return _jsxSorted("div", null, null, ["B", _jsxSorted(ComponentA, null, null, null, 3, "u6_8")], 3, "u6_7");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_WfCOFVxlmq4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const ComponentB_component_WfCOFVxlmq4 = () => { const ComponentA = _captures[0];\n\n\treturn _jsxSorted(\\"div\\", null, null, [\\"B\\", _jsxSorted(ComponentA, null, null, null, 3, \\"u6_8\\")], 3, \\"u6_7\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC;CAAE,MAAM,aAAa,UAAU;AAEpF,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,KAAK,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO;;AAC1G\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_WfCOFVxlmq4\"],\"sourcesContent\":[\"export const ComponentB_component_WfCOFVxlmq4 = () => {\n\treturn _jsxSorted(\\"div\\", null, null, [\\"B\\", _jsxSorted(ComponentA, null, null, null, 3, \\"u6_8\\")], 3, \\"u6_7\\");\n};;\"],\"mappings\":\"AAAA,OAAO,MAAM,yCAAyC;AACrD,QAAO,WAAW,OAAO,MAAM,MAAM,CAAC,KAAK,WAAW,YAAY,MAAM,MAAM,MAAM,GAAG,OAAO,CAAC,EAAE,GAAG,OAAO;;AAC1G\"}")
 /*
 {
   "origin": "test.tsx",
@@ -223,10 +206,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_W
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "ComponentA"
-  ],
+  "captures": false,
   "loc": [
     801,
     864
@@ -238,27 +218,27 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ComponentB_component_W
 
 import { _wrapProp } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
-const q_Nested_component_8cqIQQSPqhE = qrl(() => import("./test.tsx_Nested_component_8cqIQQSPqhE"), "Nested_component_8cqIQQSPqhE", [Nested]);
-const q_RecursiveList_component_ignTe6QguYQ = qrl(() => import("./test.tsx_RecursiveList_component_ignTe6QguYQ"), "RecursiveList_component_ignTe6QguYQ", [RecursiveList]);
+const q_Nested_component_8cqIQQSPqhE = qrl(() => import("./test.tsx_Nested_component_8cqIQQSPqhE"), "Nested_component_8cqIQQSPqhE");
+const q_RecursiveList_component_ignTe6QguYQ = qrl(() => import("./test.tsx_RecursiveList_component_ignTe6QguYQ"), "RecursiveList_component_ignTe6QguYQ");
 const q_ComponentA_component_100sEyGkGuA = qrl(() => import("./test.tsx_ComponentA_component_100sEyGkGuA"), "ComponentA_component_100sEyGkGuA");
-const q_ComponentB_component_WfCOFVxlmq4 = qrl(() => import("./test.tsx_ComponentB_component_WfCOFVxlmq4"), "ComponentB_component_WfCOFVxlmq4", [ComponentA]);
-const q_MutualExample_component_LXt10RL0k44 = qrl(() => import("./test.tsx_MutualExample_component_LXt10RL0k44"), "MutualExample_component_LXt10RL0k44", [ComponentA]);
+const q_ComponentB_component_WfCOFVxlmq4 = qrl(() => import("./test.tsx_ComponentB_component_WfCOFVxlmq4"), "ComponentB_component_WfCOFVxlmq4");
+const q_MutualExample_component_LXt10RL0k44 = qrl(() => import("./test.tsx_MutualExample_component_LXt10RL0k44"), "MutualExample_component_LXt10RL0k44");
 import { component$ } from "@qwik.dev/core";
 // Self-referential component: the Nested component references itself in its JSX
 // This should be migrated to its segment using two-phase emission (let + assign)
 // to avoid Temporal Dead Zone errors
-export const Nested = componentQrl(q_Nested_component_8cqIQQSPqhE.w([Nested]));
+export const Nested = componentQrl(q_Nested_component_8cqIQQSPqhE);
 // Another self-referential component with conditional rendering
-export const RecursiveList = componentQrl(q_RecursiveList_component_ignTe6QguYQ.w([RecursiveList]));
+export const RecursiveList = componentQrl(q_RecursiveList_component_ignTe6QguYQ);
 // Mutually recursive components: A references B, B references A
 const ComponentA = componentQrl(q_ComponentA_component_100sEyGkGuA);
-const ComponentB = componentQrl(q_ComponentB_component_WfCOFVxlmq4.w([ComponentA]));
-export const MutualExample = componentQrl(q_MutualExample_component_LXt10RL0k44.w([ComponentA]));
+const ComponentB = componentQrl(q_ComponentB_component_WfCOFVxlmq4);
+export const MutualExample = componentQrl(q_MutualExample_component_LXt10RL0k44);
 export { ComponentB as _auto_ComponentB };
 export { ComponentA as _auto_ComponentA };
 
 
-Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.d\",\"t { component$ } from '@qwik.dev/core\",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Self-referential component: the Nested component references itself in its JSX\n// This should be migrated to its segment using two-phase emission (let + assign)\n// to avoid Temporal Dead Zone errors\nexport const Nested = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<Nested />\n\t\t</div>\n\t);\n});\n\n// Another self-referential component with conditional rendering\nexport const RecursiveList = component$((props) => {\n\tif (props.depth === 0) return <div>End</div>;\n\treturn (\n\t\t<div>\n\t\t\tLevel {props.depth}\n\t\t\t<RecursiveList depth={props.depth - 1} />\n\t\t</div>\n\t);\n});\n\n// Mutually recursive components: A references B, B references A\nconst ComponentA = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tA\n\t\t\t<ComponentB />\n\t\t</div>\n\t);\n});\n\nconst ComponentB = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tB\n\t\t\t<ComponentA />\n\t\t</div>\n\t);\n});\n\nexport const MutualExample = component$(() => {\n\treturn <ComponentA />;\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,2CAEH,OAAO,4CAA4C,gCACjD,QAAQ,CAAC;AAJb,MACKC,kDAEI,OAAO,mDAAmD,uCAC1C,eAAe,CAAC;AAJzC,MACKC,+CAEC,OAAO,gDAAgD,mCAC9C;AAJf,MACKA,+CAEC,OAAO,gDAAgD,oCAC7C,YAAY,CAAC;AAJ7B,MACKD,kDAEI,OAAO,mDAAmD,uCAC1C,YAAY,CAAC;AAHtC,SAAS,kBAAkB;;;;AAK3B,OAAO,MAAM,SAASE,wDAMpB;;AAGF,OAAO,MAAM,gBAAgBA,sEAQ3B;;AAGF,MAAM,aAAaA,gDAOjB;AAEF,MAAM,aAAaA,gEAOjB;AAEF,OAAO,MAAM,gBAAgBA,mEAE3B;AA9CF\"}")
+Some("{\"version\":3,\"names\":[\"t { component$ } from '@qwik.d\",\"t { component$ } from '@qwik.dev/core\",\"t { component$ } from '@qwik.dev/c\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$ } from '@qwik.dev/core';\n\n// Self-referential component: the Nested component references itself in its JSX\n// This should be migrated to its segment using two-phase emission (let + assign)\n// to avoid Temporal Dead Zone errors\nexport const Nested = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\t<Nested />\n\t\t</div>\n\t);\n});\n\n// Another self-referential component with conditional rendering\nexport const RecursiveList = component$((props) => {\n\tif (props.depth === 0) return <div>End</div>;\n\treturn (\n\t\t<div>\n\t\t\tLevel {props.depth}\n\t\t\t<RecursiveList depth={props.depth - 1} />\n\t\t</div>\n\t);\n});\n\n// Mutually recursive components: A references B, B references A\nconst ComponentA = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tA\n\t\t\t<ComponentB />\n\t\t</div>\n\t);\n});\n\nconst ComponentB = component$(() => {\n\treturn (\n\t\t<div>\n\t\t\tB\n\t\t\t<ComponentA />\n\t\t</div>\n\t);\n});\n\nexport const MutualExample = component$(() => {\n\treturn <ComponentA />;\n});\n\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,2CAEH,OAAO,4CAA4C,+BAClD;AAJH,MACKC,kDAEI,OAAO,mDAAmD,sCAC3C;AAJxB,MACKC,+CAEC,OAAO,gDAAgD,mCAC9C;AAJf,MACKA,+CAEC,OAAO,gDAAgD,mCAC9C;AAJf,MACKD,kDAEI,OAAO,mDAAmD,sCAC3C;AAHxB,SAAS,kBAAkB;;;;AAK3B,OAAO,MAAM,SAASE,4CAMpB;;AAGF,OAAO,MAAM,gBAAgBA,mDAQ3B;;AAGF,MAAM,aAAaA,gDAOjB;AAEF,MAAM,aAAaA,gDAOjB;AAEF,OAAO,MAAM,gBAAgBA,mDAE3B;AA9CF\"}")
 == DIAGNOSTICS ==
 
 []

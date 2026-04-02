@@ -1505,6 +1505,10 @@ impl QwikTransform {
                                 // Exclude fn params
                                 let fn_params = get_function_params(&value_expr);
                                 scoped_idents.retain(|id| !fn_params.contains(id));
+                                // Filter out module-scope identifiers — they are accessed via static import
+                                // in the segment file (local_idents), not via _captures runtime serialization.
+                                let collect = unsafe { &*self.global_collect };
+                                scoped_idents.retain(|id| !collect.is_global(id));
                                 let scoped_for_hoist = scoped_idents.clone();
                                 // Push the HTML attribute name (e.g. "q-e:click") so that
                                 // register_context_name sees the full stack and produces the
@@ -3414,6 +3418,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // Exclude function parameters.
             let param_idents = get_function_params(&first_arg);
             scoped_idents.retain(|id| !param_idents.contains(id));
+            // Filter out module-scope identifiers — they are accessed via static import
+            // in the segment file (local_idents), not via _captures runtime serialization.
+            let collect = unsafe { &*self.global_collect };
+            scoped_idents.retain(|id| !collect.is_global(id));
 
             // C03: if not a function/arrow and has captures, clear and emit diagnostic.
             if !can_capture_scope(&first_arg) && !scoped_idents.is_empty() {
@@ -5821,17 +5829,19 @@ const Cmp = component$(() => {});"#;
         );
     }
 
-    // Test: with captures → call site becomes q_name.w([caps]).
+    // Test: module-level const referenced inside useTask$ is NOT a runtime capture.
+    // Module-scope vars are accessible via static import in the segment file — they do not
+    // need runtime serialization through _captures / .w([...]).
     #[test]
     fn hoist_qrl_to_module_scope_extracted_with_captures() {
         let src = r#"import { useTask$ } from "@qwik.dev/core";
 const count = 1;
 const t = useTask$(() => { console.log(count); });"#;
         let (code, _xfrm) = run_transform_mode_segment(src, EmitMode::Prod);
-        // With captures, the call site should use .w([count]).
+        // `count` is module-level — it should NOT require runtime .w([count]) at the call site.
         assert!(
-            code.contains(".w([count])") || code.contains(".w(["),
-            "Captured variable should produce q_name.w([count]) at call site, got: {code}"
+            !code.contains(".w(["),
+            "Module-level `count` should NOT produce .w([count]) at call site, got: {code}"
         );
     }
 
@@ -6852,6 +6862,89 @@ const x = inlinedQrl(() => {}, "Works_component_t45qL4vNGv0");"#;
 
     /// Test G: export default in a file with special chars in stem uses raw stem in entry key.
     ///
+    // -----------------------------------------------------------------------
+    // Task 1 TDD tests: is_global filter on scoped_idents (22-01)
+    // -----------------------------------------------------------------------
+
+    /// Test CAPT-A: segment with module-level function referenced inside component$ body.
+    /// `useData` is a root-level `const` — it is module-scope, so `scoped_idents` must be empty
+    /// (no runtime captures needed).
+    #[test]
+    fn module_level_var_excluded_from_scoped_idents() {
+        let src = r#"import { component$, useStore } from "@qwik.dev/core";
+const useData = () => useStore({ count: 0 });
+export default component$(() => {
+    const data = useData();
+    return <div>{data.count}</div>;
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        assert_eq!(xfrm.segments.len(), 1, "expected 1 segment");
+        let seg = &xfrm.segments[0];
+        assert!(
+            seg.scoped_idents.is_empty(),
+            "module-level `useData` should NOT appear in scoped_idents, got: {:?}",
+            seg.scoped_idents
+        );
+    }
+
+    /// Test CAPT-B: segment with loop var captured inside onClick$ handler.
+    /// `row` is declared inside a `.map()` callback — it IS a local scope var,
+    /// so it must remain in `scoped_idents`.
+    #[test]
+    fn loop_var_stays_in_scoped_idents() {
+        let src = r#"import { component$ } from "@qwik.dev/core";
+export default component$(() => {
+    const rows = [1, 2, 3];
+    return (
+        <div>
+            {rows.map((row) => (
+                <button onClick$={() => console.log(row)}>{row}</button>
+            ))}
+        </div>
+    );
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        // There should be a segment for onClick$ (and one for component$)
+        let onclick_seg = xfrm.segments.iter().find(|s| s.ctx_name == "onClick$");
+        let seg = onclick_seg.expect("expected an onClick$ segment");
+        assert!(
+            seg.scoped_idents.contains(&"row".to_string()),
+            "`row` should be in scoped_idents, got: {:?}",
+            seg.scoped_idents
+        );
+    }
+
+    /// Test CAPT-C: segment references both a module-level function and a loop var.
+    /// Only the loop var should appear in scoped_idents; the module-level function must be excluded.
+    #[test]
+    fn module_level_excluded_loop_var_retained_in_scoped_idents() {
+        let src = r#"import { component$, useStore } from "@qwik.dev/core";
+const processItem = (x) => x * 2;
+export default component$(() => {
+    const items = [1, 2, 3];
+    return (
+        <div>
+            {items.map((item) => (
+                <button onClick$={() => console.log(processItem(item))}>{item}</button>
+            ))}
+        </div>
+    );
+});"#;
+        let (_code, xfrm) = run_transform_with_entry(src, EmitMode::Dev, EntryStrategy::Segment);
+        let onclick_seg = xfrm.segments.iter().find(|s| s.ctx_name == "onClick$");
+        let seg = onclick_seg.expect("expected an onClick$ segment");
+        assert!(
+            seg.scoped_idents.contains(&"item".to_string()),
+            "loop var `item` should be in scoped_idents, got: {:?}",
+            seg.scoped_idents
+        );
+        assert!(
+            !seg.scoped_idents.contains(&"processItem".to_string()),
+            "module-level `processItem` should NOT be in scoped_idents, got: {:?}",
+            seg.scoped_idents
+        );
+    }
+
     /// For file "[[...slug]].tsx", file_stem (escaped) = "slug", raw_file_stem = "[[...slug]]".
     /// With Smart entry strategy, the entry key should contain "[[...slug]]", not "slug".
     #[test]

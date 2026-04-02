@@ -142,48 +142,13 @@ const STYLE_RED = `.container {background-color: red;}`;
 q_it_StyledComponent_component_stylesScopedData_useStylesScoped_423B3OJhrRs.s(STYLE_RED);
 describe.each([])("$render.name: useStylesScoped", ({ render }) => {
 	it("should render object style", async () => {
-		const StyledComponent = componentQrl(q_it_StyledComponent_component_F9AGTDZHx8I.w([STYLE_RED]));
+		const StyledComponent = componentQrl(q_it_StyledComponent_component_F9AGTDZHx8I);
 		const { vNode, getStyles, document } = await render(_jsxSorted(StyledComponent, null, null, null, 3, "u6_1"), { debug });
 	});
 });
 
 
-Some("{\"version\":3,\"names\":[\"ort { inlinedQrl,$,component$,jsx\",\"ort { inlinedQrl,$,component$,js\",\"ort { inlinedQrl,$,component$,jsx,\",\"ort { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '@qwik.dev/core';\",\"ort \",\"ort { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '\",\"ort { inlinedQrl,$,component$,jsx,useStyle\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '@qwik.dev/core';\n\t\t\texport default () => {\n\t\t\t\tconst serverFnHash = globalThis.foo();\n\t\t\t\tconst data = globalThis.bar();\n\t\t\t\tconst qrl = inlinedQrl(null, serverFnHash, data.slice(1));\n\t\t\t\tconsole.log(qrl);\n\t\t\t}\n\n\t\t\tfunction Lifecycle(props, key, flags) {\n\t\t\t\treturn component$(() => {\n\t\t\t\t\treturn /* @__PURE__ */ jsx(Slot, {});\n\t\t\t\t})(props, key, flags);\n\t\t\t}\n\t\t\texport const rawFn = (event, element) => {\n\t\t\t\t\t\thandleFieldEvent(form, field, name, event, element, [\n\t\t\t\t\t\t\t\\"touched\\",\n\t\t\t\t\t\t\t\\"input\\"\n\t\t\t\t\t\t], getElementInput(element, field, type));\n\t\t\t\t\t}\n\t\t\texport function Field({ children, name, type, ...props }) {\n\t\t\t\tconst { of: form } = props;\n\t\t\t\tconst field = getFieldStore(form, name);\n\t\t\t\treturn /* @__PURE__ */ jsx(Lifecycle, {\n\t\t\t\t\tstore: field,\n\t\t\t\t\t...props,\n\t\t\t\t\tchildren: children(field, {\n\t\t\t\t\t\tname,\n\t\t\t\t\t\tautoFocus: isServer && !!field.error,\n\t\t\t\t\t\tref: $((element) => {\n\t\t\t\t\t\t\tfield.internal.elements.push(element);\n\t\t\t\t\t\t}),\n\t\t\t\t\t\tonInput$: $(rawFn),\n\t\t\t\t\t})\n\t\t\t\t}, name);\n\t\t\t}\n\n\t\t\tconst STYLE_RED = `.container {background-color: red;}`;\n\t\t\tdescribe.each([])('$render.name: useStylesScoped', ({ render }) => {\n\n\t\t\t\tit('should render object style', async () => {\n\t\t\t\t\tconst StyledComponent = component$(() => {\n\t\t\t\t\t\tconst stylesScopedData = useStylesScoped$(STYLE_RED);\n\t\t\t\t\t\tconst store = useStore({\n\t\t\t\t\t\t\tcount: 10,\n\t\t\t\t\t\t});\n\n\t\t\t\t\t\treturn (\n\t\t\t\t\t\t\t<button class={['container', `count-${store.count}`]} onClick$={() => store.count++}>\n\t\t\t\t\t\t\t\tHello world\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t);\n\t\t\t\t\t});\n\n\t\t\t\t\tconst { vNode, getStyles, document } = await render(<StyledComponent />, { debug });\n\t\t\t\t})\n\t\t\t})\n\n\t\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,6CAA6C,kCAC/C;AAFH,MACKC,4CAA4C,iCAChD;AAFD,MACKC,8CAA8C,mCAC9C;AAFL,MACKC,uFACM,4EAEO;AAJlB,MACKC,QAAO,OAAM,CAAC,aAAa,oBAAoB;AADpD,MACKC,wEAAwE,OAC1E,yEAEI,6DAC0B,OAAO,CAAC;AALzC,MACKC,sDAAsD,2CACtC;AADnB,SAAS,YAAW,GAAE,YAAW,KAAI,wBAAwB;AAC5D,qBAAqB;CACpB,MAAM,eAAe,WAAW,KAAK;CACrC,MAAM,OAAO,WAAW,KAAK;CAC7B,MAAM,MAAM,WAAW,MAAM,cAAc,KAAK,MAAM,EAAE,CAAC;AACzD,SAAQ,IAAI,IAAI;;AAGjB,SAAS,UAAU,OAAO,KAAK,OAAO;AACrC,QAAOC,+CAEL,CAAC,OAAO,KAAK,MAAM;;AAEtB,OAAO,MAAM,SAAS,OAAO,YAAY;AACtC,kBAAiB,MAAM,OAAO,MAAM,OAAO,SAAS,CACnD,WACA,QACA,EAAE,gBAAgB,SAAS,OAAO,KAAK,CAAC;;AAE5C,OAAO,SAAS,MAAM,EAAE,UAAU,MAAM,MAAM,GAAG,SAAS;CACzD,MAAM,EAAE,IAAI,SAAS;CACrB,MAAM,QAAQ,cAAc,MAAM,KAAK;AACvC,QAAuB,oBAAI,WAAW;EACrC,OAAO;EACP,GAAG;EACH,UAAU,SAAS,OAAO;GACzB;GACA,WAAW,YAAY,CAAC,CAAC,MAAM;GAC/B,KAAKC,gDAEH;GACF,UAAUA,uCAAQ;GAClB,CAAC;EACF,EAAE,KAAK;;AAGT,MAAM,YAAY;wFAnCf;AAoCH,SAAS,KAAK,EAAE,CAAC,CAAC,kCAAkC,EAAE,aAAa;AAElE,IAAG,8BAA8B,YAAY;EAC5C,MAAM,kBAAkBD,uEAWtB;EAEF,MAAM,EAAE,OAAO,WAAW,aAAa,MAAM,iEAA4B,EAAE,OAAO,CAAC;GAClF;EACD\"}")
+Some("{\"version\":3,\"names\":[\"ort { inlinedQrl,$,component$,jsx\",\"ort { inlinedQrl,$,component$,js\",\"ort { inlinedQrl,$,component$,jsx,\",\"ort { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '@qwik.dev/core';\",\"ort \",\"ort { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '\",\"ort { inlinedQrl,$,component$,jsx,useStyle\",\"component$\",\"$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { inlinedQrl,$,component$,jsx,useStylesScoped$ } from '@qwik.dev/core';\n\t\t\texport default () => {\n\t\t\t\tconst serverFnHash = globalThis.foo();\n\t\t\t\tconst data = globalThis.bar();\n\t\t\t\tconst qrl = inlinedQrl(null, serverFnHash, data.slice(1));\n\t\t\t\tconsole.log(qrl);\n\t\t\t}\n\n\t\t\tfunction Lifecycle(props, key, flags) {\n\t\t\t\treturn component$(() => {\n\t\t\t\t\treturn /* @__PURE__ */ jsx(Slot, {});\n\t\t\t\t})(props, key, flags);\n\t\t\t}\n\t\t\texport const rawFn = (event, element) => {\n\t\t\t\t\t\thandleFieldEvent(form, field, name, event, element, [\n\t\t\t\t\t\t\t\\"touched\\",\n\t\t\t\t\t\t\t\\"input\\"\n\t\t\t\t\t\t], getElementInput(element, field, type));\n\t\t\t\t\t}\n\t\t\texport function Field({ children, name, type, ...props }) {\n\t\t\t\tconst { of: form } = props;\n\t\t\t\tconst field = getFieldStore(form, name);\n\t\t\t\treturn /* @__PURE__ */ jsx(Lifecycle, {\n\t\t\t\t\tstore: field,\n\t\t\t\t\t...props,\n\t\t\t\t\tchildren: children(field, {\n\t\t\t\t\t\tname,\n\t\t\t\t\t\tautoFocus: isServer && !!field.error,\n\t\t\t\t\t\tref: $((element) => {\n\t\t\t\t\t\t\tfield.internal.elements.push(element);\n\t\t\t\t\t\t}),\n\t\t\t\t\t\tonInput$: $(rawFn),\n\t\t\t\t\t})\n\t\t\t\t}, name);\n\t\t\t}\n\n\t\t\tconst STYLE_RED = `.container {background-color: red;}`;\n\t\t\tdescribe.each([])('$render.name: useStylesScoped', ({ render }) => {\n\n\t\t\t\tit('should render object style', async () => {\n\t\t\t\t\tconst StyledComponent = component$(() => {\n\t\t\t\t\t\tconst stylesScopedData = useStylesScoped$(STYLE_RED);\n\t\t\t\t\t\tconst store = useStore({\n\t\t\t\t\t\t\tcount: 10,\n\t\t\t\t\t\t});\n\n\t\t\t\t\t\treturn (\n\t\t\t\t\t\t\t<button class={['container', `count-${store.count}`]} onClick$={() => store.count++}>\n\t\t\t\t\t\t\t\tHello world\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t);\n\t\t\t\t\t});\n\n\t\t\t\t\tconst { vNode, getStyles, document } = await render(<StyledComponent />, { debug });\n\t\t\t\t})\n\t\t\t})\n\n\t\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,6CAA6C,kCAC/C;AAFH,MACKC,4CAA4C,iCAChD;AAFD,MACKC,8CAA8C,mCAC9C;AAFL,MACKC,uFACM,4EAEO;AAJlB,MACKC,QAAO,OAAM,CAAC,aAAa,oBAAoB;AADpD,MACKC,wEAAwE,OAC1E,yEAEI,6DAC0B,OAAO,CAAC;AALzC,MACKC,sDAAsD,2CACtC;AADnB,SAAS,YAAW,GAAE,YAAW,KAAI,wBAAwB;AAC5D,qBAAqB;CACpB,MAAM,eAAe,WAAW,KAAK;CACrC,MAAM,OAAO,WAAW,KAAK;CAC7B,MAAM,MAAM,WAAW,MAAM,cAAc,KAAK,MAAM,EAAE,CAAC;AACzD,SAAQ,IAAI,IAAI;;AAGjB,SAAS,UAAU,OAAO,KAAK,OAAO;AACrC,QAAOC,+CAEL,CAAC,OAAO,KAAK,MAAM;;AAEtB,OAAO,MAAM,SAAS,OAAO,YAAY;AACtC,kBAAiB,MAAM,OAAO,MAAM,OAAO,SAAS,CACnD,WACA,QACA,EAAE,gBAAgB,SAAS,OAAO,KAAK,CAAC;;AAE5C,OAAO,SAAS,MAAM,EAAE,UAAU,MAAM,MAAM,GAAG,SAAS;CACzD,MAAM,EAAE,IAAI,SAAS;CACrB,MAAM,QAAQ,cAAc,MAAM,KAAK;AACvC,QAAuB,oBAAI,WAAW;EACrC,OAAO;EACP,GAAG;EACH,UAAU,SAAS,OAAO;GACzB;GACA,WAAW,YAAY,CAAC,CAAC,MAAM;GAC/B,KAAKC,gDAEH;GACF,UAAUA,uCAAQ;GAClB,CAAC;EACF,EAAE,KAAK;;AAGT,MAAM,YAAY;wFAnCf;AAoCH,SAAS,KAAK,EAAE,CAAC,CAAC,kCAAkC,EAAE,aAAa;AAElE,IAAG,8BAA8B,YAAY;EAC5C,MAAM,kBAAkBD,wDAWtB;EAEF,MAAM,EAAE,OAAO,WAAW,aAAa,MAAM,iEAA4B,EAAE,OAAO,CAAC;GAClF;EACD\"}")
 == DIAGNOSTICS ==
 
-[
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C03",
-    "file": "test.tsx",
-    "message": "Qrl($) scope is not a function, but it's capturing local identifiers: rawFn",
-    "highlights": [
-      {
-        "lo": 1029,
-        "hi": 1034,
-        "startLine": 33,
-        "startCol": 18,
-        "endLine": 33,
-        "endCol": 23
-      }
-    ]
-  },
-  {
-    "scope": "optimizer",
-    "category": "error",
-    "code": "C03",
-    "file": "test.tsx",
-    "message": "Qrl($) scope is not a function, but it's capturing local identifiers: STYLE_RED",
-    "highlights": [
-      {
-        "lo": 1345,
-        "hi": 1354,
-        "startLine": 43,
-        "startCol": 48,
-        "endLine": 43,
-        "endCol": 57
-      }
-    ]
-  }
-]
+[]

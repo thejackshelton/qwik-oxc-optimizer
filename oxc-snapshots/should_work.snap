@@ -21,17 +21,15 @@ expression: output
 
 ============================= test.tsx_SecretForm_component_1noi8FsTz7c.js (ENTRY POINT)==
 
-import { _captures } from "@qwik.dev/core";
 import { useSecretAction } from "./test";
 export const SecretForm_component_1noi8FsTz7c = () => {
-	const useSecretAction = _captures[0];
 	const action = useSecretAction();
 	return _jsxSorted("div", null, null, _wrapProp(action), 3, "u6_0");
 };
 ;
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1noi8FsTz7c\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { useSecretAction } from \\"./test\\";\nexport const SecretForm_component_1noi8FsTz7c = () => { const useSecretAction = _captures[0];\n\n\tconst action = useSecretAction();\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(action), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,uBAAuB;AAChC,OAAO,MAAM,yCAAyC;CAAE,MAAM,kBAAkB,UAAU;CAEzF,MAAM,SAAS,iBAAiB;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,OAAO,EAAE,GAAG,OAAO;;AACjE\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1noi8FsTz7c\"],\"sourcesContent\":[\"import { useSecretAction } from \\"./test\\";\nexport const SecretForm_component_1noi8FsTz7c = () => {\n\tconst action = useSecretAction();\n\treturn _jsxSorted(\\"div\\", null, null, _wrapProp(action), 3, \\"u6_0\\");\n};;\"],\"mappings\":\"AAAA,SAAS,uBAAuB;AAChC,OAAO,MAAM,yCAAyC;CACrD,MAAM,SAAS,iBAAiB;AAChC,QAAO,WAAW,OAAO,MAAM,MAAM,UAAU,OAAO,EAAE,GAAG,OAAO;;AACjE\"}")
 /*
 {
   "origin": "test.tsx",
@@ -45,10 +43,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_SecretForm_component_1
   "parent": null,
   "ctxKind": "function",
   "ctxName": "component$",
-  "captures": true,
-  "captureNames": [
-    "useSecretAction"
-  ],
+  "captures": false,
   "loc": [
     246,
     330
@@ -92,14 +87,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_useSecretAction_global
 import { _wrapProp } from "@qwik.dev/core";
 import { _jsxSorted } from "@qwik.dev/core";
 const q_useSecretAction_globalAction_Cbn41AEUQ0Q = qrl(() => import("./test.tsx_useSecretAction_globalAction_Cbn41AEUQ0Q"), "useSecretAction_globalAction_Cbn41AEUQ0Q");
-const q_SecretForm_component_1noi8FsTz7c = qrl(() => import("./test.tsx_SecretForm_component_1noi8FsTz7c"), "SecretForm_component_1noi8FsTz7c", [useSecretAction]);
+const q_SecretForm_component_1noi8FsTz7c = qrl(() => import("./test.tsx_SecretForm_component_1noi8FsTz7c"), "SecretForm_component_1noi8FsTz7c");
 import { component$ } from "@qwik.dev/core";
 import { globalAction$ } from "@qwik.dev/router";
 export const useSecretAction = globalActionQrl(q_useSecretAction_globalAction_Cbn41AEUQ0Q);
-export const SecretForm = componentQrl(q_SecretForm_component_1noi8FsTz7c.w([useSecretAction]));
+export const SecretForm = componentQrl(q_SecretForm_component_1noi8FsTz7c);
 
 
-Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,uDACQ,OAAO,wDAEG,2CACL;AALlB,MACKC,+CACA,OAAO,gDAEL,oCAAoC,iBAC/B,CAAC;AAJX,SAAS,kBAAkB;AAC3B,SAAS,qBAAqB;AAE9B,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,qEAGxB\"}")
+Some("{\"version\":3,\"names\":[\"ort { component$ } from \\"@qwik.dev/core\\";\n\",\"ort { component$ } from \\"@qwik.dev\",\"globalAction$\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\n\t\timport { component$ } from \\"@qwik.dev/core\\";\n\t\timport { globalAction$ } from \\"@qwik.dev/router\\";\n\n\t\texport const useSecretAction = globalAction$(\n\t\t\tasync (payload) => console.log(payload) || 'hi'\n\t\t);\n\n\t\texport const SecretForm = component$(() => {\n\t\t\tconst action = useSecretAction();\n\t\t\treturn <div>{action.value}</div>\n\t\t});\n\t\t\"],\"mappings\":\"AAAA,0BACyB;AADzB,2BAC0B;AAD1B,MACKA,uDACQ,OAAO,wDAEG,2CACL;AALlB,MACKC,+CACA,OAAO,gDAEL,mCAAmC;AAHxC,SAAS,kBAAkB;AAC3B,SAAS,qBAAqB;AAE9B,OAAO,MAAM,kBAAkBC,2DAE9B;AAED,OAAO,MAAM,aAAaC,gDAGxB\"}")
 == DIAGNOSTICS ==
 
 []

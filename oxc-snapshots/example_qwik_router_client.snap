@@ -1840,7 +1840,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_Link_component_u
     5650
   ],
   "paramNames": [
-    "track"
+    "{track}"
   ]
 }
 */
@@ -3079,7 +3079,7 @@ const serverHead = _captures[13];
     35596
   ],
   "paramNames": [
-    "track"
+    "{track}"
   ]
 }
 */
@@ -3127,7 +3127,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_useQwikMockRoute
     37428
   ],
   "paramNames": [
-    "track"
+    "{track}"
   ]
 }
 */
@@ -3428,6 +3428,9 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_serverQrl_RA3PmZ
   "loc": [
     48020,
     51034
+  ],
+  "paramNames": [
+    "...args"
   ]
 }
 */

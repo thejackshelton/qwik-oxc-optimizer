@@ -194,6 +194,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_q_e_
   "loc": [
     391,
     412
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "qrl"
   ]
 }
 */

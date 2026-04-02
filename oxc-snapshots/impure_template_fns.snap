@@ -97,6 +97,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_button_
   "loc": [
     418,
     437
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "count"
   ]
 }
 */

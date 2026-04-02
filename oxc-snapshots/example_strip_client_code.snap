@@ -76,6 +76,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"component.tsx_Parent_component_
   "loc": [
     578,
     621
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "state"
   ]
 }
 */

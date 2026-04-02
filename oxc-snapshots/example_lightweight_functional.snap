@@ -65,6 +65,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Button_button_q_e_clic
   "loc": [
     297,
     325
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "color",
+    "text"
   ]
 }
 */
@@ -137,6 +143,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ButtonArrow_button_q_e
   "loc": [
     445,
     473
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "color",
+    "text"
   ]
 }
 */

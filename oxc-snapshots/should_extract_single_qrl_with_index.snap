@@ -88,6 +88,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
   "loc": [
     1130,
     1415
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "data",
+    "row"
   ]
 }
 */
@@ -194,6 +200,14 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
   "loc": [
     620,
     930
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "clickedIndex",
+    "idx",
+    "row",
+    "selectedItem"
   ]
 }
 */

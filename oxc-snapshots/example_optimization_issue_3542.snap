@@ -57,7 +57,10 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_AtomStatus_component_s
     337
   ],
   "paramNames": [
-    "ev"
+    "_",
+    "_1",
+    "atom",
+    "ctx"
   ]
 }
 */

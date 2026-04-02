@@ -116,6 +116,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_b
   "loc": [
     448,
     504
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cart",
+    "item"
   ]
 }
 */
@@ -151,6 +157,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Parent_component_div_b
   "loc": [
     268,
     310
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "results"
   ]
 }
 */

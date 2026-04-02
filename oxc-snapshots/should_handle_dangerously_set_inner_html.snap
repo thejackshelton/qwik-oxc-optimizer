@@ -108,6 +108,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_div_div_
   "loc": [
     510,
     596
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "htmlSignal"
   ]
 }
 */

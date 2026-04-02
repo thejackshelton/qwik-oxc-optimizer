@@ -120,6 +120,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     502,
     540
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cellIndex",
+    "rowIndex"
   ]
 }
 */
@@ -159,6 +165,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     594,
     626
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cellKey",
+    "i",
+    "j"
   ]
 }
 */

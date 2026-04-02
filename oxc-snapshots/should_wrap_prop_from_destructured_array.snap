@@ -207,7 +207,7 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Input_component_useTas
     354
   ],
   "paramNames": [
-    "track"
+    "{track}"
   ]
 }
 */

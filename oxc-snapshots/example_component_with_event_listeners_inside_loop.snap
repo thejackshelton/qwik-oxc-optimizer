@@ -179,6 +179,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForI
   "loc": [
     1319,
     1383
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "key"
   ]
 }
 */
@@ -359,6 +364,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_butt
   "loc": [
     2026,
     2082
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cart",
+    "item"
   ]
 }
 */
@@ -396,6 +407,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopArro
   "loc": [
     319,
     371
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cart",
+    "item"
   ]
 }
 */
@@ -433,6 +450,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_loopForO
   "loc": [
     980,
     1036
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "item"
   ]
 }
 */

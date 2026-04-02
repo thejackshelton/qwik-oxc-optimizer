@@ -51,6 +51,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     245,
     269
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "index",
+    "_3"
   ]
 }
 */
@@ -121,6 +127,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     210,
     233
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2",
+    "item"
   ]
 }
 */

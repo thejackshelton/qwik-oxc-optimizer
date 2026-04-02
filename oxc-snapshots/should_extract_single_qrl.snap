@@ -86,6 +86,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
   "loc": [
     1038,
     1323
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "data",
+    "row"
   ]
 }
 */
@@ -171,6 +177,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_tr_t
   "loc": [
     561,
     838
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "row",
+    "selectedItem"
   ]
 }
 */

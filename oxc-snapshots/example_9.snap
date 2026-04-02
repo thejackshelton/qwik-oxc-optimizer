@@ -57,8 +57,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],
   ],
   "paramNames": [
     "decl1",
-    "decl2",
-    "decl3"
+    "{decl2}",
+    "[decl3]"
   ]
 }
 */

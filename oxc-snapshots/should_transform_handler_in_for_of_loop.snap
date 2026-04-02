@@ -88,6 +88,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_q_e
   "loc": [
     220,
     242
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "val"
   ]
 }
 */

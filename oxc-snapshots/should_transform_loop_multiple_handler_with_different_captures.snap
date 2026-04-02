@@ -63,6 +63,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     392,
     426
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "double",
+    "_3",
+    "plusTwo"
   ]
 }
 */
@@ -146,6 +153,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     332,
     366
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "double",
+    "plusOne",
+    "_4"
   ]
 }
 */

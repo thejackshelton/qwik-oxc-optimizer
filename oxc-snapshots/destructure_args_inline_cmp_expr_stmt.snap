@@ -46,6 +46,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_div_q_e_click_pFq
   "loc": [
     160,
     238
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "data"
   ]
 }
 */

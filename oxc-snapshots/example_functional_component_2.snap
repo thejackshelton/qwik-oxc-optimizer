@@ -129,6 +129,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_q_e_
   "loc": [
     340,
     365
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "count2",
+    "state"
   ]
 }
 */
@@ -173,6 +179,16 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_div_butt
   "loc": [
     451,
     519
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "STEP",
+    "STEP_2",
+    "btn",
+    "props",
+    "state",
+    "thing"
   ]
 }
 */

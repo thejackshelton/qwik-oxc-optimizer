@@ -104,6 +104,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     242,
     274
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "i",
+    "index",
+    "val"
   ]
 }
 */

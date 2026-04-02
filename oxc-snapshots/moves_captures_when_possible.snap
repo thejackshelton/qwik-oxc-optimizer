@@ -49,6 +49,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
   "loc": [
     298,
     324
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "bar",
+    "_3",
+    "sig"
   ]
 }
 */
@@ -133,6 +140,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
   "loc": [
     228,
     245
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2",
+    "_3",
+    "sig"
   ]
 }
 */
@@ -170,6 +184,13 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Test_component_button_
   "loc": [
     260,
     286
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2",
+    "foo",
+    "sig"
   ]
 }
 */

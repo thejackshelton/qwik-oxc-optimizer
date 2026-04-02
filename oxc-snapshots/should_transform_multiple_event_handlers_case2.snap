@@ -89,6 +89,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_div_
   "loc": [
     265,
     305
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "_2",
+    "row"
   ]
 }
 */
@@ -124,6 +130,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_div_
   "loc": [
     323,
     364
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "row"
   ]
 }
 */
@@ -161,6 +172,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_div_div_
   "loc": [
     213,
     249
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "idx",
+    "row"
   ]
 }
 */

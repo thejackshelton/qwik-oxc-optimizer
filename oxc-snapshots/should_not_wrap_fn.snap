@@ -57,6 +57,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Cmp_component_button_q
   "loc": [
     394,
     428
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "currentType"
   ]
 }
 */

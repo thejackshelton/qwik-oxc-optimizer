@@ -96,6 +96,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     390,
     416
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "cellKey"
   ]
 }
 */

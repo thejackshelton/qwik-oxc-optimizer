@@ -52,6 +52,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Counter_component_div_
   "loc": [
     213,
     232
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "count"
   ]
 }
 */

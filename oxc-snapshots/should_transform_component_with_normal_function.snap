@@ -48,6 +48,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_Inner_co
   "loc": [
     276,
     308
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "item"
   ]
 }
 */

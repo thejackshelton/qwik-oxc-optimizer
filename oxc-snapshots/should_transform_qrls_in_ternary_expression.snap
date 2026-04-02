@@ -61,6 +61,12 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_FieldInput_component_i
   "loc": [
     324,
     360
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "enabled",
+    "_3"
   ]
 }
 */

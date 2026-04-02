@@ -96,6 +96,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_it_StyledComponent_com
   "loc": [
     1504,
     1523
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "store"
   ]
 }
 */

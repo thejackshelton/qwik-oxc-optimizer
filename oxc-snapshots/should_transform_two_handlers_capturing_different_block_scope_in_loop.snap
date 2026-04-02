@@ -58,6 +58,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     318,
     342
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "index"
   ]
 }
 */
@@ -131,6 +136,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_div_div
   "loc": [
     389,
     413
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "label"
   ]
 }
 */

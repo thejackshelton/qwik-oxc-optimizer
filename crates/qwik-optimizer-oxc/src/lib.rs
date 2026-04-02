@@ -417,7 +417,25 @@ fn transform_code(
             // SWC uses 1-based byte offsets (BytePos); OXC uses 0-based.
             // Add 1 to both to match SWC's golden span format.
             loc: (record.span.0 + 1, record.span.1 + 1),
-            param_names: record.param_names.clone(),
+            // SWC only emits paramNames when there is at least one "real" parameter
+            // (not just the default "_" / "_1" / "_N" positional placeholders for
+            // JSX event handlers with no captured variables).
+            // Omit paramNames entirely when all entries are placeholder-only.
+            // SWC only emits paramNames when there is at least one "real" parameter
+            // (not just the default "_" / "_1" / "_N" positional placeholders for
+            // JSX event handlers with no captured variables).
+            // Omit paramNames entirely when all entries are placeholder-only.
+            // SWC only emits paramNames when there is at least one "real" parameter
+            // (not just the default "_" / "_1" / "_N" positional placeholders for
+            // JSX event handlers with no captured variables).
+            // Omit paramNames entirely when all entries are placeholder-only.
+            param_names: record.param_names.clone().and_then(|pn| {
+                let has_real = pn.iter().any(|p| {
+                    let s = p.as_str();
+                    s != "_" && !(s.starts_with('_') && s[1..].parse::<usize>().is_ok())
+                });
+                if has_real { Some(pn) } else { None }
+            }),
             capture_names: if record.scoped_idents.is_empty() {
                 None
             } else {

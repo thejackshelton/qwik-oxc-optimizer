@@ -54,6 +54,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Issue3742_component_di
   "loc": [
     319,
     340
+  ],
+  "paramNames": [
+    "_",
+    "_1",
+    "counter"
   ]
 }
 */

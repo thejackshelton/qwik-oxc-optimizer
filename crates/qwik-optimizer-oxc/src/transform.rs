@@ -4243,11 +4243,16 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                         }
                     }
                 }
-                // Phase 25-03: track which marker specifiers are used in call-site rewrites.
-                // Only track if this marker was imported from core_module (not locally defined).
+                // Phase 25-03 + 28-01: track which marker specifiers are used in call-site rewrites.
+                // Only track if this marker was imported from core_module (not locally defined)
+                // AND the call site is at the parent level (not inside a segment closure).
+                // Inner marker calls (e.g. useAsync$ inside component$) produce *Qrl renames
+                // only in the segment module, not the parent module.
                 {
                     let collect = unsafe { &*self.global_collect };
-                    if collect.imports.get(&callee_name).map_or(false, |i| i.source == self.core_module) {
+                    if collect.imports.get(&callee_name).map_or(false, |i| i.source == self.core_module)
+                        && self.segment_span_stack.is_empty()
+                    {
                         self.used_marker_specifiers.insert(specifier.clone());
                     }
                 }

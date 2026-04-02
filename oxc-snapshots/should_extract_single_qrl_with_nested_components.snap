@@ -112,12 +112,12 @@ import { useSignal } from "@qwik.dev/core";
 const q_Foo_component_Inner_component_AuJ9mTBx5YA = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA"), "Foo_component_Inner_component_AuJ9mTBx5YA", [data]);
 //
 export const Foo_component_HTDRsvUbLiE = () => {
-	const data = useSignal < Signal < any > [] > [];
+	const data = useSignal<Signal<any>[]>([]);
 	const Inner = /*#__PURE__*/ componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));
 	return /*#__PURE__*/ _jsxSorted(Inner, { data }, null, null, 3, "u6_1");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_Inner_component_AuJ9mTBx5YA = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\\"), \\"Foo_component_Inner_component_AuJ9mTBx5YA\\", [data]);\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst Inner = componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));\n\treturn _jsxSorted(Inner, { data }, null, null, 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,8CAA4D,0BAAU,OAAO,yDAAyD,6CAA6C,CAAC,KAAK,CAAC;AAChM,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,YAAU,SAAO,MAAI,EAAE,GAAE,EAAE;CACxC,MAAM,QAAQ,aAAa,4CAA4C,EAAE,CAAC,KAAK,CAAC,CAAC;AACjF,QAAO,WAAW,OAAO,EAAE,MAAM,EAAE,MAAM,MAAM,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { Signal } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Foo_component_Inner_component_AuJ9mTBx5YA = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_Inner_component_AuJ9mTBx5YA\\"), \\"Foo_component_Inner_component_AuJ9mTBx5YA\\", [data]);\nexport const Foo_component_HTDRsvUbLiE = () => {\n\tconst data = useSignal<Signal<any>[]>([]);\n\tconst Inner = componentQrl(q_Foo_component_Inner_component_AuJ9mTBx5YA.w([data]));\n\treturn _jsxSorted(Inner, { data }, null, null, 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,cAAc;AACvB,SAAS,iBAAiB;AAC1B,MAAM,8CAA4D,0BAAU,OAAO,yDAAyD,6CAA6C,CAAC,KAAK,CAAC;AAChM,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,UAAU,eAAe,EAAE,CAAC;CACzC,MAAM,QAAQ,aAAa,4CAA4C,EAAE,CAAC,KAAK,CAAC,CAAC;AACjF,QAAO,WAAW,OAAO,EAAE,MAAM,EAAE,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

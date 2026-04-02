@@ -22,13 +22,14 @@ import { qrl } from "@qwik.dev/core";
 //
 const q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_button_q_e_click_qwSL5gM03T4"), "test_component_button_q_e_click_qwSL5gM03T4", [props]);
 //
-export const test_component_LUXeXe0DQrg = (props: any) => {
+export const test_component_LUXeXe0DQrg = (props) => {
 	return /*#__PURE__*/ _jsxSplit("button", { ..._getVarProps(props) }, {
 		..._getConstProps(props),
 		"q-e:click": q_test_component_button_q_e_click_qwSL5gM03T4.w([props])
 	}, null, 0, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _getConstProps } from \\"@qwik.dev/core\\";\nimport { _getVarProps } from \\"@qwik.dev/core\\";\nimport { _jsxSplit } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_test_component_button_q_e_click_qwSL5gM03T4 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_button_q_e_click_qwSL5gM03T4\\"), \\"test_component_button_q_e_click_qwSL5gM03T4\\", [props]);\nexport const test_component_LUXeXe0DQrg = (props: any) => {\n\treturn _jsxSplit(\\"button\\", { ..._getVarProps(props) }, {\n\t\t..._getConstProps(props),\n\t\t\\"q-e:click\\": q_test_component_button_q_e_click_qwSL5gM03T4.w([props])\n\t}, null, 0, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,sBAAsB;AAC/B,SAAS,oBAAoB;AAC7B,SAAS,iBAAiB;AAC1B,SAAS,WAAW;AACpB,MAAM,gDAA8D,0BAAU,OAAO,2DAA2D,+CAA+C,CAAC,MAAM,CAAC;AACvM,OAAO,MAAM,8BAA8B,UAAe;AACzD,QAAO,UAAU,UAAU,EAAE,GAAG,aAAa,MAAM,EAAE,EAAE;EACtD,GAAG,eAAe,MAAM;EACxB,aAAa,8CAA8C,EAAE,CAAC,MAAM,CAAC;EACrE,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

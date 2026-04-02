@@ -674,6 +674,10 @@ pub(crate) struct QwikTransform {
     /// a segment closure (segment_span_stack non-empty).
     pub(crate) suppress_jsx_conversion: bool,
 
+    /// Phase 28-05: When false, JSX should be preserved in the output (both parent and
+    /// segment modules) instead of being converted to _jsxSorted/_jsxSplit calls.
+    pub(crate) transpile_jsx: bool,
+
     // ---- Phase 15: Signal wrapping state ------------------------------------
 
     /// Dedup map for hoist_fn_signal_call: fn_body_str -> (const_name, counter_value).
@@ -894,6 +898,7 @@ impl QwikTransform {
             needs_get_const_props: false,
             needs_fragment: false,
             suppress_jsx_conversion: false,
+            transpile_jsx: options.transpile_jsx,
             // Phase 15: Signal wrapping state
             hoisted_fn_signals: HashMap::new(),
             hoisted_fn_counter: 0,

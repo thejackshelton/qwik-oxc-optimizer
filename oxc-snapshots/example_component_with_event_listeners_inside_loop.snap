@@ -215,10 +215,10 @@ const q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = /*#__PURE__*/ qrl((
 export const App_component_ckEPmXZlub0 = () => {
 	const cart = useStore<string[]>([]);
 	const results = useSignal(["foo"]);
-	function loopArrowFn(results: string[]) {
+	function loopArrowFn(results) {
 		return results.map((item) => /*#__PURE__*/ _jsxSorted("span", { "q:ps": [cart, item] }, { "q-e:click": q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0.w([cart, item]) }, item, 7, "u6_0"));
 	}
-	function loopForI(results: string[]) {
+	function loopForI(results) {
 		const items = [];
 		for (let i = 0; i < results.length; i++) {
 			items.push(/*#__PURE__*/ _jsxSorted("span", null, { "q-e:click": q_App_component_loopForI_span_q_e_click_PbCYbPM6etI.w([
@@ -229,14 +229,14 @@ export const App_component_ckEPmXZlub0 = () => {
 		}
 		return items;
 	}
-	function loopForOf(results: string[]) {
+	function loopForOf(results) {
 		const items = [];
 		for (const item of results) {
 			items.push(/*#__PURE__*/ _jsxSorted("span", { "q:p": item }, { "q-e:click": q_App_component_loopForOf_span_q_e_click_zlNGHYu926I.w([cart, item]) }, item, 7, "u6_2"));
 		}
 		return items;
 	}
-	function loopForIn(results: string[]) {
+	function loopForIn(results) {
 		const items = [];
 		for (const key in results) {
 			items.push(/*#__PURE__*/ _jsxSorted("span", { "q:p": key }, { "q-e:click": q_App_component_loopForIn_span_q_e_click_adzBGickx1U.w([
@@ -247,7 +247,7 @@ export const App_component_ckEPmXZlub0 = () => {
 		}
 		return items;
 	}
-	function loopWhile(results: string[]) {
+	function loopWhile(results) {
 		const items = [];
 		let i = 0;
 		while (i < results.length) {
@@ -273,6 +273,7 @@ export const App_component_ckEPmXZlub0 = () => {
 	], 3, "u6_5");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nconst q_App_component_div_button_q_e_click_UB6Fs5a3bd8 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_div_button_q_e_click_UB6Fs5a3bd8\\"), \\"App_component_div_button_q_e_click_UB6Fs5a3bd8\\", [cart, item]);\nconst q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0\\"), \\"App_component_loopArrowFn_span_q_e_click_Wau7C836nf0\\", [cart, item]);\nconst q_App_component_loopForI_span_q_e_click_PbCYbPM6etI = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_loopForI_span_q_e_click_PbCYbPM6etI\\"), \\"App_component_loopForI_span_q_e_click_PbCYbPM6etI\\", [\n\tcart,\n\ti,\n\tresults\n]);\nconst q_App_component_loopForIn_span_q_e_click_adzBGickx1U = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_loopForIn_span_q_e_click_adzBGickx1U\\"), \\"App_component_loopForIn_span_q_e_click_adzBGickx1U\\", [\n\tcart,\n\tkey,\n\tresults\n]);\nconst q_App_component_loopForOf_span_q_e_click_zlNGHYu926I = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_loopForOf_span_q_e_click_zlNGHYu926I\\"), \\"App_component_loopForOf_span_q_e_click_zlNGHYu926I\\", [cart, item]);\nconst q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_App_component_loopWhile_span_q_e_click_05kCMrZVn5E\\"), \\"App_component_loopWhile_span_q_e_click_05kCMrZVn5E\\", [\n\tcart,\n\ti,\n\tresults\n]);\nexport const App_component_ckEPmXZlub0 = () => {\n\tconst cart = useStore<string[]>([]);\n\tconst results = useSignal([\\"foo\\"]);\n\tfunction loopArrowFn(results: string[]) {\n\t\treturn results.map((item) => _jsxSorted(\\"span\\", { \\"q:ps\\": [cart, item] }, { \\"q-e:click\\": q_App_component_loopArrowFn_span_q_e_click_Wau7C836nf0.w([cart, item]) }, item, 7, \\"u6_0\\"));\n\t}\n\tfunction loopForI(results: string[]) {\n\t\tconst items = [];\n\t\tfor (let i = 0; i < results.length; i++) {\n\t\t\titems.push(_jsxSorted(\\"span\\", null, { \\"q-e:click\\": q_App_component_loopForI_span_q_e_click_PbCYbPM6etI.w([\n\t\t\t\tcart,\n\t\t\t\ti,\n\t\t\t\tresults\n\t\t\t]) }, results[i], 3, \\"u6_1\\"));\n\t\t}\n\t\treturn items;\n\t}\n\tfunction loopForOf(results: string[]) {\n\t\tconst items = [];\n\t\tfor (const item of results) {\n\t\t\titems.push(_jsxSorted(\\"span\\", { \\"q:p\\": item }, { \\"q-e:click\\": q_App_component_loopForOf_span_q_e_click_zlNGHYu926I.w([cart, item]) }, item, 7, \\"u6_2\\"));\n\t\t}\n\t\treturn items;\n\t}\n\tfunction loopForIn(results: string[]) {\n\t\tconst items = [];\n\t\tfor (const key in results) {\n\t\t\titems.push(_jsxSorted(\\"span\\", { \\"q:p\\": key }, { \\"q-e:click\\": q_App_component_loopForIn_span_q_e_click_adzBGickx1U.w([\n\t\t\t\tcart,\n\t\t\t\tkey,\n\t\t\t\tresults\n\t\t\t]) }, results[key], 7, \\"u6_3\\"));\n\t\t}\n\t\treturn items;\n\t}\n\tfunction loopWhile(results: string[]) {\n\t\tconst items = [];\n\t\tlet i = 0;\n\t\twhile (i < results.length) {\n\t\t\titems.push(_jsxSorted(\\"span\\", null, { \\"q-e:click\\": q_App_component_loopWhile_span_q_e_click_05kCMrZVn5E.w([\n\t\t\t\tcart,\n\t\t\t\ti,\n\t\t\t\tresults\n\t\t\t]) }, results[i], 3, \\"u6_4\\"));\n\t\t\ti++;\n\t\t}\n\t\treturn items;\n\t}\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\tresults.value.map((item) => _jsxSorted(\\"button\\", { \\"q:ps\\": [cart, item] }, {\n\t\t\tid: \\"second\\",\n\t\t\t\\"q-e:click\\": q_App_component_div_button_q_e_click_UB6Fs5a3bd8.w([cart, item])\n\t\t}, item, 7, null)),\n\t\tloopArrowFn(results.value),\n\t\tloopForI(results.value),\n\t\tloopForOf(results.value),\n\t\tloopForIn(results.value),\n\t\tloopWhile(results.value)\n\t], 3, \\"u6_5\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,MAAM,mDAAiE,0BAAU,OAAO,8DAA8D,kDAAkD,CAAC,MAAM,KAAK,CAAC;AACrN,MAAM,yDAAuE,0BAAU,OAAO,oEAAoE,wDAAwD,CAAC,MAAM,KAAK,CAAC;AACvO,MAAM,sDAAoE,0BAAU,OAAO,iEAAiE,qDAAqD;CAChN;CACA;CACA;CACA,CAAC;AACF,MAAM,uDAAqE,0BAAU,OAAO,kEAAkE,sDAAsD;CACnN;CACA;CACA;CACA,CAAC;AACF,MAAM,uDAAqE,0BAAU,OAAO,kEAAkE,sDAAsD,CAAC,MAAM,KAAK,CAAC;AACjO,MAAM,uDAAqE,0BAAU,OAAO,kEAAkE,sDAAsD;CACnN;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,kCAAkC;CAC9C,MAAM,OAAO,mBAAmB,EAAE,CAAC;CACnC,MAAM,UAAU,UAAU,CAAC,MAAM,CAAC;CAClC,SAAS,YAAY,SAAmB;AACvC,SAAO,QAAQ,KAAK,SAAS,WAAW,QAAQ,EAAE,QAAQ,CAAC,MAAM,KAAK,EAAE,EAAE,EAAE,aAAa,uDAAuD,EAAE,CAAC,MAAM,KAAK,CAAC,EAAE,EAAE,MAAM,GAAG,OAAO,CAAC;;CAErL,SAAS,SAAS,SAAmB;EACpC,MAAM,QAAQ,EAAE;AAChB,OAAK,IAAI,IAAI,GAAG,IAAI,QAAQ,QAAQ,KAAK;AACxC,SAAM,KAAK,WAAW,QAAQ,MAAM,EAAE,aAAa,oDAAoD,EAAE;IACxG;IACA;IACA;IACA,CAAC,EAAE,EAAE,QAAQ,IAAI,GAAG,OAAO,CAAC;;AAE9B,SAAO;;CAER,SAAS,UAAU,SAAmB;EACrC,MAAM,QAAQ,EAAE;AAChB,OAAK,MAAM,QAAQ,SAAS;AAC3B,SAAM,KAAK,WAAW,QAAQ,EAAE,OAAO,MAAM,EAAE,EAAE,aAAa,qDAAqD,EAAE,CAAC,MAAM,KAAK,CAAC,EAAE,EAAE,MAAM,GAAG,OAAO,CAAC;;AAExJ,SAAO;;CAER,SAAS,UAAU,SAAmB;EACrC,MAAM,QAAQ,EAAE;AAChB,OAAK,MAAM,OAAO,SAAS;AAC1B,SAAM,KAAK,WAAW,QAAQ,EAAE,OAAO,KAAK,EAAE,EAAE,aAAa,qDAAqD,EAAE;IACnH;IACA;IACA;IACA,CAAC,EAAE,EAAE,QAAQ,MAAM,GAAG,OAAO,CAAC;;AAEhC,SAAO;;CAER,SAAS,UAAU,SAAmB;EACrC,MAAM,QAAQ,EAAE;EAChB,IAAI,IAAI;AACR,SAAO,IAAI,QAAQ,QAAQ;AAC1B,SAAM,KAAK,WAAW,QAAQ,MAAM,EAAE,aAAa,qDAAqD,EAAE;IACzG;IACA;IACA;IACA,CAAC,EAAE,EAAE,QAAQ,IAAI,GAAG,OAAO,CAAC;AAC7B;;AAED,SAAO;;AAER,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC,QAAQ,MAAM,KAAK,SAAS,WAAW,UAAU,EAAE,QAAQ,CAAC,MAAM,KAAK,EAAE,EAAE;GAC1E,IAAI;GACJ,aAAa,iDAAiD,EAAE,CAAC,MAAM,KAAK,CAAC;GAC7E,EAAE,MAAM,GAAG,KAAK,CAAC;EAClB,YAAY,QAAQ,MAAM;EAC1B,SAAS,QAAQ,MAAM;EACvB,UAAU,QAAQ,MAAM;EACxB,UAAU,QAAQ,MAAM;EACxB,UAAU,QAAQ,MAAM;EACxB,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

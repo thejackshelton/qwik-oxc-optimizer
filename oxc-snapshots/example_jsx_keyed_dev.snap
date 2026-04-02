@@ -27,7 +27,7 @@ import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 import { _jsxSorted } from "@qwik.dev/core";
 import { _wrapProp } from "@qwik.dev/core";
 //
-export const App_component_KGLYFBhvJc0 = (props: Stuff) => {
+export const App_component_KGLYFBhvJc0 = (props) => {
 	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [
 		/*#__PURE__*/ _jsxSorted(Cmp, null, { key: "stuff" }, null, 3, "Q6_1"),
 		/*#__PURE__*/ _jsxSorted(Cmp, null, null, null, 3, "Q6_2"),
@@ -37,6 +37,7 @@ export const App_component_KGLYFBhvJc0 = (props: Stuff) => {
 	], 1, "Q6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.tsx_App_component_KGLYFBhvJc0\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nexport const App_component_KGLYFBhvJc0 = (props: Stuff) => {\n\treturn _jsxSorted(_Fragment, null, null, [\n\t\t_jsxSorted(Cmp, null, { key: \\"stuff\\" }, null, 3, \\"Q6_1\\"),\n\t\t_jsxSorted(Cmp, null, null, null, 3, \\"Q6_2\\"),\n\t\t_jsxSorted(Cmp, null, { prop: \\"23\\" }, null, 3, \\"Q6_3\\"),\n\t\t_jsxSorted(Cmp, { key: props.stuff }, { prop: \\"23\\" }, null, 3, \\"Q6_4\\"),\n\t\t_jsxSorted(\\"p\\", null, { key: _wrapProp(props, \\"stuff\\") }, \\"Hello Qwik\\", 3, null)\n\t], 1, \\"Q6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,6BAA6B,UAAiB;AAC1D,QAAO,WAAW,WAAW,MAAM,MAAM;EACxC,WAAW,KAAK,MAAM,EAAE,KAAK,SAAS,EAAE,MAAM,GAAG,OAAO;EACxD,WAAW,KAAK,MAAM,MAAM,MAAM,GAAG,OAAO;EAC5C,WAAW,KAAK,MAAM,EAAE,MAAM,MAAM,EAAE,MAAM,GAAG,OAAO;EACtD,WAAW,KAAK,EAAE,KAAK,MAAM,OAAO,EAAE,EAAE,MAAM,MAAM,EAAE,MAAM,GAAG,OAAO;EACtE,WAAW,KAAK,MAAM,EAAE,KAAK,UAAU,OAAO,QAAQ,EAAE,EAAE,cAAc,GAAG,KAAK;EAChF,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "project/index.tsx",

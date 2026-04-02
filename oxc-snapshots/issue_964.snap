@@ -22,12 +22,13 @@ export const App = component$(() => {
 import { _jsxSorted } from "@qwik.dev/core";
 //
 export const App_component_ckEPmXZlub0 = () => {
-	console.log(function* (lo: any, t: any) {
+	console.log(function* (lo, t) {
 		console.log(yield (yield lo)(t.href).then((r) => r.json()));
 	});
 	return /*#__PURE__*/ _jsxSorted("p", null, null, "Hello Qwik", 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZlub0\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const App_component_ckEPmXZlub0 = () => {\n\tconsole.log(function* (lo: any, t: any) {\n\t\tconsole.log(yield (yield lo)(t.href).then((r) => r.json()));\n\t});\n\treturn _jsxSorted(\\"p\\", null, null, \\"Hello Qwik\\", 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;AAC9C,SAAQ,IAAI,WAAW,IAAS,GAAQ;AACvC,UAAQ,IAAI,OAAO,MAAM,IAAI,EAAE,KAAK,CAAC,MAAM,MAAM,EAAE,MAAM,CAAC,CAAC;GAC1D;AACF,QAAO,WAAW,KAAK,MAAM,MAAM,cAAc,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

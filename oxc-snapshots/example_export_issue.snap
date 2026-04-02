@@ -62,10 +62,11 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_App_component_ckEPmXZl
 import { _jsxSorted } from "@qwik.dev/core";
 import { App } from "./test";
 //
-export const Root_component_royhjYaCbYE = (props: Stuff) => {
+export const Root_component_royhjYaCbYE = (props) => {
 	return /*#__PURE__*/ _jsxSorted(App, null, null, null, 3, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Root_component_royhjYaCbYE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { App } from \\"./test\\";\nexport const Root_component_royhjYaCbYE = (props: Stuff) => {\n\treturn _jsxSorted(App, null, null, null, 3, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,OAAO,MAAM,8BAA8B,UAAiB;AAC3D,QAAO,WAAW,KAAK,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

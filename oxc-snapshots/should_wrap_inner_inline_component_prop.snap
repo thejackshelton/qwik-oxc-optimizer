@@ -33,17 +33,16 @@ import { _jsxSorted } from "@qwik.dev/core";
 import { _wrapProp } from "@qwik.dev/core";
 import { useStore } from "@qwik.dev/core";
 //
-export const test_component_LUXeXe0DQrg = (props: {
-	id: number;
-}) => {
+export const test_component_LUXeXe0DQrg = (props) => {
 	const renders = useStore({ count: 0 }, { reactive: false });
 	renders.count++;
 	const rerenders = renders.count + 0;
 	const _ref = {};
-	_ref.Id = (props: any) => /*#__PURE__*/ _jsxSorted("div", null, null, ["_ref.Id:", _wrapProp(props, "id")], 3, "u6_0");
+	_ref.Id = (props) => /*#__PURE__*/ _jsxSorted("div", null, null, ["_ref.Id:", _wrapProp(props, "id")], 3, "u6_0");
 	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted(_ref.Id, { id: props.id }, null, null, 3, "u6_2"), rerenders], 1, "u6_1");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { useStore } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props: {\n\tid: number;\n}) => {\n\tconst renders = useStore({ count: 0 }, { reactive: false });\n\trenders.count++;\n\tconst rerenders = renders.count + 0;\n\tconst _ref = {};\n\t_ref.Id = (props: any) => _jsxSorted(\\"div\\", null, null, [\\"_ref.Id:\\", _wrapProp(props, \\"id\\")], 3, \\"u6_0\\");\n\treturn _jsxSorted(_Fragment, null, null, [_jsxSorted(_ref.Id, { id: props.id }, null, null, 3, \\"u6_2\\"), rerenders], 1, \\"u6_1\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,OAAO,MAAM,8BAA8B,UAErC;CACL,MAAM,UAAU,SAAS,EAAE,OAAO,GAAG,EAAE,EAAE,UAAU,OAAO,CAAC;AAC3D,SAAQ;CACR,MAAM,YAAY,QAAQ,QAAQ;CAClC,MAAM,OAAO,EAAE;AACf,MAAK,MAAM,UAAe,WAAW,OAAO,MAAM,MAAM,CAAC,YAAY,UAAU,OAAO,KAAK,CAAC,EAAE,GAAG,OAAO;AACxG,QAAO,WAAW,WAAW,MAAM,MAAM,CAAC,WAAW,KAAK,IAAI,EAAE,IAAI,MAAM,IAAI,EAAE,MAAM,MAAM,GAAG,OAAO,EAAE,UAAU,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

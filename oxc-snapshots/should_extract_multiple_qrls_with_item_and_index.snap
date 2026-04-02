@@ -69,7 +69,7 @@ const q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => i
 const q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8"), "test_component_div_div_q_e_hover_2iHUE4xtgo8", [index]);
 //
 export const test_component_LUXeXe0DQrg = () => {
-	const loop: string[] = ["abcd", "xyz"];
+	const loop = ["abcd", "xyz"];
 	return /*#__PURE__*/ _jsxSorted("div", null, null, loop.map((item, index) => {
 		return /*#__PURE__*/ _jsxSorted("div", { "q:ps": [index, item] }, {
 			"q-e:click": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([item]),
@@ -78,6 +78,7 @@ export const test_component_LUXeXe0DQrg = () => {
 	}), 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_test_component_div_div_q_e_click_Mc600uqO6ps = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_div_div_q_e_click_Mc600uqO6ps\\"), \\"test_component_div_div_q_e_click_Mc600uqO6ps\\", [item]);\nconst q_test_component_div_div_q_e_hover_2iHUE4xtgo8 = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_div_div_q_e_hover_2iHUE4xtgo8\\"), \\"test_component_div_div_q_e_hover_2iHUE4xtgo8\\", [index]);\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst loop: string[] = [\\"abcd\\", \\"xyz\\"];\n\treturn _jsxSorted(\\"div\\", null, null, loop.map((item, index) => {\n\t\treturn _jsxSorted(\\"div\\", { \\"q:ps\\": [index, item] }, {\n\t\t\t\\"q-e:click\\": q_test_component_div_div_q_e_click_Mc600uqO6ps.w([item]),\n\t\t\t\\"q-e:hover\\": q_test_component_div_div_q_e_hover_2iHUE4xtgo8.w([index])\n\t\t}, item, 7, null);\n\t}), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,iDAA+D,0BAAU,OAAO,4DAA4D,gDAAgD,CAAC,KAAK,CAAC;AACzM,MAAM,iDAA+D,0BAAU,OAAO,4DAA4D,gDAAgD,CAAC,MAAM,CAAC;AAC1M,OAAO,MAAM,mCAAmC;CAC/C,MAAM,OAAiB,CAAC,QAAQ,MAAM;AACtC,QAAO,WAAW,OAAO,MAAM,MAAM,KAAK,KAAK,MAAM,UAAU;AAC9D,SAAO,WAAW,OAAO,EAAE,QAAQ,CAAC,OAAO,KAAK,EAAE,EAAE;GACnD,aAAa,+CAA+C,EAAE,CAAC,KAAK,CAAC;GACrE,aAAa,+CAA+C,EAAE,CAAC,MAAM,CAAC;GACtE,EAAE,MAAM,GAAG,KAAK;GAChB,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

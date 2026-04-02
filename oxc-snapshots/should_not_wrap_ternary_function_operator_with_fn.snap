@@ -32,10 +32,11 @@ import { useSignal } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = () => {
 	const toggle = useSignal(true);
-	const t = (key: string) => key;
+	const t = (key) => key;
 	return /*#__PURE__*/ _jsxSorted("button", { title: toggle.value !== "" ? t("app.message.exists@@there is a message for you") : t("app.message.not_exists@@click to get a message!") }, { type: "button" }, null, 3, "u6_0");
 };
 
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = () => {\n\tconst toggle = useSignal(true);\n\tconst t = (key: string) => key;\n\treturn _jsxSorted(\\"button\\", { title: toggle.value !== \\"\\" ? t(\\"app.message.exists@@there is a message for you\\") : t(\\"app.message.not_exists@@click to get a message!\\") }, { type: \\"button\\" }, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,mCAAmC;CAC/C,MAAM,SAAS,UAAU,KAAK;CAC9B,MAAM,KAAK,QAAgB;AAC3B,QAAO,WAAW,UAAU,EAAE,OAAO,OAAO,UAAU,KAAK,EAAE,iDAAiD,GAAG,EAAE,kDAAkD,EAAE,EAAE,EAAE,MAAM,UAAU,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

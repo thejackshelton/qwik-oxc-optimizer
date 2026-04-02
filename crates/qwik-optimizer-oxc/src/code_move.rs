@@ -35,11 +35,18 @@ pub(crate) fn emit_segment(
 
     let allocator = Allocator::default();
     let source: &str = allocator.alloc_str(raw_code);
-    let ret = Parser::new(&allocator, source, SourceType::mjs()).parse();
+
+    // Parse as TSX so TypeScript annotations don't cause parse failures.
+    // Then strip TS annotations from the AST before codegen so segment
+    // modules output clean JavaScript (matching SWC behavior).
+    let ret = Parser::new(&allocator, source, SourceType::tsx()).parse();
     if ret.panicked {
         return (raw_code.to_string(), None);
     }
-    let program = ret.program;
+    let mut program = ret.program;
+
+    // Strip TypeScript type annotations from the AST.
+    strip_ts_annotations(&mut program);
 
     if source_maps {
         let codegen_options = CodegenOptions {
@@ -58,6 +65,61 @@ pub(crate) fn emit_segment(
             .build(&program);
         (result.code, None)
     }
+}
+
+/// Strip TypeScript type annotations from an OXC AST program.
+///
+/// Removes:
+/// - Type annotations on function/arrow parameters
+/// - Type annotations on variable declarators
+/// - Return type annotations on functions/arrows
+/// - Type parameter declarations on functions/arrows
+/// - Type assertions (as expressions)
+fn strip_ts_annotations(program: &mut oxc::ast::ast::Program<'_>) {
+    use oxc::ast_visit::VisitMut;
+
+    struct TsStripper;
+    impl<'a> VisitMut<'a> for TsStripper {
+        fn visit_formal_parameter(&mut self, param: &mut oxc::ast::ast::FormalParameter<'a>) {
+            // Strip type annotation from parameter
+            param.type_annotation = None;
+            // Continue visiting children (nested destructuring patterns etc.)
+            oxc::ast_visit::walk_mut::walk_formal_parameter(self, param);
+        }
+
+        fn visit_variable_declarator(
+            &mut self,
+            decl: &mut oxc::ast::ast::VariableDeclarator<'a>,
+        ) {
+            // Strip type annotation from variable declarator
+            decl.type_annotation = None;
+            oxc::ast_visit::walk_mut::walk_variable_declarator(self, decl);
+        }
+
+        fn visit_function(
+            &mut self,
+            func: &mut oxc::ast::ast::Function<'a>,
+            flags: oxc::syntax::scope::ScopeFlags,
+        ) {
+            // Strip return type and type parameters
+            func.return_type = None;
+            func.type_parameters = None;
+            oxc::ast_visit::walk_mut::walk_function(self, func, flags);
+        }
+
+        fn visit_arrow_function_expression(
+            &mut self,
+            arrow: &mut oxc::ast::ast::ArrowFunctionExpression<'a>,
+        ) {
+            // Strip return type and type parameters
+            arrow.return_type = None;
+            arrow.type_parameters = None;
+            oxc::ast_visit::walk_mut::walk_arrow_function_expression(self, arrow);
+        }
+    }
+
+    let mut stripper = TsStripper;
+    stripper.visit_program(program);
 }
 
 // ---------------------------------------------------------------------------

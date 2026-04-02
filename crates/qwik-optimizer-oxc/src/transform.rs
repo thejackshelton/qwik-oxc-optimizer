@@ -1771,14 +1771,10 @@ impl QwikTransform {
         }
 
         // ---- Process children -----------------------------------------------
-        // Phase 25-02: When suppress_jsx_conversion is true (inside a segment closure), we
-        // skip build_children so that the original JSXChild nodes are preserved in `children`.
-        // The rebuild in transform_jsx_element will use those nodes to reconstruct the JSX.
-        let children_opt = if self.suppress_jsx_conversion {
-            None
-        } else {
-            self.build_children(children, is_text_only, ctx)
-        };
+        // In normal mode, build_children converts JSX children to expressions.
+        // In suppress mode (Phase 25-02), build_children preserves children as JSXChild nodes
+        // by writing back to the `children` vec and returning None.
+        let children_opt = self.build_children(children, is_text_only, ctx);
 
         // ---- Compute flags --------------------------------------------------
         // bit 0 = static_listeners, bit 1 = static_subtree, bit 2 = moved_captures
@@ -1831,16 +1827,34 @@ impl QwikTransform {
 
         let children_owned: Vec<JSXChild<'a>> = std::mem::replace(children, ArenaVec::new_in(allocator)).into_iter().collect();
 
+        // Phase 25-02: When suppress_jsx_conversion is true (inside a segment closure),
+        // we need to process children for side effects (onClick$ extraction etc.) but
+        // preserve them as JSXChild nodes for rebuilding the JSX element.
+        let suppress = self.suppress_jsx_conversion;
+        let mut preserved_children: ArenaVec<'a, JSXChild<'a>> = if suppress {
+            ArenaVec::new_in(allocator)
+        } else {
+            ArenaVec::new_in(allocator) // unused in non-suppress path
+        };
+
         for child in children_owned {
             match child {
                 JSXChild::Text(text) => {
                     let normalized = QwikTransform::normalize_jsx_text(text.value.as_str());
-                    if !normalized.is_empty() {
+                    if suppress {
+                        // Preserve text child as-is
+                        let raw = text.raw.clone();
+                        let text_child = ast.jsx_child_text(text.span, text.value, raw);
+                        preserved_children.push(text_child);
+                    } else if !normalized.is_empty() {
                         exprs.push(ast.expression_string_literal(SPAN, ast.atom(&normalized), None));
                     }
                 }
                 JSXChild::ExpressionContainer(ec) => {
-                    if let Some(e) = jsx_expression_to_expr(ec.unbox().expression) {
+                    if suppress {
+                        // Preserve expression container as-is
+                        preserved_children.push(JSXChild::ExpressionContainer(ec));
+                    } else if let Some(e) = jsx_expression_to_expr(ec.unbox().expression) {
                         // Apply signal wrapping to children expressions.
                         let (wrapped_opt, _is_const) =
                             self.create_synthetic_qqsegment(&e, allocator);
@@ -1873,18 +1887,44 @@ impl QwikTransform {
                     // So we must transform child elements here explicitly.
                     let was_root_child = false; // children are never root
                     let child_expr = self.transform_jsx_element(el.unbox(), was_root_child, ctx);
-                    exprs.push(child_expr);
+                    if suppress {
+                        // In suppress mode, transform_jsx_element returned Expression::JSXElement.
+                        // Convert it back to JSXChild::Element to preserve JSX structure.
+                        if let Expression::JSXElement(el_box) = child_expr {
+                            preserved_children.push(JSXChild::Element(el_box));
+                        }
+                        // else: shouldn't happen; non-JSX result means skip
+                    } else {
+                        exprs.push(child_expr);
+                    }
                 }
                 JSXChild::Fragment(fr) => {
                     let was_root_child = false;
                     let child_expr = self.transform_jsx_fragment(fr.unbox(), was_root_child, ctx);
-                    exprs.push(child_expr);
+                    if suppress {
+                        if let Expression::JSXFragment(fr_box) = child_expr {
+                            preserved_children.push(JSXChild::Fragment(fr_box));
+                        }
+                    } else {
+                        exprs.push(child_expr);
+                    }
                 }
                 JSXChild::Spread(sp) => {
-                    // {..expr} spread child — wrap as spread in array
-                    exprs.push(sp.unbox().expression);
+                    if suppress {
+                        preserved_children.push(JSXChild::Spread(sp));
+                    } else {
+                        // {..expr} spread child — wrap as spread in array
+                        exprs.push(sp.unbox().expression);
+                    }
                 }
             }
+        }
+
+        // Phase 25-02: In suppress mode, put the preserved children back into the input vec
+        // so transform_jsx_element can use them to rebuild the JSX element.
+        if suppress {
+            *children = preserved_children;
+            return None;
         }
 
         if exprs.is_empty() {

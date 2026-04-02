@@ -697,6 +697,13 @@ pub(crate) struct QwikTransform {
     /// Maps call-expression span_start → final symbol_name.
     /// Filled in `exit_call_expression` after `register_context_name` computes the symbol.
     segment_span_to_symbol: HashMap<u32, String>,
+
+    /// Maps each segment call-expression span.start → the first-arg body span (start, end).
+    /// Used by `patch_segment_parents` to validate that a child segment's span falls within
+    /// the parent's first-arg body before accepting the parent-child relationship.
+    /// Prevents sibling arguments (e.g., valiForm$ as 2nd arg of formAction$) from being
+    /// incorrectly assigned as children.
+    segment_span_to_body_span: HashMap<u32, (u32, u32)>,
 }
 
 // ---------------------------------------------------------------------------
@@ -850,6 +857,8 @@ impl QwikTransform {
             // Phase 18: deferred parent resolution
             segment_span_stack: Vec::new(),
             segment_span_to_symbol: HashMap::new(),
+            // Phase 22-03: body-span validation for parent assignment
+            segment_span_to_body_span: HashMap::new(),
         }
     }
 
@@ -2293,8 +2302,22 @@ impl QwikTransform {
     /// before outer), so inner segments register before their parent's symbol_name is known.
     pub(crate) fn patch_segment_parents(&mut self) {
         for segment in &mut self.segments {
-            if let Some(span) = segment.pending_parent_span {
-                segment.parent = self.segment_span_to_symbol.get(&span).cloned();
+            if let Some(parent_call_span) = segment.pending_parent_span {
+                if let Some(&(body_start, body_end)) =
+                    self.segment_span_to_body_span.get(&parent_call_span)
+                {
+                    // Only assign parent if the child's span falls within the parent's
+                    // first-arg body. This prevents sibling arguments (e.g., valiForm$ as
+                    // the 2nd arg of formAction$) from being incorrectly treated as children.
+                    if segment.span.0 >= body_start && segment.span.1 <= body_end {
+                        segment.parent = self
+                            .segment_span_to_symbol
+                            .get(&parent_call_span)
+                            .cloned();
+                    }
+                    // else: child is a sibling argument, not inside body → parent stays None
+                }
+                // If no body_span entry exists for this parent call span, leave parent as None.
             }
         }
     }
@@ -3496,6 +3519,10 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             // Register this call's span → symbol_name for deferred parent resolution.
             self.segment_span_to_symbol
                 .insert(call.span.start, names.symbol_name.clone());
+
+            // Register this call's span → first-arg body span for parent validation.
+            // `span` is already (first_arg_span.start, first_arg_span.end) from above.
+            self.segment_span_to_body_span.insert(call.span.start, span);
 
             // --- Check if we should emit ---
             let should_emit = self.should_emit_segment(ctx_name, ctx_kind.clone());

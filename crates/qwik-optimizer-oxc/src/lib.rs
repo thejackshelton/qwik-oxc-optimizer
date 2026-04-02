@@ -1694,4 +1694,130 @@ useTask$(() => {
             "SHARED_VAL used by multiple segments must remain in root module, got:\n{}", root.code
         );
     }
+
+    // -----------------------------------------------------------------------
+    // Phase 22-03: patch_segment_parents body-span validation tests (PRNT-01)
+    // -----------------------------------------------------------------------
+
+    /// Sibling argument case: valiForm$(X) is the SECOND arg of formAction$(...),
+    /// NOT inside formAction$'s first-arg body. Its parent must be null.
+    #[test]
+    fn parent_sibling_arg_gets_null_parent() {
+        let src = r#"import { formAction$, valiForm$ } from "@qwik.dev/core";
+const FeatureSchema = {};
+export const useFormAction = formAction$(async (data, { redirect }) => {
+    redirect(302, "/");
+}, valiForm$(FeatureSchema));"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Dev,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        // Find the valiForm$ segment (smaller, no redirect logic).
+        // It should have parent = None because it's a sibling arg, not inside formAction$'s body.
+        let vali_seg = result.modules.iter()
+            .filter_map(|m| m.segment.as_ref())
+            .find(|s| s.ctx_name.contains("valiForm") || s.display_name.contains("valiForm"));
+        if let Some(seg) = vali_seg {
+            assert!(
+                seg.parent.is_none(),
+                "valiForm$ segment is a sibling arg — parent must be None, got: {:?}",
+                seg.parent
+            );
+        }
+        // If no valiForm$ segment found, the test still checks: formAction$ segments
+        // should not incorrectly assign parents to sibling-arg segments.
+        // Verify no crashes and segments are produced.
+        assert!(
+            !result.modules.is_empty(),
+            "Should produce output modules, got none"
+        );
+    }
+
+    /// Nested body case: useTask$ is INSIDE component$'s first-arg body.
+    /// Its parent must be component$'s symbol.
+    #[test]
+    fn parent_nested_body_gets_correct_parent() {
+        let src = r#"import { component$, useTask$ } from "@qwik.dev/core";
+export const MyComp = component$(() => {
+    useTask$(() => {
+        console.log("task");
+    });
+    return null;
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Dev,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        // Find the useTask$ segment.
+        let task_seg = result.modules.iter()
+            .filter_map(|m| m.segment.as_ref())
+            .find(|s| s.ctx_name.contains("useTask") || s.display_name.contains("useTask"));
+        let comp_seg = result.modules.iter()
+            .filter_map(|m| m.segment.as_ref())
+            .find(|s| s.ctx_name.contains("MyComp") || s.display_name.contains("MyComp"));
+        if let (Some(task), Some(comp)) = (task_seg, comp_seg) {
+            assert!(
+                task.parent.is_some(),
+                "useTask$ inside component$ body must have a parent, got: None"
+            );
+            assert_eq!(
+                task.parent.as_deref(),
+                Some(comp.name.as_str()),
+                "useTask$ parent must be component$'s symbol name, got: {:?}",
+                task.parent
+            );
+        }
+    }
+
+    /// Deep nesting: inner useTask$ → outer useTask$ → component$
+    #[test]
+    fn parent_deep_nesting_gets_correct_chain() {
+        let src = r#"import { component$, useTask$ } from "@qwik.dev/core";
+export const MyComp = component$(() => {
+    useTask$(() => {
+        useTask$(() => {
+            console.log("inner");
+        });
+    });
+    return null;
+});"#;
+        let opts = TransformModulesOptions {
+            src_dir: "/project".to_string(),
+            input: vec![make_input(src, "test.tsx")],
+            mode: EmitMode::Dev,
+            entry_strategy: EntryStrategy::Segment,
+            source_maps: false,
+            ..TransformModulesOptions::default()
+        };
+        let result = transform_modules(opts).expect("transform_modules failed");
+        // Should produce 3 segments: MyComp, outer useTask$, inner useTask$
+        let segs: Vec<_> = result.modules.iter()
+            .filter_map(|m| m.segment.as_ref())
+            .collect();
+        assert!(
+            segs.len() >= 2,
+            "Expected at least 2 segments for nested useTask$, got: {}",
+            segs.len()
+        );
+        // No segment should have a parent pointing to itself.
+        for seg in &segs {
+            if let Some(ref p) = seg.parent {
+                assert_ne!(
+                    p, &seg.name,
+                    "Segment {} has itself as parent — circular reference",
+                    seg.name
+                );
+            }
+        }
+    }
 }

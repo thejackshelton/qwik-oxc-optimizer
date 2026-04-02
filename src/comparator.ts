@@ -64,7 +64,7 @@ const RECOGNIZED_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs"]);
  * Derive a stdinFilepath for normalizeCode from a section headerName.
  * Falls back to "snapshot-section.tsx" if headerName lacks a recognized extension.
  */
-function getStdinFilepath(headerName: string): string {
+export function getStdinFilepath(headerName: string): string {
   const ext = path.extname(headerName);
   if (ext && RECOGNIZED_EXTENSIONS.has(ext)) {
     return headerName;

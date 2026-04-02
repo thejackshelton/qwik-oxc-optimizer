@@ -163,13 +163,14 @@ describe("Empty/whitespace code short-circuits oxfmt", () => {
 // ---------------------------------------------------------------------------
 
 describe("NORM-04: Single symmetric normalizeCode export", () => {
-  test("normalizer module exports exactly 3 named exports", async () => {
+  test("normalizer module exports exactly 4 named exports", async () => {
     const normalizer = await import("../src/normalizer.ts");
     const exportedKeys = Object.keys(normalizer).sort();
     expect(exportedKeys).toEqual([
       "assertNormalizerIdempotent",
       "assertOxfmtVersion",
       "normalizeCode",
+      "warmNormalizationCache",
     ]);
   });
 

@@ -6,6 +6,10 @@
  *
  * The normalizer is intentionally thin — its only job is to call oxfmt.
  *
+ * Performance: warmNormalizationCache() pre-normalizes all code blocks concurrently
+ * (pool of 32 async processes). After warming, normalizeCode() is a synchronous
+ * cache lookup — no process spawning during comparison.
+ *
  * NOTE: Source maps are already stripped by the parser (parser.ts extracts sourceMap
  * into ParsedSection.sourceMap and excludes it from ParsedSection.code). This module
  * does NOT need to strip source maps.
@@ -14,7 +18,7 @@
  * cannot and does not affect loc values.
  */
 
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { OXFMT_VERSION } from "./contract.js";
@@ -22,6 +26,13 @@ import { OXFMT_VERSION } from "./contract.js";
 // Resolve path to the oxfmt binary relative to this module's location
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OXFMT_BIN = path.join(__dirname, "..", "node_modules", ".bin", "oxfmt");
+
+// In-memory normalization cache: "filepath\0code" -> normalized code
+const cache = new Map<string, string>();
+
+function cacheKey(code: string, filepath: string): string {
+  return `${filepath}\0${code}`;
+}
 
 /**
  * Assert that the installed oxfmt binary matches the pinned OXFMT_VERSION from contract.ts.
@@ -52,10 +63,13 @@ export function assertOxfmtVersion(): void {
 }
 
 /**
- * Format code through oxfmt.
+ * Format code through oxfmt (synchronous, uses cache).
  *
  * Empty or whitespace-only code is returned unchanged without invoking oxfmt.
  * The stdinFilepath extension (.ts, .tsx, .js, .jsx) controls which parser oxfmt uses.
+ *
+ * After warmNormalizationCache() has been called, this is a pure cache lookup.
+ * Falls back to synchronous spawning on cache miss.
  *
  * @param code - Source code string. Must NOT contain source map lines (parser strips these).
  * @param stdinFilepath - Fake file path whose extension tells oxfmt how to parse the code.
@@ -67,6 +81,10 @@ export function normalizeCode(code: string, stdinFilepath: string): string {
   if (code.trim().length === 0) {
     return code;
   }
+
+  const key = cacheKey(code, stdinFilepath);
+  const cached = cache.get(key);
+  if (cached !== undefined) return cached;
 
   const res = spawnSync(OXFMT_BIN, ["--stdin-filepath", stdinFilepath], {
     input: code + "\n",
@@ -90,7 +108,101 @@ export function normalizeCode(code: string, stdinFilepath: string): string {
 
   // oxfmt always appends a trailing newline; strip exactly one trailing \n
   // to match the .trim() normalization that the parser applies to section.code
-  return res.stdout.replace(/\n$/, "");
+  const result = res.stdout.replace(/\n$/, "");
+  cache.set(key, result);
+  return result;
+}
+
+/**
+ * Normalize a single code block asynchronously via oxfmt.
+ */
+function normalizeCodeAsync(code: string, stdinFilepath: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const proc = spawn(OXFMT_BIN, ["--stdin-filepath", stdinFilepath], {
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+
+    let stdout = "";
+    let stderr = "";
+
+    proc.stdout.on("data", (chunk: Buffer) => { stdout += chunk.toString(); });
+    proc.stderr.on("data", (chunk: Buffer) => { stderr += chunk.toString(); });
+
+    proc.on("error", (err) => {
+      reject(new Error(`oxfmt process error for ${stdinFilepath}: ${err.message}`));
+    });
+
+    proc.on("close", (exitCode) => {
+      if (exitCode !== 0) {
+        reject(new Error(
+          `oxfmt exited with status ${exitCode} for ${stdinFilepath}` +
+            (stderr.trim() ? `\nstderr: ${stderr.trim()}` : "")
+        ));
+        return;
+      }
+      resolve(stdout.replace(/\n$/, ""));
+    });
+
+    proc.stdin.write(code + "\n");
+    proc.stdin.end();
+  });
+}
+
+/**
+ * Attempt async normalization with .tsx fallback (mirrors tryNormalizeCode logic).
+ */
+async function tryNormalizeCodeAsync(code: string, filepath: string): Promise<string> {
+  try {
+    return await normalizeCodeAsync(code, filepath);
+  } catch {
+    try {
+      const fallbackPath = filepath.replace(/\.[^.]+$/, ".tsx");
+      if (fallbackPath !== filepath) {
+        return await normalizeCodeAsync(code, fallbackPath);
+      }
+    } catch {
+      // Both attempts failed
+    }
+    return code.trim();
+  }
+}
+
+/**
+ * Pre-warm the normalization cache by running all code blocks through oxfmt
+ * concurrently. After this returns, all subsequent normalizeCode() calls for
+ * these inputs are instant cache lookups.
+ *
+ * @param entries - Array of {code, filepath} pairs to normalize
+ * @param concurrency - Max concurrent oxfmt processes (default 32)
+ */
+export async function warmNormalizationCache(
+  entries: Array<{ code: string; filepath: string }>,
+  concurrency: number = 32
+): Promise<void> {
+  // Deduplicate and filter empties
+  const toProcess: Array<{ code: string; filepath: string; key: string }> = [];
+  const seen = new Set<string>();
+  for (const entry of entries) {
+    if (entry.code.trim().length === 0) continue;
+    const key = cacheKey(entry.code, entry.filepath);
+    if (cache.has(key) || seen.has(key)) continue;
+    seen.add(key);
+    toProcess.push({ ...entry, key });
+  }
+
+  // Process in concurrent batches
+  for (let i = 0; i < toProcess.length; i += concurrency) {
+    const batch = toProcess.slice(i, i + concurrency);
+    const results = await Promise.all(
+      batch.map(async (entry) => {
+        const result = await tryNormalizeCodeAsync(entry.code, entry.filepath);
+        return { key: entry.key, result };
+      })
+    );
+    for (const { key, result } of results) {
+      cache.set(key, result);
+    }
+  }
 }
 
 /**

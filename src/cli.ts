@@ -17,8 +17,9 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parseSnapFile } from "./parser.js";
-import { assertOxfmtVersion } from "./normalizer.js";
-import { compareFixture } from "./comparator.js";
+import type { ParsedSnapshot } from "./types.js";
+import { assertOxfmtVersion, warmNormalizationCache } from "./normalizer.js";
+import { compareFixture, getStdinFilepath } from "./comparator.js";
 import {
   FailureCategory,
   type FailureCategoryValue,
@@ -134,13 +135,12 @@ async function main() {
     }
   }
 
-  // Parse each fixture and compare
-  const fixtures: HarnessOutput["fixtures"] = [];
+  // Parse all snapshots first
+  const parsedPairs: Array<{ swc: ParsedSnapshot; oxc: ParsedSnapshot }> = [];
   for (const file of snapFiles) {
     const swcPath = path.join(SNAP_DIR, file);
     try {
       const swcParsed = parseSnapFile(swcPath);
-
       const oxcPath = path.join(OXC_DIR, file);
       let oxcParsed;
       try {
@@ -149,16 +149,34 @@ async function main() {
         console.error(`Harness error: failed to parse OXC snapshot ${file}:`, err);
         process.exit(2);
       }
-      const failures = compareFixture(swcParsed, oxcParsed);
-      fixtures.push({
-        name: swcParsed.fixtureName,
-        pass: failures.length === 0,
-        failures,
-      });
+      parsedPairs.push({ swc: swcParsed, oxc: oxcParsed });
     } catch (err) {
       console.error(`Harness error: failed to parse ${file}:`, err);
       process.exit(2);
     }
+  }
+
+  // Warm normalization cache — all code blocks normalized concurrently
+  const codeEntries: Array<{ code: string; filepath: string }> = [];
+  for (const { swc, oxc } of parsedPairs) {
+    for (const section of swc.sections) {
+      codeEntries.push({ code: section.code, filepath: getStdinFilepath(section.headerName) });
+    }
+    for (const section of oxc.sections) {
+      codeEntries.push({ code: section.code, filepath: getStdinFilepath(section.headerName) });
+    }
+  }
+  await warmNormalizationCache(codeEntries);
+
+  // Compare each fixture (normalizeCode calls are now cache hits)
+  const fixtures: HarnessOutput["fixtures"] = [];
+  for (const { swc, oxc } of parsedPairs) {
+    const failures = compareFixture(swc, oxc);
+    fixtures.push({
+      name: swc.fixtureName,
+      pass: failures.length === 0,
+      failures,
+    });
   }
 
   // Apply --category filter: keep only failures matching the specified category

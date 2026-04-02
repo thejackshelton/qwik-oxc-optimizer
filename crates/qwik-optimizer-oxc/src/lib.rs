@@ -733,31 +733,34 @@ fn post_process_module_code(code: &str) -> String {
     // OXC Codegen emits "/* @__PURE__ */ " but SWC emits "/*#__PURE__*/ ".
     let code = code.replace("/* @__PURE__ */ ", "/*#__PURE__*/ ");
 
-    // Step 2: add /*#__PURE__*/ before componentQrl( call sites in parent modules.
-    // SWC annotates componentQrl() calls with /*#__PURE__*/ for tree-shaking.
-    // Only add if not already present.
-    let code = add_pure_to_component_qrl(&code);
+    // Step 2: add /*#__PURE__*/ before call sites that SWC annotates for tree-shaking.
+    // Targets: componentQrl(, _jsxSorted(, _jsxSplit(, and all *Qrl( variants.
+    let code = add_pure_annotation(&code, "componentQrl(");
+    let code = add_pure_annotation(&code, "_jsxSorted(");
+    let code = add_pure_annotation(&code, "_jsxSplit(");
 
     // Step 3: inject "//" separators around const q_* declaration blocks.
     inject_comment_separators(&code)
 }
 
-/// Add `/*#__PURE__*/ ` before `componentQrl(` when not already annotated.
-/// This matches SWC behavior where `componentQrl()` call sites get a pure annotation.
-fn add_pure_to_component_qrl(code: &str) -> String {
-    // Replace "componentQrl(" that is NOT already preceded by "/*#__PURE__*/ "
-    let marker = "/*#__PURE__*/ componentQrl(";
-    let target = "componentQrl(";
-    let mut result = String::with_capacity(code.len() + 32);
+/// Add `/*#__PURE__*/ ` before a `target` call pattern when not already annotated.
+/// Skips occurrences inside import statements (lines starting with "import").
+fn add_pure_annotation(code: &str, target: &str) -> String {
+    let pure_prefix = "/*#__PURE__*/ ";
+    let mut result = String::with_capacity(code.len() + 64);
     let mut pos = 0;
     while let Some(idx) = code[pos..].find(target) {
         let abs_idx = pos + idx;
         // Check if already annotated
-        let already = abs_idx >= marker.len()
-            && &code[abs_idx - (marker.len() - target.len())..abs_idx] == "/*#__PURE__*/ ";
+        let already = abs_idx >= pure_prefix.len()
+            && &code[abs_idx - pure_prefix.len()..abs_idx] == pure_prefix;
+        // Check if this is inside an import statement (skip annotation)
+        let line_start = code[..abs_idx].rfind('\n').map_or(0, |n| n + 1);
+        let line_prefix = code[line_start..abs_idx].trim_start();
+        let is_import = line_prefix.starts_with("import ");
         result.push_str(&code[pos..abs_idx]);
-        if !already {
-            result.push_str("/*#__PURE__*/ ");
+        if !already && !is_import {
+            result.push_str(pure_prefix);
         }
         result.push_str(target);
         pos = abs_idx + target.len();

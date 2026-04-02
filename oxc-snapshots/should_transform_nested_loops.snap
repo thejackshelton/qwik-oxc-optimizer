@@ -33,6 +33,7 @@ import { useSignal } from "@qwik.dev/core";
 const _hf0 = (p0) => p0.value.id;
 ;
 const _hf0_str = "p0.value.id";
+//
 const q_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_p_q_e_click_PjMbeUzoAMk"), "Foo_component_div_div_p_q_e_click_PjMbeUzoAMk", [item, row]);
 const q_Foo_component_div_div_q_e_click_vKrX4PmH2aM = /*#__PURE__*/ qrl(() => import("./test.tsx_Foo_component_div_div_q_e_click_vKrX4PmH2aM"), "Foo_component_div_div_q_e_click_vKrX4PmH2aM", [row]);
 //

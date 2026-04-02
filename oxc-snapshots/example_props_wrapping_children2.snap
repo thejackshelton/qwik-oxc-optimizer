@@ -35,6 +35,7 @@ const _hf1 = (p0) => {
 	p0: p0.fromProps;
 };
 const _hf1_str = "{ p0: p0.fromProps }";
+//
 const q_Works_component_t45qL4vNGv0 = /*#__PURE__*/ _noopQrl("Works_component_t45qL4vNGv0");
 //
 export const Works = /*#__PURE__*/ componentQrl(q_Works_component_t45qL4vNGv0);

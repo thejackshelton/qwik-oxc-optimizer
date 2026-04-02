@@ -56,19 +56,20 @@ import "./file";
 import { componentQrl } from "@qwik.dev/core";
 import { _noopQrl } from "@qwik.dev/core";
 //
-const q_TextContent_component_puSwpKXO7Kg = /*#__PURE__*/ _noopQrl("TextContent_component_puSwpKXO7Kg");
 const _hf0 = (p0) => 12 + p0.value;
 const _hf0_str = "12 + p0.value";
 const _hf1 = (p0) => p0.address.city.name;
 const _hf1_str = "p0.address.city.name";
 const _hf2 = (p0) => p0.address.city.name ? "true" : "false";
 const _hf2_str = "p0.address.city.name ? \"true\" : \"false\"";
+//
+const q_TextContent_component_puSwpKXO7Kg = /*#__PURE__*/ _noopQrl("TextContent_component_puSwpKXO7Kg");
 const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
 //
 export const TextContent = /*#__PURE__*/ componentQrl(q_TextContent_component_puSwpKXO7Kg);
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);
 
-Some("{\"version\":3,\"names\":[\"t { component$, useStore, mutable }\",\"t { \",\"t { comp\",\"t { component$, useStore, m\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, mutable } from '@qwik.dev/core';\n\nimport {dep} from './file';\n\nexport const TextContent = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<div>data-nu: {props['data-nu']}</div>\n\t\t\t<div>class: {props.class}</div>\n\t\t</>\n\t);\n});\n\nexport const App = component$(() => {\n\tconst signal = useSignal(0);\n\tconst store = useStore({});\n\treturn (\n\t\t<>\n\t\t\t<div>text</div>\n\t\t\t<div>{`text`}</div>\n\t\t\t<div>{1}</div>\n\t\t\t<div>{true}</div>\n\t\t\t<div>{`text${12}`}</div>\n\t\t\t<div>{typeof `text${12}` === 'string' ? 12 : 43}</div>\n\t\t\t<div>{signal}</div>\n\t\t\t<div>{signal.value}</div>\n\t\t\t<div>{12 + signal.value}</div>\n\t\t\t<div>{store.address.city.name}</div>\n\t\t\t<div>{store.address.city.name ? 'true' : 'false'}</div>\n\t\t\t<div>{dep}</div>\n\t\t\t<div>{dep.thing}</div>\n\t\t\t<div>{dep.thing + 'stuff'}</div>\n\t\t\t<div>{globalThing}</div>\n\t\t\t<div>{globalThing.thing}</div>\n\t\t\t<div>{globalThing.thing + 'stuff'}</div>\n\t\t\t<div>{signal.value()}</div>\n\t\t\t<div>{signal.value + unknown()}</div>\n\t\t\t<div>{mutable(signal)}</div>\n\t\t\t<div>{signal.value + dep}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,OACM;AADN,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,sCAAoD,yBAExD,oCAEO;AALR,MACKC,QAAO,OAAM;AADlB,MACKC,WAAW;AADhB,MACKD,QAAO;AADZ,MACKC,WAAW;AADhB,MACKD,QAAO,8BAA6B,SAAS;AADlD,MACKC,WAAW;AADhB,MACKC,8BAA4C,yBAAS,4BAErC;AAErB,OAAO,MAAM,cAAcC,iDAOzB;AAEF,OAAO,MAAM,MAAMA,yCA4BjB\"}")
+Some("{\"version\":3,\"names\":[\"t { \",\"t { comp\",\"t { component$, useStore, mutable }\",\"t { component$, useStore, m\",\"component$\"],\"sources\":[\"test.tsx\"],\"sourcesContent\":[\"\nimport { component$, useStore, mutable } from '@qwik.dev/core';\n\nimport {dep} from './file';\n\nexport const TextContent = component$((props) => {\n\treturn (\n\t\t<>\n\t\t\t<div>data-nu: {props['data-nu']}</div>\n\t\t\t<div>class: {props.class}</div>\n\t\t</>\n\t);\n});\n\nexport const App = component$(() => {\n\tconst signal = useSignal(0);\n\tconst store = useStore({});\n\treturn (\n\t\t<>\n\t\t\t<div>text</div>\n\t\t\t<div>{`text`}</div>\n\t\t\t<div>{1}</div>\n\t\t\t<div>{true}</div>\n\t\t\t<div>{`text${12}`}</div>\n\t\t\t<div>{typeof `text${12}` === 'string' ? 12 : 43}</div>\n\t\t\t<div>{signal}</div>\n\t\t\t<div>{signal.value}</div>\n\t\t\t<div>{12 + signal.value}</div>\n\t\t\t<div>{store.address.city.name}</div>\n\t\t\t<div>{store.address.city.name ? 'true' : 'false'}</div>\n\t\t\t<div>{dep}</div>\n\t\t\t<div>{dep.thing}</div>\n\t\t\t<div>{dep.thing + 'stuff'}</div>\n\t\t\t<div>{globalThing}</div>\n\t\t\t<div>{globalThing.thing}</div>\n\t\t\t<div>{globalThing.thing + 'stuff'}</div>\n\t\t\t<div>{signal.value()}</div>\n\t\t\t<div>{signal.value + unknown()}</div>\n\t\t\t<div>{mutable(signal)}</div>\n\t\t\t<div>{signal.value + dep}</div>\n\t\t</>\n\t);\n});\n\"],\"mappings\":\"AAAA,OACM;AADN,6BAC4B;AAD5B,yBACwB;AADxB,MACKA,QAAO,OAAM;AADlB,MACKC,WAAW;AADhB,MACKD,QAAO;AADZ,MACKC,WAAW;AADhB,MACKD,QAAO,8BAA6B,SAAS;AADlD,MACKC,WAAW;AADhB,MACKC,sCAAoD,yBAExD,oCAEO;AALR,MACKC,8BAA4C,yBAAS,4BAErC;AAErB,OAAO,MAAM,cAAcC,iDAOzB;AAEF,OAAO,MAAM,MAAMA,yCA4BjB\"}")
 == DIAGNOSTICS ==
 
 []

@@ -65,6 +65,7 @@ import { qrl } from "@qwik.dev/core";
 //
 const _hf0 = (p0) => p0.selectedOutputDetail === "options";
 const _hf0_str = "p0.selectedOutputDetail === \"options\"";
+//
 const q_test_div_q_e_click_pFqTss400MA = /*#__PURE__*/ qrl(() => import("./test.tsx_test_div_q_e_click_pFqTss400MA"), "test_div_q_e_click_pFqTss400MA", [data]);
 //
 export default (_rawProps) => {

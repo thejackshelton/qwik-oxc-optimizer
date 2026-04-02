@@ -28,6 +28,7 @@ const _hf0 = (p0) => p0.value ? $localize`singular` : "plural";
 const _hf0_str = "p0.value ? $localize`singular` : \"plural\"";
 const _hf1 = (p0) => p0.value ? $localize`singular` : $localize`plural`;
 const _hf1_str = "p0.value ? $localize`singular` : $localize`plural`";
+//
 const q_App_component_ckEPmXZlub0 = /*#__PURE__*/ _noopQrl("App_component_ckEPmXZlub0");
 //
 export const App = /*#__PURE__*/ componentQrl(q_App_component_ckEPmXZlub0);

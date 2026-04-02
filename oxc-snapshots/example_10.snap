@@ -32,7 +32,6 @@ const Header = $((decl1, {decl2}, [decl3]) => {
 import { _jsxSorted } from "@qwik.dev/core";
 //
 export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {
-	const hola = ident1.no;
 	ident2;
 	const a = ident1 + ident3;
 	const b = ident1 + ident3;
@@ -49,7 +48,7 @@ export const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {
 	}, null, 3, "cA_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WlR3xnI6u38\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {\n\tconst hola = ident1.no;\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], { ident7 }, { key: ident8 });\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\treturn _jsxSorted(\\"div\\", null, {\n\t\tonClick: (ident11) => ident11 + ident12,\n\t\trequired: false\n\t}, null, 3, \\"cA_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,MAAM,OAAO,OAAO;AACpB;CACA,MAAM,IAAI,SAAS;CACnB,MAAM,IAAI,SAAS;AACnB,QAAO,QAAQ,CAAC,OAAO,EAAE,EAAE,QAAQ,EAAE,EAAE,KAAK,QAAQ,CAAC;CACrD,MAAM,KAAK;EACV,OAAO;EACP,SAAS;AACR,UAAO;;;AAGT,QAAO,WAAW,OAAO,MAAM;EAC9B,UAAU,YAAY,UAAU;EAChC,UAAU;EACV,EAAE,MAAM,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WlR3xnI6u38\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Header_WlR3xnI6u38 = (decl1, { decl2 }, [decl3]) => {\n\tident2;\n\tconst a = ident1 + ident3;\n\tconst b = ident1 + ident3;\n\tident4(ident5, [ident6], { ident7 }, { key: ident8 });\n\tclass Some {\n\t\tprop = ident9;\n\t\tmethod() {\n\t\t\treturn ident10;\n\t\t}\n\t}\n\treturn _jsxSorted(\\"div\\", null, {\n\t\tonClick: (ident11) => ident11 + ident12,\n\t\trequired: false\n\t}, null, 3, \\"cA_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;AAChE;CACA,MAAM,IAAI,SAAS;CACnB,MAAM,IAAI,SAAS;AACnB,QAAO,QAAQ,CAAC,OAAO,EAAE,EAAE,QAAQ,EAAE,EAAE,KAAK,QAAQ,CAAC;CACrD,MAAM,KAAK;EACV,OAAO;EACP,SAAS;AACR,UAAO;;;AAGT,QAAO,WAAW,OAAO,MAAM;EAC9B,UAAU,YAAY,UAAU;EAChC,UAAU;EACV,EAAE,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "project/test.tsx",

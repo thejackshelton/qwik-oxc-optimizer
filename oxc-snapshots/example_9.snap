@@ -23,7 +23,6 @@ const Header = $((decl1, {decl2}, [decl3]) => {
 ============================= test.tsx_Header_WjUaUQN7Oxg.tsx (ENTRY POINT)==
 
 export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {
-	const { decl4, key: decl5 } = this;
 	let [decl6, ...decl7] = stuff;
 	const decl8 = 1, decl9;
 	function decl10(decl11, { decl12 }, [decl13]) {}
@@ -35,7 +34,7 @@ export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {
 };
 
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],\"sourcesContent\":[\"export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {\n\tconst { decl4, key: decl5 } = this;\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, { decl12 }, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, { decl16 }, [decl17]) {}\n\t}\n\ttry {} catch (decl18) {}\n\ttry {} catch ({ decl19 }) {}\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,MAAM,EAAE,OAAO,KAAK,UAAU;CAC9B,IAAI,CAAC,OAAO,GAAG,SAAS;CACxB,MAAM,QAAQ,GAAG;CACjB,SAAS,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;CAC9C,MAAM,OAAO;EACZ,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;;AAEtC,KAAI,UAAU,QAAQ;AACtB,KAAI,UAAU,EAAE,UAAU\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Header_WjUaUQN7Oxg\"],\"sourcesContent\":[\"export const Header_WjUaUQN7Oxg = (decl1, { decl2 }, [decl3]) => {\n\tlet [decl6, ...decl7] = stuff;\n\tconst decl8 = 1, decl9;\n\tfunction decl10(decl11, { decl12 }, [decl13]) {}\n\tclass decl14 {\n\t\tmethod(decl15, { decl16 }, [decl17]) {}\n\t}\n\ttry {} catch (decl18) {}\n\ttry {} catch ({ decl19 }) {}\n};\"],\"mappings\":\"AAAA,OAAO,MAAM,sBAAsB,OAAO,EAAE,SAAS,CAAC,WAAW;CAChE,IAAI,CAAC,OAAO,GAAG,SAAS;CACxB,MAAM,QAAQ,GAAG;CACjB,SAAS,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;CAC9C,MAAM,OAAO;EACZ,OAAO,QAAQ,EAAE,UAAU,CAAC,SAAS;;AAEtC,KAAI,UAAU,QAAQ;AACtB,KAAI,UAAU,EAAE,UAAU\"}")
 /*
 {
   "origin": "test.tsx",

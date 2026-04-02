@@ -23,11 +23,10 @@ import { Fragment as _Fragment } from "@qwik.dev/core/jsx-runtime";
 import { _jsxSorted } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = (props) => {
-	const { "bind:value": bindValue } = props;
-	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, bindValue, 3, "u6_0");
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, props["bind:value"], 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\tconst { \\"bind:value\\": bindValue } = props;\n\treturn _jsxSorted(_Fragment, null, null, bindValue, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,EAAE,cAAc,cAAc;AACpC,QAAO,WAAW,WAAW,MAAM,MAAM,WAAW,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\treturn _jsxSorted(_Fragment, null, null, props[\\"bind:value\\"], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,OAAO,MAAM,8BAA8B,UAAU;AACpD,QAAO,WAAW,WAAW,MAAM,MAAM,MAAM,eAAe,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

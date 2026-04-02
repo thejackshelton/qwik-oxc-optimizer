@@ -38,11 +38,10 @@ import { qrl } from "@qwik.dev/core";
 const q_Bar_component_L80pS8Hxf1Y = /*#__PURE__*/ qrl(() => import("./test.tsx_Bar_component_L80pS8Hxf1Y"), "Bar_component_L80pS8Hxf1Y", [bar]);
 //
 export const Bar_component_1_0xSyNSnVu3k = (_rawProps) => {
-	const bar = _rawProps.bar;
-	return Qrl(q_Bar_component_L80pS8Hxf1Y.w([bar]));
+	return Qrl(q_Bar_component_L80pS8Hxf1Y.w([_rawProps.bar]));
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_component_1_0xSyNSnVu3k\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Bar_component_L80pS8Hxf1Y = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Bar_component_L80pS8Hxf1Y\\"), \\"Bar_component_L80pS8Hxf1Y\\", [bar]);\nexport const Bar_component_1_0xSyNSnVu3k = (_rawProps) => {\n\tconst bar = _rawProps.bar;\n\treturn Qrl(q_Bar_component_L80pS8Hxf1Y.w([bar]));\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,6BAA6B,CAAC,IAAI,CAAC;AAC/I,OAAO,MAAM,+BAA+B,cAAc;CACzD,MAAM,MAAM,UAAU;AACtB,QAAO,IAAI,4BAA4B,EAAE,CAAC,IAAI,CAAC,CAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Bar_component_1_0xSyNSnVu3k\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Bar_component_L80pS8Hxf1Y = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Bar_component_L80pS8Hxf1Y\\"), \\"Bar_component_L80pS8Hxf1Y\\", [bar]);\nexport const Bar_component_1_0xSyNSnVu3k = (_rawProps) => {\n\treturn Qrl(q_Bar_component_L80pS8Hxf1Y.w([_rawProps.bar]));\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,6BAA6B,CAAC,IAAI,CAAC;AAC/I,OAAO,MAAM,+BAA+B,cAAc;AACzD,QAAO,IAAI,4BAA4B,EAAE,CAAC,UAAU,IAAI,CAAC,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -78,16 +77,15 @@ const q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import("./test.tsx_F
 	foo
 ]);
 export const Foo_component_1_DvU6FitWglY = (_rawProps) => {
-	const foo = _rawProps.foo;
 	const arg0 = 20;
 	return Qrl(q_Foo_component_HTDRsvUbLiE.w([
 		_rawProps,
 		arg0,
-		foo
+		_rawProps.foo
 	]));
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\", [\n\t_rawProps,\n\targ0,\n\tfoo\n]);\nexport const Foo_component_1_DvU6FitWglY = (_rawProps) => {\n\tconst foo = _rawProps.foo;\n\tconst arg0 = 20;\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE.w([\n\t\t_rawProps,\n\t\targ0,\n\t\tfoo\n\t]));\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,6BAA6B;CACxI;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,+BAA+B,cAAc;CACzD,MAAM,MAAM,UAAU;CACtB,MAAM,OAAO;AACb,QAAO,IAAI,4BAA4B,EAAE;EACxC;EACA;EACA;EACA,CAAC,CAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_1_DvU6FitWglY\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nconst q_Foo_component_HTDRsvUbLiE = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_Foo_component_HTDRsvUbLiE\\"), \\"Foo_component_HTDRsvUbLiE\\", [\n\t_rawProps,\n\targ0,\n\tfoo\n]);\nexport const Foo_component_1_DvU6FitWglY = (_rawProps) => {\n\tconst arg0 = 20;\n\treturn Qrl(q_Foo_component_HTDRsvUbLiE.w([\n\t\t_rawProps,\n\t\targ0,\n\t\t_rawProps.foo\n\t]));\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,MAAM,8BAA4C,0BAAU,OAAO,yCAAyC,6BAA6B;CACxI;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,+BAA+B,cAAc;CACzD,MAAM,OAAO;AACb,QAAO,IAAI,4BAA4B,EAAE;EACxC;EACA;EACA,UAAU;EACV,CAAC,CAAC\"}")
 /*
 {
   "origin": "test.tsx",
@@ -122,8 +120,7 @@ export const Foo_component_HTDRsvUbLiE = () => {
 	const arg0 = _captures[1];
 	const foo = _captures[2];
 	const fn = (_rawProps) => {
-		const aaa = _rawProps.aaa;
-		return aaa;
+		return _rawProps.aaa;
 	};
 	return /*#__PURE__*/ _jsxSorted("div", null, null, [
 		foo,
@@ -132,7 +129,7 @@ export const Foo_component_HTDRsvUbLiE = () => {
 	], 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const _rawProps = _captures[0];\nconst arg0 = _captures[1];\nconst foo = _captures[2];\n\n\tconst fn = (_rawProps) => {\n\t\tconst aaa = _rawProps.aaa;\n\t\treturn aaa;\n\t};\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\tfoo,\n\t\tfn(),\n\t\targ0\n\t], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;CAAE,MAAM,YAAY,UAAU;CAC7E,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;CAErB,MAAM,MAAM,cAAc;EACzB,MAAM,MAAM,UAAU;AACtB,SAAO;;AAER,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,IAAI;EACJ;EACA,EAAE,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nexport const Foo_component_HTDRsvUbLiE = () => { const _rawProps = _captures[0];\nconst arg0 = _captures[1];\nconst foo = _captures[2];\n\n\tconst fn = (_rawProps) => {\n\t\treturn _rawProps.aaa;\n\t};\n\treturn _jsxSorted(\\"div\\", null, null, [\n\t\tfoo,\n\t\tfn(),\n\t\targ0\n\t], 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,kBAAkB;AAC3B,OAAO,MAAM,kCAAkC;CAAE,MAAM,YAAY,UAAU;CAC7E,MAAM,OAAO,UAAU;CACvB,MAAM,MAAM,UAAU;CAErB,MAAM,MAAM,cAAc;AACzB,SAAO,UAAU;;AAElB,QAAO,WAAW,OAAO,MAAM,MAAM;EACpC;EACA,IAAI;EACJ;EACA,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

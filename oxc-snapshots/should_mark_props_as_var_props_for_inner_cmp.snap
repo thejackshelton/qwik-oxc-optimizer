@@ -127,12 +127,11 @@ import { serverImg } from "~/routes/(authenticated)/layout";
 //
 export const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => {
 	const props = _captures[0];
-	const track = _rawProps.track;
-	track(() => props.store.model);
+	_rawProps.track(() => props.store.model);
 	return await serverImg("some.png");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\nexport const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => { const props = _captures[0];\n\n\tconst track = _rawProps.track;\n\ttrack(() => props.store.model);\n\treturn await serverImg(\\"some.png\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAE/G,MAAM,QAAQ,UAAU;AACxB,aAAY,MAAM,MAAM,MAAM;AAC9B,QAAO,MAAM,UAAU,WAAW\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { serverImg } from \\"~/routes/(authenticated)/layout\\";\nexport const ModelImg_component_imgLoc_useResource_Ogi9hEJvtmI = async (_rawProps) => { const props = _captures[0];\n\n\t_rawProps.track(() => props.store.model);\n\treturn await serverImg(\\"some.png\\");\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,oDAAoD,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;AAE/G,WAAU,YAAY,MAAM,MAAM,MAAM;AACxC,QAAO,MAAM,UAAU,WAAW\"}")
 /*
 {
   "origin": "test.tsx",

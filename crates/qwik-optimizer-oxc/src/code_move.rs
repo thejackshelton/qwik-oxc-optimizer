@@ -409,7 +409,7 @@ fn extract_second_string_arg(args: &str) -> Option<String> {
 /// const { X } = _ref;
 /// ```
 pub(crate) fn fix_self_referential_vars(body_code: &str) -> String {
-    let mut output = body_code.to_string();
+    let output = body_code.to_string();
     // We scan for `const <name> = <init>;` patterns at statement level.
     // For simplicity we do a line-level scan.
     let mut lines: Vec<String> = output.lines().map(|l| l.to_string()).collect();
@@ -508,6 +508,449 @@ fn replace_word(text: &str, word: &str, replacement: &str) -> String {
     }
     result.push_str(&text[start..]);
     result
+}
+
+// ---------------------------------------------------------------------------
+// inline_object_destructuring
+// ---------------------------------------------------------------------------
+
+/// Rewrite body-level object destructuring statements into individual const
+/// declarations with property access, matching SWC's output style.
+///
+/// Converts patterns like:
+///   `const { "bind:value": bindValue, foo } = props;`
+/// Into:
+///   `const bindValue = props["bind:value"];`
+///   `const foo = props.foo;`
+///
+/// Also handles `const { key: alias } = obj;` → `const alias = obj.key;`
+///
+/// Only applies to destructuring from a simple identifier (not a call or member expr).
+pub(crate) fn inline_object_destructuring(body_code: &str) -> String {
+    // We operate on the body code which is typically the inside of a function.
+    // Find `const { ... } = identifier;` patterns and inline the property access
+    // directly into all usages of the destructured local names, then remove the
+    // destructuring statement. This matches SWC's output style.
+    //
+    // For simplicity, operate at string level like fix_self_referential_vars.
+
+    let mut lines: Vec<String> = body_code.lines().map(|l| l.to_string()).collect();
+    let mut i = 0;
+    while i < lines.len() {
+        let trimmed = lines[i].trim().to_string();
+        // Look for: const { ... } = identifier;
+        // or: let { ... } = identifier;
+        let (_is_const, rest) = if let Some(r) = trimmed.strip_prefix("const {") {
+            (true, r)
+        } else if let Some(r) = trimmed.strip_prefix("let {") {
+            (false, r)
+        } else {
+            i += 1;
+            continue;
+        };
+
+        // Find the closing `}` for the destructuring pattern.
+        let mut depth = 1i32;
+        let mut close_brace = None;
+        for (j, ch) in rest.char_indices() {
+            match ch {
+                '{' => depth += 1,
+                '}' => {
+                    depth -= 1;
+                    if depth == 0 {
+                        close_brace = Some(j);
+                        break;
+                    }
+                }
+                _ => {}
+            }
+        }
+        let close_brace = match close_brace {
+            Some(pos) => pos,
+            None => {
+                i += 1;
+                continue;
+            }
+        };
+
+        let pattern_str = rest[..close_brace].trim();
+        let after_brace = rest[close_brace + 1..].trim();
+
+        // Must be: `= identifier;`
+        let after_brace = match after_brace.strip_prefix("=") {
+            Some(s) => s.trim(),
+            None => {
+                i += 1;
+                continue;
+            }
+        };
+
+        // The RHS must be a simple identifier
+        let rhs_str = after_brace.trim_end_matches(';').trim();
+        if rhs_str.is_empty()
+            || !rhs_str
+                .chars()
+                .all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+        {
+            i += 1;
+            continue;
+        }
+        let obj_name = rhs_str.to_string();
+
+        // Parse the destructuring properties
+        let properties = parse_destructuring_props(pattern_str);
+        if properties.is_empty() {
+            i += 1;
+            continue;
+        }
+
+        // Skip rest patterns — can't inline those
+        if properties.iter().any(|p| matches!(p, DestructProp::Rest(_))) {
+            i += 1;
+            continue;
+        }
+
+        // Build the inline replacements: local_name -> property_access_expr
+        let mut inline_map: Vec<(String, String)> = Vec::new();
+        let mut has_default = false;
+        for prop in &properties {
+            if let DestructProp::Simple { key, local, default_expr } = prop {
+                if default_expr.is_some() {
+                    has_default = true;
+                    break;
+                }
+                let access = if key.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                    && key.chars().next().map_or(false, |c| c.is_ascii_alphabetic() || c == '_' || c == '$')
+                {
+                    format!("{}.{}", obj_name, key)
+                } else {
+                    format!("{}[\"{}\"]", obj_name, key)
+                };
+                inline_map.push((local.clone(), access));
+            }
+        }
+
+        // If any property has a default value, fall back to const declarations
+        // (inlining with defaults is complex: need nullish coalescing at each usage site)
+        if has_default {
+            // Compute leading whitespace
+            let leading = &lines[i][..lines[i].len() - lines[i].trim_start().len()];
+            let mut replacements: Vec<String> = Vec::new();
+            for prop in &properties {
+                if let DestructProp::Simple { key, local, default_expr } = prop {
+                    let access = if key.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                        && key.chars().next().map_or(false, |c| c.is_ascii_alphabetic() || c == '_' || c == '$')
+                    {
+                        format!("{}.{}", obj_name, key)
+                    } else {
+                        format!("{}[\"{}\"]", obj_name, key)
+                    };
+                    let init = if let Some(def) = default_expr {
+                        format!("{} ?? {}", access, def)
+                    } else {
+                        access
+                    };
+                    replacements.push(format!("{}const {} = {};", leading, local, init));
+                }
+            }
+            if !replacements.is_empty() {
+                lines.splice(i..=i, replacements.iter().cloned());
+                i += replacements.len();
+            } else {
+                i += 1;
+            }
+            continue;
+        }
+
+        // Remove the destructuring line
+        lines.remove(i);
+
+        // Apply inline replacements to all subsequent lines.
+        // Replace each `local` with its property access form as a whole word.
+        for (local, access) in &inline_map {
+            for line in lines.iter_mut().skip(i) {
+                *line = replace_word(line, local, access);
+            }
+        }
+        // Don't increment i — the line at position i is now the next one to check
+    }
+
+    lines.join("\n")
+}
+
+// ---------------------------------------------------------------------------
+// inline_simple_prop_consts
+// ---------------------------------------------------------------------------
+
+/// Inline simple property-access const declarations created by props_destructuring.
+///
+/// Converts patterns like:
+///   `const cleanup = _rawProps.cleanup;`
+///   `...`
+///   `cleanup(() => clearInterval(timer));`
+/// Into:
+///   `_rawProps.cleanup(() => clearInterval(timer));`
+///
+/// Only inlines when:
+/// - The declaration is `const IDENT = IDENT.IDENT;` or `const IDENT = IDENT["KEY"];`
+/// - The local name is NOT the same as the property key (to avoid `_rawProps._rawProps`)
+/// - The local name has no default expression (no `??`)
+///
+/// This matches SWC's behavior of not creating intermediate const for destructured props.
+pub(crate) fn inline_simple_prop_consts(body_code: &str) -> String {
+    let mut lines: Vec<String> = body_code.lines().map(|l| l.to_string()).collect();
+    let mut i = 0;
+    while i < lines.len() {
+        let trimmed = lines[i].trim().to_string();
+
+        // Match: const IDENT = IDENT.IDENT;
+        // or: const IDENT = IDENT["KEY"];
+        let rest = match trimmed.strip_prefix("const ") {
+            Some(r) => r.to_string(),
+            None => {
+                i += 1;
+                continue;
+            }
+        };
+
+        // Extract local name (must be a simple identifier)
+        let eq_pos = match rest.find(" = ") {
+            Some(p) => p,
+            None => {
+                i += 1;
+                continue;
+            }
+        };
+        let local_name = rest[..eq_pos].trim();
+        if !local_name.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+            || local_name.is_empty()
+        {
+            i += 1;
+            continue;
+        }
+
+        let init = rest[eq_pos + 3..].trim().trim_end_matches(';').trim();
+
+        // Check: is init a member access like `obj.prop` or `obj["key"]`?
+        let access_expr = if let Some(dot_pos) = init.find('.') {
+            let obj = &init[..dot_pos];
+            let prop = &init[dot_pos + 1..];
+            // Both must be simple identifiers
+            if obj.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                && !obj.is_empty()
+                && prop.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                && !prop.is_empty()
+            {
+                Some(init.to_string())
+            } else {
+                None
+            }
+        } else if let Some(bracket_pos) = init.find('[') {
+            // obj["key"] pattern
+            let obj = &init[..bracket_pos];
+            if obj.chars().all(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                && !obj.is_empty()
+                && init.ends_with(']')
+            {
+                Some(init.to_string())
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+
+        let access_expr = match access_expr {
+            Some(e) => e,
+            None => {
+                i += 1;
+                continue;
+            }
+        };
+
+        // Don't inline if the init contains `??` (default expressions)
+        if access_expr.contains("??") {
+            i += 1;
+            continue;
+        }
+
+        // Don't inline `const _captures = ...` — that's a read_captures pattern
+        if local_name == "_captures" {
+            i += 1;
+            continue;
+        }
+
+        // Don't inline `const x = _captures[N]` — read_captures declarations must stay
+        if access_expr.starts_with("_captures[") {
+            i += 1;
+            continue;
+        }
+
+        // Don't inline if the local name appears in the access expression itself
+        // (would cause infinite expansion)
+        if contains_word(&access_expr, local_name) {
+            i += 1;
+            continue;
+        }
+
+        // Remove the const declaration line
+        lines.remove(i);
+
+        // Replace all whole-word occurrences of local_name with access_expr
+        // in subsequent lines.
+        for line in lines.iter_mut().skip(i) {
+            *line = replace_word(line, local_name, &access_expr);
+        }
+        // Don't increment i — check the new line at this position
+    }
+
+    lines.join("\n")
+}
+
+/// A parsed destructuring property.
+enum DestructProp {
+    /// `key: local` or `"key": local` or `key` (shorthand) or `key = default`
+    Simple {
+        key: String,
+        local: String,
+        default_expr: Option<String>,
+    },
+    /// `...rest`
+    Rest(String),
+}
+
+/// Parse a destructuring pattern like `"bind:value": bindValue, foo, bar: baz`
+/// into a list of DestructProp.
+fn parse_destructuring_props(pattern: &str) -> Vec<DestructProp> {
+    let mut result = Vec::new();
+    let mut remaining = pattern.trim();
+
+    while !remaining.is_empty() {
+        remaining = remaining.trim();
+        if remaining.is_empty() {
+            break;
+        }
+
+        // Rest pattern: ...name
+        if let Some(rest) = remaining.strip_prefix("...") {
+            let name = rest.trim().trim_end_matches(',').trim();
+            if !name.is_empty() {
+                result.push(DestructProp::Rest(name.to_string()));
+            }
+            break;
+        }
+
+        // Quoted key: "key": local or 'key': local
+        if remaining.starts_with('"') || remaining.starts_with('\'') {
+            let quote = remaining.chars().next().unwrap();
+            let inner = &remaining[1..];
+            let close = match inner.find(quote) {
+                Some(p) => p,
+                None => break,
+            };
+            let key = inner[..close].to_string();
+            let after_key = inner[close + 1..].trim();
+
+            // Must be followed by `: local`
+            let after_colon = match after_key.strip_prefix(':') {
+                Some(s) => s.trim(),
+                None => break,
+            };
+
+            // Parse local name (and optional default)
+            let (local, default_expr, consumed) = parse_local_and_default(after_colon);
+            result.push(DestructProp::Simple {
+                key,
+                local,
+                default_expr,
+            });
+            remaining = after_colon[consumed..].trim();
+            remaining = remaining.strip_prefix(',').unwrap_or(remaining).trim();
+            continue;
+        }
+
+        // Identifier key: key, key: alias, key = default
+        let ident_end = remaining
+            .find(|c: char| !c.is_alphanumeric() && c != '_' && c != '$')
+            .unwrap_or(remaining.len());
+        if ident_end == 0 {
+            break; // Unexpected character
+        }
+        let key = remaining[..ident_end].to_string();
+        let after_key = remaining[ident_end..].trim();
+
+        if after_key.starts_with(':') {
+            // key: alias pattern
+            let after_colon = after_key[1..].trim();
+            let (local, default_expr, consumed) = parse_local_and_default(after_colon);
+            result.push(DestructProp::Simple {
+                key,
+                local,
+                default_expr,
+            });
+            remaining = after_colon[consumed..].trim();
+            remaining = remaining.strip_prefix(',').unwrap_or(remaining).trim();
+        } else if after_key.starts_with('=') {
+            // key = default pattern (shorthand with default)
+            let after_eq = after_key[1..].trim();
+            let (default_str, consumed) = extract_default_expr(after_eq);
+            result.push(DestructProp::Simple {
+                key: key.clone(),
+                local: key,
+                default_expr: Some(default_str),
+            });
+            remaining = after_eq[consumed..].trim();
+            remaining = remaining.strip_prefix(',').unwrap_or(remaining).trim();
+        } else {
+            // Shorthand: key
+            result.push(DestructProp::Simple {
+                key: key.clone(),
+                local: key,
+                default_expr: None,
+            });
+            remaining = after_key.strip_prefix(',').unwrap_or(after_key).trim();
+        }
+    }
+
+    result
+}
+
+/// Parse a local name and optional default expression from a string.
+/// Returns (local_name, optional_default, bytes_consumed).
+fn parse_local_and_default(s: &str) -> (String, Option<String>, usize) {
+    let ident_end = s
+        .find(|c: char| !c.is_alphanumeric() && c != '_' && c != '$')
+        .unwrap_or(s.len());
+    let local = s[..ident_end].to_string();
+    let after_ident = s[ident_end..].trim();
+
+    if after_ident.starts_with('=') {
+        let after_eq = after_ident[1..].trim();
+        let (default_str, def_consumed) = extract_default_expr(after_eq);
+        let total_consumed = s.len() - after_eq.len() + def_consumed;
+        (local, Some(default_str), total_consumed)
+    } else {
+        (local, None, ident_end)
+    }
+}
+
+/// Extract a default expression up to the next top-level comma or end of string.
+/// Returns (expression_string, bytes_consumed).
+fn extract_default_expr(s: &str) -> (String, usize) {
+    let mut depth = 0i32;
+    let mut end = s.len();
+    for (i, ch) in s.char_indices() {
+        match ch {
+            '(' | '[' | '{' => depth += 1,
+            ')' | ']' | '}' => depth -= 1,
+            ',' if depth == 0 => {
+                end = i;
+                break;
+            }
+            _ => {}
+        }
+    }
+    (s[..end].trim().to_string(), end)
 }
 
 // ---------------------------------------------------------------------------
@@ -968,7 +1411,20 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
     let (expr_after_hoist, hoisted_pairs) = hoist_qrls_from_expr(&transformed_expr);
 
     // Step 4: fix self-referential variables
-    let final_expr = fix_self_referential_vars(&expr_after_hoist);
+    let expr_after_selfref = fix_self_referential_vars(&expr_after_hoist);
+
+    // Step 4a: inline body-level object destructuring into direct property access.
+    // Converts `const { "bind:value": bindValue } = props;` patterns into
+    // `const bindValue = props["bind:value"];` and `const foo = props.foo;`.
+    // SWC inlines these further (eliminating the intermediate const entirely)
+    // but this step at least eliminates the object destructuring form.
+    // Step 4a-1: inline body-level object destructuring into direct property access.
+    let expr_after_destr = inline_object_destructuring(&expr_after_selfref);
+
+    // Step 4a-2: inline simple prop-access const declarations.
+    // Converts `const X = obj.prop;` → replaces all `X` usages with `obj.prop`
+    // and removes the declaration. Matches SWC's inline props access style.
+    let final_expr = inline_simple_prop_consts(&expr_after_destr);
 
     // Step 4b (Phase 28-01): Add JSX runtime imports for segment modules.
     // When JSX is transformed to _jsxSorted/_jsxSplit calls inside segment closures,
@@ -1724,5 +2180,69 @@ mod tests {
             "Expected named export, got: {}",
             result
         );
+    }
+
+    // -----------------------------------------------------------------------
+    // inline_object_destructuring tests
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn inline_destr_bind_value() {
+        let input = r#"(props) => {
+	const { "bind:value": bindValue } = props;
+	const test = useSignal(bindValue);
+	return test;
+}"#;
+        let result = inline_object_destructuring(input);
+        assert!(!result.contains("const {"), "Should remove destructuring: {}", result);
+        assert!(result.contains(r#"props["bind:value"]"#), "Should inline bracket access: {}", result);
+        assert!(result.contains(r#"useSignal(props["bind:value"])"#), "Should inline into usage: {}", result);
+    }
+
+    #[test]
+    fn inline_destr_shorthand() {
+        let input = r#"(obj) => {
+	const { foo, bar } = obj;
+	return foo + bar;
+}"#;
+        let result = inline_object_destructuring(input);
+        assert!(!result.contains("const {"), "Should remove destructuring: {}", result);
+        assert!(result.contains("obj.foo"), "Should inline foo: {}", result);
+        assert!(result.contains("obj.bar"), "Should inline bar: {}", result);
+    }
+
+    #[test]
+    fn inline_destr_with_rest_skips() {
+        let input = r#"(obj) => {
+	const { foo, ...rest } = obj;
+	return rest;
+}"#;
+        let result = inline_object_destructuring(input);
+        assert!(result.contains("const {"), "Should preserve destructuring with rest: {}", result);
+    }
+
+    // -----------------------------------------------------------------------
+    // inline_simple_prop_consts tests
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn inline_prop_const_dot_access() {
+        let input = r#"(_rawProps) => {
+	const cleanup = _rawProps.cleanup;
+	cleanup(() => clearInterval(timer));
+}"#;
+        let result = inline_simple_prop_consts(input);
+        assert!(!result.contains("const cleanup"), "Should remove const cleanup: {}", result);
+        assert!(result.contains("_rawProps.cleanup(() => clearInterval(timer))"), "Should inline: {}", result);
+    }
+
+    #[test]
+    fn inline_prop_const_preserves_captures() {
+        let input = r#"() => {
+	const count = _captures[0];
+	return count;
+}"#;
+        let result = inline_simple_prop_consts(input);
+        assert!(result.contains("const count = _captures[0]"), "Should preserve _captures: {}", result);
     }
 }

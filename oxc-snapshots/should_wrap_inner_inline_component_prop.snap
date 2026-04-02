@@ -41,8 +41,7 @@ export const test_component_LUXeXe0DQrg = (props: {
 	const rerenders = renders.count + 0;
 	const _ref = {};
 	_ref.Id = (props: any) => /*#__PURE__*/ _jsxSorted("div", null, null, ["_ref.Id:", _wrapProp(props, "id")], 3, "u6_0");
-	const { Id } = _ref;
-	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted(Id, { id: props.id }, null, null, 3, "u6_2"), rerenders], 1, "u6_1");
+	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, [/*#__PURE__*/ _jsxSorted(_ref.Id, { id: props.id }, null, null, 3, "u6_2"), rerenders], 1, "u6_1");
 };
 
 /*

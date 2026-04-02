@@ -40,15 +40,11 @@ export const test_component_LUXeXe0DQrg = (_rawProps) => {
 		"id",
 		"count"
 	]);
-	const message = _rawProps.message;
-	const id = _rawProps.id;
-	const c = _rawProps.count;
 	const _ref = {};
 	_ref.renders = useStore({ _ref.renders: 0 }, { reactive: false });
-	const { renders } = _ref;
-	renders.renders++;
-	const rerenders = renders.renders + 0;
-	return /*#__PURE__*/ _jsxSorted("div", { id }, null, [/*#__PURE__*/ _jsxSplit("span", { ..._getVarProps(rest) }, { ..._getConstProps(rest) }, [message, c], 0, null), /*#__PURE__*/ _jsxSorted("div", null, { class: "renders" }, rerenders, 3, null)], 3, "u6_0");
+	_ref.renders.renders++;
+	const rerenders = _ref.renders.renders + 0;
+	return /*#__PURE__*/ _jsxSorted("div", { _rawProps.id }, null, [/*#__PURE__*/ _jsxSplit("span", { ..._getVarProps(rest) }, { ..._getConstProps(rest) }, [_rawProps.message, _rawProps.count], 0, null), /*#__PURE__*/ _jsxSorted("div", null, { class: "_ref.renders" }, rerenders, 3, null)], 3, "u6_0");
 };
 
 /*

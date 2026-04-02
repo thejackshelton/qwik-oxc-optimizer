@@ -1800,13 +1800,12 @@ export const Link_component_useVisibleTask_6K6z063D0C4 = ({ track }) => {
 	const handlePrefetch = _captures[1];
 	const loc = _captures[2];
 	track(() => loc.url.pathname);
-	const handler = linkProps.onQVisible$;
-	if (handler) {
+	if (linkProps.onQVisible$) {
 		const event = new CustomEvent("qvisible");
-		if (Array.isArray(handler)) {
-			handler.flat(10).forEach((handler2) => handler2?.(event, anchorRef.value));
+		if (Array.isArray(linkProps.onQVisible$)) {
+			linkProps.onQVisible$.flat(10).forEach((handler2) => handler2?.(event, anchorRef.value));
 		} else {
-			handler?.(event, anchorRef.value);
+			linkProps.onQVisible$?.(event, anchorRef.value);
 		}
 	}
 	if (!isDev && anchorRef.value) {
@@ -1814,7 +1813,7 @@ export const Link_component_useVisibleTask_6K6z063D0C4 = ({ track }) => {
 	}
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_Link_component_useVisibleTask_6K6z063D0C4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { isDev } from \\"@qwik.dev/core\\";\nexport const Link_component_useVisibleTask_6K6z063D0C4 = ({ track }) => { const anchorRef = _captures[0];\nconst handlePrefetch = _captures[1];\nconst loc = _captures[2];\n\n\ttrack(() => loc.url.pathname);\n\tconst handler = linkProps.onQVisible$;\n\tif (handler) {\n\t\tconst event = new CustomEvent(\\"qvisible\\");\n\t\tif (Array.isArray(handler)) {\n\t\t\thandler.flat(10).forEach((handler2) => handler2?.(event, anchorRef.value));\n\t\t} else {\n\t\t\thandler?.(event, anchorRef.value);\n\t\t}\n\t}\n\tif (!isDev && anchorRef.value) {\n\t\thandlePrefetch?.(void 0, anchorRef.value);\n\t}\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,aAAa;AACtB,OAAO,MAAM,6CAA6C,EAAE,YAAY;CAAE,MAAM,YAAY,UAAU;CACtG,MAAM,iBAAiB,UAAU;CACjC,MAAM,MAAM,UAAU;AAErB,aAAY,IAAI,IAAI,SAAS;CAC7B,MAAM,UAAU,UAAU;AAC1B,KAAI,SAAS;EACZ,MAAM,QAAQ,IAAI,YAAY,WAAW;AACzC,MAAI,MAAM,QAAQ,QAAQ,EAAE;AAC3B,WAAQ,KAAK,GAAG,CAAC,SAAS,aAAa,WAAW,OAAO,UAAU,MAAM,CAAC;SACpE;AACN,aAAU,OAAO,UAAU,MAAM;;;AAGnC,KAAI,CAAC,SAAS,UAAU,OAAO;AAC9B,mBAAiB,KAAK,GAAG,UAAU,MAAM\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_Link_component_useVisibleTask_6K6z063D0C4\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { isDev } from \\"@qwik.dev/core\\";\nexport const Link_component_useVisibleTask_6K6z063D0C4 = ({ track }) => { const anchorRef = _captures[0];\nconst handlePrefetch = _captures[1];\nconst loc = _captures[2];\n\n\ttrack(() => loc.url.pathname);\n\tif (linkProps.onQVisible$) {\n\t\tconst event = new CustomEvent(\\"qvisible\\");\n\t\tif (Array.isArray(linkProps.onQVisible$)) {\n\t\t\tlinkProps.onQVisible$.flat(10).forEach((handler2) => handler2?.(event, anchorRef.value));\n\t\t} else {\n\t\t\tlinkProps.onQVisible$?.(event, anchorRef.value);\n\t\t}\n\t}\n\tif (!isDev && anchorRef.value) {\n\t\thandlePrefetch?.(void 0, anchorRef.value);\n\t}\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,aAAa;AACtB,OAAO,MAAM,6CAA6C,EAAE,YAAY;CAAE,MAAM,YAAY,UAAU;CACtG,MAAM,iBAAiB,UAAU;CACjC,MAAM,MAAM,UAAU;AAErB,aAAY,IAAI,IAAI,SAAS;AAC7B,KAAI,UAAU,aAAa;EAC1B,MAAM,QAAQ,IAAI,YAAY,WAAW;AACzC,MAAI,MAAM,QAAQ,UAAU,YAAY,EAAE;AACzC,aAAU,YAAY,KAAK,GAAG,CAAC,SAAS,aAAa,WAAW,OAAO,UAAU,MAAM,CAAC;SAClF;AACN,aAAU,cAAc,OAAO,UAAU,MAAM;;;AAGjD,KAAI,CAAC,SAAS,UAAU,OAAO;AAC9B,mBAAiB,KAAK,GAAG,UAAU,MAAM\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -1946,18 +1945,14 @@ export const GetForm_component_2_hKjwJJIqHfA = (_rawProps) => {
 		"reloadDocument",
 		"onSubmit$"
 	]);
-	const _0 = _rawProps.action;
-	const spaReset = _rawProps.spaReset;
-	const reloadDocument = _rawProps.reloadDocument;
-	const onSubmit$ = _rawProps.onSubmit$;
 	const nav = useNavigate();
 	return /*#__PURE__*/ jsx("form", {
 		action: "get",
-		"preventdefault:submit": !reloadDocument,
-		"data-spa-reset": spaReset ? "true" : void 0,
+		"preventdefault:submit": !_rawProps.reloadDocument,
+		"data-spa-reset": _rawProps.spaReset ? "true" : void 0,
 		...rest,
-		onSubmit$: [
-			...Array.isArray(onSubmit$) ? onSubmit$ : [onSubmit$],
+		_rawProps.onSubmit$: [
+			...Array.isArray(_rawProps.onSubmit$) ? _rawProps.onSubmit$ : [_rawProps.onSubmit$],
 			Qrl(q_GetForm_component_OIWHwJ5eKxg.w([nav])),
 			Qrl(q_GetForm_component_1_PlB4pu4Bj6I)
 		],
@@ -1965,7 +1960,6 @@ export const GetForm_component_2_hKjwJJIqHfA = (_rawProps) => {
 	});
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_GetForm_component_2_hKjwJJIqHfA\"],\"sourcesContent\":[\"import { _restProps } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nimport { Slot } from \\"@qwik.dev/core\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { useNavigate } from \\"./index.qwik.js\\";\nconst q_GetForm_component_1_PlB4pu4Bj6I = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_GetForm_component_1_PlB4pu4Bj6I.mjs\\"), \\"GetForm_component_1_PlB4pu4Bj6I\\");\nconst q_GetForm_component_OIWHwJ5eKxg = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_GetForm_component_OIWHwJ5eKxg.mjs\\"), \\"GetForm_component_OIWHwJ5eKxg\\", [nav]);\nexport const GetForm_component_2_hKjwJJIqHfA = (_rawProps) => {\n\tconst rest = _restProps(_rawProps, [\n\t\t\\"action\\",\n\t\t\\"spaReset\\",\n\t\t\\"reloadDocument\\",\n\t\t\\"onSubmit$\\"\n\t]);\n\tconst _0 = _rawProps.action;\n\tconst spaReset = _rawProps.spaReset;\n\tconst reloadDocument = _rawProps.reloadDocument;\n\tconst onSubmit$ = _rawProps.onSubmit$;\n\tconst nav = useNavigate();\n\treturn /* @__PURE__ */ jsx(\\"form\\", {\n\t\taction: \\"get\\",\n\t\t\\"preventdefault:submit\\": !reloadDocument,\n\t\t\\"data-spa-reset\\": spaReset ? \\"true\\" : void 0,\n\t\t...rest,\n\t\tonSubmit$: [\n\t\t\t...Array.isArray(onSubmit$) ? onSubmit$ : [onSubmit$],\n\t\t\tQrl(q_GetForm_component_OIWHwJ5eKxg.w([nav])),\n\t\t\tQrl(q_GetForm_component_1_PlB4pu4Bj6I)\n\t\t],\n\t\tchildren: /* @__PURE__ */ jsx(Slot, {})\n\t});\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,YAAY;AACrB,SAAS,WAAW;AACpB,SAAS,mBAAmB;AAC5B,MAAM,oCAAkD,0BAAU,OAAO,yDAAyD,kCAAkC;AACpK,MAAM,kCAAgD,0BAAU,OAAO,uDAAuD,iCAAiC,CAAC,IAAI,CAAC;AACrK,OAAO,MAAM,mCAAmC,cAAc;CAC7D,MAAM,OAAO,WAAW,WAAW;EAClC;EACA;EACA;EACA;EACA,CAAC;CACF,MAAM,KAAK,UAAU;CACrB,MAAM,WAAW,UAAU;CAC3B,MAAM,iBAAiB,UAAU;CACjC,MAAM,YAAY,UAAU;CAC5B,MAAM,MAAM,aAAa;AACzB,QAAuB,oBAAI,QAAQ;EAClC,QAAQ;EACR,yBAAyB,CAAC;EAC1B,kBAAkB,WAAW,SAAS,KAAK;EAC3C,GAAG;EACH,WAAW;GACV,GAAG,MAAM,QAAQ,UAAU,GAAG,YAAY,CAAC,UAAU;GACrD,IAAI,gCAAgC,EAAE,CAAC,IAAI,CAAC,CAAC;GAC7C,IAAI,kCAAkC;GACtC;EACD,UAA0B,oBAAI,MAAM,EAAE,CAAC;EACvC,CAAC\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -2005,13 +1999,12 @@ export const RouterOutlet_component_hKWOEO9aIDM = () => {
 		throw new Error("PrefetchServiceWorker component must be rendered on the server.");
 	}
 	const internalContext = useContext(ContentInternalContext);
-	const contents = internalContext.value;
-	if (contents && contents.length > 0) {
-		const contentsLen = contents.length;
+	if (internalContext.value && internalContext.value.length > 0) {
+		const contentsLen = internalContext.value.length;
 		let cmp = null;
 		for (let i = contentsLen - 1; i >= 0; i--) {
-			if (contents[i].default) {
-				cmp = jsx$1(contents[i].default, { children: cmp });
+			if (internalContext.value[i].default) {
+				cmp = jsx$1(internalContext.value[i].default, { children: cmp });
 			}
 		}
 		return /*#__PURE__*/ jsxs(Fragment, { children: [cmp, !__EXPERIMENTAL__.noSPA && /*#__PURE__*/ jsx("script", {
@@ -2033,7 +2026,7 @@ export const RouterOutlet_component_hKWOEO9aIDM = () => {
 	return SkipRender;
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_RouterOutlet_component_hKWOEO9aIDM\"],\"sourcesContent\":[\"import { Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { SkipRender } from \\"@qwik.dev/core\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { jsxs } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { useContext } from \\"@qwik.dev/core\\";\nimport { useServerData } from \\"@qwik.dev/core\\";\nexport const RouterOutlet_component_hKWOEO9aIDM = () => {\n\tconst serverData = useServerData(\\"containerAttributes\\");\n\tif (!serverData) {\n\t\tthrow new Error(\\"PrefetchServiceWorker component must be rendered on the server.\\");\n\t}\n\tconst internalContext = useContext(ContentInternalContext);\n\tconst contents = internalContext.value;\n\tif (contents && contents.length > 0) {\n\t\tconst contentsLen = contents.length;\n\t\tlet cmp = null;\n\t\tfor (let i = contentsLen - 1; i >= 0; i--) {\n\t\t\tif (contents[i].default) {\n\t\t\t\tcmp = jsx$1(contents[i].default, { children: cmp });\n\t\t\t}\n\t\t}\n\t\treturn /* @__PURE__ */ jsxs(Fragment, { children: [cmp, !__EXPERIMENTAL__.noSPA && /* @__PURE__ */ jsx(\\"script\\", {\n\t\t\t\\"document:onQCInit$\\": spaInit,\n\t\t\t\\"document:onQInit$\\": syncQrl(() => {\n\t\t\t\t((w, h) => {\n\t\t\t\t\tif (!w._qcs && h.scrollRestoration === \\"manual\\") {\n\t\t\t\t\t\tw._qcs = true;\n\t\t\t\t\t\tconst s = h.state?._qRouterScroll;\n\t\t\t\t\t\tif (s) {\n\t\t\t\t\t\t\tw.scrollTo(s.x, s.y);\n\t\t\t\t\t\t}\n\t\t\t\t\t\tdocument.dispatchEvent(new Event(\\"qcinit\\"));\n\t\t\t\t\t}\n\t\t\t\t})(window, history);\n\t\t\t})\n\t\t})] });\n\t}\n\treturn SkipRender;\n};\"],\"mappings\":\"AAAA,SAAS,gBAAgB;AACzB,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,YAAY;AACrB,SAAS,kBAAkB;AAC3B,SAAS,qBAAqB;AAC9B,OAAO,MAAM,2CAA2C;CACvD,MAAM,aAAa,cAAc,sBAAsB;AACvD,KAAI,CAAC,YAAY;AAChB,QAAM,IAAI,MAAM,kEAAkE;;CAEnF,MAAM,kBAAkB,WAAW,uBAAuB;CAC1D,MAAM,WAAW,gBAAgB;AACjC,KAAI,YAAY,SAAS,SAAS,GAAG;EACpC,MAAM,cAAc,SAAS;EAC7B,IAAI,MAAM;AACV,OAAK,IAAI,IAAI,cAAc,GAAG,KAAK,GAAG,KAAK;AAC1C,OAAI,SAAS,GAAG,SAAS;AACxB,UAAM,MAAM,SAAS,GAAG,SAAS,EAAE,UAAU,KAAK,CAAC;;;AAGrD,SAAuB,qBAAK,UAAU,EAAE,UAAU,CAAC,KAAK,CAAC,iBAAiB,SAAyB,oBAAI,UAAU;GAChH,sBAAsB;GACtB,qBAAqB,cAAc;AAClC,MAAE,GAAG,MAAM;AACV,SAAI,CAAC,EAAE,QAAQ,EAAE,sBAAsB,UAAU;AAChD,QAAE,OAAO;MACT,MAAM,IAAI,EAAE,OAAO;AACnB,UAAI,GAAG;AACN,SAAE,SAAS,EAAE,GAAG,EAAE,EAAE;;AAErB,eAAS,cAAc,IAAI,MAAM,SAAS,CAAC;;OAE1C,QAAQ,QAAQ;KAClB;GACF,CAAC,CAAC,EAAE,CAAC;;AAEP,QAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_RouterOutlet_component_hKWOEO9aIDM\"],\"sourcesContent\":[\"import { Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { SkipRender } from \\"@qwik.dev/core\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { jsxs } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { useContext } from \\"@qwik.dev/core\\";\nimport { useServerData } from \\"@qwik.dev/core\\";\nexport const RouterOutlet_component_hKWOEO9aIDM = () => {\n\tconst serverData = useServerData(\\"containerAttributes\\");\n\tif (!serverData) {\n\t\tthrow new Error(\\"PrefetchServiceWorker component must be rendered on the server.\\");\n\t}\n\tconst internalContext = useContext(ContentInternalContext);\n\tif (internalContext.value && internalContext.value.length > 0) {\n\t\tconst contentsLen = internalContext.value.length;\n\t\tlet cmp = null;\n\t\tfor (let i = contentsLen - 1; i >= 0; i--) {\n\t\t\tif (internalContext.value[i].default) {\n\t\t\t\tcmp = jsx$1(internalContext.value[i].default, { children: cmp });\n\t\t\t}\n\t\t}\n\t\treturn /* @__PURE__ */ jsxs(Fragment, { children: [cmp, !__EXPERIMENTAL__.noSPA && /* @__PURE__ */ jsx(\\"script\\", {\n\t\t\t\\"document:onQCInit$\\": spaInit,\n\t\t\t\\"document:onQInit$\\": syncQrl(() => {\n\t\t\t\t((w, h) => {\n\t\t\t\t\tif (!w._qcs && h.scrollRestoration === \\"manual\\") {\n\t\t\t\t\t\tw._qcs = true;\n\t\t\t\t\t\tconst s = h.state?._qRouterScroll;\n\t\t\t\t\t\tif (s) {\n\t\t\t\t\t\t\tw.scrollTo(s.x, s.y);\n\t\t\t\t\t\t}\n\t\t\t\t\t\tdocument.dispatchEvent(new Event(\\"qcinit\\"));\n\t\t\t\t\t}\n\t\t\t\t})(window, history);\n\t\t\t})\n\t\t})] });\n\t}\n\treturn SkipRender;\n};\"],\"mappings\":\"AAAA,SAAS,gBAAgB;AACzB,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,SAAS,YAAY;AACrB,SAAS,kBAAkB;AAC3B,SAAS,qBAAqB;AAC9B,OAAO,MAAM,2CAA2C;CACvD,MAAM,aAAa,cAAc,sBAAsB;AACvD,KAAI,CAAC,YAAY;AAChB,QAAM,IAAI,MAAM,kEAAkE;;CAEnF,MAAM,kBAAkB,WAAW,uBAAuB;AAC1D,KAAI,gBAAgB,SAAS,gBAAgB,MAAM,SAAS,GAAG;EAC9D,MAAM,cAAc,gBAAgB,MAAM;EAC1C,IAAI,MAAM;AACV,OAAK,IAAI,IAAI,cAAc,GAAG,KAAK,GAAG,KAAK;AAC1C,OAAI,gBAAgB,MAAM,GAAG,SAAS;AACrC,UAAM,MAAM,gBAAgB,MAAM,GAAG,SAAS,EAAE,UAAU,KAAK,CAAC;;;AAGlE,SAAuB,qBAAK,UAAU,EAAE,UAAU,CAAC,KAAK,CAAC,iBAAiB,SAAyB,oBAAI,UAAU;GAChH,sBAAsB;GACtB,qBAAqB,cAAc;AAClC,MAAE,GAAG,MAAM;AACV,SAAI,CAAC,EAAE,QAAQ,EAAE,sBAAsB,UAAU;AAChD,QAAE,OAAO;MACT,MAAM,IAAI,EAAE,OAAO;AACnB,UAAI,GAAG;AACN,SAAE,SAAS,EAAE,GAAG,EAAE,EAAE;;AAErB,eAAS,cAAc,IAAI,MAAM,SAAS,CAAC;;OAE1C,QAAQ,QAAQ;KAClB;GACF,CAAC,CAAC,EAAE,CAAC;;AAEP,QAAO\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -2068,12 +2061,11 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 			}
 		};
 		const currentScrollState = () => {
-			const elm = document.documentElement;
 			return {
-				x: elm.scrollLeft,
-				y: elm.scrollTop,
-				w: Math.max(elm.scrollWidth, elm.clientWidth),
-				h: Math.max(elm.scrollHeight, elm.clientHeight)
+				x: document.documentElement.scrollLeft,
+				y: document.documentElement.scrollTop,
+				w: Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth),
+				h: Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight)
 			};
 		};
 		const saveScrollState = (scrollState) => {
@@ -2091,9 +2083,8 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 			if (currentPath !== location.pathname + location.search) {
 				const getContainer = (el2) => el2.closest("[q\\:container]:not([q\\:container=html]):not([q\\:container=text])");
 				const container = getContainer(el);
-				const domContainer = container.qContainer;
-				const hostElement = domContainer.vNodeLocate(el);
-				const nav = domContainer?.resolveContext(hostElement, { id: "qc--n" });
+				const hostElement = container.qContainer.vNodeLocate(el);
+				const nav = container.qContainer?.resolveContext(hostElement, { id: "qc--n" });
 				if (nav) {
 					nav(location.href, { type: "popstate" });
 				} else {
@@ -2109,15 +2100,13 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 		};
 		if (!window._qRouterHistoryPatch) {
 			window._qRouterHistoryPatch = true;
-			const pushState = history.pushState;
-			const replaceState = history.replaceState;
 			const prepareState = (state) => {
 				if (state === null || typeof state === "undefined") {
 					state = {};
 				} else if (state?.constructor !== Object) {
 					state = { _data: state };
 					if (isDev) {
-						console.warn("In a Qwik SPA context, `history.state` is used to store scroll state. Direct calls to `pushState()` and `replaceState()` must supply an actual Object type. We need to be able to automatically attach the scroll state to your state object. A new state object has been created, your data has been moved to: `history.state._data`");
+						console.warn("In a Qwik SPA context, `history.state` is used to store scroll state. Direct calls to `history.pushState()` and `history.replaceState()` must supply an actual Object type. We need to be able to automatically attach the scroll state to your state object. A new state object has been created, your data has been moved to: `history.state._data`");
 					}
 				}
 				state._qRouterScroll = state._qRouterScroll || currentScrollState();
@@ -2125,11 +2114,11 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 			};
 			history.pushState = (state, title, url) => {
 				state = prepareState(state);
-				return pushState.call(history, state, title, url);
+				return history.pushState.call(history, state, title, url);
 			};
 			history.replaceState = (state, title, url) => {
 				state = prepareState(state);
-				return replaceState.call(history, state, title, url);
+				return history.replaceState.call(history, state, title, url);
 			};
 		}
 		window._qRouterInitAnchors = (event) => {
@@ -2140,9 +2129,8 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 			if (target && !target.hasAttribute("preventdefault:click")) {
 				const _ref = {};
 				_ref.href = target.getAttribute("_ref.href");
-				const { href } = _ref;
 				const prev = new URL(location.href);
-				const dest = new URL(href, prev);
+				const dest = new URL(_ref.href, prev);
 				const sameOrigin = dest.origin === prev.origin;
 				const samePath = dest.pathname + dest.search === prev.pathname + prev.search;
 				if (sameOrigin && samePath) {
@@ -2165,9 +2153,9 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 						}
 					} else {
 						const elmId = dest.hash.slice(1);
-						const elm = document.getElementById(elmId);
-						if (elm) {
-							elm.scrollIntoView();
+						const document.documentElement = document.getElementById(elmId);
+						if (document.documentElement) {
+							document.documentElement.scrollIntoView();
 						}
 					}
 				}
@@ -2200,7 +2188,6 @@ export const spaInit_event_Js1cotabL5I = (_, el) => {
 	}
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_spaInit_event_Js1cotabL5I\"],\"sourcesContent\":[\"import { isDev } from \\"@qwik.dev/core\\";\nexport const spaInit_event_Js1cotabL5I = (_, el) => {\n\tif (!window._qRouterSPA && !window._qRouterInitPopstate) {\n\t\tconst currentPath = location.pathname + location.search;\n\t\tconst checkAndScroll = (scrollState) => {\n\t\t\tif (scrollState) {\n\t\t\t\twindow.scrollTo(scrollState.x, scrollState.y);\n\t\t\t}\n\t\t};\n\t\tconst currentScrollState = () => {\n\t\t\tconst elm = document.documentElement;\n\t\t\treturn {\n\t\t\t\tx: elm.scrollLeft,\n\t\t\t\ty: elm.scrollTop,\n\t\t\t\tw: Math.max(elm.scrollWidth, elm.clientWidth),\n\t\t\t\th: Math.max(elm.scrollHeight, elm.clientHeight)\n\t\t\t};\n\t\t};\n\t\tconst saveScrollState = (scrollState) => {\n\t\t\tconst state = history.state || {};\n\t\t\tstate._qRouterScroll = scrollState || currentScrollState();\n\t\t\thistory.replaceState(state, \\"\\");\n\t\t};\n\t\tsaveScrollState();\n\t\twindow._qRouterInitPopstate = () => {\n\t\t\tif (window._qRouterSPA) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\twindow._qRouterScrollEnabled = false;\n\t\t\tclearTimeout(window._qRouterScrollDebounce);\n\t\t\tif (currentPath !== location.pathname + location.search) {\n\t\t\t\tconst getContainer = (el2) => el2.closest(\\"[q\\\\:container]:not([q\\\\:container=html]):not([q\\\\:container=text])\\");\n\t\t\t\tconst container = getContainer(el);\n\t\t\t\tconst domContainer = container.qContainer;\n\t\t\t\tconst hostElement = domContainer.vNodeLocate(el);\n\t\t\t\tconst nav = domContainer?.resolveContext(hostElement, { id: \\"qc--n\\" });\n\t\t\t\tif (nav) {\n\t\t\t\t\tnav(location.href, { type: \\"popstate\\" });\n\t\t\t\t} else {\n\t\t\t\t\tlocation.reload();\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tif (history.scrollRestoration === \\"manual\\") {\n\t\t\t\t\tconst scrollState = history.state?._qRouterScroll;\n\t\t\t\t\tcheckAndScroll(scrollState);\n\t\t\t\t\twindow._qRouterScrollEnabled = true;\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\tif (!window._qRouterHistoryPatch) {\n\t\t\twindow._qRouterHistoryPatch = true;\n\t\t\tconst pushState = history.pushState;\n\t\t\tconst replaceState = history.replaceState;\n\t\t\tconst prepareState = (state) => {\n\t\t\t\tif (state === null || typeof state === \\"undefined\\") {\n\t\t\t\t\tstate = {};\n\t\t\t\t} else if (state?.constructor !== Object) {\n\t\t\t\t\tstate = { _data: state };\n\t\t\t\t\tif (isDev) {\n\t\t\t\t\t\tconsole.warn(\\"In a Qwik SPA context, `history.state` is used to store scroll state. Direct calls to `pushState()` and `replaceState()` must supply an actual Object type. We need to be able to automatically attach the scroll state to your state object. A new state object has been created, your data has been moved to: `history.state._data`\\");\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tstate._qRouterScroll = state._qRouterScroll || currentScrollState();\n\t\t\t\treturn state;\n\t\t\t};\n\t\t\thistory.pushState = (state, title, url) => {\n\t\t\t\tstate = prepareState(state);\n\t\t\t\treturn pushState.call(history, state, title, url);\n\t\t\t};\n\t\t\thistory.replaceState = (state, title, url) => {\n\t\t\t\tstate = prepareState(state);\n\t\t\t\treturn replaceState.call(history, state, title, url);\n\t\t\t};\n\t\t}\n\t\twindow._qRouterInitAnchors = (event) => {\n\t\t\tif (window._qRouterSPA || event.defaultPrevented) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tconst target = event.target.closest(\\"a[href]\\");\n\t\t\tif (target && !target.hasAttribute(\\"preventdefault:click\\")) {\n\t\t\t\tconst _ref = {};\n\t\t\t\t_ref.href = target.getAttribute(\\"_ref.href\\");\n\t\t\t\tconst { href } = _ref;\n\t\t\t\tconst prev = new URL(location.href);\n\t\t\t\tconst dest = new URL(href, prev);\n\t\t\t\tconst sameOrigin = dest.origin === prev.origin;\n\t\t\t\tconst samePath = dest.pathname + dest.search === prev.pathname + prev.search;\n\t\t\t\tif (sameOrigin && samePath) {\n\t\t\t\t\tevent.preventDefault();\n\t\t\t\t\tif (dest.href !== prev.href) {\n\t\t\t\t\t\thistory.pushState(null, \\"\\", dest);\n\t\t\t\t\t}\n\t\t\t\t\tif (!dest.hash) {\n\t\t\t\t\t\tif (dest.href.endsWith(\\"#\\")) {\n\t\t\t\t\t\t\twindow.scrollTo(0, 0);\n\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\twindow._qRouterScrollEnabled = false;\n\t\t\t\t\t\t\tclearTimeout(window._qRouterScrollDebounce);\n\t\t\t\t\t\t\tsaveScrollState({\n\t\t\t\t\t\t\t\t...currentScrollState(),\n\t\t\t\t\t\t\t\tx: 0,\n\t\t\t\t\t\t\t\ty: 0\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t\tlocation.reload();\n\t\t\t\t\t\t}\n\t\t\t\t\t} else {\n\t\t\t\t\t\tconst elmId = dest.hash.slice(1);\n\t\t\t\t\t\tconst elm = document.getElementById(elmId);\n\t\t\t\t\t\tif (elm) {\n\t\t\t\t\t\t\telm.scrollIntoView();\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\twindow._qRouterInitVisibility = () => {\n\t\t\tif (!window._qRouterSPA && window._qRouterScrollEnabled && document.visibilityState === \\"hidden\\") {\n\t\t\t\tsaveScrollState();\n\t\t\t}\n\t\t};\n\t\twindow._qRouterInitScroll = () => {\n\t\t\tif (window._qRouterSPA || !window._qRouterScrollEnabled) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tclearTimeout(window._qRouterScrollDebounce);\n\t\t\twindow._qRouterScrollDebounce = setTimeout(() => {\n\t\t\t\tsaveScrollState();\n\t\t\t\twindow._qRouterScrollDebounce = void 0;\n\t\t\t}, 200);\n\t\t};\n\t\twindow._qRouterScrollEnabled = true;\n\t\tsetTimeout(() => {\n\t\t\twindow.addEventListener(\\"popstate\\", window._qRouterInitPopstate);\n\t\t\twindow.addEventListener(\\"scroll\\", window._qRouterInitScroll, { passive: true });\n\t\t\tdocument.addEventListener(\\"click\\", window._qRouterInitAnchors);\n\t\t\tif (!window.navigation) {\n\t\t\t\tdocument.addEventListener(\\"visibilitychange\\", window._qRouterInitVisibility, { passive: true });\n\t\t\t}\n\t\t}, 0);\n\t}\n};\"],\"mappings\":\"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\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -2232,10 +2219,10 @@ import { _captures } from "@qwik.dev/core";
 import { isServer } from "@qwik.dev/core";
 import { noSerialize } from "@qwik.dev/core";
 //
-export const routeActionQrl_action_submit_JY3C42B1B08 = (input = {}) => {
-	const currentAction = _captures[0];
-	const loc = _captures[1];
-	const state = _captures[2];
+export const routeActionQrl_action_submit_JY3C42B1B08 = (input = {}) => { const currentAction = _captures[0];
+const loc = _captures[1];
+const state = _captures[2];
+
 	if (isServer) {
 		throw new Error(`Actions can not be invoked within the server during SSR.
 Action.run() can only be called on the browser, for example when a user clicks a button, or submits a form.`);
@@ -2266,18 +2253,16 @@ Action.run() can only be called on the browser, for example when a user clicks a
 			resolve: noSerialize(resolve)
 		};
 	}).then((_rawProps) => {
-		const result = _rawProps.result;
-		const status = _rawProps.status;
 		state.isRunning = false;
-		state.status = status;
-		state.value = result;
+		state.status = _rawProps.status;
+		state.value = _rawProps.result;
 		if (form) {
 			if (form.getAttribute("data-spa-reset") === "true") {
 				form.reset();
 			}
 			const detail = {
-				status,
-				value: result
+				_rawProps.status,
+				value: _rawProps.result
 			};
 			form.dispatchEvent(new CustomEvent("submitcompleted", {
 				bubbles: false,
@@ -2287,13 +2272,12 @@ Action.run() can only be called on the browser, for example when a user clicks a
 			}));
 		}
 		return {
-			status,
-			value: result
+			_rawProps.status,
+			value: _rawProps.result
 		};
 	});
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_routeActionQrl_action_submit_JY3C42B1B08\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nimport { isServer } from \\"@qwik.dev/core\\";\nimport { noSerialize } from \\"@qwik.dev/core\\";\nexport const routeActionQrl_action_submit_JY3C42B1B08 = (input = {}) => { const currentAction = _captures[0];\nconst loc = _captures[1];\nconst state = _captures[2];\n\n\tif (isServer) {\n\t\tthrow new Error(`Actions can not be invoked within the server during SSR.\nAction.run() can only be called on the browser, for example when a user clicks a button, or submits a form.`);\n\t}\n\tlet data;\n\tlet form;\n\tif (input instanceof SubmitEvent) {\n\t\tform = input.target;\n\t\tdata = new FormData(form);\n\t\tif ((input.submitter instanceof HTMLInputElement || input.submitter instanceof HTMLButtonElement) && input.submitter.name) {\n\t\t\tif (input.submitter.name) {\n\t\t\t\tdata.append(input.submitter.name, input.submitter.value);\n\t\t\t}\n\t\t}\n\t} else {\n\t\tdata = input;\n\t}\n\treturn new Promise((resolve) => {\n\t\tif (data instanceof FormData) {\n\t\t\tstate.formData = data;\n\t\t}\n\t\tstate.submitted = true;\n\t\tstate.isRunning = true;\n\t\tloc.isNavigating = true;\n\t\tcurrentAction.value = {\n\t\t\tdata,\n\t\t\tid,\n\t\t\tresolve: noSerialize(resolve)\n\t\t};\n\t}).then((_rawProps) => {\n\t\tconst result = _rawProps.result;\n\t\tconst status = _rawProps.status;\n\t\tstate.isRunning = false;\n\t\tstate.status = status;\n\t\tstate.value = result;\n\t\tif (form) {\n\t\t\tif (form.getAttribute(\\"data-spa-reset\\") === \\"true\\") {\n\t\t\t\tform.reset();\n\t\t\t}\n\t\t\tconst detail = {\n\t\t\t\tstatus,\n\t\t\t\tvalue: result\n\t\t\t};\n\t\t\tform.dispatchEvent(new CustomEvent(\\"submitcompleted\\", {\n\t\t\t\tbubbles: false,\n\t\t\t\tcancelable: false,\n\t\t\t\tcomposed: false,\n\t\t\t\tdetail\n\t\t\t}));\n\t\t}\n\t\treturn {\n\t\t\tstatus,\n\t\t\tvalue: result\n\t\t};\n\t});\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,SAAS,gBAAgB;AACzB,SAAS,mBAAmB;AAC5B,OAAO,MAAM,4CAA4C,QAAQ,EAAE,KAAK;CAAE,MAAM,gBAAgB,UAAU;CAC1G,MAAM,MAAM,UAAU;CACtB,MAAM,QAAQ,UAAU;AAEvB,KAAI,UAAU;AACb,QAAM,IAAI,MAAM;6GAC2F;;CAE5G,IAAI;CACJ,IAAI;AACJ,KAAI,iBAAiB,aAAa;AACjC,SAAO,MAAM;AACb,SAAO,IAAI,SAAS,KAAK;AACzB,OAAK,MAAM,qBAAqB,oBAAoB,MAAM,qBAAqB,sBAAsB,MAAM,UAAU,MAAM;AAC1H,OAAI,MAAM,UAAU,MAAM;AACzB,SAAK,OAAO,MAAM,UAAU,MAAM,MAAM,UAAU,MAAM;;;QAGpD;AACN,SAAO;;AAER,QAAO,IAAI,SAAS,YAAY;AAC/B,MAAI,gBAAgB,UAAU;AAC7B,SAAM,WAAW;;AAElB,QAAM,YAAY;AAClB,QAAM,YAAY;AAClB,MAAI,eAAe;AACnB,gBAAc,QAAQ;GACrB;GACA;GACA,SAAS,YAAY,QAAQ;GAC7B;GACA,CAAC,MAAM,cAAc;EACtB,MAAM,SAAS,UAAU;EACzB,MAAM,SAAS,UAAU;AACzB,QAAM,YAAY;AAClB,QAAM,SAAS;AACf,QAAM,QAAQ;AACd,MAAI,MAAM;AACT,OAAI,KAAK,aAAa,iBAAiB,KAAK,QAAQ;AACnD,SAAK,OAAO;;GAEb,MAAM,SAAS;IACd;IACA,OAAO;IACP;AACD,QAAK,cAAc,IAAI,YAAY,mBAAmB;IACrD,SAAS;IACT,YAAY;IACZ,UAAU;IACV;IACA,CAAC,CAAC;;AAEJ,SAAO;GACN;GACA,OAAO;GACP;GACA\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -2517,14 +2501,13 @@ const q_Link_component_useVisibleTask_6K6z063D0C4 = /*#__PURE__*/ qrl(() => impo
 export const Link_component_nhj84CU1784 = (props) => {
 	const nav = useNavigate();
 	const loc = useLocation();
-	const originalHref = props.href;
 	const anchorRef = useSignal();
 	const { onClick$, prefetch: prefetchProp, reload, replaceState, scroll, ...linkProps } = /*#__PURE__*/ (() => props)();
 	const clientNavPath = untrack(getClientNavPath, {
 		...linkProps,
 		reload
 	}, loc);
-	linkProps.href = clientNavPath || originalHref;
+	linkProps.href = clientNavPath || props.href;
 	const prefetchData = !!clientNavPath && prefetchProp !== false && prefetchProp !== "js" || void 0;
 	const prefetch = prefetchData || !!clientNavPath && prefetchProp !== false && untrack(shouldPreload, clientNavPath, loc);
 	const handlePrefetch = prefetch ? Qrl(q_Link_component_handlePrefetch_Evus9ZlzXpQ) : void 0;
@@ -2558,7 +2541,7 @@ export const Link_component_nhj84CU1784 = (props) => {
 	});
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_Link_component_nhj84CU1784\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nimport { Slot } from \\"@qwik.dev/core\\";\nimport { g as getClientNavPath } from \\"./chunks/routing.qwik.mjs\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { s as shouldPreload } from \\"./chunks/routing.qwik.mjs\\";\nimport { untrack } from \\"@qwik.dev/core\\";\nimport { useLocation } from \\"./index.qwik.js\\";\nimport { useNavigate } from \\"./index.qwik.js\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Link_component_handleClientSideNavigation_rMfmL7bFMLU = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handleClientSideNavigation_rMfmL7bFMLU.mjs\\"), \\"Link_component_handleClientSideNavigation_rMfmL7bFMLU\\", [nav]);\nconst q_Link_component_handlePrefetch_Evus9ZlzXpQ = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handlePrefetch_Evus9ZlzXpQ.mjs\\"), \\"Link_component_handlePrefetch_Evus9ZlzXpQ\\");\nconst q_Link_component_handlePreload_MhXmSxzp4GE = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handlePreload_MhXmSxzp4GE.mjs\\"), \\"Link_component_handlePreload_MhXmSxzp4GE\\");\nconst q_Link_component_useVisibleTask_6K6z063D0C4 = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_useVisibleTask_6K6z063D0C4.mjs\\"), \\"Link_component_useVisibleTask_6K6z063D0C4\\", [\n\tanchorRef,\n\thandlePrefetch,\n\tloc\n]);\nexport const Link_component_nhj84CU1784 = (props) => {\n\tconst nav = useNavigate();\n\tconst loc = useLocation();\n\tconst originalHref = props.href;\n\tconst anchorRef = useSignal();\n\tconst { onClick$, prefetch: prefetchProp, reload, replaceState, scroll, ...linkProps } = /* @__PURE__ */ (() => props)();\n\tconst clientNavPath = untrack(getClientNavPath, {\n\t\t...linkProps,\n\t\treload\n\t}, loc);\n\tlinkProps.href = clientNavPath || originalHref;\n\tconst prefetchData = !!clientNavPath && prefetchProp !== false && prefetchProp !== \\"js\\" || void 0;\n\tconst prefetch = prefetchData || !!clientNavPath && prefetchProp !== false && untrack(shouldPreload, clientNavPath, loc);\n\tconst handlePrefetch = prefetch ? Qrl(q_Link_component_handlePrefetch_Evus9ZlzXpQ) : void 0;\n\tconst preventDefault = clientNavPath ? syncQrl((event) => {\n\t\tif (!(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {\n\t\t\tevent.preventDefault();\n\t\t}\n\t}) : void 0;\n\tconst handleClientSideNavigation = clientNavPath ? Qrl(q_Link_component_handleClientSideNavigation_rMfmL7bFMLU.w([nav])) : void 0;\n\tconst handlePreload = Qrl(q_Link_component_handlePreload_MhXmSxzp4GE);\n\tuseVisibleTaskQrl(q_Link_component_useVisibleTask_6K6z063D0C4.w([\n\t\tanchorRef,\n\t\thandlePrefetch,\n\t\tloc\n\t]));\n\treturn /* @__PURE__ */ jsx(\\"a\\", {\n\t\tref: anchorRef,\n\t\t...{ \\"q:link\\": !!clientNavPath },\n\t\t...linkProps,\n\t\tonClick$: [\n\t\t\tpreventDefault,\n\t\t\thandlePreload,\n\t\t\tonClick$,\n\t\t\thandleClientSideNavigation\n\t\t],\n\t\t\\"data-prefetch\\": prefetchData,\n\t\tonMouseOver$: [linkProps.onMouseOver$, handlePrefetch],\n\t\tonFocus$: [linkProps.onFocus$, handlePrefetch],\n\t\tonQVisible$: [],\n\t\tchildren: /* @__PURE__ */ jsx(Slot, {})\n\t});\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,SAAS,YAAY;AACrB,SAAS,KAAK,wBAAwB;AACtC,SAAS,WAAW;AACpB,SAAS,KAAK,qBAAqB;AACnC,SAAS,eAAe;AACxB,SAAS,mBAAmB;AAC5B,SAAS,mBAAmB;AAC5B,SAAS,iBAAiB;AAC1B,MAAM,0DAAwE,0BAAU,OAAO,+EAA+E,yDAAyD,CAAC,IAAI,CAAC;AAC7O,MAAM,8CAA4D,0BAAU,OAAO,mEAAmE,4CAA4C;AAClM,MAAM,6CAA2D,0BAAU,OAAO,kEAAkE,2CAA2C;AAC/L,MAAM,8CAA4D,0BAAU,OAAO,mEAAmE,6CAA6C;CAClM;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,MAAM,aAAa;CACzB,MAAM,MAAM,aAAa;CACzB,MAAM,eAAe,MAAM;CAC3B,MAAM,YAAY,WAAW;CAC7B,MAAM,EAAE,UAAU,UAAU,cAAc,QAAQ,cAAc,QAAQ,GAAG,cAA8B,uBAAO,QAAQ;CACxH,MAAM,gBAAgB,QAAQ,kBAAkB;EAC/C,GAAG;EACH;EACA,EAAE,IAAI;AACP,WAAU,OAAO,iBAAiB;CAClC,MAAM,eAAe,CAAC,CAAC,iBAAiB,iBAAiB,SAAS,iBAAiB,QAAQ,KAAK;CAChG,MAAM,WAAW,gBAAgB,CAAC,CAAC,iBAAiB,iBAAiB,SAAS,QAAQ,eAAe,eAAe,IAAI;CACxH,MAAM,iBAAiB,WAAW,IAAI,4CAA4C,GAAG,KAAK;CAC1F,MAAM,iBAAiB,gBAAgB,SAAS,UAAU;AACzD,MAAI,EAAE,MAAM,WAAW,MAAM,WAAW,MAAM,YAAY,MAAM,SAAS;AACxE,SAAM,gBAAgB;;GAEtB,GAAG,KAAK;CACV,MAAM,6BAA6B,gBAAgB,IAAI,wDAAwD,EAAE,CAAC,IAAI,CAAC,CAAC,GAAG,KAAK;CAChI,MAAM,gBAAgB,IAAI,2CAA2C;AACrE,mBAAkB,4CAA4C,EAAE;EAC/D;EACA;EACA;EACA,CAAC,CAAC;AACH,QAAuB,oBAAI,KAAK;EAC/B,KAAK;EACL,GAAG,EAAE,UAAU,CAAC,CAAC,eAAe;EAChC,GAAG;EACH,UAAU;GACT;GACA;GACA;GACA;GACA;EACD,iBAAiB;EACjB,cAAc,CAAC,UAAU,cAAc,eAAe;EACtD,UAAU,CAAC,UAAU,UAAU,eAAe;EAC9C,aAAa,EAAE;EACf,UAA0B,oBAAI,MAAM,EAAE,CAAC;EACvC,CAAC\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"index.qwik.mjs_Link_component_nhj84CU1784\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nimport { Slot } from \\"@qwik.dev/core\\";\nimport { g as getClientNavPath } from \\"./chunks/routing.qwik.mjs\\";\nimport { jsx } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { s as shouldPreload } from \\"./chunks/routing.qwik.mjs\\";\nimport { untrack } from \\"@qwik.dev/core\\";\nimport { useLocation } from \\"./index.qwik.js\\";\nimport { useNavigate } from \\"./index.qwik.js\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nconst q_Link_component_handleClientSideNavigation_rMfmL7bFMLU = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handleClientSideNavigation_rMfmL7bFMLU.mjs\\"), \\"Link_component_handleClientSideNavigation_rMfmL7bFMLU\\", [nav]);\nconst q_Link_component_handlePrefetch_Evus9ZlzXpQ = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handlePrefetch_Evus9ZlzXpQ.mjs\\"), \\"Link_component_handlePrefetch_Evus9ZlzXpQ\\");\nconst q_Link_component_handlePreload_MhXmSxzp4GE = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_handlePreload_MhXmSxzp4GE.mjs\\"), \\"Link_component_handlePreload_MhXmSxzp4GE\\");\nconst q_Link_component_useVisibleTask_6K6z063D0C4 = /*#__PURE__*/ qrl(() => import(\\"./index.qwik.mjs_Link_component_useVisibleTask_6K6z063D0C4.mjs\\"), \\"Link_component_useVisibleTask_6K6z063D0C4\\", [\n\tanchorRef,\n\thandlePrefetch,\n\tloc\n]);\nexport const Link_component_nhj84CU1784 = (props) => {\n\tconst nav = useNavigate();\n\tconst loc = useLocation();\n\tconst anchorRef = useSignal();\n\tconst { onClick$, prefetch: prefetchProp, reload, replaceState, scroll, ...linkProps } = /* @__PURE__ */ (() => props)();\n\tconst clientNavPath = untrack(getClientNavPath, {\n\t\t...linkProps,\n\t\treload\n\t}, loc);\n\tlinkProps.href = clientNavPath || props.href;\n\tconst prefetchData = !!clientNavPath && prefetchProp !== false && prefetchProp !== \\"js\\" || void 0;\n\tconst prefetch = prefetchData || !!clientNavPath && prefetchProp !== false && untrack(shouldPreload, clientNavPath, loc);\n\tconst handlePrefetch = prefetch ? Qrl(q_Link_component_handlePrefetch_Evus9ZlzXpQ) : void 0;\n\tconst preventDefault = clientNavPath ? syncQrl((event) => {\n\t\tif (!(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {\n\t\t\tevent.preventDefault();\n\t\t}\n\t}) : void 0;\n\tconst handleClientSideNavigation = clientNavPath ? Qrl(q_Link_component_handleClientSideNavigation_rMfmL7bFMLU.w([nav])) : void 0;\n\tconst handlePreload = Qrl(q_Link_component_handlePreload_MhXmSxzp4GE);\n\tuseVisibleTaskQrl(q_Link_component_useVisibleTask_6K6z063D0C4.w([\n\t\tanchorRef,\n\t\thandlePrefetch,\n\t\tloc\n\t]));\n\treturn /* @__PURE__ */ jsx(\\"a\\", {\n\t\tref: anchorRef,\n\t\t...{ \\"q:link\\": !!clientNavPath },\n\t\t...linkProps,\n\t\tonClick$: [\n\t\t\tpreventDefault,\n\t\t\thandlePreload,\n\t\t\tonClick$,\n\t\t\thandleClientSideNavigation\n\t\t],\n\t\t\\"data-prefetch\\": prefetchData,\n\t\tonMouseOver$: [linkProps.onMouseOver$, handlePrefetch],\n\t\tonFocus$: [linkProps.onFocus$, handlePrefetch],\n\t\tonQVisible$: [],\n\t\tchildren: /* @__PURE__ */ jsx(Slot, {})\n\t});\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,SAAS,YAAY;AACrB,SAAS,KAAK,wBAAwB;AACtC,SAAS,WAAW;AACpB,SAAS,KAAK,qBAAqB;AACnC,SAAS,eAAe;AACxB,SAAS,mBAAmB;AAC5B,SAAS,mBAAmB;AAC5B,SAAS,iBAAiB;AAC1B,MAAM,0DAAwE,0BAAU,OAAO,+EAA+E,yDAAyD,CAAC,IAAI,CAAC;AAC7O,MAAM,8CAA4D,0BAAU,OAAO,mEAAmE,4CAA4C;AAClM,MAAM,6CAA2D,0BAAU,OAAO,kEAAkE,2CAA2C;AAC/L,MAAM,8CAA4D,0BAAU,OAAO,mEAAmE,6CAA6C;CAClM;CACA;CACA;CACA,CAAC;AACF,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,MAAM,aAAa;CACzB,MAAM,MAAM,aAAa;CACzB,MAAM,YAAY,WAAW;CAC7B,MAAM,EAAE,UAAU,UAAU,cAAc,QAAQ,cAAc,QAAQ,GAAG,cAA8B,uBAAO,QAAQ;CACxH,MAAM,gBAAgB,QAAQ,kBAAkB;EAC/C,GAAG;EACH;EACA,EAAE,IAAI;AACP,WAAU,OAAO,iBAAiB,MAAM;CACxC,MAAM,eAAe,CAAC,CAAC,iBAAiB,iBAAiB,SAAS,iBAAiB,QAAQ,KAAK;CAChG,MAAM,WAAW,gBAAgB,CAAC,CAAC,iBAAiB,iBAAiB,SAAS,QAAQ,eAAe,eAAe,IAAI;CACxH,MAAM,iBAAiB,WAAW,IAAI,4CAA4C,GAAG,KAAK;CAC1F,MAAM,iBAAiB,gBAAgB,SAAS,UAAU;AACzD,MAAI,EAAE,MAAM,WAAW,MAAM,WAAW,MAAM,YAAY,MAAM,SAAS;AACxE,SAAM,gBAAgB;;GAEtB,GAAG,KAAK;CACV,MAAM,6BAA6B,gBAAgB,IAAI,wDAAwD,EAAE,CAAC,IAAI,CAAC,CAAC,GAAG,KAAK;CAChI,MAAM,gBAAgB,IAAI,2CAA2C;AACrE,mBAAkB,4CAA4C,EAAE;EAC/D;EACA;EACA;EACA,CAAC,CAAC;AACH,QAAuB,oBAAI,KAAK;EAC/B,KAAK;EACL,GAAG,EAAE,UAAU,CAAC,CAAC,eAAe;EAChC,GAAG;EACH,UAAU;GACT;GACA;GACA;GACA;GACA;EACD,iBAAiB;EACjB,cAAc,CAAC,UAAU,cAAc,eAAe;EACtD,UAAU,CAAC,UAAU,UAAU,eAAe;EAC9C,aAAa,EAAE;EACf,UAA0B,oBAAI,MAAM,EAAE,CAAC;EACvC,CAAC\"}")
 /*
 {
   "origin": "../node_modules/@qwik.dev/router/index.qwik.mjs",
@@ -2739,9 +2722,7 @@ const serverHead = _captures[13];
 		const navigation = track(routeInternal);
 		const action = track(actionState);
 		const locale = getLocale("");
-		const prevUrl = routeLocation.url;
 		const navType = action ? "form" : navigation.type;
-		const replaceState = navigation.replaceState;
 		let trackUrl;
 		let clientPageData;
 		let loadedRoute = null;
@@ -2772,8 +2753,7 @@ const serverHead = _captures[13];
 				};
 				return;
 			}
-			const newHref = pageData.href;
-			const newURL = new URL(newHref, trackUrl);
+			const newURL = new URL(pageData.href, trackUrl);
 			if (!isSamePath(newURL, trackUrl)) {
 				if (!pageData.isRewrite) {
 					trackUrl = newURL;
@@ -2784,7 +2764,7 @@ const serverHead = _captures[13];
 				loadedRoute = await loadRoutePromise;
 			} catch (e) {
 				console.error(e);
-				window.location.href = newHref;
+				window.location.href = pageData.href;
 				return;
 			}
 		}
@@ -2792,17 +2772,17 @@ const serverHead = _captures[13];
 			const [routeName, params, mods, menu] = loadedRoute;
 			const contentModules = mods;
 			const pageModule = contentModules[contentModules.length - 1];
-			if (navigation.dest.search && !!isSamePath(trackUrl, prevUrl)) {
+			if (navigation.dest.search && !!isSamePath(trackUrl, routeLocation.url)) {
 				trackUrl.search = navigation.dest.search;
 			}
 			let shouldForcePrevUrl = false;
 			let shouldForceUrl = false;
 			let shouldForceParams = false;
-			if (!isSamePath(trackUrl, prevUrl)) {
-				if (_hasStoreEffects(routeLocation, "prevUrl")) {
+			if (!isSamePath(trackUrl, routeLocation.url)) {
+				if (_hasStoreEffects(routeLocation, "routeLocation.url")) {
 					shouldForcePrevUrl = true;
 				}
-				routeLocationTarget.prevUrl = prevUrl;
+				routeLocationTarget.prevUrl = routeLocation.url;
 			}
 			if (routeLocationTarget.url !== trackUrl) {
 				if (_hasStoreEffects(routeLocation, "url")) {
@@ -2836,20 +2816,19 @@ const serverHead = _captures[13];
 					scrollState = getScrollHistory();
 				}
 				const scroller = document.getElementById(QWIK_ROUTER_SCROLLER) ?? document.documentElement;
-				if (navigation.scroll && (!navigation.forceReload || !isSamePath(trackUrl, prevUrl)) && (navType === "link" || navType === "popstate") || navType === "form" && !isSamePath(trackUrl, prevUrl)) {
-					document.__q_scroll_restore__ = () => restoreScroll(navType, trackUrl, prevUrl, scroller, scrollState);
+				if (navigation.scroll && (!navigation.forceReload || !isSamePath(trackUrl, routeLocation.url)) && (navType === "link" || navType === "popstate") || navType === "form" && !isSamePath(trackUrl, routeLocation.url)) {
+					document.__q_scroll_restore__ = () => restoreScroll(navType, trackUrl, routeLocation.url, scroller, scrollState);
 				}
 				const loaders = clientPageData?.loaders;
 				if (loaders) {
 					const container3 = _getContextContainer();
 					for (const [key, value] of Object.entries(loaders)) {
-						const signal = loaderState[key];
 						const awaitedValue = await value;
 						loadersObject[key] = awaitedValue;
-						if (!signal) {
+						if (!loaderState[key]) {
 							loaderState[key] = createLoaderSignal(loadersObject, key, trackUrl, DEFAULT_LOADERS_SERIALIZATION_STRATEGY, container3);
 						} else {
-							signal.invalidate();
+							loaderState[key].invalidate();
 						}
 					}
 				}
@@ -2866,15 +2845,13 @@ const serverHead = _captures[13];
 					window._qRouterInitPopstate = void 0;
 					if (!window._qRouterHistoryPatch) {
 						window._qRouterHistoryPatch = true;
-						const pushState = history.pushState;
-						const replaceState2 = history.replaceState;
 						const prepareState = (state) => {
 							if (state === null || typeof state === "undefined") {
 								state = {};
 							} else if (state?.constructor !== Object) {
 								state = { _data: state };
 								if (isDev) {
-									console.warn("In a Qwik SPA context, `history.state` is used to store scroll state. Direct calls to `pushState()` and `replaceState()` must supply an actual Object type. We need to be able to automatically attach the scroll state to your state object. A new state object has been created, your data has been moved to: `history.state._data`");
+									console.warn("In a Qwik SPA context, `history.state` is used to store scroll state. Direct calls to `history.pushState()` and `navigation.replaceState()` must supply an actual Object type. We need to be able to automatically attach the scroll state to your state object. A new state object has been created, your data has been moved to: `history.state._data`");
 								}
 							}
 							state._qRouterScroll = state._qRouterScroll || currentScrollState(scroller);
@@ -2882,11 +2859,11 @@ const serverHead = _captures[13];
 						};
 						history.pushState = (state, title, url2) => {
 							state = prepareState(state);
-							return pushState.call(history, state, title, url2);
+							return history.pushState.call(history, state, title, url2);
 						};
 						history.replaceState = (state, title, url2) => {
 							state = prepareState(state);
-							return replaceState2.call(history, state, title, url2);
+							return history.replaceState.call(history, state, title, url2);
 						};
 					}
 					document.addEventListener("click", (event) => {
@@ -2897,9 +2874,8 @@ const serverHead = _captures[13];
 						if (target && !target.hasAttribute("preventdefault:click")) {
 							const _ref = {};
 							_ref.href = target.getAttribute("_ref.href");
-							const { href } = _ref;
 							const prev = new URL(location.href);
-							const dest = new URL(href, prev);
+							const dest = new URL(_ref.href, prev);
 							if (isSameOrigin(dest, prev) && isSamePath(dest, prev)) {
 								event.preventDefault();
 								if (!dest.hash && !dest.href.endsWith("#")) {
@@ -2916,7 +2892,7 @@ const serverHead = _captures[13];
 									location.reload();
 									return;
 								}
-								goto(target.getAttribute("href"));
+								goto(target.getAttribute("_ref.href"));
 							}
 						}
 					});
@@ -2957,7 +2933,7 @@ const serverHead = _captures[13];
 					saveScrollHistory(scrollState2);
 				}
 				const navigate = () => {
-					clientNavigate(window, navType, prevUrl, trackUrl, replaceState);
+					clientNavigate(window, navType, routeLocation.url, trackUrl, navigation.replaceState);
 					contentInternal.trigger();
 					return _waitUntilRendered(container2);
 				};
@@ -2987,7 +2963,7 @@ const serverHead = _captures[13];
 						callRestoreScrollOnDocument();
 					}
 					if (shouldForcePrevUrl) {
-						forceStoreEffects(routeLocation, "prevUrl");
+						forceStoreEffects(routeLocation, "routeLocation.url");
 					}
 					if (shouldForceUrl) {
 						forceStoreEffects(routeLocation, "url");
@@ -3124,10 +3100,9 @@ const routeLocation = _captures[3];
 	const lastDest = routeInternal.value.dest;
 	const dest = path === void 0 ? lastDest : typeof path === "number" ? path : toUrl(path, routeLocation.url);
 	if (preventNav.$cbs$ && (forceReload || typeof dest === "number" || !isSamePath(dest, lastDest) || !isSameOrigin(dest, lastDest))) {
-		const ourNavId = internalState.navCount;
 		const prevents = await Promise.all([...preventNav.$cbs$.values()].map((cb) => cb(dest)));
-		if (ourNavId !== internalState.navCount || prevents.some(Boolean)) {
-			if (ourNavId === internalState.navCount && type === "popstate") {
+		if (internalState.navCount !== internalState.navCount || prevents.some(Boolean)) {
+			if (internalState.navCount === internalState.navCount && type === "popstate") {
 				history.pushState(null, "", lastDest);
 			}
 			return;

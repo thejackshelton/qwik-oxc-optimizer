@@ -27,7 +27,6 @@ import { _jsxSorted } from "@qwik.dev/core";
 import { deps } from "deps";
 //
 export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
-	const foo = _rawProps.foo;
 	useMount$(() => {
 		if (false) {
 			deps();
@@ -36,7 +35,7 @@ export const Foo_component_HTDRsvUbLiE = (_rawProps) => {
 	return /*#__PURE__*/ _jsxSorted("div", null, null, null, 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { deps } from \\"deps\\";\nexport const Foo_component_HTDRsvUbLiE = (_rawProps) => {\n\tconst foo = _rawProps.foo;\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,YAAY;AACrB,OAAO,MAAM,6BAA6B,cAAc;CACvD,MAAM,MAAM,UAAU;AACtB,iBAAgB;AACf,MAAI,OAAO;AACV,SAAM;;GAEN;AACF,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_HTDRsvUbLiE\"],\"sourcesContent\":[\"import { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { deps } from \\"deps\\";\nexport const Foo_component_HTDRsvUbLiE = (_rawProps) => {\n\tuseMount$(() => {\n\t\tif (false) {\n\t\t\tdeps();\n\t\t}\n\t});\n\treturn _jsxSorted(\\"div\\", null, null, null, 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,YAAY;AACrB,OAAO,MAAM,6BAA6B,cAAc;AACvD,iBAAgB;AACf,MAAI,OAAO;AACV,SAAM;;GAEN;AACF,QAAO,WAAW,OAAO,MAAM,MAAM,MAAM,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

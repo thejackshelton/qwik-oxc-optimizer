@@ -26,12 +26,11 @@ import { _wrapProp } from "@qwik.dev/core";
 import { useSignal } from "@qwik.dev/core";
 //
 export const test_component_LUXeXe0DQrg = (props) => {
-	const { "bind:value": bindValue } = props;
-	const test = useSignal(bindValue);
+	const test = useSignal(props["bind:value"]);
 	return /*#__PURE__*/ _jsxSorted(_Fragment, null, null, _wrapProp(test), 3, "u6_0");
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\tconst { \\"bind:value\\": bindValue } = props;\n\tconst test = useSignal(bindValue);\n\treturn _jsxSorted(_Fragment, null, null, _wrapProp(test), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,EAAE,cAAc,cAAc;CACpC,MAAM,OAAO,UAAU,UAAU;AACjC,QAAO,WAAW,WAAW,MAAM,MAAM,UAAU,KAAK,EAAE,GAAG,OAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { Fragment as _Fragment } from \\"@qwik.dev/core/jsx-runtime\\";\nimport { _jsxSorted } from \\"@qwik.dev/core\\";\nimport { _wrapProp } from \\"@qwik.dev/core\\";\nimport { useSignal } from \\"@qwik.dev/core\\";\nexport const test_component_LUXeXe0DQrg = (props) => {\n\tconst test = useSignal(props[\\"bind:value\\"]);\n\treturn _jsxSorted(_Fragment, null, null, _wrapProp(test), 3, \\"u6_0\\");\n};\"],\"mappings\":\"AAAA,SAAS,YAAY,iBAAiB;AACtC,SAAS,kBAAkB;AAC3B,SAAS,iBAAiB;AAC1B,SAAS,iBAAiB;AAC1B,OAAO,MAAM,8BAA8B,UAAU;CACpD,MAAM,OAAO,UAAU,MAAM,cAAc;AAC3C,QAAO,WAAW,WAAW,MAAM,MAAM,UAAU,KAAK,EAAE,GAAG,OAAO\"}")
 /*
 {
   "origin": "test.tsx",

@@ -57,7 +57,6 @@ export const App_component_ckEPmXZlub0 = (props) => {
 	const state = useCounter();
 	const _ref = {};
 	_ref.thing = useStore({ _ref.thing: 0 });
-	const { thing } = _ref;
 	const STEP_2 = 2;
 	const count2 = state.count * 2;
 	return /*#__PURE__*/ _jsxSorted("div", { "q:ps": [count2, state] }, { "q-e:click": q_App_component_div_q_e_click_mi4E1piTWe8.w([count2, state]) }, [/*#__PURE__*/ _jsxSorted("span", null, null, _wrapProp(state, "count"), 3, null), buttons.map((btn) => /*#__PURE__*/ _jsxSorted("button", { "q:ps": [
@@ -65,13 +64,13 @@ export const App_component_ckEPmXZlub0 = (props) => {
 		btn,
 		props,
 		state,
-		thing
+		_ref.thing
 	] }, { "q-e:click": q_App_component_div_button_q_e_click_UB6Fs5a3bd8.w([
 		STEP_2,
 		btn,
 		props,
 		state,
-		thing
+		_ref.thing
 	]) }, _wrapProp(btn, "name"), 7, null))], 7, "u6_0");
 };
 

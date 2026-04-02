@@ -450,11 +450,14 @@ fn contains_word(text: &str, word: &str) -> bool {
     let mut start = 0;
     while let Some(pos) = text[start..].find(word) {
         let abs_pos = start + pos;
+        // A word boundary char is one that CAN be part of an identifier or member access.
+        // We include '.' because `obj.prop` means `prop` is a property access, not a
+        // standalone identifier reference.
         let before_ok = abs_pos == 0
             || !text
                 .chars()
                 .nth(abs_pos.saturating_sub(1))
-                .map(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                .map(|c| c.is_alphanumeric() || c == '_' || c == '$' || c == '.')
                 .unwrap_or(false);
         let after_ok = abs_pos + word.len() >= text.len()
             || !text
@@ -483,7 +486,7 @@ fn replace_word(text: &str, word: &str, replacement: &str) -> String {
             || !text
                 .chars()
                 .nth(abs_pos.saturating_sub(1))
-                .map(|c| c.is_alphanumeric() || c == '_' || c == '$')
+                .map(|c| c.is_alphanumeric() || c == '_' || c == '$' || c == '.')
                 .unwrap_or(false);
         let after_ok = abs_pos + word.len() >= text.len()
             || !text
@@ -980,7 +983,10 @@ pub(crate) fn new_module(ctx: NewModuleCtx<'_>) -> String {
             for (_, code) in &hoisted_pairs {
                 parts.push(code.clone());
             }
-            parts.push(ctx.expr.to_string());
+            // NOTE: Do NOT include ctx.expr (pre-hoist original expression) here.
+            // The original may reference JSX symbols that get replaced during hoisting,
+            // causing over-import of _jsxSorted, _wrapProp etc. in segments that
+            // don't actually use them in their final form.
             parts.join("\n")
         };
 
@@ -1384,6 +1390,19 @@ mod tests {
         let body = "const x = fn(y);";
         let result = fix_self_referential_vars(body);
         assert_eq!(result, body);
+    }
+
+    #[test]
+    fn fix_self_referential_var_property_access_not_self_ref() {
+        // `_rawProps.cleanup` is a property access, not a self-reference to `cleanup`.
+        // Should NOT be rewritten to _ref pattern.
+        let body = "const cleanup = _rawProps.cleanup;";
+        let result = fix_self_referential_vars(body);
+        assert_eq!(
+            result, body,
+            "Property access should not trigger self-referential rewrite, got: {}",
+            result
+        );
     }
 
     // -----------------------------------------------------------------------

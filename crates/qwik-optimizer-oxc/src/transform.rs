@@ -703,6 +703,11 @@ pub(crate) struct QwikTransform {
     /// the original `$`-function imports from the output.
     pub(crate) used_marker_specifiers: HashSet<String>,
 
+    /// Phase 28-04: Non-core marker specifiers whose call sites were rewritten to `*Qrl`.
+    /// Maps `(specifier_name, source_module)` so we can emit the correct import.
+    /// E.g., `qwikify$` from `./qwikfy` → emit `import { qwikifyQrl } from "./qwikfy"`.
+    pub(crate) used_non_core_marker_specifiers: Vec<(String, String)>,
+
     // ---- Phase 18: stack_ctxt push tracking for JSX and marker calls ----------
 
     /// Span-start values of JSX elements that pushed their tag name to `stack_ctxt`.
@@ -898,6 +903,8 @@ impl QwikTransform {
             needs_chk: false,
             // Phase 25-03: QRL import tracking
             used_marker_specifiers: HashSet::new(),
+            // Phase 28-04: Non-core marker specifier tracking
+            used_non_core_marker_specifiers: Vec::new(),
             // Phase 18: stack_ctxt push tracking for JSX and marker calls
             jsx_element_pushed_spans: HashSet::new(),
             jsx_attr_pushed_spans: HashSet::new(),
@@ -4271,10 +4278,19 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
                 // only in the segment module, not the parent module.
                 {
                     let collect = unsafe { &*self.global_collect };
-                    if collect.imports.get(&callee_name).map_or(false, |i| i.source == self.core_module)
-                        && self.segment_span_stack.is_empty()
-                    {
-                        self.used_marker_specifiers.insert(specifier.clone());
+                    if let Some(import_info) = collect.imports.get(&callee_name) {
+                        if import_info.source == self.core_module
+                            && self.segment_span_stack.is_empty()
+                        {
+                            self.used_marker_specifiers.insert(specifier.clone());
+                        } else if import_info.source != self.core_module
+                            && self.segment_span_stack.is_empty()
+                        {
+                            // Phase 28-04: Track non-core markers for Qrl variant import emission.
+                            self.used_non_core_marker_specifiers.push(
+                                (specifier.clone(), import_info.source.clone())
+                            );
+                        }
                     }
                 }
                 // Use the resolved specifier for QRL name computation, not the local alias.
@@ -4716,6 +4732,22 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
         }
 
+        // Phase 28-04: emit `import { qwikifyQrl }` for non-core markers.
+        // These are $-suffixed functions from non-core modules (e.g., qwikify$ from ./qwikfy)
+        // whose call sites were rewritten to *Qrl variants.
+        {
+            let mut seen_non_core: HashSet<(String, String)> = HashSet::new();
+            for (spec, source) in &self.used_non_core_marker_specifiers {
+                let qrl_name = words::dollar_to_qrl_name(spec);
+                if seen_non_core.insert((qrl_name.clone(), source.clone())) {
+                    let src = format!(r#"import {{ {} }} from "{}";"#, qrl_name, source);
+                    if let Some(stmt) = parse_single_statement(&src, allocator) {
+                        new_body.push(stmt);
+                    }
+                }
+            }
+        }
+
         // Phase 25-03 + Phase 28-02: emit imports for all QRL-variant identifiers used
         // in hoisted consts. Each variant gets its own import statement.
         if has_qrl_hoisted {
@@ -4883,34 +4915,23 @@ impl<'a> Traverse<'a, ()> for QwikTransform {
             }
 
             // Step 3: filter new_body — keep imports only if their local binding is used.
-            // Phase 28-04: Also strip specifiers whose imported name ends with `$`
-            // (marker functions like component$, useTask$) — these are always replaced
-            // by their Qrl variants in the parent module.
             let mut filtered_body: ArenaVec<Statement<'a>> = ArenaVec::new_in(allocator);
             for stmt in new_body {
                 if let Statement::ImportDeclaration(ref import_decl) = stmt {
                     if let Some(specs) = &import_decl.specifiers {
+                        // Check if ANY specifier's local name is used in the body.
                         let any_used = specs.iter().any(|spec| {
-                            let (local_name, imported_name) = match spec {
+                            let local_name = match spec {
                                 ImportDeclarationSpecifier::ImportSpecifier(s) => {
-                                    let imported = match &s.imported {
-                                        ModuleExportName::IdentifierName(id) => id.name.as_str(),
-                                        ModuleExportName::IdentifierReference(id) => id.name.as_str(),
-                                        ModuleExportName::StringLiteral(sl) => sl.value.as_str(),
-                                    };
-                                    (s.local.name.as_str(), imported)
+                                    s.local.name.as_str()
                                 }
                                 ImportDeclarationSpecifier::ImportDefaultSpecifier(s) => {
-                                    (s.local.name.as_str(), "default")
+                                    s.local.name.as_str()
                                 }
                                 ImportDeclarationSpecifier::ImportNamespaceSpecifier(s) => {
-                                    (s.local.name.as_str(), "*")
+                                    s.local.name.as_str()
                                 }
                             };
-                            // Phase 28-04: unconditionally strip $-suffixed marker imports
-                            if imported_name.ends_with('$') {
-                                return false;
-                            }
                             used_idents.contains(local_name)
                         });
                         if !any_used && !specs.is_empty() {

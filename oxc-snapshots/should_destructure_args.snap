@@ -40,12 +40,8 @@ export const test_component_LUXeXe0DQrg = (_rawProps) => {
 		"id",
 		"count"
 	]);
-	const _ref = {};
-	_ref.message = _rawProps._ref.message;
-	const { message } = _ref;
-	const _ref = {};
-	_ref.id = _rawProps._ref.id;
-	const { id } = _ref;
+	const message = _rawProps.message;
+	const id = _rawProps.id;
 	const c = _rawProps.count;
 	const _ref = {};
 	_ref.renders = useStore({ _ref.renders: 0 }, { reactive: false });

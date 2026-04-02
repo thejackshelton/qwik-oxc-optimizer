@@ -38,9 +38,7 @@ import { _captures } from "@qwik.dev/core";
 //
 export const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => {
 	const sig = _captures[0];
-	const _ref = {};
-	_ref.cleanup = _rawProps._ref.cleanup;
-	const { cleanup } = _ref;
+	const cleanup = _rawProps.cleanup;
 	const timer = setInterval(() => {
 		sig.value++;
 	}, 1e3);
@@ -48,7 +46,7 @@ export const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => {
 	return 0;
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => { const sig = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tsig.value++;\n\t}, 1e3);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC,OAAO,cAAc;CAAE,MAAM,MAAM,UAAU;CAElG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,MAAI;IACF,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_sig_useAsync_f0BGwWm4eeY\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_sig_useAsync_f0BGwWm4eeY = async (_rawProps) => { const sig = _captures[0];\n\n\tconst cleanup = _rawProps.cleanup;\n\tconst timer = setInterval(() => {\n\t\tsig.value++;\n\t}, 1e3);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,yCAAyC,OAAO,cAAc;CAAE,MAAM,MAAM,UAAU;CAElG,MAAM,UAAU,UAAU;CAC1B,MAAM,QAAQ,kBAAkB;AAC/B,MAAI;IACF,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
@@ -82,9 +80,7 @@ import { _captures } from "@qwik.dev/core";
 //
 export const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => {
 	const other = _captures[0];
-	const _ref = {};
-	_ref.cleanup = _rawProps._ref.cleanup;
-	const { cleanup } = _ref;
+	const cleanup = _rawProps.cleanup;
 	const timer = setInterval(() => {
 		other.value++;
 	}, 900);
@@ -92,7 +88,7 @@ export const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => {
 	return 0;
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_useAsync_fsHooibmyyE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => { const other = _captures[0];\n\n\tconst _ref = {};\n\t_ref.cleanup = _rawProps._ref.cleanup;\n\tconst { cleanup } = _ref;\n\tconst timer = setInterval(() => {\n\t\tother.value++;\n\t}, 900);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2CAA2C,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAEtG,MAAM,OAAO,EAAE;AACf,MAAK,UAAU,UAAU,KAAK;CAC9B,MAAM,EAAE,YAAY;CACpB,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_Foo_component_other_useAsync_fsHooibmyyE\"],\"sourcesContent\":[\"import { _captures } from \\"@qwik.dev/core\\";\nexport const Foo_component_other_useAsync_fsHooibmyyE = async (_rawProps) => { const other = _captures[0];\n\n\tconst cleanup = _rawProps.cleanup;\n\tconst timer = setInterval(() => {\n\t\tother.value++;\n\t}, 900);\n\tcleanup(() => clearInterval(timer));\n\treturn 0;\n};\"],\"mappings\":\"AAAA,SAAS,iBAAiB;AAC1B,OAAO,MAAM,2CAA2C,OAAO,cAAc;CAAE,MAAM,QAAQ,UAAU;CAEtG,MAAM,UAAU,UAAU;CAC1B,MAAM,QAAQ,kBAAkB;AAC/B,QAAM;IACJ,IAAI;AACP,eAAc,cAAc,MAAM,CAAC;AACnC,QAAO\"}")
 /*
 {
   "origin": "test.tsx",

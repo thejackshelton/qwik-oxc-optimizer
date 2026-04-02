@@ -53,8 +53,8 @@ Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_useTask
 
 ============================= test.tsx_test_component_LUXeXe0DQrg.js (ENTRY POINT)==
 
-import { qrl } from "@qwik.dev/core";
 import { _restProps } from "@qwik.dev/core";
+import { qrl } from "@qwik.dev/core";
 //
 const q_test_component_useTask_jewzFYh3XmQ = /*#__PURE__*/ qrl(() => import("./test.tsx_test_component_useTask_jewzFYh3XmQ"), "test_component_useTask_jewzFYh3XmQ", [props]);
 //
@@ -64,7 +64,7 @@ export const test_component_LUXeXe0DQrg = (_rawProps) => {
 	return "hi";
 };
 
-Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { qrl } from \\"@qwik.dev/core\\";\nimport { _restProps } from \\"@qwik.dev/core\\";\nconst q_test_component_useTask_jewzFYh3XmQ = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_useTask_jewzFYh3XmQ\\"), \\"test_component_useTask_jewzFYh3XmQ\\", [props]);\nexport const test_component_LUXeXe0DQrg = (_rawProps) => {\n\tconst props = _restProps(_rawProps);\n\tuseTaskQrl(q_test_component_useTask_jewzFYh3XmQ.w([props]));\n\treturn \\"hi\\";\n};\"],\"mappings\":\"AAAA,SAAS,WAAW;AACpB,SAAS,kBAAkB;AAC3B,MAAM,uCAAqD,0BAAU,OAAO,kDAAkD,sCAAsC,CAAC,MAAM,CAAC;AAC5K,OAAO,MAAM,8BAA8B,cAAc;CACxD,MAAM,QAAQ,WAAW,UAAU;AACnC,YAAW,qCAAqC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC3D,QAAO\"}")
+Some("{\"version\":3,\"names\":[],\"sources\":[\"test.tsx_test_component_LUXeXe0DQrg\"],\"sourcesContent\":[\"import { _restProps } from \\"@qwik.dev/core\\";\nimport { qrl } from \\"@qwik.dev/core\\";\nconst q_test_component_useTask_jewzFYh3XmQ = /*#__PURE__*/ qrl(() => import(\\"./test.tsx_test_component_useTask_jewzFYh3XmQ\\"), \\"test_component_useTask_jewzFYh3XmQ\\", [props]);\nexport const test_component_LUXeXe0DQrg = (_rawProps) => {\n\tconst props = _restProps(_rawProps);\n\tuseTaskQrl(q_test_component_useTask_jewzFYh3XmQ.w([props]));\n\treturn \\"hi\\";\n};\"],\"mappings\":\"AAAA,SAAS,kBAAkB;AAC3B,SAAS,WAAW;AACpB,MAAM,uCAAqD,0BAAU,OAAO,kDAAkD,sCAAsC,CAAC,MAAM,CAAC;AAC5K,OAAO,MAAM,8BAA8B,cAAc;CACxD,MAAM,QAAQ,WAAW,UAAU;AACnC,YAAW,qCAAqC,EAAE,CAAC,MAAM,CAAC,CAAC;AAC3D,QAAO\"}")
 /*
 {
   "origin": "test.tsx",
